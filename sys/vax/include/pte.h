@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)pte.h	7.4 (Berkeley) 05/02/88
+ *	@(#)pte.h	7.5 (Berkeley) 05/09/89
  */
 
 /*
@@ -91,5 +91,8 @@ extern	struct pte kmempt[], ekmempt[];
 extern	struct pte Nexmap[][16];
 #if VAX8600
 extern	struct pte Ioamap[][1];
+#endif
+#ifdef NFS
+extern	struct pte Nfsiomap[];
 #endif
 #endif /* defined(KERNEL) && !defined(LOCORE) */
