@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)dir.h	7.3 (Berkeley) 01/11/89
+ *	@(#)dir.h	7.4 (Berkeley) 02/16/89
  */
 
 /*
@@ -42,8 +42,8 @@
  * Entries other than the first in a directory do not normally have
  * dp->d_ino set to 0.
  */
-#define DIRBLKSIZ	DEV_BSIZE
-#define	MAXNAMLEN	255
+#define	DIRBLKSIZ	DEV_BSIZE
+#define	MAXNAMLEN	NAME_MAX
 
 struct	direct {
 	u_long	d_ino;			/* inode number of entry */
