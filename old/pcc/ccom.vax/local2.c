@@ -1,5 +1,5 @@
 # ifndef lint
-static char *sccsid ="@(#)local2.c	1.26 (Berkeley) 12/11/87";
+static char *sccsid ="@(#)local2.c	1.27 (Berkeley) 12/11/87";
 # endif
 
 # include "pass2.h"
@@ -825,10 +825,10 @@ shumul( p ) register NODE *p; {
 	extern int xdebug;
 
 	if (xdebug) {
-		 printf("\nshumul:op=%d,lop=%d,rop=%d", p->in.op, p->in.left->in.op, p->in.right->in.op);
-		printf(" prname=%s,plty=%d, prlval=%D\n", p->in.right->in.name, p->in.left->in.type, p->in.right->tn.lval);
+		int val;
+		printf("shumul:\n");
+		eprint(p, 0, &val, &val);
 		}
-
 
 	o = p->in.op;
 	if( o == NAME || (o == OREG && !R2TEST(p->tn.rval)) || o == ICON ) return( STARNM );
