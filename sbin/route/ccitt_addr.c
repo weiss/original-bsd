@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ccitt_addr.c	5.1 (Berkeley) 06/27/91
+ *	@(#)ccitt_addr.c	8.1 (Berkeley) 06/05/93
  */
 /*
  * parse CCITT addresses
