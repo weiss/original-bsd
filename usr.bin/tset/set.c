@@ -1,12 +1,12 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)set.c	5.3 (Berkeley) 12/01/92";
+static char sccsid[] = "@(#)set.c	8.1 (Berkeley) 06/09/93";
 #endif /* not lint */
 
 #include <termios.h>
