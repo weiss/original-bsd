@@ -13,7 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)locore.s	8.1 (Berkeley) 06/11/93
+ *	@(#)locore.s	8.2 (Berkeley) 08/12/93
  *
  * from: $Header: locore.s,v 1.51 93/04/21 06:19:37 torek Exp $
  */
@@ -4186,7 +4186,7 @@ ENTRY(random)
 	srl	%o3, 17, %o3
 	or	%o3, %o0, %o0
 	addcc	%o0, %o1, %o0
-	bl	1f
+	bneg	1f
 	 sethi	%hi(0x7fffffff), %o1
 	retl
 	 st	%o0, [%g1 + %lo(randseed)]
