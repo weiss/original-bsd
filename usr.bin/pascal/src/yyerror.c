@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)yyerror.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)yyerror.c 1.2 03/08/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -60,10 +60,10 @@ yerror(s, a1, a2, a3, a4, a5)
 	pchr('\n');
 	if (errpfx == 'E')
 #ifdef PI
-		eflg++, codeoff();
+		eflg = TRUE, codeoff();
 #endif
 #ifdef PXP
-		eflg++;
+		eflg = TRUE;
 #endif
 	errpfx = 'E';
 	yySerrs++;
