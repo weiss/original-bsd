@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)primes.c	8.3 (Berkeley) 03/21/94";
+static char sccsid[] = "@(#)primes.c	8.4 (Berkeley) 03/21/94";
 #endif /* not lint */
 
 /*
@@ -165,7 +165,7 @@ read_num_buf()
 		if (fgets(buf, sizeof(buf), stdin) == NULL) {
 			if (ferror(stdin))
 				err(1, "stdin");
-			errx(1, "stdin: unexpected end-of-file.");
+			exit(0);
 		}
 		for (p = buf; isblank(*p); ++p);
 		if (*p == '\n' || *p == '\0')
