@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.20 (Berkeley) 11/13/93";
+static char sccsid[] = "@(#)alias.c	8.21 (Berkeley) 12/11/93";
 #endif /* not lint */
 
 
@@ -118,7 +118,7 @@ alias(a, sendq, e)
 	owner = aliaslookup(obuf, e);
 	if (owner != NULL)
 	{
-		if (strchr(owner, ',') != NULL)
+		if (strpbrk(owner, ",:/|\"") != NULL)
 			owner = obuf;
 		a->q_owner = newstr(owner);
 	}
