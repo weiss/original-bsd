@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex3.7recover.c	7.5	06/10/83";
+static char *sccsid = "@(#)ex3.7recover.c	7.6	07/03/83";
 #include <stdio.h>	/* mjm: BUFSIZ: stdio = 512, VMUNIX = 1024 */
 #undef	BUFSIZ		/* mjm: BUFSIZ different */
 #undef	EOF		/* mjm: EOF and NULL effectively the same */
@@ -8,8 +8,8 @@ static char *sccsid = "@(#)ex3.7recover.c	7.5	06/10/83";
 #include "ex.h"
 #include "ex_temp.h"
 #include "ex_tty.h"
-#include "local/uparm.h"
 #include <sys/dir.h>
+#include "uparm.h"
 
 char xstr[1];		/* make loader happy */
 short tfile = -1;	/* ditto */
