@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tz.c	7.8 (Berkeley) 10/24/92
+ *	@(#)tz.c	7.9 (Berkeley) 04/13/93
  *
  * from: $Header: /sprite/src/kernel/dev/RCS/devSCSITape.c,
  *	v 8.14 89/07/31 17:26:13 mendel Exp $ SPRITE (Berkeley)
@@ -74,7 +74,7 @@ struct	tz_softc {
 #define TZ_FIXEDBLK	0x08
 
 #ifdef DEBUG
-int	tzdebug = 1;
+int	tzdebug = 0;
 #endif
 
 /*
