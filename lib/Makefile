@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.5 (Berkeley) 06/07/85
+#	@(#)Makefile	5.6 (Berkeley) 08/09/85
 #
 DESTDIR=
 CFLAGS=	-O
@@ -18,7 +18,7 @@ TAGSDIR=libcurses libdbm libln libm libmp libpc libtermlib
 # Programs that live in subdirectories, and have makefiles of their own.
 #
 SUBDIR=	lib2648 libF77 libI77 libU77 libcurses libdbm libg libln \
-	libom libm libmp libpc libplot libtermlib lpr me sendmail
+	libom libm libmp libpc libplot libtermlib liby lpr me sendmail
 
 # Shell scripts that need only be installed and are never removed.
 #
