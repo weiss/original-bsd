@@ -1,4 +1,4 @@
-#	@(#)files.sparc	7.1 (Berkeley) 04/20/93
+#	@(#)files.sparc	7.2 (Berkeley) 05/05/93
 #
 # sparc-specific configuration info
 
@@ -43,8 +43,6 @@ file	sparc/sbus/if_le.c		le
 
 
 major { sd = 7 }
-
-file	nfs/nfs_lbl.c			nfs
 
 file	sparc/dev/cons.c
 file	sparc/dev/event.c
