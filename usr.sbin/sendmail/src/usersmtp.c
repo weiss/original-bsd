@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	4.7		11/13/83	(no SMTP));
+SCCSID(@(#)usersmtp.c	4.8		03/11/84	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	4.7		11/13/83);
+SCCSID(@(#)usersmtp.c	4.8		03/11/84);
 
 
 
@@ -99,7 +99,7 @@ smtpinit(m, pvp)
 
 	if (setjmp(CtxGreeting) != 0)
 		goto tempfail;
-	gte = setevent(300, greettimeout, 0);
+	gte = setevent((time_t) 300, greettimeout, 0);
 	r = reply(m);
 	clrevent(gte);
 	if (r < 0 || REPLYTYPE(r) != 2)
