@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.3 (Berkeley) 07/07/92
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 # Quad support
 SRCS+=	adddi3.c anddi3.c ashldi3.c ashrdi3.c cmpdi2.c divdi3.c fixdfdi.c \
