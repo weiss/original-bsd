@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)e0	6.3 (Berkeley) 08/10/93
+.\"	@(#)e0	8.1 (Berkeley) 08/14/93
 .\"
 .EH 'USD:9-%''A Tutorial Introduction to the \s-2UNIX\s+2 Text Editor'
 .OH 'A Tutorial Introduction to the \s-2UNIX\s+2 Text Editor''USD:9-%'
