@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)rec.c 1.3 03/08/81";
+static char sccsid[] = "@(#)rec.c 1.4 04/01/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -118,7 +118,7 @@ variants(p, r)
 	if (r == NIL)
 		return;
 	ct = gtype(r[3]);
-	if ( isnta( ct , "bcsi" ) ) {
+	if ( ( ct != NIL ) && ( isnta( ct , "bcsi" ) ) ) {
 	    error("Tag fields cannot be %ss" , nameof( ct ) );
 	}
 	line = r[1];
