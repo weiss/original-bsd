@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.12 (Berkeley) 07/19/93
+#	@(#)Makefile	8.1 (Berkeley) 07/19/93
 
 PROG=	passwd
 SRCS=	des_rw.c krb_passwd.c local_passwd.c passwd.c pw_copy.c pw_util.c
