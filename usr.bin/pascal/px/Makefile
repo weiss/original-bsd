@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.3 (Berkeley) 05/10/87
+#	@(#)Makefile	5.4 (Berkeley) 10/27/87
 #
-SCCSID = "@(#)Makefile 5.3 05/10/87"
+SCCSID = "@(#)Makefile 5.4 10/27/87"
 
 DESTDIR =
 BINDIR = /usr/ucb
@@ -17,7 +17,6 @@ CFLAGS = -O -I${SRCDIR} -I${LIBPCDIR}
 OPT = /lib/c2
 AS = as
 RM = rm -f
-MACHINE = unknown
 
 PSHDR =	opc.c pic.c
 
@@ -77,7 +76,7 @@ grind: sources
 
 depend:	sources
 	ls *.c | sed 's;^\(.*\)\.c;\1.o: \1.c;' >makedep
-	/bin/grep '^#[ 	]*include' *.c | sed \
+	grep '^#[ 	]*include' *.c | sed \
 		-e '/<.*>/d' \
 		-e 's;:[^"]*"\([^"]*\)".*;: \1;' \
 		-e 's/\.c/\.o/' \
@@ -99,7 +98,6 @@ depend:	sources
 Version.o: Version.c
 int.o: int.c
 interp.o: interp.c
-opc.o: opc.c
 utilities.o: utilities.c
 version.o: version.c
 int.o: whoami.h
@@ -112,7 +110,6 @@ interp.o: ../src/objfmt.h
 interp.o: h02opcs.h
 interp.o: machdep.h
 interp.o: /usr/src/usr.lib/libpc/libpc.h
-opc.o: ../src/OPnames.h
 utilities.o: whoami.h
 utilities.o: vars.h
 utilities.o: ../src/objfmt.h
