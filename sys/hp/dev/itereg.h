@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: itereg.h 1.2 89/08/25$
+ * from: Utah $Hdr: itereg.h 1.1 90/07/09$
  *
- *	@(#)itereg.h	7.1 (Berkeley) 05/08/90
+ *	@(#)itereg.h	7.2 (Berkeley) 11/04/90
  */
 
 #define REGADDR		ip->regbase
