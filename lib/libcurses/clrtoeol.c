@@ -3,7 +3,7 @@
 /*
  *	This routine clears up to the end of line
  *
- * 01/26/81 (Berkeley) @(#)clrtoeol.c	1.1
+ * 03/05/81 (Berkeley) @(#)clrtoeol.c	1.2
  */
 wclrtoeol(win)
 reg WINDOW	*win; {
@@ -37,6 +37,4 @@ reg WINDOW	*win; {
 		if (win->_lastch[y] < maxx - win->_y[y])
 			win->_lastch[y] = maxx - win->_y[y];
 	}
-
-	return OK;
 }
