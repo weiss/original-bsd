@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)0.h 1.24 02/08/84"; */
+/* static char sccsid[] = "@(#)0.h 2.1 02/08/84"; */
 
 #define DEBUG
 #define CONSETS
