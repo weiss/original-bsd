@@ -1,4 +1,11 @@
-/*	lp.local.h	4.5	84/07/24	*/
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)lp.local.h	5.1 (Berkeley) 06/06/85
+ */
+
 /*
  * Possibly, local parameters to the spooling system
  */
