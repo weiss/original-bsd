@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)who.c	4.2 (Berkeley) 11/01/80";
+static char *sccsid = "@(#)who.c	4.3 (Berkeley) 03/11/81";
 /*
  * who
  */
@@ -50,9 +50,7 @@ char **argv;
 			static char myname[]=sysname;
 			if (strcmp(utmp.ut_line, tp))
 				continue;
-			if (islower(*myname))
-				*myname = toupper(*myname);
-			printf("(%s) ",myname);
+			printf("%s!",myname);
 			putline();
 			exit(0);
 		}
