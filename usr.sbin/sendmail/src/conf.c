@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.83 (Berkeley) 04/12/94";
+static char sccsid[] = "@(#)conf.c	8.84 (Berkeley) 04/12/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1089,8 +1089,10 @@ reapchild()
 	{
 		if (count++ > 1000)
 		{
+#ifdef LOG
 			syslog(LOG_ALERT, "reapchild: waitpid loop: pid=%d, status=%x",
 				pid, status);
+#endif
 			break;
 		}
 	}
@@ -1293,6 +1295,24 @@ setsid __P ((void))
 	return setpgrp();
 # else
 	return setpgid(0, getpid());
+# endif
+}
+
+#endif
+/*
+**  FSYNC -- dummy fsync
+*/
+
+#ifdef NEEDFSYNC
+
+fsync(fd)
+	int fd;
+{
+# ifdef O_SYNC
+	return fcntl(fd, F_SETFL, O_SYNC);
+# else
+	/* nothing we can do */
+	return 0;
 # endif
 }
 

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.30 (Berkeley) 02/25/94";
+static char sccsid[] = "@(#)headers.c	8.31 (Berkeley) 04/12/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -504,6 +504,7 @@ logsender(e, msgid)
 	register ENVELOPE *e;
 	char *msgid;
 {
+# ifdef LOG
 	char *name;
 	register char *sbp;
 	register char *p;
@@ -578,6 +579,7 @@ logsender(e, msgid)
 	}
 	syslog(LOG_INFO, "%s relay=%s", sbuf, name);
 #  endif
+# endif
 }
 /*
 **  PRIENCODE -- encode external priority names into internal values.
