@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.69 (Berkeley) 04/25/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.70 (Berkeley) 04/26/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.69 (Berkeley) 04/25/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.70 (Berkeley) 04/26/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -896,7 +896,7 @@ mail_esmtp_args(kp, vp, e)
 			usrerr("501 SIZE requires a value");
 			/* NOTREACHED */
 		}
-# ifdef __STDC__
+# if defined(__STDC__) && !defined(BROKEN_ANSI_LIBRARY)
 		e->e_msgsize = strtoul(vp, (char **) NULL, 10);
 # else
 		e->e_msgsize = strtol(vp, (char **) NULL, 10);
