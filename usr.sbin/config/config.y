@@ -70,7 +70,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)config.y	5.3 (Berkeley) 10/13/86
+ *	@(#)config.y	5.4 (Berkeley) 10/14/87
  */
 
 #include "config.h"
@@ -487,7 +487,7 @@ yyerror(s)
 	char *s;
 {
 
-	fprintf(stderr, "config: line %d: %s\n", yyline, s);
+	fprintf(stderr, "config: line %d: %s\n", yyline + 1, s);
 }
 
 /*
