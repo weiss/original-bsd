@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)coredump.c 1.2 12/15/82";
+static char sccsid[] = "@(#)coredump.c 1.3 12/18/82";
 
 /*
  * Deal with the core dump anachronism.
@@ -15,11 +15,11 @@ static char sccsid[] = "@(#)coredump.c 1.2 12/15/82";
 #include "main.h"
 #include <sys/param.h>
 #include <sys/dir.h>
-#include <sys/psl.h>
-#include <sys/pte.h>
+#include <machine/psl.h>
+#include <machine/pte.h>
 #include <sys/user.h>
 #include <sys/vm.h>
-#include <sys/reg.h>
+#include <machine/reg.h>
 #include <a.out.h>
 
 #ifndef public
