@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)quotaon.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)quotaon.c	5.2 (Berkeley) 08/08/85";
 #endif not lint
 
 /*
@@ -186,7 +186,7 @@ readonly(fs)
 		cp = fs->fs_spec;
 	for (mp = mtab; mp < mtab + NMOUNT; mp++) {
 		if (mp->m_path[0] == '\0')
-			break;
+			continue;
 		if (strcmp(cp, mp->m_dname) == 0) {
 			if (strcmp(mp->m_type, FSTAB_RO) == 0) {
 				printf("%s: mounted read-only\n", fs->fs_file);
