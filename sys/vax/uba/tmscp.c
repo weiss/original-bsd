@@ -1,4 +1,4 @@
-/*	@(#)tmscp.c	5.7 (Berkeley) 04/28/86 */
+/*	@(#)tmscp.c	7.1 (Berkeley) 06/05/86 */
 
 #ifndef lint
 static	char	*sccsid = "@(#)tmscp.c	1.24	(ULTRIX)	1/21/86";
