@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdesc_vfsops.c	1.4 (Berkeley) 07/12/92
+ *	@(#)fdesc_vfsops.c	7.1 (Berkeley) 07/12/92
  *
  * $Id: fdesc_vfsops.c,v 1.6 1992/05/30 10:25:59 jsp Exp jsp $
  */

@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdesc_vnops.c	1.5 (Berkeley) 07/12/92
+ *	@(#)fdesc_vnops.c	7.1 (Berkeley) 07/12/92
  *
  * $Id: fdesc_vnops.c,v 1.7 1992/05/30 10:05:34 jsp Exp jsp $
  */
