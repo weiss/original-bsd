@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.46		11/04/82);
+SCCSID(@(#)savemail.c	3.47		11/17/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -146,7 +146,7 @@ savemail()
 	**	expected to handle that.
 	*/
 
-	if (ArpaMode)
+	if (OpMode == MD_ARPAFTP || OpMode == MD_SMTP)
 		return;
 	p = NULL;
 	if (CurEnv->e_from.q_mailer == LocalMailer)
@@ -264,7 +264,7 @@ returntosender(msg, returnto, sendbody)
 	define('x', "Mail Delivery Subsystem");
 
 	/* actually deliver the error message */
-	sendall(ee, FALSE);
+	sendall(ee, SendMode);
 
 	/* do any closing error processing */
 	checkerrors(ee);
