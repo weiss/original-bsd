@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-static	char sccsid[] = "@(#)asmain.c 4.5 08/16/80";
+static	char sccsid[] = "@(#)asmain.c 4.6 08/16/80";
 #include <stdio.h>
 #include <ctype.h>
 #include <signal.h>
@@ -10,7 +10,7 @@ static	char sccsid[] = "@(#)asmain.c 4.5 08/16/80";
 #include "asscan.h"
 
 #ifdef UNIX
-#define	unix_lang_name "VAX/UNIX Assembler V08/16/80 4.5"
+#define	unix_lang_name "VAX/UNIX Assembler V08/16/80 4.6"
 #endif
 
 #ifdef VMS
@@ -343,6 +343,8 @@ i_pass1()
 {
 	if (useVM == 0){
 		strcat(tmpn1, tmpdirprefix);
+		if (tmpdirprefix[strlen(tmpdirprefix)-1] != '/')
+			strcat(tmpn1, "/");
 		strcat(tmpn1, TMP_SUFFIX);
 		mktemp(tmpn1);
 		tmpfil = fopen(tmpn1, "w");
