@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uucp.c	5.7	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)uucp.c	5.8	(Berkeley) 04/24/88";
 #endif
 
 #include "uucp.h"
@@ -24,7 +24,7 @@ struct timeb Now;
 
 /* variables used to check if talking to more than one system. */
 int	xsflag = -1;
-char	xsys[MAXBASENAME+1] = 0;
+char	xsys[MAXBASENAME+1];
 
 long Nbytes = 0;
 #define MAXBYTES 50000	/* maximun number of bytes of data per C. file */
