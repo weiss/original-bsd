@@ -17,11 +17,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ls.h	5.4 (Berkeley) 06/25/89
+ *	@(#)ls.h	5.5 (Berkeley) 06/25/89
  */
 
 typedef struct _lsstruct {
 	char *name;			/* file name */
+	int len;			/* file name length */
 	struct stat lstat;		/* lstat(2) for file */
 } LS;
 
