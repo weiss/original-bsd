@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.25 (Berkeley) 09/30/91";
+static char sccsid[] = "@(#)readcf.c	5.26 (Berkeley) 10/02/91";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -872,8 +872,8 @@ setoption(opt, val, safe, sticky)
 		Verbose = atobool(val);
 		break;
 
-	  case 'w':		/* we have wildcard MX records */
-		WildcardMX = atobool(val);
+	  case 'w':		/* we don't have wildcard MX records */
+		NoWildcardMX = atobool(val);
 		break;
 
 	  case 'x':		/* load avg at which to auto-queue msgs */
