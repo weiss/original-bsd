@@ -18,7 +18,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	8.2 (Berkeley) 01/21/94";
+static char sccsid[] = "@(#)lpr.c	8.3 (Berkeley) 03/30/94";
 #endif /* not lint */
 
 /*
@@ -472,7 +472,7 @@ nfile(n)
 	register int f;
 	int oldumask = umask(0);		/* should block signals */
 
-	f = creat(n, FILMOD);
+	f = open(n, O_WRONLY | O_EXCL | O_CREAT, FILMOD);
 	(void) umask(oldumask);
 	if (f < 0) {
 		printf("%s: cannot create %s\n", name, n);
