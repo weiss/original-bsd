@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)machdep.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)machdep.c	5.2 (Berkeley) 01/09/86";
 #endif not lint
 
 /*
@@ -50,7 +50,7 @@ static char sccsid[] = "@(#)machdep.c	5.1 (Berkeley) 05/30/85";
  */
 
 # include	<curses.h>
-# include	"extern.h"
+# include	"machdep.h"
 # include	<signal.h>
 # include	<sys/types.h>
 # include	<sys/stat.h>
@@ -58,9 +58,7 @@ static char sccsid[] = "@(#)machdep.c	5.1 (Berkeley) 05/30/85";
 
 # ifdef	SCOREFILE
 
-# ifndef	LOCK_EX
 static char	*Lockfile = "/tmp/.fredlock";
-# endif
 
 # ifndef	NUMSCORES
 # 	define	NUMSCORES	10
@@ -174,8 +172,10 @@ getltchars()
 	ioctl(1, TIOCGLTC, &Ltc);
 	Got_ltc = TRUE;
 	Orig_dsusp = Ltc.t_dsuspc;
-	Ltc.t_dsuspc = Ltc.t_suspc;
-	ioctl(1, TIOCSLTC, &Ltc);
+	if (Orig_dsusp == CTRL(Y)) {
+		Ltc.t_dsuspc = Ltc.t_suspc;
+		ioctl(1, TIOCSLTC, &Ltc);
+	}
 # endif	TIOCGLTC
 }
 
