@@ -5,7 +5,7 @@
 /*
  * handle stop and start signals
  *
- * 06/25/83 (Berkeley) @(#)tstp.c	1.3
+ * @(#)tstp.c	1.4 (Berkeley) 05/01/85
  */
 tstp() {
 
