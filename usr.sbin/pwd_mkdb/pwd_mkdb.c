@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)pwd_mkdb.c	5.5 (Berkeley) 05/06/91";
+static char sccsid[] = "@(#)pwd_mkdb.c	5.6 (Berkeley) 09/23/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -88,14 +88,14 @@ main(argc, argv)
 
 	/* Open the temporary insecure password database. */
 	(void)sprintf(buf, "%s.tmp", _PATH_MP_DB);
-	dp = hash_open(buf, O_WRONLY|O_CREAT|O_EXCL, PERM_INSECURE, NULL);
+	dp = dbopen(buf, O_WRONLY|O_CREAT|O_EXCL, PERM_INSECURE, DB_HASH, NULL);
 	if (!dp)
 		error(buf);
 	clean = FILE_INSECURE;
 
 	/* Open the temporary encrypted password database. */
 	(void)sprintf(buf, "%s.tmp", _PATH_SMP_DB);
-	edp = hash_open(buf, O_WRONLY|O_CREAT|O_EXCL, PERM_SECURE, NULL);
+	edp = dbopen(buf, O_WRONLY|O_CREAT|O_EXCL, PERM_SECURE, DB_HASH, NULL);
 	if (!edp)
 		error(buf);
 	clean = FILE_SECURE;
