@@ -1,11 +1,10 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)utilities.c 1.5 02/03/82";
+static char sccsid[] = "@(#)utilities.c 1.6 08/29/82";
 
 #include	<signal.h>
 #include	"whoami.h"
 #include	"vars.h"
-#include	"h02opcs.h"
 
 stats()
 {
