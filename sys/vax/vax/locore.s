@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)locore.s	6.32 (Berkeley) 09/16/85
+ *	@(#)locore.s	6.33 (Berkeley) 01/08/86
  */
 
 #include "psl.h"
@@ -239,7 +239,7 @@ SCBVEC(netintr):
 #if NIMP > 0
 	bbcc	$NETISR_IMP,_netisr,1f; calls $0,_impintr; 1:
 #endif
-#if defined(INET) || defined(BBNNET)
+#ifdef INET
 	bbcc	$NETISR_IP,_netisr,1f; calls $0,_ipintr; 1:
 #endif
 #ifdef NS
