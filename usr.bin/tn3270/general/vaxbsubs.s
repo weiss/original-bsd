@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1988 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vaxbsubs.s	4.2 (Berkeley) 04/26/91
+ *	@(#)vaxbsubs.s	8.1 (Berkeley) 06/06/93
  */
 
 /* This is taken from bcmp.s from 4.2.
