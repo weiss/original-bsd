@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fflush.c	5.1 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)fflush.c	5.2 (Berkeley) 09/11/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/errno.h>
@@ -20,10 +20,10 @@ static char sccsid[] = "@(#)fflush.c	5.1 (Berkeley) 01/20/91";
 fflush(fp)
 	register FILE *fp;
 {
+
 	if (fp == NULL)
 		return (_fwalk(__sflush));
-
-	if ((fp->_flags & __SWR) == 0) {
+	if ((fp->_flags & (__SWR | __SRW)) == 0) {
 		errno = EBADF;
 		return (EOF);
 	}
