@@ -4,9 +4,10 @@
 .\" This code is derived from software contributed to Berkeley by
 .\" the Systems Programming Group of the University of Utah Computer
 .\" Science Department.
+.\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)ct.4	5.2 (Berkeley) 03/27/91
+.\"     @(#)ct.4	5.3 (Berkeley) 06/09/93
 .\"
 .Dd 
 .Dt CT 4 hp300
@@ -74,10 +75,5 @@ refer to streaming no-rewind interfaces.
 .Xr tar 1 ,
 .Xr tp 1 ,
 .Xr mtio 4 .
-.Sh HISTORY
-The
-.Nm \&ct
-driver
-.Ud
 .Sh BUGS
 Read and writes of less than 1024 bytes will not behave as expected.
