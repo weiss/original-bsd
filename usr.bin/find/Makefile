@@ -1,8 +1,6 @@
-#	@(#)Makefile	5.3 (Berkeley) 08/19/91
+#	@(#)Makefile	5.4 (Berkeley) 04/27/93
 
 PROG=	find
 SRCS=	find.c function.c ls.c main.c misc.c operator.c option.c
-DPADD=	${LIBUTIL}
-LDADD=	-lutil
 
 .include <bsd.prog.mk>
