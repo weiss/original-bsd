@@ -1,5 +1,5 @@
 /* STARTUP PROCEDURE FOR UNIX FORTRAN PROGRAMS */
-char id_libF77[] = "@(#)main.c	2.13	06/21/83";
+char id_libF77[] = "@(#)main.c	2.14	08/08/83";
 
 #include <stdio.h>
 #include <signal.h>
@@ -75,8 +75,15 @@ struct action act_ill[] = {
 	{"operand", 0},
 };
 
+#if	vax
+sigdie(s, t, sc)
+int s; int t; struct sigcontext *sc;
+
+#else	pdp11
 sigdie(s, t, pc)
 int s; int t; long pc;
+
+#endif
 {
 extern unit units[];
 register struct action *act = &sig_act[s-1];
@@ -110,9 +117,10 @@ if(act->core)
 	/* now get a core */
 #if	vax
 	signal(SIGILL, SIG_DFL);
-#else	vax
+	sigsetmask(0);
+#else	pdp11
 	signal(SIGIOT, SIG_DFL);
-#endif	vax
+#endif
 	abort();
 	}
 exit(s);
