@@ -10,7 +10,7 @@
  * File I/O.
  */
 
-static char *SccsId = "@(#)fio.c	2.2 07/20/81";
+static char *SccsId = "@(#)fio.c	2.3 08/12/81";
 
 /*
  * Set up the input pointers while copying the mail file into
@@ -42,7 +42,7 @@ setptr(ibuf)
 		cp = linebuf;
 		c = getc(ibuf);
 		while (c != EOF && c != '\n') {
-			if (cp - linebuf >= BUFSIZ - 1) {
+			if (cp - linebuf >= LINESIZE - 1) {
 				ungetc(c, ibuf);
 				*cp = 0;
 				break;
