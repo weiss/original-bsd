@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.24 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)syslogd.c	5.25 (Berkeley) 08/08/88";
 #endif /* not lint */
 
 /*
@@ -502,7 +502,7 @@ logmsg(pri, msg, from, flags)
 
 		if (f->f_file >= 0) {
 			untty();
-			fprintlog(f, flags, (char *)NULL);
+			fprintlog(f, flags, msg);
 			(void) close(f->f_file);
 		}
 		(void) sigsetmask(omask);
