@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if.c	7.6.1.1 (Berkeley) 02/17/89
+ *	@(#)if.c	7.7 (Berkeley) 04/26/89
  */
 
 #include "param.h"
@@ -88,18 +88,18 @@ if_attach(ifp)
 /*ARGSUSED*/
 struct ifaddr *
 ifa_ifwithaddr(addr)
-	struct sockaddr *addr;
+	register struct sockaddr *addr;
 {
 	register struct ifnet *ifp;
 	register struct ifaddr *ifa;
 
 #define	equal(a1, a2) \
-	(bcmp((caddr_t)((a1)->sa_data), (caddr_t)((a2)->sa_data), 14) == 0)
+  (bcmp((caddr_t)(a1), (caddr_t)(a2), ((struct sockaddr *)(a1))->sa_len) == 0)
 	for (ifp = ifnet; ifp; ifp = ifp->if_next)
 	    for (ifa = ifp->if_addrlist; ifa; ifa = ifa->ifa_next) {
-		if (ifa->ifa_addr.sa_family != addr->sa_family)
+		if (ifa->ifa_addr->sa_family != addr->sa_family)
 			continue;
-		if (equal(&ifa->ifa_addr, addr))
+		if (equal(addr, ifa->ifa_addr))
 			return (ifa);
 		if ((ifp->if_flags & IFF_BROADCAST) &&
 		    equal(&ifa->ifa_broadaddr, addr))
@@ -113,7 +113,7 @@ ifa_ifwithaddr(addr)
 /*ARGSUSED*/
 struct ifaddr *
 ifa_ifwithdstaddr(addr)
-	struct sockaddr *addr;
+	register struct sockaddr *addr;
 {
 	register struct ifnet *ifp;
 	register struct ifaddr *ifa;
@@ -121,9 +121,9 @@ ifa_ifwithdstaddr(addr)
 	for (ifp = ifnet; ifp; ifp = ifp->if_next) 
 	    if (ifp->if_flags & IFF_POINTOPOINT)
 		for (ifa = ifp->if_addrlist; ifa; ifa = ifa->ifa_next) {
-			if (ifa->ifa_addr.sa_family != addr->sa_family)
+			if (ifa->ifa_addr->sa_family != addr->sa_family)
 				continue;
-			if (equal(&ifa->ifa_dstaddr, addr))
+			if (equal(addr, ifa->ifa_dstaddr))
 				return (ifa);
 	}
 	return ((struct ifaddr *)0);
@@ -135,23 +135,30 @@ ifa_ifwithdstaddr(addr)
  */
 struct ifaddr *
 ifa_ifwithnet(addr)
-	register struct sockaddr *addr;
+	struct sockaddr *addr;
 {
 	register struct ifnet *ifp;
 	register struct ifaddr *ifa;
-	register u_int af = addr->sa_family;
-	register int (*netmatch)();
+	register char *cp, *cp2, *cp3;
+	register char *cplim;
+	u_int af = addr->sa_family;
 
 	if (af >= AF_MAX)
 		return (0);
-	netmatch = afswitch[af].af_netmatch;
 	for (ifp = ifnet; ifp; ifp = ifp->if_next)
 	    for (ifa = ifp->if_addrlist; ifa; ifa = ifa->ifa_next) {
-		if (ifa->ifa_addr.sa_family != addr->sa_family)
+		if (ifa->ifa_addr->sa_family != af || ifa->ifa_netmask == 0)
 			continue;
-		if ((*netmatch)(&ifa->ifa_addr, addr))
+		cp = addr->sa_data;
+		cp2 = ifa->ifa_addr->sa_data;
+		cp3 = ifa->ifa_netmask->sa_data;
+		cplim = ifa->ifa_netmask->sa_len + (char *)ifa->ifa_netmask;
+		for (; cp3 < cplim; cp3++)
+			if ((*cp++ ^ *cp2++) & *cp3)
+				break;
+		if (cp3 == cplim)
 			return (ifa);
-	}
+	    }
 	return ((struct ifaddr *)0);
 }
 
@@ -168,7 +175,7 @@ ifa_ifwithaf(af)
 
 	for (ifp = ifnet; ifp; ifp = ifp->if_next)
 	    for (ifa = ifp->if_addrlist; ifa; ifa = ifa->ifa_next)
-		if (ifa->ifa_addr.sa_family == af)
+		if (ifa->ifa_addr->sa_family == af)
 			return (ifa);
 	return ((struct ifaddr *)0);
 }
@@ -186,7 +193,7 @@ if_down(ifp)
 
 	ifp->if_flags &= ~IFF_UP;
 	for (ifa = ifp->if_addrlist; ifa; ifa = ifa->ifa_next)
-		pfctlinput(PRC_IFDOWN, &ifa->ifa_addr);
+		pfctlinput(PRC_IFDOWN, ifa->ifa_addr);
 	if_qflush(&ifp->if_snd);
 }
 
@@ -216,6 +223,7 @@ if_qflush(ifq)
 if_slowtimo()
 {
 	register struct ifnet *ifp;
+	int s = splimp();
 
 	for (ifp = ifnet; ifp; ifp = ifp->if_next) {
 		if (ifp->if_timer == 0 || --ifp->if_timer)
@@ -223,6 +231,7 @@ if_slowtimo()
 		if (ifp->if_watchdog)
 			(*ifp->if_watchdog)(ifp->if_unit);
 	}
+	splx(s);
 	timeout(if_slowtimo, (caddr_t)0, hz / IFNET_SLOWHZ);
 }
 
@@ -276,19 +285,22 @@ ifioctl(so, cmd, data)
 {
 	register struct ifnet *ifp;
 	register struct ifreq *ifr;
+	int error;
 
 	switch (cmd) {
 
 	case SIOCGIFCONF:
+	case OSIOCGIFCONF:
 		return (ifconf(cmd, data));
 
 #if defined(INET) && NETHER > 0
 	case SIOCSARP:
 	case SIOCDARP:
-		if (!suser())
-			return (u.u_error);
+		if (error = suser(u.u_cred, &u.u_acflag))
+			return (error);
 		/* FALL THROUGH */
 	case SIOCGARP:
+	case OSIOCGARP:
 		return (arpioctl(cmd, data));
 #endif
 	}
@@ -307,8 +319,8 @@ ifioctl(so, cmd, data)
 		break;
 
 	case SIOCSIFFLAGS:
-		if (!suser())
-			return (u.u_error);
+		if (error = suser(u.u_cred, &u.u_acflag))
+			return (error);
 		if (ifp->if_flags & IFF_UP && (ifr->ifr_flags & IFF_UP) == 0) {
 			int s = splimp();
 			if_down(ifp);
@@ -321,16 +333,68 @@ ifioctl(so, cmd, data)
 		break;
 
 	case SIOCSIFMETRIC:
-		if (!suser())
-			return (u.u_error);
+		if (error = suser(u.u_cred, &u.u_acflag))
+			return (error);
 		ifp->if_metric = ifr->ifr_metric;
 		break;
 
 	default:
 		if (so->so_proto == 0)
 			return (EOPNOTSUPP);
+#ifndef COMPAT_43
 		return ((*so->so_proto->pr_usrreq)(so, PRU_CONTROL,
 			cmd, data, ifp));
+#else
+	    {
+		int error, ocmd = cmd;
+
+		switch (cmd) {
+
+		case SIOCSIFDSTADDR:
+		case SIOCSIFADDR:
+		case SIOCSIFBRDADDR:
+		case SIOCSIFNETMASK:
+#if BYTE_ORDER != BIG_ENDIAN
+			if (ifr->ifr_addr.sa_family == 0 &&
+			    ifr->ifr_addr.sa_len < 16) {
+				ifr->ifr_addr.sa_family = ifr->ifr_addr.sa_len;
+				ifr->ifr_addr.sa_len = 16;
+			}
+#else
+			if (ifr->ifr_addr.sa_len == 0)
+				ifr->ifr_addr.sa_len = 16;
+#endif
+			break;
+
+		case OSIOCGIFADDR:
+			cmd = SIOCGIFADDR;
+			break;
+
+		case OSIOCGIFDSTADDR:
+			cmd = SIOCGIFDSTADDR;
+			break;
+
+		case OSIOCGIFBRDADDR:
+			cmd = SIOCGIFBRDADDR;
+			break;
+
+		case OSIOCGIFNETMASK:
+			cmd = SIOCGIFNETMASK;
+		}
+		error =  ((*so->so_proto->pr_usrreq)(so, PRU_CONTROL,
+							    cmd, data, ifp));
+		switch (ocmd) {
+
+		case OSIOCGIFADDR:
+		case OSIOCGIFDSTADDR:
+		case OSIOCGIFBRDADDR:
+		case OSIOCGIFNETMASK:
+			*(u_short *)&ifr->ifr_addr = ifr->ifr_addr.sa_family;
+		}
+		return (error);
+
+	    }
+#endif
 	}
 	return (0);
 }
@@ -368,11 +432,38 @@ ifconf(cmd, data)
 			space -= sizeof (ifr), ifrp++;
 		} else 
 		    for ( ; space > sizeof (ifr) && ifa; ifa = ifa->ifa_next) {
-			ifr.ifr_addr = ifa->ifa_addr;
-			error = copyout((caddr_t)&ifr, (caddr_t)ifrp, sizeof (ifr));
+			register struct sockaddr *sa = ifa->ifa_addr;
+#ifdef COMPAT_43
+			if (cmd == OSIOCGIFCONF) {
+				struct osockaddr *osa =
+					 (struct osockaddr *)&ifr.ifr_addr;
+				ifr.ifr_addr = *sa;
+				osa->sa_family = sa->sa_family;
+				error = copyout((caddr_t)&ifr, (caddr_t)ifrp,
+						sizeof (ifr));
+				ifrp++;
+			} else
+#endif
+			if (sa->sa_len <= sizeof(*sa)) {
+				ifr.ifr_addr = *sa;
+				error = copyout((caddr_t)&ifr, (caddr_t)ifrp,
+						sizeof (ifr));
+				ifrp++;
+			} else {
+				space -= sa->sa_len - sizeof(*sa);
+				if (space < sizeof (ifr))
+					break;
+				error = copyout((caddr_t)&ifr, (caddr_t)ifrp,
+						sizeof (ifr.ifr_name));
+				if (error == 0)
+				    error = copyout((caddr_t)sa,
+				      (caddr_t)&ifrp->ifr_addr, sa->sa_len);
+				ifrp = (struct ifreq *)
+					(sa->sa_len + (caddr_t)&ifrp->ifr_addr);
+			}
 			if (error)
 				break;
-			space -= sizeof (ifr), ifrp++;
+			space -= sizeof (ifr);
 		}
 	}
 	ifc->ifc_len -= space;

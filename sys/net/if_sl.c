@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_sl.c	7.12 (Berkeley) 04/25/89
+ *	@(#)if_sl.c	7.13 (Berkeley) 04/26/89
  */
 
 /*
@@ -125,9 +125,10 @@ slopen(dev, tp)
 {
 	register struct sl_softc *sc;
 	register int nsl;
+	int error;
 
-	if (!suser())
-		return (EPERM);
+	if (error = suser(u.u_cred, &u.u_acflag))
+		return (error);
 	if (tp->t_line == SLIPDISC)
 		return (EBUSY);
 
