@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Margo Seltzer.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ndbm.h	5.8 (Berkeley) 04/25/92
+ *	@(#)ndbm.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _NDBM_H_

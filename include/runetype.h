@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1993 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Paul Borman at Krystal Technologies.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)runetype.h	5.1 (Berkeley) 05/26/93
+ *	@(#)runetype.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef	_RUNETYPE_H_

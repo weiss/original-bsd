@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)setjmp.h	5.8 (Berkeley) 06/27/92
+ *	@(#)setjmp.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _SETJMP_H_
