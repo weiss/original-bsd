@@ -8,11 +8,11 @@
 char copyright[] =
 "@(#) Copyright (c) 1980 Regents of the University of California.\n\
  All rights reserved.\n";
-#endif not lint
+#endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)df.c	5.2 (Berkeley) 03/18/87";
-#endif not lint
+static char sccsid[] = "@(#)df.c	5.3 (Berkeley) 01/10/88";
+#endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/fs.h>
