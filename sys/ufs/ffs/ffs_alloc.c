@@ -1,6 +1,6 @@
 /* Copyright (c) 1981 Regents of the University of California */
 
-static char vers[] = "@(#)ffs_alloc.c 1.16 01/13/82";
+static char vers[] = "@(#)ffs_alloc.c 1.17 02/21/82";
 
 /*	alloc.c	4.8	81/03/08	*/
 
@@ -11,7 +11,6 @@ static char vers[] = "@(#)ffs_alloc.c 1.16 01/13/82";
 #include "../h/conf.h"
 #include "../h/buf.h"
 #include "../h/inode.h"
-#include "../h/dir.h"
 #include "../h/user.h"
 
 extern u_long		hashalloc();
