@@ -11,7 +11,7 @@
  */
 
 #ifdef notdef
-static char sccsid[] = "@(#)cmd3.c	5.9 (Berkeley) 06/17/88";
+static char sccsid[] = "@(#)cmd3.c	5.10 (Berkeley) 06/18/88";
 #endif /* notdef */
 
 #include "rcv.h"
@@ -381,8 +381,6 @@ rexit(e)
 {
 	if (sourcing)
 		return(1);
-	if (Tflag != NOSTR)
-		close(creat(Tflag, 0600));
 	exit(e);
 	/*NOTREACHED*/
 }
