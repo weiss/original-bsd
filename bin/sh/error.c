@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)error.c	5.1 (Berkeley) 03/07/91";
+static char sccsid[] = "@(#)error.c	5.2 (Berkeley) 11/29/92";
 #endif /* not lint */
 
 /*
@@ -178,7 +178,7 @@ STATIC const struct errname errormsg[] = {
 #endif
 	ENOMEM, ALL,	"not enough memory",
 #ifdef ENOLINK
-	ENOLINK, ALL,	"remote access failed"
+	ENOLINK, ALL,	"remote access failed",
 #endif
 #ifdef EMULTIHOP
 	EMULTIHOP, ALL,	"remote access failed",
