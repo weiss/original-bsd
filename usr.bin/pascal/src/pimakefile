@@ -1,12 +1,15 @@
-SCCSID = "@(#)pimakefile 1.19 02/02/82"
+SCCSID = "@(#)pimakefile 1.20 04/01/82"
+INSTALLDIR = ${DESTDIR}/usr/ucb
+INSTALLNAME = ${INSTALLDIR}/pi
 WHOAMI = pi
-INSTALLNAME = ${DESTDIR}/usr/ucb/pi
-VERSION = 2.0
+VERSION = 2.1
+DATE = 1.20
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
 RM = -rm -f
-GET = touch
+GET = sccs -d/usr/src/cmd/pascal get
+#GET = touch
 
 CFLAGS = -O -w
 LDFLAGS = -z
@@ -15,11 +18,12 @@ LIBDIR = ${DESTDIR}/usr/lib
 TMPDIR = tmp
 
 ERRORSTRINGS = ${WHOAMI}${VERSION}strings
+HOWFILE = how_${WHOAMI}
 
 SRCS =	ato.c \
 	call.c case.c clas.c const.c conv.c cset.c \
-	error.c fdec.c fend.c fhdr.c flvalue.c forop.c func.c gen.c \
-	hash.c lab.c lookup.c lval.c stklval.c \
+	error.c fdec.c fend.c fhdr.c flvalue.c forop.c func.c gen.c hash.c \
+	lab.c lookup.c lval.c stklval.c \
 	main.c nl.c proc.c put.c \
 	rec.c rval.c stkrval.c\
 	savenl.c \
@@ -34,12 +38,12 @@ SRCS =	ato.c \
 HDRS =	0.h OPnames.h align.h iorec.h objfmt.h pstab.h pc.h pcops.h \
 	send.h tree.h whoami.h yy.h
 
-OTHERS = pas.y opc.c version.c gram pic.c
+OTHERS = pas.y opc.c CONFIG.c gram pic.c
 
 OBJS =	ato.o \
 	call.o case.o clas.o const.o conv.o cset.o \
-	error.o fdec.o fend.o fhdr.o flvalue.o forop.o func.o gen.o \
-	hash.o lab.o lookup.o lval.o stklval.o \
+	error.o fdec.o fend.o fhdr.o flvalue.o forop.o func.o gen.o hash.o \
+	lab.o lookup.o lval.o stklval.o \
 	main.o nl.o proc.o put.o \
 	rec.o rval.o stkrval.o\
 	savenl.o \
@@ -52,10 +56,8 @@ OBJS =	ato.o \
 	yypanic.o yyparse.o yyprint.o yyput.o yyrecover.o yyseman.o yytree.o \
 	p2put.o stab.o pcproc.o pcfunc.o pccaseop.o pclval.o
 
-a.out: ${OBJS} version
-	${RM} Version.[oc]
-	./version > Version.c
-	${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} Version.c
+a.out: ${OBJS} config.c
+	${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} config.c
 
 sources: ${SRCS} ${HDRS} ${OTHERS}
 	
@@ -65,12 +67,12 @@ ${SRCS} ${HDRS} ${OTHERS}:
 .c.o:
 	${RM} ${TMPDIR}/$*.c
 	${MKSTR} - ${ERRORSTRINGS} ${TMPDIR}/ $*.c
-	cd ${TMPDIR} ; ${CC} ${CFLAGS} -I.. -I../../pdx -c $*.c ;\
-		rm -f ../$*.o; mv $*.o  ../$*.o
+	cd ${TMPDIR} ; \
+	    ${CC} ${CFLAGS} -I.. -c $*.c ; rm -f ../$*.o ; mv $*.o  ../$*.o
 	${RM} ${TMPDIR}/$*.c
 
 y.tab.h: pas.y gram
-	${RM} y.tab.c y.tab.h
+	${RM} y.tab.h y.tab.c
 	${EYACC} pas.y > /dev/null
 	ex - y.tab.c <gram
 	@echo that makes y.tab.h and y.tab.c
@@ -84,14 +86,20 @@ opcode.h: OPnames.h opc.c
 pTree.h:
 	echo "/* this is not pTree.h */" > pTree.h
 
-version: version.c
-	${CC} version.c -o version
+config.c: CONFIG.c makefile
+	sed -e "s?VERSION?${VERSION}?g" \
+	    -e "s?DATE?${DATE}?g" \
+	    -e "s?INSTALLDIR?${INSTALLDIR}?g" \
+	    -e "s?LIBDIR?${LIBDIR}?g" \
+	    -e "s?ERRORSTRINGS?${ERRORSTRINGS}?g" \
+	    -e "s?HOWFILE?${HOWFILE}?g" \
+	    < CONFIG.c >config.c
 
 clean:
 	${RM} *.o ${TMPDIR}/*.c
 	${RM} y.tab.h y.tab.c y.tab.out
 	${RM} ${ERRORSTRINGS}
-	${RM} version Version.c
+	${RM} config.c
 	${RM} a.out core *.list *.bak
 	${RM} opc pic tags
 
@@ -238,6 +246,7 @@ main.o: whoami.h
 main.o: 0.h
 main.o: yy.h
 main.o: objfmt.h
+main.o: config.h
 nl.o: whoami.h
 nl.o: 0.h
 nl.o: opcode.h
@@ -295,6 +304,14 @@ rval.o: opcode.h
 rval.o: objfmt.h
 rval.o: pc.h
 rval.o: pcops.h
+savenl.o: whoami.h
+savenl.o: 0.h
+savenl.o: objfmt.h
+savenl.o: ../pdx/defs.h
+savenl.o: ../pdx/object.h
+savenl.o: ../pdx/object/objsym.rep
+savenl.o: ../pdx/mappings.h
+savenl.o: ../pdx/mappings/filetab.h
 stab.o: whoami.h
 stab.o: 0.h
 stab.o: pstab.h
@@ -324,6 +341,7 @@ subr.o: whoami.h
 subr.o: 0.h
 tmps.o: whoami.h
 tmps.o: 0.h
+tmps.o: pc.h
 tree.o: whoami.h
 tree.o: 0.h
 type.o: whoami.h
