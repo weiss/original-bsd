@@ -6,9 +6,10 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)vtimes.c	5.4 (Berkeley) 04/19/91";
+static char sccsid[] = "@(#)vtimes.c	5.5 (Berkeley) 05/28/92";
 #endif /* LIBC_SCCS and not lint */
 
+#include <sys/types.h>
 #include <sys/time.h>
 #include <sys/resource.h>
 
