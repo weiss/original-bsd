@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.1 (Berkeley) 06/11/93
+ *	@(#)extern.h	8.1 (Berkeley) 06/11/93
  */
 
 void	 addword __P((char *));
