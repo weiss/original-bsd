@@ -1,4 +1,4 @@
-/* static	char *sccsid = "@(#)0.h	1.2 (Berkeley) 02/05/83";*/
+/* static	char *sccsid = "@(#)0.h	1.3 (Berkeley) 02/06/83";*/
 /* Copyright (c) 1979 Regents of the University of California */
 /* #define DEBUG */
 #define	CHAR
@@ -172,6 +172,7 @@ char	errpfx;
 #define	warning()	setpfx('w')
 #define	recovered()	setpfx('e')
 #define	quit()		setpfx('Q')
+#define	continuation()	setpfx(' ')
 
 /*
  * SEMANTIC DEFINITIONS
