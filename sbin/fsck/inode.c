@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inode.c	5.3 (Berkeley) 01/07/87";
+static char sccsid[] = "@(#)inode.c	5.4 (Berkeley) 10/22/87";
 #endif not lint
 
 #include <pwd.h>
@@ -92,7 +92,7 @@ iblock(idesc, ilevel, isize)
 		for (ap = &ib.b_un.b_indir[nif]; ap < aplim; ap++) {
 			if (*ap == 0)
 				continue;
-			sprintf(buf, "PARTIALLY TRUNCATED INODE I=%d",
+			(void)sprintf(buf, "PARTIALLY TRUNCATED INODE I=%d",
 				idesc->id_number);
 			if (dofix(idesc, buf)) {
 				*ap = 0;
