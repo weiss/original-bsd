@@ -7,7 +7,7 @@
 **  All rights reserved.  The Berkeley software License Agreement
 **  specifies the terms and conditions for redistribution.
 **
-**	@(#)sendmail.h	5.9 (Berkeley) 07/21/86
+**	@(#)sendmail.h	5.10 (Berkeley) 10/14/86
 */
 
 /*
@@ -19,7 +19,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.9		07/21/86";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.10		10/14/86";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -526,9 +526,9 @@ EXTERN int	WkClassFact;	/* multiplier for message class -> priority */
 EXTERN int	WkRecipFact;	/* multiplier for # of recipients -> priority */
 EXTERN int	WkTimeFact;	/* priority offset each time this job is run */
 EXTERN int	CheckPointLimit;	/* deliveries before checkpointing */
-EXTERN short	nmx;			/* number of MX RRs */
+EXTERN int	Nmx;			/* number of MX RRs */
 EXTERN char	*PostMasterCopy;	/* address to get errs cc's */
-EXTERN char	*mxhosts[MAXMXHOSTS+1];	/* for MX RRs */
+EXTERN char	*MxHosts[MAXMXHOSTS+1];	/* for MX RRs */
 EXTERN char	*TrustedUsers[MAXTRUST+1];	/* list of trusted users */
 EXTERN char	*UserEnviron[MAXUSERENVIRON+1];	/* saved user environment */
 /*
