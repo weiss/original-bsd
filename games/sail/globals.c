@@ -6,10 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)globals.c	8.1 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)globals.c	8.2 (Berkeley) 04/28/95";
 #endif /* not lint */
 
-#include "externs.h"
+#include "extern.h"
 
 struct scenario scene[] = {
 	/*
