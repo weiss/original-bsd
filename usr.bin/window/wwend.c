@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwend.c	3.12 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)wwend.c	3.13 (Berkeley) 08/02/89";
 #endif /* not lint */
 
 #include "ww.h"
@@ -24,18 +24,6 @@ static char sccsid[] = "@(#)wwend.c	3.12 (Berkeley) 05/11/89";
 
 wwend()
 {
-	wwupdate();
-	if (tt.tt_scroll_top != 0 || tt.tt_scroll_bot != tt.tt_nrow - 1)
-		/* tt.tt_setscroll is known to be defined */
-		(*tt.tt_setscroll)(0, tt.tt_nrow - 1);
-	if (tt.tt_insert)
-		(*tt.tt_setinsert)(0);
-	if (tt.tt_modes)
-		(*tt.tt_setmodes)(0);
-	if (tt.tt_scroll_down)
-		(*tt.tt_scroll_down)(1);
-	(*tt.tt_move)(tt.tt_nrow - 1, 0);
-	(*tt.tt_end)();
-	ttflush();
+	xxend();
 	(void) wwsettty(0, &wwoldtty, &wwnewtty);
 }

@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mloop.c	3.13 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)mloop.c	3.14 (Berkeley) 08/02/89";
 #endif /* not lint */
 
 #include "defs.h"
@@ -24,7 +24,6 @@ static char sccsid[] = "@(#)mloop.c	3.13 (Berkeley) 06/29/88";
 
 mloop()
 {
-	kill(getpid(), SIGIO);	/* catch typeahead before ASYNC was set */
 	while (!quit) {
 		if (incmd) {
 			docmd();
