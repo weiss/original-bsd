@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty_tb.c	7.5 (Berkeley) 05/09/89
+ *	@(#)tty_tb.c	7.6 (Berkeley) 04/20/91
  */
 
 #include "tb.h"
@@ -14,7 +14,6 @@
  * supplies binary coordinate data.
  */
 #include "param.h"
-#include "user.h"
 #include "tablet.h"
 #include "tty.h"
 
