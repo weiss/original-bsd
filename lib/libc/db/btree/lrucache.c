@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-char sccsid[] = "@(#)lrucache.c	5.2 (Berkeley) 01/23/91";
+char sccsid[] = "@(#)lrucache.c	5.3 (Berkeley) 02/22/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -19,7 +19,9 @@ char sccsid[] = "@(#)lrucache.c	5.2 (Berkeley) 01/23/91";
  *	btrees.
  */
 #include <sys/param.h>
-#include <sys/file.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "lrucache.h"
 
 /*
