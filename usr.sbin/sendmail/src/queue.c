@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.56		11/28/82	(no queueing));
+SCCSID(@(#)queue.c	3.57		12/05/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.56		11/28/82);
+SCCSID(@(#)queue.c	3.57		12/05/82);
 
 /*
 **  Work queue.
@@ -88,7 +88,7 @@ queueup(e, queueall, announce)
 			return;
 		}
 		(void) chmod(e->e_df, FileMode);
-		(*e->e_putbody)(dfp, ProgMailer, FALSE);
+		(*e->e_putbody)(dfp, ProgMailer, FALSE, e);
 		(void) fclose(dfp);
 		e->e_putbody = putbody;
 	}
@@ -466,9 +466,6 @@ dowork(w)
 			exit(EX_OK);
 		}
 
-		/* create ourselves a transcript file */
-		openxscrpt();
-
 		/* do basic system initialization */
 		initsys();
 
@@ -561,8 +558,8 @@ readqf(e)
 
 		  case 'D':		/* data file name */
 			e->e_df = newstr(&buf[1]);
-			TempFile = fopen(e->e_df, "r");
-			if (TempFile == NULL)
+			e->e_dfp = fopen(e->e_df, "r");
+			if (e->e_dfp == NULL)
 				syserr("readqf: cannot open %s", e->e_df);
 			break;
 
