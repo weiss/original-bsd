@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kbd.c	7.3 (Berkeley) 12/25/92
+ *	@(#)kbd.c	7.4 (Berkeley) 12/29/92
  */
 
 /*
@@ -278,11 +278,6 @@ kbdintr(unit)
 
 	if (rr & RR_TXRDY) {
 		sio->sio_cmd = WR0_RSTPEND;
-		tp->t_state &= ~(TS_BUSY|TS_FLUSH);
-		if (tp->t_line)
-			(*linesw[tp->t_line].l_start)(tp);
-		else
-			kbdstart(tp);
 	}
 }
 
