@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.99 (Berkeley) 08/07/94";
+static char sccsid[] = "@(#)conf.c	8.100 (Berkeley) 08/09/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -967,9 +967,11 @@ refuseconnections()
 */
 
 #ifdef SETPROCTITLE
+
 # ifdef HASSETPROCTITLE
    *** ERROR ***  Cannot have both SETPROCTITLE and HASSETPROCTITLE defined
 # endif
+
 # ifdef __hpux
 #  include <sys/pstat.h>
 # endif
@@ -984,9 +986,14 @@ refuseconnections()
 #   define SETPROC_STATIC static
 #  endif
 # endif
+# ifdef _AIX3
+#  define PROCTITLEPAD	'\0'
+# endif
+
 # ifndef SETPROC_STATIC
 #  define SETPROC_STATIC
 # endif
+
 #endif
 
 #ifndef PROCTITLEPAD
@@ -1045,6 +1052,7 @@ setproctitle(fmt, va_alist)
 	p = &Argv[0][i];
 	while (p < LastArgv)
 		*p++ = PROCTITLEPAD;
+	Argv[1] = NULL;
 #   endif
 #  endif
 # endif /* SETPROCTITLE */
