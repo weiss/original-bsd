@@ -6,12 +6,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)file.c	5.12 (Berkeley) 06/04/91";
+static char sccsid[] = "@(#)file.c	5.13 (Berkeley) 06/07/91";
 #endif /* not lint */
 
 #ifdef FILEC
 
-#include "sh.h"
+#include "csh.h"
+#include "extern.h"
 
 /*
  * Tenex style file name recognition, .. and more.
