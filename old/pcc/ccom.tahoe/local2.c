@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)local2.c	1.9 (Berkeley) 02/11/87";
+static char sccsid[] = "@(#)local2.c	1.10 (Berkeley) 04/24/87";
 #endif
 
 # include "pass2.h"
@@ -625,8 +625,8 @@ sconv(p, forcc)
 			printf("\n\tcmp");
 			prtype(l);
 			putchar('\t');
-			printf("$0,");
 			adrput(l);
+			printf(",$0");
 		}
 	} else {
 		/*
