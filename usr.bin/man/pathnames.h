@@ -4,9 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	8.1 (Berkeley) 06/06/93
+ *	@(#)pathnames.h	8.2 (Berkeley) 01/02/94
  */
 
+#ifdef DEBUG
+#define	_PATH_MANCONF	"./man.conf"
+#else
 #define	_PATH_MANCONF	"/etc/man.conf"
+#endif
 #define	_PATH_PAGER	"/usr/bin/more -s"
 #define	_PATH_WHATIS	"whatis.db"
+#define	_PATH_TMP	"/tmp/man.XXXXXX"
