@@ -6,7 +6,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#       @(#)makesendmail	8.22 (Berkeley) 05/14/95
+#       @(#)makesendmail	8.23 (Berkeley) 05/19/95
 #
 
 #
@@ -69,6 +69,7 @@ in
   DYNIX-ptx)	os=PTX;;
   Paragon*)	os=Paragon;;
   HP-UX)	rel=`echo $rel | sed -e 's/^[^.]*\.0*//'`;;
+  AIX)		rel=`uname -v`;;
 esac
 
 # get "base part" of operating system release

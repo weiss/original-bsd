@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.89 (Berkeley) 05/17/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.90 (Berkeley) 05/19/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.89 (Berkeley) 05/17/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.90 (Berkeley) 05/19/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1364,7 +1364,7 @@ host_map_lookup(map, name, av, statp)
 **		A printable version of that sockaddr.
 */
 
-#ifdef AF_LINK
+#ifdef NETLINK
 # include <net/if_dl.h>
 #endif
 
@@ -1399,7 +1399,7 @@ anynet_ntoa(sap)
 		return inet_ntoa(sap->sin.sin_addr);
 #endif
 
-#ifdef AF_LINK
+#ifdef NETLINK
 	  case AF_LINK:
 		sprintf(buf, "[LINK: %s]",
 			link_ntoa((struct sockaddr_dl *) &sap->sa));
