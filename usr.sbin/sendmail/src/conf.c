@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.10 (Berkeley) 07/22/93";
+static char sccsid[] = "@(#)conf.c	8.11 (Berkeley) 07/24/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -983,11 +983,11 @@ getdtsize()
 		return rl.rlim_cur;
 #endif
 
-# ifdef _SC_OPEN_MAX
-	return sysconf(_SC_OPEN_MAX);
-# else
-#  ifdef HASGETDTABLESIZE
+# ifdef HASGETDTABLESIZE
 	return getdtablesize();
+# else
+#  ifdef _SC_OPEN_MAX
+	return sysconf(_SC_OPEN_MAX);
 #  else
 	return NOFILE;
 #  endif
