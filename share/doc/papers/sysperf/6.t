@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)6.t	1.1 (Berkeley) 07/27/85
+.\"	@(#)6.t	1.2 (Berkeley) 08/11/85
 .\"
 .ds RH Security Tightening
 .NH
