@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 1980 Regents of the University of California.
+ * Copyright (c) 1983 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)malloc.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)malloc.c	5.2 (Berkeley) 10/11/85";
 #endif not lint
 
 /*
