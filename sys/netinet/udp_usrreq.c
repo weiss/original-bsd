@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)udp_usrreq.c	7.18 (Berkeley) 07/25/90
+ *	@(#)udp_usrreq.c	7.19 (Berkeley) 11/27/90
  */
 
 #include "param.h"
@@ -214,7 +214,7 @@ udp_saveopt(p, size, type)
 	if ((m = m_get(M_DONTWAIT, MT_CONTROL)) == NULL)
 		return ((struct mbuf *) NULL);
 	cp = (struct cmsghdr *) mtod(m, struct cmsghdr *);
-	bcopy(p, (caddr_t)cp + size, size);
+	bcopy(p, (caddr_t)(cp + 1), size);
 	size += sizeof(*cp);
 	m->m_len = size;
 	cp->cmsg_len = size;
