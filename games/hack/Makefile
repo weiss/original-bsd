@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 12/08/90
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	hack
 SRCS=	alloc.c hack.Decl.c hack.apply.c hack.bones.c hack.c hack.cmd.c \
