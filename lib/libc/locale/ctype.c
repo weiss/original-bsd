@@ -1,7 +1,7 @@
-/* @(#)ctype.c	4.2 (Berkeley) 07/08/83 */
+/* @(#)ctype.c	4.3 (Berkeley) 02/04/85 */
 #include	<ctype.h>
 
-char _ctype_[] = {
+char _ctype_[1 + 256] = {
 	0,
 	_C,	_C,	_C,	_C,	_C,	_C,	_C,	_C,
 	_C,	_S,	_S,	_S,	_S,	_S,	_C,	_C,
