@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass2.c	5.11 (Berkeley) 04/29/90";
+static char sccsid[] = "@(#)pass2.c	5.12 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -25,7 +25,7 @@ static char sccsid[] = "@(#)pass2.c	5.11 (Berkeley) 04/29/90";
 #define KERNEL
 #include <ufs/dir.h>
 #undef KERNEL
-#include <strings.h>
+#include <string.h>
 #include "fsck.h"
 
 #define MINDIRSIZE	(sizeof (struct dirtemplate))

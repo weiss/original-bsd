@@ -16,14 +16,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)preen.c	5.2 (Berkeley) 05/05/90";
+static char sccsid[] = "@(#)preen.c	5.3 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <fstab.h>
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 #include <ctype.h>
 
