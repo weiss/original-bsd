@@ -8,7 +8,7 @@
  * Lexical processing of commands.
  */
 
-static char *SccsId = "@(#)lex.c	1.3 10/09/80";
+static char *SccsId = "@(#)lex.c	1.4 10/10/80";
 
 /*
  * Set up editing on the given file name.
@@ -86,6 +86,7 @@ setfile(name, isedit)
 		signal(i, sigs[i - SIGINT]);
 	printf("%s: ", name);
 	announce(!edit);
+	sawcom = 0;
 	return(0);
 }
 
