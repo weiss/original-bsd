@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_extern.h	7.8 (Berkeley) 01/18/92
+ *	@(#)lfs_extern.h	7.9 (Berkeley) 02/04/92
  */
 
 struct fid;
@@ -44,6 +44,7 @@ int	 lfs_update
 int	 lfs_valloc __P((VNODE *, int, UCRED *, VNODE **));
 int	 lfs_vcreate __P((MOUNT *, ino_t, VNODE **));
 void	 lfs_vfree __P((VNODE *, ino_t, int));
+int	 lfs_vflush __P((struct vnode *));
 int	 lfs_vget __P((struct mount *, ino_t, VNODE **));
 int	 lfs_vptofh __P((struct vnode *, struct fid *));
 int	 lfs_write __P((struct vnode *, struct uio *, int, struct ucred *));
