@@ -9,8 +9,11 @@
  * experiences (good or bad) with these elementary function codes, using
  * the sendbug(8) program, to the authors.
  *
- *	@(#)math.h	5.3 (Berkeley) 02/24/91
+ *	@(#)math.h	5.4 (Berkeley) 03/18/91
  */
+
+#ifndef	_MATH_H_
+#define	_MATH_H_
 
 #if defined(vax) || defined(tahoe)
 #define	HUGE_VAL	1.701411733192644270e38
@@ -80,3 +83,5 @@ double	yn __P((int, double));
 #endif
 
 __END_DECLS
+
+#endif /* _MATH_H_ */
