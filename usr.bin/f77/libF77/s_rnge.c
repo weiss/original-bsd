@@ -1,5 +1,5 @@
 /*
- *	"@(#)s_rnge.c	1.1"
+ *	"@(#)s_rnge.c	1.2"
  */
 
 #include <stdio.h>
@@ -20,6 +20,5 @@ fprintf(stderr, ".\nAttempt to access the %ld-th element of variable ", offset+1
 for(i = 0 ; i < 6  && *varn!=' ' ; ++i)
 	putc(*varn++, stderr);
 fprintf(stderr, ".\n");
-_cleanup();
-abort();
+f77_abort();
 }
