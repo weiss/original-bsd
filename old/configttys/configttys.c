@@ -6,7 +6,7 @@
  */
 
 #ifndef	lint
-char	sccsid[]	= "@(#)configttys.c	4.2 Berkeley 05/18/83";
+char	sccsid[]	= "@(#)configttys.c	4.3 Berkeley 05/19/83";
 #endif
 
 #include <stdio.h>
@@ -306,6 +306,8 @@ readttys()
 
 	if ((tyf = fopen(etc_ttys, "r")) == NULL)
 	{
+		if (exists(etc_conf))
+			return (0);	/* hope user has it together! */
 		perror(etc_ttys);
 		quit(1);
 	}
