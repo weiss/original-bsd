@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.3 (Berkeley) 10/19/88
+#	@(#)Makefile	5.4 (Berkeley) 07/30/89
 #
 # Nifty foo monopoly maker
 #	Program:  Ken Arnold
@@ -33,7 +33,7 @@ MAN=	monop.0
 all: monop initdeck cards.pck
 
 monop: ${MOBJS} ${LIBC}
-	${CC} -o $@ ${CFLAGS} ${MOBJS}
+	${CC} -o $@ ${CFLAGS} ${MOBJS} -lcompat
 
 initdeck: ${IOBJS}
 	${CC} ${CFLAGS} -o $@ ${IOBJS}
