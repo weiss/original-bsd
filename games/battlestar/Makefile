@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.9	(Berkeley)	06/05/87
+#	@(#)Makefile	1.10	(Berkeley)	09/21/87
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -27,8 +27,9 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	install -s -o bin -g bin -m 755 battlestar ${DESTDIR}/usr/games/battlestar
-	install -c -o bin -g bin -m 666 /dev/null ${DESTDIR}/usr/games/lib/battlestar.log
+	install -s -o games -g bin -m 4700 battlestar ${DESTDIR}/usr/games/hide/battlestar
+	install -c -o games -g bin -m 600 /dev/null ${DESTDIR}/usr/games/lib/battlestar.log
+	(cd ${DESTDIR}/usr/games; rm -f battlestar; ln -s dm battlestar; chown games.bin battlestar)
 
 lint: FRC
 	lint ${CFLAGS} ${SRCS}
