@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)user.h	7.21 (Berkeley) 06/19/92
+ *	@(#)user.h	7.22 (Berkeley) 04/27/93
  */
 
 #include <machine/pcb.h>
@@ -19,7 +19,7 @@
 #include <sys/resourcevar.h>
 #include <sys/signalvar.h>
 #include <vm/vm.h>		/* XXX */
-#include <sys/kinfo_proc.h>
+#include <sys/sysctl.h>
 
 
 /*
