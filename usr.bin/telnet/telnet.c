@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)telnet.c	5.45 (Berkeley) 03/01/90";
+static char sccsid[] = "@(#)telnet.c	5.46 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -31,11 +31,7 @@ static char sccsid[] = "@(#)telnet.c	5.45 (Berkeley) 03/01/90";
 
 #include <arpa/telnet.h>
 
-#if	defined(unix)
-#include <strings.h>
-#else	/* defined(unix) */
 #include <string.h>
-#endif	/* defined(unix) */
 
 #include <ctype.h>
 
