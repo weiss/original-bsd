@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_object.c	8.6 (Berkeley) 01/09/95
+ *	@(#)vm_object.c	8.7 (Berkeley) 05/11/95
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -298,10 +298,8 @@ vm_object_terminate(object)
 	 *
 	 * XXX need to do something in the event of a cleaning error.
 	 */
-	if ((object->flags & OBJ_INTERNAL) == 0) {
+	if ((object->flags & OBJ_INTERNAL) == 0)
 		(void) vm_object_page_clean(object, 0, 0, TRUE, TRUE);
-		vm_object_unlock(object);
-	}
 
 	/*
 	 * Now free the pages.
@@ -314,8 +312,7 @@ vm_object_terminate(object)
 		cnt.v_pfree++;
 		vm_page_unlock_queues();
 	}
-	if ((object->flags & OBJ_INTERNAL) == 0)
-		vm_object_unlock(object);
+	vm_object_unlock(object);
 
 	/*
 	 * Let the pager know object is dead.
