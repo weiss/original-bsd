@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)options.c	3.3 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)options.c	3.4 (Berkeley) 08/28/88";
 #endif /* not lint */
 
 /*
@@ -27,7 +27,7 @@ static char sccsid[] = "@(#)options.c	3.3 (Berkeley) 06/29/88";
 #include "options.h"
 
 #include "../general/globals.h"
-#include "options.ext"
+#include "declare.h"
 
 void
 OptInit()
@@ -50,7 +50,7 @@ OptInit()
 }
 
 OptOrder(pointer, count, control)
-char *pointer;
+unsigned char *pointer;
 int count;
 int control;
 {

@@ -1,5 +1,7 @@
 /*
  * Declarations of routines from the controller.
+ *
+ *	@(#)declare.h	1.2 (Berkeley) 08/28/88
  */
 
 extern void
