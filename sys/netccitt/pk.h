@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk.h	7.4 (Berkeley) 10/03/90
+ *	@(#)pk.h	7.5 (Berkeley) 10/30/90
  */
 
 /*
@@ -111,6 +111,10 @@ struct data_packet {
 #define PR(xp)		(((struct data_packet *)&xp -> packet_type)->pr)
 #define PS(xp)		(((struct data_packet *)&xp -> packet_type)->ps)
 #define MBIT(xp)	(((struct data_packet *)&xp -> packet_type)->m_bit)
+#define LCN(xp)		(xp -> logical_channel_number + \
+	(xp -> lc_group_number ? (xp -> lc_group_number >> 8) : 0))
+#define SET_LCN(xp, lcn) ((xp -> logical_channel_number = lcn), \
+	(xp -> lc_group_number = lcn > 255 ? lcn >> 8 : 0))
 
 struct x25_packet *pk_template ();
 
