@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/26/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	style2
 CFLAGS+=-I${.CURDIR} -I${.CURDIR}/../style1
