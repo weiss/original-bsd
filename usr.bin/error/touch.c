@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)touch.c	5.3 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)touch.c	5.4 (Berkeley) 07/22/88";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -609,7 +609,7 @@ writetouched(overwrite)
 			fclose(tmpfile);
 	}
 	if (oktorm == 0){
-		fprintf(stderr, "%s: Catastrophe: A copy of \"%s\: was saved in \"%s\"\n",
+		fprintf(stderr, "%s: Catastrophe: A copy of \"%s\": was saved in \"%s\"\n",
 			processname, o_name, n_name);
 		exit(1);
 	}
