@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)old.fgrep.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)old.fgrep.c	4.2 (Berkeley) 10/20/82";
 /*
  * fgrep -- print all lines containing any of a set of keywords
  *
@@ -8,8 +8,8 @@ static char *sccsid = "@(#)old.fgrep.c	4.1 (Berkeley) 10/01/80";
  *		2 - some error
  */
 
-#include "stdio.h"
-# include "ctype.h"
+#include <stdio.h>
+#include <ctype.h>
 
 #define	MAXSIZ 6000
 #define QSIZE 400
