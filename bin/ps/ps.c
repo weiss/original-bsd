@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ps.c	5.5 (Berkeley) 01/10/86";
+static char sccsid[] = "@(#)ps.c	5.6 (Berkeley) 02/07/86";
 #endif not lint
 
 #include <stdio.h>
@@ -248,7 +248,7 @@ main(argc, argv)
 	off_t procp;
 	int width;
 
-	if (ioctl(0, TIOCGWINSZ, &win) == -1)
+	if (ioctl(1, TIOCGWINSZ, &win) == -1)
 		twidth = 80;
 	else
 		twidth = (win.ws_col == 0 ? 80 : win.ws_col);
