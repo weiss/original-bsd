@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_extern.h	7.10 (Berkeley) 05/15/92
+ *	@(#)ffs_extern.h	7.11 (Berkeley) 05/27/92
  */
 
 struct buf;
@@ -64,8 +64,6 @@ void	ffs_checkoverlap __P((struct buf *, struct inode *));
 #endif
 __END_DECLS
 
-extern int inside[], around[];
-extern u_char *fragtbl[];
 extern int (**ffs_vnodeop_p)();
 extern int (**ffs_specop_p)();
 #ifdef FIFO
