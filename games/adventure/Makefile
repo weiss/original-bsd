@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	4.10 (Berkeley) 03/05/89
+#	@(#)Makefile	4.11 (Berkeley) 07/30/89
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -25,7 +25,7 @@ MAN=	adventure.0
 all: adventure
 
 adventure: ${OBJS} ${LIBC}
-	${CC} -n ${CFLAGS} ${OBJS}
+	${CC} -n ${CFLAGS} ${OBJS} -lcompat
 	./a.out
 
 save.o: save.c			# vax C optimizer bug - infinite loop
