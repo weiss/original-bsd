@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.35 (Berkeley) 02/06/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.36 (Berkeley) 02/08/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.35 (Berkeley) 02/06/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.36 (Berkeley) 02/08/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1032,7 +1032,9 @@ host_map_lookup(map, name, av, statp)
 	register STAB *s;
 	char hbuf[MAXNAME];
 	extern struct hostent *gethostbyaddr();
+#ifdef NAMED_BIND
 	extern int h_errno;
+#endif
 
 	/*
 	**  See if we have already looked up this name.  If so, just
@@ -1046,7 +1048,9 @@ host_map_lookup(map, name, av, statp)
 			printf("host_map_lookup(%s) => CACHE %s\n",
 				name, s->s_namecanon.nc_cname);
 		errno = s->s_namecanon.nc_errno;
+#ifdef NAMED_BIND
 		h_errno = s->s_namecanon.nc_herrno;
+#endif
 		*statp = s->s_namecanon.nc_stat;
 		if (CurEnv->e_message == NULL && *statp == EX_TEMPFAIL)
 		{
@@ -1084,10 +1088,11 @@ host_map_lookup(map, name, av, statp)
 		{
 			register struct hostent *hp;
 
+			s->s_namecanon.nc_errno = errno;
+#ifdef NAMED_BIND
+			s->s_namecanon.nc_herrno = h_errno;
 			if (tTd(9, 1))
 				printf("FAIL (%d)\n", h_errno);
-			s->s_namecanon.nc_errno = errno;
-			s->s_namecanon.nc_herrno = h_errno;
 			switch (h_errno)
 			{
 			  case TRY_AGAIN:
@@ -1114,6 +1119,11 @@ host_map_lookup(map, name, av, statp)
 				*statp = EX_UNAVAILABLE;
 				break;
 			}
+#else
+			if (tTd(9, 1))
+				printf("FAIL\n");
+			*statp = EX_NOHOST;
+#endif
 			s->s_namecanon.nc_stat = *statp;
 			if (*statp != EX_TEMPFAIL || UseNameServer)
 				return NULL;
@@ -1144,7 +1154,9 @@ host_map_lookup(map, name, av, statp)
 	/* nope -- ask the name server */
 	hp = gethostbyaddr((char *)&in_addr, sizeof(struct in_addr), AF_INET);
 	s->s_namecanon.nc_errno = errno;
+#ifdef NAMED_BIND
 	s->s_namecanon.nc_herrno = h_errno;
+#endif
 	s->s_namecanon.nc_flags |= NCF_VALID;		/* will be soon */
 	if (hp == NULL)
 	{
