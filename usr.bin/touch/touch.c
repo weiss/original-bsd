@@ -1,6 +1,6 @@
-#ifndef LINT
-static	char *sccsid = "@(#)touch.c	4.2 (Berkeley) 82/06/09";
-#endif not LINT
+#ifndef lint
+static	char sccsid[] = "@(#)touch.c	4.3 (Berkeley) 08/11/83";
+#endif
 
 /*
  *	attempt to set the modify date of a file to the current date.
