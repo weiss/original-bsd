@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dump.h	5.1 (Berkeley) 06/05/85
+ *	@(#)dump.h	5.2 (Berkeley) 06/18/85
  */
 
 #define	NI		16
@@ -16,7 +16,7 @@
 #include <sys/stat.h>
 #include <sys/fs.h>
 #include <sys/inode.h>
-#include <dumprestor.h>
+#include <protocols/dumprestore.h>
 #include <sys/dir.h>
 #include <utmp.h>
 #include <sys/time.h>
