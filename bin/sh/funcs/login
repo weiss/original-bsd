@@ -6,7 +6,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)login	8.1 (Berkeley) 05/31/93
+#	@(#)login	8.2 (Berkeley) 05/04/95
 
 # replaces the login builtin in the BSD shell
 login () exec login "$@"

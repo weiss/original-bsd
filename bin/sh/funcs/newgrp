@@ -6,6 +6,6 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)newgrp	8.1 (Berkeley) 05/31/93
+#	@(#)newgrp	8.2 (Berkeley) 05/04/95
 
 newgrp() exec newgrp "$@"

@@ -6,7 +6,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)kill	8.1 (Berkeley) 05/31/93
+#	@(#)kill	8.2 (Berkeley) 05/04/95
 
 # Convert job names to process ids and then run /bin/kill.
 
