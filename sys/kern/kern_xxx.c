@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_xxx.c	7.18 (Berkeley) 03/18/92
+ *	@(#)kern_xxx.c	7.19 (Berkeley) 07/10/92
  */
 
 #include "param.h"
@@ -17,23 +17,27 @@ char	hostname[MAXHOSTNAMELEN];
 int	hostnamelen;
 long	hostid;
 
+struct gethostid_args {
+	int	dummy;
+};
 /* ARGSUSED */
 gethostid(p, uap, retval)
 	struct proc *p;
-	void *uap;
-	long *retval;
+	struct gethostid_args *uap;
+	int *retval;
 {
 
-	*retval = hostid;
+	*(long *)retval = hostid;
 	return (0);
 }
 
+struct sethostid_args {
+	long	hostid;
+};
 /* ARGSUSED */
 sethostid(p, uap, retval)
 	struct proc *p;
-	struct args {
-		long	hostid;
-	} *uap;
+	struct sethostid_args *uap;
 	int *retval;
 {
 	int error;
@@ -44,13 +48,14 @@ sethostid(p, uap, retval)
 	return (0);
 }
 
+struct gethostname_args {
+	char	*hostname;
+	u_int	len;
+};
 /* ARGSUSED */
 gethostname(p, uap, retval)
 	struct proc *p;
-	struct args {
-		char	*hostname;
-		u_int	len;
-	} *uap;
+	struct gethostname_args *uap;
 	int *retval;
 {
 
@@ -59,13 +64,14 @@ gethostname(p, uap, retval)
 	return (copyout((caddr_t)hostname, (caddr_t)uap->hostname, uap->len));
 }
 
+struct sethostname_args {
+	char	*hostname;
+	u_int	len;
+};
 /* ARGSUSED */
 sethostname(p, uap, retval)
 	struct proc *p;
-	register struct args {
-		char	*hostname;
-		u_int	len;
-	} *uap;
+	register struct sethostname_args *uap;
 	int *retval;
 {
 	int error;
@@ -80,12 +86,13 @@ sethostname(p, uap, retval)
 	return (error);
 }
 
+struct reboot_args {
+	int	opt;
+};
 /* ARGSUSED */
 reboot(p, uap, retval)
 	struct proc *p;
-	struct args {
-		int	opt;
-	} *uap;
+	struct reboot_args *uap;
 	int *retval;
 {
 	int error;
