@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	8.21 (Berkeley) 06/20/95";
+static char sccsid[] = "@(#)mail.local.c	8.22 (Berkeley) 06/21/95";
 #endif /* not lint */
 
 /*
@@ -254,6 +254,7 @@ deliver(fd, name)
 		warn("unknown name: %s", name);
 		return;
 	}
+	endpwent();
 
 	/*
 	 * Keep name reasonably short to avoid buffer overruns.
