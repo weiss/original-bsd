@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.61		01/02/83	(no queueing));
+SCCSID(@(#)queue.c	3.62		01/03/83	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.61		01/02/83);
+SCCSID(@(#)queue.c	3.62		01/03/83);
 
 /*
 **  Work queue.
@@ -318,7 +318,13 @@ orderq()
 		{
 			/* this may be some random person sending hir msgs */
 			/* syserr("orderq: cannot open %s", cbuf); */
+#ifdef DEBUG
+			if (tTd(41, 2))
+				printf("orderq: cannot open %s (%d)\n",
+					d->d_name, errno);
+#endif DEBUG
 			errno = 0;
+			wn--;
 			continue;
 		}
 		wlist[wn].w_name = newstr(d->d_name);
@@ -335,6 +341,7 @@ orderq()
 		(void) fclose(cf);
 	}
 	(void) closedir(f);
+	wn++;
 
 	/*
 	**  Sort the work directory.
@@ -366,7 +373,7 @@ orderq()
 	}
 # endif DEBUG
 
-	return (wn + 1);
+	return (wn);
 }
 /*
 **  WORKCMPF -- compare function for ordering work.
