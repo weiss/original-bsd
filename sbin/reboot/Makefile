@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.9 (Berkeley) 11/15/91
+#	@(#)Makefile	5.10 (Berkeley) 07/06/92
 
 PROG=	reboot
 DPADD=	${LIBUTIL}
 LDADD=	-lutil
 MAN8=	reboot.0 boot_hp300.0 boot_i386.0 boot_tahoe.0 boot_vax.0
-MLINKS=	halt.8 reboot.8
+MLINKS=	reboot.8 halt.8
 LINKS=	${BINDIR}/reboot ${BINDIR}/halt
 
 afterinstall:
