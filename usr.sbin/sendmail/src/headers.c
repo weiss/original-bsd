@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	6.32 (Berkeley) 04/30/93";
+static char sccsid[] = "@(#)headers.c	6.33 (Berkeley) 05/10/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -329,6 +329,8 @@ eatheader(e, full)
 		    strcasecmp(h->h_field, "message-id") == 0)
 		{
 			msgid = h->h_value;
+			while (isascii(*msgid) && isspace(*msgid))
+				msgid++;
 		}
 
 		/* see if this is a return-receipt header */
