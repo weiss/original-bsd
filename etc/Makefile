@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.19 (Berkeley) 07/20/92
+#	@(#)Makefile	5.20 (Berkeley) 07/22/92
 
 NOOBJ=	oobj
 
@@ -24,7 +24,7 @@ all clean cleandir depend etc install lint:
 
 distribution:
 	# Hand-craft the password file first.
-	mkdir /etc /dev
+	-mkdir /etc /dev
 	cp master.passwd ${DESTDIR}/tmp/p
 	pwd_mkdb -p /tmp/p
 	rm -f /tmp/p
