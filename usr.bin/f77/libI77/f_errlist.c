@@ -1,10 +1,13 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)f_errlist.c	5.2	07/30/85
+ * %sccs.include.proprietary.c%
  */
+
+#ifndef lint
+static char sccsid[] = "@(#)f_errlist.c	5.3 (Berkeley) 04/12/91";
+#endif /* not lint */
 
 /*
  * f77 I/O error messages

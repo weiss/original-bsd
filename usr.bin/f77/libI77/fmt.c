@@ -1,10 +1,13 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)fmt.c	5.3	05/13/90
+ * %sccs.include.proprietary.c%
  */
+
+#ifndef lint
+static char sccsid[] = "@(#)fmt.c	5.4 (Berkeley) 04/12/91";
+#endif /* not lint */
 
 /*
  * fortran format parser
