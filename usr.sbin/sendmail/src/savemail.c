@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.26 (Berkeley) 03/04/94";
+static char sccsid[] = "@(#)savemail.c	8.27 (Berkeley) 03/06/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -65,8 +65,9 @@ savemail(e)
 
 	if (tTd(6, 1))
 	{
-		printf("\nsavemail, errormode = %c, id = %s\n  e_from=",
-			e->e_errormode, e->e_id == NULL ? "NONE" : e->e_id);
+		printf("\nsavemail, errormode = %c, id = %s, ExitStat = %d\n  e_from=",
+			e->e_errormode, e->e_id == NULL ? "NONE" : e->e_id,
+			ExitStat);
 		printaddr(&e->e_from, FALSE);
 	}
 
