@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.13 (Berkeley) 07/16/86";
+static char sccsid[] = "@(#)gethostnamadr.c	6.14 (Berkeley) 10/30/86";
 #endif LIBC_SCCS and not lint
 
 #include <sys/types.h>
@@ -232,6 +232,7 @@ gethostbyname(name)
 	register struct hostent *hp;
 	extern struct hostent *_gethtbyname();
 
+	errno = 0;
 	n = res_mkquery(QUERY, name, C_IN, T_A, (char *)NULL, 0, NULL,
 		(char *)&buf, sizeof(buf));
 	if (n < 0) {
