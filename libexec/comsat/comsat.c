@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)comsat.c	5.23 (Berkeley) 02/03/91";
+static char sccsid[] = "@(#)comsat.c	5.24 (Berkeley) 02/25/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -58,7 +58,7 @@ main(argc, argv)
 
 	/* verify proper invocation */
 	fromlen = sizeof(from);
-	if (getsockname(0, &from, &fromlen) < 0) {
+	if (getsockname(0, (struct sockaddr *)&from, &fromlen) < 0) {
 		(void)fprintf(stderr,
 		    "comsat: getsockname: %s.\n", strerror(errno));
 		exit(1);
@@ -100,7 +100,7 @@ main(argc, argv)
 void
 reapchildren()
 {
-	while (wait3((union wait *)NULL, WNOHANG, (struct rusage *)NULL) > 0);
+	while (wait3((int *)NULL, WNOHANG, (struct rusage *)NULL) > 0);
 }
 
 void
