@@ -1,4 +1,7 @@
-/*	railmag.c	4.1	83/04/28	*/
+#ifndef lint
+static char sccsid[] = "@(#)railmag.c	4.2 (Berkeley) 07/16/83";
+#endif
+
 /*
  * tell vcat which fonts are loaded on the "typesetter"
  */
