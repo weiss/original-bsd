@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/28/93
+#	@(#)Makefile	8.1 (Berkeley) 06/28/93
 
 PROG=	fsinfo
 MAN8=	fsinfo.0
