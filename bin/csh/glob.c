@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)glob.c 4.5 07/03/83";
+static	char *sccsid = "@(#)glob.c 4.6 08/31/84";
 
 #include "sh.h"
 #include <sys/dir.h>
@@ -354,7 +354,7 @@ amatch(s, p)
 			return (scc == 0);
 
 		default:
-			if (c != scc)
+			if ((c & TRIM) != scc)
 				return (0);
 			continue;
 
@@ -666,9 +666,9 @@ backeval(cp, literal)
 			error(err);
 		if (t)
 			t->t_dflg |= FPAR;
-		sigignore(SIGTSTP);
-		sigignore(SIGTTIN);
-		sigignore(SIGTTOU);
+		signal(SIGTSTP, SIG_IGN);
+		signal(SIGTTIN, SIG_IGN);
+		signal(SIGTTOU, SIG_IGN);
 		execute(t, -1);
 		exitstat();
 	}
