@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)gename.c	5.2 (Berkeley) 07/19/83";
+static char sccsid[] = "@(#)gename.c	5.3 (Berkeley) 08/30/84";
 #endif
 
 #include "uucp.h"
@@ -17,7 +17,7 @@ static char sccsid[] = "@(#)gename.c	5.2 (Berkeley) 07/19/83";
 gename(pre, sys, grade, file)
 char pre, *sys, grade, *file;
 {
-	static char sqnum[5];
+	static char sqnum[SEQLEN+1];
 
 	getseq(sqnum);
 	sprintf(file, "%c.%.7s%c%.*s", pre, sys, grade, SEQLEN, sqnum);
