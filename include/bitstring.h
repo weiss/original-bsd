@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)bitstring.h	5.2 (Berkeley) 04/04/90
+ *	@(#)bitstring.h	5.3 (Berkeley) 05/30/90
  */
 
 typedef	unsigned char bitstr_t;
@@ -38,7 +38,7 @@ typedef	unsigned char bitstr_t;
 
 				/* allocate a bitstring */
 #define	bit_alloc(nbits) \
-	(bitstr_t *)malloc(1, \
+	(bitstr_t *)calloc(1, \
 	    (unsigned int)_bitstr_size(nbits) * sizeof(bitstr_t))
 
 				/* allocate a bitstring on the stack */
