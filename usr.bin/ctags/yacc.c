@@ -16,11 +16,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)yacc.c	5.3 (Berkeley) 12/31/88";
+static char sccsid[] = "@(#)yacc.c	5.4 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <ctags.h>
-#include <strings.h>
+#include <string.h>
 
 /*
  * y_entries:
