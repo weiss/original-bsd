@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)getch.c	5.2 (Berkeley) 11/04/85";
+static char sccsid[] = "@(#)getch.c	5.3 (Berkeley) 04/16/86";
 #endif not lint
 
 # include	"curses.ext"
@@ -27,7 +27,7 @@ reg WINDOW	*win; {
 	fprintf(outf, "WGETCH: _echoit = %c, _rawmode = %c\n", _echoit ? 'T' : 'F', _rawmode ? 'T' : 'F');
 # endif
 	if (_echoit && !_rawmode) {
-		raw();
+		cbreak();
 		weset++;
 	}
 	inp = getchar();
@@ -40,6 +40,6 @@ reg WINDOW	*win; {
 		waddch(win, inp);
 	}
 	if (weset)
-		noraw();
+		nocbreak();
 	return inp;
 }
