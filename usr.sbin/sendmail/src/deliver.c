@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.118 (Berkeley) 12/01/94";
+static char sccsid[] = "@(#)deliver.c	8.119 (Berkeley) 12/10/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -595,6 +595,7 @@ deliver(e, firstto)
 	char *firstsig;			/* signature of firstto */
 	int pid;
 	char *curhost;
+	time_t xstart;
 	int mpvect[2];
 	int rpvect[2];
 	char *pv[MAXPV+1];
@@ -649,7 +650,7 @@ deliver(e, firstto)
 			e->e_to = to->q_paddr;
 			message("queued");
 			if (LogLevel > 8)
-				logdelivery(m, NULL, "queued", NULL, e);
+				logdelivery(m, NULL, "queued", NULL, xstart, e);
 		}
 		e->e_to = NULL;
 		return (0);
@@ -752,6 +753,7 @@ deliver(e, firstto)
 	tobuf[0] = '\0';
 	e->e_to = tobuf;
 	ctladdr = NULL;
+	xstart = curtime();
 	firstsig = hostsignature(firstto->q_mailer, firstto->q_host, e);
 	for (; to != NULL; to = to->q_next)
 	{
@@ -803,7 +805,7 @@ deliver(e, firstto)
 		{
 			e->e_flags |= EF_NORETURN;
 			usrerr("552 Message is too large; %ld bytes max", m->m_maxsize);
-			giveresponse(EX_UNAVAILABLE, m, NULL, ctladdr, e);
+			giveresponse(EX_UNAVAILABLE, m, NULL, ctladdr, xstart, e);
 			continue;
 		}
 #if NAMED_BIND
@@ -813,7 +815,7 @@ deliver(e, firstto)
 		if (rcode != EX_OK)
 		{
 			markfailure(e, to, NULL, rcode);
-			giveresponse(rcode, m, NULL, ctladdr, e);
+			giveresponse(rcode, m, NULL, ctladdr, xstart, e);
 			continue;
 		}
 
@@ -858,7 +860,7 @@ deliver(e, firstto)
 		if (m == FileMailer)
 		{
 			rcode = mailfile(user, ctladdr, e);
-			giveresponse(rcode, m, NULL, ctladdr, e);
+			giveresponse(rcode, m, NULL, ctladdr, xstart, e);
 			e->e_nsent++;
 			if (rcode == EX_OK)
 			{
@@ -1473,7 +1475,7 @@ tryhost:
 				if ((i = smtprcpt(to, m, mci, e)) != EX_OK)
 				{
 					markfailure(e, to, mci, i);
-					giveresponse(i, m, mci, ctladdr, e);
+					giveresponse(i, m, mci, ctladdr, xstart, e);
 				}
 				else
 				{
@@ -1537,7 +1539,7 @@ tryhost:
 
   give_up:
 	if (tobuf[0] != '\0')
-		giveresponse(rcode, m, mci, ctladdr, e);
+		giveresponse(rcode, m, mci, ctladdr, xstart, e);
 	for (to = tochain; to != NULL; to = to->q_tchain)
 	{
 		if (rcode != EX_OK)
@@ -1755,6 +1757,8 @@ endmailer(mci, e, pv)
 **			response is given before the connection is made.
 **		ctladdr -- the controlling address for the recipient
 **			address(es).
+**		xstart -- the transaction start time, for computing
+**			transaction delays.
 **		e -- the current envelope.
 **
 **	Returns:
@@ -1765,11 +1769,12 @@ endmailer(mci, e, pv)
 **		ExitStat may be set.
 */
 
-giveresponse(stat, m, mci, ctladdr, e)
+giveresponse(stat, m, mci, ctladdr, xstart, e)
 	int stat;
 	register MAILER *m;
 	register MCI *mci;
 	ADDRESS *ctladdr;
+	time_t xstart;
 	ENVELOPE *e;
 {
 	register const char *statmsg;
@@ -1872,7 +1877,7 @@ giveresponse(stat, m, mci, ctladdr, e)
 	*/
 
 	if (LogLevel > ((stat == EX_TEMPFAIL) ? 8 : (stat == EX_OK) ? 7 : 6))
-		logdelivery(m, mci, &statmsg[4], ctladdr, e);
+		logdelivery(m, mci, &statmsg[4], ctladdr, xstart, e);
 
 	if (tTd(11, 2))
 		printf("giveresponse: stat=%d, e->e_message=%s\n",
@@ -1904,6 +1909,8 @@ giveresponse(stat, m, mci, ctladdr, e)
 **			log is occuring when no connection is active.
 **		stat -- the message to print for the status.
 **		ctladdr -- the controlling address for the to list.
+**		xstart -- the transaction start time, used for
+**			computing transaction delay.
 **		e -- the current envelope.
 **
 **	Returns:
@@ -1913,11 +1920,12 @@ giveresponse(stat, m, mci, ctladdr, e)
 **		none
 */
 
-logdelivery(m, mci, stat, ctladdr, e)
+logdelivery(m, mci, stat, ctladdr, xstart, e)
 	MAILER *m;
 	register MCI *mci;
 	char *stat;
 	ADDRESS *ctladdr;
+	time_t xstart;
 	register ENVELOPE *e;
 {
 # ifdef LOG
@@ -1941,8 +1949,14 @@ logdelivery(m, mci, stat, ctladdr, e)
 		}
 	}
 
-	(void) sprintf(bp, ", delay=%s", pintvl(curtime() - e->e_ctime, TRUE));
+	sprintf(bp, ", delay=%s", pintvl(curtime() - e->e_ctime, TRUE));
 	bp += strlen(bp);
+
+	if (xstart != (time_t) 0)
+	{
+		sprintf(bp, ", xdelay=%s", pintvl(curtime() - xstart, TRUE));
+		bp += strlen(bp);
+	}
 
 	if (m != NULL)
 	{
@@ -2049,6 +2063,11 @@ logdelivery(m, mci, stat, ctladdr, e)
 	bp = buf;
 	sprintf(bp, "delay=%s", pintvl(curtime() - e->e_ctime, TRUE));
 	bp += strlen(bp);
+	if (xstart != (time_t) 0)
+	{
+		sprintf(bp, ", xdelay=%s", pintvl(curtime() - xstart, TRUE));
+		bp += strlen(bp);
+	}
 
 	if (m != NULL)
 	{

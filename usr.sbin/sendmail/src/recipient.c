@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.58 (Berkeley) 11/25/94";
+static char sccsid[] = "@(#)recipient.c	8.59 (Berkeley) 12/10/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -368,7 +368,8 @@ recipient(a, sendq, aliaslevel, e)
 		else if (!writable(buf, getctladdr(a), SFF_ANYFILE))
 		{
 			a->q_flags |= QBADADDR;
-			giveresponse(EX_CANTCREAT, m, NULL, a->q_alias, e);
+			giveresponse(EX_CANTCREAT, m, NULL, a->q_alias,
+				     (time_t) 0, e);
 		}
 	}
 
@@ -439,7 +440,8 @@ recipient(a, sendq, aliaslevel, e)
 		if (pw == NULL)
 		{
 			a->q_flags |= QBADADDR;
-			giveresponse(EX_NOUSER, m, NULL, a->q_alias, e);
+			giveresponse(EX_NOUSER, m, NULL, a->q_alias,
+				     (time_t) 0, e);
 		}
 		else
 		{
