@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernfs_vfsops.c	7.3 (Berkeley) 07/19/92
+ *	@(#)kernfs_vfsops.c	7.4 (Berkeley) 08/01/92
  */
 
 /*
@@ -26,7 +26,6 @@
 #include <sys/malloc.h>
 
 #include <miscfs/specfs/specdev.h>
-extern int (**spec_vnodeop_p)();
 #include <miscfs/kernfs/kernfs.h>
 
 struct vnode *rrootvp;
