@@ -1,11 +1,13 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
+ * Copyright (c) 1991 The Regents of the University of California.
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Hugh Smith at The University of Guelph.
  *
- *	@(#)ar.h	5.2 (Berkeley) 01/17/91
+ * %sccs.include.redist.c%
+ *
+ *	@(#)ar.h	5.3 (Berkeley) 03/12/91
  */
 
 /* Pre-4BSD archives had these magic numbers in them. */
