@@ -1,7 +1,13 @@
-#! /bin/sh
+#!/bin/sh -
 #
-#	diff3.sh	4.2	89/05/11
+# Copyright (c) 1991 The Regents of the University of California.
+# All rights reserved.
 #
+# %sccs.include.proprietary.sh%
+#
+#	@(#)diff3.sh	4.3 (Berkeley) 04/17/91
+#
+
 e=
 case $1 in
 -*)
