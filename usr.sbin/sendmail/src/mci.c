@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mci.c	6.8 (Berkeley) 04/01/93";
+static char sccsid[] = "@(#)mci.c	6.9 (Berkeley) 04/18/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -168,6 +168,9 @@ mci_uncache(mcislot, doquit)
 		/* only uses the envelope to flush the transcript file */
 		if (mci->mci_state != MCIS_CLOSED)
 			smtpquit(mci->mci_mailer, mci, &BlankEnvelope);
+#ifdef XLA
+		xla_host_end(mci->mci_host);
+#endif
 	}
 	else
 	{
