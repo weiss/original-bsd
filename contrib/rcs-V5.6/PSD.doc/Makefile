@@ -1,8 +1,8 @@
-#	@(#)Makefile	8.1 (Berkeley) 08/14/93
+#	@(#)Makefile	8.2 (Berkeley) 05/24/94
 
 DIR=	psd/13.rcs
 SRCS=	rcs.ms
-MACROS=	-msU
+MACROS=	-ms
 
 paper.ps: ${SRCS} ${DPADD}
 	${SOELIM} ${SRCS} | ${PIC} | ${TBL} | ${ROFF} > ${.TARGET}
