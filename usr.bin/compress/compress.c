@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)compress.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)compress.c	8.2 (Berkeley) 01/07/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -36,7 +36,6 @@ void	compress __P((char *, char *, int));
 void	cwarn __P((const char *, ...));
 void	cwarnx __P((const char *, ...));
 void	decompress __P((char *, char *, int));
-void	err __P((int, const char *, ...));
 int	permission __P((char *));
 void	setfile __P((char *, struct stat *));
 void	usage __P((int));
