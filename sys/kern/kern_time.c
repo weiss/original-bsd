@@ -4,13 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_time.c	7.15 (Berkeley) 03/17/91
+ *	@(#)kern_time.c	7.16 (Berkeley) 01/14/92
  */
 
 #include "param.h"
 #include "resourcevar.h"
 #include "kernel.h"
 #include "proc.h"
+#include "vnode.h"
 
 #include "machine/cpu.h"
 
@@ -69,6 +70,7 @@ settimeofday(p, uap, retval)
 			return (error);
 		/* WHAT DO WE DO ABOUT PENDING REAL-TIME TIMEOUTS??? */
 		boottime.tv_sec += atv.tv_sec - time.tv_sec;
+		LEASE_UPDATETIME(atv.tv_sec - time.tv_sec);
 		s = splhigh(); time = atv; splx(s);
 		resettodr();
 	}
