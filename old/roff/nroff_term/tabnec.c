@@ -1,4 +1,9 @@
-/*	tabnec.c	4.2	85/02/14	*/
+/*-
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)tabnec.c	4.3 (Berkeley) 04/18/91
+ */
+
 #define INCH 240
 /*
  * NEC Spinwriter 5500 or 7700 10 Pitch
