@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)timed.h	1.10 (Berkeley) 04/03/91
+ *	@(#)timed.h	5.1 (Berkeley) 07/19/92
  */
 
 #ifndef	_TIMED_H_
