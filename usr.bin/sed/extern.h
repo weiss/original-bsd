@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.1 (Berkeley) 08/23/92
+ *	@(#)extern.h	5.2 (Berkeley) 08/24/92
  */
 
 extern struct s_command *prog;
@@ -28,4 +28,4 @@ void	 process __P((void));
 char	*strregerror __P((int, regex_t *));
 void	*xmalloc __P((u_int));
 void	*xrealloc __P((void *, u_int));
-void	 cfclose(struct s_command *cp);
+void	 cfclose __P((struct s_command *));
