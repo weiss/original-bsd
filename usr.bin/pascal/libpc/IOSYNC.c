@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)IOSYNC.c 1.1 10/30/80";
+static char sccsid[] = "@(#)IOSYNC.c 1.2 01/24/81";
 
 #include "h00vars.h"
 #include "h01errs.h"
@@ -34,6 +34,10 @@ IOSYNC(curfile)
 	}
 	if (feof(curfile->fbuf)) {
 		curfile->funit = unit | EOFF;
+		if (unit & FTEXT) {
+			*curfile->fileptr = ' ';
+			return;
+		}
 		limit = &curfile->fileptr[curfile->fsize];
 		for (ptr = curfile->fileptr; ptr < limit; )
 			*ptr++ = 0;
