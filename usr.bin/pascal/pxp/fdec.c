@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 #
-static	char *sccsid = "@(#)fdec.c	1.3 (Berkeley) 08/12/82";
+static	char *sccsid = "@(#)fdec.c	2.1 (Berkeley) 02/08/84";
 /*
  * pxp - Pascal execution profiler
  *

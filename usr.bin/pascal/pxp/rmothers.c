@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)rmothers.c	1.3 (Berkeley) 07/26/83";
+static	char *sccsid = "@(#)rmothers.c	2.1 (Berkeley) 02/08/84";
 /* Copyright (c) 1983 Regents of the University of California */
 #ifdef RMOTHERS
     /* and the rest of the file */
