@@ -1,4 +1,4 @@
-SCCSID = @(#)Makefile	1.12 (Berkeley) 12/03/81
+SCCSID = @(#)Makefile	1.13 (Berkeley) 01/14/82
 
 DFLAGS = 
 CFLAGS = -O ${DFLAGS}
@@ -24,6 +24,13 @@ clean:
 
 gcrt0.h:
 	cp /usr/src/libc/csu/gcrt0.h gcrt0.h
+
+print:
+	@ ls -l | pr -f
+	@ pr -f makefile
+	@ pr -f gcrt0.h
+	@ pr -f ${GPROFHDRS} ${GPROFSRCS}
+	@ pr -f flat.blurb callg.blurb
 
 lint:
 	lint ${CFLAGS} ${LINTFLAGS} ${GPROFSRCS}
