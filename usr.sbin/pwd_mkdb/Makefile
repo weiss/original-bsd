@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 03/08/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	pwd_mkdb
 SRCS=	pw_scan.c pwd_mkdb.c
