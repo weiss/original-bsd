@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)parser1.c	3.7 84/01/05";
+static	char *sccsid = "@(#)parser1.c	3.8 84/01/11";
 #endif
 
 #include <stdio.h>
@@ -855,7 +855,8 @@ char flag;
 		if (flag) {
 			v->v_type = V_STR;
 			v->v_str = token_str;
-		}
+		} else
+			str_free(token_str);
 		(void) s_gettok();
 		break;
 	case T_LP:
