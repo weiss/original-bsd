@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)fdec.c 1.5 10/10/80";
+static	char sccsid[] = "@(#)fdec.c 1.6 10/27/80";
 
 #include "whoami.h"
 #include "0.h"
@@ -297,7 +297,7 @@ funchdr(r)
 			    il->value[NL_OFFS] += p->value[NL_OFFS];
 #		endif OBJ
 #		ifdef PC
-		    p -> value[ NL_OFFS ] = o;
+		    p -> value[ NL_OFFS ] = roundup( o , A_STACK );
 #		endif PC
 	} else { 
 		/*
