@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.5 (Berkeley) 03/04/86";
+static char sccsid[] = "@(#)ls.c	5.6 (Berkeley) 05/12/86";
 #endif not lint
 
 /*
@@ -50,7 +50,7 @@ struct subdirs {
 } *subdirs;
 
 int	aflg, dflg, gflg, lflg, sflg, tflg, uflg, iflg, fflg, cflg, rflg = 1;
-int	qflg, Aflg, Cflg, Fflg, Lflg, Rflg, Sflg;
+int	qflg, Aflg, Cflg, Fflg, Lflg, Rflg;
 
 int	usetabs;
 
@@ -110,8 +110,6 @@ main(argc, argv)
 			Aflg++; break;
 		case 'c':
 			cflg++; break;
-		case 'S':
-			Sflg++; /* fall into... */
 		case 's':
 			sflg++; break;
 		case 'd':
@@ -140,7 +138,7 @@ main(argc, argv)
 		argc--, argv++;
 	}
 	if (fflg) { 
-		aflg++; Sflg = 0; tflg = 0; /* -f: only turn off sort flags */
+		aflg++; lflg = 0; sflg = 0; tflg = 0;
 	}
 	if (lflg)
 		Cflg = 0;
@@ -423,13 +421,6 @@ fcmp(f1, f2)
 		if (f2->fmtime == f1->fmtime)
 			return (0);
 		if (f2->fmtime > f1->fmtime)
-			return (rflg);
-		return (-rflg);
-	}
-	if (Sflg) {
-		if (f2->fsize == f1->fsize)
-			return (0);
-		if (f2->fsize > f1->fsize)
 			return (rflg);
 		return (-rflg);
 	}
