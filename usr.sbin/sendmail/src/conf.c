@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.60 (Berkeley) 05/22/93";
+static char sccsid[] = "@(#)conf.c	6.61 (Berkeley) 05/28/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -899,9 +899,19 @@ reapchild()
 {
 # ifdef WIFEXITED
 	auto int status;
+	int count;
+	int pid;
 
-	while (waitpid(-1, &status, WNOHANG) > 0)
-		continue;
+	count = 0;
+	while ((pid = waitpid(-1, &status, WNOHANG)) > 0)
+	{
+		if (count++ > 1000)
+		{
+			syslog(LOG_ALERT, "reapchild: waitpid loop: pid=%d, status=%x",
+				pid, status);
+			break;
+		}
+	}
 # else
 # ifdef WNOHANG
 	union wait status;
