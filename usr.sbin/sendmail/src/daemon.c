@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.5 (Berkeley) 07/26/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.6 (Berkeley) 07/29/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.5 (Berkeley) 07/26/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.6 (Berkeley) 07/29/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -251,6 +251,7 @@ getrequests()
 
 		if (pid == 0)
 		{
+			char *p;
 			extern char *hostnamebyanyaddr();
 
 			/*
@@ -263,7 +264,8 @@ getrequests()
 			OpMode = MD_SMTP;
 
 			/* determine host name */
-			RealHostName = newstr(hostnamebyanyaddr(&RealHostAddr));
+			p = hostnamebyanyaddr(&RealHostAddr);
+			RealHostName = newstr(p);
 
 #ifdef LOG
 			if (LogLevel > 11)
@@ -819,7 +821,8 @@ getauthinfo(fd)
 		return hbuf;
 	}
 
-	RealHostName = newstr(hostnamebyanyaddr(&fa));
+	p = hostnamebyanyaddr(&fa);
+	RealHostName = newstr(p);
 	RealHostAddr = fa;
 
 #ifdef IDENTPROTO

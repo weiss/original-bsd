@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.2 (Berkeley) 07/27/93";
+static char sccsid[] = "@(#)collect.c	8.3 (Berkeley) 07/29/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -53,7 +53,8 @@ collect(smtpmode, requeueflag, e)
 	**  Create the temp file name and create the file.
 	*/
 
-	e->e_df = newstr(queuename(e, 'd'));
+	e->e_df = queuename(e, 'd');
+	e->e_df = newstr(e->e_df);
 	if ((tf = dfopen(e->e_df, O_WRONLY|O_CREAT, FileMode)) == NULL)
 	{
 		syserr("Cannot create %s", e->e_df);
