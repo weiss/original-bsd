@@ -1,4 +1,6 @@
-.\"	@(#)p0	6.1 (Berkeley) 05/23/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)p0	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'USD:2-%''LEARN \(em Computer-Aided Instruction on UNIX'
 .OH 'LEARN \(em Computer-Aided Instruction on UNIX''USD:2-%'

@@ -1,4 +1,6 @@
-.\"	@(#)p2	6.1 (Berkeley) 05/23/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)p2	6.2 (Berkeley) 04/17/91
 .\"
 .NH
 Educational Assumptions and Design.
