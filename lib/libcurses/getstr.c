@@ -6,14 +6,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)getstr.c	5.5 (Berkeley) 08/23/92";
+static char sccsid[] = "@(#)getstr.c	5.6 (Berkeley) 09/14/92";
 #endif	/* not lint */
 
 #include <curses.h>
 
 /*
  * wgetstr --
- *	Get a string starting at (_cury,_curx).
+ *	Get a string starting at (cury, curx).
  */
 int
 wgetstr(win, str)

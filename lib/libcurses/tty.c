@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tty.c	5.2 (Berkeley) 08/31/92";
+static char sccsid[] = "@(#)tty.c	5.3 (Berkeley) 09/14/92";
 #endif /* not lint */
 
 /*
@@ -143,9 +143,9 @@ int
 endwin()
 {
 	if (curscr) {
-		if (curscr->_flags & _STANDOUT) {
+		if (curscr->flags & __WSTANDOUT) {
 			tputs(SE, 0, __cputchar);
-			curscr->_flags &= ~_STANDOUT;
+			curscr->flags &= ~__WSTANDOUT;
 		}
 		__endwin = 1;
 	}
