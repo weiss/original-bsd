@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.36 (Berkeley) 07/19/92
+ *	@(#)sendmail.h	5.37 (Berkeley) 07/20/92
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.36		07/19/92";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.37		07/20/92";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -149,7 +149,6 @@ typedef struct mailer	MAILER;
 # define M_UGLYUUCP	'U'	/* this wants an ugly UUCP from line */
 # define M_XDOT		'X'	/* use hidden-dot algorithm */
 # define M_7BITS	'7'	/* use 7-bit path */
-# define M_8BITS	'8'	/* use 8-bit path */
 
 EXTERN MAILER	*Mailer[MAXMAILERS+1];
 
