@@ -1,12 +1,12 @@
 #ifndef lint
-static char sccsid[] = "@(#)locate.c	2.5	06/11/85";
+static char sccsid[] = "@(#)locate.c	2.6	03/05/87";
 #endif not lint
 #
 
 # include   "stdio.h"
 # include   "streams.h"
 # include   "ctype.h"
-# define    maxrefs      200
+# define    maxrefs      1000
 
 struct reftype{
     char reffile[maxstr];
