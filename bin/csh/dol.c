@@ -5,11 +5,10 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)dol.c	5.2 (Berkeley) 06/06/85";
+static char *sccsid = "@(#)dol.c	5.3 (Berkeley) 03/29/86";
 #endif
 
 #include "sh.h"
-#include "sh.char.h"
 
 /*
  * C shell
