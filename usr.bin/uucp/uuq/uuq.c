@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuq.c	4.6 (Berkeley) 10/09/85";
+static char sccsid[] = "@(#)uuq.c	4.7 (Berkeley) 08/30/87";
 #endif
 
 /*
@@ -61,7 +61,7 @@ int hflag;
 int lflag;
 
 char *malloc(), *calloc();
-float atof();
+double atof();
 float baudrate = 1200.;
 char Username[BUFSIZ];
 char Filename[BUFSIZ];
