@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.15 (Berkeley) 08/23/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.16 (Berkeley) 08/25/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.15 (Berkeley) 08/23/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.16 (Berkeley) 08/25/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1190,13 +1190,14 @@ printqueue()
 		char message[MAXLINE];
 		char bodytype[MAXNAME];
 
+		printf("%8s", w->w_name + 2);
 		f = fopen(w->w_name, "r");
 		if (f == NULL)
 		{
+			printf(" (job completed)\n");
 			errno = 0;
 			continue;
 		}
-		printf("%8s", w->w_name + 2);
 		if (!lockfile(fileno(f), w->w_name, NULL, LOCK_SH|LOCK_NB))
 			printf("*");
 		else if (shouldqueue(w->w_pri, w->w_ctime))
