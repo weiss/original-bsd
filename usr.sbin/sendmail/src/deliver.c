@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.26 (Berkeley) 09/26/93";
+static char sccsid[] = "@(#)deliver.c	8.27 (Berkeley) 09/29/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -2043,13 +2043,6 @@ hostsignature(m, host, e)
 		/* just an ordinary mailer */
 		return host;
 	}
-
-	/*
-	**  If it is a numeric address, just return it.
-	*/
-
-	if (host[0] == '[')
-		return host;
 
 	/*
 	**  Look it up in the symbol table.
