@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	6.43 (Berkeley) 06/04/93')
+VERSIONID(`@(#)proto.m4	6.44 (Berkeley) 06/05/93')
 
 MAILER(local)dnl
 
@@ -505,7 +505,8 @@ R$+ < $+ @ >		$#local $: @ $1			nope, local address')')
 undivert(3)dnl
 undivert(4)dnl
 
-# resolve remotely connected UUCP links (if any)
+ifdef(`_NO_UUCP_', `dnl',
+`# resolve remotely connected UUCP links (if any)
 ifdef(`_CLASS_V_',
 `R$* < @ $=V . UUCP > $*		$#smtp $@ $V $: <@ $V> : $1 @ $2.UUCP $3',
 	`dnl')
@@ -514,24 +515,24 @@ ifdef(`_CLASS_W_',
 	`dnl')
 ifdef(`_CLASS_X_',
 `R$* < @ $=X . UUCP > $*		$#smtp $@ $X $: <@ $X> : $1 @ $2.UUCP $3',
-	`dnl')
+	`dnl')')
 
 # resolve fake top level domains by forwarding to other hosts
 ifdef(`BITNET_RELAY',
-`R$*<@$+.BITNET>$*	$#smtp $@ $B. $: $1 <@$2.BITNET> $3	user@host.BITNET',
+`R$*<@$+.BITNET>$*	$#smtp $@ $B $: $1 <@$2.BITNET> $3	user@host.BITNET',
 	`dnl')
 ifdef(`CSNET_RELAY',
-`R$*<@$+.CSNET>$*	$#smtp $@ $C. $: $1 <@$2.CSNET> $3	user@host.CSNET',
+`R$*<@$+.CSNET>$*	$#smtp $@ $C $: $1 <@$2.CSNET> $3	user@host.CSNET',
 	`dnl')
 ifdef(`_MAILER_fax_',
 `R$+ < @ $+ .FAX >	$#fax $@ $2 $: $1			user@host.FAX',
 `ifdef(`FAX_RELAY',
-`R$*<@$+.FAX>$*		$#smtp $@ $F. $: $1 <@$2.FAX> $3	user@host.FAX',
+`R$*<@$+.FAX>$*		$#smtp $@ $F $: $1 <@$2.FAX> $3		user@host.FAX',
 	`dnl')')
 
 ifdef(`UUCP_RELAY',
 `# forward non-local UUCP traffic to our UUCP relay
-R$*<@$*.UUCP>$*		$#smtp $@ $Y. $: <@ $Y> : $1 @ $2.UUCP $3	uucp mail',
+R$*<@$*.UUCP>$*		$#smtp $@ $Y $: <@ $Y> : $1 @ $2.UUCP $3	uucp mail',
 `ifdef(`_MAILER_uucp_',
 `# forward other UUCP traffic straight to UUCP
 R< @ $+ .UUCP > : $+	$#uucp $@ $1 $: $2			@host.UUCP:...
