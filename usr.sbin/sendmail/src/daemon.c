@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.88 (Berkeley) 05/16/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.89 (Berkeley) 05/17/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.88 (Berkeley) 05/16/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.89 (Berkeley) 05/17/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1364,6 +1364,10 @@ host_map_lookup(map, name, av, statp)
 **		A printable version of that sockaddr.
 */
 
+#ifdef AF_LINK
+# include <net/if_dl.h>
+#endif
+
 char *
 anynet_ntoa(sap)
 	register SOCKADDR *sap;
@@ -1395,9 +1399,16 @@ anynet_ntoa(sap)
 		return inet_ntoa(sap->sin.sin_addr);
 #endif
 
+#ifdef AF_LINK
+	  case AF_LINK:
+		sprintf(buf, "[LINK: %s]",
+			link_ntoa((struct sockaddr_dl *) &sap->sa));
+		return buf;
+#endif
 	  default:
-	  	/* this case is only to ensure syntactic correctness */
-	  	break;
+		/* this case is needed when nothing is #defined */
+		/* in order to keep the switch syntactically correct */
+		break;
 	}
 
 	/* unknown family -- just dump bytes */
