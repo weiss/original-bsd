@@ -1,12 +1,14 @@
 /*
 **  SENDMAIL.H -- Global definitions for sendmail.
 **
-**	@(#)sendmail.h	3.27	08/20/81
+**	@(#)sendmail.h	3.28	08/20/81
 */
 
 
 
 
+# include <stdio.h>
+# include <ctype.h>
 # include "useful.h"
 
 /*
@@ -248,6 +250,7 @@ extern int	Errors;		/* set if errors */
 extern int	ExitStat;	/* exit status code */
 extern char	InFileName[];	/* input file name */
 extern char	Transcript[];	/* the transcript file name */
+extern FILE	*TempFile;	/* mail temp file */
 extern ADDRESS	From;		/* the person it is from */
 extern char	*To;		/* the target person */
 extern int	HopCount;	/* hop count */
