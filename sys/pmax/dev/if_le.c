@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_le.c	7.6 (Berkeley) 10/11/92
+ *	@(#)if_le.c	7.7 (Berkeley) 10/11/92
  */
 
 #include "le.h"
@@ -56,8 +56,8 @@
 #endif
 
 #include <machine/machConst.h>
-#include <mips/dev/device.h>
-#include <mips/dev/if_lereg.h>
+#include <pmax/dev/device.h>
+#include <pmax/dev/if_lereg.h>
 
 #if NBPFILTER > 0
 #include <net/bpf.h>

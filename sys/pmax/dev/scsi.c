@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)scsi.c	7.3 (Berkeley) 10/11/92
+ *	@(#)scsi.c	7.4 (Berkeley) 10/11/92
  */
 
 /*
@@ -16,8 +16,8 @@
 
 #include <sys/param.h>
 
-#include <mips/dev/device.h>
-#include <mips/dev/scsi.h>
+#include <pmax/dev/device.h>
+#include <pmax/dev/scsi.h>
 
 /*
  * The error codes for class 0-6 sense data are class specific.

@@ -12,7 +12,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dc.c	7.9 (Berkeley) 10/11/92
+ *	@(#)dc.c	7.10 (Berkeley) 10/11/92
  *
  * devDC7085.c --
  *
@@ -51,8 +51,8 @@
 
 #include <machine/dc7085cons.h>
 
-#include <mips/dev/device.h>
-#include <mips/dev/pdma.h>
+#include <pmax/dev/device.h>
+#include <pmax/dev/pdma.h>
 
 /*
  * Driver information for auto-configuration stuff.

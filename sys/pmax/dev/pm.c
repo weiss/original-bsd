@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pm.c	7.6 (Berkeley) 10/11/92
+ *	@(#)pm.c	7.7 (Berkeley) 10/11/92
  *
  *  devGraphics.c --
  *
@@ -44,9 +44,9 @@
 #include <machine/dc7085cons.h>
 #include <machine/pmioctl.h>
 
-#include <mips/dev/device.h>
-#include <mips/dev/pmreg.h>
-#include <mips/dev/font.c>
+#include <pmax/dev/device.h>
+#include <pmax/dev/pmreg.h>
+#include <pmax/dev/font.c>
 
 #define MAX_ROW	56
 #define MAX_COL	80
