@@ -1,8 +1,13 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/05/93
+#	@(#)Makefile	8.2 (Berkeley) 03/27/94
 
 PROG=	mount_nfs
-CFLAGS+=-DNFS
+SRCS=	mount_nfs.c getmntopts.c
 MAN8=	mount_nfs.0
+
+MOUNT=	${.CURDIR}/../mount
+CFLAGS+= -DNFS -I${MOUNT}
+.PATH:	${MOUNT}
+
 DPADD=	${LIBRPC}
 LDADD=	-lrpc
 
