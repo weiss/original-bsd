@@ -1,4 +1,11 @@
-/*	@(#)optab.h	1.2 (Berkeley) 01/16/89	*/
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)optab.h	5.1 (Berkeley) 04/04/91
+ */
 
 /*
  * Argument access types

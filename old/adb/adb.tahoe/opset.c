@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)opset.c	1.4 (Berkeley) 04/27/90";
-#endif
+static char sccsid[] = "@(#)opset.c	5.1 (Berkeley) 04/04/91";
+#endif /* not lint */
 
 /*
  * adb - instruction decoding
