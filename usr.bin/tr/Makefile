@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 10/27/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	tr
 SRCS=	str.c tr.c
