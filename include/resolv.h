@@ -3,19 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)resolv.h	5.1 (Berkeley) 05/30/85
+ *	@(#)resolv.h	5.2 (Berkeley) 07/31/85
  */
 
 /*
  * Global defines and variables for resolver stub.
  */
 
-/*
- * Resolver configuration file. Contains the address of the
- * inital name server to query and the default domain for
- * non fully qualified domain names.
- */
-#define CONFFILE "/usr/local/lib/resolv.conf"
 
 struct state {
 	int	retrans;		/* retransmition time interval */
