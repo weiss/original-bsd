@@ -1,8 +1,8 @@
-/* @(#)remque.s	4.1 12/15/82 */
+/* @(#)remque.s	4.2 11/01/84 */
 /* remque(entry) */
 
 #include "DEFS.h"
 
-ENTRY(remque)
+ENTRY(remque, 0)
 	remque	*4(ap),r0
 	ret

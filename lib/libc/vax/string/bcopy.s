@@ -1,14 +1,9 @@
-/* @(#)bcopy.s	4.4 09/25/83 */
+/* @(#)bcopy.s	4.5 11/01/84 */
 /* bcopy(from, to, size) */
 
 #include "DEFS.h"
 
-	.globl	_bcopy
-_bcopy:
-	.word	0x0040
-#ifdef PROF
-	.data; 1:; .long 0; .text; moval 1b,r0; jsb mcount
-#endif PROF
+ENTRY(bcopy, R6)
 	movl	4(ap),r1
 	movl	8(ap),r3
 	movl	12(ap),r6
