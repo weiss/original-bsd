@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)daily	5.6 (Berkeley) 04/09/90
+#	@(#)daily	5.7 (Berkeley) 05/09/90
 #
 PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local
 host=`hostname -s`
@@ -109,7 +109,7 @@ echo ""
 echo "Checking subsystem status:"
 echo ""
 echo "disks:"
-df
+df -k
 echo ""
 dump W
 echo ""
