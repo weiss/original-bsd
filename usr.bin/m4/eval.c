@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)eval.c	5.5 (Berkeley) 09/03/91";
+static char sccsid[] = "@(#)eval.c	5.6 (Berkeley) 09/04/91";
 #endif /* not lint */
 
 /*
@@ -393,6 +393,7 @@ register int argc;
 				break;
 			default:
 				putback(*p);
+				putback('$');
 				break;
 			}
 			p--;
