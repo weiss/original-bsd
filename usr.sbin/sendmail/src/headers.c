@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	5.23 (Berkeley) 11/13/92";
+static char sccsid[] = "@(#)headers.c	5.24 (Berkeley) 11/13/92";
 #endif /* not lint */
 
 # include <sys/param.h>
@@ -449,11 +449,16 @@ crackaddr(addr)
 	register char *p;
 	register char c;
 	int cmtlev;
+	int realcmtlev;
+	int anglelev, realanglelev;
 	int copylev;
 	bool qmode;
+	bool realqmode;
+	bool skipping;
 	bool putgmac = FALSE;
 	bool quoteit = FALSE;
 	register char *bp;
+	char *buflim;
 	static char buf[MAXNAME];
 
 	if (tTd(33, 1))
@@ -469,14 +474,87 @@ crackaddr(addr)
 	*/
 
 	bp = buf;
+	buflim = &buf[sizeof buf - 5];
 	p = addr;
-	copylev = cmtlev = 0;
-	qmode = FALSE;
+	copylev = anglelev = realanglelev = cmtlev = realcmtlev = 0;
+	qmode = realqmode = FALSE;
 
 	while ((c = *p++) != '\0')
 	{
-		if (copylev > 0 || c == ' ')
+		/*
+		**  If the buffer is overful, go into a special "skipping"
+		**  mode that tries to keep legal syntax but doesn't actually
+		**  output things.
+		*/
+
+		skipping = bp >= buflim;
+
+		if (copylev > 0 && !skipping)
 			*bp++ = c;
+
+		/* check for backslash escapes */
+		if (c == '\\')
+		{
+			if ((c = *p++) == '\0')
+			{
+				/* too far */
+				p--;
+				goto putg;
+			}
+			if (copylev > 0 && !skipping)
+				*bp++ = c;
+			goto putg;
+		}
+
+		/* check for quoted strings */
+		if (c == '"')
+		{
+			qmode = !qmode;
+			if (copylev > 0 && !skipping)
+				realqmode = !realqmode;
+			continue;
+		}
+		if (qmode)
+			goto putg;
+
+		/* check for comments */
+		if (c == '(')
+		{
+			cmtlev++;
+
+			/* allow space for closing paren */
+			if (!skipping)
+			{
+				buflim--;
+				realcmtlev++;
+				if (copylev++ <= 0)
+				{
+					*bp++ = ' ';
+					*bp++ = c;
+				}
+			}
+		}
+		if (cmtlev > 0)
+		{
+			if (c == ')')
+			{
+				cmtlev--;
+				copylev--;
+				if (!skipping)
+				{
+					realcmtlev--;
+					buflim++;
+				}
+			}
+			continue;
+		}
+		else if (c == ')')
+		{
+			/* syntax error: unmatched ) */
+			if (!skipping)
+				bp--;
+		}
+
 
 		/* check for characters that may have to be quoted */
 		if (index(".'@,;:[]", c) != NULL)
@@ -492,52 +570,16 @@ crackaddr(addr)
 				quoteit = TRUE;
 		}
 
-		/* check for backslash escapes */
-		if (c == '\\')
-		{
-			if ((c = *p++) == '\0')
-			{
-				/* too far */
-				p--;
-				goto putg;
-			}
-			if (copylev > 0)
-				*bp++ = c;
-			goto putg;
-		}
-
-		/* check for quoted strings */
-		if (c == '"')
-		{
-			qmode = !qmode;
-			continue;
-		}
-		if (qmode)
-			goto putg;
-
-		/* check for comments */
-		if (c == '(')
-		{
-			cmtlev++;
-			if (copylev++ <= 0)
-				*bp++ = c;
-		}
-		if (cmtlev > 0)
-		{
-			if (c == ')')
-			{
-				cmtlev--;
-				copylev--;
-			}
-			continue;
-		}
-
 		/* check for angle brackets */
 		if (c == '<')
 		{
 			register char *q;
 
 			/* oops -- have to change our mind */
+			anglelev++;
+			if (!skipping)
+				realanglelev++;
+
 			bp = buf;
 			if (quoteit)
 			{
@@ -552,15 +594,22 @@ crackaddr(addr)
 			for (q = addr; q < p; )
 			{
 				c = *q++;
-				if (quoteit && c == '"')
-					*bp++ = '\\';
-				*bp++ = c;
+				if (bp < buflim)
+				{
+					if (quoteit && c == '"')
+						*bp++ = '\\';
+					*bp++ = c;
+				}
 			}
 			if (quoteit)
 			{
 				*bp++ = '"';
-				while ((*bp++ = *p++) != '<')
-					continue;
+				while ((c = *p++) != '<')
+				{
+					if (bp < buflim)
+						*bp++ = c;
+				}
+				*bp++ = c;
 			}
 			copylev = 0;
 			putgmac = quoteit = FALSE;
@@ -569,6 +618,22 @@ crackaddr(addr)
 
 		if (c == '>')
 		{
+			if (anglelev > 0)
+			{
+				anglelev--;
+				if (!skipping)
+				{
+					realanglelev--;
+					buflim++;
+				}
+			}
+			else if (!skipping)
+			{
+				/* syntax error: unmatched > */
+				if (copylev > 0)
+					bp--;
+				continue;
+			}
 			if (copylev++ <= 0)
 				*bp++ = c;
 			continue;
@@ -584,6 +649,13 @@ crackaddr(addr)
 		}
 	}
 
+	/* repair any syntactic damage */
+	if (realqmode)
+		*bp++ = '"';
+	while (realcmtlev-- > 0)
+		*bp++ = ')';
+	while (realanglelev-- > 0)
+		*bp++ = '>';
 	*bp++ = '\0';
 
 	if (tTd(33, 1))
