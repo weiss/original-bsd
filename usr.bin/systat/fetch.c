@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)fetch.c	1.2 (Lucasfilm) 10/02/83";
+static char sccsid[] = "@(#)fetch.c	1.3 (Lucasfilm) 10/02/83";
 #endif
 
 #include "systat.h"
@@ -71,6 +71,9 @@ getcmd(pid, mproc)
         (void) strncpy(cmd, u.u_comm, sizeof (cmd));
         return (cmd);
 }
+
+static	int argaddr;
+static	int pcbpf;
 
 getu(mproc)
         register struct proc *mproc;
