@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)boot.c	6.8 (Berkeley) 03/12/86
+ *	@(#)boot.c	6.9 (Berkeley) 03/13/86
  */
 
 #include "../h/param.h"
@@ -111,6 +111,7 @@ main()
 					devtype |= atol(cp) << B_PARTITIONSHIFT;
 				}
 			}
+			devtype |= B_DEVMAGIC;
 			loadpcs();
 			copyunix(howto, devtype, io);
 			close(io);
