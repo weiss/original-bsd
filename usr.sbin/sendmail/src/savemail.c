@@ -1,8 +1,8 @@
 # include <stdio.h>
 # include <pwd.h>
-# include "postbox.h"
+# include "sendmail.h"
 
-static char	SccsId[] = "@(#)savemail.c	3.5	03/11/81";
+static char	SccsId[] = "@(#)savemail.c	3.6	03/20/81";
 
 /*
 **  SAVEMAIL -- Save mail on error

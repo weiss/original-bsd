@@ -1,1 +1,1 @@
-char	Version[] = "@(#)PostBox version 3.1 of 03/07/81";
+char	Version[] = "@(#)SendMail version 3.2 of 03/20/81";
