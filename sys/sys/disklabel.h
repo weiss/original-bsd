@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)disklabel.h	7.12 (Berkeley) 05/15/90
+ *	@(#)disklabel.h	7.13 (Berkeley) 05/29/90
  */
 
 /*
@@ -275,7 +275,7 @@ struct partinfo {
 #endif LOCORE
 
 #if !defined(KERNEL) && !defined(LOCORE)
-#ifdef __STDC__
+#if __STDC__ || c_plusplus
 extern struct disklabel *getdiskbyname(const char *);
 #else
 extern struct disklabel *getdiskbyname();

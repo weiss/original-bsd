@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)cdefs.h	7.1 (Berkeley) 02/16/89
+ *	@(#)cdefs.h	7.2 (Berkeley) 05/29/90
  */
 
 /*
@@ -23,7 +23,7 @@
  * Questions to K. Bostic.
  */
 
-#ifdef __STDC__
+#if __STDC__ || c_plusplus
 #define	CONCAT(x,y)	x ## y
 #define	PROTOTYPE(p)	p
 #define	STRING(x)	#x
