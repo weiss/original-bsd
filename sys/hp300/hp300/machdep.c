@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: machdep.c 1.63 91/04/24$
  *
- *	@(#)machdep.c	7.24 (Berkeley) 04/03/92
+ *	@(#)machdep.c	7.25 (Berkeley) 04/14/92
  */
 
 #include "param.h"
@@ -281,6 +281,7 @@ again:
 	callfree = callout;
 	for (i = 1; i < ncallout; i++)
 		callout[i-1].c_next = &callout[i];
+	callout[i-1].c_next = NULL;
 
 #ifdef DEBUG
 	pmapdebug = opmapdebug;
