@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)radix.c	7.18 (Berkeley) 04/08/93
+ *	@(#)radix.c	7.19 (Berkeley) 05/24/93
  */
 
 /*
@@ -550,7 +550,7 @@ on1:
 	/* Get us out of the creation list */
 	for (t = rn_clist; t && t->rn_ybro != tt; t = t->rn_ybro) {}
 	if (t) t->rn_ybro = tt->rn_ybro;
-#endif RN_DEBUG
+#endif
 	t = tt->rn_p;
 	if (dupedkey) {
 		if (tt == saved_tt) {
