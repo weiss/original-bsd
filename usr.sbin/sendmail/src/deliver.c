@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.81 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)deliver.c	6.82 (Berkeley) 06/05/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1690,7 +1690,6 @@ logdelivery(m, mci, stat, e)
 	register ENVELOPE *e;
 {
 # ifdef LOG
-	char *curhost;
 	char buf[512];
 
 	(void) sprintf(buf, "delay=%s", pintvl(curtime() - e->e_ctime, TRUE));

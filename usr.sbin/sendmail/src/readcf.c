@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.42 (Berkeley) 06/03/93";
+static char sccsid[] = "@(#)readcf.c	6.43 (Berkeley) 06/05/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -68,7 +68,6 @@ readcf(cfname, safe, e)
 	FILE *cf;
 	int ruleset = 0;
 	char *q;
-	char **pv;
 	struct rewrite *rwp = NULL;
 	char *bp;
 	int nfuzzy;
