@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.31 (Berkeley) 04/12/94";
+static char sccsid[] = "@(#)headers.c	8.32 (Berkeley) 04/14/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -927,6 +927,15 @@ putheader(mci, e)
 		{
 			if (tTd(34, 11))
 				printf(" (skipped (resent))\n");
+			continue;
+		}
+
+		/* suppress return receipts if requested */
+		if (bitset(H_RECEIPTTO, h->h_flags) &&
+		    bitset(EF_NORECEIPT, e->e_flags))
+		{
+			if (tTd(34, 11))
+				printf(" (skipped (receipt))\n");
 			continue;
 		}
 
