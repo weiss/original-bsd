@@ -1,4 +1,4 @@
-/*	machdep.c	3.17	09/11/80	*/
+/*	machdep.c	3.18	09/12/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -14,7 +14,7 @@
 #include "../h/psl.h"
 #include "../h/uba.h"
 
-char	version[] = "VM/UNIX (Berkeley Version 3.17) 10/14/12 \n";
+char	version[] = "VM/UNIX (Berkeley Version 3.18) 10/14/12 \n";
 int	icode[] =
 {
 	0x9f19af9f,	/* pushab [&"init.vm",0]; pushab */
@@ -107,13 +107,17 @@ clkreld()
 clkinit(base)
 time_t base;
 {
+	long deltat;
 
-	for (time = ((unsigned)mfpr(TODR))/100; time < base; time += SECYR)
+	for (time = ((unsigned)mfpr(TODR))/100; time < base - SECYR/2; time += SECYR)
 		;
 	clkset();
-	if (time - base >= SECDAY*2)
-		printf("warning: lost %d days; check the date\n",
-		    (time-base) / SECDAY);
+	deltat = time - base;
+	if (deltat < 0)
+		deltat = -deltat;
+	if ((deltat < 0 ? -deltat : deltat) >= 2*SECDAY)
+		printf("warning: %s %d days; check the date\n",
+		    deltat < 0 ? "lost" : "gained", deltat / SECDAY);
 }
 
 clkset()
