@@ -1,10 +1,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.19		06/26/82	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.20		06/26/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.19		06/26/82);
+SCCSID(@(#)srvrsmtp.c	3.20		06/26/82);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -80,8 +80,8 @@ smtp()
 
 	hasmail = FALSE;
 	rcps = 0;
-	close(1);
-	dup(fileno(OutChannel));
+	(void) close(1);
+	(void) dup(fileno(OutChannel));
 	message("220", "%s Sendmail version %s at your service", HostName, Version);
 	for (;;)
 	{
