@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/08/90
+#	@(#)Makefile	5.5 (Berkeley) 06/08/90
 
 LIB=	rpc
 CFLAGS+=-I${.CURDIR}
@@ -27,5 +27,4 @@ hdrs: ${HDRS}
 	cd ${.CURDIR}; install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${HDRS} \
 	    ${DESTDIR}/usr/include/rpc
 
-.include <bsd.own.mk>
 .include <bsd.lib.mk>
