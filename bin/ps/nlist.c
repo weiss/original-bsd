@@ -6,13 +6,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)nlist.c	5.1 (Berkeley) 02/08/91";
+static char sccsid[] = "@(#)nlist.c	5.2 (Berkeley) 06/03/91";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <nlist.h>
 #include <errno.h>
 #include <stdio.h>
+#include <string.h>
 
 struct	nlist psnl[] = {
 	{"_ecmx"},
@@ -58,4 +59,3 @@ donlist()
 	}
 	return(rval);
 }
-

@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ps.h	5.2 (Berkeley) 03/27/91
+ *	@(#)ps.h	5.3 (Berkeley) 06/03/91
  */
 
 #define	UNLIMITED	0	/* unlimited terminal width */
@@ -56,5 +56,4 @@ struct varent {
 	struct varent *next;
 };
 
-extern VAR var[];
-extern struct varent *vhead, *vtail;
+#include "extern.h"

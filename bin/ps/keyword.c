@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)keyword.c	5.7 (Berkeley) 06/03/91";
+static char sccsid[] = "@(#)keyword.c	5.8 (Berkeley) 06/03/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -15,6 +15,7 @@ static char sccsid[] = "@(#)keyword.c	5.7 (Berkeley) 06/03/91";
 #include <sys/proc.h>
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
 #include "ps.h"
@@ -270,11 +271,8 @@ parsefmt(p)
 			/* void */;
 		if (!(v = findvar(cp)))
 			continue;
-		if ((vent = (struct varent *)malloc(sizeof(struct varent))) == 
-		    NULL) {
-			(void)fprintf(stderr, "ps: no space\n");
-			exit(1);
-		}
+		if ((vent = malloc(sizeof(struct varent))) == NULL)
+			err("%s", strerror(errno));
 		vent->var = v;
 		vent->next = NULL;
 		if (vhead == NULL)
@@ -284,10 +282,8 @@ parsefmt(p)
 			vtail = vent;
 		}
 	}
-	if (!vhead) {
-		(void)fprintf(stderr, "ps: no valid keywords\n");
-		exit(1);
-	}
+	if (!vhead)
+		err("no valid keywords\n");
 }
 
 static VAR *
