@@ -1,9 +1,9 @@
-.\" Copyright (c) 1986 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1986, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)3.t	6.3 (Berkeley) 04/17/91
+.\"	@(#)3.t	8.1 (Berkeley) 06/08/93
 .\"
 .ds RH New file system
 .NH
