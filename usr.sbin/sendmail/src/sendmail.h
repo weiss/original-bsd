@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.64 (Berkeley) 10/23/94
+ *	@(#)sendmail.h	8.65 (Berkeley) 10/24/94
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.64		10/23/94";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.65		10/24/94";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -889,6 +889,7 @@ EXTERN char	*FallBackMX;	/* fall back MX host */
 EXTERN long	MaxMessageSize;	/* advertised max size we will accept */
 EXTERN time_t	MaxHostStatAge;	/* max age of cached host status info */
 EXTERN time_t	MinQueueAge;	/* min delivery interval */
+EXTERN char	*ServiceSwitchFile;	/* backup service switch */
 EXTERN char	*DefaultCharSet;	/* default character set for MIME */
 EXTERN int	DeliveryNiceness;	/* how nice to be during delivery */
 EXTERN char	*PostMasterCopy;	/* address to get errs cc's */
