@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.46		10/07/82	(no queueing));
+SCCSID(@(#)queue.c	3.47		11/03/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.46		10/07/82);
+SCCSID(@(#)queue.c	3.47		11/03/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -253,6 +253,15 @@ runqueue(forkflag)
 */
 
 # define WLSIZE		120	/* max size of worklist per sort */
+
+# ifndef DIR
+# define DIR		FILE
+# define direct		dir
+# define opendir(d)	fopen(d, "r")
+# define readdir(f)	(fread(dbuf, sizeof dbuf, 1, f) > 0 ? &dbuf : 0)
+static struct dir	dbuf;
+# define closedir(f)	fclose(f)
+# endif DIR
 
 orderq()
 {
