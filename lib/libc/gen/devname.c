@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)devname.c	5.7 (Berkeley) 08/30/90";
+static char sccsid[] = "@(#)devname.c	5.8 (Berkeley) 11/07/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -33,7 +33,7 @@ struct devs {
 	struct	devs *next;
 	dev_t	dev;
 	mode_t	type;
-	char	name[MAXNAMLEN + 1];
+	char	*name;
 };
 
 static struct devs *devhash[HASHSIZ];
@@ -58,7 +58,7 @@ add(type, dev, name)
 	devp->next = NULL;
 	devp->dev = dev;
 	devp->type = type;
-	(void) strcpy(devp->name, name);
+	devp->name = strdup(name);
 	h = hash(dev, type);
 	for (p = &devhash[h]; *p; p = &(*p)->next)
 		/* void */;
