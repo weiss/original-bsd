@@ -1,6 +1,6 @@
 /* Copyright (c) 1981 Regents of the University of California */
 
-char version[] = "@(#)main.c 1.15 03/23/82";
+char version[] = "@(#)main.c 1.16 03/25/82";
 
 /*	Modified to include h option (recursively extract all files within
  *	a subtree) and m option (recreate the heirarchical structure of
@@ -26,6 +26,7 @@ char version[] = "@(#)main.c 1.15 03/23/82";
 #include "../h/inode.h"
 #include "../h/fs.h"
 #include "../h/buf.h"
+#include "../h/ndir.h"
 #include "../h/user.h"
 #include "../h/dumprestor.h"
 #include <sys/mtio.h>
