@@ -9,7 +9,7 @@
  * Still more user commands.
  */
 
-static char *SccsId = "@(#)cmd3.c	2.8 07/28/82";
+static char *SccsId = "@(#)cmd3.c	2.9 10/21/82";
 
 /*
  * Process a shell escape by saving signals, ignoring signals,
@@ -321,7 +321,7 @@ messize(msgvec)
 	for (ip = msgvec; *ip != NULL; ip++) {
 		mesg = *ip;
 		mp = &message[mesg-1];
-		printf("%d: %d\n", mesg, msize(mp));
+		printf("%d: %ld\n", mesg, mp->m_size);
 	}
 	return(0);
 }
