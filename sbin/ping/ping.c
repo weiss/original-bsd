@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ping.c	5.4 (Berkeley) 08/17/89";
+static char sccsid[] = "@(#)ping.c	5.5 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 /*
@@ -62,7 +62,7 @@ static char sccsid[] = "@(#)ping.c	5.4 (Berkeley) 08/17/89";
 #include <stdio.h>
 #include <ctype.h>
 #include <errno.h>
-#include <strings.h>
+#include <string.h>
 
 #define	DEFDATALEN	(64 - 8)	/* default data length */
 #define	MAXIPLEN	60
