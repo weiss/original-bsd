@@ -11,11 +11,13 @@
  *
  * from: Utah $Hdr: uipc_shm.c 1.9 89/08/14$
  *
- *	@(#)sysv_shm.c	7.7 (Berkeley) 06/22/90
+ *	@(#)sysv_shm.c	7.8 (Berkeley) 06/24/90
  */
 
 /*
  * System V shared memory routines.
+ * TEMPORARY, until mmap is in place;
+ * needed now for HP-UX compatibility and X server (yech!).
  */
 
 #ifdef SYSVSHM
@@ -61,7 +63,7 @@ shminit()
 shmsys(p, uap, retval)
 	struct proc *p;
 	struct args {
-		int which;
+		u_int which;
 	} *uap;
 	int *retval;
 {
