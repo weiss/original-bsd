@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)err.c	3.33		11/17/82);
+SCCSID(@(#)err.c	3.34		11/24/82);
 
 /*
 **  SYSERR -- Print error message.
@@ -167,7 +167,7 @@ putmsg(msg, holdmsg)
 	bool holdmsg;
 {
 	/* output to transcript */
-	if (Xscript != OutChannel)
+	if (Xscript != NULL)
 		fprintf(Xscript, "%s\n", OpMode == MD_SMTP ? msg : &msg[4]);
 
 	/* output to channel if appropriate */
@@ -185,7 +185,7 @@ putmsg(msg, holdmsg)
 	switch (msg[0])
 	{
 	  case '5':
-		FatalErrors = TRUE;
+		CurEnv->e_flags |= EF_FATALERRS;
 		/* fall through.... */
 
 	  case '4':
