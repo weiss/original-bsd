@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	6.28 (Berkeley) 03/17/93";
+static char sccsid[] = "@(#)recipient.c	6.29 (Berkeley) 03/17/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -595,7 +595,16 @@ include(fname, forwarding, ctladdr, sendq, e)
 		int ret = errno;
 
 		clrevent(ev);
-		usrerr("550 Cannot open %s: %s", fname, errstring(ret));
+		if (transienterror(ret))
+		{
+			ctladdr->q_flags |= QQUEUEUP|QDONTSEND;
+			errno = 0;
+			usrerr("451 Cannot open %s: %s", fname, errstring(ret));
+		}
+		else
+		{
+			usrerr("550 Cannot open %s: %s", fname, errstring(ret));
+		}
 		return ret;
 	}
 
