@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mount_nfs.c	8.2 (Berkeley) 03/27/94";
+static char sccsid[] = "@(#)mount_nfs.c	8.3 (Berkeley) 03/27/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -60,16 +60,9 @@ static char sccsid[] = "@(#)mount_nfs.c	8.2 (Berkeley) 03/27/94";
 
 #include "mntopts.h"
 
-/*
- * XXX
- * This is without question incorrect -- not sure what the right
- * values are.
- */
 struct mntopt mopts[] = {
 	MOPT_STDOPTS,
-	MOPT_ASYNC,
 	MOPT_FORCE,
-	MOPT_SYNCHRONOUS,
 	MOPT_UPDATE,
 	{ NULL }
 };
