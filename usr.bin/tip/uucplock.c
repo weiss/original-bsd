@@ -1,4 +1,6 @@
-/*	uucplock.c	4.5	83/06/15	*/
+#ifndef lint
+static char sccsid[] = "@(#)uucplock.c	4.6 (Berkeley) 06/25/83";
+#endif
 /*
  * defs that come from uucp.h
  */
@@ -25,8 +27,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>
-
-static char *sccsid = "@(#)uucplock.c	4.5 06/15/83";
 
 /*******
  *	ulockf(file, atime)
