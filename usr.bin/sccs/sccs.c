@@ -5,7 +5,7 @@
 # include <sysexits.h>
 # include <whoami.h>
 
-static char SccsId[] = "@(#)sccs.c	1.17 07/24/80";
+static char SccsId[] = "@(#)sccs.c	1.18 07/25/80";
 
 # define bitset(bit, word)	((bit) & (word))
 
@@ -53,7 +53,7 @@ struct sccsprog SccsProg[] =
 	"what",		PROG,	NO_SDOT,		PROGPATH(what),
 	"edit",		CMACRO,	0,			"get -e",
 	"delget",	CMACRO,	0,			"delta/get",
-	"deled",	CMACRO,	0,			"delta/get -e",
+	"deledit",	CMACRO,	0,			"delta/get -e",
 	"del",		CMACRO,	0,			"delta/get",
 	"delt",		CMACRO,	0,			"delta/get",
 	"fix",		FIX,	0,			NULL,
