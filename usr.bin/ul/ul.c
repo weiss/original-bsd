@@ -1,5 +1,5 @@
-/*	@(#)vcrt.c	3.13	*/
-static char SccsId[] =	"@(#)ul.c	4.3	(Berkeley)	01/03/82";
+/*	@(#)ul.c	4.4	05/26/83	*/
+static char SccsId[] =	"@(#)ul.c	4.4 (Berkeley) 05/26/83";
 
 #include <stdio.h>
 
@@ -187,6 +187,7 @@ FILE *f;
 
 	case '\n':
 		flushln();
+		continue;
 
 	default:
 		if (c < ' ')	/* non printing */
@@ -197,14 +198,19 @@ FILE *f;
 		} else if (obuf[col].c_char == '_') {
 			obuf[col].c_char = c;
 			obuf[col].c_mode |= UNDERL|mode;
-		} else
+		} else if (obuf[col].c_char == c)
 			obuf[col].c_mode |= BOLD|mode;
+		else {
+			obuf[col].c_mode = c;
+			obuf[col].c_mode = mode;
+		}
 		col++;
 		if (col > maxcol)
 			maxcol = col;
 		continue;
 	}
-	flushln();
+	if (maxcol)
+		flushln();
 }
 
 flushln()
