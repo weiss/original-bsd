@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)timed.c	2.19 (Berkeley) 06/27/90";
+static char sccsid[] = "@(#)timed.c	2.20 (Berkeley) 06/29/90";
 #endif /* not lint */
 
 #include "globals.h"
@@ -153,20 +153,7 @@ char **argv;
 	}
 
 #ifndef DEBUG
-	if (fork())
-		exit(0);
-	{ int s;
-	  for (s = getdtablesize(); s >= 0; --s)
-		(void) close(s);
-	  (void) open(_PATH_DEVNULL, 0);
-	  (void) dup2(0, 1);
-	  (void) dup2(0, 2);
-	  s = open(_PATH_TTY, 2);
-	  if (s >= 0) {
-		(void) ioctl(s, TIOCNOTTY, (char *)0);
-		(void) close(s);
-	  }
-	}
+	daemon(0, 0);
 #endif
 
 	if (trace == ON) {
