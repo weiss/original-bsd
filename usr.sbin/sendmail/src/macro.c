@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)macro.c	3.19		01/17/83);
+SCCSID(@(#)macro.c	3.20		02/03/83);
 
 /*
 **  EXPAND -- macro expand a string using $x escapes.
@@ -154,6 +154,7 @@ expand(s, buf, buflim, e)
 **		     the message) in ARPANET format
 **		$c   hop count
 **		$d   (current) date in UNIX (ctime) format
+**		$e   the SMTP entry message+
 **		$f   raw from address
 **		$g   translated from address
 **		$h   to host
