@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)kgmon.c	5.6 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)kgmon.c	5.7 (Berkeley) 04/25/89";
 #endif /* not lint */
 
 #include <machine/pte.h>
@@ -102,6 +102,8 @@ main(argc, argv)
 
 	openmode = (bflag || hflag || pflag || rflag) ? O_RDWR : O_RDONLY;
 
+	argv += optind + 1;
+	argc -= optind + 1;
 	kmemf = _PATH_KMEM;
 	if (argc > 0) {
 		system = *argv;
