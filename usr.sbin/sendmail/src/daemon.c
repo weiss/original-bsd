@@ -2,14 +2,14 @@
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	3.31		10/13/82	(w/o daemon mode));
+SCCSID(@(#)daemon.c	3.32		10/22/82	(w/o daemon mode));
 #else
 
 # include <sys/socket.h>
 # include <net/in.h>
 # include <wait.h>
 
-SCCSID(@(#)daemon.c	3.31		10/13/82	(with daemon mode));
+SCCSID(@(#)daemon.c	3.32		10/22/82	(with daemon mode));
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -138,6 +138,12 @@ getrequests()
 /*
 **  GETCONNECTION -- make a connection with the outside world
 **
+**	This routine is horribly contorted to try to get around a bunch
+**	of 4.1a IPC bugs.  There appears to be nothing we can do to make
+**	it "right" -- the code to interrupt accepts just doesn't work
+**	right.  However, this is an attempt to minimize the probablity
+**	of problems.
+**
 **	Parameters:
 **		none.
 **
@@ -178,18 +184,18 @@ getconnection()
 		printf("getconnection\n");
 # endif DEBUG
 
-	for (;;)
+	for (;; sleep(15))
 	{
 		int i;
 
 		/* get a socket for the SMTP connection */
 		/* do loop is to avoid 4.1b kernel bug (?) */
-		i = 50;
+		i = 60;
 		do
 		{
 			s = socket(SOCK_STREAM, 0, &SendmailAddress, SO_ACCEPTCONN);
 			if (s < 0)
-				sleep(5);
+				sleep(10);
 		} while (--i > 0 && s < 0);
 		if (s < 0)
 		{
@@ -204,14 +210,15 @@ getconnection()
 # endif DEBUG
 
 		/* wait for a connection */
-		/* contorted code is due to a 4.1a kernel bug */
-		errno = 0;
-		if (accept(s, &otherend) >= 0)
-			return (s);
-		(void) close(s);
-		if (errno != EINTR)
-			syserr("getconnection: accept");
+		do
+		{
+			errno = 0;
+			if (accept(s, &otherend) >= 0)
+				return (s);
+		} while (errno == EINTR);
+		syserr("getconnection: accept");
 		sleep(5);
+		(void) close(s);
 	}
 }
 /*
