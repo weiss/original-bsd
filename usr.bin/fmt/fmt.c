@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)fmt.c	2.2 (Berkeley) 08/11/83";
+#endif
 
 #include <stdio.h>
 #include <ctype.h>
@@ -10,8 +12,6 @@
  * Syntax: fmt [ -width ] [ name ... ]
  * Author: Kurt Shoens (UCB) 12/7/78
  */
-
-static char *SccsId = "@(#)fmt.c	2.1 07/01/81";
 
 #define	NOSTR	((char *) 0)	/* Null string pointer for lint */
 
