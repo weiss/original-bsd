@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 09/15/92
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	phantasia
 SRCS=	main.c fight.c io.c interplayer.c gamesupport.c misc.c phantglobs.c
