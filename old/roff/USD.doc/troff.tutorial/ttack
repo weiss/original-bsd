@@ -1,4 +1,4 @@
-.\"	@(#)ttack	5.1 (Berkeley) 05/23/86
+.\"	@(#)ttack	6.1 (Berkeley) 05/23/86
 .\"
 .SH
 Acknowledgements
@@ -52,3 +52,8 @@ PWB/MM _
 .ul
 Programmer's Workbench Memorandum Macros,
 Bell Laboratories internal memorandum.
+.IP [6]
+Eric P. Allman,
+.ul
+Writing Papers with NROFF using -me,
+University of California, Berkeley.
