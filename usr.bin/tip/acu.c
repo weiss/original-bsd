@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)acu.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)acu.c	5.2 (Berkeley) 11/29/85";
 #endif not lint
 
 #include "tip.h"
@@ -41,7 +41,7 @@ connect()
 
 	if (!DU) {		/* regular connect message */
 		if (CM != NOSTR)
-			pwrite(FD, cp, size(CM));
+			pwrite(FD, CM, size(CM));
 		return (NOSTR);
 	}
 	/*
@@ -69,7 +69,7 @@ connect()
 		return ("unknown ACU type");
 	if (*cp != '@') {
 		while (*cp) {
-			for (phnum = cp; any(*cp, "0123456789-*=K"); cp++)
+			for (phnum = cp; *cp && *cp != ','; cp++)
 				;
 			if (*cp)
 				*cp++ = '\0';
