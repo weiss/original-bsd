@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogin.c	5.32.1.1 (Berkeley) 10/21/90";
+static char sccsid[] = "@(#)rlogin.c	5.33 (Berkeley) 03/01/91";
 #endif /* not lint */
 
 /*
@@ -52,7 +52,7 @@ static char sccsid[] = "@(#)rlogin.c	5.32.1.1 (Berkeley) 10/21/90";
 
 CREDENTIALS cred;
 Key_schedule schedule;
-int use_kerberos = 1, encrypt;
+int use_kerberos = 1, doencrypt;
 char dst_realm_buf[REALM_SZ], *dest_realm = NULL;
 extern char *krb_realmofhost();
 #endif
@@ -161,6 +161,14 @@ main(argc, argv)
 		case 'l':
 			user = optarg;
 			break;
+#ifdef CRYPT
+#ifdef KERBEROS
+		case 'x':
+			doencrypt = 1;
+			des_set_key(cred.session, schedule);
+			break;
+#endif
+#endif
 		case '?':
 		default:
 			usage();
@@ -186,11 +194,11 @@ main(argc, argv)
 	sp = NULL;
 #ifdef KERBEROS
 	if (use_kerberos) {
-		sp = getservbyname((encrypt ? "eklogin" : "klogin"), "tcp");
+		sp = getservbyname((doencrypt ? "eklogin" : "klogin"), "tcp");
 		if (sp == NULL) {
 			use_kerberos = 0;
 			warning("can't get entry for %s/tcp service",
-			    encrypt ? "eklogin" : "klogin");
+			    doencrypt ? "eklogin" : "klogin");
 		}
 	}
 #endif
@@ -221,6 +229,12 @@ try_connect:
 		if (dest_realm == NULL)
 			dest_realm = krb_realmofhost(host);
 
+#ifdef CRYPT
+		if (doencrypt)
+			rem = krcmd_mutual(&host, sp->s_port, user, term, 0,
+			    dest_realm, &cred, schedule);
+		else
+#endif /* CRYPT */
 			rem = krcmd(&host, sp->s_port, user, term, 0,
 			    dest_realm);
 		if (rem < 0) {
@@ -238,6 +252,13 @@ try_connect:
 			goto try_connect;
 		}
 	} else {
+#ifdef CRYPT
+		if (doencrypt) {
+			(void)fprintf(stderr,
+			    "rlogin: the -x flag requires Kerberos authentication.\n");
+			exit(1);
+		}
+#endif /* CRYPT */
 		rem = rcmd(&host, sp->s_port, pw->pw_name, user, term, 0);
 	}
 #else
@@ -332,19 +353,20 @@ setsignal(sig, act)
 done(status)
 	int status;
 {
-	int w;
+	int w, wstatus;
 
 	mode(0);
 	if (child > 0) {
 		/* make sure catch_child does not snap it up */
 		(void)signal(SIGCHLD, SIG_DFL);
 		if (kill(child, SIGKILL) >= 0)
-			while ((w = wait((union wait *)0)) > 0 && w != child);
+			while ((w = wait(&wstatus)) > 0 && w != child);
 	}
 	exit(status);
 }
 
 int dosigwinch;
+void sigwinch();
 
 /*
  * This is called when the reader process gets the out-of-band (urgent)
@@ -353,8 +375,6 @@ int dosigwinch;
 void
 writeroob()
 {
-	void sigwinch();
-
 	if (dosigwinch == 0) {
 		sendwindow();
 		(void)signal(SIGWINCH, sigwinch);
@@ -369,7 +389,8 @@ catch_child()
 	int pid;
 
 	for (;;) {
-		pid = wait3(&status, WNOHANG|WUNTRACED, (struct rusage *)0);
+		pid = wait3((int *)&status,
+		    WNOHANG|WUNTRACED, (struct rusage *)0);
 		if (pid == 0)
 			return;
 		/* if the child (reader) dies, just quit */
@@ -425,9 +446,26 @@ writer()
 				continue;
 			}
 			if (c != escapechar)
+#ifdef CRYPT
+#ifdef KERBEROS
+				if (doencrypt)
+					(void)des_write(rem, &escapechar, 1);
+				else
+#endif
+#endif
 					(void)write(rem, &escapechar, 1);
 		}
 
+#ifdef CRYPT
+#ifdef KERBEROS
+		if (doencrypt) {
+			if (des_write(rem, &c, 1) == 0) {
+				msg("line gone");
+				break;
+			}
+		} else
+#endif
+#endif
 			if (write(rem, &c, 1) == 0) {
 				msg("line gone");
 				break;
@@ -501,6 +539,13 @@ sendwindow()
 	wp->ws_xpixel = htons(winsize.ws_xpixel);
 	wp->ws_ypixel = htons(winsize.ws_ypixel);
 
+#ifdef CRYPT
+#ifdef KERBEROS
+	if(doencrypt)
+		(void)des_write(rem, obuf, sizeof(obuf));
+	else
+#endif
+#endif
 		(void)write(rem, obuf, sizeof(obuf));
 }
 
@@ -638,6 +683,13 @@ reader(omask)
 		rcvcnt = 0;
 		rcvstate = READING;
 
+#ifdef CRYPT
+#ifdef KERBEROS
+		if (doencrypt)
+			rcvcnt = des_read(rem, rcvbuf, sizeof(rcvbuf));
+		else
+#endif
+#endif
 			rcvcnt = read(rem, rcvbuf, sizeof (rcvbuf));
 		if (rcvcnt == 0)
 			return (0);
@@ -734,7 +786,11 @@ usage()
 	(void)fprintf(stderr,
 	    "usage: rlogin [ -%s]%s[-e char] [ -l username ] host\n",
 #ifdef KERBEROS
+#ifdef CRYPT
+	    "8ELx", " [-k realm] ");
+#else
 	    "8EL", " [-k realm] ");
+#endif
 #else
 	    "8EL", " ");
 #endif
