@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recvjob.c	5.4 (Berkeley) 06/06/86";
+static char sccsid[] = "@(#)recvjob.c	5.5 (Berkeley) 03/19/87";
 #endif not lint
 
 /*
@@ -253,13 +253,11 @@ chksize(size)
 	int spacefree;
 	struct fs fs;
 
-	if (dfd < 0 || lseek(dfd, (long)(SBLOCK * DEV_BSIZE), 0) < 0)
+	if (dfd < 0 || lseek(dfd, (long)(SBOFF), 0) < 0)
 		return(1);
 	if (read(dfd, (char *)&fs, sizeof fs) != sizeof fs)
 		return(1);
-	spacefree = (fs.fs_cstotal.cs_nbfree * fs.fs_frag +
-		fs.fs_cstotal.cs_nffree - fs.fs_dsize * fs.fs_minfree / 100) *
-			fs.fs_fsize / 1024;
+	spacefree = freespace(&fs, fs.fs_minfree) * fs.fs_fsize / 1024;
 	size = (size + 1023) / 1024;
 	if (minfree + size > spacefree)
 		return(0);
