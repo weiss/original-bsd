@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)mkfs.c	1.2 (Berkeley) 08/28/81";
+static	char *sccsid = "@(#)mkfs.c	1.3 (Berkeley) 08/28/81";
 
 /*
  * make file system for cylinder-group style file systems
@@ -9,10 +9,6 @@ static	char *sccsid = "@(#)mkfs.c	1.2 (Berkeley) 08/28/81";
 
 #define	NDIRECT	(BSIZE/sizeof(struct direct))
 #define	MAXFN	500
-
-#define	setbit(a,i)	((a)[(i)/NBBY] |= 1<<((i)%NBBY))
-#define	clrbit(a,i)	((a)[(i)/NBBY] &= ~(1<<((i)%NBBY)))
-#define	isset(a,i)	((a)[(i)/NBBY] & (1<<((i)%NBBY)))
 
 #ifndef STANDALONE
 #include <stdio.h>
