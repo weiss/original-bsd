@@ -1,8 +1,10 @@
 #ifndef lint
-static char sccsid[] = "@(#)uulog.c	5.5	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)uulog.c	5.6	(Berkeley) 05/04/88";
 #endif
 
 #include "uucp.h"
+
+struct timeb Now;
 
 main(argc, argv)
 char *argv[];
