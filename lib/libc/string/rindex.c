@@ -6,14 +6,18 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rindex.c	5.7 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)rindex.c	5.8 (Berkeley) 06/23/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stddef.h>
 #include <string.h>
 
 char *
+#ifdef STRRCHR
+strrchr(p, ch)
+#else
 rindex(p, ch)
+#endif
 	register char *p, ch;
 {
 	register char *save;
