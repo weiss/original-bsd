@@ -11,13 +11,13 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ruptime.c	5.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)ruptime.c	5.2 (Berkeley) 06/18/85";
 #endif not lint
 
 #include <sys/param.h>
 #include <stdio.h>
 #include <sys/dir.h>
-#include "../etc/rwhod/rwhod.h"
+#include <protocols/rwhod.h>
 
 DIR	*dirp;
 
