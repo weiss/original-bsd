@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_prf.c	7.9 (Berkeley) 05/22/88
+ *	@(#)subr_prf.c	7.10 (Berkeley) 05/25/88
  */
 
 #include "param.h"
@@ -59,6 +59,15 @@ int	(*v_putc)() = cnputc;		/* routine to putc on virtual console */
  *	printf("reg=%b\n", 3, "\10\2BITTWO\1BITONE\n");
  * would produce output:
  *	reg=3<BITTWO,BITONE>
+ *
+ * Another additional format: %r is used to pass an additional format string
+ * and argument list recursively.  Usage is typically:
+ *
+ * fn(otherstuff, fmt [, arg1, ... ] )
+ *	char *fmt;
+ *	u_int arg1, ...;
+ *
+ *	printf("prefix: %r, other stuff\n", fmt, &arg1);
  */
 #if defined(tahoe)
 int	consintr;
@@ -254,7 +263,7 @@ number:
 
 	case 'r':
 		s = (char *)*adx++;
-		prf(s, *adx, flags, ttyp);
+		prf(s, (u_int *)*adx, flags, ttyp);
 		break;
 
 	case '%':
