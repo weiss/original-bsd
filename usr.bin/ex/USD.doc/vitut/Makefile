@@ -1,7 +1,7 @@
-#	@(#)Makefile	8.1 (Berkeley) 08/14/93
+#	@(#)Makefile	8.2 (Berkeley) 04/22/94
 
-DIR=	usd/12.vi
-SRCS=	vi.in vi.chars
+DIR=	usd/11.vitut
+SRCS=	vi.in vi.chars vi.summary vi.apwh.ms
 MACROS=	-msU
 CLEANFILES+=summary.* viapwh.*
 
