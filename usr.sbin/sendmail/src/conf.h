@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.183 (Berkeley) 06/10/95
+ *	@(#)conf.h	8.184 (Berkeley) 06/10/95
  */
 
 /*
@@ -998,6 +998,7 @@ typedef int		pid_t;
 */
 
 #ifdef UNIXWARE
+# include <sys/mkdev.h>
 # define SYSTEM5		1
 # define HASGETUSERSHELL	0	/* does not have getusershell(3) call */
 # define HASSETREUID		1
@@ -1301,7 +1302,6 @@ extern int	errno;
 
 /* general System V Release 4 defines */
 #ifdef __svr4__
-# include <sys/mkdev.h>
 # define SYSTEM5	1
 # define USESETEUID	1	/* has useable seteuid(2) call */
 # define HASINITGROUPS	1	/* has initgroups(3) call */
