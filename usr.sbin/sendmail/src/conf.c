@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.114 (Berkeley) 11/12/94";
+static char sccsid[] = "@(#)conf.c	8.115 (Berkeley) 11/13/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -508,7 +508,7 @@ int
 switch_map_find(service, maptype, mapreturn)
 	char *service;
 	char *maptype[MAXMAPSTACK];
-	short mapreturn[3];
+	short mapreturn[MAXMAPACTIONS];
 {
 	register FILE *fp;
 	int svcno;
