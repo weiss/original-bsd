@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ip_mroute.c	7.3 (Berkeley) 10/11/92
+ *	@(#)ip_mroute.c	7.4 (Berkeley) 11/19/92
  */
 
 /*
@@ -297,9 +297,8 @@ del_vif(vifip)
 	register vifi_t *vifip;
 {
 	register struct vif *vifp = viftable + *vifip;
-	register vifi_t vifi;
 	register struct ifnet *ifp;
-	register int s;
+	register int i, s;
 	struct ifreq ifr;
 
 	if (*vifip >= numvifs)
@@ -321,10 +320,10 @@ del_vif(vifip)
 	bzero((caddr_t)vifp, sizeof (*vifp));
 
 	/* Adjust numvifs down */
-	for (vifi = numvifs - 1; vifi >= 0; vifi--)
-		if (viftable[vifi].v_lcl_addr.s_addr != 0)
+	for (i = numvifs - 1; i >= 0; i--)
+		if (viftable[i].v_lcl_addr.s_addr != 0)
 			break;
-	numvifs = vifi + 1;
+	numvifs = i + 1;
 
 	splx(s);
 	return (0);
