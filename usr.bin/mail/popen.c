@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)popen.c	5.15 (Berkeley) 06/25/90";
+static char sccsid[] = "@(#)popen.c	5.16 (Berkeley) 04/01/91";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -258,13 +258,15 @@ delchild(cp)
 	free((char *) cp);
 }
 
+void
 sigchild()
 {
 	int pid;
 	union wait status;
 	register struct child *cp;
 
-	while ((pid = wait3(&status, WNOHANG, (struct timeval *)0)) > 0) {
+	while ((pid =
+	    wait3((int *)&status, WNOHANG, (struct rusage *)0)) > 0) {
 		cp = findchild(pid);
 		if (cp->free)
 			delchild(cp);
