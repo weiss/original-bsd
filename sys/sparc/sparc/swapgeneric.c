@@ -1,7 +1,7 @@
 /*
  * fake swapgeneric.c -- should do this differently.
  *
- *	@(#)swapgeneric.c	7.2 (Berkeley) 07/19/93
+ *	@(#)swapgeneric.c	8.1 (Berkeley) 07/19/93
  */
 
 #include <sys/param.h>
