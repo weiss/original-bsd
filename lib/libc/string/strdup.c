@@ -16,11 +16,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strdup.c	5.1 (Berkeley) 12/12/88";
+static char sccsid[] = "@(#)strdup.c	5.2 (Berkeley) 05/17/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
-#include <stdio.h>
+#include <stddef.h>
+#include <string.h>
+
 
 char *
 strdup(str)

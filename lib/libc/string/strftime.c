@@ -16,12 +16,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strftime.c	5.6 (Berkeley) 04/09/89";
+static char sccsid[] = "@(#)strftime.c	5.7 (Berkeley) 05/17/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
 #include <sys/time.h>
 #include <tzfile.h>
+#include <string.h>
 
 static char *afmt[] = {
 	"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",

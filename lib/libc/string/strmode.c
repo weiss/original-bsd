@@ -6,12 +6,14 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strmode.c	5.1 (Berkeley) 05/10/90";
+static char sccsid[] = "@(#)strmode.c	5.2 (Berkeley) 05/17/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <string.h>
 
+void
 strmode(mode, p)
 	register mode_t mode;
 	register char *p;
@@ -117,5 +119,4 @@ strmode(mode, p)
 	}
 	*p++ = ' ';		/* will be a '+' if ACL's implemented */
 	*p = '\0';
-	return(0);
 }

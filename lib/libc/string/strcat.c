@@ -16,8 +16,10 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strcat.c	5.3 (Berkeley) 07/18/88";
+static char sccsid[] = "@(#)strcat.c	5.4 (Berkeley) 05/17/90";
 #endif /* LIBC_SCCS and not lint */
+
+#include <string.h>
 
 char *
 strcat(s, append)
