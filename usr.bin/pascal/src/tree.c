@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)tree.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)tree.c 1.2 11/24/80";
 
 #include "whoami.h"
 #include "0.h"
@@ -106,7 +106,7 @@ tralloc(howmuch)
 	if (spacep + howmuch >= tract->tr_high) {
 		i = TRINC;
 		cp = malloc(i * sizeof ( int ));
-		if (cp == -1) {
+		if (cp == 0) {
 			yerror("Ran out of memory (tralloc)");
 			pexit(DIED);
 		}
