@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)w.c	4.11 (Berkeley) 05/22/83";
+static char *sccsid = "@(#)w.c	4.12 (Berkeley) 05/27/83";
 #endif
 /*
  * w - print system status (who and what)
@@ -341,9 +341,9 @@ putline()
 
 	if (lflag) {
 		/* print CPU time for all processes & children */
-		prttime(DIV60(jobtime)," ");
+		prttime(jobtime," ");
 		/* print cpu time for interesting process */
-		prttime(DIV60(proctime)," ");
+		prttime(proctime," ");
 	}
 
 	/* what user is doing, either command tail or args */
