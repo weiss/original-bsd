@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)defs.h	5.1 (Berkeley) 09/01/89
+ *	@(#)defs.h	5.2 (Berkeley) 10/04/89
  */
 
 /*
@@ -68,6 +68,7 @@
 # ifdef	SYSV_TERMIO
 # include <termio.h>
 # else
+# include <sys/ioctl.h>
 # include <termios.h>
 # endif
 #endif
