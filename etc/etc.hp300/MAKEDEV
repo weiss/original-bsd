@@ -1,12 +1,8 @@
 #!/bin/sh -
 #
-# Copyright (c) 1990 The Regents of the University of California.
-# All rights reserved.
+#	@(#)MAKEDEV	5.7 (Berkeley) 06/09/93
 #
-# %sccs.include.redist.sh%
-#
-#	@(#)MAKEDEV	5.6 (Berkeley) 10/07/91
-#
+
 # Device "make" file.  Valid arguments:
 #	std	standard devices
 #	local	configuration specific devices
