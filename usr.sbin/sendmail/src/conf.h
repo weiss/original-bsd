@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.47 (Berkeley) 11/11/93
+ *	@(#)conf.h	8.48 (Berkeley) 11/12/93
  */
 
 /*
@@ -351,6 +351,10 @@ typedef int		pid_t;
 #  define _PATH_SENDMAILCF	"/usr/lib/sendmail.cf"
 # endif
 # undef IDENTPROTO		/* TCP/IP implementation is broken */
+# undef WEXITSTATUS
+# undef WIFEXITED
+typedef short		pid_t;
+extern int		errno;
 #endif
 
 
