@@ -9,7 +9,7 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)sigsuspend.s	5.1 (Berkeley) 07/01/90"
+	.asciz "@(#)sigsuspend.s	5.2 (Berkeley) 12/17/90"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
@@ -24,5 +24,5 @@ ENTRY(sigsuspend)
 	movl	$ SYS_sigsuspend ,%eax
 	LCALL(0x7,0)
 	jb	err
-	xorl	%eax,%eax		# shouldn't happen
+	xorl	%eax,%eax		# shouldn t happen
 	ret
