@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass1b.c	8.3 (Berkeley) 04/27/95";
+static char sccsid[] = "@(#)pass1b.c	8.4 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -30,7 +30,7 @@ pass1b()
 	struct inodesc idesc;
 	ino_t inumber;
 
-	bzero((char *)&idesc, sizeof(struct inodesc));
+	memset(&idesc, 0, sizeof(struct inodesc));
 	idesc.id_type = ADDR;
 	idesc.id_func = pass1bcheck;
 	duphead = duplist;
