@@ -1,7 +1,7 @@
 /*
  * Copyright (c) University of British Columbia, 1984
- * Copyright (c) 1990, 1992 The Regents of the University of California.
- * Copyright (C) Computer Science Department IV, 
+ * Copyright (c) 1990, 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  * 		 University of Erlangen-Nuremberg, Germany, 1992
  * 
  * This code is derived from software contributed to Berkeley by the
@@ -11,7 +11,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)x25.h	7.10 (Berkeley) 12/08/92
+ *	@(#)x25.h	8.1 (Berkeley) 06/10/93
  */
 
 #ifdef KERNEL

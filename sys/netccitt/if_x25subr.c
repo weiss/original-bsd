@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_x25subr.c	7.21 (Berkeley) 06/05/93
+ *	@(#)if_x25subr.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
