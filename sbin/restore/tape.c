@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tape.c	5.3 (Berkeley) 07/13/85";
+static char sccsid[] = "@(#)tape.c	5.4 (Berkeley) 10/14/85";
 #endif not lint
 
 #include "restore.h"
@@ -237,7 +237,7 @@ again:
 			    "Unless you know which volume your",
 			    " file(s) are on you should start\n",
 			    "with the last volume and work",
-			    " towards towards the first.\n");
+			    " towards the first.\n");
 		} else {
 			fprintf(stderr, "You have read volumes");
 			strcpy(tbf, ": ");
