@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)itime.c	1.7 (Berkeley) 12/02/82";
+static	char *sccsid = "@(#)itime.c	1.8 (Berkeley) 05/19/83";
 #include "dump.h"
 
 char *prdate(d)
@@ -91,6 +91,12 @@ putitime()
 	if(uflag == 0)
 		return;
 	fname = disk;
+	free(idatev);
+	idatev = 0;
+	nidates = 0;
+	ithead = 0;
+	idates_in = 0;
+	inititimes();
 
 	spcl.c_ddate = 0;
 	ITITERATE(i, itwalk){
