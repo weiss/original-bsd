@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.6 (Berkeley) 02/19/93
+ *	@(#)extern.h	5.7 (Berkeley) 05/16/93
  */
 
 int	 __bt_close __P((DB *));
@@ -28,7 +28,7 @@ EPG	*__bt_search __P((BTREE *, const DBT *, int *));
 int	 __bt_seq __P((const DB *, DBT *, DBT *, u_int));
 int	 __bt_split __P((BTREE *, PAGE *,
 	    const DBT *, const DBT *, u_long, size_t, u_int));
-int	 __bt_sync __P((const DB *));
+int	 __bt_sync __P((const DB *, u_int));
 
 int	 __ovfl_delete __P((BTREE *, void *));
 int	 __ovfl_get __P((BTREE *, void *, size_t *, char **, size_t *));
