@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.2 (Berkeley) 07/22/92
+#	@(#)Makefile	6.3 (Berkeley) 05/26/93
 
 PROG=		as
 SRCS=		app.c append.c as.c atof-generic.c bignum-copy.c \
@@ -8,6 +8,7 @@ SRCS=		app.c append.c as.c atof-generic.c bignum-copy.c \
 		symbols.c version.c write.c xmalloc.c xrealloc.c
 CFLAGS+=	-I$(.CURDIR) -I$(.CURDIR)/config \
 		-DSIGTY=void -Derror=as_fatal
+BINDIR=	/usr/bin
 NOMAN=	noman
 .PATH: $(.CURDIR)/config
 
