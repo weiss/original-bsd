@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strftime.c	5.3 (Berkeley) 03/14/89";
+static char sccsid[] = "@(#)strftime.c	5.4 (Berkeley) 03/14/89";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -98,7 +98,7 @@ _fmt(format, t)
 					return(0);
 				continue;
 			case 'c':
-				if (!_fmt("%x %X %Z %Y", t))
+				if (!_fmt("%a %b %d %X %Z %Y", t))
 					return(0);
 				continue;
 			case 'D':
