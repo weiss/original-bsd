@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	6.32 (Berkeley) 07/23/92";
+static char sccsid[] = "@(#)newfs.c	6.33 (Berkeley) 05/03/93";
 #endif /* not lint */
 
 #ifndef lint
@@ -374,6 +374,9 @@ main(argc, argv)
 		if (pp->p_size == 0)
 			fatal("%s: `%c' partition is unavailable",
 			    argv[0], *cp);
+		if (pp->p_fstype == FS_BOOT)
+			fatal("%s: `%c' partition overlaps boot program",
+			      argv[0], *cp);
 	}
 	if (fssize == 0)
 		fssize = pp->p_size;
