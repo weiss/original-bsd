@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/09/91
+#	@(#)Makefile	8.1 (Berkeley) 06/11/93
 
 PROG=	cat
 CFLAGS+=-s -N -I${.CURDIR}/../cat
