@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernfs_vnops.c	8.8 (Berkeley) 06/15/94
+ *	@(#)kernfs_vnops.c	8.9 (Berkeley) 06/15/94
  */
 
 /*
@@ -199,6 +199,8 @@ kernfs_lookup(ap)
 		return (0);
 	}
 #endif
+
+	*vpp = NULLVP;
 
 	for (error = ENOENT, kt = kern_targets, i = 0; i < nkern_targets;
 	     kt++, i++) {
