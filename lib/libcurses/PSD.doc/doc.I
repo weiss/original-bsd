@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)doc.I	4.1 (Berkeley) 04/23/86
+.\"	@(#)doc.I	5.1 (Berkeley) 04/23/86
 .\"
 .Ds
 .Fd addch ch \*m
