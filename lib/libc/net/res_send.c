@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)res_send.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)res_send.c	5.2 (Berkeley) 07/16/85";
 #endif not lint
 
 /*
@@ -169,7 +169,9 @@ res_send(buf, buflen, answer, anslen)
 			printf("got answer:\n");
 			p_query(answer);
 		}
+		(void) close(s);
 		return (resplen);
 	}
+	(void) close(s);
 	return (-1);
 }
