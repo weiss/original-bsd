@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clock.c	5.3 (Berkeley) 05/12/91
+ *	@(#)clock.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: clock.c,v 5.2.1.5 91/05/07 22:17:49 jsp Alpha $
+ * $Id: clock.c,v 5.2.2.1 1992/02/09 15:08:20 jsp beta $
  *
  */
 

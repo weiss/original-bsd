@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)info_union.c	5.3 (Berkeley) 05/12/91
+ *	@(#)info_union.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: info_union.c,v 5.2.1.3 91/05/07 22:18:03 jsp Alpha $
+ * $Id: info_union.c,v 5.2.2.1 1992/02/09 15:08:34 jsp beta $
  *
  */
 

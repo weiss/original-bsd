@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)info_file.c	5.3 (Berkeley) 05/12/91
+ *	@(#)info_file.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: info_file.c,v 5.2.1.4 91/05/07 22:17:57 jsp Alpha $
+ * $Id: info_file.c,v 5.2.2.1 1992/02/09 15:08:28 jsp beta $
  *
  */
 

@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mtab.c	5.3 (Berkeley) 05/12/91
+ *	@(#)mtab.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: mtab.c,v 5.2.1.2 91/05/07 22:18:15 jsp Alpha $
+ * $Id: mtab.c,v 5.2.2.1 1992/02/09 15:08:45 jsp beta $
  *
  */
 

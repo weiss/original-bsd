@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_subr.c	5.3 (Berkeley) 05/12/91
+ *	@(#)nfs_subr.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: nfs_subr.c,v 5.2.1.5 91/05/07 22:18:23 jsp Alpha $
+ * $Id: nfs_subr.c,v 5.2.2.1 1992/02/09 15:08:53 jsp beta $
  *
  */
 

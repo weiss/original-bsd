@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)util.c	5.3 (Berkeley) 05/12/91
+ *	@(#)util.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: util.c,v 5.2.1.8 91/05/07 22:18:41 jsp Alpha $
+ * $Id: util.c,v 5.2.2.1 1992/02/09 15:09:11 jsp beta $
  *
  */
 
