@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.74		05/18/83	(no queueing));
+SCCSID(@(#)queue.c	3.75		06/11/83	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.74		05/18/83);
+SCCSID(@(#)queue.c	3.75		06/11/83);
 
 /*
 **  Work queue.
@@ -706,7 +706,7 @@ printqueue()
 				break;
 
 			  case 'S':	/* sender name */
-				printf("%8d %.16s %.45s", dfsize,
+				printf("%8ld %.16s %.45s", dfsize,
 					ctime(&submittime), &buf[1]);
 				if (message[0] != '\0')
 					printf("\n\t\t\t\t  (%.43s)", message);
