@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clnp_debug.c	7.7 (Berkeley) 05/09/91
+ *	@(#)clnp_debug.c	7.8 (Berkeley) 05/27/91
  */
 
 /***********************************************************
@@ -231,5 +231,4 @@ register struct sockaddr_iso *s;
 	return (iso_addr_b);
 }
 
-#include "clnp_sprintf.c"
 #endif	ARGO_DEBUG
