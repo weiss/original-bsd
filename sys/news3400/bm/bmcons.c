@@ -9,7 +9,7 @@
  *
  * from: $Hdr: cons.c,v 4.300 91/06/09 06:34:41 root Rel41 $ SONY
  *
- *	@(#)bmcons.c	7.5 (Berkeley) 03/09/93
+ *	@(#)bmcons.c	7.6 (Berkeley) 05/13/93
  */
 
 /*
@@ -56,6 +56,11 @@ struct tty cn_tty[1];
 void	cnstart();
 int	ttrstrt();
 int	cnrint(), cnxint(), cnsint();
+
+bmattach(i)
+{
+	        /* temporary hack for pseudo-device initialization */;
+}
 
 /*
  * Open console. Turn on console if this is the first use of it.
