@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_kern.c	7.6 (Berkeley) 02/19/92
+ *	@(#)vm_kern.c	7.7 (Berkeley) 02/19/92
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -490,7 +490,7 @@ void kmem_init(start, end)
 {
 	register vm_map_t m;
 
-	m = vm_map_create(kernel_pmap, addr, end, FALSE);
+	m = vm_map_create(kernel_pmap, VM_MIN_KERNEL_ADDRESS, end, FALSE);
 	vm_map_lock(m);
 	/* N.B.: cannot use kgdb to debug, starting with this assignment ... */
 	kernel_map = m;
