@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)hd.c	7.9 (Berkeley) 02/17/90
+ *	@(#)hd.c	7.10 (Berkeley) 04/03/90
  */
 
 #include "hd.h"
@@ -289,7 +289,11 @@ hdopen(dev, flags, fmt)
 	s = spl7();
 	while (dk->dk_state != OPEN && dk->dk_state != OPENRAW &&
 	    dk->dk_state != CLOSED)
-		sleep((caddr_t)dk, PZERO+1);
+		if (error = tsleep((caddr_t)dk, (PZERO+1) | PCATCH,
+		    devopn, 0)) {
+			splx(s);
+			return (error);
+		}
 	splx(s);
 	if (dk->dk_state != OPEN && dk->dk_state != OPENRAW)
 		if (error = hdinit(dev, flags))
