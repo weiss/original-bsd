@@ -1,3 +1,3 @@
-static	char sccsid[] = "@(#)udef.c 4.1 10/09/80";
+static	char sccsid[] = "@(#)udef.c 4.2 08/17/82";
 #include <sys/param.h>
 char		u[ctob(UPAGES)]; /* struct user u */

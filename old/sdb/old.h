@@ -1,4 +1,4 @@
-/* "@(#)old.h 4.1 10/09/80" */
+/* "@(#)old.h 4.2 08/17/82" */
 #ifndef VMUNIX
 struct brbuf {
 	int	nl, nr;

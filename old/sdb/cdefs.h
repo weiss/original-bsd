@@ -1,4 +1,4 @@
-/* "@(#)cdefs.h 4.1 10/09/80" */
+/* "@(#)cdefs.h 4.2 08/17/82" */
 /* type modifiers */
 
 # define PTR  020

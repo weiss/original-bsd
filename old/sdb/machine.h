@@ -1,4 +1,4 @@
-/* "@(#)machine.h 4.1 10/09/80" */
+/* "@(#)machine.h 4.2 08/17/82" */
 /*
  *	UNIX/vax debugger
  */
