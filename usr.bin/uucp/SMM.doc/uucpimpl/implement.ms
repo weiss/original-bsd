@@ -1,9 +1,9 @@
-.\" Copyright (c) 1986 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1986, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)implement.ms	6.6 (Berkeley) 06/05/93
+.\"	@(#)implement.ms	8.1 (Berkeley) 06/08/93
 .\"
 .ds UU UUCP
 .ds Uu U\s-2UCP\s+2
