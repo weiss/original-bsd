@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/24/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	sa
 MAN8=	sa.0
