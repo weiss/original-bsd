@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.5	(Berkeley)	02/15/83
+#	@(#)Makefile	4.6	(Berkeley)	03/01/83
 #
 # makefile for line printer spooling system
 #
@@ -21,9 +21,11 @@ DESTDIR=
 SRCS=	lpd.c rlpr.c lpr.c lpq.c lprm.c lpdrestart.c \
 	lpdchar.c getq.c printcap.c lpf.c necf.c
 OBJS=	lpd rlpr lpr lpq lprm lpdrestart
-filters=lpf necf
+FLTRS=	lpf necf
 
 all:	${OBJS}
+
+filters: ${FILTERS}
 
 lpd:	lpd.o lpdchar.o printcap.o getq.o
 	${CC} -o lpd ${LDFLAGS} lpd.o lpdchar.o printcap.o getq.o -ljobs
