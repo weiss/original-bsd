@@ -1,9 +1,9 @@
-.\" Copyright (c) 1982 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1982, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)3.t	4.5 (Berkeley) 06/05/93
+.\"	@(#)3.t	8.1 (Berkeley) 06/05/93
 .\"
 .ds RH Fixing corrupted file systems
 .NH
