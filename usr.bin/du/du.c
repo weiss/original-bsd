@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)du.c	5.9 (Berkeley) 03/11/91";
+static char sccsid[] = "@(#)du.c	5.10 (Berkeley) 03/21/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -97,7 +97,7 @@ main(argc, argv)
 		case FTS_NS:
 			(void)fprintf(stderr,
 			    "du: %s: %s.\n", p->fts_path, strerror(errno));
-			exit(1);
+			break;
 		default:
 			if (p->fts_statb.st_nlink > 1 && linkchk(p))
 				break;
