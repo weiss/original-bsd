@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	5.34 (Berkeley) 07/18/92";
+static char sccsid[] = "@(#)recipient.c	5.35 (Berkeley) 07/19/92";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -536,7 +536,8 @@ bool
 writable(s)
 	register struct stat *s;
 {
-	int euid, egid;
+	uid_t euid;
+	gid_t egid;
 	int bits;
 
 	if (bitset(0111, s->st_mode))
