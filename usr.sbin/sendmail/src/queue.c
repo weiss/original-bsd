@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.9		02/20/82	(no queueing));
+SCCSID(@(#)queue.c	3.10		02/26/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.9		02/20/82);
+SCCSID(@(#)queue.c	3.10		02/26/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -198,6 +198,9 @@ runqueue(forkflag)
 		if (QueueIntvl == 0)
 			break;
 	}
+
+	/* no work to do -- just exit */
+	finis();
 }
 /*
 **  REORDERSIG -- catch the alarm signal and tell sendmail to reorder queue.
