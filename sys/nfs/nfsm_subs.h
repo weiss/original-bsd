@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfsm_subs.h	7.2 (Berkeley) 07/06/89
+ *	@(#)nfsm_subs.h	7.3 (Berkeley) 10/31/89
  */
 
 /*
@@ -149,7 +149,7 @@ struct vnode *nfs_fhtovp();
 		}
 
 #define	nfsm_loadattr(v,a) \
-		if (error = nfs_loadattrcache((v), &md, &dpos, (a))) { \
+		if (error = nfs_loadattrcache(&(v), &md, &dpos, (a))) { \
 			m_freem(mrep); \
 			goto nfsmout; \
 		}
