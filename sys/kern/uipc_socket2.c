@@ -4,12 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_socket2.c	7.16 (Berkeley) 02/19/91
+ *	@(#)uipc_socket2.c	7.17 (Berkeley) 05/04/91
  */
 
 #include "param.h"
 #include "systm.h"
-#include "user.h"
 #include "proc.h"
 #include "file.h"
 #include "buf.h"
@@ -238,15 +237,16 @@ socantrcvmore(so)
 /*
  * Queue a process for a select on a socket buffer.
  */
-sbselqueue(sb)
+sbselqueue(sb, cp)
 	struct sockbuf *sb;
+	struct proc *cp;
 {
 	struct proc *p;
 
 	if ((p = sb->sb_sel) && p->p_wchan == (caddr_t)&selwait)
 		sb->sb_flags |= SB_COLL;
 	else {
-		sb->sb_sel = u.u_procp;
+		sb->sb_sel = cp;
 		sb->sb_flags |= SB_SEL;
 	}
 }
