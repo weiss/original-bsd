@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.1	12/24/82
+#	@(#)Makefile	4.2	05/27/85
 #
 DESTDIR=
 CC = /bin/cc
@@ -7,7 +7,10 @@ CFLAGS = -O
 all:	boggle bogdict
 
 bogdict: comp sfile
-	sed -f sfile /usr/local/lib/w2a | uniq | comp >bogdict
+	if [ -f /usr/local/lib/w2a ]; \
+		then dict=/usr/local/lib/w2a; \
+		else dict=/usr/dict/words; fi; \
+	sed -f sfile $$dict | uniq | comp >bogdict
 
 install:
 	install boggle ${DESTDIR}/usr/games/boggle
