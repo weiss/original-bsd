@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	4.28 (Berkeley) 05/30/87";
+static char sccsid[] = "@(#)mail.local.c	4.29 (Berkeley) 09/16/87";
 #endif
 
 #include <sys/param.h>
@@ -76,8 +76,8 @@ char **argv;
 			name = pwent->pw_name;
 	}
 	else {
-		pwent = getpwnam(my_name);
-		if ( getuid() != pwent->pw_uid) {
+		pwent = getpwnam(name);
+		if (!pwent || getuid() != pwent->pw_uid) {
 			pwent = getpwuid(getuid());
 			name = pwent->pw_name;
 		}
