@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)ERROR.c 1.4 03/08/81";
+static char sccsid[] = "@(#)ERROR.c 1.5 03/10/81";
 
 #include	<stdio.h>
 #include	<signal.h>
@@ -114,7 +114,7 @@ ERROR(errnum, errdata)
 			errdata.longdat);
 		return(errdata.longdat);
 	case EFMTSIZE:
-		fprintf(stderr,"Negative format width: %D\n",errdata.longdat);
+		fprintf(stderr,"Non-positive format width: %D\n",errdata.longdat);
 		return(0);
 	case EGOTO:
 		fputs("Active frame not found in non-local goto\n", stderr);
