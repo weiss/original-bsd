@@ -1,7 +1,7 @@
-static	char *sccsid = "@(#)dumpfs.c	1.1 (Berkeley) 08/26/81";
+static	char *sccsid = "@(#)dumpfs.c	1.2 (Berkeley) 08/28/81";
 #include "../h/param.h"
 #include "../h/fs.h"
-#include "../h/ino.h"
+#include "../h/inode.h"
 
 /*
  * dumpfs
