@@ -12,7 +12,8 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)trig.c	1.1 (ELEFUNT) 09/06/85";
+static char sccsid[] =
+"@(#)trig.c	1.2 (Berkeley) 8/22/85; 1.2 (ucb.elefunt) 09/12/85";
 #endif not lint
 
 /* SIN(X), COS(X), TAN(X)
