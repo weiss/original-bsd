@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/12/93
+#	@(#)Makefile	8.1 (Berkeley) 06/12/93
 
 PROG=	adventure
 SRCS=	main.c init.c done.c save.c subr.c vocab.c wizard.c io.c data.c crc.c
