@@ -6,10 +6,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass1b.c	5.9 (Berkeley) 11/04/91";
+static char sccsid[] = "@(#)pass1b.c	5.10 (Berkeley) 05/27/92";
 #endif /* not lint */
 
 #include <sys/param.h>
+#include <sys/time.h>
 #include <ufs/ufs/dinode.h>
 #include <ufs/ffs/fs.h>
 #include <string.h>
