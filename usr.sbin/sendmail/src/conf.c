@@ -36,7 +36,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.54		08/23/82);
+SCCSID(@(#)conf.c	3.55		08/29/82);
 
 
 
@@ -78,9 +78,10 @@ struct hdrinfo	HdrInfo[] =
 **  ARPANET error message numbers.
 */
 
-char	Arpa_Info[] =	"050";	/* arbitrary info */
-char	Arpa_Syserr[] =	"451";	/* some (transient) system error */
-char	Arpa_Usrerr[] =	"554";	/* some (fatal) user error */
+char	Arpa_Info[] =		"050";	/* arbitrary info */
+char	Arpa_TSyserr[] =	"451";	/* some (transient) system error */
+char	Arpa_PSyserr[] =	"554";	/* some (permanent) system error */
+char	Arpa_Usrerr[] =		"554";	/* some (fatal) user error */
 
 
 
