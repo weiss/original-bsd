@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)lfs_vfsops.c	7.44 (Berkeley) 05/08/90
+ *	@(#)lfs_vfsops.c	7.45 (Berkeley) 05/10/90
  */
 
 #include "param.h"
@@ -542,7 +542,7 @@ ufs_sync(mp, waitfor)
 		}
 		fs->fs_fmod = 0;
 		fs->fs_time = time.tv_sec;
-		error = sbupdate(ump, waitfor);
+		allerror = sbupdate(ump, waitfor);
 	}
 	/*
 	 * Write back each (modified) inode.
