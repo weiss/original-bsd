@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)popen.c	5.4 (Berkeley) 03/26/86";
+static char sccsid[] = "@(#)popen.c	5.5 (Berkeley) 09/30/87";
 #endif LIBC_SCCS and not lint
 
 #include <stdio.h>
@@ -64,7 +64,8 @@ popen(cmd,mode)
 pclose(ptr)
 	FILE *ptr;
 {
-	int child, pid, status, omask;
+	long omask;
+	int child, pid, status;
 
 	child = popen_pid[fileno(ptr)];
 	popen_pid[fileno(ptr)] = -1;
