@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)res_debug.c	5.15 (Berkeley) 11/10/86";
+static char sccsid[] = "@(#)res_debug.c	5.16 (Berkeley) 12/03/86";
 #endif LIBC_SCCS and not lint
 
 #if defined(lint) && !defined(DEBUG)
@@ -32,7 +32,9 @@ char *opcodes[] = {
 	"8",
 	"UPDATEA",
 	"UPDATED",
+	"UPDATEDA",
 	"UPDATEM",
+	"UPDATEMA",
 	"ZONEINIT",
 	"ZONEREF",
 };
