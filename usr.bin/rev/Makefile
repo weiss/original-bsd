@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 03/21/92
+#	@(#)Makefile	8.1 (Berkeley) 06/09/93
 
 PROG=	rev
 
