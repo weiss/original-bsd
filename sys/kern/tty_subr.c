@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty_subr.c	7.2 (Berkeley) 11/03/86
+ *	@(#)tty_subr.c	7.3 (Berkeley) 01/26/88
  */
 
 #include "param.h"
@@ -412,14 +412,14 @@ getw(p)
 		return(-1);
 	if (p->c_cc & 01) {
 		c = getc(p);
-#if ENDIAN == LITTLE
+#if BYTE_ORDER == LITTLE_ENDIAN
 		return (c | (getc(p)<<8));
 #else
 		return (getc(p) | (c<<8));
 #endif
 	}
 	s = spltty();
-#if ENDIAN == LITTLE
+#if BYTE_ORDER == LITTLE_ENDIAN
 	c = (((u_char *)p->c_cf)[0] << 8) | ((u_char *)p->c_cf)[1];
 #else
 	c = (((u_char *)p->c_cf)[1] << 8) | ((u_char *)p->c_cf)[0];
@@ -468,7 +468,7 @@ putw(c, p)
 		return(-1);
 	}
 	if (p->c_cc & 01) {
-#if ENDIAN == LITTLE
+#if BYTE_ORDER == LITTLE_ENDIAN
 		(void) putc(c, p);
 		(void) putc(c>>8, p);
 #else
