@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)rwhod.c	4.24 (Berkeley) 84/07/06";
+static char sccsid[] = "@(#)rwhod.c	4.25 (Berkeley) 84/08/29";
 #endif
 
 #include <sys/types.h>
@@ -124,6 +124,10 @@ main()
 	getkmem();
 	if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
 		syslog(LOG_ERR, "socket: %m");
+		exit(1);
+	}
+	if (setsockopt(s, SOL_SOCKET, SO_BROADCAST, 0, 0) < 0) {
+		syslog(LOG_ERR, "setsockopt SO_BROADCAST: %m");
 		exit(1);
 	}
 	hp = gethostbyname(myname);
