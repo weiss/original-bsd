@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.1 (Berkeley) 06/07/85";
+static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 04/07/87";
 #endif not lint
 
 /*
@@ -39,7 +39,9 @@ char **argv;
     FILE *fp;
     int i;
 
-    catcherrs();
+#ifdef lint
+    syserr();
+#endif
     catchsigs();
     scanargs(argc, argv);
     cmdname = argv[0];
