@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	5.45 (Berkeley) 10/11/91";
+static char sccsid[] = "@(#)deliver.c	5.46 (Berkeley) 12/05/91";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -906,11 +906,19 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 		/* try to execute the mailer */
 		execve(m->m_mailer, pvp, UserEnviron);
 		syserr("Cannot exec %s", m->m_mailer);
-		if (m == LocalMailer || errno == EIO || errno == EAGAIN ||
-		    errno == ENOMEM || errno == EPROCLIM)
+		if (m == LocalMailer)
 			_exit(EX_TEMPFAIL);
-		else
-			_exit(EX_UNAVAILABLE);
+		switch (errno)
+		{
+		  case EIO:
+		  case EAGAIN:
+		  case ENOMEM:
+# ifdef EPROCLIM
+		  case EPROCLIM:
+# endif
+			_exit(EX_TEMPFAIL);
+		}
+		_exit(EX_UNAVAILABLE);
 	}
 
 	/*
