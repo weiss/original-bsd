@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)specdev.h	7.11 (Berkeley) 07/02/92
+ *	@(#)specdev.h	7.12 (Berkeley) 07/25/92
  */
 
 /*
@@ -46,6 +46,7 @@ struct vnode *speclisth[SPECHSZ];
 /*
  * Prototypes for special file operations on vnodes.
  */
+extern	int (**spec_vnodeop_p)();
 struct	nameidata;
 struct	componentname;
 struct	ucred;
