@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)comsat.c	5.22 (Berkeley) 06/24/90";
+static char sccsid[] = "@(#)comsat.c	5.23 (Berkeley) 02/03/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -198,7 +198,6 @@ jkfprintf(tp, name, offset)
 	register FILE *fi;
 	register int linecnt, charcnt, inheader;
 	char line[BUFSIZ];
-	off_t fseek();
 
 	if ((fi = fopen(name, "r")) == NULL)
 		return;
