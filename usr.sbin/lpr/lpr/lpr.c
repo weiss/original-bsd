@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	4.27 (Berkeley) 12/05/84";
+static char sccsid[] = "@(#)lpr.c	4.28 (Berkeley) 02/01/85";
 #endif
 
 /*
@@ -14,6 +14,7 @@ static char sccsid[] = "@(#)lpr.c	4.27 (Berkeley) 12/05/84";
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <pwd.h>
+#include <grp.h>
 #include <signal.h>
 #include <ctype.h>
 #include "lp.local.h"
@@ -51,6 +52,7 @@ int	MC;			/* maximum number of copies allowed */
 int	DU;			/* daemon user-id */
 char	*SD;			/* spool directory */
 char	*LO;			/* lock file name */
+char	*RG;			/* restrict group */
 short	SC;			/* suppress multiple copies */
 
 char	*getenv();
@@ -65,6 +67,7 @@ main(argc, argv)
 {
 	extern struct passwd *getpwuid();
 	struct passwd *pw;
+	struct group *gptr;
 	extern char *itoa();
 	register char *arg, *cp;
 	char buf[BUFSIZ];
@@ -203,6 +206,20 @@ main(argc, argv)
 	if ((pw = getpwuid(userid)) == NULL)
 		fatal("Who are you?");
 	person = pw->pw_name;
+	/*
+	 * Check for restricted group access.
+	 */
+	if (RG != 0) {
+		if ((gptr = getgrnam(RG)) == NULL)
+			fatal("Restricted group specified incorrectly");
+		while (*gptr->gr_mem != NULL) {
+			if ((strcmp(person,*gptr->gr_mem)) == 0)
+				break;
+			gptr->gr_mem++;
+		}
+		if (*gptr->gr_mem == NULL)
+			fatal("Not a member of the restricted group");
+	}
 	/*
 	 * Check to make sure queuing is enabled if userid is not root.
 	 */
@@ -569,6 +586,7 @@ chkprinter(s)
 		SD = DEFSPOOL;
 	if ((LO = pgetstr("lo", &bp)) == NULL)
 		LO = DEFLOCK;
+	RG = pgetstr("rg",&bp);
 	if ((MX = pgetnum("mx")) < 0)
 		MX = DEFMX;
 	if ((MC = pgetnum("mc")) < 0)
