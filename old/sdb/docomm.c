@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)docomm.c 4.1 10/09/80";
+static	char sccsid[] = "@(#)docomm.c 4.2 08/17/82";
 #include <signal.h>
 #include "head.h"
 #include <a.out.h>
