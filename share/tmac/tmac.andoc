@@ -4,7 +4,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)tmac.andoc	5.2 (Berkeley) 06/11/90
+.\"     @(#)tmac.andoc	5.3 (Berkeley) 06/29/90
 .\"
 .de Dd
 .rm Dd
@@ -13,6 +13,6 @@
 ..
 .de TH
 .rm TH
-.so /usr/share/tmac/tmac.an
+.so /usr/share/tmac/tmac.an.old
 .TH \\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8
 ..
