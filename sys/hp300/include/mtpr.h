@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: mtpr.h 1.5 89/04/11$
+ * from: Utah $Hdr: mtpr.h 1.1 90/07/09$
  *
- *	@(#)mtpr.h	7.1 (Berkeley) 05/08/90
+ *	@(#)mtpr.h	7.2 (Berkeley) 11/03/90
  */
 
 /*
