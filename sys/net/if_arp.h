@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_arp.h	7.4 (Berkeley) 06/28/90
+ *	@(#)if_arp.h	7.5 (Berkeley) 07/23/92
  */
 
 /*
@@ -30,10 +30,12 @@ struct	arphdr {
  * The remaining fields are variable in size,
  * according to the sizes above.
  */
-/*	u_char	ar_sha[];	/* sender hardware address */
-/*	u_char	ar_spa[];	/* sender protocol address */
-/*	u_char	ar_tha[];	/* target hardware address */
-/*	u_char	ar_tpa[];	/* target protocol address */
+#ifdef COMMENT_ONLY
+	u_char	ar_sha[];	/* sender hardware address */
+	u_char	ar_spa[];	/* sender protocol address */
+	u_char	ar_tha[];	/* target hardware address */
+	u_char	ar_tpa[];	/* target protocol address */
+#endif
 };
 
 /*
