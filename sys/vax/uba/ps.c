@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ps.c	7.1 (Berkeley) 06/05/86
+ *	@(#)ps.c	7.2 (Berkeley) 04/25/89
  */
 
 /*
@@ -20,7 +20,7 @@
 
 #define EXTERNAL_SYNC
 
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

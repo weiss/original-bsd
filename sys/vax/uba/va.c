@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)va.c	7.1 (Berkeley) 06/05/86
+ *	@(#)va.c	7.2 (Berkeley) 04/25/89
  */
 
 #include "va.h"
@@ -11,7 +11,7 @@
 /*
  * Varian printer plotter
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "dir.h"

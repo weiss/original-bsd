@@ -1,4 +1,4 @@
-/* @(#)vs.c	7.2 (MIT) 10/22/88 */
+/* @(#)vs.c	7.3 (MIT) 04/25/89 */
  /****************************************************************************
  *									    *
  *  Copyright (c) 1983, 1984 by						    *
@@ -24,7 +24,7 @@
 #include "vs.h"
 #if NVS > 0
 
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "dir.h"

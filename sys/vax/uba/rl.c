@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)rl.c	7.6 (Berkeley) 10/22/88
+ *	@(#)rl.c	7.7 (Berkeley) 04/25/89
  */
 
 #include "rl.h"
@@ -11,7 +11,7 @@
 /*
  * UNIBUS RL02 disk driver
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dz.c	7.2 (Berkeley) 01/14/87
+ *	@(#)dz.c	7.3 (Berkeley) 04/25/89
  */
 
 #include "dz.h"
@@ -15,7 +15,7 @@
  */
 #include "bk.h"
 
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dmf.c	7.5 (Berkeley) 01/24/89
+ *	@(#)dmf.c	7.6 (Berkeley) 04/25/89
  */
 
 /*
@@ -22,7 +22,7 @@
 #ifndef NDMF_LP
 #define	NDMF_LP	NDMF
 #endif	NDMF_LP
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "bk.h"
 #include "uba.h"
