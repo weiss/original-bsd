@@ -1,4 +1,6 @@
-.\"	@(#)ae0	6.1 (Berkeley) 05/22/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)ae0	6.2 (Berkeley) 04/17/91
 .\"
 .nr P1 1
 .EH 'USD:13-%''Advanced Editing on \s-2UNIX\s+2'
