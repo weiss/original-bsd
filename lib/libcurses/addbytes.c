@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)addbytes.c	5.22 (Berkeley) 06/04/93";
+static char sccsid[] = "@(#)addbytes.c	5.23 (Berkeley) 06/11/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -114,7 +114,7 @@ newline:			if (y == win->maxy - 1) {
 			SYNCH_OUT;
 			wclrtoeol(win);
 			SYNCH_IN;
-			if (__baset.c_oflag & ONLCR)
+			if (!NONL)
 				x = 0;
 			goto newline;
 		case '\r':
