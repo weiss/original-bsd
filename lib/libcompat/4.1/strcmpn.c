@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)strcmpn.c	4.2 (Berkeley) 05/30/85";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)strcmpn.c	4.3 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /*
  * Compare strings (at most n bytes):  s1>s2: >0  s1==s2: 0  s1<s2: <0
