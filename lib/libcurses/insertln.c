@@ -4,7 +4,7 @@
  *	This routine performs an insert-line on the window, leaving
  * (_cury,_curx) unchanged.
  *
- * 01/26/81 (Berkeley) @(#)insertln.c	1.1
+ * 03/05/81 (Berkeley) @(#)insertln.c	1.2
  */
 winsertln(win)
 reg WINDOW	*win; {
@@ -23,5 +23,4 @@ reg WINDOW	*win; {
 	}
 	for (end = &temp[win->_maxx]; temp < end; )
 		*temp++ = ' ';
-	return OK;
 }
