@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: ac.c 1.5 92/01/21$
  *
- *	@(#)ac.c	7.5 (Berkeley) 12/27/92
+ *	@(#)ac.c	7.6 (Berkeley) 04/27/93
  */
 
 /*
@@ -168,14 +168,17 @@ acopen(dev, flag, mode, p)
 	int error = 0;
 
 	if (unit >= NAC || (sc->sc_flags & ACF_ALIVE) == 0)
-		error = ENXIO;
-	else if (sc->sc_flags & ACF_OPEN)
-		error = EBUSY;
-	else if (acgeteinfo(dev))
-		error = EIO;
-	else
-		sc->sc_flags |= ACF_OPEN;
-	return(error);
+		return(ENXIO);
+	if (sc->sc_flags & ACF_OPEN)
+		return(EBUSY);
+	/*
+	 * Since acgeteinfo can block we mark the changer open now.
+	 */
+	sc->sc_flags |= ACF_OPEN;
+	if (acgeteinfo(dev)) {
+		sc->sc_flags &= ~ACF_OPEN;
+		return(EIO);
+	return(0);
 }
 
 /*ARGSUSED*/
