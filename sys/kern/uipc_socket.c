@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_socket.c	7.38 (Berkeley) 02/27/93
+ *	@(#)uipc_socket.c	7.39 (Berkeley) 03/06/93
  */
 
 #include <sys/param.h>
@@ -682,8 +682,11 @@ dontblock:
 					so->so_state |= SS_RCVATMARK;
 					break;
 				}
-			} else
+			} else {
 				offset += len;
+				if (offset == so->so_oobmark)
+					break;
+			}
 		}
 		if (flags & MSG_EOR)
 			break;
