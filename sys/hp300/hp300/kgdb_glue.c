@@ -13,7 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kgdb_glue.c	8.1 (Berkeley) 06/10/93
+ *	@(#)kgdb_glue.c	8.2 (Berkeley) 01/12/94
  */
 
 /*
@@ -118,9 +118,9 @@ kgdb_trap_glue(type, frame)
 int kgdb_testval;
 
 kgdb_test(i)
+	int i;
 {
         ++kgdb_testval;
-        return i + 1;
+        return (i + 1);
 }
-
-#endif
+#endif /* KGDB */
