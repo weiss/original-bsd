@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)leave.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)leave.c	4.2 (Berkeley) 02/09/83";
 #include <stdio.h>
 /*
  * leave [hhmm]
@@ -54,7 +54,6 @@ char **argv;
 		exit(1);
 	}
 
-	setexit();	/* refigure time if killed */
 	time(&now);
 	nv = localtime(&now);
 	when = 60*hours+minutes;
