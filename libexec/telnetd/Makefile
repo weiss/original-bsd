@@ -1,7 +1,6 @@
-#	@(#)Makefile	5.8 (Berkeley) 05/11/90
+#	@(#)Makefile	5.9 (Berkeley) 06/27/90
 
 PROG=	telnetd
-CFLAGS+=-DNEED_GETTOS
 SRCS=	get_date.c gettytab.c global.c slc.c state.c sys_term.c telnetd.c \
 	termstat.c utility.c
 DPADD=	${LIBUTIL} ${LIBTERM}
