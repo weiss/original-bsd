@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	8.4 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)cp.c	8.5 (Berkeley) 04/29/95";
 #endif /* not lint */
 
 /*
@@ -376,10 +376,10 @@ copy(argv, type, fts_options)
 					rval = 1;
 			break;
 		case S_IFIFO:
-			if (Rflag)
+			if (Rflag) {
 				if (copy_fifo(curr->fts_statp, !dne))
 					rval = 1;
-			else 
+			} else 
 				if (copy_file(curr, dne))
 					rval = 1;
 			break;
