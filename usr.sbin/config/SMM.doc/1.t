@@ -2,16 +2,14 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)1.t	6.1 (Berkeley) 05/25/86
+.\"	@(#)1.t	6.2 (Berkeley) 05/25/86
 .\"
 .ds LH "Building Systems With Config
 .ds RH Introduction
 .ds CF July 27, 1983
-.LP
 .nr H1 1
 .ds CH "
 .bp
-.nr % 1
 .ds CH "\(hy \\n(PN \(hy
 .LG
 .B
