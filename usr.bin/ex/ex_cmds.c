@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_cmds.c	7.7	06/10/83";
+static char *sccsid = "@(#)ex_cmds.c	7.8	03/19/85";
 #include "ex.h"
 #include "ex_argv.h"
 #include "ex_temp.h"
@@ -516,7 +516,6 @@ quit:
 					tlaste();
 #endif
 					laste = 0;
-					sync();
 					nochng();
 					continue;
 				}
@@ -665,7 +664,7 @@ suspend:
 /* version */
 				tail("version");
 				setNAEOL();
-				printf("@(#) Version 3.7, 06/10/83."+5);
+				printf("@(#) Version 3.7, 03/19/85."+5);
 				noonl();
 				continue;
 
