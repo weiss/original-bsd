@@ -6,9 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ctrace.c	5.2 (Berkeley) 09/14/92";
+static char sccsid[] = "@(#)ctrace.c	5.3 (Berkeley) 10/01/92";
 #endif /* not lint */
 
+#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 
