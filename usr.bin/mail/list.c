@@ -9,7 +9,7 @@
  * Message list handling.
  */
 
-static char *SccsId = "@(#)list.c	1.4 01/23/81";
+static char *SccsId = "@(#)list.c	1.5 02/06/81";
 
 /*
  * Convert the user string of message numbers and
@@ -541,7 +541,7 @@ sender(str, mesg)
 	register char *cp;
 
 	mp = &message[mesg-1];
-	cp = nameof(mp);
+	cp = nameof(mp, 0);
 	return(icequal(cp, str));
 }
 
