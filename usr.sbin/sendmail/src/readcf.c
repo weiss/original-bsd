@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.17 (Berkeley) 12/10/93";
+static char sccsid[] = "@(#)readcf.c	8.18 (Berkeley) 01/09/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -998,6 +998,7 @@ struct resolverflags
 	"defnames",	RES_DEFNAMES,
 	"stayopen",	RES_STAYOPEN,
 	"dnsrch",	RES_DNSRCH,
+	"true",		0,		/* to avoid error on old syntax */
 	NULL,		0
 };
 
