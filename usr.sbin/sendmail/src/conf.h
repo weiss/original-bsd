@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.105 (Berkeley) 05/12/94
+ *	@(#)conf.h	8.106 (Berkeley) 05/17/94
  */
 
 /*
@@ -908,6 +908,9 @@ typedef int		pid_t;
 # endif
 # ifndef SYSLOG_BUFSIZE
 #  define SYSLOG_BUFSIZE	128
+# endif
+# ifndef SFS_TYPE
+#  define SFS_TYPE		SFS_STATVFS
 # endif
 #endif
 
