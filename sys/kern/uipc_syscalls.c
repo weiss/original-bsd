@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uipc_syscalls.c	6.16 (Berkeley) 05/10/86
+ *	@(#)uipc_syscalls.c	6.17 (Berkeley) 05/19/86
  */
 
 #include "param.h"
@@ -190,7 +190,7 @@ connect()
 	so = (struct socket *)fp->f_data;
 	if ((so->so_state & SS_NBIO) &&
 	    (so->so_state & SS_ISCONNECTING)) {
-		u.u_error = EINPROGRESS;
+		u.u_error = EALREADY;
 		return;
 	}
 	u.u_error = sockargs(&nam, uap->name, uap->namelen, MT_SONAME);
@@ -199,6 +199,12 @@ connect()
 	u.u_error = soconnect(so, nam);
 	if (u.u_error)
 		goto bad;
+	if ((so->so_state & SS_NBIO) &&
+	    (so->so_state & SS_ISCONNECTING)) {
+		u.u_error = EINPROGRESS;
+		m_freem(nam);
+		return;
+	}
 	s = splnet();
 	if (setjmp(&u.u_qsave)) {
 		if (u.u_error == 0)
