@@ -6,8 +6,10 @@
 #  are going to be doing any signficant work on sendmail).
 #
 #	Tandem Support from Rick McCarty <mccarty@mpd.tandem.com>.
+#	(I don't think this actually compiles cleanly -- I had trouble
+#	 integrating Rick's changes.  EPA 6/94)
 #
-#	@(#)Makefile.NonStop-UX	8.1 (Berkeley) 06/19/94
+#	@(#)Makefile.NonStop-UX	8.2 (Berkeley) 06/19/94
 #
 
 # make sure the shell constructs below use the right shell
