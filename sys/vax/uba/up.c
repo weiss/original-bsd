@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)up.c	6.7 (Berkeley) 09/14/85
+ *	@(#)up.c	6.8 (Berkeley) 09/16/85
  */
 
 #include "up.h"
@@ -265,8 +265,10 @@ upstrategy(bp)
 	st = &upst[ui->ui_type];
 	if (bp->b_blkno < 0 ||
 	    (bn = bp->b_blkno)+sz > st->sizes[xunit].nblocks) {
-		if (bp->b_blkno == st->sizes[xunit].nblocks + 1)
+		if (bp->b_blkno == st->sizes[xunit].nblocks) {
+			bp->b_resid = bp->b_bcount;
 			goto done;
+		}
 		bp->b_error = EINVAL;
 		goto bad;
 	}
