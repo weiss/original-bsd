@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.44 (Berkeley) 09/08/94";
+static char sccsid[] = "@(#)util.c	8.45 (Berkeley) 10/08/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -459,10 +459,11 @@ safefile(fn, uid, gid, uname, flags, mode)
 		{
 			register char **gp;
 
-			for (gp = gr->gr_mem; *gp != NULL; gp++)
+			for (gp = gr->gr_mem; gp != NULL && *gp != NULL; gp++)
 				if (strcmp(*gp, uname) == 0)
 					break;
-			if (*gp != NULL && bitset(S_IXGRP, stbuf.st_mode))
+			if (gp != NULL && *gp != NULL &&
+			    bitset(S_IXGRP, stbuf.st_mode))
 				continue;
 		}
 #endif
