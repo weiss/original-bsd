@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.40		03/20/82);
+SCCSID(@(#)parseaddr.c	3.41		05/22/82);
 
 /*
 **  PARSE -- Parse an address
@@ -55,7 +55,7 @@ parse(addr, a, copyf)
 	**  Initialize and prescan address.
 	*/
 
-	To = addr;
+	CurEnv->e_to = addr;
 # ifdef DEBUG
 	if (Debug)
 		printf("\n--parse(%s)\n", addr);
