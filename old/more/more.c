@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)more.c	5.4.1.1 (Berkeley) 10/21/86";
+static char sccsid[] = "@(#)more.c	5.7 (Berkeley) 10/21/86";
 #endif not lint
 
 /*
@@ -74,7 +74,7 @@ int		bad_so;	/* True if overwriting does not turn off standout */
 int		inwait, Pause, errors;
 int		within;	/* true if we are within a file,
 			false if we are between files */
-int		hard, dumb, noscroll, hardtabs, clreol;
+int		hard, dumb, noscroll, hardtabs, clreol, eatnl;
 int		catch_susp;	/* We should catch the SIGTSTP signal */
 char		**fnames;	/* The list of file names */
 int		nfiles;		/* Number of files left to process */
@@ -740,15 +740,17 @@ int *length;
 	}
 	*p++ = c;
 	if (c == '\t')
-	    if (hardtabs && column < promptlen && !hard) {
-		if (eraseln && !dumb) {
+	    if (!hardtabs || column < promptlen && !hard) {
+		if (hardtabs && eraseln && !dumb) {
 		    column = 1 + (column | 7);
 		    tputs (eraseln, 1, putch);
 		    promptlen = 0;
 		}
 		else {
-		    for (--p; column & 7 && p < &Line[LINSIZ - 1]; column++) {
+		    for (--p; p < &Line[LINSIZ - 1];) {
 			*p++ = ' ';
+			if ((++column & 7) == 0)
+			    break;
 		    }
 		    if (column >= promptlen) promptlen = 0;
 		}
@@ -780,6 +782,9 @@ int *length;
 	}
     }
     colflg = column == Mcol && fold_opt;
+    if (colflg && eatnl && Wrap) {
+	*p++ = '\n'; /* simulate normal wrap */
+    }
     *length = p - Line;
     *p = 0;
     return (column);
@@ -1484,6 +1489,8 @@ retry:
 		hard++;	/* Hard copy terminal */
 		Lpp = 24;
 	    }
+	    if (tgetflag("xn"))
+		eatnl++; /* Eat newline at last column + 1; dec, concept */
 	    if (Mcol <= 0)
 		Mcol = 80;
 
