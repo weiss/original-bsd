@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)cc.c 4.12 09/05/85";
+static	char sccsid[] = "@(#)cc.c 4.13 09/18/85";
 /*
  * cc - front end for C compiler
  */
@@ -181,6 +181,8 @@ main(argc, argv)
 		signal(SIGINT, idexit);
 	if (signal(SIGTERM, SIG_IGN) != SIG_IGN)
 		signal(SIGTERM, idexit);
+	if (signal(SIGHUP, SIG_IGN) != SIG_IGN)
+		signal(SIGHUP, idexit);
 	if (pflag==0)
 		sprintf(tmp0, "/tmp/ctm%05.5d", getpid());
 	tmp1 = strspl(tmp0, "1");
