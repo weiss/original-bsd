@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)local.c	1.11 (Berkeley) 12/11/87";
+static char *sccsid ="@(#)local.c	1.12 (Berkeley) 12/11/87";
 #endif lint
 
 # include "pass1.h"
