@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)conn.c	5.2 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)conn.c	5.3 (Berkeley) 08/13/83";
 #endif
 
 #include "uucp.h"
@@ -436,7 +436,7 @@ expect(str, fn)
 register char *str;
 int fn;
 {
-	static char rdvec[MR];
+	char rdvec[MR];
 	register char *rp = rdvec;
 	int kr;
 	char nextch;
