@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: vn.c 1.1 91/04/30$
  *
- *	@(#)vn.c	7.8 (Berkeley) 02/29/92
+ *	@(#)vn.c	7.9 (Berkeley) 05/13/92
  */
 
 /*
@@ -391,7 +391,8 @@ vnthrottle(vn, vp)
 	register struct vn_softc *vn;
 	struct vnode *vp;
 {
-	extern struct vnodeops ufs_vnodeops, nfsv2_vnodeops;
+	extern struct vnodeops ufs_vnodeops;
+	extern struct vnodeops nfsv2_vnodeops;
 
 	if (vp->v_op == &nfsv2_vnodeops)
 		vn->sc_maxactive = 2;
