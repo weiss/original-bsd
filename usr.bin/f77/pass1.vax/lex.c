@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	5.3 (Berkeley) 01/07/86";
+static char sccsid[] = "@(#)lex.c	5.4 (Berkeley) 05/10/89";
 #endif not lint
 
 /*
@@ -38,6 +38,7 @@ static char sccsid[] = "@(#)lex.c	5.3 (Berkeley) 01/07/86";
 
 #include "defs.h"
 #include "tokdefs.h"
+#include "pathnames.h"
 
 # define BLANK	' '
 # define MYQUOTE (2)
@@ -174,7 +175,7 @@ else	{
 
 	if( (fp = fopen(temp, "r")) == NULL )
 		{
-		sprintf(temp, "/usr/include/%s", name);
+		sprintf(temp, "%s/%s", _PATH_INCLUDES, name);
 		fp = fopen(temp, "r");
 		}
 	if(fp)
