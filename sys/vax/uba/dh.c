@@ -1,4 +1,4 @@
-/*	dh.c	3.8	10/14/12	*/
+/*	dh.c	3.9	10/14/12	*/
 
 /*
  *	DH-11 driver
@@ -222,7 +222,7 @@ dhrint(dev)
 #ifdef IIASA
 				continue;
 #else
-				c = 0177;	/* tun.t_intrc? */
+				c = tun.t_intrc;
 #endif
 		if (tp->t_line == NETLDISC) {
 			c &= 0177;
