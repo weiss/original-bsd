@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.42 (Berkeley) 04/01/93
+ *	@(#)sendmail.h	6.43 (Berkeley) 04/02/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.42		04/01/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.43		04/02/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -147,6 +147,7 @@ struct mailer
 	char	*m_eol;		/* end of line string */
 	long	m_maxsize;	/* size limit on message to this mailer */
 	int	m_linelimit;	/* max # characters per line */
+	char	*m_execdir;	/* directory to chdir to before execv */
 };
 
 typedef struct mailer	MAILER;
