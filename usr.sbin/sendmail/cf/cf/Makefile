@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 11/13/92
+#	@(#)Makefile	5.6 (Berkeley) 11/14/92
 
 M4=	m4
 #M4=	/usr/src/usr.bin/m4/obj/m4
@@ -10,7 +10,7 @@ RM=	rm -f
 
 .mc.cf:
 	$(RM) $@
-	cd ${.CURDIR} && echo DOIT | $(M4) ${@:R}.mc - > obj/$@
+	(cd ${.CURDIR} && echo DOIT | $(M4) ${@:R}.mc - > obj/$@)
 	$(CHMOD) $(ROMODE) $@
 
 ALL=	cs-hidden.cf cs-exposed.cf \
