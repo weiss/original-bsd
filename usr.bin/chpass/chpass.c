@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chpass.c	5.3 (Berkeley) 03/06/89";
+static char sccsid[] = "@(#)chpass.c	5.4 (Berkeley) 03/08/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -148,8 +148,10 @@ main(argc, argv)
 		exit(1);
 	}
 	(void)sprintf(pw->pw_gecos = buf, "%s,%s,%s,%s",
-	    list[E_NAME].save, list[E_LOCATE].save, list[E_BPHONE].save,
-	    list[E_HPHONE].save);
+	    list[E_NAME].save ? list[E_NAME].save : "",
+	    list[E_LOCATE].save ? list[E_LOCATE].save : "",
+	    list[E_BPHONE].save ? list[E_BPHONE].save : "",
+	    list[E_HPHONE].save ? list[E_HPHONE].save : "");
 
 	/* root should have a 0 uid and a reasonable shell */
 	if (!strcmp(pw->pw_name, "root")) {
