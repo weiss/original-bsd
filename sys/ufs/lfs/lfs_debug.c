@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_debug.c	7.4 (Berkeley) 12/31/91
+ *	@(#)lfs_debug.c	7.5 (Berkeley) 04/08/92
  */
 
 #ifdef DEBUG
@@ -82,7 +82,7 @@ lfs_dump_super(lfsp)
 
 void
 lfs_dump_dinode(dip)
-	DINODE *dip;
+	struct dinode *dip;
 {
 	int i;
 
