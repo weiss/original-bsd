@@ -1,4 +1,6 @@
-/*	ldexp.s	4.2	84/11/01	*/
+#ifndef lint
+	.asciz	"@(#)ldexp.s	5.1 (Berkeley) 06/05/85"
+#endif not lint
 
 /*
  * double ldexp (value, exp)
