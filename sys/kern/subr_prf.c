@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)subr_prf.c	7.30 (Berkeley) 06/29/91
+ *	@(#)subr_prf.c	7.31 (Berkeley) 09/25/91
  */
 
 #include "param.h"
@@ -47,7 +47,7 @@ int	(*v_poll)() = cnpoll;		/* kdb hook to enable input polling */
 extern	cnputc();			/* standard console putc */
 int	(*v_putc)() = cnputc;		/* routine to putc on virtual console */
 
-static void  logpri __P((int level));
+void  logpri __P((int level));
 static void  putchar __P((int ch, int flags, struct tty *tp));
 static char *ksprintn __P((u_long num, int base, int *len));
 void  kprintf __P((const char *fmt, int flags, struct tty *tp, va_list));
@@ -227,7 +227,7 @@ log(level, fmt /*, va_alist */)
 	logwakeup();
 }
 
-static void
+void
 logpri(level)
 	int level;
 {
