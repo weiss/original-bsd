@@ -6,11 +6,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ttydefaults.c	5.1 (Berkeley) 01/19/91";
+static char sccsid[] = "@(#)ttydefaults.c	5.2 (Berkeley) 05/17/93";
 #endif /* not lint */
 
 #include <sys/termios.h>
 
+#include "extern.h"
+
+void
 set_ttydefaults(fd)
 	int fd;
 {
