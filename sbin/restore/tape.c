@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tape.c	5.10 (Berkeley) 01/28/87";
+static char sccsid[] = "@(#)tape.c	5.11 (Berkeley) 09/04/87";
 #endif not lint
 
 #include "restore.h"
@@ -357,7 +357,8 @@ printdumpinfo()
 {
 
 	fprintf(stdout, "Dump   date: %s", ctime(&spcl.c_date));
-	fprintf(stdout, "Dumped from: %s", ctime(&spcl.c_ddate));
+	fprintf(stdout, "Dumped from: %s",
+	    (spcl.c_ddate == 0) ? "the epoch\n" : ctime(&spcl.c_ddate));
 	if (spcl.c_host[0] == '\0')
 		return;
 	fprintf(stderr, "Level %d dump of %s on %s:%s\n",
