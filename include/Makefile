@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.62 (Berkeley) 06/10/93
+#	@(#)Makefile	8.1 (Berkeley) 06/10/93
 #
 # Doing a make install builds /usr/include
 #
