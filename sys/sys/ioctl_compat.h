@@ -4,19 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ioctl_compat.h	8.2 (Berkeley) 01/04/94
+ *	@(#)ioctl_compat.h	8.3 (Berkeley) 01/11/94
  */
 
 #ifndef _SYS_IOCTL_COMPAT_H_
 #define	_SYS_IOCTL_COMPAT_H_
 
-#ifdef KERNEL
-#include "ttychars.h"
-#include "ttydev.h"
-#else
 #include <sys/ttychars.h>
 #include <sys/ttydev.h>
-#endif
 
 struct tchars {
 	char	t_intrc;	/* interrupt */

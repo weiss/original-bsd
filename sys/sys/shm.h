@@ -9,7 +9,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)shm.h	8.3 (Berkeley) 01/04/94
+ *	@(#)shm.h	8.4 (Berkeley) 01/11/94
  */
 
 /*
@@ -18,11 +18,7 @@
 #ifndef _SYS_SHM_H_
 #define _SYS_SHM_H_
 
-#ifdef KERNEL
-#include "ipc.h"
-#else
 #include <sys/ipc.h>
-#endif
 
 struct shmid_ds {
 	struct	ipc_perm shm_perm;	/* operation perms */
