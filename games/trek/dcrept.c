@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)dcrept.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)dcrept.c	4.2	(Berkeley)	05/27/83";
 #endif not lint
 
 # include	"trek.h"
@@ -19,8 +19,8 @@ static char sccsid[] = "@(#)dcrept.c	4.1	(Berkeley)	03/23/83";
 dcrept()
 {
 	register int		i, f;
-	float			x;
-	float			m1, m2;
+	double			x;
+	double			m1, m2;
 	register struct event	*e;
 
 	/* set up the magic factors to output the time till fixed */

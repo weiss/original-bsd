@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)destruct.c	4.2	(Berkeley)	05/09/83";
+static char sccsid[] = "@(#)destruct.c	4.3	(Berkeley)	05/27/83";
 #endif not lint
 
 # include	"trek.h"
@@ -28,7 +28,7 @@ destruct()
 {
 	char		checkpass[15];
 	register int	i, j;
-	float		zap;
+	double		zap;
 
 	if (damaged(COMPUTER))
 		return (out(COMPUTER));

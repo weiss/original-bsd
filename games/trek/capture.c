@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)capture.c	4.2	(Berkeley)	05/09/83";
+static char sccsid[] = "@(#)capture.c	4.3	(Berkeley)	05/27/83";
 #endif not lint
 
 # include	"trek.h"
@@ -22,7 +22,7 @@ capture()
 {
 	register int		i;
 	register struct kling	*k;
-	float			x;
+	double			x;
 	extern struct kling	*selectklingon();
 
 	/* check for not cloaked */
@@ -61,8 +61,8 @@ capture()
 		/* guess what, he surrendered!!! */
 		printf("Klingon at %d,%d surrenders\n", k->x, k->y);
 		i = ranf(Param.klingcrew);
-		printf("%d klingons commit suicide rather than be taken captive\n",
-			Param.klingcrew - i);
+		if ( i > 0 )
+			printf("%d klingons commit suicide rather than be taken captive\n", Param.klingcrew - i);
 		if (i > Ship.brigfree)
 			i = Ship.brigfree;
 		Ship.brigfree -= i;
