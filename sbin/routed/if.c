@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)if.c	4.4 (Berkeley) 12/20/84";
-#endif
+static char sccsid[] = "@(#)if.c	5.1 (Berkeley) 06/04/85";
+#endif not lint
 
 /*
  * Routing Table Management Daemon
