@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.6	(Berkeley)	06/05/87
+#	@(#)Makefile	5.7	(Berkeley)	09/21/87
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -34,8 +34,9 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	install -s -o bin -g bin -m 755 boggle ${DESTDIR}/usr/games/boggle
-	install -o bin -g bin -m 444 bogdict ${DESTDIR}/usr/games/bogdict
+	install -s -o games -g bin -m 4700 boggle ${DESTDIR}/usr/games/hide/boggle
+	install -o games -g bin -m 400 bogdict ${DESTDIR}/usr/games/lib/bogdict
+	(cd ${DESTDIR}/usr/games; rm -f boggle; ln -s dm boggle; chown games.bin boggle)
 
 lint: FRC
 	lint ${CFLAGS} ${CSRCS}
