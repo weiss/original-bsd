@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1992 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Ralph Campbell, and Kazumasa Utashiro of Software Research
@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)machConst.h	7.2 (Berkeley) 03/09/93
+ *	@(#)machConst.h	8.1 (Berkeley) 06/11/93
  *
  * machConst.h --
  *
