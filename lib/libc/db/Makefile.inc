@@ -1,5 +1,7 @@
-#	@(#)Makefile.inc	8.1 (Berkeley) 06/02/93
+#	@(#)Makefile.inc	8.2 (Berkeley) 02/21/94
 #
+CFLAGS+=-D__DBINTERFACE_PRIVATE
+
 .include "${.CURDIR}/db/btree/Makefile.inc"
 .include "${.CURDIR}/db/db/Makefile.inc"
 .include "${.CURDIR}/db/hash/Makefile.inc"
