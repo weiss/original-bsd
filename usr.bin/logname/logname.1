@@ -6,11 +6,11 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)logname.1	5.1 (Berkeley) 06/28/91
+.\"	@(#)logname.1	5.2 (Berkeley) 07/23/91
 .\"
 .Dd ""
 .Dt LOGNAME 1
-.UC
+.Os
 .Sh NAME
 .Nm logname
 .Nd display user's login name
@@ -24,7 +24,11 @@ a newline.
 .Pp
 The
 .Nm logname
-utility explicitly ignores the LOGNAME and USER environment variables
+utility explicitly ignores the
+.Ev LOGNAME
+and
+.Ev USER
+environment variables
 because the environment cannot be trusted.
 .Pp
 The
