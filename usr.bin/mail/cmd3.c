@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmd3.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)cmd3.c	8.2 (Berkeley) 04/20/95";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -519,7 +519,7 @@ file(argv)
 {
 
 	if (argv[0] == NOSTR) {
-		newfileinfo();
+		newfileinfo(0);
 		return 0;
 	}
 	if (setfile(*argv) < 0)
