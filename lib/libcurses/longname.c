@@ -3,7 +3,7 @@
 /*
  *	This routine fills in "def" with the long name of the terminal.
  *
- * 01/26/81 (Berkeley) @(#)longname.c	1.1
+ * @(#)longname.c	1.2 (Berkeley) 05/01/85
  */
 char *
 longname(bp, def)
@@ -15,11 +15,10 @@ reg char	*bp, *def; {
 		bp++;
 	if (*bp == '|') {
 		bp++;
-		cp = bp;
-		while (*cp && *cp != ':' && *cp != '|')
-			cp++;
+		cp = def;
+		while (*bp && *bp != ':' && *bp != '|')
+			*cp++ = *bp++;
 		*cp = 0;
-		return bp;
 	}
 	return def;
 }
