@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)func.c 4.1 10/09/80";
+static	char *sccsid = "@(#)func.c 4.2 02/07/81";
 
 #include "sh.h"
 #include <sys/ioctl.h>
@@ -813,7 +813,7 @@ doumask(v)
 	umask(i);
 }
 
-#include <sys/limit.h>
+#include <sys/vlimit.h>
 
 struct limits {
 	int	limconst;
