@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strtoq.c	5.1 (Berkeley) 06/26/92";
+static char sccsid[] = "@(#)strtoq.c	5.2 (Berkeley) 03/23/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -105,6 +105,6 @@ strtoq(nptr, endptr, base)
 	} else if (neg)
 		acc = -acc;
 	if (endptr != 0)
-		*endptr = any ? s - 1 : (char *)nptr;
+		*endptr = (char *)(any ? s - 1 : nptr);
 	return (acc);
 }
