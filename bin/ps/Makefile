@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 02/08/91
 
 PROG=	ps
-SRCS=	ps.c devname.c attime.c proc_compare.c
+SRCS=	devname.c keyword.c nlist.c print.c ps.c
 DPADD=	${LIBMATH} ${LIBUTIL}
 LDADD=	-lm -lutil
 BINGRP=	kmem
