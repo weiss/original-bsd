@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)lex.c	5.3 (Berkeley) 09/15/85";
+static char *sccsid = "@(#)lex.c	5.4 (Berkeley) 11/02/85";
 #endif not lint
 
 #include "rcv.h"
@@ -387,7 +387,8 @@ execute(linebuf, contxt)
 		/*
 		 * A vector of strings, in shell style.
 		 */
-		if ((c = getrawlist(cp, arglist)) < 0)
+		if ((c = getrawlist(cp, arglist,
+				sizeof arglist / sizeof *arglist)) < 0)
 			break;
 		if (c < com->c_minargs) {
 			printf("%s requires at least %d arg(s)\n",
