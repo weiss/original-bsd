@@ -1,9 +1,9 @@
 .\" Copyright (c) 1985, 1993
 .\"	The Regents of the University of California.  All rights reserved.
 .\"
-.\" %sccs.include.redist.man%
+.\" %sccs.include.proprietary.man%
 .\"
-.\"	@(#)f77IO.ms	8.1 (Berkeley) 06/08/93
+.\"	@(#)f77IO.ms	8.2 (Berkeley) 04/20/94
 .\"
 .EH 'PSD:9-%''Introduction to the f77 I/O Library'
 .OH 'Introduction to the f77 I/O Library''PSD:9-%'
