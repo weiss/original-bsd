@@ -14,15 +14,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)route.c	7.11 (Berkeley) 04/26/89
+ *	@(#)route.c	7.12 (Berkeley) 05/04/89
  */
 #include "machine/reg.h"
  
 #include "param.h"
 #include "systm.h"
-#include "dir.h"
 #include "user.h"
-#include "inode.h"
 #include "proc.h"
 #include "mbuf.h"
 #include "socket.h"
