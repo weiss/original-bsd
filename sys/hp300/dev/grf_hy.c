@@ -12,7 +12,7 @@
  *
  * from: Utah $Hdr: grf_hy.c 1.2 93/08/13$
  *
- *	@(#)grf_hy.c	8.2 (Berkeley) 09/09/93
+ *	@(#)grf_hy.c	8.3 (Berkeley) 01/04/94
  */
 
 #include "grf.h"
@@ -115,7 +115,7 @@ hy_mode(gp, cmd, data)
 	{
 		struct grf_fbinfo *fi = (struct grf_fbinfo *)data;
 		struct grfinfo *gi = &gp->g_display;
-		int i, j;
+		int i;
 
 		/* feed it what HP-UX expects */
 		fi->id = gi->gd_id;
