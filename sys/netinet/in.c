@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.c	8.1 (Berkeley) 06/10/93
+ *	@(#)in.c	8.2 (Berkeley) 11/15/93
  */
 
 #include <sys/param.h>
@@ -16,7 +16,6 @@
 
 #include <net/if.h>
 #include <net/route.h>
-#include <net/af.h>
 
 #include <netinet/in_systm.h>
 #include <netinet/in.h>
