@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass3.c	5.6 (Berkeley) 02/01/90";
+static char sccsid[] = "@(#)pass3.c	5.7 (Berkeley) 02/01/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -48,7 +48,7 @@ pass3()
 				orphan = idesc.id_parent;
 				if (orphan < ROOTINO || orphan > maxino)
 					break;
-				dp = ginode(orphan);
+				dp = getcacheino(orphan);
 				idesc.id_parent = 0;
 				idesc.id_number = orphan;
 				if ((ckinode(dp, &idesc) & FOUND) == 0)
