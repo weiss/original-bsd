@@ -8,18 +8,19 @@
 **  specifies the terms and conditions for redistribution.
 */
 
+#include "sendmail.h"
+
 #ifndef MXDOMAIN
 #ifndef lint
-static char	SccsId[] = "@(#)domain.c	5.3 (Berkeley) 07/21/86 (no MXDOMAIN)";
+static char	SccsId[] = "@(#)domain.c	5.4 (Berkeley) 07/25/86 (no MXDOMAIN)";
 #endif not lint
 #else MXDOMAIN
 
 #ifndef lint
-static char	SccsId[] = "@(#)domain.c	5.3 (Berkeley) 07/21/86";
+static char	SccsId[] = "@(#)domain.c	5.4 (Berkeley) 07/25/86";
 #endif not lint
 
 # include <sys/param.h>
-# include "sendmail.h"
 # include <arpa/nameser.h>
 # include <resolv.h>
 # include <netdb.h>
