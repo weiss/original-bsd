@@ -16,13 +16,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)edit.c	5.8 (Berkeley) 07/07/88";
+static char sccsid[] = "@(#)edit.c	5.9 (Berkeley) 07/07/88";
 #endif /* not lint */
 
 #include "rcv.h"
-#include <stdio.h>
 #include <sys/stat.h>
-#include <sys/wait.h>
 
 /*
  * Mail -- a mail program
