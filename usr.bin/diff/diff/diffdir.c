@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)diffdir.c	4.13 (Berkeley) 04/17/91";
+static char sccsid[] = "@(#)diffdir.c	4.14 (Berkeley) 04/05/93";
 #endif /* not lint */
 
 #include "diff.h"
@@ -422,7 +422,7 @@ register char *cp;
 		if (cp[1] == '.' && cp[2] == '\0')
 			return (1);	/* directory ".." */
 	}
-	if (start && strcmp(start, cp) > 0)
+	if (Start && strcmp(Start, cp) > 0)
 		return (1);
 	return (0);
 }
