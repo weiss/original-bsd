@@ -1,6 +1,7 @@
-#	@(#)Makefile	5.4 (Berkeley) 12/18/90
+#	@(#)Makefile	5.5 (Berkeley) 01/17/91
 
 PROG=	vmstat
+CFLAGS+=-I/sys
 BINGRP=	kmem
 BINMODE=2555
 DPADD=	${LIBUTIL}
