@@ -1,4 +1,4 @@
-/* @(#)main.c	1.3	04/18/83
+/* @(#)main.c	1.4	05/05/83
  *
  * Copyright -C- 1982 Barry S. Roitblat
  *
@@ -78,7 +78,7 @@ extern char *malloc(), *sprintf(), *strcat(), *strcpy();
 
 /* Version number */
 
-char SccsId [] = "@(#)main.c	1.3	(Berkeley)	04/18/83";
+char SccsId [] = "@(#)main.c	1.4	(Berkeley)	05/05/83";
 
 #ifdef SIGTINT
 static int lintrup = LINTRUP;    /* Constant for local mode bit */
@@ -167,7 +167,7 @@ char *argv[];
             case 'p':
                 if (*++arg == '\0')
                 if (argc-- > 0) arg = *argv++;
-                if (argc < 0) error("usage: gremlin -g <path>");
+                if (argc < 0) error("usage: gremlin -p <path>");
                 path = arg;
                 SEARCH = TRUE;
                 break;
