@@ -14,23 +14,8 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ip.h	7.6.1.2 (Berkeley) 02/15/89
+ *	@(#)ip.h	7.8 (Berkeley) 02/20/89
  */
-#ifndef BYTE_ORDER
-/*
- * Definitions for byte order,
- * according to byte significance from low address to high.
- */
-#define	LITTLE_ENDIAN	1234	/* least-significant byte first (vax) */
-#define	BIG_ENDIAN	4321	/* most-significant byte first (IBM, net) */
-#define	PDP_ENDIAN	3412	/* LSB first in word, MSW first in long (pdp) */
-
-#ifdef vax
-#define	BYTE_ORDER	LITTLE_ENDIAN
-#else
-#define	BYTE_ORDER	BIG_ENDIAN	/* mc68000, tahoe, most others */
-#endif
-#endif BYTE_ORDER
 
 /*
  * Definitions for internet protocol version 4.
@@ -125,7 +110,7 @@ struct	ip_timestamp {
 /* flag bits for ipt_flg */
 #define	IPOPT_TS_TSONLY		0		/* timestamps only */
 #define	IPOPT_TS_TSANDADDR	1		/* timestamps and addresses */
-#define	IPOPT_TS_PRESPEC	2		/* specified modules only */
+#define	IPOPT_TS_PRESPEC	3		/* specified modules only */
 
 /* bits for security (not byte swapped) */
 #define	IPOPT_SECUR_UNCLASS	0x0000
