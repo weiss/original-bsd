@@ -1,4 +1,4 @@
-/*	tty_tty.c	3.2	06/07/80	*/
+/*	tty_tty.c	4.1	11/09/80	*/
 
 /*
  *	indirect driver for controlling tty.
