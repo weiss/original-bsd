@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.94 (Berkeley) 03/03/94
+ *	@(#)conf.h	8.95 (Berkeley) 03/06/94
  */
 
 /*
@@ -271,6 +271,7 @@ extern long	dgux_inet_addr();
 #  define HASFLOCK	1	/* has flock(2) call */
 # endif
 # define HASGETUSERSHELL 0	/* does not have getusershell(3) call */
+# define BROKEN_RES_SEARCH 1	/* res_search(unknown) returns h_errno=0 */
 # ifdef vax
 #  define LA_TYPE	LA_FLOAT
 # else
