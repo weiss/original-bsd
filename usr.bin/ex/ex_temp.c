@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_temp.c	7.3	09/03/81";
+static char *sccsid = "@(#)ex_temp.c	7.4	07/30/83";
 #include "ex.h"
 #include "ex_temp.h"
 #include "ex_vis.h"
@@ -326,6 +326,15 @@ oops:
 	lseek(tfile, 0l, 0);
 	if (write(tfile, (char *) &H, sizeof H) != sizeof H)
 		goto oops;
+#ifdef notdef
+	/*
+	 * This will insure that exrecover gets as much
+	 * back after a crash as is absolutely possible,
+	 * but can result in pregnant pauses between commands
+	 * when the TSYNC call is made, so...
+	 */
+	(void) fsync(tfile);
+#endif
 }
 
 TSYNC()
