@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)igmp_var.h	7.2 (Berkeley) 01/08/93
+ *	@(#)igmp_var.h	7.3 (Berkeley) 07/19/93
  */
 
 /*
@@ -52,7 +52,7 @@ struct igmpstat igmpstat;
 	)
 
 void	igmp_init __P(());
-void	igmp_input __P((struct mbuf *, struct ifnet *));
+void	igmp_input __P((struct mbuf *, int));
 void	igmp_joingroup __P((struct in_multi *));
 void	igmp_leavegroup __P((struct in_multi *));
 void	igmp_fasttimo __P(());
