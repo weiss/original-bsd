@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)timed.ms	6.4 (Berkeley) 04/17/91
+.\"	@(#)timed.ms	6.5 (Berkeley) 06/05/93
 .\"
 .TL
 The Berkeley
@@ -29,8 +29,8 @@ either expressed or implied, of the Defense Research Projects Agency,
 of the US Government, or of CSELT.
 .FE
 .LP
-.OH 'The Berkeley UNIX Time Synchronization Protocol''SMM:22-%'
-.EH 'SMM:22-%''The Berkeley UNIX Time Synchronization Protocol'
+.OH 'The Berkeley UNIX Time Synchronization Protocol''SMM:12-%'
+.EH 'SMM:12-%''The Berkeley UNIX Time Synchronization Protocol'
 .SH 
 Introduction
 .PP
