@@ -1,5 +1,5 @@
 #
-#	"@(#)bibinc.publishers	2.3	01/06/84";
+#	"@(#)bibinc.publishers	2.4	03/13/87";
 #
 #
 #  publishers
@@ -17,6 +17,8 @@ D CSPRESS Computer Science Press\
 %C Woodland Hills, CA
 D DIGITAL Digital Press
 D ELSEVIER American Elsevier
+D ERLBAUM Lawrence Erlbaum Associates\
+%C Hillsdale, NJ
 D IEEEP IEEE Press\
 %C Montvale, NJ
 D GPO U. S. Government Printing Office
