@@ -3,7 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- * 		@(#)qvioctl.h	1.3  Berkeley  05/27/88
+ * 		@(#)qvioctl.h	1.4  Berkeley  06/03/88
+ * 
  *	derived from: @(#)qvioctl.h	1.7 (ULTRIX) 6/11/85
  */
 /*

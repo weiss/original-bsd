@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- * 		@(#)qvreg.h	1.2  Berkeley  05/27/88
+ * 		@(#)qvreg.h	1.3  Berkeley  06/03/88
  *
  *	derived from: @(#)qvreg.h	1.3 (ULTRIX) 8/21/85 
  */
