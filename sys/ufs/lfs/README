@@ -1,4 +1,4 @@
-#	@(#)README	7.6 (Berkeley) 06/11/93
+#	@(#)README	8.1 (Berkeley) 06/11/93
 
 The file system is reasonably stable, but incomplete.  There are
 places where cleaning performance can be improved dramatically (see
