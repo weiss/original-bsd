@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)ptrace.c 1.1 01/18/82";
+static char sccsid[] = "@(#)ptrace.c 1.2 01/23/82";
 
 /*
  * routines for tracing the execution of a process
@@ -63,8 +63,9 @@ static char sccsid[] = "@(#)ptrace.c 1.1 01/18/82";
  */
 
 /* VARARGS2 */
-pstart(p, argv, infile, outfile)
+pstart(p, cmd, argv, infile, outfile)
 PROCESS *p;
+char *cmd;
 char **argv;
 char *infile;
 char *outfile;
@@ -95,14 +96,11 @@ char *outfile;
 			}
 			fswap(1, fileno(out));
 		}
-		execvp(argv[0], argv);
+		execvp(cmd, argv);
 		panic("can't exec %s", argv[0]);
 	}
 	pwait(p->pid, &status);
 	getinfo(p, status);
-	if (p->status != STOPPED) {
-		error("program could not begin execution");
-	}
 }
 
 /*
