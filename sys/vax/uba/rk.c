@@ -1,4 +1,4 @@
-/*	rk.c	4.3	12/19/80	*/
+/*	rk.c	4.4	12/30/80	*/
 
 #include "rk.h"
 #if NRK > 0
@@ -241,7 +241,7 @@ rkintr()
 		while (rkaddr->rkds & PIP)
 			;
 		if (++rktab.b_errcnt <= 10) {
-			ubafree(rk_info);
+			ubarelse(&rk_info);
 			rkstart();
 			return;
 		}
@@ -251,7 +251,7 @@ bad:
 	rktab.b_errcnt = 0;
 	rktab.b_actf = bp->av_forw;
 	bp->b_resid = 0;
-	ubafree(rk_info);
+	ubarelse(&rk_info);
 	iodone(bp);
 	rkstart();
 }
