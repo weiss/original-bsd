@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty_compat.c	7.4 (Berkeley) 02/17/90
+ *	@(#)tty_compat.c	7.5 (Berkeley) 05/15/90
  */
 
 /* 
@@ -186,6 +186,10 @@ ttcompat(tp, com, data, flag)
 
 		return(ttioctl(tp, TIOCSETD, 
 			*(int *)data == 2 ? (caddr_t)&ldisczero : data, flag));
+
+	case OTIOCCONS:
+		*(int *)data = 1;
+		return(ttioctl(tp, TIOCCONS, data, flag));
 	}
 
 	default:
