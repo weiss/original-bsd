@@ -12,17 +12,18 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)date.c	5.1 (Berkeley) 01/15/91";
+static char sccsid[] = "@(#)date.c	5.2 (Berkeley) 02/25/91";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/time.h>
 #include <sys/file.h>
 #include <syslog.h>
+#include <unistd.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 time_t tval;
 int retval, nflag;
