@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_vnops.c	7.99 (Berkeley) 01/03/93
+ *	@(#)ffs_vnops.c	7.100 (Berkeley) 03/03/93
  */
 
 #include <sys/param.h>
@@ -290,6 +290,8 @@ ffs_write(ap)
 	case VREG:
 		if (ioflag & IO_APPEND)
 			uio->uio_offset = ip->i_size;
+		if ((ip->i_flags & APPEND) && uio->uio_offset != ip->i_size)
+			return (EPERM);
 		/* fall through */
 	case VLNK:
 		break;
