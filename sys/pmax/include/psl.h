@@ -7,10 +7,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)psl.h	7.1 (Berkeley) 01/07/92
+ *	@(#)psl.h	7.2 (Berkeley) 10/11/92
  */
 
-#include "machConst.h"
+#include <machine/machConst.h>
 
 #define	PSL_LOWIPL	(MACH_INT_MASK | MACH_SR_INT_ENA_CUR)
 
