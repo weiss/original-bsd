@@ -1,9 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)va820.c	4.3 (Berkeley) 10/10/85";
+static char sccsid[] = "@(#)va820.c	4.4 (Berkeley) 02/24/88";
 #endif
 
 #include "../condevs.h"
-#ifdef	VA820
 
 /*
  * Racal-Vadic 'RV820' with 831 adaptor.
@@ -164,4 +163,3 @@ register int fd;
 	DEBUG(2, "RVADIC close %d\n", fd);
 	close(fd);
 }
-#endif VA820

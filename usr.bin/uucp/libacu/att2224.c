@@ -1,10 +1,9 @@
 #ifndef lint
-static char sccsid[] = "@(#)att2224.c	1.1 (Berkeley) 02/12/86";
+static char sccsid[] = "@(#)att2224.c	1.2 (Berkeley) 02/24/88";
 #endif
 
 #include "../condevs.h"
 
-#ifdef ATT2224
 attopn(telno, flds, dev)
 char *telno, *flds[];
 struct Devices *dev;
@@ -153,4 +152,3 @@ int fd;
 		delock(devSel);
 	}
 }
-#endif ATT2224

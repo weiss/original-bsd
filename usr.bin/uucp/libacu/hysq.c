@@ -1,10 +1,9 @@
 #ifndef lint
-static char sccsid[] = "@(#)hysq.c	4.1 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)hysq.c	4.2 (Berkeley) 02/24/88";
 #endif
 
 #include "../condevs.h"
 
-#ifdef HAYESQ
 /*
  * New dialout routine to work with Hayes' SMART MODEM
  * 13-JUL-82, Mike Mitchell
@@ -155,5 +154,3 @@ int fd;
 		delock(devSel);
 	}
 }
-
-#endif HAYESQ

@@ -1,10 +1,9 @@
 #ifndef lint
-static char sccsid[] = "@(#)va212.c	4.2 (Berkeley) 06/23/85";
+static char sccsid[] = "@(#)va212.c	4.3 (Berkeley) 02/24/88";
 #endif
 
 #include "../condevs.h"
 
-#ifdef VA212
 va212opn(telno, flds, dev)
 char *telno;
 char *flds[];
@@ -123,4 +122,3 @@ va212cls(fd)
 		delock(devSel);
 	}
 }
-#endif VA212

@@ -1,10 +1,9 @@
 #ifndef lint
-static char sccsid[] = "@(#)va811.c	4.1 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)va811.c	4.2 (Berkeley) 02/24/88";
 #endif
 
 #include "../condevs.h"
 
-#ifdef	VA811S
 /*
  * Racal-Vadic VA811 dialer with 831 adaptor.
  * A typical 300 baud L-devices entry is
@@ -120,4 +119,3 @@ register int fd;
 	close(fd);
 	delock(devSel);
 }
-#endif VA811S
