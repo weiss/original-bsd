@@ -13,21 +13,21 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fpu.c	7.2 (Berkeley) 07/21/92
+ *	@(#)fpu.c	7.3 (Berkeley) 10/11/92
  *
  * from: $Header: fpu.c,v 1.2 92/06/17 05:41:27 torek Exp $
  */
 
-#include "sys/param.h"
-#include "sys/proc.h"
-#include "sys/signal.h"
-#include "sys/systm.h"
-#include "sys/syslog.h"
+#include <sys/param.h>
+#include <sys/proc.h>
+#include <sys/signal.h>
+#include <sys/systm.h>
+#include <sys/syslog.h>
 
-#include "machine/instr.h"
-#include "machine/reg.h"
+#include <machine/instr.h>
+#include <machine/reg.h>
 
-#include "fpu_emu.h"
+#include <sparc/fpu/fpu_emu.h>
 
 /*
  * fpu_execute returns the following error numbers (0 = no error):
