@@ -1,4 +1,4 @@
-/*	va.c	4.6	02/27/81	*/
+/*	va.c	4.7	03/09/81	*/
 
 #include "va.h"
 #if NVA > 0
@@ -257,8 +257,6 @@ vaclose()
 	va11.va_bufp = 0;
 	VAADDR->vacsl = 0;
 }
-
-#define	DELAY(N)	{ register int d; d = N; while (--d > 0); }
 
 vareset()
 {
