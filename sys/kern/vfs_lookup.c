@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_lookup.c	7.23 (Berkeley) 01/10/91
+ *	@(#)vfs_lookup.c	7.24 (Berkeley) 01/11/91
  */
 
 #include "param.h"
@@ -15,10 +15,10 @@
 #include "errno.h"
 #include "malloc.h"
 #include "filedesc.h"
-
-#ifdef KTRACE
 #include "user.h"
 #include "proc.h"
+
+#ifdef KTRACE
 #include "ktrace.h"
 #endif
 
