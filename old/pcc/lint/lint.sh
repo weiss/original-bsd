@@ -1,8 +1,8 @@
 #! /bin/sh
 #
-#	@(#)lint.sh	1.9	(Berkeley)	05/10/89
+#	@(#)lint.sh	1.10	(Berkeley)	08/24/89
 #
-L=/usr/libexec/lint T=/tmp/lint.$$
+L=/usr/libexec/lintpass T=/tmp/lint.$$
 PATH=/bin:/usr/bin:/usr/pgrm
 O="-C -Dlint"
 X= P=unix LL=/usr/libdata/lint
