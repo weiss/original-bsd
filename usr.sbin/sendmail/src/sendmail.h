@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.117		03/07/83";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.118		05/18/83";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -229,6 +229,12 @@ EXTERN ENVELOPE	*CurEnv;	/* envelope currently being processed */
 **	WKPRIFACT bytes of message, and each time we reprocess a
 **	message the size gets reduced by WKTIMEFACT.
 **
+**	WKTIMEFACT is negative since jobs that fail once have a high
+**	probability of failing again.  Making it negative tends to force
+**	them to the back rather than the front of the queue, where they
+**	only clog things.  Thanks go to Jay Lepreau at Utah for pointing
+**	out the error in my thinking.
+**
 **	The "class" is this number, unadjusted by the age or size of
 **	this message.  Classes with negative representations will have
 **	error messages thrown away if they are not local.
@@ -244,7 +250,7 @@ EXTERN struct priority	Priorities[MAXPRIORITIES];
 EXTERN int		NumPriorities;	/* pointer into Priorities */
 
 # define WKPRIFACT	1800		/* bytes each pri point is worth */
-# define WKTIMEFACT	400		/* bytes each time unit is worth */
+# define WKTIMEFACT	(-600)		/* bytes each reprocessing is worth */
 /*
 **  Rewrite rules.
 */
