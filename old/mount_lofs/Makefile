@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 07/05/92
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 CFLAGS=	-I/sys
 PROG=	mount_lofs
