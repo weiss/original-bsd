@@ -1,10 +1,13 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)d_sign.c	5.3	01/15/91
+ * %sccs.include.proprietary.c%
  */
+
+#ifndef lint
+static char sccsid[] = "@(#)d_sign.c	5.4 (Berkeley) 04/12/91";
+#endif /* not lint */
 
 #ifndef tahoe
 double d_sign(a,b)

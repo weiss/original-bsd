@@ -1,10 +1,15 @@
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)trapov_.c	5.6 (Berkeley) 04/12/91";
+#endif /* not lint */
+
 /*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
- *
- *	@(#)trapov_.c	5.5	02/14/90
- *
  *	Fortran/C floating-point overflow handler
  *
  *	The idea of these routines is to catch floating-point overflows
