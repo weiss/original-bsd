@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)kern_acct.c	7.18 (Berkeley) 05/11/91
+ *	@(#)kern_acct.c	7.19 (Berkeley) 05/28/91
  */
 
 #include "param.h"
@@ -79,6 +79,7 @@ sysacct(p, uap, retval)
 	if (error = vn_open(&nd, p, FWRITE, 0644))
 		return (error);
 	vp = nd.ni_vp;
+	VOP_UNLOCK(vp);
 	if (vp->v_type != VREG) {
 		vrele(vp);
 		return (EACCES);
