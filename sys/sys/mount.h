@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)mount.h	7.7 (Berkeley) 10/24/89
+ *	@(#)mount.h	7.8 (Berkeley) 10/25/89
  */
 
 typedef quad fsid_t;			/* file system id type */
@@ -27,6 +27,7 @@ typedef quad fsid_t;			/* file system id type */
 
 struct fid {
 	u_short		fid_len;		/* length of data in bytes */
+	u_short		fid_reserved;		/* force longword alignment */
 	char		fid_data[MAXFIDSZ];	/* data (variable length) */
 };
 
