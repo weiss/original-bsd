@@ -1,7 +1,7 @@
 #
 #	Makefile for sendmail base directory
 #
-#		@(#)Makefile	3.11		07/09/83
+#		@(#)Makefile	4.1		07/25/83
 #
 
 ALL=	src/sendmail aux/syslog
