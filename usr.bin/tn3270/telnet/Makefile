@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.5 (Berkeley) 04/26/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 # The following is the telnet makefile for tn3270, using the shared telnet
 # sources.
