@@ -1,4 +1,4 @@
-#	@(#)bsd.lib.mk	5.35 (Berkeley) 07/29/92
+#	@(#)bsd.lib.mk	5.36 (Berkeley) 11/30/92
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -153,8 +153,8 @@ lint:
 
 .if !target(tags)
 tags: ${SRCS}
-	-cd ${.CURDIR}; ctags -f /dev/stdout ${.ALLSRC:M*.c} | \
-	    sed "s;\${.CURDIR}/;;" > tags
+	-ctags -f /dev/stdout ${.ALLSRC:M*.c} | \
+	    sed "s;\${.CURDIR}/;;" > ${.CURDIR}/tags
 .endif
 
 .include <bsd.man.mk>

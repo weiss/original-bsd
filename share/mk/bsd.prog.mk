@@ -1,4 +1,4 @@
-#	@(#)bsd.prog.mk	5.35 (Berkeley) 08/26/92
+#	@(#)bsd.prog.mk	5.36 (Berkeley) 11/30/92
 
 .if !defined(NOINCLUDE) && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -189,8 +189,8 @@ objdir: _PROGSUBDIR
 .if !target(tags)
 tags: ${SRCS} _PROGSUBDIR
 .if defined(PROG)
-	-cd ${.CURDIR}; ctags -f /dev/stdout ${.ALLSRC} | \
-	    sed "s;${.CURDIR}/;;" > tags
+	-ctags -f /dev/stdout ${.ALLSRC} | \
+	    sed "s;${.CURDIR}/;;" > ${.CURDIR}/tags
 .endif
 .endif
 
