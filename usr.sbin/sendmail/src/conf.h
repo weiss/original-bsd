@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.43 (Berkeley) 10/28/93
+ *	@(#)conf.h	8.44 (Berkeley) 10/29/93
  */
 
 /*
@@ -356,7 +356,7 @@ typedef int		pid_t;
 **	From Karl London <karl@borg.demon.co.uk>.
 */
 
-#ifdef linux
+#ifdef __linux__
 # define BSD		1	/* pretend to be BSD based today */
 # undef  NEEDVPRINTF	1	/* need a replacement for vprintf(3) */
 # define NEEDGETOPT	1	/* need a replacement for getopt(3) */
