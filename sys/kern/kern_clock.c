@@ -1,7 +1,8 @@
-/*	10/14/12	3.12	kern_clock.c	*/
+/*	10/14/12	3.13	kern_clock.c	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
+#include "../h/dk.h"
 #include "../h/callo.h"
 #include "../h/seg.h"
 #include "../h/dir.h"
