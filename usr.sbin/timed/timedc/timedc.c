@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)timedc.c	2.7 (Berkeley) 11/20/88";
+static char sccsid[] = "@(#)timedc.c	2.8 (Berkeley) 12/14/89";
 #endif /* not lint */
 
 #include "timedc.h"
@@ -53,7 +53,7 @@ main(argc, argv)
 	 * security dictates!
 	 */
 	if (priv_resources() < 0) {
-		fprintf(stderr, "Could not get priviledged resources\n");
+		fprintf(stderr, "Could not get privileged resources\n");
 		exit(1);
 	}
 	(void) setuid(getuid());
