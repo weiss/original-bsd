@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.1 (Berkeley) 06/02/83
+#	@(#)Makefile	4.2 (Berkeley) 05/31/87
 #
 # If you don't want to plot, take out the -Dplot and the ref. to plot.a
 PLOT = -lplot -Dplot
@@ -12,5 +12,7 @@ prof.o: prof.c
 install:
 	install -s prof $(DESTDIR)/usr/bin
 
-clean :
+clean:
 	rm -f *.o prof
+
+depend:
