@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.88 (Berkeley) 07/23/94";
+static char sccsid[] = "@(#)deliver.c	8.89 (Berkeley) 07/23/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -952,6 +952,16 @@ deliver(e, firstto)
 	}
 #endif
 
+	/* check for 8-bit available */
+	if (bitset(EF_HAS8BIT, e->e_flags) &&
+	    bitnset(M_7BITS, m->m_flags) &&
+	    !bitset(MM_MIME8BIT, MimeMode))
+	{
+		usrerr("554 Cannot send 8-bit data to 7-bit destination");
+		rcode = EX_DATAERR;
+		goto give_up;
+	}
+
 	/* check for Local Person Communication -- not for mortals!!! */
 	if (strcmp(m->m_mailer, "[LPC]") == 0)
 	{
@@ -1334,6 +1344,9 @@ tryhost:
 		}
 	}
 
+	if (bitset(EF_HAS8BIT, e->e_flags) && bitnset(M_7BITS, m->m_flags))
+		mci->mci_flags |= MCIF_CVT8TO7;
+
 	/*
 	**  If we are in SMTP opening state, send initial protocol.
 	*/
@@ -1377,7 +1390,6 @@ tryhost:
 
 		putfromline(mci, e);
 		(*e->e_puthdr)(mci, e->e_header, e);
-		putline("\n", mci);
 		(*e->e_putbody)(mci, e, NULL);
 
 		/* get the exit status */
@@ -2250,7 +2262,6 @@ mailfile(filename, ctladdr, e)
 
 		putfromline(&mcibuf, e);
 		(*e->e_puthdr)(&mcibuf, e->e_header, e);
-		putline("\n", &mcibuf);
 		(*e->e_putbody)(&mcibuf, e, NULL);
 		putline("\n", &mcibuf);
 		if (ferror(f))
