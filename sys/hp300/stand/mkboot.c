@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mkboot.c	7.6 (Berkeley) 07/15/93
+ *	@(#)mkboot.c	8.1 (Berkeley) 07/15/93
  */
 
 #ifndef lint
