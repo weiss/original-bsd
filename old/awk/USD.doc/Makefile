@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 08/10/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 DIR=	usd/16.awk
 SRCS=	awk
