@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lcmd1.c	3.28 04/03/85";
+static char sccsid[] = "@(#)lcmd1.c	3.29 04/19/85";
 #endif
 
 #include "defs.h"
@@ -118,7 +118,7 @@ register struct value *v, *a;
 {
 	v->v_type = V_NUM;
 	v->v_num = debug;
-	debug = vtobool(a, 1, debug);
+	debug = vtobool(a, debug, debug);
 }
 
 struct lcmd_arg arg_escape[] = {
