@@ -8,7 +8,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)updatedb.csh	5.2 (Berkeley) 05/27/92
+#	@(#)updatedb.csh	5.3 (Berkeley) 06/01/92
 #
 
 set SRCHPATHS = "/"			# directories to be put in the database
@@ -30,7 +30,7 @@ set errs = $TMPDIR/locate.errs.$$
 
 # search locally or everything
 # find ${SRCHPATHS} -print | \
-find ${SRCHPATHS} ! -fstype local -a -prune -o -print | \
+find ${SRCHPATHS} -fstype local -print | \
 	tr '/' '\001' | \
 	(sort -T /var/tmp -f; echo $status > $errs) | tr '\001' '/' > $filelist
 
@@ -48,3 +48,31 @@ else
 	chmod 644 $FCODES
 	rm $bigrams $filelist $errs
 endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
