@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)scandir.c	5.8 (Berkeley) 06/23/90";
+static char sccsid[] = "@(#)scandir.c	5.9 (Berkeley) 06/24/90";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -95,7 +95,8 @@ scandir(dirname, namelist, select, dcomp)
  * Alphabetic order comparison routine for those who want it.
  */
 alphasort(d1, d2)
-	struct dirent **d1, **d2;
+	void *d1, *d2;
 {
-	return(strcmp((*d1)->d_name, (*d2)->d_name));
+	return(strcmp((*(struct dirent **)d1)->d_name,
+	    (*(struct dirent **)d2)->d_name));
 }
