@@ -1,5 +1,5 @@
 /*
- * @(#)icondata.h	1.1	10/21/84
+ * @(#)icondata.h	1.2	01/03/85
  *
  * References to memory pixrects used primarily as menu icons in
  * the SUN Gremlin picture editor.  This file must be maintained
@@ -97,3 +97,7 @@ extern struct pixrect point_pr,
 		      linestyle_pr,
 		      pan_pr,
 		      dot_pr;
+
+/*************  gremlin tool icon   **************/
+
+extern struct pixrect gremlin_icon_pr;

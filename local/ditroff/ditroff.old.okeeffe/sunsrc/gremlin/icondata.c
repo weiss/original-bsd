@@ -1,5 +1,5 @@
 /*
- * @(#)icondata.c	1.1	10/21/84
+ * @(#)icondata.c	1.2	01/03/85
  *
  * Definitions for icons used in the SUN Gremlin picture editor.
  *
@@ -97,3 +97,7 @@
 #include "../icons/icon.linestyle"
 #include "../icons/icon.pan"
 #include "../icons/icon.dot"
+
+/*************  gremlin tool icon   **************/
+
+#include "../icons/gremlin.icon"
