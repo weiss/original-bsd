@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)df.c	4.13 06/15/82";
+static	char *sccsid = "@(#)df.c	4.14 01/02/83";
 #endif
 
 #include <stdio.h>
@@ -38,7 +38,7 @@ main(argc, argv)
 {
 	int i;
 
-	while (argc >= 1 && argv[1][0]=='-') {
+	while (argc > 1 && argv[1][0]=='-') {
 	switch (argv[1][1]) {
 
 	case 'i':
