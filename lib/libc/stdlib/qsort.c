@@ -14,7 +14,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)qsort.c	5.11 (Berkeley) 12/10/92";
+static char sccsid[] = "@(#)qsort.c	5.12 (Berkeley) 01/08/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -152,6 +152,6 @@ loop:	SWAPINIT(a, es);
 		goto loop;
 	}
 	if ((r = pd - pc) > es)
-		nqsort(pn - r, r / es, es, cmp);
+		qsort(pn - r, r / es, es, cmp);
 }
 	
