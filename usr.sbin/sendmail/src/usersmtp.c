@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.8 (Berkeley) 02/16/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.9 (Berkeley) 02/18/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.8 (Berkeley) 02/16/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.9 (Berkeley) 02/18/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -557,7 +557,7 @@ reply(m, mci, e, timeout)
 
 		/* save temporary failure messages for posterity */
 		if (SmtpReplyBuffer[0] == '4' && SmtpError[0] == '\0')
-			(void) strcpy(SmtpError, &SmtpReplyBuffer[4]);
+			(void) strcpy(SmtpError, SmtpReplyBuffer);
 
 		return (r);
 	}
