@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 07/22/93
+#	@(#)Makefile	8.1 (Berkeley) 07/22/93
 
 PROG=	chpass
 SRCS=	chpass.c edit.c field.c pw_copy.c pw_scan.c pw_util.c table.c util.c
