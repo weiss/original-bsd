@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)va212.c	4.1 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)va212.c	4.2 (Berkeley) 06/23/85";
 #endif
 
 #include "../condevs.h"
@@ -98,8 +98,8 @@ struct Devices *dev;
 	}
 
 	if (ok == 0) {
-		DEBUG(4, "wanted ON LINE \\r\\n ", CNULL);
-		ok = expect("ON LINE \r\n", dh);
+		DEBUG(4, "wanted ON LINE\\r\\n ", CNULL);
+		ok = expect("ON LINE\r\n", dh);
 		DEBUG(4, "got %s\n", ok ? "?" : "that");
 	}
 
