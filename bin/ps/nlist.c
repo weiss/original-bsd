@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)nlist.c	5.2 (Berkeley) 06/03/91";
+static char sccsid[] = "@(#)nlist.c	5.3 (Berkeley) 07/01/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -41,7 +41,7 @@ donlist()
 	rval = 0;
 	nlistread = 1;
 	if (kvm_nlist(psnl)) {
-		(void)fprintf(stderr, "ps: kvm_nlist: %s\n", strerror(errno));
+		(void)fprintf(stderr, "ps: kvm_nlist: %s\n", kvm_geterr());
 		eval = 1;
 		return(1);
 	}
