@@ -14,10 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 04/02/89
+ *	@(#)pathnames.h	5.2 (Berkeley) 05/11/89
  */
 
-#define	_PATH_BSHELL	"/bin/sh"
-#define	_PATH_CONSOLE	"/dev/console"
+#include <paths.h>
+
 #define	_PATH_RC	"/etc/rc"
 #define	_PATH_RCDOWN	"/etc/rc.shutdown"
