@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/30/90
+#	@(#)Makefile	5.2 (Berkeley) 06/05/93
 
-DIR=	usd/30.invert
+DIR=	usd/27.invert
 SRCS=	refer
 MACROS=	-msU
 
-paper.${PRINTER}: ${SRCS}
+paper.ps: ${SRCS}
 	${REFER} ${SRCS} | ${TBL} | ${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
