@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1982, 1986 Regents of the University of California.
+ * Copyright (c) 1982, 1986, 1988 Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -14,11 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tcp_usrreq.c	7.7.1.3 (Berkeley) 02/15/89
+ *	@(#)tcp_usrreq.c	7.12 (Berkeley) 04/08/89
  */
 
 #include "param.h"
 #include "systm.h"
+#include "malloc.h"
 #include "mbuf.h"
 #include "socket.h"
 #include "socketvar.h"
@@ -65,14 +66,9 @@ tcp_usrreq(so, req, m, nam, rights)
 	int error = 0;
 	int ostate;
 
-#if BSD>=43
 	if (req == PRU_CONTROL)
 		return (in_control(so, (int)m, (caddr_t)nam,
 			(struct ifnet *)rights));
-#else
-	if (req == PRU_CONTROL)
-		return(EOPNOTSUPP);
-#endif
 	if (rights && rights->m_len)
 		return (EINVAL);
 
@@ -211,6 +207,7 @@ tcp_usrreq(so, req, m, nam, rights)
 
 		nam->m_len = sizeof (struct sockaddr_in);
 		sin->sin_family = AF_INET;
+		sin->sin_len = sizeof(*sin);
 		sin->sin_port = inp->inp_fport;
 		sin->sin_addr = inp->inp_faddr;
 		break;
@@ -257,9 +254,7 @@ tcp_usrreq(so, req, m, nam, rights)
 	case PRU_RCVOOB:
 		if ((so->so_oobmark == 0 &&
 		    (so->so_state & SS_RCVATMARK) == 0) ||
-#ifdef SO_OOBINLINE
 		    so->so_options & SO_OOBINLINE ||
-#endif
 		    tp->t_oobflags & TCPOOB_HADDATA) {
 			error = EINVAL;
 			break;
@@ -321,7 +316,6 @@ tcp_usrreq(so, req, m, nam, rights)
 	return (error);
 }
 
-#if BSD>=43
 tcp_ctloutput(op, so, level, optname, mp)
 	int op;
 	struct socket *so;
@@ -379,10 +373,10 @@ tcp_ctloutput(op, so, level, optname, mp)
 	}
 	return (error);
 }
-#endif
 
 u_long	tcp_sendspace = 1024*4;
 u_long	tcp_recvspace = 1024*4;
+
 /*
  * Attach TCP protocol to socket, allocating
  * internet protocol control block, tcp control block,
