@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.135 (Berkeley) 02/28/95";
+static char sccsid[] = "@(#)conf.c	8.136 (Berkeley) 03/01/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1851,8 +1851,8 @@ extern int	optind, opterr;
 int	opterr = 1;		/* if error message should be printed */
 int	optind = 1;		/* index into parent argv vector */
 #endif
-int	optopt;			/* character checked for validity */
-char	*optarg;		/* argument associated with option */
+int	optopt = 0;		/* character checked for validity */
+char	*optarg = NULL;		/* argument associated with option */
 
 #define BADCH	(int)'?'
 #define EMSG	""
