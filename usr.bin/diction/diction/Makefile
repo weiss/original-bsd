@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/19/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	dprog
 BINDIR=	/usr/libexec
