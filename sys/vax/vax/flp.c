@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)flp.c	6.4 (Berkeley) 08/07/85
+ *	@(#)flp.c	6.5 (Berkeley) 03/10/86
  */
 
 #if VAX780
@@ -35,10 +35,8 @@ flopen(dev, flag)
 {
 	struct buf *geteblk();
 
-#if VAX750
 	if (cpu != VAX_780)
 		return (ENXIO);
-#endif
 	if (fltab.fl_state != 0)
 		return (ENXIO);
 	fltab.fl_state = FL_OPEN;
