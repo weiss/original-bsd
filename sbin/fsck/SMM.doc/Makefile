@@ -1,10 +1,7 @@
-#	@(#)Makefile	4.3 (Berkeley) 06/30/90
+#	@(#)Makefile	4.4 (Berkeley) 06/05/93
 
 DIR=	smm/05.fsck
 SRCS=	0.t 1.t 2.t 3.t 4.t
-TROFF=	ditroff
-
-paper.${PRINTER}: ${SRCS}
-	${ROFF} ${SRCS} > ${.TARGET}
+MACROS=	-ms
 
 .include <bsd.doc.mk>
