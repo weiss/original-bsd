@@ -2,10 +2,9 @@
  * Copyright (c) 1990 The Regents of the University of California.
  * All rights reserved.
  *
- * This code is derived from software contributed to Berkeley by
- * Hugh Smith at The University of Guelph.
+ * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 01/18/91
+ *	@(#)pathnames.h	5.2 (Berkeley) 04/16/91
  */
 
 #define _PATH_RANTMP	"/tmp/ranlib.XXXXXX"
