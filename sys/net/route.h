@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)route.h	8.2 (Berkeley) 04/19/94
+ *	@(#)route.h	8.3 (Berkeley) 04/19/94
  */
 
 /*
@@ -90,7 +90,7 @@ struct ortentry {
 	struct	ifnet *rt_ifp;		/* the answer: interface to use */
 };
 
-#define	RTF_UP		0x1		/* route useable */
+#define	RTF_UP		0x1		/* route usable */
 #define	RTF_GATEWAY	0x2		/* destination is a gateway */
 #define	RTF_HOST	0x4		/* host entry (net otherwise) */
 #define	RTF_REJECT	0x8		/* host or net unreachable */
