@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.1 (Berkeley) 04/02/92
+#	@(#)Makefile	5.2 (Berkeley) 06/19/93
 
-NOMAN=noman
+MAN8=	nologin.0
 NOOBJ=noobj
 
-all nologin clean cleandir depend lint tags:
+nologin clean cleandir depend lint tags:
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
