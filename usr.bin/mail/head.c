@@ -8,7 +8,7 @@
  * Routines for processing and detecting headlines.
  */
 
-static char *SccsId = "@(#)head.c	1.2 10/17/80";
+static char *SccsId = "@(#)head.c	2.1 07/01/81";
 
 /*
  * See if the passed line buffer is a mail header.

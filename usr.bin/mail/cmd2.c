@@ -9,7 +9,7 @@
  * More user commands.
  */
 
-static char *SccsId = "@(#)cmd2.c	1.4 03/20/81";
+static char *SccsId = "@(#)cmd2.c	2.1 07/01/81";
 
 /*
  * If any arguments were given, go to the next applicable argument

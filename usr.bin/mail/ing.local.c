@@ -11,7 +11,7 @@
  * you won't have to remake them each release.
  */
 
-static char *SccsId = "@(#)ing.local.c	1.1 10/08/80";
+static char *SccsId = "@(#)ing.local.c	2.1 07/01/81";
 
 #include "rcv.h"
 #include	<errno.h>
