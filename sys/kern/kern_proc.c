@@ -1,4 +1,4 @@
-/*	kern_proc.c	3.22	09/25/80	*/
+/*	kern_proc.c	3.23	09/30/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -445,8 +445,8 @@ exit(rv)
 	vrelu(u.u_procp, 0);
 	multprog--;
 /*	spl7();			/* clock will get mad because of overlaying */
-	noproc = 1;
 	p->p_stat = SZOMB;
+	noproc = 1;
 	i = PIDHASH(p->p_pid);
 	x = p - proc;
 	if (pidhash[i] == x)
