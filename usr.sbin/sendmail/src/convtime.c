@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)convtime.c	8.1 (Berkeley) 06/07/93";
+static char sccsid[] = "@(#)convtime.c	8.2 (Berkeley) 03/08/95";
 #endif /* not lint */
 
 # include <ctype.h>
@@ -54,6 +54,11 @@ convtime(p, units)
 		{
 			c = units;
 			p--;
+		}
+		else if (strchr("wdhms", c) == NULL)
+		{
+			usrerr("Invalid time unit `%c'", c);
+			c = units;
 		}
 		switch (c)
 		{
