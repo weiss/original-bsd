@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)targ.c	5.8 (Berkeley) 12/28/90";
+static char sccsid[] = "@(#)targ.c	5.9 (Berkeley) 03/01/91";
 #endif /* not lint */
 
 /*-
@@ -358,7 +358,7 @@ Targ_PrintCmd (cmd)
  */
 char *
 Targ_FmtTime (time)
-    int    time;
+    time_t    time;
 {
     struct tm	  	*parts;
     static char	  	buf[40];

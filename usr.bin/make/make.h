@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)make.h	5.12 (Berkeley) 06/01/90
+ *	@(#)make.h	5.13 (Berkeley) 03/01/91
  */
 
 /*-
