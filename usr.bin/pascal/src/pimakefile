@@ -1,4 +1,4 @@
-SCCSID = "@(#)pimakefile 1.18 04/01/81"
+SCCSID = "@(#)pimakefile 1.19 02/02/82"
 WHOAMI = pi
 INSTALLNAME = ${DESTDIR}/usr/ucb/pi
 VERSION = 2.0
@@ -22,6 +22,7 @@ SRCS =	ato.c \
 	hash.c lab.c lookup.c lval.c stklval.c \
 	main.c nl.c proc.c put.c \
 	rec.c rval.c stkrval.c\
+	savenl.c \
 	stat.c string.c subr.c \
 	tmps.c tree.c type.c var.c \
 	TRdata.c \
@@ -41,6 +42,7 @@ OBJS =	ato.o \
 	hash.o lab.o lookup.o lval.o stklval.o \
 	main.o nl.o proc.o put.o \
 	rec.o rval.o stkrval.o\
+	savenl.o \
 	stat.o string.o subr.o \
 	tmps.o tree.o type.o var.o \
 	TRdata.o \
@@ -63,7 +65,7 @@ ${SRCS} ${HDRS} ${OTHERS}:
 .c.o:
 	${RM} ${TMPDIR}/$*.c
 	${MKSTR} - ${ERRORSTRINGS} ${TMPDIR}/ $*.c
-	cd ${TMPDIR} ; ${CC} ${CFLAGS} -I.. -c $*.c ;\
+	cd ${TMPDIR} ; ${CC} ${CFLAGS} -I.. -I../../pdx -c $*.c ;\
 		rm -f ../$*.o; mv $*.o  ../$*.o
 	${RM} ${TMPDIR}/$*.c
 
