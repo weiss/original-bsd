@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.52		12/13/82);
+SCCSID(@(#)savemail.c	3.53		12/24/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -56,7 +56,7 @@ savemail(e)
 
 	if (e->e_from.q_paddr == NULL)
 	{
-		if (parse("root", &e->e_from, 0) == NULL)
+		if (parseaddr("root", &e->e_from, 0) == NULL)
 		{
 			syserr("Cannot parse root!");
 			ExitStat = EX_SOFTWARE;
@@ -262,7 +262,7 @@ returntosender(msg, returnto, sendbody)
 
 	/* fake up an address header for the from person */
 	expand("$n", buf, &buf[sizeof buf - 1], CurEnv);
-	if (parse(buf, &ee->e_from, -1) == NULL)
+	if (parseaddr(buf, &ee->e_from, -1) == NULL)
 	{
 		syserr("Can't parse myself!");
 		ExitStat = EX_SOFTWARE;
