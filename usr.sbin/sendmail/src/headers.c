@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.19 (Berkeley) 12/15/93";
+static char sccsid[] = "@(#)headers.c	8.20 (Berkeley) 01/06/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -701,7 +701,7 @@ crackaddr(addr)
 		else if (c == ')')
 		{
 			/* syntax error: unmatched ) */
-			if (!skipping)
+			if (copylev > 0 && !skipping)
 				bp--;
 		}
 
