@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)objfmt.h	5.2 (Berkeley) 11/11/86
+ *	@(#)objfmt.h	5.3 (Berkeley) 06/29/90
  */
 
 /*
@@ -168,7 +168,7 @@ struct formalrtn	frtn;
 #   define START 0x0				/* beginning of text */
 #endif vax
 #ifdef tahoe
-#   define HEADER_BYTES	2048			/* the size of px_header */
+#   define HEADER_BYTES	2560			/* the size of px_header */
 #   define START 0x0				/* beginning of text */
 #endif tahoe
 #ifdef mc68000
