@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.78 (Berkeley) 04/09/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.79 (Berkeley) 04/11/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.78 (Berkeley) 04/09/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.79 (Berkeley) 04/11/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1381,7 +1381,7 @@ anynet_ntoa(sap)
 
 #ifdef NETINET
 	  case AF_INET:
-		return inet_ntoa(((struct sockaddr_in *) sap)->sin_addr);
+		return inet_ntoa(sap->sin.sin_addr);
 #endif
 
 	  default:
