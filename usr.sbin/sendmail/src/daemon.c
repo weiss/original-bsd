@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.10 (Berkeley) 08/23/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.11 (Berkeley) 08/27/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.10 (Berkeley) 08/23/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.11 (Berkeley) 08/27/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -414,7 +414,7 @@ setdaemonoptions(p)
 #ifdef NETINET
 			  case AF_INET:
 				if (isascii(*v) && isdigit(*v))
-					DaemonAddr.sin.sin_port = atoi(v);
+					DaemonAddr.sin.sin_port = htons(atoi(v));
 				else
 				{
 					register struct servent *sp;
@@ -432,7 +432,7 @@ setdaemonoptions(p)
 			  case AF_ISO:
 				/* assume two byte transport selector */
 				if (isascii(*v) && isdigit(*v))
-					port = atoi(v);
+					port = htons(atoi(v));
 				else
 				{
 					register struct servent *sp;
