@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)vent.c	4.1 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)vent.c	4.2 (Berkeley) 10/10/85";
 #endif
 
 #include "../condevs.h"
@@ -27,6 +27,7 @@ struct Devices *dev;
 	alarm(10);
 	dh = open(dcname, 2);
 	next_fd = -1;
+	alarm(0);
 	if (dh < 0) {
 		DEBUG(4,"%s\n", errno == 4 ? "no carrier" : "can't open modem");
 		delock(dev->D_line);
