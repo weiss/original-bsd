@@ -13,7 +13,7 @@
  * Mail to others.
  */
 
-static char *SccsId = "@(#)send.c	2.9 01/22/83";
+static char *SccsId = "@(#)send.c	2.10 02/09/83";
 
 /*
  * Send message described by the passed pointer to the
@@ -342,7 +342,7 @@ topdog:
 #ifdef	pdp11
 	while (wait2(&s, WNOHANG) > 0)
 #endif
-#ifdef	vax
+#if defined(vax) || defined(sun)
 	while (wait3(&s, WNOHANG, 0) > 0)
 #endif
 		;
