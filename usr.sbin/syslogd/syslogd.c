@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.38 (Berkeley) 11/22/89";
+static char sccsid[] = "@(#)syslogd.c	5.39 (Berkeley) 04/04/90";
 #endif /* not lint */
 
 /*
@@ -714,10 +714,7 @@ wallmsg(f, iov)
 	if (reenter++)
 		return;
 	if ((uf = fopen(_PATH_UTMP, "r")) == NULL) {
-		/*
-		 * don't log, as may not have mounted file systems yet
-		 * logerror(_PATH_UTMP);
-		 */
+		logerror(_PATH_UTMP);
 		reenter = 0;
 		return;
 	}
