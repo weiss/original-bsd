@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_pager.c	7.6 (Berkeley) 08/28/91
+ *	@(#)vm_pager.c	7.7 (Berkeley) 03/01/92
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -52,30 +52,30 @@
 #if NSWAPPAGER > 0
 extern struct pagerops swappagerops;
 #define	swappagerops_p	&swappagerops
-#else
-#define	swappagerops_p	NULL
 #endif
 
 #include "vnodepager.h"
 #if NVNODEPAGER > 0
 extern struct pagerops vnodepagerops;
 #define	vnodepagerops_p	&vnodepagerops
-#else
-#define	vnodepagerops_p	NULL
 #endif
 
 #include "devpager.h"
 #if NDEVPAGER > 0
 extern struct pagerops devicepagerops;
 #define	devicepagerops_p &devicepagerops
-#else
-#define	devicepagerops_p NULL
 #endif
 
 struct pagerops *pagertab[] = {
+#if NSWAPPAGER > 0
 	swappagerops_p,		/* PG_SWAP */
+#endif
+#if NVNODEPAGER > 0
 	vnodepagerops_p,	/* PG_VNODE */
+#endif
+#if NDEVPAGER > 0
 	devicepagerops_p,	/* PG_DEV */
+#endif
 };
 int npagers = sizeof (pagertab) / sizeof (pagertab[0]);
 
