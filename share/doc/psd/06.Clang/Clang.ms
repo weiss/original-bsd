@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.man%
 .\"
-.\"	@(#)Clang.ms	6.4 (Berkeley) 06/05/93
+.\"	@(#)Clang.ms	8.1 (Berkeley) 06/08/93
 .\"
 .nr Cl 2
 .TL
