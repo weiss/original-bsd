@@ -4,8 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ranlib.h	5.1 (Berkeley) 01/18/91
+ *	@(#)ranlib.h	5.2 (Berkeley) 04/03/91
  */
+
+#ifndef _RANLIB_H_
+#define	_RANLIB_H_
 
 #define	RANLIBMAG	"__.SYMDEF"	/* archive file name */
 #define	RANLIBSKEW	3		/* creation time offset */
@@ -17,3 +20,5 @@ struct ranlib {
 	} ran_un;
 	off_t ran_off;			/* archive file offset */
 };
+
+#endif /* !_RANLIB_H_ */
