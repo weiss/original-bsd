@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)statfs.2	6.7 (Berkeley) 12/14/91
+.\"	@(#)statfs.2	6.8 (Berkeley) 01/06/93
 .\"
 .Dd 
 .Dt STATFS 2
@@ -13,7 +13,6 @@
 .Nd get file system statistics
 .Sh SYNOPSIS
 .Fd #include <sys/param.h>
-.Fd #include <sys/ucred.h>
 .Fd #include <sys/mount.h>
 .Ft int
 .Fn statfs "const char *path" "struct statfs *buf"
