@@ -1,4 +1,4 @@
-.\"	@(#)network.ms	4.1 (Berkeley) 05/13/86
+.\"	@(#)network.ms	5.1 (Berkeley) 05/13/86
 .\"
 .RP
 .if n .ls 2
