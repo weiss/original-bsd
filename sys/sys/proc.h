@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)proc.h	7.15 (Berkeley) 05/18/90
+ *	@(#)proc.h	7.16 (Berkeley) 05/18/90
  */
 
 /*
@@ -153,8 +153,6 @@ struct	prochd {
 int	whichqs;		/* bit mask summarizing non-empty qs's */
 
 #define SESS_LEADER(p)	((p)->p_session->s_leader == (p))
-#define PGRP_JOBC(p)	(((p)->p_pgrp != (p)->p_pptr->p_pgrp) && \
-			((p)->p_session == (p)->p_pptr->p_session))
 #endif
 
 /* stat codes */
