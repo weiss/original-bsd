@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)savecore.c	4.14 (Berkeley) 84/07/17";
+static	char *sccsid = "@(#)savecore.c	4.15 (Berkeley) 85/06/03";
 #endif
 
 /*
@@ -84,6 +84,7 @@ main(argc, argv)
 	while ((argc > 1) && (argv[1][0] == '-')) {
 		switch (argv[1][1]) {
 		case 'v':
+		case 'd':
 			Verbose = 1;
 			break;
 		default:
@@ -308,8 +309,6 @@ get_crashtime()
 	int dumpfd;
 	time_t clobber = (time_t)0;
 
-	if (system)
-		return (1);
 	dumpfd = Open(ddname, 0);
 	Lseek(dumpfd, (off_t)(dumplo + ok(dump_nl[X_TIME].n_value)), 0);
 	Read(dumpfd, (char *)&dumptime, sizeof dumptime);
