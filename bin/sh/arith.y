@@ -50,7 +50,7 @@ expr:	ARITH_LPAREN expr ARITH_RPAREN = { $$ = $2; }
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)arith.y	5.2 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)arith.y	8.1 (Berkeley) 05/31/93";
 #endif /* not lint */
 
 #include "shell.h"
