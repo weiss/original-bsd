@@ -3,11 +3,9 @@
  * All rights reserved.
  *
  * %sccs.include.proprietary.c%
+ *
+ *	@(#)gram.expr	5.3 (Berkeley) 04/12/91
  */
-
-#ifndef lint
-static char sccsid[] = "@(#)gram.expr	5.2 (Berkeley) 04/12/91";
-#endif /* not lint */
 
 /*
  * gram.expr
