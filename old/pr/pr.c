@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)pr.c	4.4 (Berkeley) 04/29/83";
+static char *sccsid = "@(#)pr.c	4.5 (Berkeley) 12/12/84";
 
 /*
  *   print file with headings
@@ -19,7 +19,7 @@ int	col;
 int	icol;
 FILE	*file;
 char	*bufp;
-#define	BUFS	6720
+#define	BUFS	9000	/* at least 66 * 132 */
 char	buffer[BUFS];	/* for multi-column output */
 char	obuf[BUFSIZ];
 #define	FF	014
