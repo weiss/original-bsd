@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1982 Regents of the University of California.
+ * Copyright (c) 1984, 1985 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ns_output.c	6.8 (Berkeley) 11/20/85
+ *	@(#)ns_output.c	6.9 (Berkeley) 02/03/86
  */
 
 #include "param.h"

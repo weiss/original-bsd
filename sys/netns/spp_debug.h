@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1982 Regents of the University of California.
+ * Copyright (c) 1984 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)spp_debug.h	6.2 (Berkeley) 06/08/85
+ *	@(#)spp_debug.h	6.3 (Berkeley) 02/03/86
  */
 
 struct	spp_debug {
