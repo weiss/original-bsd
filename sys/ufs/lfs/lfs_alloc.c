@@ -1,8 +1,8 @@
-/* Copyright (c) 1981 Regents of the University of California */
+/*	alloc.c	4.1	82/03/25	*/
 
-static char vers[] = "@(#)lfs_alloc.c 2.1 03/25/82";
+/* merged into kernel:	@(#)lfs_alloc.c 2.2 04/08/82 */
 
-/*	alloc.c	4.8	81/03/08	*/
+/* last monet version:	alloc.c	4.8	81/03/08	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
