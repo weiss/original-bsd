@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.2 (Berkeley) 05/12/90";
+static char sccsid[] = "@(#)misc.c	5.3 (Berkeley) 10/22/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -101,6 +101,6 @@ usage()
 		(void)fprintf(stderr, "usage: find path-list expression\n");
 	else
 		(void)fprintf(stderr,
-		    "usage: find [-dsx] -f path ... expression\n");
+		    "usage: find [-drsx] -f path ... expression\n");
 	exit(1);
 }
