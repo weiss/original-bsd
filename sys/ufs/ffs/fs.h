@@ -12,9 +12,9 @@
  * from this software without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
- * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)fs.h	7.6 (Berkeley) 06/27/88
+ *	@(#)fs.h	7.7 (Berkeley) 05/09/89
  */
 
 /*
@@ -421,5 +421,4 @@ struct	ocg {
 
 #ifdef KERNEL
 struct	fs *getfs();
-struct	fs *mountfs();
 #endif
