@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.50 (Berkeley) 04/26/93
+ *	@(#)sendmail.h	6.51 (Berkeley) 04/26/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.50		04/26/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.51		04/26/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -152,6 +152,7 @@ struct mailer
 typedef struct mailer	MAILER;
 
 /* bits for m_flags */
+# define M_ESMTP	'a'	/* run Extended SMTP protocol */
 # define M_NOCOMMENT	'c'	/* don't include comment part of address */
 # define M_CANONICAL	'C'	/* make addresses canonical "u@dom" */
 		/*	'D'	/* CF: include Date: */
@@ -177,6 +178,7 @@ typedef struct mailer	MAILER;
 # define M_USR_UPPER	'u'	/* preserve user case distinction */
 # define M_UGLYUUCP	'U'	/* this wants an ugly UUCP from line */
 		/*	'V'	/* UIUC: !-relativize all addresses */
+		/*	'x'	/* CF: include Full-Name: */
 # define M_XDOT		'X'	/* use hidden-dot algorithm */
 # define M_7BITS	'7'	/* use 7-bit path */
 
@@ -425,8 +427,10 @@ MCI
 #define MCIS_ERROR	6		/* I/O error on connection */
 
 /* options bits */
-#define MCIO_EXPN	0x0001		/* EXPN command supported */
-#define MCIO_SIZE	0x0002		/* SIZE option supported */
+#define MCIO_ESMTP	0x0001		/* this host speaks ESMTP */
+#define MCIO_EXPN	0x0002		/* EXPN command supported */
+#define MCIO_SIZE	0x0004		/* SIZE option supported */
+#define MCIO_8BITMIME	0x0008		/* BODY=8BITMIME supported */
 /*
 **  Mapping functions
 **
