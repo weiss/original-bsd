@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)daemon.c	5.3 (Berkeley) 12/28/90";
+static char sccsid[] = "@(#)daemon.c	5.4 (Berkeley) 07/31/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/fcntl.h>
@@ -36,4 +36,5 @@ daemon(nochdir, noclose)
 				(void) close(devnull);
 		}
 	}
+	return (0);
 }
