@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)arcs.c	1.9 (Berkeley) 06/20/82";
+    static	char *sccsid = "@(#)arcs.c	1.10 (Berkeley) 06/20/82";
 #endif lint
 
 #include "gprof.h"
@@ -288,7 +288,7 @@ cyclelink()
 	}
 	cycle += 1;
 	cyclenlp = &cyclenl[cycle];
-        cyclenlp -> name = "";		/* the name */
+        cyclenlp -> name = 0;		/* the name */
         cyclenlp -> value = 0;		/* the pc entry point */
         cyclenlp -> time = 0.0;		/* ticks in this routine */
         cyclenlp -> childtime = 0.0;	/* cumulative ticks in children */
