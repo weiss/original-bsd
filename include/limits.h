@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)limits.h	5.3 (Berkeley) 02/16/89
+ *	@(#)limits.h	5.4 (Berkeley) 12/20/89
  */
 
 #define	_POSIX_ARG_MAX		4096
@@ -30,3 +30,7 @@
 
 #include <machine/machlimits.h>
 #include <sys/syslimits.h>
+
+#ifndef _POSIX_SOURCE
+#define	LINE_MAX		2048
+#endif
