@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)addbytes.c	8.2 (Berkeley) 01/09/94";
+static char sccsid[] = "@(#)addbytes.c	8.3 (Berkeley) 03/19/94";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -60,7 +60,8 @@ newline:			if (y == win->maxy - 1) {
 						SYNCH_IN;
 						lp = win->lines[y];
 					        x = 0;
-					} 
+					} else
+						return (ERR);
 				} else {
 					y++;
 					lp = win->lines[y];
