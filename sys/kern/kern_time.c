@@ -1,4 +1,10 @@
-/*	kern_time.c	6.4	84/11/14	*/
+/*
+ * Copyright (c) 1982 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)kern_time.c	6.5 (Berkeley) 06/08/85
+ */
 
 #include "../machine/reg.h"
 
