@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.67 (Berkeley) 05/28/95";
+static char sccsid[] = "@(#)headers.c	8.68 (Berkeley) 06/01/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -409,16 +409,24 @@ eatheader(e, full)
 	msgid = NULL;
 	for (h = e->e_header; h != NULL; h = h->h_link)
 	{
+		if (tTd(32, 1))
+			printf("%s: ", h->h_field);
 		if (h->h_value == NULL)
 		{
 			if (tTd(32, 1))
-				printf("%s: <NULL>\n", h->h_field);
+				printf("<NULL>\n");
 			continue;
 		}
 
 		/* do early binding */
 		if (bitset(H_DEFAULT, h->h_flags))
 		{
+			if (tTd(32, 1))
+			{
+				printf("(");
+				xputs(h->h_value);
+				printf(") ");
+			}
 			expand(h->h_value, buf, sizeof buf, e);
 			if (buf[0] != '\0')
 			{
@@ -429,7 +437,6 @@ eatheader(e, full)
 
 		if (tTd(32, 1))
 		{
-			printf("%s: ", h->h_field);
 			xputs(h->h_value);
 			printf("\n");
 		}
