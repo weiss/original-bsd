@@ -1,5 +1,5 @@
 /*
- *	@(#)3270.h	3.1  10/29/86
+ * @(#)hostctlr.h	1.4 (Berkeley) 07/17/87
  */
 
 #define	INCLUDED_HOST3270

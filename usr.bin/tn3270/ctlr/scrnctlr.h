@@ -1,6 +1,8 @@
 /*
  * definitions that have to do with the interface between the
  * controller and the screen.
+ *
+ * @(#)scrnctlr.h	1.2 (Berkeley) 07/17/87
  */
 
 #define	DISP_AMPERSAND		0x30

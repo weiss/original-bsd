@@ -1,5 +1,7 @@
 /*
  * This file contains header information used by the PC API routines.
+ *
+ * @(#)api.h	1.13 (Berkeley) 07/17/87
  */
 
 #if	!defined(MSDOS)
