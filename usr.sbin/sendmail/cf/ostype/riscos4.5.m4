@@ -6,13 +6,7 @@ divert(-1)
 #
 # %sccs.include.redist.sh%
 #
-VERSIONID(@(#)riscos4.5.m4	2.1 (Berkeley) 10/02/91)
+VERSIONID(@(#)riscos4.5.m4	2.2 (Berkeley) 12/12/91)
 #
-
-define(`ALIAS_FILE', /usr/lib/aliases)dnl
-define(`HELP_FILE', /usr/lib/sendmail.hf)dnl
-define(`QUEUE_DIR', /usr/spool/mqueue)dnl
-define(`STATUS_FILE', /usr/lib/sendmail.st)dnl
-define(`LOCAL_MAILER', /bin/mail)dnl
 
 divert(0)
