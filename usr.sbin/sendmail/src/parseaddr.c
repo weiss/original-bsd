@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] = "@(#)parseaddr.c	3.20	08/25/81";
+static char	SccsId[] = "@(#)parseaddr.c	3.21	08/25/81";
 
 /*
 **  PARSE -- Parse an address
@@ -393,17 +393,6 @@ prescan(addr, delim)
 				brccnt = -1;
 				continue;
 			}
-		}
-
-		/*
-		**  Turn "at" into "@",
-		**	but only if "at" is a word.
-		*/
-
-		if (lower(tok[0]) == 'a' && lower(tok[1]) == 't' && tok[2] == '\0')
-		{
-			tok[0] = '@';
-			tok[1] = '\0';
 		}
 	}
 	*avp = NULL;
