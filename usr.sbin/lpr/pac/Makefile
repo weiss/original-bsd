@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/11/90
+#	@(#)Makefile	5.2 (Berkeley) 09/01/92
 
 PROG=	pac
 CFLAGS+=-I${.CURDIR}/../common_source
 MAN8=	pac.0
-SRCS=	pac.c printcap.c
+SRCS=	pac.c common.c
 .PATH:	${.CURDIR}/../common_source
 
 .include "../../Makefile.inc"
