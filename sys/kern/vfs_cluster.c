@@ -1,4 +1,4 @@
-/*	vfs_cluster.c	3.8	06/24/80	*/
+/*	vfs_cluster.c	3.9	07/19/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -500,6 +500,7 @@ register struct buf *bp;
 		if (bswlist.b_flags & B_WANTED)
 			wakeup((caddr_t)&proc[2]);
 		splx(s);
+		return;
 	}
 	if (bp->b_flags&B_ASYNC)
 		brelse(bp);
