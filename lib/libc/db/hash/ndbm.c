@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ndbm.c	5.4 (Berkeley) 02/22/91";
+static char sccsid[] = "@(#)ndbm.c	5.5 (Berkeley) 03/03/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -65,7 +65,7 @@ datum	key;
     int	status;
     datum	retval;
 
-    status = (db->get) ( db, (DBT *)&key, (DBT *)&retval );
+    status = (db->get) ( db, (DBT *)&key, (DBT *)&retval, 0 );
     if ( status ) {
 	retval.dptr = NULL;
     }
@@ -120,7 +120,7 @@ datum	key;
 {
     int	status;
 
-    status = (db->del)( db, (DBT *)&key );
+    status = (db->del)( db, (DBT *)&key, 0 );
     if ( status ) {
 	return(-1);
     } else {
