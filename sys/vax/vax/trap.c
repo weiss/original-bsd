@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)trap.c	6.6 (Berkeley) 06/08/85
+ *	@(#)trap.c	6.7 (Berkeley) 02/02/86
  */
 
 #include "psl.h"
@@ -205,11 +205,18 @@ syscall(sp, type, code, pc, psl)
 	opc = pc - 2;
 	if (code > 63)
 		opc -= 2;
-	callp = (code >= nsysent) ? &sysent[63] : &sysent[code];
-	if (callp == sysent) {
-		i = fuword(params);
-		params += NBPW;
-		callp = ((unsigned)i >= nsysent) ? &sysent[63] : &sysent[i];
+	if (code >= nsysent)
+		callp = &sysent[0];		/* indir (illegal) */
+	else {
+		callp = &sysent[code];
+		if (callp == sysent) {		/* indir */
+			i = fuword(params);
+			params += NBPW;
+			if ((unsigned)i >= nsysent)
+				callp = &sysent[0];
+			else
+				callp = &sysent[i];
+		}
 	}
 	if ((i = callp->sy_narg * sizeof (int)) &&
 	    (u.u_error = copyin(params, (caddr_t)u.u_arg, (u_int)i)) != 0) {
