@@ -1,4 +1,4 @@
-/*	tty.c	3.7	10/14/12	*/
+/*	tty.c	3.8	06/07/80	*/
 
 /*
  * general TTY subroutines
