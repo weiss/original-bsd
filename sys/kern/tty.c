@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.51 (Berkeley) 07/08/92
+ *	@(#)tty.c	7.52 (Berkeley) 07/12/92
  */
 
 #include "param.h"
@@ -1047,7 +1047,7 @@ parmrk:
 			/*
 			 * Place the cursor over the '^' of the ^D.
 			 */
-			i = MIN(2, tp->t_col - i);
+			i = min(2, tp->t_col - i);
 			while (i > 0) {
 				(void) ttyoutput('\b', tp);
 				i--;
