@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sys_bsd.c	1.17 (Berkeley) 03/20/89";
+static char sccsid[] = "@(#)sys_bsd.c	1.18 (Berkeley) 05/30/89";
 #endif /* not lint */
 
 /*
@@ -641,6 +641,9 @@ int poll;		/* If 0, then block until something to do */
 	    }
 	    if (c <= 0) {
 		return -1;
+	    }
+	    if (termdata) {
+		Dump('<', ttyiring.supply, c);
 	    }
 	    ring_supplied(&ttyiring, c);
 	}
