@@ -1,4 +1,4 @@
-/* $Id: os-xinu43.h,v 5.2 90/06/23 22:21:01 jsp Rel $ */
+/* $Id: os-xinu43.h,v 5.2.1.2 90/11/04 23:17:45 jsp Exp $ */
 
 /*
  * mt Xinu 4.3 (MORE/bsd) definitions for Amd (automounter)
@@ -14,13 +14,15 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)os-xinu43.h	5.1 (Berkeley) 06/29/90
+ *	@(#)os-xinu43.h	5.2 (Berkeley) 03/17/91
  */
 
 /*
  * Does the compiler grok void *
  */
+#ifdef __GNUC__
 #define	VOIDP
+#endif
 
 /*
  * Which version of the Sun RPC library we are using

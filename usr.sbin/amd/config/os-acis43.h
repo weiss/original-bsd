@@ -1,4 +1,4 @@
-/* $Id: os-acis43.h,v 5.2 90/06/23 22:20:32 jsp Rel $ */
+/* $Id: os-acis43.h,v 5.2.1.1 90/10/21 22:30:37 jsp Exp $ */
 
 /*
  * IBM RT ACIS4.3 definitions for Amd (automounter)
@@ -13,7 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)os-acis43.h	5.1 (Berkeley) 06/29/90
+ *	@(#)os-acis43.h	5.2 (Berkeley) 03/17/91
  */
 
 /*
@@ -45,3 +45,13 @@
  */
 #define	MOUNT_TYPE_NFS	MOUNT_NFS
 #define	MOUNT_TYPE_UFS	MOUNT_UFS
+#undef MTAB_TYPE_UFS
+#define	MTAB_TYPE_UFS	"ufs"
+
+#undef ARCH_ENDIAN
+#define	ARCH_ENDIAN	"big"
+
+/*
+ * Need precise symlink lengths
+#define PRECISE_SYMLINKS
+ */
