@@ -1,59 +1,59 @@
-/*-
- * Copyright (c) 1989 The Regents of the University of California.
+/*
+ * Copyright (c) 1988 The Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.redist.c%
+ * Redistribution and use in source and binary forms are permitted
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by the University of California, Berkeley.  The name of the
+ * University may not be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pwd.h	5.13 (Berkeley) 05/28/91
+ *	@(#)pwd.h	5.1 (Berkeley) 03/06/90
  */
 
-#ifndef _PWD_H_
-#define	_PWD_H_
-
-#include <sys/types.h>
-
-#ifndef _POSIX_SOURCE
 #define	_PATH_PASSWD		"/etc/passwd"
 #define	_PATH_MASTERPASSWD	"/etc/master.passwd"
+#define	_PATH_MKPASSWD		"/usr/sbin/mkpasswd"
+#define	_PATH_PTMP		"/etc/ptmp"
 
-#define	_PATH_MP_DB		"/etc/pwd.db"
-#define	_PATH_SMP_DB		"/etc/spwd.db"
+#define	_PW_KEYBYNAME		'0'
+#define	_PW_KEYBYUID		'1'
 
-#define	_PATH_PWD_MKDB		"/usr/sbin/pwd_mkdb"
-
-#define	_PW_KEYBYNAME		'1'	/* stored by name */
-#define	_PW_KEYBYNUM		'2'	/* stored by entry in the "file" */
-#define	_PW_KEYBYUID		'3'	/* stored by uid */
-
-#define	_PASSWORD_EFMT1		'_'	/* extended encryption format */
-
-#define	_PASSWORD_LEN		128	/* max length, not counting NULL */
-#endif
+#define	_PASSWORD_LEN		128
 
 struct passwd {
-	char	*pw_name;		/* user name */
-	char	*pw_passwd;		/* encrypted password */
-	int	pw_uid;			/* user uid */
-	int	pw_gid;			/* user gid */
-	time_t	pw_change;		/* password change time */
-	char	*pw_class;		/* user access class */
-	char	*pw_gecos;		/* Honeywell login info */
-	char	*pw_dir;		/* home directory */
-	char	*pw_shell;		/* default shell */
-	time_t	pw_expire;		/* account expiration */
+	char	*pw_name;			/* user name */
+	char	*pw_passwd;			/* encrypted password */
+	int	pw_uid;				/* user uid */
+	int	pw_gid;				/* user gid */
+	u_long	pw_change;			/* password change time */
+	char	*pw_class;			/* user access class */
+	char	*pw_gecos;			/* Honeywell login info */
+	char	*pw_dir;			/* home directory */
+	char	*pw_shell;			/* default shell */
+	u_long	pw_expire;			/* account expiration */
 };
 
-#include <sys/cdefs.h>
-
-__BEGIN_DECLS
-struct passwd	*getpwuid __P((uid_t));
-struct passwd	*getpwnam __P((const char *));
-#ifndef _POSIX_SOURCE
-struct passwd	*getpwent __P((void));
-int		 setpassent __P((int));
-int		 setpwent __P((void));
-void		 endpwent __P((void));
+#ifdef __STDC__
+struct passwd *getpwent(void);
+struct passwd *getpwuid(int);
+struct passwd *getpwnam(const char *);
+int setpwent(void);
+int endpwent(void);
+int setpwfile(const char *);
+int setpassent(int);
+#else
+struct passwd *getpwent();
+struct passwd *getpwuid();
+struct passwd *getpwnam();
+int setpwent();
+int endpwent();
+int setpwfile();
+int setpassent();
 #endif
-__END_DECLS
-
-#endif /* !_PWD_H_ */
