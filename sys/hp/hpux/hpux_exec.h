@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: hpux_exec.h 1.4 88/05/24$
+ * from: Utah $Hdr: hpux_exec.h 1.1 90/07/09$
  *
- *	@(#)hpux_exec.h	7.1 (Berkeley) 05/08/90
+ *	@(#)hpux_exec.h	7.2 (Berkeley) 10/24/90
  */
 
 /*
