@@ -12,16 +12,22 @@
 # include <errno.h>
 # include "sendmail.h"
 
-#ifndef DAEMON
-static char	SccsId[] = "@(#)daemon.c	5.3 (Berkeley) 06/08/85	(w/o daemon mode)";
-#else
+# ifndef DAEMON
+# ifndef lint
+static char	SccsId[] = "@(#)daemon.c	5.4 (Berkeley) 06/08/85	(w/o daemon mode)";
+# endif not lint
+# else
 
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <sys/wait.h>
+# include <sys/socket.h>
+# include <netinet/in.h>
+# include <netdb.h>
+# include <sys/wait.h>
+# include <sys/time.h>
+# include <sys/resource.h>
 
-static char	SccsId[] = "@(#)daemon.c	5.3 (Berkeley) 06/08/85 (with daemon mode)";
+# ifndef lint
+static char	SccsId[] = "@(#)daemon.c	5.4 (Berkeley) 06/08/85 (with daemon mode)";
+# endif not lint
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -105,7 +111,7 @@ getrequests()
 # endif DEBUG
 
 	/* get a socket for the SMTP connection */
-	DaemonSocket = socket(AF_INET, SOCK_STREAM, 0, 0);
+	DaemonSocket = socket(AF_INET, SOCK_STREAM, 0);
 	if (DaemonSocket < 0)
 	{
 		/* probably another daemon already */
@@ -124,13 +130,18 @@ getrequests()
 		(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_DEBUG, 0, 0);
 #endif DEBUG
 
-	if (bind(DaemonSocket, &SendmailAddress, sizeof SendmailAddress, 0) < 0)
+	if (bind(DaemonSocket, &SendmailAddress, sizeof SendmailAddress) < 0)
 	{
 		syserr("getrequests: cannot bind");
 		(void) close(DaemonSocket);
 		goto severe;
 	}
-	listen(DaemonSocket, 10);
+	if (listen(DaemonSocket, 10) < 0)
+	{
+		syserr("getrequests: cannot listen");
+		(void) close(DaemonSocket);
+		goto severe;
+	}
 
 # ifdef DEBUG
 	if (tTd(15, 1))
@@ -153,7 +164,7 @@ getrequests()
 		{
 			errno = 0;
 			lotherend = sizeof otherend;
-			t = accept(DaemonSocket, &otherend, &lotherend, 0);
+			t = accept(DaemonSocket, &otherend, &lotherend);
 		} while (t < 0 && errno == EINTR);
 		if (t < 0)
 		{
@@ -249,7 +260,7 @@ getrequests()
 		(void) close(t);
 
 		/* pick up old zombies */
-		while (wait3(&status, WNOHANG, 0) > 0)
+		while (wait3(&status, WNOHANG, (struct rusage *) 0) > 0)
 			continue;
 	}
 	/*NOTREACHED*/
@@ -358,7 +369,7 @@ makeconnection(host, port, outfile, infile)
 		printf("makeconnection (%s)\n", host);
 # endif DEBUG
 
-	s = socket(AF_INET, SOCK_STREAM, 0, 0);
+	s = socket(AF_INET, SOCK_STREAM, 0);
 	if (s < 0)
 	{
 		syserr("makeconnection: no socket");
@@ -376,7 +387,7 @@ makeconnection(host, port, outfile, infile)
 	(void) fflush(CurEnv->e_xfp);			/* for debugging */
 	errno = 0;					/* for debugging */
 	SendmailAddress.sin_family = AF_INET;
-	if (connect(s, &SendmailAddress, sizeof SendmailAddress, 0) < 0)
+	if (connect(s, &SendmailAddress, sizeof SendmailAddress) < 0)
 	{
 		/* failure, decide if temporary or not */
 	failure:
@@ -438,7 +449,10 @@ myhostname(hostbuf, size)
 	extern struct hostent *gethostbyname();
 	struct hostent *hp;
 
-	gethostname(hostbuf, size);
+	if (gethostname(hostbuf, size) < 0)
+	{
+		(void) strcpy(hostbuf, "localhost");
+	}
 	hp = gethostbyname(hostbuf);
 	if (hp != NULL)
 	{
