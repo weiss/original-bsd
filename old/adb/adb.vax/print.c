@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)print.c 4.2 05/14/81";
+static	char sccsid[] = "@(#)print.c 4.3 05/15/81";
 /*
  *
  *	UNIX debugger
@@ -372,7 +372,10 @@ getreg(regnam) {
 			OD
 			IF *regptr
 			THEN lp=olp;
-			ELSE return(kcore ? (int)p->rkern : p->roffs);
+			ELSE
+				int i = kcore ? (int)p->rkern : p->roffs;
+				printf("returning %X\n", i);
+				return (i);
 			FI
 		FI
 	OD
