@@ -4,22 +4,24 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	7.11 (Berkeley) 02/05/92
+ *	@(#)conf.h	7.12 (Berkeley) 07/20/92
  */
 
 /*
  * Definitions of device driver entry switches
  */
 
-#ifdef __STDC__
+struct buf;
+struct proc;
 struct tty;
-#endif
+struct uio;
+struct vnode;
 
 struct bdevsw {
 	int	(*d_open)	__P((dev_t dev, int oflags, int devtype,
 				     struct proc *p));
 	int	(*d_close)	__P((dev_t dev, int fflag, int devtype,
-				     struct proc *));
+				     struct proc *p));
 	int	(*d_strategy)	__P((struct buf *bp));
 	int	(*d_ioctl)	__P((dev_t dev, int cmd, caddr_t data,
 				     int fflag, struct proc *p));
