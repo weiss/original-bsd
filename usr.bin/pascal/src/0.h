@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)0.h 1.2 09/02/80"; */
+/* static	char sccsid[] = "@(#)0.h 1.3 10/03/80"; */
 
 #define DEBUG
 #define	CHAR
@@ -362,6 +362,8 @@ struct {
 #define	PROG	20
 #define	IMPROPER 21
 #define	VARNT	22
+#define	FPROC	23
+#define	FFUNC	24
 
 /*
  * Clnames points to an array of names for the
