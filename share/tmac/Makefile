@@ -1,8 +1,6 @@
-#	@(#)Makefile	6.13.1.1 (Berkeley) 05/07/91
+#	@(#)Makefile	6.14 (Berkeley) 08/18/91
 
-# Missing: tmac.a tmac.an.old tmac.cp tmac.r
-
-FILES=	tmac.andoc tmac.doc.old
+FILES=	tmac.an.old tmac.r tmac.andoc
 MSRCS=  doc doc-ditroff doc-common doc-nroff doc-syms
 LINKS=	${BINDIR}/tmac/tmac.andoc ${BINDIR}/tmac/tmac.an
 NOOBJ=	noobj
