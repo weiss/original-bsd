@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)initscr.c	5.8 (Berkeley) 09/14/92";
+static char sccsid[] = "@(#)initscr.c	5.9 (Berkeley) 10/27/92";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -38,6 +38,9 @@ initscr()
 		__TRACE("initscr: term = %s\n", sp);
 #endif
 	}
+	/* Need either homing or cursor motion for refreshes */
+	if (!HO && !CM) 
+		return(NULL);
 	tputs(TI, 0, __cputchar);
 	tputs(VS, 0, __cputchar);
 	(void)signal(SIGTSTP, tstp);
