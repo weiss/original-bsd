@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)auth-proto.h	5.2 (Berkeley) 03/22/91
+ *	@(#)auth-proto.h	5.3 (Berkeley) 12/18/92
  */
 
 /*
@@ -35,7 +35,7 @@
 #endif
 #endif
 
-#if	defined(AUTHENTICATE)
+#if	defined(AUTHENTICATION)
 Authenticator *findauthenticator P((int, int));
 
 void auth_init P((char *, int));
