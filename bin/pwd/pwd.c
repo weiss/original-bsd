@@ -1,11 +1,11 @@
-static char *sccsid = "@(#)pwd.c	4.2 (Berkeley) 02/12/82";
+static char *sccsid = "@(#)pwd.c	4.3 (Berkeley) 05/07/82";
 /*
  * Print working (current) directory
  */
 #include	<stdio.h>
 #include	<sys/param.h>
 #include	<sys/stat.h>
-#include	<ndir.h>
+#include	<dir.h>
 
 char	dot[]	= ".";
 char	dotdot[] = "..";
