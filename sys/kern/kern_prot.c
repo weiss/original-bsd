@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_prot.c	7.6 (Berkeley) 05/01/89
+ *	@(#)kern_prot.c	7.7 (Berkeley) 05/18/89
  */
 
 /*
@@ -390,7 +390,9 @@ setlogname()
 		return;
 	if (uap->namelen > sizeof (u.u_logname) - 1)
 		u.u_error = EINVAL;
-	else
+	else {
+		u.u_logname[uap->namelen] = NULL;
 		u.u_error = copyin((caddr_t)uap->namebuf,
 			(caddr_t)u.u_logname, uap->namelen);
+	}
 }
