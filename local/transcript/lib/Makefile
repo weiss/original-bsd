@@ -1,4 +1,4 @@
-# @(#)Makefile	1.3 (Berkeley) 04/15/88
+# @(#)Makefile	1.4 (Berkeley) 07/27/93
 # transcript/lib/Makefile.bsd
 #
 # Copyright (c) 1985 Adobe Systems Incorporated. All Rights Reserved. 
@@ -21,7 +21,8 @@ programs all:
 	sed -e s,XPSLIBDIRX,$(PSLIBDIR),g psint.proto > psint.sh
 
 install: 
-	cd $(PSLIBDIR); rm -rf - ${FILES} ${PRG} *.afm 
+	cd $(PSLIBDIR); rm -rf - ${FILES} ${PRG} *.afm \
+		psif psof psnf pstf psgf psvf psdf pscf psrf psbad loadseal
 	cp -p ${FILES} ${PRG} *.afm $(PSLIBDIR)
 	cd $(PSLIBDIR); chown $(OWNER).$(GROUP) ${FILES} ${PRG} *.afm; \
 		chmod 664 ${FILES} *.afm; \
