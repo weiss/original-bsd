@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.87 (Berkeley) 04/22/95";
+static char sccsid[] = "@(#)readcf.c	8.88 (Berkeley) 05/13/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1311,6 +1311,8 @@ struct optioninfo
 	"RetryFactor",		'Z',		FALSE,
 #define O_QUEUESORTORD	0x81
 	"QueueSortOrder",	O_QUEUESORTORD,	TRUE,
+#define O_HOSTSFILE	0x82
+	"HostsFile",		O_HOSTSFILE,	FALSE,
 #define O_MQA		0x83
 	"MinQueueAge",		O_MQA,		TRUE,
 #define O_MHSA		0x84
@@ -1925,6 +1927,10 @@ setoption(opt, val, safe, sticky, e)
 		  default:
 			syserr("Invalid queue sort order \"%s\"", val);
 		}
+		break;
+
+	  case O_HOSTSFILE:	/* pathname of /etc/hosts file */
+		HostsFile = newstr(val);
 		break;
 
 	  case O_MQA:		/* minimum queue age between deliveries */
