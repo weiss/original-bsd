@@ -14,9 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_sysctl.c	7.1 (Berkeley) 01/31/90
+ *	@(#)kern_sysctl.c	7.2 (Berkeley) 01/31/90
  */
 
+#include "param.h"
+#include "user.h"
+#include "proc.h"
 #include "kinfo.h"
 #include "vm.h"
 #include "ioctl.h"
