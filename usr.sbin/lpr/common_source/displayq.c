@@ -6,11 +6,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)displayq.c	8.3 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)displayq.c	8.4 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
+#include <sys/file.h>
 
 #include <signal.h>
 #include <fcntl.h>

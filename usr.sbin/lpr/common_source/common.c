@@ -11,11 +11,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)common.c	8.4 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)common.c	8.5 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 
 #include <sys/socket.h>
 #include <netinet/in.h>
