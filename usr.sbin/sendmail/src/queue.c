@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.11 (Berkeley) 08/16/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.12 (Berkeley) 08/19/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.11 (Berkeley) 08/16/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.12 (Berkeley) 08/19/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -511,7 +511,12 @@ runqueue(forkflag)
 		}
 		else
 		{
-			dowork(w->w_name + 2, ForkQueueRuns, FALSE, e);
+			pid_t pid;
+			extern pid_t dowork();
+
+			pid = dowork(w->w_name + 2, ForkQueueRuns, FALSE, e);
+			errno = 0;
+			(void) waitfor(pid);
 		}
 		free(w->w_name);
 		free((char *) w);
@@ -769,19 +774,20 @@ workcmpf(a, b)
 **		e - the envelope in which to run it.
 **
 **	Returns:
-**		none.
+**		process id of process that is running the queue job.
 **
 **	Side Effects:
 **		The work request is satisfied if possible.
 */
 
+pid_t
 dowork(id, forkflag, requeueflag, e)
 	char *id;
 	bool forkflag;
 	bool requeueflag;
 	register ENVELOPE *e;
 {
-	register int i;
+	register pid_t pid;
 	extern bool readqf();
 
 	if (tTd(40, 1))
@@ -793,19 +799,19 @@ dowork(id, forkflag, requeueflag, e)
 
 	if (forkflag)
 	{
-		i = fork();
-		if (i < 0)
+		pid = fork();
+		if (pid < 0)
 		{
 			syserr("dowork: cannot fork");
-			return;
+			return 0;
 		}
 	}
 	else
 	{
-		i = 0;
+		pid = 0;
 	}
 
-	if (i == 0)
+	if (pid == 0)
 	{
 		/*
 		**  CHILD
@@ -822,7 +828,7 @@ dowork(id, forkflag, requeueflag, e)
 		e->e_errormode = EM_MAIL;
 		e->e_id = id;
 		if (forkflag)
-			disconnect(0, e);
+			disconnect(1, e);
 # ifdef LOG
 		if (LogLevel > 76)
 			syslog(LOG_DEBUG, "%s: dowork, pid=%d", e->e_id,
@@ -858,15 +864,8 @@ dowork(id, forkflag, requeueflag, e)
 		else
 			dropenvelope(e);
 	}
-	else if (!requeueflag)
-	{
-		/*
-		**  Parent -- pick up results.
-		*/
-
-		errno = 0;
-		(void) waitfor(i);
-	}
+	e->e_id = NULL;
+	return pid;
 }
 /*
 **  READQF -- read queue file and set up environment.

@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.12 (Berkeley) 08/17/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.13 (Berkeley) 08/19/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.12 (Berkeley) 08/17/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.13 (Berkeley) 08/19/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -549,9 +549,10 @@ smtp(e)
 				/* if we just queued, poke it */
 				if (doublequeue && e->e_sendmode != SM_QUEUE)
 				{
+					extern pid_t dowork();
+
 					unlockqueue(e);
-					dowork(id, TRUE, TRUE, e);
-					e->e_id = NULL;
+					(void) dowork(id, TRUE, TRUE, e);
 				}
 			}
 
