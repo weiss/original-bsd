@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.54		01/01/83);
+SCCSID(@(#)savemail.c	3.55		01/03/83);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -142,7 +142,8 @@ savemail(e)
 		if (e->e_errorqueue == NULL)
 			sendtolist(e->e_from.q_paddr, (ADDRESS *) NULL,
 			       &e->e_errorqueue);
-		if (returntosender("Unable to deliver mail",
+		if (returntosender(e->e_message != NULL ? e->e_message :
+				   "Unable to deliver mail",
 				   e->e_errorqueue, TRUE) == 0)
 			return;
 	}
@@ -258,7 +259,8 @@ returntosender(msg, returnto, sendbody)
 		if (q->q_alias == NULL)
 			addheader("to", q->q_paddr, ee);
 	}
-	addheader("subject", msg, ee);
+	(void) sprintf(buf, "MAIL FAILURE: %s", msg);
+	addheader("subject", buf, ee);
 
 	/* fake up an address header for the from person */
 	expand("$n", buf, &buf[sizeof buf - 1], CurEnv);
