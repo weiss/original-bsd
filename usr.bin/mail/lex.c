@@ -8,7 +8,7 @@
  * Lexical processing of commands.
  */
 
-static char *SccsId = "@(#)lex.c	2.1.1.2 09/09/81";
+static char *SccsId = "@(#)lex.c	2.2 09/09/81";
 
 /*
  * Set up editing on the given file name.
