@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_balloc.c	7.31 (Berkeley) 07/05/92
+ *	@(#)lfs_balloc.c	7.32 (Berkeley) 07/12/92
  */
 
 #include <sys/param.h>
@@ -13,8 +13,9 @@
 #include <sys/vnode.h>
 #include <sys/mount.h>
 #include <sys/resourcevar.h>
-#include <sys/specdev.h>
 #include <sys/trace.h>
+
+#include <miscfs/specfs/specdev.h>
 
 #include <ufs/ufs/quota.h>
 #include <ufs/ufs/inode.h>
