@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tm.c	7.6 (Berkeley) 01/17/90
+ *	@(#)tm.c	7.7 (Berkeley) 02/08/90
  */
 
 #include "te.h"
@@ -34,6 +34,7 @@
 #include "kernel.h"
 #include "tty.h"
 #include "syslog.h"
+#include "tsleep.h"
 
 #include "machine/pte.h"
 #include "../vax/cpu.h"
@@ -104,7 +105,7 @@ struct	te_softc {
 	daddr_t	sc_timo;	/* time until timeout expires */
 	int	sc_blks;	/* number of I/O operations since open */
 	int	sc_softerrs;	/* number of soft I/O errors since open */
-	struct	tty *sc_ttyp;	/* record user's tty for errors */
+	caddr_t	sc_ctty;	/* users controlling terminal (vnode) */
 } te_softc[NTE];
 #ifdef unneeded
 int	tmgapsdcnt;		/* DEBUG */
@@ -222,7 +223,7 @@ tmopen(dev, flag)
 get:
 	tmcommand(dev, TM_SENSE, 1);
 	if (sc->sc_erreg&TMER_SDWN) {
-		sleep((caddr_t)&lbolt, PZERO+1);
+		tsleep((caddr_t)&lbolt, PZERO+1, SLP_TM_OPN, 0); 
 		goto get;
 	}
 	sc->sc_dens = olddens;
@@ -248,7 +249,8 @@ get:
 	sc->sc_dens = dens;
 	sc->sc_blks = 0;
 	sc->sc_softerrs = 0;
-	sc->sc_ttyp = u.u_ttyp;
+	sc->sc_ctty = (caddr_t)(u.u_procp->p_flag&SCTTY ? 
+			u.u_procp->p_session->s_ttyvp : 0);
 	s = splclock();
 	if (sc->sc_tact == 0) {
 		sc->sc_timo = INF;
@@ -451,12 +453,15 @@ loop:
 	/*
 	 * For raw I/O, fudge the current block number
 	 * so we don't seek except on a retry.
+	 * For raw I/O, fudge the current block number
+	 * so we don't seek except on a retry.
 	 */
 	if (bp->b_flags & B_RAW) {
 		if (um->um_tab.b_errcnt == 0) {
 			sc->sc_blkno = bdbtofsb(bp->b_blkno);
 			sc->sc_nxrec = sc->sc_blkno + 1;
 		}
+	} else {
 	} else {
 		/*
 		 * Handle boundary cases for operation
@@ -610,6 +615,7 @@ tmintr(tm11)
 	 */
 	sc->sc_timo = INF;
 	if (um->um_tab.b_active == SIO)
+	if (um->um_tab.b_active == SIO)
 		sc->sc_ioerreg = addr->tmer;
 	sc->sc_dsreg = addr->tmcs;
 	sc->sc_erreg = addr->tmer;
@@ -649,14 +655,14 @@ tmintr(tm11)
 		 * retry up to 8 times.
 		 */
 		if ((addr->tmer&TMER_HARD)==0 && state==SIO) {
-			if (++um->um_tab.b_errcnt < 7) {
+			if (um->um_tab.b_errcnt++ < 8) {
 				if (tmdiag)
 					log(LOG_DEBUG,
 					    "te%d: soft error bn%d er=%b\n",
 					    minor(bp->b_dev)&03,
 					    bp->b_blkno, sc->sc_erreg,
 					    TMER_BITS);
-				sc->sc_blkno++;
+				sc->sc_blkno++;		/* force backspace */
 				ubadone(um);
 				goto opcont;
 			}
@@ -670,7 +676,7 @@ tmintr(tm11)
 		/*
 		 * Couldn't recover error
 		 */
-		tprintf(sc->sc_ttyp,
+		tprintf(sc->sc_ctty,
 		    "te%d: hard error bn%d er=%b\n", minor(bp->b_dev)&03,
 		    bp->b_blkno, sc->sc_erreg, TMER_BITS);
 #ifdef	AVIV
