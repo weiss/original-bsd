@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 04/27/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	find
 SRCS=	find.c function.c ls.c main.c misc.c operator.c option.c
