@@ -1,4 +1,4 @@
-    /* sccsid:  @(#)gprof.h	1.13 (Berkeley) 06/18/82 */
+    /* sccsid:  @(#)gprof.h	1.14 (Berkeley) 01/11/83 */
 
 #include <stdio.h>
 #include <sys/types.h>
@@ -27,7 +27,7 @@ typedef int	bool;
     /*
      *	ticks per second
      */
-#define	HZ	60
+long	hz;
 
 typedef	short UNIT;		/* unit of profiling */
 char	*a_outname;
