@@ -1,5 +1,5 @@
 #
-/*	tty_pty.c	1.3	01/26/81	*/
+/*	tty_pty.c	4.1	01/26/81	*/
 
 /*
  * Pseudo-teletype Driver
