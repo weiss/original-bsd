@@ -1,4 +1,4 @@
-/*	trap.c	4.7	03/09/81	*/
+/*	trap.c	4.8	81/03/09	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
