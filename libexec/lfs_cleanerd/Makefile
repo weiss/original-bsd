@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 PROG=	lfs_cleanerd
 CFLAGS+=-I/sys/ufs/lfs -I${.CURDIR} -DDIAGNOSTIC
