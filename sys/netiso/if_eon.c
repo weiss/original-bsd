@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_eon.c	8.1 (Berkeley) 06/10/93
+ *	@(#)if_eon.c	8.2 (Berkeley) 01/09/95
  */
 
 /***********************************************************
@@ -152,7 +152,7 @@ eonattach()
  */
 eonioctl(ifp, cmd, data)
 	register struct ifnet *ifp;
-	int cmd;
+	u_long cmd;
 	register caddr_t data;
 {
 	int s = splimp();
