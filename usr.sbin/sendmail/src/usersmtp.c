@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.23 (Berkeley) 04/09/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.24 (Berkeley) 04/10/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.23 (Berkeley) 04/09/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.24 (Berkeley) 04/10/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -138,10 +138,10 @@ smtpinit(m, mci, e)
 	**  to connect to an echo server.
 	*/
 
-	p = strchr(SmtpReplyBuffer, ' ');
+	p = strchr(&SmtpReplyBuffer[4], ' ');
 	if (p != NULL)
 		*p == '\0';
-	if (strcasecmp(SmtpReplyBuffer, MyHostName) == 0)
+	if (strcasecmp(&SmtpReplyBuffer[4], MyHostName) == 0)
 	{
 		syserr("553 %s config error: mail loops back to myself",
 			MyHostName);
