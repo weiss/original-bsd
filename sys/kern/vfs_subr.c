@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_subr.c	7.73 (Berkeley) 05/14/92
+ *	@(#)vfs_subr.c	7.74 (Berkeley) 05/14/92
  */
 
 /*
@@ -176,7 +176,7 @@ extern struct vattr va_null;
 getnewvnode(tag, mp, vops, vpp)
 	enum vtagtype tag;
 	struct mount *mp;
-	struct vnodeops *vops;
+	int (**vops)();
 	struct vnode **vpp;
 {
 	register struct vnode *vp, *vq;
