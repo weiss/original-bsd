@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 02/03/86
+#	@(#)Makefile	5.3 (Berkeley) 05/31/87
 #
 ALL=	ftp
 DESTDIR=
@@ -25,3 +25,5 @@ install:
 
 clean:
 	rm -f ${ALL} *.o *.s errs core a.out t.?
+
+depend:
