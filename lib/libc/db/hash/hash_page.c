@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)hash_page.c	5.18 (Berkeley) 05/11/92";
+static char sccsid[] = "@(#)hash_page.c	5.19 (Berkeley) 05/14/92";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -372,7 +372,7 @@ __addel(bufp, key, val)
 	do_expand = 0;
 	while (bp[0] && (bp[bp[0]] < REAL_KEY))
 		/* Exception case */
-		if (bp[2] < REAL_KEY) {
+		if (bp[2] < REAL_KEY && bp[bp[0]] != OVFLPAGE) {
 			/* This is a big-keydata pair */
 			bufp = __add_ovflpage(bufp);
 			if (!bufp)
