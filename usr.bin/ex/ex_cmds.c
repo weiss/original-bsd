@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-static char *sccsid = "@(#)ex_cmds.c	5.2 08/28/80";
+static char *sccsid = "@(#)ex_cmds.c	5.3 09/12/80";
 #include "ex.h"
 #include "ex_argv.h"
 #include "ex_temp.h"
@@ -570,7 +570,7 @@ quit:
 				eol();
 				source(file, 0);
 				continue;
-#ifdef TIOCLGET
+#ifdef SIGTSTP
 /* stop */
 			case 't':
 				tail("stop");
@@ -653,7 +653,7 @@ quit:
 /* version */
 				tail("version");
 				setNAEOL();
-				printf("@(#) Version 3.5, 08/28/80."+5);
+				printf("@(#) Version 3.5, 09/12/80."+5);
 				noonl();
 				continue;
 
