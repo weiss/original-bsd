@@ -6,14 +6,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)v831.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)v831.c	5.4 (Berkeley) 02/04/91";
 #endif /* not lint */
 
 /*
  * Routines for dialing up on Vadic 831
  */
-#include <sys/time.h>
-
 #include "tip.h"
 
 int	v831_abort();
