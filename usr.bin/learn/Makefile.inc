@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.1 (Berkeley) 05/11/90
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/06/93
 
 .if exists(../Makefile.inc)
 .include "../Makefile.inc"
