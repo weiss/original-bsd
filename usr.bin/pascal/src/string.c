@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)string.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)string.c 1.2 11/24/80";
 
 #include "whoami.h"
 #include "0.h"
@@ -64,7 +64,7 @@ savestr(cp)
 	i = strlen(cp) + 1;
 	if (strngp + i >= strng + STRINC) {
 		strngp = malloc(STRINC);
-		if (strngp == -1) {
+		if (strngp == 0) {
 			yerror("Ran out of memory (string)");
 			pexit(DIED);
 		}
