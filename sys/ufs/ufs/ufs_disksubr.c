@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ufs_disksubr.c	7.12 (Berkeley) 05/09/89
+ *	@(#)ufs_disksubr.c	7.13 (Berkeley) 01/02/90
  */
 
 #include "param.h"
@@ -166,7 +166,8 @@ readdisklabel(dev, strat, lp)
 		if (dlp->d_magic != DISKMAGIC || dlp->d_magic2 != DISKMAGIC) {
 			if (msg == NULL)
 				msg = "no disk label";
-		} else if (dkcksum(dlp) != 0)
+		} else if (dlp->d_npartitions > MAXPARTITIONS ||
+			   dkcksum(dlp) != 0)
 			msg = "disk label corrupted";
 		else {
 			*lp = *dlp;
@@ -174,8 +175,6 @@ readdisklabel(dev, strat, lp)
 			break;
 		}
 	}
-	if (lp->d_npartitions > MAXPARTITIONS)
-		lp->d_npartitions = MAXPARTITIONS;
 	bp->b_flags = B_INVAL | B_AGE;
 	brelse(bp);
 	return (msg);
