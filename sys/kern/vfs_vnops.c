@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_vnops.c	7.41 (Berkeley) 06/19/92
+ *	@(#)vfs_vnops.c	7.42 (Berkeley) 06/25/92
  */
 
 #include "param.h"
@@ -425,7 +425,7 @@ vn_fhtovp(fhp, lockflag, vpp)
 
 	if ((mp = getvfs(&fhp->fh_fsid)) == NULL)
 		return (ESTALE);
-	if (VFS_FHTOVP(mp, &fhp->fh_fid, 0, vpp))
+	if (VFS_FHTOVP(mp, &fhp->fh_fid, vpp))
 		return (ESTALE);
 	if (!lockflag)
 		VOP_UNLOCK(*vpp);
