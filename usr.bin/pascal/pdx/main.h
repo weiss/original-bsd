@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)main.h 1.2 01/18/82"; */
+/* static char sccsid[] = "@(#)main.h 1.3 01/20/82"; */
 
 /*
  * Definitions for main program.
@@ -17,3 +17,4 @@ BOOLEAN opt[26];	/* true if command line option given */
 main();			/* debugger main routine */
 init();			/* read in source and object data */
 erecover();		/* does non-local goto for error recovery */
+quit();			/* clean-up before exiting */
