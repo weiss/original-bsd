@@ -1,7 +1,7 @@
-#	@(#)Makefile	7.8 (Berkeley) 11/17/92
+#	@(#)Makefile	7.9 (Berkeley) 06/01/93
 
 LIB=	kern
-CFLAGS+= -I${.CURDIR} -I${.CURDIR}/.. -g
+CFLAGS+= -I${.CURDIR} -I${.CURDIR}/..
 SRCS=	adddi3.c anddi3.c ashldi3.c ashrdi3.c bcmp.c cmpdi2.c divdi3.c \
 	ffs.c iordi3.c locc.c lshldi3.c lshrdi3.c mcount.c moddi3.c \
 	muldi3.c negdi2.c notdi2.c qdivrem.c random.c rindex.c scanc.c \
