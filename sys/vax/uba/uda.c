@@ -1,5 +1,5 @@
 /*
- *	@(#)uda.c	6.11 (Berkeley) 09/14/85
+ *	@(#)uda.c	6.12 (Berkeley) 09/16/85
  */
 
 /************************************************************************
@@ -450,8 +450,10 @@ udstrategy(bp)
 		maxsz = ra_info[unit].radsize - rasizes[xunit].blkoff;
 	if (bp->b_blkno < 0 || bp->b_blkno+sz > maxsz ||
 	    rasizes[xunit].blkoff >= ra_info[unit].radsize) {
-		if (bp->b_blkno == maxsz +1)
+		if (bp->b_blkno == maxsz) {
+			bp->b_resid = bp->b_bcount;
 		        goto done;
+		}
 		bp->b_error = EINVAL;
 		goto bad;
 	}
