@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: hpux_compat.c 1.41 91/04/06$
  *
- *	@(#)ultrix_compat.c	7.1 (Berkeley) 01/07/92
+ *	@(#)ultrix_compat.c	7.2 (Berkeley) 03/28/92
  */
 
 /*
@@ -79,7 +79,7 @@ notimp(p, uap, retval)
 		break;
 	}
 #else
-	uprintf("ULTRIX system call %d not implemented\n", p->p_regs[V0]);
+	uprintf("ULTRIX system call %d not implemented\n", p->p_md.md_regs[V0]);
 	error = nosys(p, uap, retval);
 #endif
 	return (error);
