@@ -1,10 +1,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.23		07/27/82	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.24		08/08/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.23		07/27/82);
+SCCSID(@(#)srvrsmtp.c	3.24		08/08/82);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -298,8 +298,9 @@ smtp()
 			break;
 
 		  case CMDDBGDEBUG:	/* set debug mode */
-			Debug = atoi(p);
-			message("200", "Debug = %d", Debug);
+			tTsetup(tTdvect, sizeof tTdvect, "0-99.1");
+			tTflag(p);
+			message("200", "Debug set");
 			break;
 
 		  case CMDDBGVERBOSE:	/* set verbose mode */

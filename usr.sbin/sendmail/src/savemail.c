@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.39		07/05/82);
+SCCSID(@(#)savemail.c	3.40		08/08/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -36,7 +36,7 @@ savemail()
 	extern ENVELOPE *newenvelope();
 
 # ifdef DEBUG
-	if (Debug)
+	if (tTd(6, 1))
 		printf("\nsavemail: exclusive %d\n", exclusive);
 # endif DEBUG
 
@@ -218,7 +218,7 @@ returntosender(msg, returnto, sendbody)
 	static int returndepth;
 
 # ifdef DEBUG
-	if (Debug > 0)
+	if (tTd(6, 1))
 	{
 		printf("Return To Sender: msg=\"%s\", depth=%d, CurEnv=%x,\n",
 		       msg, returndepth, CurEnv);
