@@ -6,7 +6,7 @@
 # include <ctype.h>
 # include "sendmail.h"
 
-SCCSID(@(#)util.c	3.35		11/28/82);
+SCCSID(@(#)util.c	3.36		12/09/82);
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -659,6 +659,8 @@ sfgets(buf, siz, fp)
 	} while (!(p != NULL || TimeoutFlag || errno != EINTR));
 	clrevent(ev);
 	LineNumber++;
+	if (TimeoutFlag)
+		syserr("sfgets: timeout on read (mailer may be hung)");
 	return (p);
 }
 
