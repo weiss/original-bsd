@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_sl.c	8.1 (Berkeley) 06/10/93
+ *	@(#)if_sl.c	8.2 (Berkeley) 09/21/93
  */
 
 /*
@@ -137,8 +137,6 @@ struct sl_softc sl_softc[NSL];
 #define FRAME_ESCAPE		0xdb		/* Frame Esc */
 #define TRANS_FRAME_END	 	0xdc		/* transposed frame end */
 #define TRANS_FRAME_ESCAPE 	0xdd		/* transposed frame esc */
-
-#define t_sc T_LINEP
 
 extern struct timeval time;
 
