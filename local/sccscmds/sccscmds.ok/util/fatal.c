@@ -1,4 +1,4 @@
-static char Sccsid[] = "@(#)fatal.c	1.2	02/15/87";
+static char Sccsid[] = "@(#)fatal.c	1.3	12/22/88";
 
 # include	"../hdr/macros.h"
 # include	"../hdr/fatal.h"
@@ -37,7 +37,7 @@ static char Sccsid[] = "@(#)fatal.c	1.2	02/15/87";
  
 	The FTLACT bits determine how fatal should return.
 	If the FTLJMP bit is on longjmp(Fjmp) is
-	called (Fjmp is a global vector of 10 words, see
+	called (Fjmp is a global vector of n words, see
 	setjmp, longjmp documentation).
  
 	If the FTLEXIT bit is on the value of userexit(1) is
@@ -57,7 +57,7 @@ int	Fflags;
 char	*Ffile;
 int	Fvalue = -1;
 int	(*Ffunc)();
-int	Fjmp[10];
+jmp_buf	Fjmp;
 
 
 fatal(msg)
