@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)unistd.h	5.7 (Berkeley) 02/26/91
+ *	@(#)unistd.h	5.8 (Berkeley) 03/03/91
  */
 
 #include <sys/cdefs.h>
@@ -91,7 +91,6 @@ void	 endusershell __P((void));
 int	 exect __P((const char *, char * const *, char * const *));
 int	 fchdir __P((int));
 int	 fchflags __P((int, long));
-int	 fchmod __P((int, mode_t));
 int	 fchown __P((int, int, int));
 int	 fnmatch __P((const char *, const char *, int));
 int	 fsync __P((int));
