@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.2 (Berkeley) 08/24/92";
+static char sccsid[] = "@(#)misc.c	5.3 (Berkeley) 08/26/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -103,7 +103,7 @@ err(severity, fmt, va_alist)
 	switch (severity) {
 	case WARNING:
 	case COMPILE:
-		(void)fprintf(stderr, "%s(%lu): ", fname, linenum);
+		(void)fprintf(stderr, "%lu: %s: ", linenum, fname);
 	}
 	(void)vfprintf(stderr, fmt, ap);
 	va_end(ap);
