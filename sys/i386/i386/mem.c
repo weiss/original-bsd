@@ -8,10 +8,10 @@
  * Science Department, and code derived from software contributed to
  * Berkeley by William Jolitz.
  *
- * %sccs.include.noredist.c%
+ * %sccs.include.redist.c%
  *
  * from: Utah $Hdr: mem.c 1.13 89/10/08$
- *	@(#)mem.c	7.1 (Berkeley) 05/09/91
+ *	@(#)mem.c	7.2 (Berkeley) 05/09/91
  */
 
 /*
