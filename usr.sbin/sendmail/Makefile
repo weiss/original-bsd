@@ -1,7 +1,7 @@
 #
 #	Makefile for sendmail base directory
 #
-#		@(#)Makefile	3.4		01/10/83
+#		@(#)Makefile	3.5		01/16/83
 #
 
 ALL=	src/sendmail aux/syslog
@@ -68,3 +68,7 @@ rcp:
 
 srcinstall:
 	for i in `cat FILES`; do rm -f $(SRCDIR)/$$i; cp $$i $(SRCDIR)/$$i; done
+
+tar:
+	rm -f sendmail.tar
+	tar rcf sendmail.tar `cat FILES`
