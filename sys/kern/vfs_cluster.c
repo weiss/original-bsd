@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_cluster.c	7.8 (Berkeley) 08/15/89
+ *	@(#)vfs_cluster.c	7.9 (Berkeley) 08/16/89
  */
 
 #include "param.h"
@@ -673,13 +673,21 @@ binval(dev)
 {
 	register struct buf *bp;
 	register struct bufhd *hp;
-	int dirty = 0;
+	int s, dirty = 0;
 #define dp ((struct buf *)hp)
 
 	for (hp = bufhash; hp < &bufhash[BUFHSZ]; hp++) {
 		for (bp = dp->b_forw; bp != dp; bp = bp->b_forw) {
 			if (bp->b_dev != dev || (bp->b_flags & B_INVAL))
 				continue;
+		loop:
+			s = splbio();
+			if (bp->b_flags & B_BUSY) {
+				bp->b_flags |= B_WANTED;
+				sleep((caddr_t)bp, PRIBIO+1);
+				splx(s);
+				goto loop;
+			}
 			notavail(bp);
 			if (bp->b_flags & B_DELWRI) {
 				(void) bawrite(bp);
