@@ -1,7 +1,11 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static 	char sccsid[] = "@(#)machdep.h 1.1 01/07/81"; */
+/* static char sccsid[] = "@(#)machdep.h 1.2 03/06/81"; */
 
+#ifdef VAX
 #define pushaddr push4
 #define popaddr (char *)pop4
-#define popargs(num) popsp(num * sizeof(int))
+#else
+#define pushaddr push2
+#define popaddr (char *)pop2
+#endif VAX
