@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dinode.h	8.5 (Berkeley) 08/10/94
+ *	@(#)dinode.h	8.6 (Berkeley) 09/13/94
  */
 
 /*
@@ -88,3 +88,4 @@ struct dinode {
 #define	IFREG		0100000		/* Regular file. */
 #define	IFLNK		0120000		/* Symbolic link. */
 #define	IFSOCK		0140000		/* UNIX domain socket. */
+#define	IFWHT		0160000		/* Whiteout. */
