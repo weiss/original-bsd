@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)keyword.c	5.9 (Berkeley) 06/03/91";
+static char sccsid[] = "@(#)keyword.c	5.10 (Berkeley) 10/22/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -66,7 +66,7 @@ VAR var[] = {
 	{"acflg", "", "acflag"},
 	{"blocked", "", "sigmask"},
 	{"caught", "", "sigcatch"},
-	{"command", "COMMAND", NULL, COMM|LJUST, command, 16},
+	{"command", "COMMAND", NULL, COMM|LJUST|USER, command, 16},
 	{"cpu", "CPU", NULL, 0, pvar, 3, POFF(p_cpu), UCHAR, "d"},
 	{"cputime", "", "time"},
 	{"f", "F", NULL, 0, pvar, 7, POFF(p_flag), LONG, "x"},
