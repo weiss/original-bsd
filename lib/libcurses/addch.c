@@ -6,18 +6,23 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)addch.c	5.5 (Berkeley) 06/01/90";
-#endif /* not lint */
+static char sccsid[] = "@(#)addch.c	5.6 (Berkeley) 08/23/92";
+#endif	/* not lint */
 
-# include	"curses.ext"
+#include <curses.h>
 
 /*
- *	This routine adds the character to the current position
+ * waddch --
+ *	Add the character to the current position in the given window.
  *
  */
+int
 waddch(win, c)
-WINDOW	*win;
-char		c;
+	WINDOW *win;
+	int ch;
 {
-    return waddbytes(win, &c, 1);
+	static char buf[2];
+
+	buf[0] = ch;
+	return (waddbytes(win, buf, 1));
 }
