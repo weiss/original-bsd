@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)df.c	5.22 (Berkeley) 01/31/91";
+static char sccsid[] = "@(#)df.c	5.23 (Berkeley) 02/25/91";
 #endif /* not lint */
 
 /*
@@ -21,7 +21,7 @@ static char sccsid[] = "@(#)df.c	5.22 (Berkeley) 01/31/91";
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/mount.h>
-#include <sys/file.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,7 +39,7 @@ main(argc, argv)
 {
 	extern int errno, optind;
 	int err, ch, i;
-	long width, maxwidth, mntsize, getmntinfo();
+	long width, maxwidth, mntsize;
 	char *mntpt, *mktemp();
 	struct stat stbuf;
 	struct statfs statfsbuf, *mntbuf;
