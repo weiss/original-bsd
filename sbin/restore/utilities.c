@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	8.3 (Berkeley) 09/13/94";
+static char sccsid[] = "@(#)utilities.c	8.4 (Berkeley) 10/18/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -234,7 +234,7 @@ delwhiteout(ep)
 	ep->e_flags |= REMOVED;
 	ep->e_flags &= ~TMPNAME;
 	name = myname(ep);
-	if (!Nflag && unwhiteout(name) < 0) {
+	if (!Nflag && undelete(name) < 0) {
 		fprintf(stderr, "warning: cannot delete whiteout %s: %s\n",
 		    name, strerror(errno));
 		return;
