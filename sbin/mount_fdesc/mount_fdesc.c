@@ -1,14 +1,14 @@
 /*
  * Copyright (c) 1990, 1992 Jan-Simon Pendry
- * Copyright (c) 1992 The Regents of the University of California
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Jan-Simon Pendry.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mount_fdesc.c	5.2 (Berkeley) 07/05/92
+ *	@(#)mount_fdesc.c	8.1 (Berkeley) 06/05/93
  */
 
 #include <sys/param.h>
