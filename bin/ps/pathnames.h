@@ -4,10 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.3 (Berkeley) 05/31/90
+ *	@(#)pathnames.h	5.4 (Berkeley) 02/08/91
  */
 
-#include <paths.h>
-
-#define	_PATH_PSDATABASE	"/var/run/psdatabase"
-#define	_PATH_VMCORE		"/vmcore"
+#define	_PATH_DEVDB	"/var/run/dev.db"
