@@ -1,4 +1,4 @@
-static char *sccsid ="@(#)pftn.c	1.2 (Berkeley) 07/15/83";
+static char *sccsid ="@(#)pftn.c	1.3 (Berkeley) 07/15/83";
 # include "mfile1"
 
 unsigned int offsz;
@@ -987,6 +987,7 @@ endinit(){
 		if( d1!=0 && d1!=n ) uerror( "too many initializers");
 		if( n==0 ) werror( "empty array declaration");
 		dimtab[d] = n;
+		if( d1==0 ) FIXDEF(&stab[pstk->in_id]);
 		}
 
 	else if( t == STRTY || t == UNIONTY ){
