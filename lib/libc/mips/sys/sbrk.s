@@ -1,6 +1,6 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Ralph Campbell.
@@ -11,7 +11,7 @@
 #include "SYS.h"
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	ASMSTR("@(#)sbrk.s	5.3 (Berkeley) 02/26/93")
+	ASMSTR("@(#)sbrk.s	8.1 (Berkeley) 06/04/93")
 #endif /* LIBC_SCCS and not lint */
 
 #define	SYS_brk		17
