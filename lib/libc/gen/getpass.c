@@ -1,4 +1,7 @@
-/* @(#)getpass.c	4.3 (Berkeley) 05/16/84 */
+#ifndef lint
+static char sccsid[] = "@(#)getpass.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include <stdio.h>
 #include <signal.h>
 #include <sgtty.h>
