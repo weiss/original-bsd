@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)computer.c	4.3 (Berkeley) 01/29/86";
+static char sccsid[] = "@(#)computer.c	4.4 (Berkeley) 10/07/87";
 #endif not lint
 
 # include	"trek.h"
@@ -90,7 +90,7 @@ computer()
 	while (1)
 	{
 		r = getcodpar("\nRequest", Cputab);
-		switch (r->value)
+		switch ((int)r->value)
 		{
 
 		  case 1:			/* star chart */
