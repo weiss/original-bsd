@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)getsubopt.3	5.1 (Berkeley) 10/30/90
+.\"	@(#)getsubopt.3	5.2 (Berkeley) 02/24/91
 .\"
 .TH GETSUBOPT 3 ""
 .UC 7
@@ -12,7 +12,7 @@ getsubopt \- get sub options from an argument
 .SH SYNOPSIS
 .nf
 .ft B
-int getsubopt(char **optionp, char *tokens[], char **valuep);
+int getsubopt(char **optionp, char * const *tokens, char **valuep);
 
 extern char *suboptarg;
 .SH DESCRIPTION

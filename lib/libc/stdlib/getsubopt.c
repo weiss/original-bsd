@@ -6,21 +6,23 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)getsubopt.c	5.1 (Berkeley) 10/30/90";
+static char sccsid[] = "@(#)getsubopt.c	5.2 (Berkeley) 02/24/91";
 #endif /* not lint */
 
 #include <unistd.h>
+#include <stdlib.h>
 
 /*
  * The SVID interface to getsubopt provides no way of figuring out which
  * part of the suboptions list wasn't matched.  This makes error messages
- * tricky...  The extern variable suboptarg is a pointer to the token which
- * didn't match.
+ * tricky...  The extern variable suboptarg is a pointer to the token
+ * which didn't match.
  */
 char *suboptarg;
 
 getsubopt(optionp, tokens, valuep)
-	register char **optionp, **tokens, **valuep;
+	register char **optionp, **valuep;
+	register char * const *tokens;
 {
 	register int cnt;
 	register char *p;
