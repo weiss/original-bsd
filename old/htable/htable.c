@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)htable.c	5.5 (Berkeley) 04/15/86";
+static char sccsid[] = "@(#)htable.c	5.6 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -456,7 +456,8 @@ putaddr(f, v)
 	register char *a = (char *)&v;
 	char buf[32];
 
-	sprintf(buf,"%d.%d.%d.%d", UC(a[0]), UC(a[1]), UC(a[2]), UC(a[3]));
+	(void) sprintf(buf,"%d.%d.%d.%d",
+		UC(a[0]), UC(a[1]), UC(a[2]), UC(a[3]));
 	fprintf(f, "%-16.16s", buf);
 }
 
