@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 06/12/93
+#	@(#)Makefile	8.1 (Berkeley) 06/12/93
 #
 # All library objects contain sccsid strings by default; they may be
 # excluded as a space-saving measure.  To produce a library that does
