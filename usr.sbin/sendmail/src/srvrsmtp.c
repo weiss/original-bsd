@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.33 (Berkeley) 04/12/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.34 (Berkeley) 04/12/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.33 (Berkeley) 04/12/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.34 (Berkeley) 04/12/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -271,7 +271,7 @@ smtp(e)
 			
 			/* print extended message and brag */
 			message("250-%s Hello %s, pleased to meet you",
-				MyHostName, p);
+				MyHostName, CurSmtpClient);
 			if (!bitset(PRIV_NOEXPN, PrivacyFlags))
 				message("250-EXPN");
 			if (MaxMessageSize > 0)
