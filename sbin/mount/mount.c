@@ -1,10 +1,12 @@
-static char *sccsid = "@(#)mount.c	4.7 (Berkeley) 03/31/82";
-#include <stdio.h>
-#include <fstab.h>
+#ifndef lint
+static char *sccsid = "@(#)mount.c	4.8 (Berkeley) 02/09/83";
+#endif
 
 /*
  * mount
  */
+#include <stdio.h>
+#include <fstab.h>
 
 #define	NMOUNT	16
 #define	NAMSIZ	32
@@ -76,7 +78,7 @@ top:
 		}
 		exit(0);
 	}
-	if (argc < 2 || argc > 3) {
+	if (argc != 3) {
 argcnt:
 		fprintf(stderr,
 	    "usage: mount [ -a ] [ -r ] [ -f ] [ -v ] [ special dir ]\n");
