@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)savemail.c	5.3 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)savemail.c	5.4 (Berkeley) 09/19/85";
 #endif not lint
 
 # include <pwd.h>
@@ -200,7 +200,7 @@ savemail(e)
 			}
 			else
 			{
-				if (parseaddr("postmaster", &q, 0, '\0') == NULL)
+				if (parseaddr("postmaster", q, 0, '\0') == NULL)
 				{
 					syserr("cannot parse postmaster!");
 					ExitStat = EX_SOFTWARE;
