@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	8.2 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)cp.c	8.3 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 /*
@@ -23,7 +23,7 @@ static char sccsid[] = "@(#)cp.c	8.2 (Berkeley) 04/01/94";
  * 
  * The global PATH_T structure "to" always contains the path to the
  * current target file.  Since fts(3) does not change directories,
- * this path can be either absolute or dot-realative.
+ * this path can be either absolute or dot-relative.
  * 
  * The basic algorithm is to initialize "to" and use fts(3) to traverse
  * the file hierarchy rooted in the argument list.  A trivial case is the
@@ -313,6 +313,13 @@ copy(argv, type, fts_options)
 				rval = 1;
 				if (S_ISDIR(curr->fts_statp->st_mode))
 					(void)fts_set(ftsp, curr, FTS_SKIP);
+				continue;
+			}
+			if (!S_ISDIR(curr->fts_statp->st_mode) &&
+			    S_ISDIR(to_stat.st_mode)) {
+		warnx("cannot overwrite directory %s with non-directory %s",
+				    to.p_path, curr->fts_path);
+				rval = 1;
 				continue;
 			}
 			dne = 0;
