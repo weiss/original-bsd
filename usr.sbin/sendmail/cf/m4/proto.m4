@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.50 (Berkeley) 07/16/94')
+VERSIONID(`@(#)proto.m4	8.51 (Berkeley) 07/21/94')
 
 MAILER(local)dnl
 
@@ -516,6 +516,7 @@ ifdef(`_LOCAL_NOT_STICKY_',
 R$+ < @ $=w . >		$#_LOCAL_ $: $1			dispose directly',
 `R$+ < @ $=w . >		$: $1 < @ $2 . @ $H >		first try hub
 R$+ < $+ @ $+ >		$#_LOCAL_ $: $1			yep ....
+R$=D . $+ < $+ @ >	$#_LOCAL_ $: $1 . $2		dotted name?
 R$+ < $+ @ >		$#_LOCAL_ $: @ $1			nope, local address')
 ifdef(`MAILER_TABLE',
 `
