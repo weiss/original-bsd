@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.43 (Berkeley) 06/05/95";
+static char sccsid[] = "@(#)collect.c	8.44 (Berkeley) 06/10/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -452,6 +452,9 @@ readerr:
 	*/
 
 	eatheader(e, !requeueflag);
+
+	if (GrabTo && e->e_sendqueue == NULL)
+		usrerr("No recipient addresses found in header");
 
 	/* collect statistics */
 	if (OpMode != MD_VERIFY)
