@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	4.8		03/11/84	(no SMTP));
+SCCSID(@(#)usersmtp.c	4.9		03/11/84	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	4.8		03/11/84);
+SCCSID(@(#)usersmtp.c	4.9		03/11/84);
 
 
 
@@ -144,7 +144,7 @@ smtpinit(m, pvp)
 	**	Designates the sender.
 	*/
 
-	expand("$g", buf, &buf[sizeof buf - 1], CurEnv);
+	expand("\001g", buf, &buf[sizeof buf - 1], CurEnv);
 	if (CurEnv->e_from.q_mailer == LocalMailer ||
 	    !bitnset(M_FROMPATH, m->m_flags))
 	{
