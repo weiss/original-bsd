@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.39 (Berkeley) 02/14/94')
+VERSIONID(`@(#)proto.m4	8.40 (Berkeley) 02/14/94')
 
 MAILER(local)dnl
 
@@ -525,15 +525,6 @@ R$* $=O $* < @ $=w . >	$@ $>_SET_97_ $1 $2 $3		...@here -> ...
 
 # handle local hacks
 R$*			$: $>_SET_98_ $1
-ifdef(`MAILER_TABLE',
-`
-# try mailer table lookup
-R$* <@ $+ > $*		$: < $2 > $1 < @ $2 > $3	extract host name
-R< $+ . > $*		$: < $1 > $2			strip trailing dot
-R< $+ > $*		$: < $(mailertable $1 $) > $2	lookup
-R< $- : $+ > $*		$# $1 $@ $2 $: $3		check -- resolved?
-R< $+ > $*		$: $>90 <$1> $2			try domain',
-`dnl')
 
 # short circuit local delivery so forwarded email works
 ifdef(`_LOCAL_NOT_STICKY_',
@@ -546,6 +537,15 @@ R$+ < $+ @ $+ >		$#relay $@ $3 $: $1 < $2 >	yep ....
 R$+ < $+ @ >		$#_LOCAL_ $: $1			nope, local address',
 `R$+ < $+ @ $+ >		$#_LOCAL_ $: $1			yep ....
 R$+ < $+ @ >		$#_LOCAL_ $: @ $1			nope, local address')')
+ifdef(`MAILER_TABLE',
+`
+# not local -- try mailer table lookup
+R$* <@ $+ > $*		$: < $2 > $1 < @ $2 > $3	extract host name
+R< $+ . > $*		$: < $1 > $2			strip trailing dot
+R< $+ > $*		$: < $(mailertable $1 $) > $2	lookup
+R< $- : $+ > $*		$# $1 $@ $2 $: $3		check -- resolved?
+R< $+ > $*		$: $>90 <$1> $2			try domain',
+`dnl')
 undivert(4)dnl
 
 ifdef(`_NO_UUCP_', `dnl',
@@ -637,7 +637,9 @@ S90
 R$* <$- . $+ > $*	$: $1$2 < $(mailertable .$3 $@ $1$2 $) > $4	lookup
 R$* <$- : $+ > $*	$# $2 $@ $3 $: $4		check -- resolved?
 R$* < . $+ > $*		$@ $>90 $1 . <$2> $3		no -- strip & try again
-R$* < $* > $*		$@ $3				no match',
+R$* < . > $*		$: < $(mailertable . $@ $1 $) > $2	try "."
+R<$- : $+ > $*		$# $1 $@ $2 $: $3		"." found?
+R< $* > $*		$@ $2				no mailertable match',
 `dnl')
 
 ###################################################################
