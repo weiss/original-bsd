@@ -2,10 +2,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.46		02/18/83	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.47		02/18/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.46		02/18/83);
+SCCSID(@(#)srvrsmtp.c	3.47		02/18/83);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -95,6 +95,7 @@ smtp()
 	extern tick();
 	extern bool iswiz();
 	extern char *arpadate();
+	extern char *macvalue();
 
 	hasmail = FALSE;
 	rcps = 0;
@@ -168,6 +169,10 @@ smtp()
 			break;
 
 		  case CMDMAIL:		/* mail -- designate sender */
+			/* force a sending host even if no HELO given */
+			if (RealHostName != NULL && macvalue('s', CurEnv) == NULL)
+				define('s', RealHostName, CurEnv);
+
 			/* check for validity of this command */
 			if (hasmail)
 			{
