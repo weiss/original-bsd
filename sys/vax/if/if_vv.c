@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_vv.c	6.11 (Berkeley) 10/13/85
+ *	@(#)if_vv.c	6.12 (Berkeley) 10/14/85
  */
 
 #include "vv.h"
@@ -964,7 +964,7 @@ vvioctl(ifp, cmd, data)
                 case AF_INET:
 			if (in_lnaof(IA_SIN(ifa)->sin_addr) !=
 			    vv_softc[ifp->if_unit].vs_host)
-				return (EADDRNOTAVAIL);
+				error = EADDRNOTAVAIL;
 			break;
 		}
 		break;
