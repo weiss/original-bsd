@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sysctl.h	7.11 (Berkeley) 02/18/92
+ *	@(#)sysctl.h	7.12 (Berkeley) 02/25/92
  */
 
 /*
@@ -48,6 +48,16 @@
  * vmtotal structure
  */
 #define KINFO_METER		(4<<8)
+
+/*
+ * load average structure
+ */
+#define KINFO_LOADAVG		(5<<8)
+
+/*
+ * clock rate structure
+ */
+#define KINFO_CLOCKRATE		(6<<8)
 
 /*
  * Locking and stats
