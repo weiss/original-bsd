@@ -1,4 +1,6 @@
-/*	io.c	4.1	82/05/07	*/
+#ifndef lint
+static char sccsid[] = "@(#)io.c	4.2 08/11/83";
+#endif
 
 #
 /*
