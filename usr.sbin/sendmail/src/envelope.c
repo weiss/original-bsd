@@ -3,7 +3,7 @@
 #include "sendmail.h"
 #include <sys/stat.h>
 
-SCCSID(@(#)envelope.c	3.6		01/08/83);
+SCCSID(@(#)envelope.c	3.7		02/02/83);
 
 /*
 **  NEWENVELOPE -- allocate a new envelope
@@ -647,7 +647,7 @@ setsender(from)
 	define('f', newstr(buf), CurEnv);
 
 	/* save the domain spec if this mailer wants it */
-	if (bitset(M_CANONICAL, CurEnv->e_from.q_mailer->m_flags))
+	if (bitnset(M_CANONICAL, CurEnv->e_from.q_mailer->m_flags))
 	{
 		extern char **copyplist();
 
