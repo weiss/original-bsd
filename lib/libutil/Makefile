@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.13 (Berkeley) 05/22/93
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 LIB=	util
 CFLAGS+=-DLIBC_SCCS -I/sys
