@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.7 (Berkeley) 06/05/85
+#	@(#)Makefile	5.8 (Berkeley) 09/07/85
 #
 DESTDIR=
 CFLAGS=	-O
@@ -43,7 +43,7 @@ ufs_tables.o:
 	cc ${CFLAGS} -I/usr/include/sys -c /sys/sys/ufs_tables.c
 
 install: ${PROG}
-	install ${PROG} ${DESTDIR}/etc/${PROG}
+	install -s ${PROG} ${DESTDIR}/etc/${PROG}
 
 clean:
 	rm -f a.out core ${OBJS} ${PROG}
