@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *      @(#)bpf.c	7.13 (Berkeley) 02/10/93
+ *      @(#)bpf.c	7.14 (Berkeley) 04/17/93
  *
  * static char rcsid[] =
  * "$Header: bpf.c,v 1.33 91/10/27 21:21:58 mccanne Exp $";
@@ -82,6 +82,19 @@ int bpf_bufsize = BPF_BUFSIZE;
  */
 struct bpf_if	*bpf_iflist;
 struct bpf_d	bpf_dtab[NBPFILTER];
+
+#if BSD >= 199207
+/*
+ * bpfilterattach() is called at boot time in new systems.  We do
+ * nothing here since old systems will not call this.
+ */
+/* ARGSUSED */
+void
+bpfilterattach(n)
+	int n;
+{
+}
+#endif
 
 static void	bpf_ifname();
 static void	catchpacket();
