@@ -11,7 +11,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.32 (Berkeley) 04/12/88";
+static char sccsid[] = "@(#)gethostnamadr.c	6.33 (Berkeley) 04/13/88";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -209,7 +209,7 @@ gethostbyname(name)
 	querybuf buf;
 	register char *cp;
 	int n;
-	struct hostent *hp, *gethostdomain();
+	struct hostent *hp;
 	extern struct hostent *_gethtbyname();
 
 	/*
