@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)ldexp.s	5.2 (Berkeley) 06/01/90"
+	.asciz "@(#)ldexp.s	5.3 (Berkeley) 01/14/91"
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -35,7 +35,7 @@
  * #include <errno.h>
  */
 #define	ERANGE	34
-#include <tahoemath/fp.h>
+#include <tahoe/math/fp.h>
 
 #include "DEFS.h"
 
