@@ -1,3 +1,4 @@
+#	Makefile	4.9	84/06/23
 #
 # make file for debugger "dbx"
 #
@@ -8,7 +9,8 @@
 .SUFFIXES: .h .c .s .o
 
 AOUT	= tdbx
-DEST	= /usr/local/bin/dbx
+DESTDIR=
+DEST	= ${DESTDIR}/usr/ucb/dbx
 
 LIBRARIES =
 
@@ -41,6 +43,7 @@ OBJ = \
     pascal.o \
     printsym.o \
     process.o \
+    re.o \
     runtime.o \
     scanner.o \
     source.o \
@@ -70,6 +73,7 @@ HDR = \
     pascal.h \
     printsym.h \
     process.h \
+    re.h \
     runtime.h \
     scanner.h \
     source.h \
@@ -104,6 +108,7 @@ SRC = \
     pascal.c \
     printsym.c \
     process.c \
+    re.c \
     runtime.c \
     scanner.c \
     source.c \
