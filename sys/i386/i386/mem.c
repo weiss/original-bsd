@@ -16,8 +16,6 @@
 #include "../h/cmap.h"
 #include "../h/uio.h"
 
-#include "../tahoe/mtpr.h"
-
 mmread(dev, uio)
 	dev_t dev;
 	struct uio *uio;
@@ -43,7 +41,6 @@ mmrw(dev, uio, rw)
 	register u_int c, v;
 	register struct iovec *iov;
 	int error = 0;
-	extern caddr_t vmembeg, vmemend;
 
 
 	while (uio->uio_resid > 0 && error == 0) {
@@ -62,9 +59,9 @@ mmrw(dev, uio, rw)
 			v = btop(uio->uio_offset);
 			if (v >= physmem)
 				goto fault;
-			*(int *)mmap = v | PG_V |
+			*(int *)mmap = ctob(v) | PG_V |
 				(rw == UIO_READ ? PG_KR : PG_KW);
-			mtpr(TBIS, vmmap);
+			load_cr3(_cr3());
 			o = (int)uio->uio_offset & PGOFSET;
 			c = (u_int)(NBPG - ((int)iov->iov_base & PGOFSET));
 			c = MIN(c, (u_int)(NBPG - o));
@@ -74,12 +71,6 @@ mmrw(dev, uio, rw)
 
 /* minor device 1 is kernel memory */
 		case 1:
-			if ((caddr_t)uio->uio_offset < (caddr_t)&vmembeg &&
-			    (caddr_t)uio->uio_offset + uio->uio_resid >= (caddr_t)&vmembeg)
-				goto fault;
-			if ((caddr_t)uio->uio_offset >= (caddr_t)&vmembeg &&
-			    (caddr_t)uio->uio_offset < (caddr_t)&vmemend)
-				goto fault;
 			c = iov->iov_len;
 			if (!kernacc((caddr_t)uio->uio_offset, c, rw == UIO_READ ? B_READ : B_WRITE))
 				goto fault;
@@ -93,16 +84,6 @@ mmrw(dev, uio, rw)
 			c = iov->iov_len;
 			break;
 
-/* minor device 3 is versabus memory (addressed by shorts) */
-		case 3:
-			c = iov->iov_len;
-			if (!kernacc((caddr_t)uio->uio_offset, c, rw == UIO_READ ? B_READ : B_WRITE))
-				goto fault;
-			if (!useracc(iov->iov_base, c, rw == UIO_READ ? B_WRITE : B_READ))
-				goto fault;
-			error = VERSAcpy((caddr_t)uio->uio_offset, iov->iov_base,
-			    (int)c, rw);
-			break;
 		}
 		if (error)
 			break;
@@ -114,28 +95,4 @@ mmrw(dev, uio, rw)
 	return (error);
 fault:
 	return (EFAULT);
-}
-
-/*
- * VERSABUS Address Space <--> User Space transfer
- */
-VERSAcpy(versaadd, usradd, n, rw)
-	caddr_t versaadd, usradd;
-	register int n;
-	enum uio_rw rw;
-{
-	register short *from, *to;
- 
-	if(((int)versaadd&1) || ((int)usradd&1))
-		return (EFAULT);
-	if (rw == UIO_READ) {
-		from = (short *)versaadd;
-		to = (short *)usradd;
-	} else {
-		from = (short *)usradd;
-		to = (short *)versaadd;
-	}
-	for (n >>= 1; n > 0; n--)
-		*to++ = *from++;
-	return (0);
 }
