@@ -3,11 +3,11 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	6.4 (Berkeley) 06/08/85
+#	@(#)Makefile	6.5 (Berkeley) 08/02/85
 #
 DESTDIR=/
 CFLAGS=	-O -I../h -DSTANDALONE ${COPTS} 
-COPTS=	-DVAX780 -DVAX750 -DVAX730
+COPTS=	-DVAX780 -DVAX750 -DVAX730 -DVAX8600
 730OPTS=-O -DSTANDALONE -DVAX730
 RELOC=	70000
 SRCS=	sys.c conf.c prf.c machdep.c \
