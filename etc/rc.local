@@ -1,13 +1,17 @@
 #
 # site-specific startup actions, daemons
 #
-#	@(#)rc.local	5.3 (Berkeley) 06/30/90
+#	@(#)rc.local	5.4 (Berkeley) 12/14/90
 #
 
-strings /vmunix | grep UNIX >/tmp/t1
-tail +2 /etc/motd >>/tmp/t1
-mv /tmp/t1 /etc/motd
+T=/tmp/_motd
+rm -f $T
+strings /vmunix | grep UNIX > $T
+echo "" >> $T
+sed '1,/^$/d' < /etc/motd >> $T
+cp $T /etc/motd
 chmod 666 /etc/motd
+rm -f $T
 
 echo -n 'starting local daemons:'
 
