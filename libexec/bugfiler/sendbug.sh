@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1983 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1983, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)sendbug.sh	5.12 (Berkeley) 07/25/92
+#	@(#)sendbug.sh	8.1 (Berkeley) 06/04/93
 #
 
 # create a bug report and mail it to '4bsd-bugs'.
