@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmds.c	5.6 (Berkeley) 01/03/88";
+static char sccsid[] = "@(#)cmds.c	5.7 (Berkeley) 03/12/90";
 #endif not lint
 
 /*
@@ -151,7 +151,7 @@ status()
 suspend()
 {
         int oldmask;
-	extern (*sigtstpdfl)();
+	extern sig_t sigtstpdfl;
 
 	alarm(0);
         move(CMDLINE, 0);
