@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.34 (Berkeley) 04/12/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.35 (Berkeley) 04/12/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.34 (Berkeley) 04/12/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.35 (Berkeley) 04/12/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -137,11 +137,11 @@ smtp(e)
 
 	setproctitle("server %s startup", CurSmtpClient);
 	expand("\201e", inp, &inp[sizeof inp], e);
-	p = strchr(inp, '\n');
-	if (p != NULL)
-		*p++ = '\0';
 	if (BrokenSmtpPeers)
 	{
+		p = strchr(inp, '\n');
+		if (p != NULL)
+			*p = '\0';
 		message("220 %s", inp);
 	}
 	else
@@ -150,11 +150,11 @@ smtp(e)
 
 		while (q != NULL)
 		{
-			message("220-%s", q);
-			q = p;
-			p = strchr(p, '\n');
+			p = strchr(q, '\n');
 			if (p != NULL)
 				*p++ = '\0';
+			message("220-%s", q);
+			q = p;
 		}
 		message("220 ESMTP spoken here");
 	}
