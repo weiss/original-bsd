@@ -8,6 +8,7 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)uucpproto.mc	8.1 (Berkeley) 06/07/93')
+VERSIONID(`@(#)uucpproto.mc	8.2 (Berkeley) 08/07/93')
+FEATURE(nodns)dnl
 MAILER(local)dnl
 MAILER(uucp)dnl
