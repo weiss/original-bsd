@@ -1,5 +1,5 @@
 /*
- *	@(#)urem.s	7.1 (Berkeley) 05/21/88
+ *	@(#)urem.s	7.2 (Berkeley) 12/16/90
  */
 
 /*
@@ -7,7 +7,7 @@
  *
  * urem(dividend, divisor)
  */
-#include "../tahoe/SYS.h"
+#include "tahoe/tahoe/SYS.h"
 
 ASENTRY(urem, 0)
 	bitl	$0x80000000,8(fp)	#  if (divisor & 0x80000000){
