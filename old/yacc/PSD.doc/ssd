@@ -1,4 +1,6 @@
-.\"	@(#)ssd	6.1 (Berkeley) 05/08/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)ssd	6.2 (Berkeley) 04/17/91
 .\"
 .SH
 Appendix D: Old Features Supported but not Encouraged

@@ -1,4 +1,6 @@
-.\"	@(#)ss..	6.1 (Berkeley) 05/08/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)ss..	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'PS1:15-%''Yacc: Yet Another Compiler-Compiler'
 .OH 'Yacc: Yet Another Compiler-Compiler''PS1:15-%'
