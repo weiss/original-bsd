@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.5 (Berkeley) 06/02/93
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 # locale sources
 .PATH: ${.CURDIR}/${MACHINE}/locale ${.CURDIR}/locale
