@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.34 (Berkeley) 06/28/90
+ *	@(#)tty.c	7.35 (Berkeley) 07/27/90
  */
 
 #include "param.h"
@@ -389,7 +389,7 @@ ttioctl(tp, com, data, flag)
 				splx(s);
 				return (error);
 			}
-			if (com == TIOCSETAF);
+			if (com == TIOCSETAF)
 				ttyflush(tp, FREAD);
 		}
 		if ((t->c_cflag&CIGNORE) == 0) {
@@ -479,7 +479,7 @@ ttioctl(tp, com, data, flag)
 	case TIOCGPGRP:
 		if (!isctty(u.u_procp, tp))
 			return (ENOTTY);
-		*(int *)data = tp->t_pgrp ? tp->t_pgrp->pg_id : 0;
+		*(int *)data = tp->t_pgrp ? tp->t_pgrp->pg_id : NO_PID;
 		break;
 
 	case TIOCSWINSZ:
@@ -1555,6 +1555,7 @@ ttyrub(c, tp)
 		case BACKSPACE:
 		case CONTROL:
 		case RETURN:
+		case NEWLINE:	/* XXX can't happen ? */
 			if (tp->t_lflag&ECHOCTL)
 				ttyrubo(tp, 2);
 			break;
