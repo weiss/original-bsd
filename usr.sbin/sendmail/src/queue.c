@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.41 (Berkeley) 04/01/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.42 (Berkeley) 04/01/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.41 (Berkeley) 04/01/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.42 (Berkeley) 04/01/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -810,8 +810,7 @@ dowork(id, forkflag, e)
 		eatheader(e);
 
 		/* do the delivery */
-		if (!bitset(EF_FATALERRS, e->e_flags))
-			sendall(e, SM_DELIVER);
+		sendall(e, SM_DELIVER);
 
 		/* finish up and exit */
 		if (forkflag)
@@ -847,11 +846,11 @@ bool
 readqf(e)
 	register ENVELOPE *e;
 {
-	char *qf;
 	register FILE *qfp;
 	ADDRESS *ctladdr;
 	struct stat st;
 	char *bp;
+	char qf[20];
 	char buf[MAXLINE];
 	extern char *fgetfolded();
 	extern long atol();
@@ -862,7 +861,7 @@ readqf(e)
 	**  Read and process the file.
 	*/
 
-	qf = queuename(e, 'q');
+	strcpy(qf, queuename(e, 'q'));
 	qfp = fopen(qf, "r+");
 	if (qfp == NULL)
 	{
