@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)asjxxx.c	5.2 (Berkeley) 06/19/85";
+static char sccsid[] = "@(#)asjxxx.c	5.3 (Berkeley) 12/11/87";
 #endif not lint
 
 #include	<stdio.h>
@@ -339,7 +339,7 @@ jxxxfix()
 			if (displ >= 0) {
 				SEGITERATE(segno, cojumpfrom + 1,0,cointdest,
 						intdest, ubintdest, ++){
-					if (intdest->s_value > dest->s_value) 
+					if (intdest == dest)
 						break; /* beyond destination */
 					if (intdest->s_tag <= JXQUESTIONABLE)
 						continue;	/*frozen solid*/
@@ -369,7 +369,7 @@ jxxxfix()
 			 */
 				SEGITERATE(segno, cojumpfrom - 1,1,cointdest,
 				  intdest, ubintdest, --){
-					if (intdest->s_value <= dest->s_value) 
+					if (intdest == dest)
 						break; /* beyond destination */
 					if (intdest->s_tag <= JXQUESTIONABLE)
 						continue;	/*frozen solid*/
