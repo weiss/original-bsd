@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rsh.c	5.5 (Berkeley) 06/02/87";
+static char sccsid[] = "@(#)rsh.c	5.6 (Berkeley) 10/22/87";
 #endif not lint
 
 #include <sys/types.h>
@@ -32,7 +32,7 @@ static char sccsid[] = "@(#)rsh.c	5.5 (Berkeley) 06/02/87";
  */
 /* VARARGS */
 int	error();
-char	*index(), *rindex(), *malloc(), *getpass(), *sprintf(), *strcpy();
+char	*index(), *rindex(), *malloc(), *getpass(), *strcpy();
 
 struct	passwd *getpwuid();
 
