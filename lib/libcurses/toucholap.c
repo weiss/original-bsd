@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)toucholap.c	5.7 (Berkeley) 09/14/92";
+static char sccsid[] = "@(#)toucholap.c	5.8 (Berkeley) 10/27/92";
 #endif /* not lint */
 
 #include <curses.h>
@@ -45,6 +45,7 @@ touchoverlap(win1, win2)
 	endy -= win2->begy;
 	endx -= win2->begx;
 	for (--endx, y = starty; y < endy; y++)
-		touchline(win2, y, startx, endx);
+		__touchline(win2, y, startx, endx, 0);
 	return (OK);
 }
+

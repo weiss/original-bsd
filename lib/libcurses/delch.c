@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)delch.c	5.9 (Berkeley) 10/26/92";
+static char sccsid[] = "@(#)delch.c	5.10 (Berkeley) 10/27/92";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -30,6 +30,6 @@ wdelch(win)
 	}
 	temp1->ch = ' ';
 	temp1->attr = 0;
-	touchline(win, win->cury, win->curx, win->maxx - 1);
+	__touchline(win, win->cury, win->curx, win->maxx - 1, 0);
 	return (OK);
 }
