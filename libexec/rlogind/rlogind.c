@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogind.c	5.12 (Berkeley) 03/10/87";
+static char sccsid[] = "@(#)rlogind.c	5.13 (Berkeley) 09/09/87";
 #endif not lint
 
 /*
@@ -104,7 +104,8 @@ doit(f, fromp)
 		hp->h_name = inet_ntoa(fromp->sin_addr);
 	}
 	if (fromp->sin_family != AF_INET ||
-	    fromp->sin_port >= IPPORT_RESERVED)
+	    fromp->sin_port >= IPPORT_RESERVED ||
+	    fromp->sin_port < IPPORT_RESERVED/2)
 		fatal(f, "Permission denied");
 	write(f, "", 1);
 	for (c = 'p'; c <= 's'; c++) {
