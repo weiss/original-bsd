@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_bio.c	7.6 (Berkeley) 11/26/89
+ *	@(#)nfs_bio.c	7.7 (Berkeley) 11/30/89
  */
 
 #include "param.h"
@@ -270,8 +270,8 @@ loop:
 	                if (ep->b_vp != vp || (ep->b_flags & B_INVAL))
 	                        continue;
 	                /* look for overlap */
-	                if (ep->b_bcount == 0 || ep->b_blkno > ecurblk ||
-	                    ep->b_blkno + btodb(ep->b_bcount) <= curblk)
+	                if (ep->b_bcount == 0 || ep->b_lblkno > ecurblk ||
+	                    ep->b_lblkno + btodb(ep->b_bcount) <= curblk)
 	                        continue;
 	                s = splbio();
 	                if (ep->b_flags&B_BUSY) {
