@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)d_dprod.c	1.1	08/09/85
+ *	@(#)d_dprod.c	5.1	08/09/85
  */
 
 double d_dprod(x,y)
