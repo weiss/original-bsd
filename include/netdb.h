@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)netdb.h	5.1 (Berkeley) 06/18/85
+ *	@(#)netdb.h	5.2 (Berkeley) 08/07/85
  */
 
 /*
@@ -18,7 +18,8 @@ struct	hostent {
 	char	**h_aliases;	/* alias list */
 	int	h_addrtype;	/* host address type */
 	int	h_length;	/* length of address */
-	char	*h_addr;	/* address */
+	char	**h_addr_list;	/* list of addresses from name server */
+#define	h_addr	h_addr_list[0]; /* address, for backward compatiblity */
 };
 
 /*
