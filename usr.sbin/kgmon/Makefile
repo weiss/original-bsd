@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 05/02/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	kgmon
 MAN8=	kgmon.0
