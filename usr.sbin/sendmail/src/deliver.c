@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.78 (Berkeley) 03/11/94";
+static char sccsid[] = "@(#)deliver.c	8.79 (Berkeley) 04/12/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1269,6 +1269,9 @@ tryhost:
 					env[i++] = *ep;
 			}
 			env[i++] = NULL;
+
+			/* run disconnected from terminal */
+			(void) setsid();
 
 			/* try to execute the mailer */
 			execve(m->m_mailer, pv, env);
