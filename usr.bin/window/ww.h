@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ww.h	3.54 (Berkeley) 08/02/89
+ *	@(#)ww.h	3.55 (Berkeley) 08/24/89
  */
 
 #include <sgtty.h>
@@ -207,7 +207,7 @@ int wwerrno;			/* error number */
 	/* statistics */
 int wwnflush, wwnwr, wwnwre, wwnwrz, wwnwrc;
 int wwnwwr, wwnwwra, wwnwwrc;
-int wwntokdef, wwntokuse, wwntoksave, wwntokc;
+int wwntokdef, wwntokuse, wwntokbad, wwntoksave, wwntokc;
 int wwnupdate, wwnupdline, wwnupdmiss;
 int wwnupdscan, wwnupdclreol, wwnupdclreos, wwnupdclreosmiss, wwnupdclreosline;
 int wwnread, wwnreade, wwnreadz, wwnreadc;
