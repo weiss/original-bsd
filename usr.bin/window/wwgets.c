@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwgets.c	3.16 (Berkeley) 08/12/90";
+static char sccsid[] = "@(#)wwgets.c	3.17 (Berkeley) 03/02/91";
 #endif /* not lint */
 
 #include "ww.h"
@@ -23,6 +23,7 @@ register struct ww *w;
 	register char *p = buf;
 	register char c;
 	char uc = w->ww_unctrl;
+	static void rub();
 
 	w->ww_unctrl = 0;
 	for (;;) {
@@ -71,7 +72,7 @@ register struct ww *w;
 	w->ww_unctrl = uc;
 }
 
-static
+static void
 rub(c, w)
 struct ww *w;
 {
