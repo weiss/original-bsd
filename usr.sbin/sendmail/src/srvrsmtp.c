@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.16 (Berkeley) 09/30/85	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.17 (Berkeley) 12/17/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.16 (Berkeley) 09/30/85";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.17 (Berkeley) 12/17/85";
 # endif not lint
 
 /*
@@ -665,7 +665,7 @@ runinchild(label)
 			/* child */
 			InChild = TRUE;
 			QuickAbort = FALSE;
-			clearenvelope(CurEnv);
+			clearenvelope(CurEnv, FALSE);
 		}
 	}
 
