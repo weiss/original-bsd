@@ -1,4 +1,4 @@
-/*	lpr.c	4.1	81/05/09	*/
+/*	lpr.c	4.2	81/05/12	*/
 /*
  *      lpr -- off line print
  *              also known as print
@@ -160,7 +160,7 @@ char *argv[];
 			break;
 
 		case 'P':		/* specifiy printer name */
-			printer = argv[2];
+			printer = arg[2];
 			break;
 
 		case 'H':		/* toggle want of header page */
