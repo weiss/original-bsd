@@ -1,6 +1,6 @@
-/*	ht.c	4.3	12/17/80	*/
+/*	ht.c	4.4	12/19/80	*/
 
-#include "../conf/ht.h"
+#include "ht.h"
 #if NHT > 0
 /*
  * TJU16 tape driver
