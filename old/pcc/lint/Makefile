@@ -1,8 +1,8 @@
 #
-#	@(#)Makefile	1.20	(Berkeley)	12/11/87
+#	@(#)Makefile	1.21	(Berkeley)	05/22/88
 #
-M=/usr/src/lib/mip
-P=/usr/src/lib/pcc
+M=../../lib/mip
+P=../../lib/pcc
 CFLAGS=-O
 LINTLIBS=llib-port.ln llib-lc.ln llib-lcurses.ln llib-ldbm.ln llib-lm.ln \
 	llib-lmp.ln llib-lplot.ln llib-ltermcap.ln
