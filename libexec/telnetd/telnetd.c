@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)telnetd.c	5.9 (Berkeley) 04/19/86";
+static char sccsid[] = "@(#)telnetd.c	5.10 (Berkeley) 04/19/86";
 #endif not lint
 
 /*
@@ -534,7 +534,7 @@ telrcv()
 					}
 					*nfrontp++ = IAC;
 					*nfrontp++ = DM;
-					neturg = nfrontp;
+					neturg = nfrontp-1; /* off by one XXX */
 					break;
 				}
 
