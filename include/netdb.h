@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)netdb.h	5.13 (Berkeley) 02/24/91
+ *	@(#)netdb.h	5.14 (Berkeley) 03/02/91
  */
 
 #define	_PATH_HEQUIV	"/etc/hosts.equiv"
@@ -71,7 +71,7 @@ void		endprotoent __P((void));
 void		endservent __P((void));
 struct hostent	*gethostbyaddr __P((const char *, int, int));
 struct hostent	*gethostbyname __P((char *));
-/* struct hostent *gethostent __P((void)); */
+struct hostent *gethostent __P((void));
 struct netent	*getnetbyaddr __P((long, int)); /* u_long? */
 struct netent	*getnetbyname __P((const char *));
 struct netent	*getnetent __P((void));
