@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ifconfig.c	4.18 (Berkeley) 05/22/86";
+static char sccsid[] = "@(#)ifconfig.c	4.19 (Berkeley) 03/29/87";
 #endif not lint
 
 #include <sys/types.h>
@@ -364,7 +364,7 @@ xns_status(force)
 	close(s);
 	s = socket(AF_NS, SOCK_DGRAM, 0);
 	if (s < 0) {
-		if (errno == EAFNOSUPPORT)
+		if (errno == EPROTONOSUPPORT)
 			return;
 		perror("ifconfig: socket");
 		exit(1);
