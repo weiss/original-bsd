@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)disklabel.c	5.21 (Berkeley) 11/11/91";
+static char sccsid[] = "@(#)disklabel.c	5.22 (Berkeley) 04/19/92";
 /* from static char sccsid[] = "@(#)disklabel.c	1.2 (Symmetric) 11/28/85"; */
 #endif /* not lint */
 
@@ -41,7 +41,7 @@ static char sccsid[] = "@(#)disklabel.c	5.21 (Berkeley) 11/11/91";
  * for the label on such machines.
  */
 
-#if defined(vax) || defined(i386)
+#if defined(vax) || defined(i386) || defined(mips)
 #define RAWPARTITION	'c'
 #else
 #define RAWPARTITION	'a'
@@ -51,7 +51,7 @@ static char sccsid[] = "@(#)disklabel.c	5.21 (Berkeley) 11/11/91";
 #define	BBSIZE	8192			/* size of boot area, with label */
 #endif
 
-#if defined(vax) || defined(i386)
+#if defined(vax) || defined(i386) || defined(mips)
 #define	BOOT				/* also have bootstrap in "boot area" */
 #define	BOOTDIR	_PATH_BOOTDIR		/* source of boot binaries */
 #else
