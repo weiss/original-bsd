@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	7.13 (Berkeley) 06/04/93
+ *	@(#)conf.h	8.1 (Berkeley) 06/04/93
  */
 
 /*
