@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)systat.h	5.4 (Berkeley) 03/12/90
+ *	@(#)systat.h	5.5 (Berkeley) 02/04/91
  */
 
 #include <netdb.h>
@@ -92,4 +92,4 @@ WINDOW  *wnd;
 int	CMDLINE;
 
 char    *malloc(), *calloc(), *strncpy();
-long    getw();
+long    getword();
