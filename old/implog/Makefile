@@ -1,5 +1,6 @@
-# @(#)Makefile	4.1 10/08/82
+# @(#)Makefile	4.2 10/21/82
 ALL=	implog implogd
+DESTDIR=
 CFLAGS=-O
 
 all:	${ALL}
@@ -19,5 +20,5 @@ clean:
 	rm -f ${ALL} *.o *.s errs core a.out t.?
 
 install: ${ALL}
-	install implog /usr/ucb
-	install implogd /etc
+	install implog ${DESTDIR}/usr/ucb
+	install implogd ${DESTDIR}/etc
