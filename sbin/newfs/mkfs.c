@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkfs.c	6.7 (Berkeley) 05/01/88";
+static char sccsid[] = "@(#)mkfs.c	6.8 (Berkeley) 06/01/88";
 #endif not lint
 
 #ifndef STANDALONE
@@ -890,7 +890,7 @@ wtfs(bno, size, bf)
 	}
 	n = write(fso, bf, size);
 	if(n != size) {
-		printf("write error: %D\n", bno);
+		printf("write error: %ld\n", bno);
 		perror("wtfs");
 		exit(1);
 	}
