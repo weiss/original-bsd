@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	4.9 (Berkeley) 10/22/88
+#	@(#)Makefile	4.10 (Berkeley) 05/10/89
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -57,7 +57,7 @@ depend: y.tab.h ${SRCS}
 	mkdep ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o bin -g bin -m 755 awk ${DESTDIR}/bin/awk
+	install -s -o bin -g bin -m 755 awk ${DESTDIR}/usr/bin
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat1
 
 lint: ${SRCS}
