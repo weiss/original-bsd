@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.14 (Berkeley) 10/31/93";
+static char sccsid[] = "@(#)readcf.c	8.15 (Berkeley) 11/20/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1213,7 +1213,9 @@ setoption(opt, val, safe, sticky, e)
 				if (strcasecmp(q, rfp->rf_name) == 0)
 					break;
 			}
-			if (clearmode)
+			if (rfp->rf_name == NULL)
+				syserr("readcf: I option value %s unrecognized", q);
+			else if (clearmode)
 				_res.options &= ~rfp->rf_bits;
 			else
 				_res.options |= rfp->rf_bits;
