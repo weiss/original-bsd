@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)xec.c	4.3 08/11/83";
+static char sccsid[] = "@(#)xec.c	4.4 01/11/87";
 #endif
 
 #
@@ -206,7 +206,7 @@ execute(argt, execflg, pf1, pf2)
 
                                 case SYSUMASK:
                                         if (a1) {
-                                                int c, i
+                                                int c, i;
                                                 i = 0;
                                                 while ((c = *a1++) >= '0' &&
                                                         c <= '7')
