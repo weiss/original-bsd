@@ -1,4 +1,4 @@
-#	@(#)bsd.prog.mk	5.21 (Berkeley) 12/14/90
+#	@(#)bsd.prog.mk	5.22 (Berkeley) 01/19/91
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -45,7 +45,7 @@ CLEANFILES+=strings
 .if defined(PROG)
 .if defined(SRCS)
 
-OBJS+=	${SRCS:.c=.o}
+OBJS+=  ${SRCS:R:S/$/.o/g}
 
 ${PROG}: ${OBJS} ${LIBC} ${DPADD}
 	${CC} ${LDFLAGS} -o ${.TARGET} ${OBJS} ${LDADD}
