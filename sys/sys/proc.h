@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)proc.h	8.1 (Berkeley) 06/02/93
+ *	@(#)proc.h	8.2 (Berkeley) 09/03/93
  */
 
 #ifndef _PROC_H_
@@ -220,7 +220,7 @@ int	tsleep __P((void *chan, int pri, char *wmesg, int timo));
 void	unsleep __P((struct proc *));
 void	wakeup __P((void *chan));
 void	setrun __P((struct proc *));
-void	setpri __P((struct proc *));
+void	resetpriority __P((struct proc *));
 void	swtch __P((void));
 
 #endif	/* KERNEL */
