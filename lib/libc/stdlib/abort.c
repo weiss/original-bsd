@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)abort.c	5.2 (Berkeley) 07/26/85";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)abort.c	5.3 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /* C library -- abort */
 
