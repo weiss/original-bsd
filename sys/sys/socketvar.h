@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1982, 1986, 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)socketvar.h	7.22 (Berkeley) 02/25/93
+ *	@(#)socketvar.h	8.1 (Berkeley) 06/02/93
  */
 
 #include <sys/select.h>			/* for struct selinfo */

@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1985, 1989, 1991 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1985, 1989, 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)namei.h	7.21 (Berkeley) 07/25/92
+ *	@(#)namei.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _NAMEI_H_

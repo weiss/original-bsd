@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)timeb.h	7.2 (Berkeley) 05/05/91
+ *	@(#)timeb.h	8.1 (Berkeley) 06/02/93
  */
 
 /* The ftime(2) system call structure -- deprecated. */

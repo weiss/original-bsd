@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ioctl_compat.h	7.4 (Berkeley) 02/05/91
+ *	@(#)ioctl_compat.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _IOCTL_COMPAT_H_

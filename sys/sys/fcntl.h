@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1983, 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1983, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fcntl.h	5.16 (Berkeley) 05/28/93
+ *	@(#)fcntl.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _FCNTL_H_

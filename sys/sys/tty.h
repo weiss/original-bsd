@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1982, 1986 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.h	7.14 (Berkeley) 02/17/92
+ *	@(#)tty.h	8.1 (Berkeley) 06/02/93
  */
 
 #include <sys/termios.h>

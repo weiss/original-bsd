@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1989, 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mount.h	7.41 (Berkeley) 11/15/92
+ *	@(#)mount.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef KERNEL

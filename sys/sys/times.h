@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)times.h	7.7 (Berkeley) 06/23/92
+ *	@(#)times.h	8.1 (Berkeley) 06/02/93
  */
 
 #include <machine/ansi.h>

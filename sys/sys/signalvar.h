@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1991 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signalvar.h	7.5 (Berkeley) 04/20/92
+ *	@(#)signalvar.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef	_SIGNALVAR_H_		/* tmp for user.h */

@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1982, 1986 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dmap.h	7.3 (Berkeley) 02/15/91
+ *	@(#)dmap.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _DMAP_H_

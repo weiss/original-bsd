@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1988, 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)termios.h	7.24 (Berkeley) 03/07/92
+ *	@(#)termios.h	8.1 (Berkeley) 06/02/93
  */
 
 /*

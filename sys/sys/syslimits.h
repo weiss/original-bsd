@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1988 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)syslimits.h	7.5 (Berkeley) 05/04/93
+ *	@(#)syslimits.h	8.1 (Berkeley) 06/02/93
  */
 
 #define	ARG_MAX			20480	/* max bytes for an exec function */
