@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_io.c	7.15 (Berkeley) 06/28/87";
+static char *sccsid = "@(#)ex_io.c	7.16 (Berkeley) 11/02/87";
 #endif not lint
 
 #include "ex.h"
@@ -725,6 +725,10 @@ cre:
 		io = creat(file, 0644);
 #else
 		io = creat(file, 0666);
+#ifdef vms	/* to retain file protection modes on newer version of file */
+		if (!nonexist)
+			chmod(file, stbuf.st_mode & 0777);
+#endif
 #endif
 		if (io < 0)
 			syserror();
