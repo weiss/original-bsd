@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)bt_search.c	5.1 (Berkeley) 01/23/91";
+static char sccsid[] = "@(#)bt_search.c	5.2 (Berkeley) 04/08/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -146,7 +146,7 @@ _bt_searchr(t, key)
 	static BTITEM item;
 
 	/* do a binary search on the current page */
-	index = _bt_binsrch(t, &(key->data[0]));
+	index = _bt_binsrch(t, key->data);
 
 	/*
 	 *  At this point, the binary search terminated because the endpoints
