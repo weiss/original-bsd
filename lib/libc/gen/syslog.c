@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)syslog.c	5.8 (Berkeley) 04/24/86";
+static char sccsid[] = "@(#)syslog.c	5.9 (Berkeley) 05/07/86";
 #endif LIBC_SCCS and not lint
 
 /*
@@ -130,16 +130,18 @@ syslog(pri, fmt, p0, p1, p2, p3, p4)
 	if (pid == -1)
 		return;
 	if (pid == 0) {
+		int fd;
+
 		signal(SIGALRM, SIG_DFL);
 		sigsetmask(sigblock(0) & ~sigmask(SIGALRM));
 		alarm(5);
-		LogFile = open(ctty, O_WRONLY);
+		fd = open(ctty, O_WRONLY);
 		alarm(0);
 		strcat(o, "\r");
 		o = index(outline, '>') + 1;
-		write(LogFile, o, c + 1 - (o - outline));
-		close(LogFile);
-		exit(0);
+		write(fd, o, c + 1 - (o - outline));
+		close(fd);
+		_exit(0);
 	}
 	if (!(LogStat & LOG_NOWAIT))
 		while ((c = wait((int *)0)) > 0 && c != pid)
