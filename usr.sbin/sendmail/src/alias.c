@@ -4,9 +4,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-static char SccsId[] = "@(#)alias.c	3.23	09/16/81	(with DBM)";
+static char SccsId[] = "@(#)alias.c	3.24	09/28/81	(with DBM)";
 # else DBM
-static char SccsId[] = "@(#)alias.c	3.23	09/16/81	(without DBM)";
+static char SccsId[] = "@(#)alias.c	3.24	09/28/81	(without DBM)";
 # endif DBM
 
 /*
@@ -111,9 +111,8 @@ alias(a)
 # endif
 	if (Verbose)
 		message(Arpa_Info, "aliased to %s", p);
-	a->q_flags |= QDONTSEND;
 	AliasLevel++;
-	sendto(p, 1, (a->q_alias == NULL) ? &From : a);
+	sendto(p, 1, a);
 	AliasLevel--;
 }
 /*
@@ -422,7 +421,6 @@ readaliases(aliasfile, init)
 **
 **	Side Effects:
 **		New names are added to send queues.
-**		Sets the QDONTSEND bit in addresses that are forwarded.
 */
 
 forward(user)
@@ -451,6 +449,5 @@ forward(user)
 		return;
 
 	/* we do have an address to forward to -- do it */
-	user->q_flags |= QDONTSEND;
 	include(buf, "forwarding", user);
 }
