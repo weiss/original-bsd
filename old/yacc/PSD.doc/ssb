@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)ssb	8.1 (Berkeley) 06/08/93
+.\"	@(#)ssb	8.2 (Berkeley) 06/01/94
 .\"
 .SH
 Appendix B: Yacc Input Syntax
@@ -64,7 +64,7 @@ def	:	START  IDENTIFIER
 	|	LCURL  {  \fICopy  C  code  to  output  file\fR   }  RCURL
 	|	ndefs  rword  tag  nlist
 	;
-
+.ne 1i
 rword	:	TOKEN
 	|	LEFT
 	|	RIGHT
