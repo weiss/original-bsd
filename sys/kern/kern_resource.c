@@ -1,4 +1,4 @@
-/*	kern_resource.c	3.3	06/07/80	*/
+/*	kern_resource.c	4.1	11/09/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
