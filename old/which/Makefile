@@ -1,12 +1,12 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 05/24/90
 
 MAN1=	which.0
 
-all: ${MAN1}
+all which: ${MAN1}
 
-which clean cleandir depend lint tags:
+clean cleandir depend lint tags:
 
-install: maninstall
+beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
 	    ${.CURDIR}/which.csh ${DESTDIR}${BINDIR}/which
 
