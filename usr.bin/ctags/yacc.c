@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)yacc.c	5.1 (Berkeley) 03/16/87";
+static char sccsid[] = "@(#)yacc.c	5.2 (Berkeley) 03/16/87";
 #endif not lint
 
 #include <ctags.h>
@@ -22,8 +22,6 @@ y_entries()
 	register bool	in_rule;
 	char	tok[MAXTOKEN];
 
-	(void)strcpy(lbuf,"%%$");		/* special case, "%%" */
-	pfnote("yyparse",lineno);
 	while (GETC(!=,EOF))
 		switch ((char)c) {
 		case '\n':
