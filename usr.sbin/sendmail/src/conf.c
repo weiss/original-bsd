@@ -98,7 +98,7 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	3.10	03/20/81";
+static char SccsId[] = "@(#)conf.c	3.11	03/28/81";
 
 
 # include <whoami.h>		/* definitions of machine id's at berkeley */
@@ -272,12 +272,12 @@ struct mailer	*Mailer[] =
 
 struct hdrinfo	HdrInfo[] =
 {
-	"date",		0,			NULL,
-	"from",		0,			NULL,
+	"date",		H_CHECK,		M_NEEDDATE,
+	"from",		H_CHECK,		M_NEEDFROM,
 	"to",		0,			NULL,
 	"cc",		0,			NULL,
 	"subject",	0,			NULL,
-	"message-id",	0,			&MsgId,
+	"message-id",	H_CHECK,		M_MSGID,
 	"message",	H_EOH,			NULL,
 	NULL,		0,			NULL,
 };
