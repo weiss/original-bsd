@@ -16,14 +16,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parse.c	5.2 (Berkeley) 05/08/90";
+static char sccsid[] = "@(#)parse.c	5.3 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/file.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <strings.h>
+#include <string.h>
 #include "hexdump.h"
 
 FU *endfu;					/* format at end-of-data */

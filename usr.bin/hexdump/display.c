@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)display.c	5.6 (Berkeley) 05/08/90";
+static char sccsid[] = "@(#)display.c	5.7 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -25,7 +25,7 @@ static char sccsid[] = "@(#)display.c	5.6 (Berkeley) 05/08/90";
 #include <errno.h>
 #include <ctype.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "hexdump.h"
 
 enum _vflag vflag = FIRST;
