@@ -14,13 +14,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)saio.h	7.10 (Berkeley) 09/29/88
+ *	@(#)saio.h	7.11 (Berkeley) 05/23/89
  */
 
 #include "saioctl.h"
 #include "saerrno.h"
 
-#define	UNIX	"/vmunix"
+#define	UNIX	"hd(6,0,0) /vmunix"
 #define	NULL	0
 
 /*
