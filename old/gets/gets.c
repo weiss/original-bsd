@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)gets.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)gets.c	4.2 (Berkeley) 06/19/81";
 #include <stdio.h>
 
 /*
@@ -14,6 +14,7 @@ main(argc, argv)
 {
 	char buf[BUFSIZ];
 	
+	setbuf(stdin, NULL);
 	if (gets(buf) == NULL || buf[0] < ' ') {
 		if (argc == 1)
 			exit(1);
