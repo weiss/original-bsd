@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)errno.h	8.1 (Berkeley) 06/02/93
+ *	@(#)errno.h	8.2 (Berkeley) 11/16/93
  */
 
 #ifndef KERNEL
@@ -85,7 +85,7 @@ extern int errno;			/* global error number */
 #define	ENOTCONN	57		/* Socket is not connected */
 #define	ESHUTDOWN	58		/* Can't send after socket shutdown */
 #define	ETOOMANYREFS	59		/* Too many references: can't splice */
-#define	ETIMEDOUT	60		/* Connection timed out */
+#define	ETIMEDOUT	60		/* Operation timed out */
 #define	ECONNREFUSED	61		/* Connection refused */
 
 #define	ELOOP		62		/* Too many levels of symbolic links */
