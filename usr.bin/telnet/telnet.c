@@ -1,4 +1,4 @@
-static char sccsid[] = "@(#)telnet.c	4.16 (Berkeley) 01/16/83";
+static char sccsid[] = "@(#)telnet.c	4.17 (Berkeley) 01/23/83";
 /*
  * User telnet program.
  */
@@ -51,7 +51,7 @@ extern	int errno;
 
 int	tn(), quit(), suspend(), bye(), help();
 int	setescape(), status(), toggle(), setoptions();
-int	setcrmod();
+int	setcrmod(), setdebug();
 
 #define HELPINDENT (sizeof ("connect"))
 
