@@ -1,4 +1,4 @@
-/*	kern_clock.c	6.6	84/03/27	*/
+/*	kern_clock.c	6.7	84/05/22	*/
 
 #include "../machine/reg.h"
 #include "../machine/psl.h"
@@ -193,8 +193,17 @@ hardclock(pc, ps)
 	 * priority any longer than necessary.
 	 */
 	bumptime(&time, tick);
-	if (needsoft)
-		setsoftclock();
+	if (needsoft) {
+		if (BASEPRI(ps)) {
+			/*
+			 * Save the overhead of a software interrupt;
+			 * it will happen as soon as we return, so do it now.
+			 */
+			(void) splsoftclock();
+			softclock(pc, ps);
+		} else
+			setsoftclock();
+	}
 }
 
 int	dk_ndrive = DK_NDRIVE;
