@@ -15,7 +15,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.13 (Berkeley) 11/17/88";
+static char sccsid[] = "@(#)util.c	5.14 (Berkeley) 12/05/88";
 #endif /* not lint */
 
 # include <stdio.h>
@@ -416,7 +416,7 @@ fixcrlf(line, stripnl)
 	p = index(line, '\n');
 	if (p == NULL)
 		return;
-	if (p[-1] == '\r')
+	if (p > line && p[-1] == '\r')
 		p--;
 	if (!stripnl)
 		*p++ = '\n';
