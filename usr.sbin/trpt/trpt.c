@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)trpt.c	4.4 83/01/13";
+static char sccsid[] = "@(#)trpt.c	4.5 83/01/18";
 #endif
 
 #include <sys/param.h>
@@ -164,7 +164,7 @@ tcp_trace(act, ostate, atp, tp, ti, req)
 		if (flags) {
 			char *cp = "<";
 #define pf(f) { if (ti->ti_flags&TH_/**/f) { printf("%s%s", cp, "f"); cp = ","; } }
-			pf(SYN); pf(ACK); pf(FIN); pf(RST); pf(URG);
+			pf(SYN); pf(ACK); pf(FIN); pf(RST); pf(PUSH); pf(URG);
 			printf(">");
 		}
 		break;
