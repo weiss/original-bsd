@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)apply.c	5.2 (Berkeley) 04/06/87";
+static char sccsid[] = "@(#)apply.c	5.3 (Berkeley) 05/11/89";
 #endif not lint
 
 /*%cc -s -O %
@@ -21,7 +21,9 @@ static char sccsid[] = "@(#)apply.c	5.2 (Berkeley) 04/06/87";
  *	apply -2 cmp A1 B1 A2 B2   compares A's with B's
  *	apply "ln %1 /usr/fred/dir" *  duplicates a directory
  */
+#include <paths.h>
 #include <stdio.h>
+
 char	*cmdp;
 #define	NCHARS 512
 char	cmd[512];
@@ -125,7 +127,7 @@ char *s;
 	char *shell = getenv("SHELL");
 
 	if ((pid = fork()) == 0) {
-		execl(shell ? shell : "/bin/sh", "sh", "-c", s, 0);
+		execl(shell ? shell : _PATH_BSHELL, "sh", "-c", s, 0);
 		_exit(127);
 	}
 	if(pid == -1){
