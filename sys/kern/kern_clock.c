@@ -1,4 +1,4 @@
-/*	kern_clock.c	4.2	12/16/80	*/
+/*	kern_clock.c	4.3	12/19/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -17,8 +17,8 @@
 #include "../h/mtpr.h"
 #include "../h/clock.h"
 
-#include "../conf/dh.h"
-#include "../conf/dz.h"
+#include "dh.h"
+#include "dz.h"
 
 #define	SCHMAG	9/10
 
