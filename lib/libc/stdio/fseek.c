@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fseek.c	5.4 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)fseek.c	5.5 (Berkeley) 02/01/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -204,7 +204,7 @@ fseek(fp, offset, whence)
 	 * do it.  Allow the seek function to change fp->_bf._base.
 	 */
 dumb:
-	if (fflush(fp) ||
+	if (__sflush(fp) ||
 	    (*seekfn)(fp->_cookie, offset, whence) == POS_ERR) {
 		return (EOF);
 	}
