@@ -16,11 +16,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)telldir.c	5.3 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)telldir.c	5.4 (Berkeley) 01/11/89";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
-#include <sys/dir.h>
+#include <dirent.h>
 
 /*
  * return a pointer into a directory
