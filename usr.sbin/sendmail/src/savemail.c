@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.65 (Berkeley) 04/22/95";
+static char sccsid[] = "@(#)savemail.c	8.66 (Berkeley) 04/22/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1013,6 +1013,9 @@ char *
 smtptodsn(smtpstat)
 	int smtpstat;
 {
+	if (smtpstat < 0)
+		return "4.4.2";
+
 	switch (smtpstat)
 	{
 	  case 450:	/* Req mail action not taken: mailbox unavailable */
