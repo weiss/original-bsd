@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_pcb.h	7.9 (Berkeley) 05/06/91
+ *	@(#)tp_pcb.h	7.10 (Berkeley) 07/18/91
  */
 
 /***********************************************************
@@ -340,8 +340,8 @@ extern struct tp_pcb	*tp_listeners;
 extern struct tp_pcb	*tp_intercepts;
 #endif
 
-#define	sototpcb(so) 	((struct tp_pcb *)(so->so_tpcb))
-#define	sototpref(so)	((struct tp_ref *)((so)->so_tpcb->tp_ref))
+#define	sototpcb(so) 	((struct tp_pcb *)(so->so_pcb))
+#define	sototpref(so)	((sototpcb(so)->tp_ref))
 #define	tpcbtoso(tp)	((struct socket *)((tp)->tp_sock))
 #define	tpcbtoref(tp)	((struct tp_ref *)((tp)->tp_ref))
 
