@@ -3,11 +3,11 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Donn Seeley at UUNET Technologies, Inc.
+ * Donn Seeley at Berkeley Software Design, Inc.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	6.1 (Berkeley) 07/02/91
+ *	@(#)pathnames.h	6.2 (Berkeley) 05/26/93
  */
 
 #include <paths.h>
