@@ -19,13 +19,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)config.h	5.7 (Berkeley) 03/12/90
+ *	@(#)config.h	5.8 (Berkeley) 03/17/90
  */
 
 #define	DEFSHELL	1			/* Bourne shell */
-#define	DEFSHELLDIR	"/bin"			/* Bourne shell directory */
-#define	DEFSYSMK  	"/usr/share/mk/sys.mk"	/* system makefile */
-#define	DEFSYSPATH	"/usr/share/mk"		/* system makefile directory */
 
 /*
  * DEFMAXJOBS
