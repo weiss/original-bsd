@@ -1,3 +1,12 @@
+C
+C Copyright (c) 1991 The Regents of the University of California.
+C All rights reserved.
+C
+C %sccs.include.proprietary.f%
+C
+C	@(#)fpetst.f	5.2 (Berkeley) 04/12/91
+C
+
 	program fpetst
 	character arg
 	logical flag
