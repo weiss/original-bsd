@@ -1,6 +1,6 @@
 # ------------------------
 #
-#	Termcap source file	@(#)termcap.src	5.14 (Berkeley) 10/27/85
+#	Termcap source file	@(#)termcap.src	5.15 (Berkeley) 10/27/85
 #	Kevin Layer, Berkeley
 #	Craig Leres, Berkeley
 #	Mark Horton, Berkeley
@@ -145,8 +145,7 @@ Aq|q101|qvt101|qvt-101|Qume 101 $310 special:\
 	:al=\EE:am:bt=\EI:ce=\Et:cl=\E*:dc=\EW:\
 	:dl=\ER:do=^J:ic=\EQ:ei=:im=:md=\E(:me=\EG0:mh=\E):\
 	:le=^H:bs:cm=\E=%+ %+ :cl=1^Z:co#80:ho=^^:li#24:ma=^K^P:nd=^L:ku=^K:\
-	:vs=\EM4\040\200\200\200:mr=\EG4:ms:\
-	:so=\EG4:se=\EG1:
+	:vs=\EM4\040\200\200\200:mr=\EG4:ms:so=\EG4:se=\EG1:
 # I suspect the xerox1720 is the same as the diablo 1620.
 Ax|x1720|x1700|1700|x1750|xerox 1720:\
 	:co#132:le=^H:bs:hc:os:pt:do=^J:ct=\E2:st=\E1:
@@ -2005,6 +2004,23 @@ vh|tvi910+|910+|televideo 910+:\
 	:k4=^AD\r:k5=^AE\r:k6=^AF\r:k7=^AG\r:k8=^AH\r:k9=^AI\r:kb=^H:\
 	:kd=^J:kh=^^:kl=^H:kr=^L:ku=^K:li#24:ll=\E=7\040:ma=^K^P^L\040:\
 	:nd=^L:pt:se=\EG0:sg#1:so=\EG4:ue=\EG0:up=^K:us=\EG8:xn:
+# From fair@ucbarpa  Sun Oct 27 07:21:05 1985
+v6|ims950-b|bare ims950 no is:\
+	:is@:tc=ims950:
+v7|ims950-ns|ims950 w/no standout:\
+	:so@:se@:us@:ue@:tc=ims950:
+va|ims950|ims televideo 950 emulation:\
+	:k0@:k1@:k2@:k3@:k4@:k5@:k6@:k7@:k8@:k9@:kb@:kd@:kh@:kl@:ko@:kr@:ku@:\
+	:vb@:xn@:tc=tvi950:
+vd|ims950-rv|ims tvi950 rev video:\
+	:k0@:k1@:k2@:k3@:k4@:k5@:k6@:k7@:k8@:k9@:kb@:kd@:kh@:kl@:ko@:kr@:ku@:\
+	:vb@:xn@:tc=tvi950-rv:
+vx|ims-ansi|ultima2|ultimaII|IMS Ultima II:\
+	:pt:am:bs:co#80:li#24:\
+	:is=\E[0m\E[>14l\E[?1;?5;20l\E>\E[1m^M:if=/usr/lib/tabset/vt100:\
+	:cl=\E[;H\E[2J:cd=\E[0J:ce=\E[0K:cm=\E[%i%2;%2H:up=\EM:do=\ED:\
+	:ku=\E[A:kd=\E[B:kr=\E[C:kl=\E[D:kh=\E[H:\
+	:so=\E[7m:se=\E[0m\E[1m:us=\E[4m:ue=\E[0m\E[1m:sr=\EM:
 # # --------------------------------
 #
 # y: TELERAY
