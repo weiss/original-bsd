@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)displayq.c	5.11 (Berkeley) 08/22/89";
+static char sccsid[] = "@(#)displayq.c	5.12 (Berkeley) 03/20/90";
 #endif /* not lint */
 
 /*
@@ -120,8 +120,6 @@ displayq(format)
 		if (fp == NULL)
 			warn();
 		else {
-			register char *cp;
-
 			/* get daemon pid */
 			cp = current;
 			while ((*cp = getc(fp)) != EOF && *cp != '\n')
