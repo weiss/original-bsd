@@ -1,6 +1,6 @@
     /* Copyright (c) 1980 Regents of the University of California */
 
-    /*	static	char sccsid[] = "@(#)pc3.h 1.4 07/29/82"; */
+    /*	static	char sccsid[] = "@(#)pc3.h 1.5 07/29/82"; */
 
     /*
      *	a symbol table entry.
@@ -124,3 +124,4 @@ char		*charalloc();
 BOOL		nextelement();
 time_t		mtime();
 char		*classify();
+char		*article();
