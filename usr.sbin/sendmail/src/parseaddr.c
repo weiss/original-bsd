@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.21 (Berkeley) 03/01/93";
+static char sccsid[] = "@(#)parseaddr.c	6.22 (Berkeley) 03/03/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -504,9 +504,7 @@ prescan(addr, delim, pvpbuf, delimptr)
 		printf("prescan==>");
 		printav(av);
 	}
-	if (av[0] != NULL)
-		return (av);
-	return (NULL);
+	return (av);
 }
 /*
 **  TOKTYPE -- return token type
@@ -970,7 +968,7 @@ rewrite(pvp, ruleset)
 				xpvp = prescan(replac, '\0', pvpbuf, NULL);
 				if (xpvp == NULL)
 				{
-					syserr("553 rewrite: cannot prescan map value: %s", replac);
+					/* prescan already printed error */
 					return;
 				}
 			}
