@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.4 (Berkeley) 06/08/85	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.5 (Berkeley) 06/17/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.4 (Berkeley) 06/08/85";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.5 (Berkeley) 06/17/85";
 # endif not lint
 
 /*
@@ -306,6 +306,9 @@ smtp()
 			/* send to all recipients */
 			sendall(CurEnv, SM_DEFAULT);
 			CurEnv->e_to = NULL;
+
+			/* save statistics */
+			markstats(CurEnv, (ADDRESS *) NULL);
 
 			/* issue success if appropriate and reset */
 			if (Errors == 0 || HoldErrs)
