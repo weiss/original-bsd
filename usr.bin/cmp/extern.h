@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.1 (Berkeley) 10/27/91
+ *	@(#)extern.h	8.1 (Berkeley) 06/06/93
  */
 
 void	c_regular __P((int, char *, off_t, off_t, int, char *, off_t, off_t));
