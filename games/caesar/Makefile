@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/14/92
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	caesar
 MAN6=	caesar.0
