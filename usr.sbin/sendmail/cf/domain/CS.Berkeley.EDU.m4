@@ -7,7 +7,7 @@ divert(-1)
 # %sccs.include.redist.sh%
 #
 divert(0)
-VERSIONID(`@(#)CS.Berkeley.EDU.m4	6.2 (Berkeley) 03/03/93')
+VERSIONID(`@(#)CS.Berkeley.EDU.m4	6.3 (Berkeley) 03/18/93')
 DOMAIN(Berkeley)dnl
 HACK(cssubdomain)dnl
-define(`USERDB_SPEC', `/usr/sww/share/lib/users.cs.db,/usr/sww/share/lib/users.eecs.db')dnl
+define(`USERDB_SPEC', ``/usr/sww/share/lib/users.cs.db,/usr/sww/share/lib/users.eecs.db'')dnl
