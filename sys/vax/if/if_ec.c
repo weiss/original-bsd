@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_ec.c	6.9 (Berkeley) 06/19/85
+ *	@(#)if_ec.c	6.10 (Berkeley) 07/02/85
  */
 
 #include "ec.h"
@@ -225,6 +225,13 @@ ecattach(ui)
 		}
 		cp++;
 	}
+	/*
+	 * Now write it into the address recognition ROM so we can
+	 * always use the same EC_READ bits (referencing ROM),
+	 * in case we change the address sometime
+	 */
+	ec_setaddr(es->es_addr, ui->ui_unit);
+
 	ifp->if_init = ecinit;
 	ifp->if_ioctl = ecioctl;
 	ifp->if_output = ecoutput;
