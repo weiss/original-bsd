@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1987, 1993
+ * Copyright (c) 1987, 1993, 1994
  *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ctags.h	8.2 (Berkeley) 04/01/94
+ *	@(#)ctags.h	8.3 (Berkeley) 04/02/94
  */
 
 #define	bool	char

@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 1987, 1993
+ * Copyright (c) 1987, 1993, 1994
  *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)yacc.c	8.2 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)yacc.c	8.3 (Berkeley) 04/02/94";
 #endif /* not lint */
 
 #include <ctype.h>
