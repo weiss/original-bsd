@@ -14,7 +14,7 @@
 
 # ifndef DAEMON
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.22 (Berkeley) 07/27/87	(w/o daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.23 (Berkeley) 12/21/87	(w/o daemon mode)";
 # endif not lint
 # else
 
@@ -25,9 +25,11 @@ static char	SccsId[] = "@(#)daemon.c	5.22 (Berkeley) 07/27/87	(w/o daemon mode)"
 # include <sys/resource.h>
 
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.22 (Berkeley) 07/27/87 (with daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.23 (Berkeley) 12/21/87 (with daemon mode)";
 # endif not lint
+# endif
 
+# ifdef DAEMON
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
 **
