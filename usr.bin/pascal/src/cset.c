@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)cset.c 1.4 03/08/81";
+static char sccsid[] = "@(#)cset.c 1.5 03/10/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -98,7 +98,7 @@ precset( r , settype , csetp )
 		    return csetp -> comptime;
 		}
 		csetp -> csettype = settype;
-		setran( settype );
+		setran( settype -> type );
 		if (((set.uprbp + 1) >> LG2BITSLONG) >= COMPSETSZE)
 			csetp -> comptime = FALSE;
 		return csetp -> comptime;
