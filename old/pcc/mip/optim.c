@@ -1,4 +1,7 @@
-static char *sccsid ="@(#)optim.c	4.2 (Berkeley) 08/13/84";
+#ifndef lint
+static char *sccsid ="@(#)optim.c	4.3 (Berkeley) 01/18/85";
+#endif lint
+
 # include "mfile1"
 
 # define SWAP(p,q) {sp=p; p=q; q=sp;}
