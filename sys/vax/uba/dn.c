@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dn.c	6.3 (Berkeley) 06/08/85
+ *	@(#)dn.c	6.4 (Berkeley) 11/22/85
  */
 
 #include "dn.h"
@@ -30,7 +30,7 @@ struct dndevice {
 
 struct uba_device *dninfo[NDN];
 int dnprobe(), dnattach(), dnintr();
-u_short dnstd[] = { 0175200 };
+u_short dnstd[] = { 0175200, 0 };
 struct uba_driver dndriver =
 	{ dnprobe, 0, dnattach, 0, dnstd, "dn", dninfo };
 
