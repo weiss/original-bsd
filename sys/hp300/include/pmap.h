@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pmap.h	7.7 (Berkeley) 11/05/91
+ *	@(#)pmap.h	7.8 (Berkeley) 02/19/92
  */
 
 #ifndef	_PMAP_MACHINE_
@@ -34,7 +34,8 @@ struct pmap {
 
 typedef struct pmap	*pmap_t;
 
-extern pmap_t		kernel_pmap;
+extern struct pmap	kernel_pmap_store;
+#define kernel_pmap (&kernel_pmap_store)
 
 /*
  * Macros for speed
@@ -72,7 +73,6 @@ pv_entry_t	pv_table;		/* array of entries, one per page */
 #define pa_index(pa)		atop(pa - vm_first_phys)
 #define pa_to_pvh(pa)		(&pv_table[pa_index(pa)])
 
-#define	pmap_kernel()			(kernel_pmap)
 #define	pmap_resident_count(pmap)	((pmap)->pm_stats.resident_count)
 
 extern	struct pte *Sysmap;
