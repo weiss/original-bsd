@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.23 (Berkeley) 07/24/92
+#	@(#)Makefile	5.24 (Berkeley) 07/29/92
 
 NOOBJ=	oobj
 
@@ -97,7 +97,7 @@ distribution:
 	(cd /usr/ucb && rm -f rdist && ln -s /usr/bin/rdist rdist)
 .if ${MACHINE} == "hp300"
 	(cd /usr/bin && rm -f X11 && ln -s /usr/X11/bin X11)
-#.endif
+.endif
 
 hcx9-distribution:
 	(cd etc.tahoe; install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${WCS2} \
