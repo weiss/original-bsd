@@ -1,4 +1,4 @@
-#	@(#)changelist	5.1 (Berkeley) 04/17/92
+#	@(#)changelist	8.1 (Berkeley) 06/09/93
 #
 # List of files which the security script backs up and checks
 # for modifications.
