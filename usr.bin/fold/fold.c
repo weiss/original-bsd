@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)fold.c	4.2 (Berkeley) 02/09/83";
+static char *sccsid = "@(#)fold.c	4.3 (Berkeley) 09/17/84";
 #include <stdio.h>
 /*
  * fold - fold long lines for finite output devices
@@ -14,10 +14,8 @@ main(argc, argv)
 {
 	register c;
 	FILE *f;
-	char obuf[BUFSIZ];
 
 	argc--, argv++;
-	setbuf(stdout, obuf);
 	if (argc > 0 && argv[0][0] == '-') {
 		fold = 0;
 		argv[0]++;
