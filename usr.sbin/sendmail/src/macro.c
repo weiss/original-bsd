@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)macro.c	6.5 (Berkeley) 02/18/93";
+static char sccsid[] = "@(#)macro.c	6.6 (Berkeley) 02/28/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -174,6 +174,7 @@ expand(s, buf, buflim, e)
 **		$j   official SMTP hostname, used in messages+
 **		$k   UUCP node name
 **		$l   UNIX-style from line+
+**		$m   The domain part of our full name.
 **		$n   name of sendmail ("MAILER-DAEMON" on local
 **		     net typically)+
 **		$o   delimiters ("operators") for address tokens+
