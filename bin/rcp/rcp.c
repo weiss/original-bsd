@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rcp.c	5.8 (Berkeley) 09/28/87";
+static char sccsid[] = "@(#)rcp.c	5.9 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -33,7 +33,7 @@ static char sccsid[] = "@(#)rcp.c	5.8 (Berkeley) 09/28/87";
 #include <errno.h>
 
 int	rem;
-char	*colon(), *index(), *rindex(), *malloc(), *strcpy(), *sprintf();
+char	*colon(), *index(), *rindex(), *malloc(), *strcpy();
 int	errs;
 int	lostconn();
 int	errno;
