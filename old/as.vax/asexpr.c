@@ -5,10 +5,9 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)asexpr.c	5.1 (Berkeley) 04/30/85";
+static char sccsid[] = "@(#)asexpr.c	5.2 (Berkeley) 06/19/85";
 #endif not lint
 
-#endif not lint
 #include <stdio.h>
 #include "as.h"
 #include "asscan.h"
