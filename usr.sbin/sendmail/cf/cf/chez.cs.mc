@@ -8,7 +8,7 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)chez.cs.mc	2.5 (Berkeley) 11/13/92')
+VERSIONID(`@(#)chez.cs.mc	6.1 (Berkeley) 12/21/92')
 OSTYPE(bsd4.4)dnl
 DOMAIN(cs.exposed)dnl
 define(`LOCAL_RELAY', vangogh.CS.Berkeley.EDU)dnl

@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 11/16/92
+#	@(#)Makefile	6.1 (Berkeley) 12/21/92
 
 M4=	m4
 #M4=	/usr/src/usr.bin/m4/obj/m4

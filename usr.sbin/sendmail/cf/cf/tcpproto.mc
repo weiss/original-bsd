@@ -8,6 +8,6 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)tcpproto.mc	2.1 (Berkeley) 11/14/92')
+VERSIONID(`@(#)tcpproto.mc	6.1 (Berkeley) 12/21/92')
 MAILER(local)dnl
 MAILER(smtp)dnl
