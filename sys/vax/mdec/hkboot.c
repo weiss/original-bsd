@@ -4,10 +4,7 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-_sccsid:.asciz	"@(#)hkboot.c	6.2 (Berkeley) 06/08/85"
-#endif not lint
-
+/* @(#)hkboot.c	6.3 (Berkeley) 06/26/85 */
 
 /*
  * RK07 1st level boot program: loads next 7.5Kbytes from

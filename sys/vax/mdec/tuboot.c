@@ -4,9 +4,7 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-_sccsid:.asciz	"@(#)tuboot.c	6.2 (Berkeley) 06/08/85"
-#endif not lint
+/* "@(#)tuboot.c	6.3 (Berkeley) 06/26/85" */
 
 /*
  * VAX tu58 console cassette boot block
