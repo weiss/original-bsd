@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.7	(Berkeley)	05/12/83
+#	@(#)Makefile	4.8	(Berkeley)	05/12/83
 #
 DESTDIR=
 CFLAGS=	-O
@@ -39,6 +39,8 @@ install:
 #	for i in ${SCRIPT}; do (install -c $$i ${DESTDIR}/usr/games/$$i); done
 	for i in ${STD} ${NSTD}; do (install $$i ${DESTDIR}/usr/games/$$i); done
 	install -c chess.bin ${DESTDIR}/usr/games/lib/chess
+	cat >${DESTDIR}/usr/games/lib/cfscores </dev/null
+	chmod 777 ${DESTDIR}/usr/games/lib/cfscores
 
 clean:
 	rm -f a.out core *.s *.o
