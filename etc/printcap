@@ -1,2 +1,4 @@
+#	@(#)printcap	5.3 (Berkeley) 06/30/90
+
 lp|local line printer:\
 	:lp=/dev/lp:sd=/var/spool/lpd:lf=/var/log/lpd-errs:
