@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	5.20 (Berkeley) 01/27/92";
+static char sccsid[] = "@(#)function.c	5.21 (Berkeley) 06/29/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -550,7 +550,7 @@ f_name(plan, entry)
 	PLAN *plan;
 	FTSENT *entry;
 {
-	return(fnmatch(plan->c_data, entry->fts_name, FNM_QUOTE));
+	return(!fnmatch(plan->c_data, entry->fts_name, 0));
 }
  
 PLAN *
@@ -652,7 +652,7 @@ f_path(plan, entry)
 	PLAN *plan;
 	FTSENT *entry;
 {
-	return(fnmatch(plan->c_data, entry->fts_path, FNM_QUOTE));
+	return(!fnmatch(plan->c_data, entry->fts_path, 0));
 }
  
 PLAN *
