@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.6 (Berkeley) 08/10/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 DIR=	usd/12.vi
 SRCS=	vi.in vi.chars
