@@ -1,8 +1,9 @@
-.\" Copyright (c) 1982 Regents of the University of California.
-.\" All rights reserved.  The Berkeley software License Agreement
-.\" specifies the terms and conditions for redistribution.
+.\" Copyright (c) 1982 The Regents of the University of California.
+.\" All rights reserved.
 .\"
-.\"	@(#)4.t	4.5 (Berkeley) 07/08/88
+.\" %sccs.include.redist.roff%
+.\"
+.\"	@(#)4.t	4.6 (Berkeley) 04/17/91
 .\"
 .ds RH Appendix A \- Fsck Error Conditions
 .NH

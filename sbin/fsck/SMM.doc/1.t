@@ -1,8 +1,9 @@
-.\" Copyright (c) 1982 Regents of the University of California.
-.\" All rights reserved.  The Berkeley software License Agreement
-.\" specifies the terms and conditions for redistribution.
+.\" Copyright (c) 1982 The Regents of the University of California.
+.\" All rights reserved.
 .\"
-.\"	@(#)1.t	4.2 (Berkeley) 07/18/85
+.\" %sccs.include.redist.roff%
+.\"
+.\"	@(#)1.t	4.3 (Berkeley) 04/17/91
 .\"
 .ds RH Introduction
 .NH
