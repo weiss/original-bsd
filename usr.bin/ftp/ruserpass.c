@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ruserpass.c	5.2 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)ruserpass.c	5.3 (Berkeley) 03/01/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -53,7 +53,7 @@ ruserpass(host, aname, apass, aacct)
 	char myname[MAXHOSTNAMELEN], *mydomain;
 	int t, i, c, usedefault = 0;
 	struct stat stb;
-	extern int errno;
+	static int token();
 
 	hdir = getenv("HOME");
 	if (hdir == NULL)
