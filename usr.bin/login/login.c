@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.20 (Berkeley) 10/01/87";
+static char sccsid[] = "@(#)login.c	5.21 (Berkeley) 09/17/88";
 #endif not lint
 
 /*
@@ -103,7 +103,7 @@ main(argc, argv)
 	int invalid, quietlog;
 	FILE *nlfd;
 	char *ttyn, *tty;
-	int ldisc = 0, zero = 0, i;
+	int ldisc = 0, zero = 0;
 	char *p, *domain, *index();
 
 	signal(SIGALRM, timedout);
