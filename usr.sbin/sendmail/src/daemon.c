@@ -2,14 +2,14 @@
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	3.34		11/21/82	(w/o daemon mode));
+SCCSID(@(#)daemon.c	3.35		12/05/82	(w/o daemon mode));
 #else
 
 # include <sys/socket.h>
 # include <net/in.h>
 # include <wait.h>
 
-SCCSID(@(#)daemon.c	3.34		11/21/82	(with daemon mode));
+SCCSID(@(#)daemon.c	3.35		12/05/82	(with daemon mode));
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -320,7 +320,7 @@ makeconnection(host, port, outfile, infile)
 	if (tTd(16, 1))
 		printf("makeconnection: %d\n", s);
 # endif DEBUG
-	(void) fflush(Xscript);				/* for debugging */
+	(void) fflush(CurEnv->e_xfp);			/* for debugging */
 #ifdef NVMUNIX
 	bind(s, &SendmailAddress, sizeof SendmailAddress, 0);
 	if (connect(s, &SendmailAddress, sizeof SendmailAddress, 0) < 0)
