@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)udp_var.h	6.2 (Berkeley) 06/08/85
+ *	@(#)udp_var.h	6.3 (Berkeley) 02/05/86
  */
 
 /*
@@ -30,6 +30,8 @@ struct	udpstat {
 	int	udps_badsum;
 	int	udps_badlen;
 };
+
+#define	UDP_TTL		15		/* time to live for UDP packets */
 
 #ifdef KERNEL
 struct	inpcb udb;

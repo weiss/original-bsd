@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)udp_usrreq.c	6.17 (Berkeley) 02/03/86
+ *	@(#)udp_usrreq.c	6.18 (Berkeley) 02/05/86
  */
 
 #include "param.h"
@@ -213,7 +213,7 @@ udp_output(inp, m0)
 		ui->ui_sum = -1;
 	}
 	((struct ip *)ui)->ip_len = sizeof (struct udpiphdr) + len;
-	((struct ip *)ui)->ip_ttl = MAXTTL;
+	((struct ip *)ui)->ip_ttl = UDP_TTL;
 	return (ip_output(m, inp->inp_options, &inp->inp_route,
 	    inp->inp_socket->so_options & (SO_DONTROUTE | SO_BROADCAST)));
 }
