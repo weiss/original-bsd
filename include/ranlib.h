@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ranlib.h	5.2 (Berkeley) 04/03/91
+ *	@(#)ranlib.h	5.3 (Berkeley) 06/19/92
  */
 
 #ifndef _RANLIB_H_
@@ -15,10 +15,10 @@
 
 struct ranlib {
 	union {
-		off_t ran_strx;		/* string table index */
+		long ran_strx;		/* string table index */
 		char *ran_name;		/* in memory symbol name */
 	} ran_un;
-	off_t ran_off;			/* archive file offset */
+	long ran_off;			/* archive file offset */
 };
 
 #endif /* !_RANLIB_H_ */
