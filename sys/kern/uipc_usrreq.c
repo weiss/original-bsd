@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_usrreq.c	7.11 (Berkeley) 05/09/89
+ *	@(#)uipc_usrreq.c	7.12 (Berkeley) 07/03/89
  */
 
 #include "param.h"
@@ -408,12 +408,12 @@ unp_connect(so, nam)
 	if (error = namei(ndp))
 		return (error);
 	vp = ndp->ni_vp;
-	if (error = vn_access(vp, VWRITE, ndp->ni_cred))
-		goto bad;
 	if (vp->v_type != VSOCK) {
 		error = ENOTSOCK;
 		goto bad;
 	}
+	if (error = VOP_ACCESS(vp, VWRITE, ndp->ni_cred))
+		goto bad;
 	so2 = vp->v_socket;
 	if (so2 == 0) {
 		error = ECONNREFUSED;
