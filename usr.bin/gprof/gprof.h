@@ -1,4 +1,4 @@
-    /* sccsid:  @(#)gprof.h	1.9 (Berkeley) 11/12/81 */
+    /* sccsid:  @(#)gprof.h	1.10 (Berkeley) 11/12/81 */
 
 #include <stdio.h>
 #include <sys/types.h>
@@ -19,6 +19,12 @@ char	*a_outname;
 char	*gmonname;
 #define	GMONNAME		"gmon.out"
 #define	GMONSUM			"gmon.sum"
+	
+    /*
+     *	the directory where the descriptions of the fields
+     *	of the profiles are kept.
+     */
+#define	BLURBLIB		"/usr/lib/"
 
     /*
      *	a constructed arc,
