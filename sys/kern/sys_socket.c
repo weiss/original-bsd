@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)sys_socket.c	7.6 (Berkeley) 04/16/90
+ *	@(#)sys_socket.c	7.7 (Berkeley) 06/25/90
  */
 
 #include "param.h"
@@ -75,10 +75,15 @@ soo_ioctl(fp, cmd, data)
 		return (0);
 
 	case FIOASYNC:
-		if (*(int *)data)
+		if (*(int *)data) {
 			so->so_state |= SS_ASYNC;
-		else
+			so->so_rcv.sb_flags |= SB_ASYNC;
+			so->so_snd.sb_flags |= SB_ASYNC;
+		} else {
 			so->so_state &= ~SS_ASYNC;
+			so->so_rcv.sb_flags &= ~SB_ASYNC;
+			so->so_snd.sb_flags &= ~SB_ASYNC;
+		}
 		return (0);
 
 	case FIONREAD:
