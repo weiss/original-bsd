@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signalvar.h	7.2 (Berkeley) 02/05/92
+ *	@(#)signalvar.h	7.3 (Berkeley) 02/05/92
  */
 
 #ifndef	_SIGNALVAR_H_		/* tmp for user.h */
@@ -27,6 +27,7 @@ struct	sigacts {
 	sigset_t ps_oldmask;		/* saved mask from before sigpause */
 	int	ps_flags;		/* signal flags, below */
 	struct	sigstack ps_sigstack;	/* sp & on stack state variable */
+	sigset_t ps_usertramp;		/* SunOS compat; libc sigtramp XXX */
 	int	ps_sig;			/* for core dump/debugger XXX */
 	int	ps_code;		/* for core dump/debugger XXX */
 };
