@@ -4,14 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_xxx.c	7.19 (Berkeley) 07/10/92
+ *	@(#)kern_xxx.c	7.20 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "systm.h"
-#include "kernel.h"
-#include "proc.h"
-#include "reboot.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/kernel.h>
+#include <sys/proc.h>
+#include <sys/reboot.h>
 
 char	hostname[MAXHOSTNAMELEN];
 int	hostnamelen;

@@ -4,17 +4,17 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_time.c	7.19 (Berkeley) 07/16/92
+ *	@(#)kern_time.c	7.20 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "resourcevar.h"
-#include "kernel.h"
-#include "systm.h"
-#include "proc.h"
-#include "vnode.h"
+#include <sys/param.h>
+#include <sys/resourcevar.h>
+#include <sys/kernel.h>
+#include <sys/systm.h>
+#include <sys/proc.h>
+#include <sys/vnode.h>
 
-#include "machine/cpu.h"
+#include <machine/cpu.h>
 
 /* 
  * Time of day and interval timer support.

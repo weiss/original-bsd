@@ -4,17 +4,17 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_cache.c	7.15 (Berkeley) 09/24/92
+ *	@(#)vfs_cache.c	7.16 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "systm.h"
-#include "time.h"
-#include "mount.h"
-#include "vnode.h"
-#include "namei.h"
-#include "errno.h"
-#include "malloc.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/time.h>
+#include <sys/mount.h>
+#include <sys/vnode.h>
+#include <sys/namei.h>
+#include <sys/errno.h>
+#include <sys/malloc.h>
 
 /*
  * Name caching works as follows:

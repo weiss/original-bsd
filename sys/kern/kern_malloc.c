@@ -4,16 +4,17 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_malloc.c	7.34 (Berkeley) 10/09/92
+ *	@(#)kern_malloc.c	7.35 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "proc.h"
-#include "map.h"
-#include "kernel.h"
-#include "malloc.h"
-#include "vm/vm.h"
-#include "vm/vm_kern.h"
+#include <sys/param.h>
+#include <sys/proc.h>
+#include <sys/map.h>
+#include <sys/kernel.h>
+#include <sys/malloc.h>
+
+#include <vm/vm.h>
+#include <vm/vm_kern.h>
 
 struct kmembuckets bucket[MINBUCKET + 16];
 struct kmemstats kmemstats[M_LAST];
