@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.32 (Berkeley) 05/03/93";
+static char sccsid[] = "@(#)readcf.c	6.33 (Berkeley) 05/03/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1004,8 +1004,8 @@ setoption(opt, val, safe, sticky, e)
 
 	switch (opt)
 	{
-	  case '8':		/* allow eight-bit input */
-		EightBit = atobool(val);
+	  case '7':		/* force seven-bit input */
+		SevenBit = atobool(val);
 		break;
 
 	  case 'A':		/* set default alias file */
