@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.10 (Berkeley) 02/18/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.11 (Berkeley) 02/19/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.10 (Berkeley) 02/18/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.11 (Berkeley) 02/19/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -436,7 +436,7 @@ smtpnoop(mci)
 
 	smtpmessage("NOOP", m, mci);
 	r = reply(m, mci, e, ReadTimeout);
-	if (REPLYTYPE(r) != 2)
+	if (r < 0 || REPLYTYPE(r) != 2)
 		smtpquit(m, mci, e);
 	return r;
 }
@@ -548,6 +548,10 @@ reply(m, mci, e, timeout)
 		if (r < 100)
 			continue;
 
+		/* save temporary failure messages for posterity */
+		if (SmtpReplyBuffer[0] == '4' && SmtpError[0] == '\0')
+			(void) strcpy(SmtpError, SmtpReplyBuffer);
+
 		/* reply code 421 is "Service Shutting Down" */
 		if (r == SMTPCLOSING && mci->mci_state != MCIS_SSD)
 		{
@@ -555,10 +559,6 @@ reply(m, mci, e, timeout)
 			mci->mci_state = MCIS_SSD;
 			smtpquit(m, mci, e);
 		}
-
-		/* save temporary failure messages for posterity */
-		if (SmtpReplyBuffer[0] == '4' && SmtpError[0] == '\0')
-			(void) strcpy(SmtpError, SmtpReplyBuffer);
 
 		return (r);
 	}

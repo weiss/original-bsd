@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.15 (Berkeley) 02/18/93";
+static char sccsid[] = "@(#)conf.c	6.16 (Berkeley) 02/19/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -846,6 +846,9 @@ reapchild()
 	while (wait((int *)&status) > 0)
 		continue;
 # endif /* WNOHANG */
+# ifdef SYSTEM5
+	(void) signal(SIGCHLD, reapchild);
+# endif
 }
 /*
 **  UNSETENV -- remove a variable from the environment
