@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)crt0.c	5.3 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)crt0.c	5.4 (Berkeley) 01/18/88";
 #endif LIBC_SCCS and not lint
 
 /*
@@ -96,8 +96,7 @@ exit(code)
 {
 	monitor(0);
 	_cleanup();
-	asm("	movl r11,r0");
-	asm("	chmk $1");
+	_exit(code);
 }
 #endif MCRT0
 
