@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)q.c	5.3 (Berkeley) 02/28/93";
+static char sccsid[] = "@(#)q.c	5.4 (Berkeley) 03/08/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -66,9 +66,9 @@ q(inputt, errnum)
 		return;
 	}
 	/* Do cleanup; should it be even bothered?? */
-	start = top;
+	Start = top;
 	End = bottom;
-	start_default = End_default = 0;
+	Start_default = End_default = 0;
 
 	/* We don't care about the returned errnum val anymore. */
 	d(inputt, errnum);
