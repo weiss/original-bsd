@@ -1,7 +1,9 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/06/91
+#	@(#)Makefile	5.4.1.1 (Berkeley) 05/07/91
+
+# Missing: icheck, init, ncheck
 
 SUBDIR=	XNSrouted badsect clri disklabel dmesg dump dumpfs fastboot fsck \
-	fsdb halt icheck ifconfig init mknod mount mountd ncheck newfs \
+	fsdb halt ifconfig mknod mount mountd newfs \
 	nfsd nfsiod ping quotacheck reboot restore route routed savecore \
 	shutdown slattach swapon tunefs umount
 
