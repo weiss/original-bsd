@@ -16,7 +16,7 @@
  *
  *	@(#)table.h	5.1 (Berkeley) 6/4/85 (routed/table.h)
  *
- *	@(#)table.h	5.1 (Berkeley) 09/20/88
+ *	@(#)table.h	5.2 (Berkeley) 08/21/89
  */
 
 /*
@@ -33,6 +33,10 @@ struct rthash {
 	struct	rt_entry *rt_forw;
 	struct	rt_entry *rt_back;
 };
+
+#ifdef RTM_ADD
+#define rtentry ortentry
+#endif
 
 struct rt_entry {
 	struct	rt_entry *rt_forw;
