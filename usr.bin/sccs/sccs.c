@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)sccs.c	5.11 (Berkeley) 03/04/91";
+static char sccsid[] = "@(#)sccs.c	5.12 (Berkeley) 02/24/93";
 #endif /* not lint */
 
 #include <sys/cdefs.h>
@@ -242,7 +242,9 @@ bool	Debug;			/* turn on tracing */
 extern char	*getenv();
 # endif V6
 
+# ifdef DECLARE_SIGLIST
 extern char	*sys_siglist[];
+# endif
 
 char *gstrcat(), *strcat();
 char *gstrncat(), *strncat();
