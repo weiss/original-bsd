@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)indent.c	5.5 (Berkeley) 04/29/87";
+static char sccsid[] = "@(#)indent.c	5.6 (Berkeley) 01/02/88";
 #endif not lint
 
 /*-
@@ -44,8 +44,8 @@ changed, set the variable ps.ind_level.  If the indentation level for
 the following line should be changed, set the variable ps.i_l_follow.
 
 */
-#include "indent_globs.h";
-#include "indent_codes.h";
+#include "indent_globs.h"
+#include "indent_codes.h"
 
 char       *in_name = "Standard Input";	/* will always point to name of
 					 * input file */
