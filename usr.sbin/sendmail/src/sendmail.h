@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.53 (Berkeley) 04/29/93
+ *	@(#)sendmail.h	6.54 (Berkeley) 04/29/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.53		04/29/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.54		04/29/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -161,6 +161,7 @@ typedef struct mailer	MAILER;
 # define M_ESCFROM	'E'	/* escape From lines to >From */
 # define M_FOPT		'f'	/* mailer takes picky -f flag */
 		/*	'F'	/* CF: include From: or Resent-From: */
+# define M_NO_NULL_FROM	'g'	/* sender of errors should be $g */
 # define M_HST_UPPER	'h'	/* preserve host case distinction */
 		/*	'H'	/* UIUC: MAIL11V3: preview headers */
 # define M_INTERNAL	'I'	/* SMTP to another sendmail site */
