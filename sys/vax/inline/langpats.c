@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)langpats.c	7.3 (Berkeley) 05/08/91";
+static char sccsid[] = "@(#)langpats.c	7.4 (Berkeley) 09/21/93";
 #endif /* not lint */
 
 #include "inline.h"
@@ -140,9 +140,9 @@ struct pats language_ptab[] = {
 	movl	(sp)+,r1\n\
 	jsb	_Suword\n" },
 
-	{ 1, "_setrq\n",
+	{ 1, "_setrunqueue\n",
 "	movl	(sp)+,r0\n\
-	jsb	_Setrq\n" },
+	jsb	_Setrunqueue\n" },
 
 	{ 1, "_remrq\n",
 "	movl	(sp)+,r0\n\
