@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwopen.c	3.19 03/01/85";
+static char sccsid[] = "@(#)wwopen.c	3.20 04/03/85";
 #endif
 
 #include "ww.h"
@@ -67,7 +67,7 @@ wwopen(flags, nrow, ncol, row, col, nline)
 		winsize.ws_row = nrow;
 		winsize.ws_col = ncol;
 		winsize.ws_xpixel = winsize.ws_ypixel = 0;
-		if (ioctl(w->ww_pty, TIOCSWINSZ, (char *)&winsize) < 0) {
+		if (ioctl(w->ww_pty, (int)TIOCSWINSZ, (char *)&winsize) < 0) {
 			wwerrno = WWE_SYS;
 			goto bad;
 		}
