@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.3 (Berkeley) 03/31/83
+#	@(#)Makefile	4.4 (Berkeley) 05/17/83
 #
 # make file for debugger "dbx"
 #
@@ -122,7 +122,7 @@ clean:
 	rm -f ${HDR} ${OBJ} y.tab.c y.tab.h ${AOUT} core
 
 install:
-	install -s ${AOUT} ${DEST}
+	install ${AOUT} ${DEST}
 
 #
 # Header dependencies are purposely incomplete since header files
