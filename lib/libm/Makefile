@@ -1,4 +1,4 @@
-#	@(#)Makefile	1.13 (Berkeley) 05/16/90
+#	@(#)Makefile	5.1 (Berkeley) 05/17/90
 #
 # This high quality math library is intended to run on either a VAX in
 # D_floating format or a machine that conforms to the IEEE standard 754
@@ -49,7 +49,7 @@ SRCS+=	cabs.c cbrt.c support.c				# ieee
 .endif
 
 .if $(HARDWARE) == "national"
-.PATH:	${.CURDIR}/common ${.CURDIR}/national
+.PATH:	${.CURDIR}/common ${.CURDIR}/national ${.CURDIR}/ieee
 SRCS+=	atan2.c sincos.c tan.c				# common
 SRCS+=	cabs.c cbrt.c sqrt.s support.s			# national
 .endif
