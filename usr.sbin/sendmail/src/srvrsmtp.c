@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.9 (Berkeley) 02/19/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.10 (Berkeley) 02/19/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.9 (Berkeley) 02/19/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.10 (Berkeley) 02/19/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -149,6 +149,8 @@ smtp(e)
 				syslog(LOG_NOTICE, "lost input channel from %s",
 					CurHostName);
 #endif
+			if (InChild)
+				ExitStat = EX_QUIT;
 			finis();
 		}
 
@@ -229,7 +231,7 @@ smtp(e)
 			{
 				errno = 0;
 				syserr("Nested MAIL command: MAIL %s", p);
-				exit(0);
+				finis();
 			}
 
 			/* fork a subprocess to process this command */
