@@ -1,4 +1,6 @@
-.\"	@(#)awk	6.1 (Berkeley) 05/22/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)awk	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'USD:19-%''Awk \(em A Pattern Scanning and Processing Language'
 .OH 'Awk \(em A Pattern Scanning and Processing Language''USD:19-%'
