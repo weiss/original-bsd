@@ -11,19 +11,19 @@
  *
  * from: Utah $Hdr: ite_gb.c 1.8 89/02/23$
  *
- *	@(#)ite_gb.c	7.1 (Berkeley) 05/08/90
+ *	@(#)ite_gb.c	7.2 (Berkeley) 12/16/90
  */
 
 #include "samachdep.h"
 
 #ifdef ITECONSOLE
 
-#include "param.h"
+#include "sys/param.h"
 
-#include "../hpdev/itevar.h"
-#include "../hpdev/itereg.h"
-#include "../hpdev/grfvar.h"
-#include "../hpdev/grf_gbreg.h"
+#include "../dev/itevar.h"
+#include "../dev/itereg.h"
+#include "../dev/grfvar.h"
+#include "../dev/grf_gbreg.h"
 
 #define REGBASE     	((struct gboxfb *)(ip->regbase))
 #define WINDOWMOVER 	gatorbox_windowmove

@@ -11,14 +11,14 @@
  *
  * from: Utah $Hdr: autoconf.c 1.9 89/10/07$
  *
- *	@(#)autoconf.c	7.3 (Berkeley) 10/24/90
+ *	@(#)autoconf.c	7.4 (Berkeley) 12/16/90
  */
 
 #include "samachdep.h"
-#include "param.h"
+#include "sys/param.h"
 
-#include "../hpdev/device.h"
-#include "../hpdev/grfvar.h"
+#include "../dev/device.h"
+#include "../dev/grfvar.h"
 
 struct hp_hw sc_table[MAX_CTLR];
 

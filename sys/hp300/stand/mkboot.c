@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mkboot.c	7.1 (Berkeley) 05/08/90
+ *	@(#)mkboot.c	7.2 (Berkeley) 12/16/90
  */
 
 #ifndef lint
@@ -14,10 +14,10 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkboot.c	7.1 (Berkeley) 05/08/90";
+static char sccsid[] = "@(#)mkboot.c	7.2 (Berkeley) 12/16/90";
 #endif /* not lint */
 
-#include "machine/machparam.h"
+#include "../include/param.h"
 #include "volhdr.h"
 #include <sys/exec.h>
 #include <sys/file.h>

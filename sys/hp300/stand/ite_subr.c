@@ -11,16 +11,16 @@
  *
  * from: Utah $Hdr: ite_subr.c 1.1 89/02/17$
  *
- *	@(#)ite_subr.c	7.1 (Berkeley) 05/08/90
+ *	@(#)ite_subr.c	7.2 (Berkeley) 12/16/90
  */
 
 #include "samachdep.h"
 
 #ifdef ITECONSOLE
 
-#include "param.h"
-#include "../hpdev/itevar.h"
-#include "../hpdev/itereg.h"
+#include "sys/param.h"
+#include "../dev/itevar.h"
+#include "../dev/itereg.h"
 
 ite_devinfo(ip)
 	struct ite_softc *ip;

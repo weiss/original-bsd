@@ -4,14 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ct.c	7.1 (Berkeley) 05/08/90
+ *	@(#)ct.c	7.2 (Berkeley) 12/16/90
  */
 
 /*
  * CS80 tape driver
  */
-#include "../sys/types.h"
-#include "../hpdev/ctreg.h"
+#include "sys/types.h"
+#include "../dev/ctreg.h"
 
 #include "saio.h"
 #include "samachdep.h"
