@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)vax.c	1.3 (Berkeley) 06/18/82";
+    static	char *sccsid = "@(#)vax.c	1.4 (Berkeley) 03/30/83";
 #endif not lint
 
 #include	"gprof.h"
@@ -10,6 +10,7 @@
 nltype	indirectchild = {
 	"(*)" ,				/* the name */
 	(unsigned long) 0 ,		/* the pc entry point */
+	(unsigned long) 0 ,		/* entry point aligned to histogram */
 	(double) 0.0 ,			/* ticks in this routine */
 	(double) 0.0 ,			/* cumulative ticks in children */
 	(long) 0 ,			/* how many times called */
