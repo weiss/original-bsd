@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)rcmd.c	5.7 (Berkeley) 09/17/85";
+static char sccsid[] = "@(#)rcmd.c	5.8 (Berkeley) 10/25/85";
 #endif not lint
 
 #include <stdio.h>
@@ -138,7 +138,7 @@ rresvport(alport)
 		return (-1);
 	for (;;) {
 		sin.sin_port = htons((u_short)*alport);
-		if (bind(s, (caddr_t)&sin, sizeof (sin), 0) >= 0)
+		if (bind(s, (caddr_t)&sin, sizeof (sin)) >= 0)
 			return (s);
 		if (errno != EADDRINUSE) {
 			(void) close(s);
