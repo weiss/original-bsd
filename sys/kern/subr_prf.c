@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)subr_prf.c	7.33 (Berkeley) 11/20/91
+ *	@(#)subr_prf.c	7.34 (Berkeley) 02/05/92
  */
 
 #include <sys/param.h>
@@ -50,7 +50,7 @@ int	(*v_putc)() = cnputc;		/* routine to putc on virtual console */
 void  logpri __P((int level));
 static void  putchar __P((int ch, int flags, struct tty *tp));
 static char *ksprintn __P((u_long num, int base, int *len));
-void kprintf __P((const char *fmt, int flags, struct tty *tp, va_list ap, ...));
+void kprintf __P((const char *fmt, int flags, struct tty *tp, va_list ap));
 
 int consintr = 1;			/* Ok to handle console interrupts? */
 
@@ -65,6 +65,9 @@ const char *panicstr;
  * and then reboots.  If we are called twice, then we avoid trying to sync
  * the disks as this often leads to recursive panics.
  */
+#ifdef __GNUC__
+volatile			/* panic() does not return */
+#endif
 void
 #ifdef __STDC__
 panic(const char *fmt, ...)
@@ -73,7 +76,7 @@ panic(fmt /*, va_alist */)
 	char *fmt;
 #endif
 {
-	int bootopt, savintr;
+	int bootopt;
 	va_list ap;
 
 	bootopt = RB_AUTOBOOT | RB_DUMP;
@@ -82,15 +85,9 @@ panic(fmt /*, va_alist */)
 	else
 		panicstr = fmt;
 
-	savintr = consintr;		/* disable interrupts */
-	consintr = 0;
-
 	va_start(ap, fmt);
-	kprintf("panic: ", TOCONS | TOLOG, NULL, ap);
-	kprintf(fmt, TOCONS | TOLOG, NULL, ap);
+	printf("panic: %r\n", fmt, ap);
 	va_end(ap);
-
-	consintr = savintr;		/* reenable interrupts */
 
 #ifdef KGDB
 	kgdb_panic();
@@ -311,7 +308,7 @@ printf(fmt, va_alist)
  * The format %b is supported to decode error registers.
  * Its usage is:
  *
- *	kprintf("reg=%b\n", regval, "<base><arg>*");
+ *	printf("reg=%b\n", regval, "<base><arg>*");
  *
  * where <base> is the output base expressed as a control character, e.g.
  * \10 gives octal; \20 gives hex.  Each arg is a sequence of characters,
@@ -332,7 +329,7 @@ printf(fmt, va_alist)
  * {
  *	va_list ap;
  *	va_start(ap, fmt);
- *	kprintf("prefix: %r: suffix\n", flags, tp, fmt, ap);
+ *	printf("prefix: %r: suffix\n", fmt, ap);
  *	va_end(ap);
  * }
  *
@@ -340,15 +337,11 @@ printf(fmt, va_alist)
  * formats only.
  */
 void
-#ifdef __STDC__
-kprintf(const char *fmt, int flags, struct tty *tp, va_list ap, ...)
-#else
-kprintf(fmt, flags, tp)
+kprintf(fmt, flags, tp, ap)
 	register const char *fmt;
 	int flags;
 	struct tty *tp;
 	va_list ap;
-#endif
 {
 	register char *p;
 	register int ch, n;
@@ -523,7 +516,7 @@ reswitch:	switch (ch = *(u_char *)fmt++) {
 		case 's':
 			p = va_arg(ap, char *);
 			while (*bp++ = *p++)
-				;
+				continue;
 			--bp;
 			break;
 		case 'd':
