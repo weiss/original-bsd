@@ -1,4 +1,4 @@
-static char *sccsid ="@(#)scan.c	1.2 (Berkeley) 12/18/82";
+static char *sccsid ="@(#)scan.c	1.3 (Berkeley) 12/24/82";
 # include "mfile1"
 # include <a.out.h>
 # include <stab.h>
@@ -58,7 +58,7 @@ char * lxgcp;
 
 extern int proflg;
 extern int gdebug;
-extern int oldway;
+int oldway;		/* allocate storage so lint will compile as well */
 #ifndef LINT
 extern int lastloc;
 #endif
