@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.48 (Berkeley) 11/14/92";
+static char sccsid[] = "@(#)readcf.c	5.49 (Berkeley) 11/15/92";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1135,6 +1135,6 @@ makemapentry(line)
 	map = stab(mapname, ST_MAP, ST_ENTER);
 	map->s_map.map_class = &class->s_mapclass;
 
-	if ((*class->s_mapclass.map_init)(&map->s_map, p))
+	if ((*class->s_mapclass.map_init)(&map->s_map, mapname, p))
 		map->s_map.map_flags |= MF_VALID;
 }
