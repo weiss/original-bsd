@@ -1,4 +1,4 @@
-#        @(#)Makefile	1.2 (Berkeley) 06/03/92
+#        @(#)Makefile	1.3 (Berkeley) 06/03/92
 
 
 PROG= test
@@ -12,6 +12,7 @@ $(PROG): test.c operators.h extern.h $(OBJS)
 	ln test '['
 
 operators.c operators.h: unary_op binary_op mkops
+	chmod 555 ./mkops
 	./mkops
 
 operators.o: operators.h
