@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)initgroups.c	5.2 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)initgroups.c	5.3 (Berkeley) 04/27/86";
 #endif LIBC_SCCS and not lint
 
 /*
@@ -44,7 +44,7 @@ toomany:
 	endgrent();
 	if (setgroups(ngroups, groups) < 0) {
 		perror("setgroups");
-		return (1);
+		return (-1);
 	}
 	return (0);
 }
