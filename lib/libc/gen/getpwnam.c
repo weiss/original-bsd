@@ -1,4 +1,7 @@
-/* @(#)getpwnam.c	4.1 (Berkeley) 12/21/80 */
+#ifndef lint
+static char sccsid[] = "@(#)getpwnam.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include <pwd.h>
 
 struct passwd *
