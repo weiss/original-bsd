@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)halt.c	4.6 (Berkeley) 12/03/82";
+static	char *sccsid = "@(#)halt.c	4.7 (Berkeley) 01/02/83";
 /*
  * Halt
  */
@@ -40,6 +40,7 @@ main(argc, argv)
 		exit(1);
 	}
 
+	signal(SIGHUP, SIG_IGN);		/* for network connections */
 	if (kill(1, SIGTSTP) == -1) {
 		fprintf(stderr, "reboot: can't idle init\n");
 		exit(1);
