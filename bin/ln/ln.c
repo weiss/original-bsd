@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)ln.c 4.7 10/22/87";
+static char sccsid[] = "@(#)ln.c	4.8 (Berkeley) 11/05/87";
 /*
  * ln
  */
@@ -38,7 +38,7 @@ again:
 		argv[argc] = ".";
 		argc++;
 	}
-	if (sflag == 0 && argc > 2) {
+	if (argc > 2) {
 		if (stat(argv[argc-1], &stb) < 0)
 			goto usage;
 		if ((stb.st_mode&S_IFMT) != S_IFDIR) 
