@@ -3,11 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_clock.c	7.2 (Berkeley) 11/03/86
+ *	@(#)kern_clock.c	7.3 (Berkeley) 08/27/88
  */
-
-#include "../machine/reg.h"
-#include "../machine/psl.h"
 
 #include "param.h"
 #include "systm.h"
@@ -19,6 +16,9 @@
 #include "proc.h"
 #include "vm.h"
 #include "text.h"
+
+#include "../machine/reg.h"
+#include "../machine/psl.h"
 
 #if defined(vax) || defined(tahoe)
 #include "../machine/mtpr.h"
@@ -442,12 +442,3 @@ profil()
 	upp->pr_off = uap->pcoffset;
 	upp->pr_scale = uap->pcscale;
 }
-
-#ifdef COMPAT
-opause()
-{
-
-	for (;;)
-		sleep((caddr_t)&u, PSLEP);
-}
-#endif
