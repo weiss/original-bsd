@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	8.3 (Berkeley) 09/21/93
+ *	@(#)init_main.c	8.4 (Berkeley) 09/23/93
  */
 
 #include <sys/param.h>
@@ -111,7 +111,7 @@ main(regs)
 	session0.s_count = 1;
 	session0.s_leader = p;
 
-	p->p_flag = SLOAD|SSYS;
+	p->p_flag = P_INMEM | P_SYSTEM;
 	p->p_stat = SRUN;
 	p->p_nice = NZERO;
 	bcopy("swapper", p->p_comm, sizeof ("swapper"));
@@ -227,7 +227,7 @@ main(regs)
 	/*
 	 * Now can look at time, having had a chance to verify the time
 	 * from the file system.  Reset p->p_rtime as it may have been
-	 * munched in swtch() after the time got set.
+	 * munched in mi_switch() after the time got set.
 	 */
 	p->p_stats->p_start = runtime = mono_time = boottime = time;
 	p->p_rtime.tv_sec = p->p_rtime.tv_usec = 0;
@@ -252,7 +252,7 @@ main(regs)
 		 */
 		p = curproc;
 		pageproc = p;
-		p->p_flag |= SLOAD|SSYS;		/* XXX */
+		p->p_flag |= P_INMEM | P_SYSTEM;	/* XXX */
 		bcopy("pagedaemon", curproc->p_comm, sizeof ("pagedaemon"));
 		vm_pageout();
 		/* NOTREACHED */
@@ -312,36 +312,36 @@ start_init(p, regs)
 		 */
 		options = 0;
 		ucp = (char *)USRSTACK;
-		(void) subyte(--ucp, 0);		/* trailing zero */
+		(void)subyte(--ucp, 0);		/* trailing zero */
 		if (boothowto & RB_SINGLE) {
-			(void) subyte(--ucp, 's');
+			(void)subyte(--ucp, 's');
 			options = 1;
 		}
 #ifdef notyet
                 if (boothowto & RB_FASTBOOT) {
-			(void) subyte(--ucp, 'f');
+			(void)subyte(--ucp, 'f');
 			options = 1;
 		}
 #endif
 		if (options == 0)
-			(void) subyte(--ucp, '-');
-		(void) subyte(--ucp, '-');		/* leading hyphen */
+			(void)subyte(--ucp, '-');
+		(void)subyte(--ucp, '-');		/* leading hyphen */
 		arg1 = ucp;
 
 		/*
 		 * Move out the file name (also arg 0).
 		 */
 		for (i = strlen(path) + 1; i >= 0; i--)
-			(void) subyte(--ucp, path[i]);
+			(void)subyte(--ucp, path[i]);
 		arg0 = ucp;
 
 		/*
 		 * Move out the arg pointers.
 		 */
 		uap = (char **)((int)ucp & ~(NBPW-1));
-		(void) suword((caddr_t)--uap, 0);	/* terminator */
-		(void) suword((caddr_t)--uap, (int)arg1);
-		(void) suword((caddr_t)--uap, (int)arg0);
+		(void)suword((caddr_t)--uap, 0);	/* terminator */
+		(void)suword((caddr_t)--uap, (int)arg1);
+		(void)suword((caddr_t)--uap, (int)arg0);
 
 		/*
 		 * Point at the arguments.
@@ -351,18 +351,13 @@ start_init(p, regs)
 		args.envp = NULL;
 
 		/*
-		 * Now try to exec the program.
+		 * Now try to exec the program.  If can't for any reason
+		 * other than it doesn't exist, complain.
 		 */
 		if ((error = execve(p, &args, &retval)) == 0)
 			return;
-		if (error != ENOENT) {
-			/*
-			 * Found "init", but couldn't execute it.
-			 * Complain now.
-			 */
-			printf("Can't invoke %s: error %d\n", path, error);
-			panic("init error");
-		}
+		if (error != ENOENT)
+			printf("exec %s: error %d\n", path, error);
 	}
 	printf("init: not found\n");
 	panic("no init");
