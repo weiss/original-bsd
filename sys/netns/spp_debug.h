@@ -1,4 +1,10 @@
-/*      spp_debug.h     6.1     85/05/30     */
+/*
+ * Copyright (c) 1982 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)spp_debug.h	6.2 (Berkeley) 06/08/85
+ */
 
 struct	spp_debug {
 	u_long	sd_time;
