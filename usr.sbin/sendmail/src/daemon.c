@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.28 (Berkeley) 12/22/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.29 (Berkeley) 12/22/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.28 (Berkeley) 12/22/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.29 (Berkeley) 12/22/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1091,12 +1091,11 @@ host_map_lookup(map, name, av, statp)
 			  case TRY_AGAIN:
 				if (UseNameServer)
 				{
-					extern char MsgBuf[];
-
-					message("%s: Name server timeout",
+					sprintf(hbuf, "%s: Name server timeout",
 						shortenstring(name, 33));
+					message("%s", hbuf);
 					if (CurEnv->e_message == NULL)
-						CurEnv->e_message = newstr(MsgBuf + 4);
+						CurEnv->e_message = newstr(hbuf);
 				}
 				*statp = EX_TEMPFAIL;
 				break;
