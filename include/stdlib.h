@@ -4,12 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stdlib.h	5.3 (Berkeley) 05/29/90
+ *	@(#)stdlib.h	5.4 (Berkeley) 12/18/90
  */
 
 #ifndef _STDLIB_H_
 #define _STDLIB_H_
-#include <machine/machtypes.h>
+#include <machine/types.h>
 
 #ifdef	_SIZE_T_
 typedef	_SIZE_T_	size_t;
