@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)malloc.h	8.4 (Berkeley) 03/27/95
+ *	@(#)malloc.h	8.5 (Berkeley) 05/03/95
  */
 
 #ifndef _SYS_MALLOC_H_
@@ -197,7 +197,7 @@ struct kmembuckets {
 #ifdef KERNEL
 #define	MINALLOCSIZE	(1 << MINBUCKET)
 #define BUCKETINDX(size) \
-	(size) <= (MINALLOCSIZE * 128) \
+	((size) <= (MINALLOCSIZE * 128) \
 		? (size) <= (MINALLOCSIZE * 8) \
 			? (size) <= (MINALLOCSIZE * 2) \
 				? (size) <= (MINALLOCSIZE * 1) \
@@ -227,7 +227,7 @@ struct kmembuckets {
 					: (MINBUCKET + 13) \
 				: (size) <= (MINALLOCSIZE * 16384) \
 					? (MINBUCKET + 14) \
-					: (MINBUCKET + 15)
+					: (MINBUCKET + 15))
 
 /*
  * Turn virtual addresses into kmem map indicies
