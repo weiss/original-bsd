@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.41 (Berkeley) 06/24/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.42 (Berkeley) 07/03/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.41 (Berkeley) 06/24/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.42 (Berkeley) 07/03/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -397,8 +397,8 @@ smtp(e)
 
 			/* check for possible spoofing */
 			if (RealUid != 0 && OpMode == MD_SMTP &&
-			    (e->e_from.q_mailer != LocalMailer &&
-			     strcmp(e->e_from.q_user, RealUserName) != 0))
+			    !bitnset(M_LOCALMAILER, e->e_from.q_mailer->m_flags) &&
+			    strcmp(e->e_from.q_user, RealUserName) != 0)
 			{
 				auth_warning(e, "%s owned process doing -bs",
 					RealUserName);
