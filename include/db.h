@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)db.h	5.10 (Berkeley) 04/02/91
+ *	@(#)db.h	5.11 (Berkeley) 08/05/91
  */
 
 #ifndef _DB_H_
@@ -27,8 +27,8 @@
 
 /* key/data structure -- a data-base thang */
 typedef struct {
-	void *data;
-	int size;
+	void	*data;			/* data */
+	size_t	 size;			/* data length */
 } DBT;
 
 /* access method description structure */
