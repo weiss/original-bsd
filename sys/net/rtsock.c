@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)rtsock.c	7.32 (Berkeley) 02/04/93
+ *	@(#)rtsock.c	7.33 (Berkeley) 03/05/93
  */
 
 #include <sys/param.h>
@@ -217,6 +217,7 @@ route_output(m, so)
 				(struct walkarg *)0);
 			rtm->rtm_flags = rt->rt_flags;
 			rtm->rtm_rmx = rt->rt_rmx;
+			rtm->rtm_addrs = info.rti_addrs;
 			break;
 
 		case RTM_CHANGE:
