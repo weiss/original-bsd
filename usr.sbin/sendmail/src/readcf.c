@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.1 (Berkeley) 06/07/93";
+static char sccsid[] = "@(#)readcf.c	8.2 (Berkeley) 07/13/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -978,7 +978,7 @@ setoption(opt, val, safe, sticky, e)
 	**  Check to see if this option can be specified by this user.
 	*/
 
-	if (!safe && getuid() == 0)
+	if (!safe && RealUid == 0)
 		safe = TRUE;
 	if (!safe && strchr("bdeEijLmoprsvC7", opt) == NULL)
 	{
@@ -986,12 +986,12 @@ setoption(opt, val, safe, sticky, e)
 		{
 			if (tTd(37, 1))
 				printf(" (unsafe)");
-			if (getuid() != geteuid())
+			if (RealUid != geteuid())
 			{
 				if (tTd(37, 1))
 					printf("(Resetting uid)");
-				(void) setgid(getgid());
-				(void) setuid(getuid());
+				(void) setgid(RealGid);
+				(void) setuid(RealUid);
 			}
 		}
 	}
