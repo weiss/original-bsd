@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.3 (Berkeley) 04/28/86
+#	@(#)Makefile	5.4 (Berkeley) 05/31/87
 #
 #	as.h		Definitions for data structures
 #	asnumber.h	Definitions for all numbers: byte .. G format float
@@ -120,6 +120,9 @@ lint:
 	lint ${DFLAGS} ${SRCS}
 clean:
 	rm -f ${OBJS} instrs.as as core a.out errs
+
+depend:
+
 install:
 	install -s as ${DESTDIR}/bin
 
