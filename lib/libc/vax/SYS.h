@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)SYS.h	5.4 (Berkeley) 06/27/88
+ *	@(#)SYS.h	5.5 (Berkeley) 05/30/90
  */
 
 #include <sys/syscall.h>
@@ -28,5 +28,7 @@
 #define	SYSCALL(x)	err: jmp cerror; ENTRY(x); chmk $SYS_/**/x; jcs err
 #define	PSEUDO(x,y)	ENTRY(x); chmk $SYS_/**/y
 #define	CALL(x,y)	calls $x, _/**/y
+
+#define	ASMSTR		.asciz
 
 	.globl	cerror
