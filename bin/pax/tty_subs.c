@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tty_subs.c	1.1 (Berkeley) 12/13/92";
+static char sccsid[] = "@(#)tty_subs.c	1.2 (Berkeley) 05/21/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -39,7 +39,6 @@ static char sccsid[] = "@(#)tty_subs.c	1.1 (Berkeley) 12/13/92";
 #define DEVTTY          "/dev/tty"      /* device for interactive i/o */
 static FILE *ttyoutf = NULL;		/* output pointing at control tty */
 static FILE *ttyinf = NULL;		/* input pointing at control tty */
-extern char *sys_errlist[];		/* errno printable strings */
 
 /*
  * tty_init()
