@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)spec_vnops.c	7.23 (Berkeley) 03/09/90
+ *	@(#)spec_vnops.c	7.24 (Berkeley) 03/27/90
  */
 
 #include "param.h"
@@ -25,6 +25,7 @@
 #include "buf.h"
 #include "mount.h"
 #include "vnode.h"
+#include "specdev.h"
 #include "stat.h"
 #include "errno.h"
 #include "ioctl.h"
