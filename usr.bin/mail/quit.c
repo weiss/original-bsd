@@ -9,7 +9,7 @@
  * Termination processing.
  */
 
-static char *SccsId = "@(#)quit.c	1.3 10/10/80";
+static char *SccsId = "@(#)quit.c	1.4 10/17/80";
 
 /*
  * Save all of the undetermined messages at the top of "mbox"
@@ -19,7 +19,7 @@ static char *SccsId = "@(#)quit.c	1.3 10/10/80";
 
 quit()
 {
-	int mcount, p, modify, autohold;
+	int mcount, p, modify, autohold, anystat;
 	FILE *ibuf, *obuf, *fbuf, *rbuf;
 	register struct message *mp;
 	register int c;
@@ -80,7 +80,19 @@ quit()
 			goto newmail;
 		remove(tempResid);
 	}
+
+	/*
+	 * Adjust the message flags in each message.
+	 */
+
+	anystat = 0;
 	for (mp = &message[0]; mp < &message[msgCount]; mp++) {
+		if (mp->m_flag & MNEW) {
+			mp->m_flag &= ~MNEW;
+			mp->m_flag |= MSTATUS;
+		}
+		if (mp->m_flag & MSTATUS)
+			anystat++;
 		if (mp->m_flag & MDELETED)
 			mp->m_flag = MDELETED|MTOUCH;
 		if ((mp->m_flag & MTOUCH) == 0)
@@ -98,7 +110,7 @@ quit()
 		if (mp->m_flag & MODIFY)
 			modify++;
 	}
-	if (p == msgCount && !modify) {
+	if (p == msgCount && !modify && !anystat) {
 		if (p == 1)
 			printf("Held 1 message in %s\n", mailname);
 		else
