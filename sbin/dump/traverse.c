@@ -1,7 +1,7 @@
-static	char *sccsid = "@(#)traverse.c	1.7 (Berkeley) 03/23/82";
+static	char *sccsid = "@(#)traverse.c	1.8 (Berkeley) 05/20/82";
 
 #include "dump.h"
-#include <ndir.h>
+#include <dir.h>
 
 pass(fn, map)
 	int (*fn)();
