@@ -4,13 +4,14 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)sys.c	7.17 (Berkeley) 05/27/92
+ *	@(#)sys.c	7.18 (Berkeley) 10/11/92
  */
 
 #include <sys/param.h>
 #include <sys/reboot.h>
+
 #include <ufs/ufs/dir.h>
-#include "saio.h"
+#include <stand/saio.h>
 
 struct iob iob[SOPEN_MAX];
 int errno;

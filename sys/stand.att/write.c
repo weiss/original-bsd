@@ -4,11 +4,12 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)write.c	7.1 (Berkeley) 05/05/91
+ *	@(#)write.c	7.2 (Berkeley) 10/11/92
  */
 
 #include <sys/param.h>
-#include "saio.h"
+
+#include <stand/saio.h>
 
 #ifndef SMALL
 write(fdesc, buf, count)

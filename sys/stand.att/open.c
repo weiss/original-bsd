@@ -4,13 +4,14 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)open.c	7.4 (Berkeley) 08/14/92
+ *	@(#)open.c	7.5 (Berkeley) 10/11/92
  */
 
 #include <sys/param.h>
 #include <sys/reboot.h>
+
 #include <ufs/ufs/dir.h>
-#include "saio.h"
+#include <stand/saio.h>
 
 int	firstopen;
 u_int	opendev;			/* last device opened */
