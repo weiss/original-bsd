@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	5.33 (Berkeley) 12/05/91 (with queueing)";
+static char sccsid[] = "@(#)queue.c	5.34 (Berkeley) 12/05/91 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	5.33 (Berkeley) 12/05/91 (without queueing)";
+static char sccsid[] = "@(#)queue.c	5.34 (Berkeley) 12/05/91 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -900,7 +900,7 @@ printqueue()
 		}
 		printf("%7s", w->w_name + 2);
 # ifdef LOCKF
-		if (flock(fileno(f), F_TEST, 0) < 0)
+		if (lockf(fileno(f), F_TEST, 0) < 0)
 # else
 		if (flock(fileno(f), LOCK_SH|LOCK_NB) < 0)
 # endif
