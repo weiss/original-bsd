@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.164 (Berkeley) 05/15/95";
+static char sccsid[] = "@(#)conf.c	8.165 (Berkeley) 05/16/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -385,7 +385,7 @@ setupmaps()
 #endif
 
 	/* arbitrary programs */
-	MAPDEF("program", NULL, 0,
+	MAPDEF("program", NULL, MCF_ALIASOK,
 		map_parseargs, null_map_open, null_map_close,
 		prog_map_lookup, null_map_store);
 
