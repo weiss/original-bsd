@@ -7,13 +7,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ndbm.h	5.7 (Berkeley) 09/11/91
+ *	@(#)ndbm.h	5.8 (Berkeley) 04/25/92
  */
 
 #ifndef _NDBM_H_
 #define	_NDBM_H_
 
-#include <sys/cdefs.h>
 #include <db.h>
 
 /* Map dbm interface onto db(3). */
