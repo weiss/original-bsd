@@ -9,18 +9,20 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ccitt_proto.c	7.6 (Berkeley) 07/09/92
+ *	@(#)ccitt_proto.c	7.7 (Berkeley) 12/08/92
  */
-#include "param.h"
-#include "socket.h"
-#include "protosw.h"
-#include "domain.h"
 
-#include "x25.h"
+#include <sys/param.h>
+#include <sys/socket.h>
+#include <sys/protosw.h>
+#include <sys/domain.h>
 
-#include "net/radix.h"
+#include <netccitt/x25.h>
+
+#include <net/radix.h>
+
 /*
- *	Definitions of protocols supported in the CCITT domain.
+ * Definitions of protocols supported in the CCITT domain.
  */
 
 extern	struct domain ccittdomain;
