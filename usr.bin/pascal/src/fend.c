@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)fend.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)fend.c	5.2 (Berkeley) 11/12/86";
 #endif not lint
 
 #include "whoami.h"
@@ -468,7 +468,8 @@ funcend(fp, bundle, endline)
 	if (Fp == NIL)
 		elineon();
 #	ifdef OBJ
-	    patchfil((PTR_DCL) var, leven(-sizes[cbn].om_max), 2);
+	    patchfil((PTR_DCL) var,
+		roundup(-sizes[cbn].om_max, (long) A_STACK), 2);
 #	endif OBJ
 	cbn--;
 	if (inpflist(fp->symbol)) {
