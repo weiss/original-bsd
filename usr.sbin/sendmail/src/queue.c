@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.9 (Berkeley) 07/29/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.10 (Berkeley) 08/07/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.9 (Berkeley) 07/29/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.10 (Berkeley) 08/07/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -921,7 +921,7 @@ readqf(e, announcefile)
 		return FALSE;
 	}
 
-	if (st.st_uid != geteuid() || (st.st_mode & 07777) != FileMode)
+	if (st.st_uid != geteuid())
 	{
 # ifdef LOG
 		if (LogLevel > 0)
