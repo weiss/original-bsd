@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)malloc.c	5.5 (Berkeley) 02/25/86";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)malloc.c	5.6 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /*
  * malloc.c (Caltech) 2/21/82
