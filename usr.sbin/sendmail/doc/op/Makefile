@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
-DIR=	smm/07.sendmailop
+DIR=	smm/08.sendmailop
 SRCS=	op.me
 MACROS=	-me
 
