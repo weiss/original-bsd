@@ -1,7 +1,6 @@
 #ifndef lint
-static char sccsid[] = "@(#)lookup.c	2.1	06/22/83";
+static char sccsid[] = "@(#)lookup.c	2.2	09/23/83";
 #endif not lint
-
 # include "stdio.h"
 # include "streams.h"
 # include "bib.h"
@@ -57,7 +56,6 @@ char **arglist;
     }
     exit(0);
 }
-int fileflag;
 
 # define    operand     (strlen(*argv+2)==0 ? (argv++,argc--,*argv) : *argv+2)
 
@@ -70,8 +68,6 @@ flags()
                         break;
             case 'p':   strcpy(INDEX,operand);
                         break;
-	    case 'f':	fileflag = 1;
-			break;
             default:    fprintf(stderr, "unknown flag '%s'\n", *argv);
         }
     }
