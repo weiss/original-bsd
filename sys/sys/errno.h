@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)errno.h	7.13 (Berkeley) 02/19/91
+ *	@(#)errno.h	7.14 (Berkeley) 01/09/92
  */
 
 #ifndef KERNEL
@@ -118,7 +118,12 @@ extern int errno;			/* global error number */
 #define	ENOLCK		77		/* No locks available */
 #define	ENOSYS		78		/* Function not implemented */
 
+#ifndef _POSIX_SOURCE
 #define	EFTYPE		79		/* Inappropriate file type or format */
+#define	EAUTH		80		/* Authentication error */
+#define	ENEEDAUTH	81		/* Need authenticator */
+#define	ELAST		81		/* Must be equal largest errno */
+#endif /* _POSIX_SOURCE */
 
 #ifdef KERNEL
 /* pseudo-errors returned inside kernel to modify return to process */
