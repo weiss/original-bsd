@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	6.4 (Berkeley) 01/28/93 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	6.5 (Berkeley) 02/14/93 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	6.4 (Berkeley) 01/28/93 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	6.5 (Berkeley) 02/14/93 (without USERDB)";
 #endif
 #endif
 
@@ -190,6 +190,11 @@ udbexpand(a, sendq, e)
 				user[info.size] = '\0';
 
 				message(Arpa_Info, "expanded to %s", user);
+#ifdef LOG
+				if (LogLevel >= 10)
+					syslog(LOG_INFO, "%s: expand %s => %s",
+						e->e_id, e->e_to, user);
+#endif
 				AliasLevel++;
 				sendtolist(user, a, sendq, e);
 				AliasLevel--;

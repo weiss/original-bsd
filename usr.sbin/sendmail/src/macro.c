@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)macro.c	6.3 (Berkeley) 01/20/93";
+static char sccsid[] = "@(#)macro.c	6.4 (Berkeley) 02/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -69,26 +69,24 @@ expand(s, buf, buflim, e)
 		switch (c)
 		{
 		  case CONDIF:		/* see if var set */
-			if (iflev++ <= 0)
-			{
-				c = *++s;
+			c = *++s;
+			if (skipping)
+				iflev++;
+			else
 				skipping = macvalue(c, e) == NULL;
-				continue;
-			}
-			break;
+			continue;
 
 		  case CONDELSE:	/* change state of skipping */
-			if (iflev == 1)
+			if (iflev == 0)
 				skipping = !skipping;
 			continue;
 
 		  case CONDFI:		/* stop skipping */
-			if (--iflev <= 0)
-			{
+			if (iflev == 0)
 				skipping = FALSE;
-				continue;
-			}
-			break;
+			if (skipping)
+				iflev--;
+			continue;
 
 		  case '\001':		/* macro interpolation */
 			c = *++s;

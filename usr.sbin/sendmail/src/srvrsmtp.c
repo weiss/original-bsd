@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.3 (Berkeley) 01/21/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.4 (Berkeley) 02/14/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.3 (Berkeley) 01/21/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.4 (Berkeley) 02/14/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -242,6 +242,9 @@ smtp(e)
 			p = skipword(p, "from");
 			if (p == NULL)
 				break;
+			if (setjmp(TopFrame) > 0)
+				break;
+			QuickAbort = TRUE;
 			setsender(p, e);
 			if (Errors == 0)
 			{
