@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_xxx.c	7.7 (Berkeley) 05/05/89
+ *	@(#)kern_xxx.c	7.8 (Berkeley) 11/20/89
  */
 
 #include "param.h"
@@ -81,4 +81,9 @@ reboot()
 	if (u.u_error = suser(u.u_cred, &u.u_acflag))
 		return;
 	boot(((struct a *)u.u_ap)->opt);
+}
+
+ovhangup()
+{
+	u.u_error = EINVAL;
 }
