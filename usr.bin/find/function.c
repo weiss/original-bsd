@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	8.5 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)function.c	8.6 (Berkeley) 04/01/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -1033,13 +1033,11 @@ palloc(t, f)
 {
 	PLAN *new;
 
-	if (new = malloc(sizeof(PLAN))) {
-		new->type = t;
-		new->eval = f;
-		new->flags = 0;
-		new->next = NULL;
-		return (new);
-	}
-	err(1, NULL);
-	/* NOTREACHED */
+	if ((new = malloc(sizeof(PLAN))) == NULL)
+		err(1, NULL);
+	new->type = t;
+	new->eval = f;
+	new->flags = 0;
+	new->next = NULL;
+	return (new);
 }
