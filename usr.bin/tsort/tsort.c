@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)tsort.c	8.2 (Berkeley) 03/30/94";
+static char sccsid[] = "@(#)tsort.c	8.3 (Berkeley) 05/04/95";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -28,6 +28,7 @@ static char sccsid[] = "@(#)tsort.c	8.2 (Berkeley) 03/30/94";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 /*
  *  Topological sort.  Input is a list of pairs of strings separated by
