@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ptrace.h	7.4 (Berkeley) 02/22/91
+ *	@(#)ptrace.h	7.5 (Berkeley) 02/05/92
  */
 
 #ifndef	_PTRACE_H_
@@ -20,6 +20,11 @@
 #define	PT_CONTINUE	7	/* continue the child */
 #define	PT_KILL		8	/* kill the child process */
 #define	PT_STEP		9	/* single step the child */
+#define	PT_ATTACH	10	/* trace some running process */
+#define	PT_DETACH	11	/* stop tracing a process */
+
+#define	PT_FIRSTMACH	32	/* for machine-specific requests */
+#include <machine/ptrace.h>	/* machine-specific requests, if any */
 
 #ifndef KERNEL
 
