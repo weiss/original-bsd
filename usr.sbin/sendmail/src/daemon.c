@@ -11,16 +11,15 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.30 (Berkeley) 01/08/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.31 (Berkeley) 01/22/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.30 (Berkeley) 01/08/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.31 (Berkeley) 01/22/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
 #ifdef DAEMON
 
 # include <netdb.h>
-# include <sys/time.h>
 # include <arpa/inet.h>
 
 #ifdef NAMED_BIND

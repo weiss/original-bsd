@@ -10,15 +10,14 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	8.4 (Berkeley) 11/25/93 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	8.5 (Berkeley) 01/22/94 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	8.4 (Berkeley) 11/25/93 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	8.5 (Berkeley) 01/22/94 (without USERDB)";
 #endif
 #endif
 
 #ifdef USERDB
 
-#include <sys/time.h>
 #include <errno.h>
 #include <netdb.h>
 #include <db.h>
