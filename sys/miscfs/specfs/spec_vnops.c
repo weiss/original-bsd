@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)spec_vnops.c	7.28 (Berkeley) 06/28/90
+ *	@(#)spec_vnops.c	7.29 (Berkeley) 12/05/90
  */
 
 #include "param.h"
@@ -221,8 +221,8 @@ spec_write(vp, uio, ioflag, cred)
 	daddr_t bn;
 	int bsize, blkmask;
 	struct partinfo dpart;
-	register int n, on, i;
-	int count, error = 0;
+	register int n, on;
+	int error = 0;
 	extern int mem_no;
 
 	if (uio->uio_rw != UIO_WRITE)
@@ -260,9 +260,6 @@ spec_write(vp, uio, ioflag, cred)
 			bn = (uio->uio_offset / DEV_BSIZE) &~ blkmask;
 			on = uio->uio_offset % bsize;
 			n = MIN((unsigned)(bsize - on), uio->uio_resid);
-			count = howmany(bsize, CLBYTES);
-			for (i = 0; i < count; i++)
-				munhash(vp, bn + i * (CLBYTES / DEV_BSIZE));
 			if (n == bsize)
 				bp = getblk(vp, bn, bsize);
 			else
