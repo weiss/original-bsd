@@ -10,7 +10,7 @@
 # software without specific prior written permission. This software
 # is provided ``as is'' without express or implied warranty.
 #
-#	@(#)makewhatis.sed	5.1 (Berkeley) 03/27/88
+#	@(#)makewhatis.sed	5.2 (Berkeley) 03/27/88
 #
 /(\([a-zA-Z0-9]*\).*UNIX Programmer's Manual/ {
 	s;.*(\([a-zA-Z0-9]*\).*UNIX.*;\1;
@@ -23,6 +23,8 @@
 	s;.*;;
 	N
 	s;\n;;
+	# some twits underline the command name
+	s;_;;g
 	/^[^	 ]/b print
 	H
 	b name
