@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)scanner.c 1.5 03/30/83";
+static char sccsid[] = "@(#)scanner.c 1.6 04/29/83";
 
 /*
  * Debugger scanner.
@@ -130,7 +130,11 @@ public Token yylex()
     if (lexclass[c] == ALPHA) {
 	t = getident();
     } else if (lexclass[c] == NUM) {
-	t = getnum();
+	if (shellmode) {
+	    t = getident();
+	} else {
+	    t = getnum();
+	}
     } else {
 	++curchar;
 	switch (c) {
