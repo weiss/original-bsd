@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)Do_spell	5.2 (Berkeley) 04/08/91
+#	@(#)Do_spell	8.1 (Berkeley) 05/31/93
 #
 
 F=_spell.$$
