@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)register.c	1.9 (Berkeley) 05/11/90";
+static char sccsid[] = "@(#)register.c	1.10 (Berkeley) 05/11/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -247,9 +247,9 @@ setup_key(local)
 
 	fd = open(namebuf, O_RDONLY);
 	if (fd < 0) {
-		fprintf(stderr, "couldn't open key file for local host %s\n",
-			inet_ntoa(local.sin_addr));
-		perror("open");
+		fprintf(stderr, "couldn't open key file %s for local host: ",
+			namebuf);
+		perror("");
 		exit(1);
 	}
 
