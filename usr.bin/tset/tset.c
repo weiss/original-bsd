@@ -1,5 +1,6 @@
-#
-	char	id_tset[] = "@(#)tset.c	1.5 06/07/83";
+#ifndef lint
+static char sccsid[] = "@(#)tset.c	1.6 (Berkeley) 08/11/83";
+#endif
 
 /*
 **  TSET -- set terminal modes
