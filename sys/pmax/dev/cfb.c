@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)cfb.c	8.1 (Berkeley) 06/10/93
+ *	@(#)cfb.c	8.2 (Berkeley) 06/02/95
  */
 
 /*
@@ -201,6 +201,7 @@ cfbclose(dev, flag)
 /*ARGSUSED*/
 cfbioctl(dev, cmd, data, flag, p)
 	dev_t dev;
+	u_long cmd;
 	caddr_t data;
 	struct proc *p;
 {
