@@ -1,6 +1,6 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/06/93
+#	@(#)Makefile	8.2 (Berkeley) 04/03/94
 
 PROG=	ftp
-SRCS=	cmds.c cmdtab.c ftp.c glob.c main.c ruserpass.c domacro.c
+SRCS=	cmds.c cmdtab.c ftp.c main.c ruserpass.c domacro.c
 
 .include <bsd.prog.mk>
