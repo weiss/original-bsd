@@ -1,4 +1,4 @@
-/*	@(#)mdiv.c	4.1	12/25/82	*/
+/*	@(#)mdiv.c	4.2	08/04/83	*/
 
 #include <mp.h>
 mdiv(a,b,q,r) MINT *a,*b,*q,*r;
@@ -22,7 +22,8 @@ mdiv(a,b,q,r) MINT *a,*b,*q,*r;
 }
 m_dsb(q,n,a,b) short *a,*b;
 {	long int x,qx;
-	int borrow,j,u;
+	int borrow,j;
+	short u;
 	qx=q;
 	borrow=0;
 	for(j=0;j<n;j++)
