@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)c20.c	1.4 (Berkeley/CCI) 08/14/86";
+static char sccsid[] = "@(#)c20.c	1.5 (Berkeley/CCI) 06/06/87";
 #endif
 
 /*
@@ -63,12 +63,13 @@ char **argv;
 		} else if (infound==0) {
 			if (freopen(*argv, "r", stdin) ==NULL)
 				error("C2: can't find %s\n", *argv);
-			setbuf(stdin,_sibuf); ++infound;
+			++infound;
 		} else if (freopen(*argv, "w", stdout) ==NULL)
 			error("C2: can't create %s\n", *argv);
-		setbuf(stdout,_sobuf);
 		argc--; argv++;
 	}
+	setbuf(stdin,_sibuf);
+	setbuf(stdout,_sobuf);
 	lasta = lastr = (char *)sbrk(2);
 	opsetup();
 	lasta = firstr = lastr = (char *)alloc(0);
