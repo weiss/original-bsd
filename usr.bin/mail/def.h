@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)def.h	5.7 (Berkeley) 06/11/88
+ *	@(#)def.h	5.8 (Berkeley) 06/16/88
  */
 
 #include <sys/param.h>		/* includes <sys/types.h> */
@@ -301,7 +301,6 @@ struct	name	*map();
 struct	name	*outof();
 struct	name	*put();
 struct	name	*usermap();
-struct	name	*verify();
 struct	var	*lookup();
 long	transmit();
 int	icequal();
