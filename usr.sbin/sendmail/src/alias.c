@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 1983 Eric P. Allman
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
@@ -11,7 +11,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	6.52 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)alias.c	8.1 (Berkeley) 06/07/93";
 #endif /* not lint */
 
 
