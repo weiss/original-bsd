@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)network.c	5.3 (Berkeley) 12/18/92";
+static char sccsid[] = "@(#)network.c	5.4 (Berkeley) 05/20/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -102,10 +102,10 @@ netflush()
 {
     register int n, n1;
 
-#if	defined(ENCRYPTION)
+#ifdef	ENCRYPTION
     if (encrypt_output)
 	ring_encrypt(&netoring, encrypt_output);
-#endif
+#endif	/* ENCRYPTION */
     if ((n1 = n = ring_full_consecutive(&netoring)) > 0) {
 	if (!ring_at_mark(&netoring)) {
 	    n = send(net, netoring.consume, n, 0);	/* normal write */

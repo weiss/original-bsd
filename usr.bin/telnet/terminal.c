@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)terminal.c	5.4 (Berkeley) 12/18/92";
+static char sccsid[] = "@(#)terminal.c	5.5 (Berkeley) 05/20/93";
 #endif /* not lint */
 
 #include <arpa/telnet.h>
@@ -181,7 +181,7 @@ setconnmode(force)
 {
 #ifdef	ENCRYPTION
     static int enc_passwd = 0;
-#endif
+#endif	/* ENCRYPTION */
     register int newmode;
 
     newmode = getconnmode()|(force?MODE_FORCE:0);
@@ -201,7 +201,7 @@ setconnmode(force)
 	    enc_passwd = 0;
 	}
     }
-#endif
+#endif	/* ENCRYPTION */
 
 }
 

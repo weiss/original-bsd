@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)externs.h	5.6 (Berkeley) 05/11/93
+ *	@(#)externs.h	5.7 (Berkeley) 05/20/93
  */
 
 #ifndef	BSD
@@ -24,11 +24,17 @@
 
 #include <stdio.h>
 #include <setjmp.h>
+#if defined(CRAY) && !defined(NO_BSD_SETJMP)
+#include <bsdsetjmp.h>
+#endif
 #ifndef	FILIO_H
 #include <sys/ioctl.h>
 #else
 #include <sys/filio.h>
 #endif
+#ifdef CRAY
+# include <errno.h>
+#endif /* CRAY */
 #ifdef	USE_TERMIO
 # ifndef	VINTR
 #  ifdef SYSV_TERMIO
@@ -65,7 +71,9 @@ typedef unsigned char cc_t;
 
 #define	SUBBUFSIZE	256
 
+#ifndef CRAY
 extern int errno;		/* outside this world */
+#endif /* !CRAY */
 
 #if	!defined(P)
 # ifdef	__STDC__
@@ -126,10 +134,10 @@ extern char
     wont[],
     options[],		/* All the little options */
     *hostname;		/* Who are we connected to? */
-#if	defined(ENCRYPTION)
+#ifdef	ENCRYPTION
 extern void (*encrypt_output) P((unsigned char *, int));
 extern int (*decrypt_input) P((int));
-#endif
+#endif	/* ENCRYPTION */
 
 /*
  * We keep track of each side of the option negotiation.

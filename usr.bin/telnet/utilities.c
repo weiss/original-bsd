@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	5.7 (Berkeley) 04/05/93";
+static char sccsid[] = "@(#)utilities.c	5.8 (Berkeley) 05/20/93";
 #endif /* not lint */
 
 #define	TELOPTS
@@ -456,7 +456,7 @@ printsub(direction, pointer, length)
 	    break;
 #endif
 
-#if	defined(ENCRYPTION)
+#ifdef	ENCRYPTION
 	case TELOPT_ENCRYPT:
 	    fprintf(NetTrace, "ENCRYPT");
 	    if (length < 2) {
@@ -525,7 +525,7 @@ printsub(direction, pointer, length)
 		break;
 	    }
 	    break;
-#endif
+#endif	/* ENCRYPTION */
 
 	case TELOPT_LINEMODE:
 	    fprintf(NetTrace, "LINEMODE ");
