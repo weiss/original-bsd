@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pmap.h	7.1 (Berkeley) 01/07/92
+ *	@(#)pmap.h	7.2 (Berkeley) 02/19/92
  */
 
 #ifndef	_PMAP_MACHINE_
@@ -84,9 +84,8 @@ typedef struct pmap {
 #define PMAP_ATTR_REF	0x02	/* page has been referenced */
 
 #ifdef	KERNEL
-#define	pmap_kernel()	(kernel_pmap)
-
-extern	pmap_t kernel_pmap;
+extern struct pmap kernel_pmap_store;
+#define kernel_pmap (&kernel_pmap_store)
 extern	char *pmap_attributes;		/* reference and modify bits */
 #endif	KERNEL
 #endif	_PMAP_MACHINE_
