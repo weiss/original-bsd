@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	5.18 (Berkeley) 02/13/89";
+static char sccsid[] = "@(#)lex.c	5.19 (Berkeley) 11/24/89";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -525,7 +525,7 @@ intr(s)
  */
 stop(s)
 {
-	int (*old_action)() = signal(s, SIG_DFL);
+	sig_t old_action = signal(s, SIG_DFL);
 
 	sigsetmask(sigblock(0) & ~sigmask(s));
 	kill(0, s);

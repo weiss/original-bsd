@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmd3.c	5.21 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)cmd3.c	5.22 (Berkeley) 11/24/89";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -34,7 +34,7 @@ static char sccsid[] = "@(#)cmd3.c	5.21 (Berkeley) 05/11/89";
 shell(str)
 	char *str;
 {
-	int (*sigint)() = signal(SIGINT, SIG_IGN);
+	sig_t sigint = signal(SIGINT, SIG_IGN);
 	char *shell;
 	char cmd[BUFSIZ];
 
@@ -56,7 +56,7 @@ shell(str)
 dosh(str)
 	char *str;
 {
-	int (*sigint)() = signal(SIGINT, SIG_IGN);
+	sig_t sigint = signal(SIGINT, SIG_IGN);
 	char *shell;
 
 	if ((shell = value("SHELL")) == NOSTR)
