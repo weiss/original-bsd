@@ -14,12 +14,12 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.11 (Berkeley) 05/11/89
+#	@(#)Makefile	5.12 (Berkeley) 09/25/89
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
-SRCS=	host.c inet.c if.c main.c mbuf.c route.c unix.c ns.c
-OBJS=	host.o inet.o if.o main.o mbuf.o route.o unix.o ns.o
+SRCS=	host.c inet.c if.c main.c mbuf.c route.c unix.c ns.c iso.c
+OBJS=	host.o inet.o if.o main.o mbuf.o route.o unix.o ns.o iso.o
 MAN=	netstat.0
 
 all: netstat
