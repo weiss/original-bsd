@@ -14,7 +14,7 @@ char copyright[] =
 #endif
 
 #ifndef lint
-static char sccsid[] = "@(#)printf.c	5.13 (Berkeley) 04/29/93";
+static char sccsid[] = "@(#)printf.c	5.14 (Berkeley) 04/29/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -77,6 +77,7 @@ main(argc, argv)
 	int argc;
 	char *argv[];
 {
+	extern int optind;
 	static char *skip1, *skip2;
 	int ch, end, fieldwidth, precision;
 	char convch, nextch, *format, *fmt, *start;
