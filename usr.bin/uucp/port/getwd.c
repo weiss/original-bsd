@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)getwd.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)getwd.c	5.2 (Berkeley) 08/30/84";
 #endif
 
 #include "uucp.h"
@@ -22,7 +22,7 @@ register char *wkdir;
 	/* PATH added to rpopen.  Suggested by Henry Spencer (utzoo!henry) */
 	if ((fp = rpopen("PATH=/bin:/usr/bin;pwd 2>&-", "r")) == NULL)
 		return(FAIL);
-	if (fgets(wkdir, 100, fp) == NULL) {
+	if (fgets(wkdir, MAXFULLNAME, fp) == NULL) {
 		pclose(fp);
 		return(FAIL);
 	}
