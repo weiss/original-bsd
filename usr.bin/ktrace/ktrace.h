@@ -4,10 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ktrace.h	5.1 (Berkeley) 01/17/91
+ *	@(#)ktrace.h	5.2 (Berkeley) 04/15/92
  */
 
-#define ALL_POINTS (KTRFAC_SYSCALL | KTRFAC_SYSRET | KTRFAC_NAMEI | \
+#define DEF_POINTS (KTRFAC_SYSCALL | KTRFAC_SYSRET | KTRFAC_NAMEI | \
 		  KTRFAC_GENIO | KTRFAC_PSIG)
+
+#define ALL_POINTS (DEF_POINTS | KTRFAC_CSW)
 
 #define DEF_TRACEFILE	"ktrace.out"
