@@ -1,5 +1,6 @@
-# Makefile 10/06/82
+# Makefile 10/21/82
 ALL=	tftp tftpd
+DESTDIR=
 CFLAGS=-O
 
 all: ${ALL}
@@ -19,5 +20,5 @@ clean:
 	rm -f ${ALL} *.o *.s errs core a.out t.?
 
 install: tftp tftpd
-	install -s tftp /usr/ucb
-	install -s tftpd /etc
+	install -s tftp ${DESTDIR}/usr/ucb
+	install -s tftpd ${DESTDIR}/etc
