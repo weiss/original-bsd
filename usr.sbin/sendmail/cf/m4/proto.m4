@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.27 (Berkeley) 12/20/93')
+VERSIONID(`@(#)proto.m4	8.28 (Berkeley) 12/21/93')
 
 MAILER(local)dnl
 
@@ -515,7 +515,7 @@ ifdef(`_MAILER_smtp_',
 ifdef(`_NO_CANONIFY_', `dnl',
 `R$* < @ [ $+ ] > $*	$: $1 < @ $[ [$2] $] > $3	numeric internet addr')
 R$* < @ [ $+ ] > $*	$: $>_SET_98_ $1 < @ [ $2 ] > $3	numeric internet spec
-R$* < @ [ $+ ] > $*	$#_SMTP_ $@ [$2] $: $1 @ [$2] $3	still numeric: send',
+R$* < @ [ $+ ] > $*	$#_SMTP_ $@ [$2] $: $1 < @ [$2] > $3	still numeric: send',
 	`dnl')
 
 # now delete the local info -- note $=O to find characters that cause forwarding
