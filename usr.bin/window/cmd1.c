@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)cmd1.c	3.21 84/03/03";
+static	char *sccsid = "@(#)cmd1.c	3.22 84/03/23";
 #endif
 
 #include "defs.h"
@@ -77,7 +77,7 @@ register int *row, *col;
 int minrow, mincol;
 int maxrow, maxcol;
 {
-	static int scount = 0;
+	static int scount;
 	int count;
 	char c;
 	int oldrow = *row, oldcol = *col;
