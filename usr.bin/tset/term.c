@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)term.c	5.2 (Berkeley) 12/25/91";
+static char sccsid[] = "@(#)term.c	5.3 (Berkeley) 03/31/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -104,7 +104,7 @@ askuser(dflt)
 		(void)fflush(stderr);
 
 		if (fgets(answer, sizeof(answer), stdin) == NULL)
-			continue;
+			return (dflt);
 
 		if (p = index(answer, '\n'))
 			*p = '\0';
