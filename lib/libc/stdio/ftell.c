@@ -1,4 +1,4 @@
-/* @(#)ftell.c	4.2 (Berkeley) 03/09/81 */
+/* @(#)ftell.c	4.3 (Berkeley) 02/13/85 */
 /*
  * Return file offset.
  * Coordinates with buffering.
@@ -9,9 +9,9 @@ long	lseek();
 
 
 long ftell(iop)
-FILE *iop;
+register FILE *iop;
 {
-	long tres;
+	register long tres;
 	register adjust;
 
 	if (iop->_cnt < 0)

@@ -1,8 +1,8 @@
-/* @(#)rewind.c	4.2 (Berkeley) 03/09/81 */
+/* @(#)rewind.c	4.3 (Berkeley) 02/13/85 */
 #include	<stdio.h>
 
 rewind(iop)
-register struct _iobuf *iop;
+register FILE *iop;
 {
 	fflush(iop);
 	lseek(fileno(iop), 0L, 0);

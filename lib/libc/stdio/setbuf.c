@@ -1,8 +1,8 @@
-/* @(#)setbuf.c	4.2 (Berkeley) 10/05/82 */
+/* @(#)setbuf.c	4.3 (Berkeley) 02/13/85 */
 #include	<stdio.h>
 
 setbuf(iop, buf)
-register struct _iobuf *iop;
+register FILE *iop;
 char *buf;
 {
 	if (iop->_base != NULL && iop->_flag&_IOMYBUF)
