@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.9 (Berkeley) 08/30/88
+#	@(#)Makefile	5.10 (Berkeley) 09/20/88
 #
 DEFS=	-DLIBC_SCCS
 CFLAGS=	-O ${DEFS}
@@ -45,6 +45,9 @@ tags:
 
 clean:
 	rm -f *.o profiled/* a.out core ${TAGSFILE}
+
+cleandir: clean
+	rm -f .depend
 
 depend:
 	mkdep ${CFLAGS} ${SRCS}
