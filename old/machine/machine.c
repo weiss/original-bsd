@@ -11,22 +11,17 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)machine.c	5.1 (Berkeley) 07/26/86";
+static char sccsid[] = "@(#)machine.c	5.2 (Berkeley) 05/21/87";
 #endif not lint
+
+#include <sys/param.h>
 
 /*
  * machine -- print machine type
  */
 
-main(argc,argv)
-	char *argv[];
+main()
 {
-
-#ifdef vax
-	printf("vax\n");
-#endif
-#ifdef tahoe
-	printf("tahoe\n");
-#endif
+	puts(MACHINE);
 	exit(0);
 }
