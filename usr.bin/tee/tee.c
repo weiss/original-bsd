@@ -1,4 +1,6 @@
-static char *sccsid = "@(#)tee.c	4.2 (Berkeley) 03/31/82";
+#ifndef lint
+static char *sccsid = "@(#)tee.c	4.3 (Berkeley) 05/22/83";
+#endif
 /*
  * tee-- pipe fitting
  */
@@ -7,7 +9,6 @@ static char *sccsid = "@(#)tee.c	4.2 (Berkeley) 03/31/82";
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include <pagsiz.h>
 
 #define	BUFSIZ	1024
 int openf[20] = { 1 };
