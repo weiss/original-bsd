@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rmail.c	4.13 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)rmail.c	4.14 (Berkeley) 09/01/89";
 #endif /* not lint */
 
 /*
@@ -89,7 +89,8 @@ main(argc, argv)
 	(void) strcpy(ufrom, _PATH_DEVNULL);
 
 	for (position = 0;; position = ftell(stdin)) {
-		(void) fgets(lbuf, sizeof lbuf, stdin);
+		if (fgets(lbuf, sizeof lbuf, stdin) == NULL)
+			exit(EX_DATAERR);
 		if (strncmp(lbuf, "From ", 5) != 0 &&
 		    strncmp(lbuf, ">From ", 6) != 0)
 			break;
