@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)wait.h	7.11 (Berkeley) 10/22/90
+ *	@(#)wait.h	7.12 (Berkeley) 10/23/90
  */
 
 /*
@@ -113,6 +113,7 @@ union wait {
 #endif /* _POSIX_SOURCE */
 
 #ifndef KERNEL
+#include <sys/types.h>
 #if __STDC__ || c_plusplus
 pid_t wait(int *);
 pid_t waitpid(pid_t, int *, int);
