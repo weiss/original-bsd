@@ -1,4 +1,6 @@
-/*	psl.h	1.2	86/01/05	*/
+/*
+ *	@(#)psl.h	7.1 (Berkeley) 05/21/88
+ */
 
 /*
  * TAHOE processor status longword.

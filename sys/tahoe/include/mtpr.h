@@ -1,5 +1,7 @@
-/*	mtpr.h	1.1	86/01/05	*/
-/*	mtpr.h	4.5	82/11/05	*/
+/*
+ *	@(#)mtpr.h	7.1 (Berkeley) 05/21/88
+ *	from mtpr.h	4.5	82/11/05
+ */
 
 /*
  * TAHOE processor register numbers

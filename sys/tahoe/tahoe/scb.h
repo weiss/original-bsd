@@ -1,4 +1,6 @@
-/*	scb.h	1.2	86/01/12	*/
+/*
+ *	@(#)scb.h	7.1 (Berkeley) 05/21/88
+ */
 
 /*
  * System control block.
