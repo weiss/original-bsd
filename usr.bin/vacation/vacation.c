@@ -5,7 +5,7 @@
 # include "useful.h"
 # include "userdbm.h"
 
-static char	SccsId[] =	"@(#)vacation.c	3.4	10/26/81";
+SCCSID(@(#)vacation.c	3.5		12/06/81);
 
 /*
 **  VACATION -- return a message to the sender when on vacation.

@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] =	"@(#)mailstats.c	3.3	11/07/81";
+SCCSID(@(#)mailstats.c	3.4		12/06/81);
 
 /*
 **  MAILSTATS -- print mail statistics.
@@ -30,7 +30,7 @@ main(argc, argv)
 	if (read(fd, &stat, sizeof stat) != sizeof stat ||
 	    stat.stat_size != sizeof stat)
 	{
-		sprintf(stderr, "File size change\n");
+		(void) sprintf(stderr, "File size change\n");
 		exit(EX_OSERR);
 	}
 
