@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)syslog.c	5.25 (Berkeley) 10/28/89";
+static char sccsid[] = "@(#)syslog.c	5.26 (Berkeley) 05/15/90";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -43,7 +43,7 @@ static char sccsid[] = "@(#)syslog.c	5.25 (Berkeley) 10/28/89";
 #include <sys/uio.h>
 #include <sys/wait.h>
 #include <netdb.h>
-#include <strings.h>
+#include <string.h>
 #include <varargs.h>
 #include <paths.h>
 #include <stdio.h>
