@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)c20.c	4.10 (Berkeley) 08/22/85";
+static	char sccsid[] = "@(#)c20.c	4.11 (Berkeley) 06/23/90";
 #endif
 
 /*
@@ -388,33 +388,20 @@ char *
 copy(ap)
 char *ap;
 {
-	register char *p, *np;
+	register char *p = ap, *np;
 	char *onp;
 	register n;
-	int na;
 
-	na = nargs();
-	p = ap;
-	n = 0;
-	if (*p==0)
+	if (*p++ == 0)
 		return(0);
+	n = 1;
 	do
 		n++;
 	while (*p++);
-	if (na>1) {
-		p = (&ap)[1];
-		while (*p++)
-			n++;
-	}
 	onp = np = (char *) alloc(n);
 	p = ap;
 	while (*np++ = *p++);
-	if (na>1) {
-		p = (&ap)[1];
-		np--;
-		while (*np++ = *p++);
-	}
-	return(onp);
+	return (onp);
 }
 
 #define	OPHS	560
