@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)hash_log2.c	5.2 (Berkeley) 09/04/91";
+static char sccsid[] = "@(#)hash_log2.c	5.3 (Berkeley) 09/08/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -18,11 +18,11 @@ static char sccsid[] = "@(#)hash_log2.c	5.2 (Berkeley) 09/04/91";
 #include "page.h"
 #include "extern.h"
 
-int
+u_int
 __log2(num)
-	int num;
+	u_int num;
 {
-	register int i, limit;
+	register u_int i, limit;
 
 	limit = 1;
 	for (i = 0; limit < num; limit = limit << 1, i++);
