@@ -4,12 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)reboot.h	8.2 (Berkeley) 07/10/94
+ *	@(#)reboot.h	8.3 (Berkeley) 12/13/94
  */
 
 /*
- * Arguments to reboot system call.  These are passed to boot program
- * in r11, and on to init.
+ * Arguments to reboot system call.  These are passed to
+ * the boot program and on to init.
  */
 #define	RB_AUTOBOOT	0	/* flags for system auto-booting itself */
 
