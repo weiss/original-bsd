@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.142 (Berkeley) 03/31/95";
+static char sccsid[] = "@(#)deliver.c	8.143 (Berkeley) 04/20/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1240,6 +1240,10 @@ tryhost:
 			(void) setsignal(SIGINT, SIG_IGN);
 			(void) setsignal(SIGHUP, SIG_IGN);
 			(void) setsignal(SIGTERM, SIG_DFL);
+
+			/* tweak niceness */
+			if (m->m_nice != 0)
+				nice(m->m_nice);
 
 			/* reset user and group */
 			if (bitnset(M_SPECIFIC_UID, m->m_flags))
