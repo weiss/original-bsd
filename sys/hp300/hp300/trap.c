@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: trap.c 1.32 91/04/06$
  *
- *	@(#)trap.c	7.12 (Berkeley) 05/07/91
+ *	@(#)trap.c	7.13 (Berkeley) 05/07/91
  */
 
 #include "param.h"
@@ -473,7 +473,7 @@ syscall(code, frame)
 		if (p->p_flag & SHPUX)
 			error = bsdtohpuxerrno(error);
 #endif
-		frame.f_regs[D0] = (u_char) error;
+		frame.f_regs[D0] = error;
 		frame.f_sr |= PSL_C;	/* carry bit */
 #ifdef KTRACE
 		if (KTRPOINT(p, KTR_SYSCALL))
@@ -502,7 +502,7 @@ syscall(code, frame)
 			if (p->p_flag & SHPUX)
 				error = bsdtohpuxerrno(error);
 #endif
-			frame.f_regs[D0] = (u_char) error;
+			frame.f_regs[D0] = error;
 			frame.f_sr |= PSL_C;	/* carry bit */
 		} else {
 			frame.f_regs[D0] = rval[0];
