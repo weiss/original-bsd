@@ -8,11 +8,11 @@
 char copyright[] =
 "@(#) Copyright (c) 1980 Regents of the University of California.\n\
  All rights reserved.\n";
-#endif not lint
+#endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 08/29/85";
-#endif not lint
+static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 01/03/88";
+#endif /* not lint */
 
 /*
  * main.c
@@ -36,7 +36,7 @@ static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 08/29/85";
  * 
  */
 
-char *xxxvers[] = "\n@(#) FORTRAN 77 PASS 1, VERSION 2.10,  16 AUGUST 1980\n";
+char *xxxvers = "\n@(#) FORTRAN 77 PASS 1, VERSION 2.10,  16 AUGUST 1980\n";
 
 #include "defs.h"
 #include <signal.h>
