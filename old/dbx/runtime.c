@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)runtime.c 1.4 04/08/83";
+static char sccsid[] = "@(#)runtime.c 1.5 04/25/83";
 
 /*
  * Runtime organization dependent routines, mostly dealing with
@@ -51,7 +51,7 @@ register Frame frp;
     frp->mask = reg(NREG);
     frp->save_ap = reg(ARGP);
     frp->save_fp = reg(FRP);
-    frp->save_pc = reg(PROGCTR);
+    frp->save_pc = reg(PROGCTR) + 1;
     for (i = 0; i < NSAVEREG; i++) {
 	frp->save_reg[i] = reg(i);
     }
