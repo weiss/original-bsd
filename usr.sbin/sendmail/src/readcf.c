@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.41 (Berkeley) 10/15/94";
+static char sccsid[] = "@(#)readcf.c	8.42 (Berkeley) 10/16/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1422,6 +1422,7 @@ setoption(opt, val, safe, sticky, e)
 		break;
 
 	  case 'g':		/* default gid */
+  g_opt:
 		if (isascii(*val) && isdigit(*val))
 			DefGid = atoi(val);
 		else
@@ -1431,7 +1432,8 @@ setoption(opt, val, safe, sticky, e)
 			DefGid = -1;
 			gr = getgrnam(val);
 			if (gr == NULL)
-				syserr("readcf: option g: unknown group %s", val);
+				syserr("readcf: option %c: unknown group %s",
+					opt, val);
 			else
 				DefGid = gr->gr_gid;
 		}
@@ -1631,6 +1633,14 @@ setoption(opt, val, safe, sticky, e)
 		break;
 
 	  case 'u':		/* set default uid */
+		for (p = val; *p != '\0'; p++)
+		{
+			if (*p == '.' || *p == '/' || *p == ':')
+			{
+				*p++ = '\0';
+				break;
+			}
+		}
 		if (isascii(*val) && isdigit(*val))
 			DefUid = atoi(val);
 		else
@@ -1642,10 +1652,18 @@ setoption(opt, val, safe, sticky, e)
 			if (pw == NULL)
 				syserr("readcf: option u: unknown user %s", val);
 			else
+			{
 				DefUid = pw->pw_uid;
+				DefGid = pw->pw_gid;
+			}
 		}
 		setdefuser();
-		break;
+
+		/* handle the group if it is there */
+		if (*p == '\0')
+			break;
+		val = p;
+		goto g_opt;
 
 	  case 'V':		/* fallback MX host */
 		FallBackMX = newstr(val);
