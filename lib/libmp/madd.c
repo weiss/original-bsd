@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)madd.c	5.2 (Berkeley) 03/02/87";
-#endif not lint
+static char sccsid[] = "@(#)madd.c	5.3 (Berkeley) 04/19/91";
+#endif /* not lint */
 
 #include <mp.h>
 m_add(a,b,c) struct mint *a,*b,*c;
