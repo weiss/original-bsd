@@ -1,4 +1,4 @@
-#	@(#)Makefile	2.3 (Berkeley) 05/27/93
+#	@(#)Makefile	2.4 (Berkeley) 06/07/93
 #
 # all executables go in DEST_BIN
 # all man pages go in DEST_MAN
@@ -9,8 +9,8 @@
 
 # UNIX on VAX machines:
 DEST_BASE=/usr/contrib
-DEST_BIN=$(DEST_BASE)
-DEST_MAN=/usr/man
+DEST_BIN=$(DEST_BASE)/bin
+DEST_MAN=/usr/contrib/man
 
 # UNIX on Suns, etc
 #DEST_BASE=/usr/local
