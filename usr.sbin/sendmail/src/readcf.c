@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.27 (Berkeley) 10/03/91";
+static char sccsid[] = "@(#)readcf.c	5.28 (Berkeley) 10/05/91";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -689,6 +689,10 @@ setoption(opt, val, safe, sticky)
 
 	switch (opt)
 	{
+	  case '=':		/* config file generation level */
+		ConfigLevel = atoi(val);
+		break;
+
 	  case 'A':		/* set default alias file */
 		if (val[0] == '\0')
 			AliasFile = "aliases";
