@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rmt.c	5.2 (Berkeley) 01/07/86";
+static char sccsid[] = "@(#)rmt.c	5.3 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -38,7 +38,6 @@ extern	errno;
 char	*sys_errlist[];
 char	resp[BUFSIZ];
 
-char	*sprintf();
 long	lseek();
 
 FILE	*debug;
