@@ -1,7 +1,6 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/12/91
+#	@(#)Makefile	5.5 (Berkeley) 06/28/93
 
 PROG=	mk-amd-map
-NOMAN=	true
 CFLAGS+=-I${.CURDIR}/../include
 CFLAGS+=-I${.CURDIR}/../rpcx
 CFLAGS+=-I${.CURDIR}/../config
