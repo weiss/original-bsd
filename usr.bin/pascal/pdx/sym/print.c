@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)print.c 1.1 01/18/82";
+static char sccsid[] = "@(#)print.c 1.2 01/19/82";
 
 /*
  * Routines to print out symbols.
@@ -116,13 +116,15 @@ FRAME *frame;
 		addr = address(s, frame);
 		len = size(s);
 	}
-	dread(sp, addr, len);
-	sp += len;
 	printf("%s = ", s->symbol);
-	if (s->class == REF || s->class == VAR) {
-		printval(s->type);
+	if (!rpush(addr, len)) {
+		printf("*** expression too large ***");
 	} else {
-		printval(s);
+		if (s->class == REF || s->class == VAR) {
+			printval(s->type);
+		} else {
+			printval(s);
+		}
 	}
 }
 
