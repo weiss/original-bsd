@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.41 02/06/83"
+SCCSID = "@(#)Makefile 1.42 02/28/83"
 
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
@@ -6,7 +6,7 @@ BINDIR = ../pc0
 SRCDIR = ../src
 WHOAMI = pc
 VERSION = 2.11
-DATE = 02/06/83
+DATE = 02/28/83
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
@@ -214,6 +214,7 @@ call.o: opcode.h
 call.o: ../src/objfmt.h
 call.o: ../src/pc.h
 call.o: ../src/pcops.h
+call.o: ../src/tmps.h
 case.o: whoami.h
 case.o: ../src/0.h
 case.o: ../src/tree.h
@@ -245,6 +246,7 @@ fdec.o: ../src/tree.h
 fdec.o: opcode.h
 fdec.o: ../src/objfmt.h
 fdec.o: ../src/align.h
+fdec.o: ../src/tmps.h
 fdec.o: ../src/pc.h
 fdec.o: ../src/pcops.h
 fend.o: whoami.h
@@ -253,6 +255,7 @@ fend.o: ../src/tree.h
 fend.o: opcode.h
 fend.o: ../src/objfmt.h
 fend.o: ../src/align.h
+fend.o: ../src/tmps.h
 fend.o: ../src/pc.h
 fend.o: ../src/pcops.h
 fhdr.o: whoami.h
@@ -270,6 +273,7 @@ flvalue.o: opcode.h
 flvalue.o: ../src/objfmt.h
 flvalue.o: ../src/pc.h
 flvalue.o: ../src/pcops.h
+flvalue.o: ../src/tmps.h
 forop.o: whoami.h
 forop.o: ../src/0.h
 forop.o: opcode.h
@@ -277,6 +281,7 @@ forop.o: ../src/tree.h
 forop.o: ../src/objfmt.h
 forop.o: ../src/pc.h
 forop.o: ../src/pcops.h
+forop.o: ../src/tmps.h
 func.o: whoami.h
 func.o: ../src/0.h
 func.o: ../src/tree.h
@@ -321,12 +326,14 @@ p2put.o: ../src/objfmt.h
 p2put.o: ../src/pcops.h
 p2put.o: ../src/pc.h
 p2put.o: ../src/align.h
+p2put.o: ../src/tmps.h
 pccaseop.o: whoami.h
 pccaseop.o: ../src/0.h
 pccaseop.o: ../src/tree.h
 pccaseop.o: ../src/objfmt.h
 pccaseop.o: ../src/pcops.h
 pccaseop.o: ../src/pc.h
+pccaseop.o: ../src/tmps.h
 pcfunc.o: whoami.h
 pcfunc.o: ../src/0.h
 pcfunc.o: ../src/tree.h
@@ -334,6 +341,7 @@ pcfunc.o: ../src/objfmt.h
 pcfunc.o: opcode.h
 pcfunc.o: ../src/pc.h
 pcfunc.o: ../src/pcops.h
+pcfunc.o: ../src/tmps.h
 pclval.o: whoami.h
 pclval.o: ../src/0.h
 pclval.o: ../src/tree.h
@@ -348,12 +356,14 @@ pcproc.o: ../src/objfmt.h
 pcproc.o: opcode.h
 pcproc.o: ../src/pc.h
 pcproc.o: ../src/pcops.h
+pcproc.o: ../src/tmps.h
 pic.o: ../src/OPnames.h
 proc.o: whoami.h
 proc.o: ../src/0.h
 proc.o: ../src/tree.h
 proc.o: opcode.h
 proc.o: ../src/objfmt.h
+proc.o: ../src/tmps.h
 put.o: whoami.h
 put.o: opcode.h
 put.o: ../src/0.h
@@ -373,6 +383,7 @@ rval.o: opcode.h
 rval.o: ../src/objfmt.h
 rval.o: ../src/pc.h
 rval.o: ../src/pcops.h
+rval.o: ../src/tmps.h
 savenl.o: whoami.h
 savenl.o: ../src/0.h
 savenl.o: ../src/objfmt.h
@@ -395,6 +406,7 @@ stat.o: ../src/tree.h
 stat.o: ../src/objfmt.h
 stat.o: ../src/pcops.h
 stat.o: ../src/pc.h
+stat.o: ../src/tmps.h
 stat.o: opcode.h
 stklval.o: whoami.h
 stklval.o: ../src/0.h
@@ -416,6 +428,7 @@ tmps.o: whoami.h
 tmps.o: ../src/0.h
 tmps.o: ../src/objfmt.h
 tmps.o: ../src/pc.h
+tmps.o: ../src/tmps.h
 tree.o: whoami.h
 tree.o: ../src/0.h
 type.o: whoami.h
@@ -429,6 +442,7 @@ var.o: ../src/align.h
 var.o: ../src/iorec.h
 var.o: ../src/pc.h
 var.o: ../src/pcops.h
+var.o: ../src/tmps.h
 yycopy.o: ../src/0.h
 yycopy.o: ../src/yy.h
 yycosts.o: whoami.h
