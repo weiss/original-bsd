@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)edquota.c	5.16 (Berkeley) 11/11/91";
+static char sccsid[] = "@(#)edquota.c	5.17 (Berkeley) 05/19/93";
 #endif /* not lint */
 
 /*
@@ -33,6 +33,7 @@ static char sccsid[] = "@(#)edquota.c	5.16 (Berkeley) 11/11/91";
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "pathnames.h"
 
 char *qfname = QUOTAFILENAME;
