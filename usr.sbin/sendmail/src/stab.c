@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)stab.c	6.1 (Berkeley) 12/21/92";
+static char sccsid[] = "@(#)stab.c	6.2 (Berkeley) 05/27/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -106,4 +106,28 @@ stab(name, type, op)
 	*ps = s;
 
 	return (s);
+}
+/*
+**  STABAPPLY -- apply function to all stab entries
+**
+**	Parameters:
+**		func -- the function to apply.  It will be given one
+**			parameter (the stab entry).
+**
+**	Returns:
+**		none.
+*/
+
+void
+stabapply(func)
+	void (*func)__P((STAB *));
+{
+	register STAB **shead;
+	register STAB *s;
+
+	for (shead = SymTab; shead < &SymTab[STABSIZE]; shead++)
+	{
+		for (s = *shead; s != NULL; s = s->s_next)
+			func(s);
+	}
 }
