@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)printerror.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)printerror.c	5.2 (Berkeley) 04/07/87";
 #endif not lint
 
 /*
@@ -23,11 +23,13 @@ static char sccsid[] = "@(#)printerror.c	5.1 (Berkeley) 06/06/85";
 #include "pxerrors.h"
 #include "process/process.rep"
 
+#ifdef tahoe
+BOOLEAN shouldrestart;
+#endif
+
 printerror()
 {
     register PROCESS *p;
-    char *filename;
-    int c;
 
     p = process;
     if (p->signo != ESIGNAL && p->signo != SIGINT) {
@@ -39,14 +41,22 @@ printerror()
     if (p->signo == ESIGNAL) {
 	printf("\nerror at ");
 	printwhere(curline, cursource);
-	if (errnum != 0) {
-	    printf(":  %s", pxerrmsg[errnum]);
-	}
+        putchar('\n');
+        printlines(curline, curline);
+#ifdef tahoe
+	/*
+	 * this px is no good; it is easier to kill it and start
+	 * a new one than to make it recover...
+	 * make runtime/callproc.c know it too.
+	 */
+	shouldrestart = TRUE;
+#endif
+        erecover();
     } else {
 	printf("\n\ninterrupt at ");
 	printwhere(curline, cursource);
+        putchar('\n');
+        printlines(curline, curline);
+        erecover();
     }
-    putchar('\n');
-    printlines(curline, curline);
-    erecover();
 }

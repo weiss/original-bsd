@@ -3,14 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)pxerrors.h	5.1 (Berkeley) 06/07/85
+ *	@(#)pxerrors.h	5.2 (Berkeley) 04/07/87
  */
 
-#define NERRORS 39
-
-char *pxerrmsg[];
-
 #define ESIGNAL		SIGTRAP
-
-#define ESTKOVER	37
-#define EOVERFLOW	39

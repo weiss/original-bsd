@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)printdata.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)printdata.c	5.2 (Berkeley) 04/07/87";
 #endif not lint
 /*
  * print contents of data addresses in octal
@@ -18,6 +18,8 @@ static char sccsid[] = "@(#)printdata.c	5.1 (Berkeley) 06/06/85";
 #include "machine.h"
 #include "process.h"
 #include "object.h"
+#include "process/process.rep"
+#include "process/pxinfo.h"
 
 #define WORDSPERLINE 4
 
@@ -51,15 +53,4 @@ ADDRESS highaddr;
 	if (count != 0) {
 		putchar('\n');
 	}
-}
-
-/*
- * print count words starting at address
- */
-
-printndata(count, addr)
-int count;
-ADDRESS addr;
-{
-	printdata(addr, addr + (count - 1)*sizeof(int));
 }
