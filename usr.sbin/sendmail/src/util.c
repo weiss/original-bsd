@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.20 (Berkeley) 12/02/93";
+static char sccsid[] = "@(#)util.c	8.21 (Berkeley) 12/10/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1305,7 +1305,7 @@ printit:
 */
 
 #ifndef MAXSHORTSTR
-# define MAXSHORTSTR	83
+# define MAXSHORTSTR	203
 #endif
 
 char *
