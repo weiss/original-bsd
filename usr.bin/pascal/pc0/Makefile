@@ -1,4 +1,11 @@
-SCCSID = "@(#)Makefile 2.4 04/26/85"
+#
+# Copyright (c) 1980 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)Makefile	5.1 (Berkeley) 06/05/85
+#
+SCCSID = "@(#)Makefile 5.1 06/05/85"
 
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
@@ -6,7 +13,7 @@ BINDIR = ../pc0
 SRCDIR = ../src
 WHOAMI = pc
 VERSION = 3.1
-DATE = 04/26/85
+DATE = 06/05/85
 
 MKSTR = /usr/ucb/mkstr
 EYACC = ../eyacc/eyacc
