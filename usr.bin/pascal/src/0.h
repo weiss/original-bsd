@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)0.h 1.13 06/01/81"; */
+/* static char sccsid[] = "@(#)0.h 1.14 03/29/82"; */
 
 #define DEBUG
 #define CONSETS
@@ -162,6 +162,7 @@ char	errpfx;
 #define	standard()	setpfx('s')
 #define	warning()	setpfx('w')
 #define	recovered()	setpfx('e')
+#define	continuation()	setpfx(' ')
 
 int	cgenflg;
 
