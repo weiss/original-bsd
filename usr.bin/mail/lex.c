@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	5.21 (Berkeley) 06/25/90";
+static char sccsid[] = "@(#)lex.c	5.22 (Berkeley) 02/03/91";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -111,7 +111,7 @@ setfile(name)
 		perror(tempMesg);
 		exit(1);
 	}
-	remove(tempMesg);
+	rm(tempMesg);
 	setptr(ibuf);
 	setmsize(msgCount);
 	Fclose(ibuf);
