@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)csh.1	8.2 (Berkeley) 01/21/94
+.\"     @(#)csh.1	8.3 (Berkeley) 05/04/94
 .\"
 .Dd 
 .Dt CSH 1
@@ -31,8 +31,7 @@ and user name completion (see
 and a C-like syntax. It is used both as an interactive
 login shell and a shell script command processor.
 .Ss Argument list processing
-If the first argument (argument 0) to the shell is
-.Ql Fl \& ,
+If the first argument (argument 0) to the shell is `-',
 then this is a login shell.
 A login shell also can be specified by invoking the shell with the 
 .Ql Fl l
