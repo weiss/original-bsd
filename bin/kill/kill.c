@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)kill.c	4.3 (Berkeley) 06/07/85";
+static	char *sccsid = "@(#)kill.c	4.4 (Berkeley) 04/20/86";
 /*
  * kill - send signal to process
  */
@@ -61,7 +61,7 @@ foundsig:
 		signo = SIGTERM;
 	argv++;
 	while (argc > 1) {
-		if (**argv<'0' || **argv>'9')
+		if (!(isdigit(**argv) || **argv == '-'))
 			goto usage;
 		res = kill(pid = atoi(*argv), signo);
 		if (res<0) {
