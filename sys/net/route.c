@@ -4,28 +4,28 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)route.c	7.31 (Berkeley) 08/14/92
+ *	@(#)route.c	7.32 (Berkeley) 10/11/92
  */
-#include "param.h"
-#include "systm.h"
-#include "proc.h"
-#include "mbuf.h"
-#include "socket.h"
-#include "socketvar.h"
-#include "domain.h"
-#include "protosw.h"
-#include "ioctl.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/proc.h>
+#include <sys/mbuf.h>
+#include <sys/socket.h>
+#include <sys/socketvar.h>
+#include <sys/domain.h>
+#include <sys/protosw.h>
+#include <sys/ioctl.h>
 
-#include "if.h"
-#include "af.h"
-#include "route.h"
-#include "raw_cb.h"
+#include <net/if.h>
+#include <net/af.h>
+#include <net/route.h>
+#include <net/raw_cb.h>
 
-#include "../netinet/in.h"
-#include "../netinet/in_var.h"
+#include <netinet/in.h>
+#include <netinet/in_var.h>
 
 #ifdef NS
-#include "../netns/ns.h"
+#include <netns/ns.h>
 #endif
 
 #define	SA(p) ((struct sockaddr *)(p))

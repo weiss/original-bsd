@@ -4,22 +4,22 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)raw_cb.c	7.12 (Berkeley) 01/30/92
+ *	@(#)raw_cb.c	7.13 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "systm.h"
-#include "mbuf.h"
-#include "socket.h"
-#include "socketvar.h"
-#include "domain.h"
-#include "protosw.h"
-#include "errno.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/mbuf.h>
+#include <sys/socket.h>
+#include <sys/socketvar.h>
+#include <sys/domain.h>
+#include <sys/protosw.h>
+#include <sys/errno.h>
 
-#include "if.h"
-#include "route.h"
-#include "raw_cb.h"
-#include "../netinet/in.h"
+#include <net/if.h>
+#include <net/route.h>
+#include <net/raw_cb.h>
+#include <netinet/in.h>
 
 /*
  * Routines to manage the raw protocol control blocks. 

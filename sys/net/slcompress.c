@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)slcompress.c	7.7 (Berkeley) 05/07/91
+ *	@(#)slcompress.c	7.8 (Berkeley) 10/11/92
  */
 
 /*
@@ -20,12 +20,13 @@
 
 #include <sys/param.h>
 #include <sys/mbuf.h>
+
 #include <netinet/in.h>
 #include <netinet/in_systm.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 
-#include "slcompress.h"
+#include <net/slcompress.h>
 
 #ifndef SL_NO_STATS
 #define INCR(counter) ++comp->counter;
