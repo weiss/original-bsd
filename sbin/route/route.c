@@ -13,7 +13,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)route.c	5.44 (Berkeley) 02/20/92";
+static char sccsid[] = "@(#)route.c	5.45 (Berkeley) 03/02/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -135,7 +135,7 @@ main(argc, argv)
 			break;
 		case '?':
 		default:
-			usage();
+			usage((char *)NULL);
 		}
 	argc -= optind;
 	argv += optind;
@@ -594,7 +594,7 @@ newroute(argc, argv)
 					    "old usage of trailing 0",
 					    "assuming route to if\n");
 				    else
-					usage(NULL);
+					usage((char *)NULL);
 				    iflag = 1;
 				    continue;
 				} else if (ret > 0 && ret < 10) {
