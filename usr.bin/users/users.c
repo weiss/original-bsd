@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)users.c	5.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)users.c	5.2 (Berkeley) 11/15/85";
 #endif not lint
 
 /*
@@ -71,8 +71,9 @@ summary()
 	qsort(names, namp - names, sizeof names[0], scmp);
 	for (p=names; p < namp; p++) {
 		if (p != names)
-			printf(" ");
-		printf("%s", *p);
+			putchar(' ');
+		fputs(*p, stdout);
 	}
-	printf("\n");
+	if (namp != names)		/* at least one user */
+		putchar('\n');
 }
