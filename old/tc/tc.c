@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)tc.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)tc.c	4.2 (Berkeley) 07/06/81";
 /*
  * Simulate typesetter on 4014
 */
@@ -6,7 +6,7 @@ static char *sccsid = "@(#)tc.c	4.1 (Berkeley) 10/01/80";
 #include <signal.h>
 #include <stdio.h>
 
-#define	oput(c) if (pgskip==0) putchar(c); else;
+#define	oput(c) if (pgskip==0) putchar(c); else (c);
 #define MAXY 3071
 #define US 037
 #define GS 035
