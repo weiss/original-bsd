@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1986, 1988, 1990 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1988, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_socket2.c	7.19 (Berkeley) 10/11/92
+ *	@(#)uipc_socket2.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
