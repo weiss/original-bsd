@@ -1,4 +1,4 @@
-static char	*sccsid = "@(#)crib.c	1.16 (Berkeley) 05/19/83";
+static char	*sccsid = "@(#)crib.c	1.17 (Berkeley) 09/06/83";
 
 # include	<curses.h>
 # include	<signal.h>
@@ -96,20 +96,6 @@ char	*argv[];
 	}
 
 	bye();
-}
-
-/*
- * bye:
- *	Leave the program, cleaning things up as we go.
- */
-bye()
-{
-	signal(SIGINT, SIG_IGN);
-	mvcur(0, COLS - 1, LINES - 1, 0);
-	fflush(stdout);
-	endwin();
-	putchar('\n');
-	exit(1);
 }
 
 /*

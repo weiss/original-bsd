@@ -1,4 +1,5 @@
-static char *sccsid = "@(#)score.c	1.3 (Berkeley) 05/19/83";
+#
+static char *sccsid = "@(#)score.c	1.4 (Berkeley) 09/06/83";
 
 #include	<stdio.h>
 #include	"deck.h"
@@ -74,12 +75,12 @@ BOOLEAN			do_explain;	/* true if must explain this hand */
 	CARD			h[(CINHAND + 1)];
 	register int		i, k;
 	register int		score;
-	BOOLEAN			flag;
+	register BOOLEAN	flag;
 	char			buf[32];
 
 	expl[0] = NULL;		/* initialize explanation */
 	score = 0;
-	flag = !crb;
+	flag = TRUE;
 	k = hand[0].suit;
 	for (i = 0; i < n; i++) {			/* check for flush */
 	    flag = (flag && (hand[i].suit == k));
