@@ -1,9 +1,9 @@
-.\" Copyright (c) 1986 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1986, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)pipe.c	6.4 (Berkeley) 04/17/91
+.\"	@(#)pipe.c	8.1 (Berkeley) 06/08/93
 .\"
 #include <stdio.h>
 
