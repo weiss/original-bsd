@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley Software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)csh.h	5.5 (Berkeley) 09/24/89
+ *	@(#)csh.h	5.6 (Berkeley) 02/25/91
  */
 
 #include <sys/time.h>
@@ -424,8 +424,8 @@ struct	biltins *isbfunc();
 off_t	lseek();
 char	*operate();
 int	phup();
-int	pintr();
-int	pchild();
+void	pintr();
+void	pchild();
 char	*putn();
 char	*rindex();
 char	**saveblk();
