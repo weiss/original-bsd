@@ -3,11 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_ex.c	6.5 (Berkeley) 09/05/85
+ *	@(#)if_ex.c	6.6 (Berkeley) 10/24/85
  */
 
 
 #include "ex.h"
+#if NEX > 0
 
 /*
  * Excelan EXOS 204 Interface
@@ -857,3 +858,4 @@ exioctl(ifp, cmd, data)
 	splx(s);
 	return (error);
 }
+#endif
