@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)fdec.c 1.18 03/16/81";
+static char sccsid[] = "@(#)fdec.c 1.19 03/23/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -117,7 +117,8 @@ funcbody(fp)
 		enter(fp->ptr[NL_FVAR]);
 #		ifdef PC
 		    q = fp -> ptr[ NL_FVAR ];
-		    if (q -> ptr[ NL_OFFS ] != tmpalloc(leven(roundup(
+		    if (q -> type != NIL &&
+			q -> ptr[ NL_OFFS ] != tmpalloc(leven(roundup(
 			    (int)lwidth(q -> type), (long)align(q -> type))),
 			q -> type, NOREG))
 			    panic("func var");
