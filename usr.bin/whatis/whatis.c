@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)whatis.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)whatis.c	5.7 (Berkeley) 01/08/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -39,6 +39,7 @@ main(argc, argv)
 	char *p_augment, *p_path, **getdb();
 
 	progname = "whatis";
+	p_augment = p_path = NULL;
 	while ((ch = getopt(argc, argv, "M:m:P:")) != EOF)
 		switch((char)ch) {
 		case 'M':
