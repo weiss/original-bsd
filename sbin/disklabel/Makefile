@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 03/16/92
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 PROG=	disklabel
 SRCS=	disklabel.c dkcksum.c
