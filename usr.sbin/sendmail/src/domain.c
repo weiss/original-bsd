@@ -12,12 +12,12 @@
 
 #ifndef MXDOMAIN
 #ifndef lint
-static char	SccsId[] = "@(#)domain.c	5.6 (Berkeley) 02/03/87 (no MXDOMAIN)";
+static char	SccsId[] = "@(#)domain.c	5.7 (Berkeley) 12/12/87 (no MXDOMAIN)";
 #endif not lint
 #else MXDOMAIN
 
 #ifndef lint
-static char	SccsId[] = "@(#)domain.c	5.6 (Berkeley) 02/03/87";
+static char	SccsId[] = "@(#)domain.c	5.7 (Berkeley) 12/12/87";
 #endif not lint
 
 # include <sys/param.h>
@@ -121,9 +121,9 @@ getmxrr(host, mxhosts, maxmx, localhost)
 	buflen = sizeof(hostbuf);
 	cp = (char *)&answer + sizeof(HEADER);
 	if (qdcount) {
-		cp += dn_skip(cp) + QFIXEDSZ;
+		cp += dn_skipname(cp, eom) + QFIXEDSZ;
 		while (--qdcount > 0)
-			cp += dn_skip(cp) + QFIXEDSZ;
+			cp += dn_skipname(cp, eom) + QFIXEDSZ;
 	}
 	while (--ancount >= 0 && cp < eom && nmx < maxmx) {
 		if ((n = dn_expand((char *)&answer, eom, cp, bp, buflen)) < 0)
@@ -254,9 +254,9 @@ getcanonname(host, hbsize)
 	}
 	cp = (char *)&answer + sizeof(HEADER);
 	if (qdcount) {
-		cp += dn_skip(cp) + QFIXEDSZ;
+		cp += dn_skipname(cp, eom) + QFIXEDSZ;
 		while (--qdcount > 0)
-			cp += dn_skip(cp) + QFIXEDSZ;
+			cp += dn_skipname(cp, eom) + QFIXEDSZ;
 	}
 	first = 1;
 	while (--ancount >= 0 && cp < eom) {
