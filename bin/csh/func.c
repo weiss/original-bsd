@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)func.c	5.22 (Berkeley) 07/28/91";
+static char sccsid[] = "@(#)func.c	5.23 (Berkeley) 08/02/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -902,7 +902,7 @@ dosetenv(v, t)
     }
     if ((lp = *v++) == 0)
 	lp = STRNULL;
-    Setenv(vp, lp = globone(lp, G_ERROR));
+    Setenv(vp, lp = globone(lp, G_APPEND));
     if (eq(vp, STRPATH)) {
 	importpath(lp);
 	dohash(NULL, NULL);
