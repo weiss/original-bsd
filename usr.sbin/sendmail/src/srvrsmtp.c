@@ -1,10 +1,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.15		05/22/82	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.16		06/06/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.15		05/22/82);
+SCCSID(@(#)srvrsmtp.c	3.16		06/06/82);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -179,7 +179,7 @@ smtp()
 				HoldErrs = MailBack = TRUE;
 
 			/* send to all recipients */
-			sendall(FALSE);
+			sendall(CurEnv, FALSE);
 
 			/* reset strange modes */
 			HoldErrs = FALSE;
