@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.52		11/24/82	(no queueing));
+SCCSID(@(#)queue.c	3.53		11/24/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.52		11/24/82);
+SCCSID(@(#)queue.c	3.53		11/24/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -39,7 +39,6 @@ queueup(e, queueall)
 	register FILE *tfp;
 	register HDR *h;
 	register ADDRESS *q;
-	register int i;
 
 	/*
 	**  Create control file.
@@ -131,8 +130,10 @@ queueup(e, queueall)
 			fprintf(tfp, "%s: %s\n", h->h_field, buf);
 		}
 		else if (bitset(H_FROM|H_RCPT, h->h_flags))
-			commaize(h, h->h_value, tfp,
-				 bitset(EF_OLDSTYLE, e->e_flags), NULL);
+		{
+			commaize(h, h->h_value, tfp, bitset(EF_OLDSTYLE, e->e_flags),
+				 (MAILER *) NULL);
+		}
 		else
 			fprintf(tfp, "%s: %s\n", h->h_field, h->h_value);
 	}
@@ -195,7 +196,7 @@ runqueue(forkflag)
 				i = wait(&stat);
 			} while (i >= 0 && i != pid);
 			if (QueueIntvl != 0)
-				setevent(QueueIntvl, runqueue, TRUE);
+				(void) setevent(QueueIntvl, runqueue, TRUE);
 			return;
 		}
 		/* child -- double fork */
@@ -410,8 +411,6 @@ dowork(w)
 
 	if (i == 0)
 	{
-		char buf[MAXNAME];
-
 		/*
 		**  CHILD
 		**	Lock the control file to avoid duplicate deliveries.
@@ -434,7 +433,7 @@ dowork(w)
 
 		/* don't use the headers from sendmail.cf... */
 		CurEnv->e_header = NULL;
-		chompheader("from: $q", TRUE);
+		(void) chompheader("from: $q", TRUE);
 
 		/* create the link to the control file during processing */
 		if (link(w->w_name, queuename(CurEnv, 'l')) < 0)
@@ -507,8 +506,7 @@ readqf(cf)
 {
 	register FILE *f;
 	char buf[MAXFIELD];
-	register char *p;
-	register int i;
+	extern char *fgetfolded();
 
 	/*
 	**  Open the file created by queueup.
