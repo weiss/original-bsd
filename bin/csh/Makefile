@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley Software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.7 (Berkeley) 06/05/87
+#	@(#)Makefile	5.8 (Berkeley) 11/30/87
 #
 # C Shell with process control; VM/UNIX VAX Makefile
 # Bill Joy UC Berkeley; Jim Kulp IIASA, Austria
@@ -57,7 +57,7 @@ sh.char.o sh.init.o:
 	sccs get $<
 
 clean:
-	rm -f a.out strings x.c xs.c csh errs
+	rm -f a.out strings strings.o x.c xs.c csh errs
 	rm -f ${OBJS}
 	rm -rf vgrind
 
