@@ -1,4 +1,4 @@
-/*	if_en.c	4.61	82/05/25	*/
+/*	if_en.c	4.62	82/05/27	*/
 
 #include "en.h"
 #include "imp.h"
@@ -183,7 +183,7 @@ eninit(unit)
 }
 
 int	enalldelay = 0;
-int	enlastdel = 25;
+int	enlastdel = 50;
 int	enlastmask = (~0) << 5;
 
 /*
