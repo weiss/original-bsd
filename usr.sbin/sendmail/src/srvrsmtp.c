@@ -3,10 +3,10 @@
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	4.4		10/16/83	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	4.5		11/26/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	4.4		10/16/83);
+SCCSID(@(#)srvrsmtp.c	4.5		11/26/83);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -73,7 +73,7 @@ static struct cmd	CmdTab[] =
 
 # ifdef DEBUG
 bool	IsWiz = FALSE;			/* set if we are a wizard */
-char	*WizWord = NULL;		/* the wizard word to compare against */
+char	*WizWord;			/* the wizard word to compare against */
 # endif DEBUG
 bool	InChild = FALSE;		/* true if running in a subprocess */
 bool	OneXact = FALSE;		/* one xaction only this run */
@@ -431,14 +431,14 @@ smtp()
 				extern char *crypt();
 
 				strncpy(seed, WizWord, 2);
-				if (strcmp(WizWord, crypt(p, seed)) != 0)
+				if (strcmp(WizWord, crypt(p, seed)) == 0)
 				{
-					message("500", "You are no wizard!");
+					IsWiz = TRUE;
+					message("200", "Please pass, oh mighty wizard");
 					break;
 				}
 			}
-			IsWiz = TRUE;
-			message("200", "Please pass, oh mighty wizard");
+			message("500", "You are no wizard!");
 			break;
 # endif DEBUG
 
