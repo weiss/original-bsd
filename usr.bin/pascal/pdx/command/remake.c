@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)remake.c	5.1 (Berkeley) 06/07/85";
+static char sccsid[] = "@(#)remake.c	5.2 (Berkeley) 03/06/91";
 #endif not lint
 
 /*
@@ -34,7 +34,7 @@ remake()
 	if (strcmp(objname, "obj") != 0) {
 	    call("mv", stdin, stdout, "obj", objname, NIL);
 	}
-	tmpfile = mktemp("/tmp/pdxXXXX");
+	tmpfile = mktemp(strdup("/tmp/pdxXXXX"));
 	setout(tmpfile);
 	status();
 	unsetout();
