@@ -1,7 +1,13 @@
-#!/bin/sh
-# compatibility with old installboot program
+#!/bin/sh -
 #
-#	@(#)installboot.sh	8.1 (Berkeley) 06/10/93
+# Copyright (c) 1994
+#	The Regents of the University of California.  All rights reserved.
+#
+# %sccs.include.redist.sh%
+#
+#	@(#)installboot.sh	8.2 (Berkeley) 03/21/94
+#
+# compatibility with old installboot program
 #
 if [ $# != 2 ]
 then
