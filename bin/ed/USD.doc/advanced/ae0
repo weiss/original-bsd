@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)ae0	6.4 (Berkeley) 08/10/93
+.\"	@(#)ae0	8.1 (Berkeley) 08/14/93
 .\"
 .nr P1 1
 .EH 'USD:10-%''Advanced Editing on \s-2UNIX\s+2'
