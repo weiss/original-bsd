@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tn3270.c	5.3 (Berkeley) 05/11/93";
+static char sccsid[] = "@(#)tn3270.c	5.4 (Berkeley) 05/11/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -138,7 +138,8 @@ DataToNetwork(buffer, count, done)
 
 #if	defined(unix)
     void
-inputAvailable()
+inputAvailable(signo)
+	int signo;
 {
     HaveInput = 1;
     sigiocount++;

@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)externs.h	5.5 (Berkeley) 04/05/93
+ *	@(#)externs.h	5.6 (Berkeley) 05/11/93
  */
 
 #ifndef	BSD
@@ -437,9 +437,9 @@ extern char
     tline[],
     *transcom;		/* Transparent command */
 
-extern int
+extern void
     settranscom P((int, char**));
 
 extern void
-    inputAvailable P((void));
+    inputAvailable P((int));
 #endif	/* defined(TN3270) */
