@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_exit.c	7.39 (Berkeley) 01/14/92
+ *	@(#)kern_exit.c	7.40 (Berkeley) 02/13/92
  */
 
 #include "param.h"
@@ -238,12 +238,12 @@ owait(p, uap, retval)
 {
 
 #ifdef PSL_ALLCC
-	if ((p->p_regs[PS] & PSL_ALLCC) != PSL_ALLCC) {
+	if ((p->p_md.md_regs[PS] & PSL_ALLCC) != PSL_ALLCC) {
 		uap->options = 0;
 		uap->rusage = 0;
 	} else {
-		uap->options = p->p_regs[R0];
-		uap->rusage = (struct rusage *)p->p_regs[R1];
+		uap->options = p->p_md.md_regs[R0];
+		uap->rusage = (struct rusage *)p->p_md.md_regs[R1];
 	}
 #else
 	uap->options = 0;
