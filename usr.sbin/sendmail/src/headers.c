@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.16		02/22/82);
+SCCSID(@(#)headers.c	3.17		03/06/82);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -71,7 +71,7 @@ chompheader(line, def)
 		fvalue++;
 
 	/* hack, hack -- save From: line specially */
-	if (!def && strcmp(fname, "from") == 0)
+	if (!def && !QueueRun && strcmp(fname, "from") == 0)
 	{
 		OrigFrom = newstr(fvalue);
 		return (0);
