@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)backspace.c	5.1	06/07/85
+ *	@(#)backspace.c	5.2	07/30/85
  */
 
 /*
@@ -29,8 +29,7 @@ alist	*a;
 	if (not_legal(lunit))
 		err(errflag, F_ERUNIT, bksp)
 	b= &units[lunit];
-	if(!b->ufd && (n = fk_open(READ, SEQ, FMT, (ftnint)lunit)) )
-		err(errflag, n, bksp)
+	if(!b->ufd) return(OK);
 	lfname = b->ufnm;
 	if(b->uend)
 	{	b->uend = NO;
