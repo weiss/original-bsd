@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)local.h	5.2 (Berkeley) 02/05/91
+ *	@(#)local.h	5.3 (Berkeley) 05/06/93
  */
 
 /*
@@ -26,6 +26,7 @@ void	__sinit __P((void));
 void	_cleanup __P((void));
 void	(*__cleanup) __P((void));
 void	__smakebuf __P((FILE *));
+int	__swhatbuf __P((FILE *, size_t *, int *));
 int	_fwalk __P((int (*)(FILE *)));
 int	__swsetup __P((FILE *));
 int	__sflags __P((const char *, int *));
