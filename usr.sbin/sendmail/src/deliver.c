@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.38 (Berkeley) 11/08/93";
+static char sccsid[] = "@(#)deliver.c	8.39 (Berkeley) 11/09/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -63,6 +63,7 @@ sendall(e, mode)
 	}
 
 	/* determine actual delivery mode */
+	CurrentLA = getla();
 	if (mode == SM_DEFAULT)
 	{
 		mode = e->e_sendmode;
