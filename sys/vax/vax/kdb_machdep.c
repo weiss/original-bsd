@@ -1,8 +1,7 @@
-/*	@(#)kdb_machdep.c	7.3 (Berkeley) 05/19/88	*/
+/*	@(#)kdb_machdep.c	7.4 (Berkeley) 02/17/90	*/
 
 #include "param.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
 #include "uio.h"
