@@ -1,25 +1,30 @@
 /*
-**  Sendmail
-**  Copyright (c) 1983  Eric P. Allman
-**  Berkeley, California
-**
-**  Copyright (c) 1983 Regents of the University of California.
-**  All rights reserved.  The Berkeley software License Agreement
-**  specifies the terms and conditions for redistribution.
-**
-**	@(#)sendmail.h	5.10.1.2 (Berkeley) 12/17/86
-*/
+ * Copyright (c) 1988 Regents of the University of California.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms are permitted
+ * provided that this notice is preserved and that due credit is given
+ * to the University of California at Berkeley. The name of the University
+ * may not be used to endorse or promote products derived from this
+ * software without specific prior written permission. This software
+ * is provided ``as is'' without express or implied warranty.
+ *
+ *	@(#)sendmail.h	5.11 (Berkeley) 03/13/88
+ *
+ *  Sendmail
+ *  Copyright (c) 1983  Eric P. Allman
+ *  Berkeley, California
+ *
+ */
 
 /*
 **  SENDMAIL.H -- Global definitions for sendmail.
 */
 
-
-
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.10.1.2		12/17/86";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.11		03/13/88";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -574,10 +579,3 @@ extern EVENT	*setevent();
 extern char	*sfgets();
 extern char	*queuename();
 extern time_t	curtime();
-
-/*
-**  HACK to fix bug in C compiler on CCI
-*/
-
-#undef isascii
-#define isascii(x)	(((x) & ~0177) == 0)
