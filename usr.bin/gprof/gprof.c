@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)gprof.c	1.18 (Berkeley) 06/21/82";
+    static	char *sccsid = "@(#)gprof.c	1.19 (Berkeley) 01/11/83";
 #endif lint
 
 #include "gprof.h"
@@ -93,6 +93,10 @@ main(argc, argv)
 	eflag = TRUE;
 	addlist( elist , *sp );
     }
+	/*
+	 *	how long is a clock tick?
+	 */
+    hz = hertz();
 	/*
 	 *	get information about a.out file.
 	 */
