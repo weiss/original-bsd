@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)opendir.c	8.5 (Berkeley) 07/28/94";
+static char sccsid[] = "@(#)opendir.c	8.6 (Berkeley) 08/14/94";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -188,7 +188,7 @@ __opendir2(name, flags)
 					} else {
 						dp->d_fileno = 0;
 					}
-					if (DT_ISWHT(dp->d_type) &&
+					if (dp->d_type == DT_WHT &&
 					    (flags & DTF_HIDEW))
 						dp->d_fileno = 0;
 				}
