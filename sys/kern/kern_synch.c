@@ -1,4 +1,4 @@
-/*	kern_synch.c	4.7	02/26/81	*/
+/*	kern_synch.c	4.8	02/26/81	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -286,7 +286,7 @@ retry:
 		mpid = 0;
 		goto retry;
 	}
-	for(rpp = &proc[0]; rpp < &proc[NPROC]; rpp++) {
+	for(rpp = proc; rpp < procNPROC; rpp++) {
 		if(rpp->p_stat == NULL && p==NULL)
 			p = rpp;
 		if (rpp->p_pid==mpid || rpp->p_pgrp==mpid)
