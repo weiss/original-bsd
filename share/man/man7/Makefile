@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 08/05/91
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 MAN7=	ascii.0 environ.0 eqnchar.0 hier.0 hostname.0 intro.0 mailaddr.0 \
 	man.0 mdoc.0 mdoc.samples.0 ms.0 operator.0 term.0
