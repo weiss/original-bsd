@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 05/11/90
+#	@(#)Makefile	5.9 (Berkeley) 07/25/90
 
 # EXTRA
 #	Incorporates code to gather additional performance statistics
@@ -52,6 +52,7 @@
 #	Turn off logging.
 
 PROG=	larn
+MAN6=	larn.0
 CFLAGS+=-DBSD -DVER=12 -DSUBVER=0 -DNONAP
 SRCS=	main.c object.c create.c tok.c display.c global.c data.c io.c \
 	monster.c store.c diag.c help.c config.c nap.c bill.c scores.c \
