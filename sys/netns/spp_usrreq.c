@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)spp_usrreq.c	6.8 (Berkeley) 08/17/85
+ *	@(#)spp_usrreq.c	6.9 (Berkeley) 08/23/85
  */
 
 #include "param.h"
@@ -1248,7 +1248,6 @@ tpgone:
 
 float	spp_backoff[TCP_MAXRXTSHIFT] =
     { 1.0, 1.2, 1.4, 1.7, 2.0, 3.0, 5.0, 8.0, 16.0, 32.0 };
-extern int tcpexprexmtbackoff;
 /*
  * TCP timer processing.
  */
