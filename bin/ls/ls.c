@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.35 (Berkeley) 01/03/90";
+static char sccsid[] = "@(#)ls.c	5.36 (Berkeley) 02/22/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -373,10 +373,11 @@ subdir(lp)
 		     strerror(errno));
 		return;
 	}
-	if (num = tabdir(lp, &stats, &names))
+	if (num = tabdir(lp, &stats, &names)) {
 		displaydir(stats, num);
-	(void)free((char *)stats);
-	(void)free((char *)names);
+		(void)free((char *)stats);
+		(void)free((char *)names);
+	}
 	if (chdir("..")) {
 		(void)fprintf(stderr, "ls: ..: %s\n", strerror(errno));
 		exit(1);
@@ -394,23 +395,13 @@ tabdir(lp, s_stats, s_names)
 	u_long blocks;
 	LS *stats;
 
-	/*
-	 * allocate space for array of LS structures and the file names
-	 * the name field will point to.  Make it big so we don't have
-	 * to realloc often.
-	 */
-#define	DEFNUM	256
-	maxentry = DEFNUM;
-	*s_stats = stats = (LS *)emalloc((u_int)DEFNUM * sizeof(LS));
-	*s_names = names = emalloc((u_int)lp->lstat.st_size);
-
 	if (!(dirp = opendir("."))) {
 		(void)fprintf(stderr, "ls: %s: %s\n", lp->name,
 		    strerror(errno));
 		return(0);
 	}
-	blocks = 0;
-	maxlen = -1;
+	blocks = maxentry = maxlen = 0;
+	stats = NULL;
 	for (cnt = 0; dp = readdir(dirp);) {
 		/* this does -A and -a */
 		p = dp->d_name;
@@ -421,8 +412,12 @@ tabdir(lp, s_stats, s_names)
 				continue;
 		}
 		if (cnt == maxentry) {
-			maxentry *= 2;
-			if (!(stats = (LS *)realloc((char *)stats,
+			if (!maxentry)
+				*s_names = names =
+				    emalloc((u_int)lp->lstat.st_size);
+#define	DEFNUM	256
+			maxentry += DEFNUM;
+			if (!(*s_stats = stats = (LS *)realloc((char *)stats,
 			    (u_int)maxentry * sizeof(LS))))
 				nomem();
 		}
@@ -460,8 +455,14 @@ tabdir(lp, s_stats, s_names)
 			maxlen = dp->d_namlen;
 		++cnt;
 	}
-	stats[0].lstat.st_btotal = blocks;
-	stats[0].lstat.st_maxlen = maxlen;
-	closedir(dirp);
+	(void)closedir(dirp);
+
+	if (cnt) {
+		stats[0].lstat.st_btotal = blocks;
+		stats[0].lstat.st_maxlen = maxlen;
+	} else if (stats) {
+		(void)free((char *)stats);
+		(void)free((char *)names);
+	}
 	return(cnt);
 }
