@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)klogin.c	5.3 (Berkeley) 06/21/90";
+static char sccsid[] = "@(#)klogin.c	5.4 (Berkeley) 09/05/90";
 #endif /* not lint */
 
 #ifdef KERBEROS
@@ -48,8 +48,10 @@ klogin(pw, localhost, password)
 	 * for a password.  If that's ok, log the user in without issueing
 	 * any tickets.
 	 */
-	if (krb_get_lrealm(realm, 1) != KSUCCESS)
+	if (krb_get_lrealm(realm, 0) != KSUCCESS) {
+		syslog(LOG_ERR, "couldn't get local Kerberos realm");
 		return(1);
+	}
 
 	/*
 	 * get TGT for local realm
