@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)input.c	8.1 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)input.c	8.2 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 /*
@@ -99,7 +99,7 @@ rip_input(from, rip, size)
 			n->rip_metric = htonl(n->rip_metric);
 		}
 		rip->rip_cmd = RIPCMD_RESPONSE;
-		bcopy((char *)rip, packet, size);
+		memmove(packet, rip, size);
 		(*afp->af_output)(s, 0, from, size);
 		return;
 
