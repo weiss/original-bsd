@@ -1,7 +1,7 @@
-#	@(#)Makefile	4.21 (Berkeley) 06/25/90
+#	@(#)Makefile	4.22 (Berkeley) 06/30/90
 
-SUBDIR=	bin games include kerberosIV lib libexec old pgrm sbin share \
-	usr.bin usr.sbin
+SUBDIR=	bin contrib games include kerberosIV lib libexec old pgrm sbin \
+	share usr.bin usr.sbin
 
 build:
 	${MAKE} cleandir
@@ -41,6 +41,7 @@ shadow:
 		d=`dirname $$file`; \
 		echo ${OBJ}/$$d; \
 		mkdir -p ${OBJ}/$$d > /dev/null 2>&1 ; \
+		chown bin.bin ${OBJ}/$$d; \
 	done
 
 .include <bsd.subdir.mk>
