@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)yyput.c 1.1 08/27/80";
+static char sccsid[] = "@(#)yyput.c 1.2 03/08/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -224,7 +224,7 @@ graphic(ch)
 
 extern	int nopflg;
 
-char	printed 1;
+char	printed = 1;
 /*
  * Set the current file name to be file,
  * printing the name, or a header on a new
@@ -244,7 +244,7 @@ yysetfile(file)
 	if (lastname == file)
 		return;
 	if (file == filename && opt('n') && (printed & 02) == 0) {
-		printed =| 02;
+		printed |= 02;
 		header();
 	} else
 		yyputfn(file);
