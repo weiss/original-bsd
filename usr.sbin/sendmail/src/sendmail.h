@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.17 (Berkeley) 08/23/93
+ *	@(#)sendmail.h	8.18 (Berkeley) 09/02/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.17		08/23/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.18		09/02/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -502,6 +502,7 @@ MAP
 # define MF_ALIAS	0x0080		/* this is an alias file */
 # define MF_TRY0NULL	0x0100		/* try with no null byte */
 # define MF_TRY1NULL	0x0200		/* try with the null byte */
+# define MF_LOCKED	0x0400		/* this map is currently locked */
 # define MF_IMPL_HASH	0x1000		/* implicit: underlying hash database */
 # define MF_IMPL_NDBM	0x2000		/* implicit: underlying NDBM database */
 
