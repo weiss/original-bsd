@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.27 (Berkeley) 12/15/91
+ *	@(#)sendmail.h	5.28 (Berkeley) 01/04/92
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.27		12/15/91";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.28		01/04/92";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -126,6 +126,7 @@ struct mailer
 	short	m_r_rwset;	/* rewriting set for recipient addresses */
 	char	*m_eol;		/* end of line string */
 	long	m_maxsize;	/* size limit on message to this mailer */
+	int	m_linelimit;	/* max # characters per line */
 };
 
 typedef struct mailer	MAILER;
@@ -149,6 +150,8 @@ typedef struct mailer	MAILER;
 # define M_USR_UPPER	'u'	/* preserve user case distinction */
 # define M_UGLYUUCP	'U'	/* this wants an ugly UUCP from line */
 # define M_XDOT		'X'	/* use hidden-dot algorithm */
+# define M_7BITS	'7'	/* use 7-bit path */
+# define M_8BITS	'8'	/* use 8-bit path */
 
 EXTERN MAILER	*Mailer[MAXMAILERS+1];
 
@@ -498,6 +501,7 @@ EXTERN bool	ForkQueueRuns;	/* fork for each job when running the queue */
 EXTERN bool	AutoRebuild;	/* auto-rebuild the alias database as needed */
 EXTERN bool	CheckAliases;	/* parse addresses during newaliases */
 EXTERN bool	UseNameServer;	/* use internet domain name server */
+EXTERN bool	EightBit;	/* try to preserve 8-bit data */
 EXTERN int	SafeAlias;	/* minutes to wait until @:@ in alias file */
 EXTERN time_t	TimeOut;	/* time until timeout */
 EXTERN FILE	*InChannel;	/* input connection */
@@ -552,6 +556,7 @@ EXTERN bool	NoWildcardMX;	/* we don't have wildcard MX records */
 EXTERN char	*UdbSpec;	/* user database source spec [udbexpand.c] */
 EXTERN int	MaxHopCount;	/* number of hops until we give an error */
 EXTERN int	ConfigLevel;	/* config file level -- what does .cf expect? */
+EXTERN char	*TimeZoneSpec;	/* override time zone specification */
 /*
 **  Trace information
 */

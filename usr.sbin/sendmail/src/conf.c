@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	5.32 (Berkeley) 01/04/92";
+static char sccsid[] = "@(#)conf.c	5.33 (Berkeley) 01/04/92";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -147,6 +147,7 @@ setdefaults()
 	MaxHopCount = MAXHOP;
 	SendMode = SM_FORK;
 	ErrorMode = EM_PRINT;
+	EightBit = FALSE;
 	setdefuser();
 }
 
