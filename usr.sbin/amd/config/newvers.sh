@@ -12,7 +12,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)newvers.sh	5.1 (Berkeley) 06/29/90
+#	@(#)newvers.sh	5.2 (Berkeley) 07/29/90
 #
 PATH=/usr/ucb:/bin:/usr/bin
 if [ $# -ne 1 ]; then echo "Usage: newvers program" >&2; exit 1; fi
@@ -23,8 +23,8 @@ u=${USER-${LOGNAME-root}}
 h=`hostname`
 #h=`expr "$h" : '\([^.]*\)'`
 t=`date`
-r=`cat ../config/RELEASE`
-c=`sed 's/$/\\\\n\\\\/' ../text/COPYRIGHT`
+r=`cat $d../config/RELEASE`
+c=`sed 's/$/\\\\n\\\\/' $d../text/COPYRIGHT`
 if [ -z "$r" -o -z "$c" ]; then
 	echo ERROR: config file missing >&2
 	exit 1
