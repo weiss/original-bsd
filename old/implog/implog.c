@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)implog.c	5.11 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)implog.c	5.12 (Berkeley) 05/13/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -138,8 +138,8 @@ again:
 			printf("restarted: %.24s\n", ctime(&from.sin_time));
 			continue;
 		}
-		if (host >= 0) {
-			long addr = ntohs(from.sin_addr.s_addr);
+		if (host >= 0 || imp >= 0) {
+			long addr = ntohl(from.sin_addr.s_addr);
 
 			if (IN_CLASSA(addr)) {
 				hostfrom = ((addr>>16) & 0xFF);
