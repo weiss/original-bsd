@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)process.c	5.9 (Berkeley) 11/01/92";
+static char sccsid[] = "@(#)process.c	5.10 (Berkeley) 12/02/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -179,7 +179,7 @@ redirect:
 				appendx++;
 				break;
 			case 's':
-				sdone = substitute(cp);
+				sdone |= substitute(cp);
 				break;
 			case 't':
 				if (sdone) {
@@ -401,8 +401,7 @@ flush_appends()
 		}
 	if (ferror(stdout))
 		err(FATAL, "stdout: %s", strerror(errno ? errno : EIO));
-	appendx = 0;
-	sdone = 0;
+	appendx = sdone = 0;
 }
 
 static void
