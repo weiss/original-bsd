@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)anlwrk.c	5.7	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)anlwrk.c	5.8	(Berkeley) 02/04/91";
 #endif
 
 #include "uucp.h"
@@ -17,7 +17,6 @@ static char sccsid[] = "@(#)anlwrk.c	5.7	(Berkeley) 04/05/88";
 
 int Nfiles = 0;
 char Filent[LLEN][NAMESIZE];
-long fseek(), ftell();
 extern int TransferSucceeded;
 
 /*LINTLIBRARY*/
