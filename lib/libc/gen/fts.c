@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fts.c	5.24 (Berkeley) 01/09/92";
+static char sccsid[] = "@(#)fts.c	5.25 (Berkeley) 01/14/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -471,8 +471,10 @@ fts_build(sp, type)
 	 * If being called from fts_read, set the fts_info field.
 	 */
 	if ((dirp = opendir(cur->fts_accpath)) == NULL) {
-		if (type == BREAD)
+		if (type == BREAD) {
 			cur->fts_info = FTS_DNR;
+			cur->fts_errno = errno;
+		}
 		return (NULL);
 	}
 
