@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_time.c	7.1 (Berkeley) 06/05/86
+ *	@(#)kern_time.c	7.2 (Berkeley) 07/27/86
  */
 
 #include "../machine/reg.h"
@@ -174,7 +174,6 @@ getitimer()
 	splx(s);
 	u.u_error = copyout((caddr_t)&aitv, (caddr_t)uap->itv,
 	    sizeof (struct itimerval));
-	splx(s);
 }
 
 setitimer()
