@@ -3,8 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)signal_.c	5.1	06/07/85
- */
+ *	@(#)signal_.c	5.2	06/07/85
+ *
  * change the action for a specified signal
  *
  * calling sequence:
