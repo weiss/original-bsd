@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 06/19/93
+#	@(#)Makefile	8.1 (Berkeley) 06/19/93
 
 MAN8=	nologin.0
 
