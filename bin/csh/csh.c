@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)csh.c 4.7 02/17/82";
+static	char *sccsid = "@(#)csh.c 4.8 03/28/82";
 
 #include "sh.h"
 #include <sys/ioctl.h>
@@ -231,7 +231,7 @@ main(c, av)
 	 * Note that in only the login shell is it likely that parent
 	 * may have set signals to be ignored
 	 */
-	if (loginsh || intact || intty && isatty(SHOUT))
+	if (loginsh || intact || intty && isatty(SHOUT) || parintr == SIG_DFL)
 		setintr = 1;
 #ifdef TELL
 	settell();
