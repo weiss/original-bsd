@@ -1,7 +1,7 @@
 # A Makefile for handling subdirectories.
 # Machine dependent subdirectories take precedence.
 #
-#	@(#)bsd.subdir.mk	5.1 (Berkeley) 03/16/90
+#	@(#)bsd.subdir.mk	5.2 (Berkeley) 03/16/90
 #
 
 # user defines:
@@ -25,9 +25,9 @@ STDALL STDDEPEND STDCLEAN STDCLEANDIR STDLINT STDINSTALL STDTAGS: .USE
 
 # If the user has not specified the target, use the standard version.
 all: STDALL
-depend: STDDEPEND
 clean: STDCLEAN
 cleandir: STDCLEANDIR
+depend: STDDEPEND
 lint: STDLINT
 install: STDINSTALL
 tags: STDTAGS
