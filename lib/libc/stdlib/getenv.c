@@ -1,4 +1,7 @@
-/* @(#)getenv.c	4.1 (Berkeley) 12/21/80 */
+#ifndef lint
+static char sccsid[] = "@(#)getenv.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 /*
  *	getenv(name)
  *	returns ptr to value associated with name, if any, else NULL
