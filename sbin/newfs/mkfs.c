@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkfs.c	6.14 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)mkfs.c	6.15 (Berkeley) 06/29/90";
 #endif /* not lint */
 
 #ifndef STANDALONE
@@ -604,9 +604,16 @@ next:
 	pp->p_cpg = sblock.fs_cpg;
 	/*
 	 * Notify parent process of success.
+	 * Dissociate from session and tty.
 	 */
-	if (mfs)
+	if (mfs) {
 		kill(ppid, SIGUSR1);
+		(void) setsid();
+		(void) close(0);
+		(void) close(1);
+		(void) close(2);
+		(void) chdir("/");
+	}
 }
 
 /*
