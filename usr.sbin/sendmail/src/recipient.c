@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)recipient.c	5.2 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)recipient.c	5.3 (Berkeley) 06/08/85";
 #endif not lint
 
 # include <pwd.h>
@@ -365,7 +365,7 @@ finduser(name)
 		return (pw);
 
 	/* search for a matching full name instead */
-	setpwent();
+	(void) setpwent();
 	while ((pw = getpwent()) != NULL)
 	{
 		char buf[MAXNAME];
