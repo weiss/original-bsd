@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.1 (Berkeley) 12/21/92 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.2 (Berkeley) 01/01/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.1 (Berkeley) 12/21/92 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.2 (Berkeley) 01/01/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -52,8 +52,6 @@ int	SmtpPid;			/* pid of mailer */
 **		creates connection and sends initial protocol.
 */
 
-jmp_buf	CtxGreeting;
-
 smtpinit(m, mci, e)
 	struct mailer *m;
 	register MCI *mci;
@@ -61,15 +59,21 @@ smtpinit(m, mci, e)
 {
 	register int r;
 	EVENT *gte;
-	static int greettimeout();
 	extern STAB *stab();
 	extern MCI *openmailer();
+
+	if (tTd(17, 1))
+	{
+		printf("smtpinit ");
+		mci_dump(mci);
+	}
 
 	/*
 	**  Open the connection to the mailer.
 	*/
 
 	SmtpError[0] = '\0';
+	CurHostName = mci->mci_host;		/* XXX UGLY XXX */
 	switch (mci->mci_state)
 	{
 	  case MCIS_ACTIVE:
@@ -93,7 +97,7 @@ smtpinit(m, mci, e)
 		break;
 	}
 
-	mci->mci_phase = "user open";
+	SmtpPhase = mci->mci_phase = "user open";
 	mci->mci_state = MCIS_OPENING;
 
 	/*
@@ -102,13 +106,9 @@ smtpinit(m, mci, e)
 	**	happen.
 	*/
 
-	if (setjmp(CtxGreeting) != 0)
-		goto tempfail1;
-	gte = setevent((time_t) 300, greettimeout, 0);
-	mci->mci_phase = "greeting wait";
+	SmtpPhase = mci->mci_phase = "greeting wait";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
-	r = reply(m, mci, e);
-	clrevent(gte);
+	r = reply(m, mci, e, (time_t) 300);
 	if (r < 0 || REPLYTYPE(r) != 2)
 		goto tempfail1;
 
@@ -118,9 +118,9 @@ smtpinit(m, mci, e)
 	*/
 
 	smtpmessage("HELO %s", m, mci, MyHostName);
-	mci->mci_phase = "HELO wait";
+	SmtpPhase = mci->mci_phase = "HELO wait";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (r < 0)
 		goto tempfail1;
 	else if (REPLYTYPE(r) == 5)
@@ -137,7 +137,7 @@ smtpinit(m, mci, e)
 	{
 		/* tell it to be verbose */
 		smtpmessage("VERB", m, mci);
-		r = reply(m, mci, e);
+		r = reply(m, mci, e, ReadTimeout);
 		if (r < 0)
 			goto tempfail2;
 	}
@@ -148,8 +148,10 @@ smtpinit(m, mci, e)
   tempfail1:
   tempfail2:
 	mci->mci_exitstat = EX_TEMPFAIL;
-	mci->mci_errno = errno;
-	smtpquit(m, mci, e);
+	if (mci->mci_errno == 0)
+		mci->mci_errno = errno;
+	if (mci->mci_state != MCIS_CLOSED)
+		smtpquit(m, mci, e);
 	return;
 
   unavailable:
@@ -185,9 +187,9 @@ smtpmailfrom(m, mci, e)
 		smtpmessage("MAIL From:<@%s%c%s>", m, mci, MyHostName,
 			buf[0] == '@' ? ',' : ':', buf);
 	}
-	mci->mci_phase = "MAIL wait";
+	SmtpPhase = mci->mci_phase = "MAIL wait";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (r < 0 || REPLYTYPE(r) == 4)
 	{
 		mci->mci_exitstat = EX_TEMPFAIL;
@@ -213,20 +215,14 @@ smtpmailfrom(m, mci, e)
 	mci->mci_exitstat = EX_PROTOCOL;
 	return EX_PROTOCOL;
 }
-
-
-static
-greettimeout()
-{
-	/* timeout reading the greeting message */
-	longjmp(CtxGreeting, 1);
-}
 /*
 **  SMTPRCPT -- designate recipient.
 **
 **	Parameters:
 **		to -- address of recipient.
 **		m -- the mailer we are sending to.
+**		mci -- the connection info for this transaction.
+**		e -- the envelope for this transaction.
 **
 **	Returns:
 **		exit status corresponding to recipient status.
@@ -245,9 +241,9 @@ smtprcpt(to, m, mci, e)
 
 	smtpmessage("RCPT To:<%s>", m, mci, to->q_user);
 
-	mci->mci_phase = "RCPT wait";
+	SmtpPhase = mci->mci_phase = "RCPT wait";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (r < 0 || REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
 	else if (REPLYTYPE(r) == 2)
@@ -289,9 +285,9 @@ smtpdata(m, mci, e)
 
 	/* send the command and check ok to proceed */
 	smtpmessage("DATA", m, mci);
-	mci->mci_phase = "DATA wait";
+	SmtpPhase = mci->mci_phase = "DATA wait";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (r < 0 || REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
 	else if (r == 554)
@@ -310,9 +306,9 @@ smtpdata(m, mci, e)
 		nmessage(Arpa_Info, ">>> .");
 
 	/* check for the results of the transaction */
-	mci->mci_phase = "result wait";
+	SmtpPhase = mci->mci_phase = "result wait";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (r < 0)
 		return (EX_TEMPFAIL);
 	mci->mci_state = MCIS_OPEN;
@@ -348,7 +344,7 @@ smtpquit(m, mci, e)
 	if (mci->mci_state != MCIS_ERROR)
 	{
 		smtpmessage("QUIT", m, mci);
-		(void) reply(m, mci, e);
+		(void) reply(m, mci, e, ReadTimeout);
 		if (mci->mci_state == MCIS_CLOSED)
 			return;
 	}
@@ -370,7 +366,7 @@ smtprset(m, mci, e)
 	int r;
 
 	smtpmessage("RSET", m, mci);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (r < 0 || REPLYTYPE(r) == 4)
 		return EX_TEMPFAIL;
 	else if (REPLYTYPE(r) == 2)
@@ -391,7 +387,7 @@ smtpnoop(mci)
 	ENVELOPE *e = &BlankEnvelope;
 
 	smtpmessage("NOOP", m, mci);
-	r = reply(m, mci, e);
+	r = reply(m, mci, e, ReadTimeout);
 	if (REPLYTYPE(r) != 2)
 		smtpquit(m, mci, e);
 	return r;
@@ -401,6 +397,9 @@ smtpnoop(mci)
 **
 **	Parameters:
 **		m -- the mailer we are reading the reply from.
+**		mci -- the mailer connection info structure.
+**		e -- the current envelope.
+**		timeout -- the timeout for reads.
 **
 **	Returns:
 **		reply code it reads.
@@ -409,12 +408,13 @@ smtpnoop(mci)
 **		flushes the mail file.
 */
 
-reply(m, mci, e)
+reply(m, mci, e, timeout)
 	MAILER *m;
 	MCI *mci;
 	ENVELOPE *e;
 {
-	(void) fflush(mci->mci_out);
+	if (mci->mci_out != NULL)
+		(void) fflush(mci->mci_out);
 
 	if (tTd(18, 1))
 		printf("reply\n");
@@ -438,7 +438,8 @@ reply(m, mci, e)
 			return (SMTPCLOSING);
 
 		/* get the line from the other side */
-		p = sfgets(SmtpReplyBuffer, sizeof SmtpReplyBuffer, mci->mci_in);
+		p = sfgets(SmtpReplyBuffer, sizeof SmtpReplyBuffer, mci->mci_in,
+			   timeout);
 		mci->mci_lastuse = curtime();
 
 		if (p == NULL)
@@ -454,6 +455,7 @@ reply(m, mci, e)
 				errno = EPIPE;
 # endif /* ECONNRESET */
 
+			mci->mci_errno = errno;
 			message(Arpa_TSyserr, "reply: read error from %s",
 				mci->mci_host);
 			/* if debugging, pause so we can see state */
