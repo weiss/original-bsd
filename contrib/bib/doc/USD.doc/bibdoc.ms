@@ -1,7 +1,7 @@
-.\"	@(#)bibdoc.ms	6.2 (Berkeley) 05/28/90
+.\"	@(#)bibdoc.ms	6.3 (Berkeley) 06/05/93
 .\"
-.EH 'USD:31-%''BIB \- A Program for Formatting Bibliographies'
-.OH 'BIB \- A Program for Formatting Bibliographies''USD:31-%'
+.EH 'USD:28-%''BIB \- A Program for Formatting Bibliographies'
+.OH 'BIB \- A Program for Formatting Bibliographies''USD:28-%'
 .nr LL 6.5i
 .nr LT 6.5i
 .TL
