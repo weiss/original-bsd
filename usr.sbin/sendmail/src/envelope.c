@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	8.58 (Berkeley) 03/31/95";
+static char sccsid[] = "@(#)envelope.c	8.59 (Berkeley) 04/02/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -765,7 +765,7 @@ setsender(from, e, delimptr, internal)
 	**	links in the net.
 	*/
 
-	pvp = prescan(from, delimchar, pvpbuf, sizeof pvpbuf, NULL);
+	pvp = prescan(from, delimchar, pvpbuf, sizeof pvpbuf, NULL, NULL);
 	if (pvp == NULL)
 	{
 		/* don't need to give error -- prescan did that already */
