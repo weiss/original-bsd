@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1980, 1986 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1980, 1986, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fsck.h	5.20 (Berkeley) 06/04/93
+ *	@(#)fsck.h	8.1 (Berkeley) 06/05/93
  */
 
 #define	MAXDUP		10	/* limit on dup blks (per inode) */
