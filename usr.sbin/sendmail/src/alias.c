@@ -4,9 +4,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-SCCSID(@(#)alias.c	3.30		02/15/82	(with DBM));
+SCCSID(@(#)alias.c	3.31		05/22/82	(with DBM));
 # else DBM
-SCCSID(@(#)alias.c	3.30		02/15/82	(without DBM));
+SCCSID(@(#)alias.c	3.31		05/22/82	(without DBM));
 # endif DBM
 
 /*
@@ -76,7 +76,7 @@ alias(a, sendq)
 	if (bitset(QDONTSEND, a->q_flags))
 		return;
 
-	To = a->q_paddr;
+	CurEnv->e_to = a->q_paddr;
 
 	/*
 	**  Look up this name
@@ -425,7 +425,7 @@ readaliases(aliasfile, init)
 			longest = rhssize;
 	}
 	(void) fclose(af);
-	To = NULL;
+	CurEnv->e_to = NULL;
 	if (Verbose)
 		message(Arpa_Info, "%d aliases, longest %d bytes, %d bytes total",
 			naliases, longest, bytes);
