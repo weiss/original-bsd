@@ -1,6 +1,19 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char *sccsid = "@(#)sa.c	4.13 (Berkeley) 08/01/90";
-#endif
+char copyright[] =
+"@(#) Copyright (c) 1991 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@(#)sa.c	4.14 (Berkeley) 05/06/91";
+#endif /* not lint */
 
 /*
  *	Extensive modifications to internal data structures
