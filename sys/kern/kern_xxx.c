@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_xxx.c	7.9 (Berkeley) 05/02/90
+ *	@(#)kern_xxx.c	7.10 (Berkeley) 05/02/90
  */
 
 #include "param.h"
@@ -88,6 +88,12 @@ reboot()
 }
 
 ovhangup()
+{
+
+	RETURN (EINVAL);
+}
+
+oldquota()
 {
 
 	RETURN (EINVAL);
