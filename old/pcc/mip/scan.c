@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)scan.c	2.2 (Berkeley) 10/15/86";
+static char *sccsid ="@(#)scan.c	2.3 (Berkeley) 04/22/87";
 #endif lint
 
 # include "pass1.h"
@@ -337,6 +337,12 @@ lxstr(ct){
 				continue;
 
 			default:
+				if (hflag)
+					uerror("superfluous backslash in string/character constant");
+				/*FALLTHROUGH*/
+			case '\\':
+			case '\"':
+			case '\'':
 				val = c;
 				goto mkcc;
 
