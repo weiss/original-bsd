@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.24 (Berkeley) 10/15/93
+ *	@(#)sendmail.h	8.25 (Berkeley) 10/24/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.24		10/15/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.25		10/24/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -31,6 +31,7 @@ static char SmailSccsId[] =	"@(#)sendmail.h	8.24		10/15/93";
 # include <string.h>
 # include <time.h>
 # include <errno.h>
+# include <sys/un.h>
 
 # include "conf.h"
 # include "useful.h"
@@ -703,6 +704,7 @@ struct prival
 union bigsockaddr
 {
 	struct sockaddr		sa;	/* general version */
+	struct sockaddr_un	sunix;	/* UNIX family */
 #ifdef NETINET
 	struct sockaddr_in	sin;	/* INET family */
 #endif
