@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)tb.c	4.5 10/30/90";
-#endif
+static char sccsid[] = "@(#)tb.c	4.6 (Berkeley) 04/18/91";
+#endif /* not lint */
 
  /* tb.c: check which entries exist, also storage allocation */
 # include "t..c"

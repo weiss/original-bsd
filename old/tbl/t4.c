@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)t4.c	4.3 04/19/88";
-#endif
+static char sccsid[] = "@(#)t4.c	4.4 (Berkeley) 04/18/91";
+#endif /* not lint */
 
  /* t4.c: read table specification */
 # include "t..c"
