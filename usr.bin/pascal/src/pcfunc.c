@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pcfunc.c 1.6 06/01/81";
+static	char sccsid[] = "@(#)pcfunc.c 1.7 02/08/82";
 
 #include "whoami.h"
 #ifdef PC
@@ -145,16 +145,16 @@ noargs:
 	 */
 	switch (op) {
 	    case O_EXP:
-		    funcname = "_exp";
+		    funcname = opt('t') ? "_EXP" : "_exp";
 		    goto mathfunc;
 	    case O_SIN:
-		    funcname = "_sin";
+		    funcname = opt('t') ? "_SIN" : "_sin";
 		    goto mathfunc;
 	    case O_COS:
-		    funcname = "_cos";
+		    funcname = opt('t') ? "_COS" : "_cos";
 		    goto mathfunc;
 	    case O_ATAN:
-		    funcname = "_atan";
+		    funcname = opt('t') ? "_ATAN" : "_atan";
 		    goto mathfunc;
 	    case O_LN:
 		    funcname = opt('t') ? "_LN" : "_log";
