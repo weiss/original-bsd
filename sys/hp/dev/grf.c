@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: grf.c 1.32 92/01/21$
  *
- *	@(#)grf.c	7.11 (Berkeley) 06/05/92
+ *	@(#)grf.c	7.12 (Berkeley) 06/23/92
  */
 
 /*
@@ -469,7 +469,7 @@ grfmmap(dev, addrp, p)
 		printf("grfmmap(%d): addr %x\n", p->p_pid, *addrp);
 #endif
 	len = gp->g_display.gd_regsize + gp->g_display.gd_fbsize;
-	flags = MAP_FILE|MAP_SHARED;
+	flags = MAP_SHARED;
 	if (*addrp)
 		flags |= MAP_FIXED;
 	else
