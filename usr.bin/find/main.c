@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 10/22/90";
+static char sccsid[] = "@(#)main.c	5.4 (Berkeley) 11/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -17,6 +17,7 @@ static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 10/22/90";
 
 int relative;
 
+void
 newsyntax(argc, argvp)
 	int argc;
 	char ***argvp;
