@@ -1,9 +1,8 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)NIL.c 1.1 10/30/80";
+static char sccsid[] = "@(#)NIL.c 1.2 06/10/81";
 
 #include "h00vars.h"
-#include "h01errs.h"
 
 char *
 NIL(ptr)
@@ -11,7 +10,7 @@ NIL(ptr)
 	char	*ptr;		/* pointer to struct */
 {
 	if (ptr > _maxptr || ptr < _minptr) {
-		ERROR(ENILPTR, 0);
+		ERROR("Pointer value out of legal range\n", 0);
 		return;
 	}
 	return ptr;
