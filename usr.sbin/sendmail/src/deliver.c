@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.153		05/04/83);
+SCCSID(@(#)deliver.c	3.154		05/20/83);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1239,8 +1239,10 @@ sendall(e, mode)
 
 	if (!MeToo)
 	{
+		extern ADDRESS *recipient();
+
 		e->e_from.q_flags |= QDONTSEND;
-		recipient(&e->e_from, &e->e_sendqueue);
+		(void) recipient(&e->e_from, &e->e_sendqueue);
 	}
 
 # ifdef QUEUE
