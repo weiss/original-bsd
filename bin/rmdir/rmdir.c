@@ -1,4 +1,19 @@
-static char *sccsid = "@(#)rmdir.c	4.8 (Berkeley) 01/31/85";
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+char copyright[] =
+"@(#) Copyright (c) 1983 Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif not lint
+
+#ifndef lint
+static char sccsid[] = "@(#)rmdir.c	5.1 (Berkeley) 04/30/85";
+#endif not lint
+
 /*
  * Remove directory
  */
