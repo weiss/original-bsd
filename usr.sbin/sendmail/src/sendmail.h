@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.21 (Berkeley) 02/23/93
+ *	@(#)sendmail.h	6.22 (Berkeley) 02/24/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.21		02/23/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.22		02/24/93";
 # endif lint
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -92,6 +92,7 @@ struct address
 	char		*q_fullname;	/* full name if known */
 	struct address	*q_next;	/* chain */
 	struct address	*q_alias;	/* address this results from */
+	char		*q_owner;	/* owner of q_alias */
 	struct address	*q_tchain;	/* temporary use chain */
 	time_t		q_timeout;	/* timeout for this address */
 };
