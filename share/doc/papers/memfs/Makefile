@@ -14,10 +14,10 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	1.2 (Berkeley) 04/13/90
+#	@(#)Makefile	1.3 (Berkeley) 04/16/90
 #
 
-SRCS=	0.t 1.t A.t
+SRCS=	0.t 1.t
 MACROS=	-ms
 PRINTER=Plz
 TROFF=	ditroff -${PRINTER}
@@ -25,7 +25,7 @@ REFER=	/a/staff/mckusick/book/ref/refer -m -n -e -l -s -p ref.bib
 GRIND=	vgrind -f
 
 paper.${PRINTER}: ${SRCS} ref.bib.ia A.gt
-	${REFER} ${SRCS} | ${TROFF} ${MACROS} -t tmac.srefs - | \
+	${REFER} ${SRCS} A.gt | ${TROFF} ${MACROS} -t tmac.srefs - | \
 		psdit >paper.${PRINTER}
 
 ref.bib.ia: ref.bib
