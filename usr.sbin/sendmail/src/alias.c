@@ -25,15 +25,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.43 (Berkeley) 05/04/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.44 (Berkeley) 05/06/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.43 (Berkeley) 05/04/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.44 (Berkeley) 05/06/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.43 (Berkeley) 05/04/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.44 (Berkeley) 05/06/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.43 (Berkeley) 05/04/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.44 (Berkeley) 05/06/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -280,7 +280,10 @@ setalias(spec)
 	/* look up class */
 	s = stab(class, ST_ALIASCLASS, ST_FIND);
 	if (s == NULL)
-		syserr("Unknown alias class %s", class);
+	{
+		if (tTd(27, 1))
+			printf("Unknown alias class %s\n", class);
+	}
 	else
 	{
 		ad->ad_class = s->s_aliasclass;
@@ -330,7 +333,17 @@ initaliases(rebuild, e)
 		else
 		{
 			if (ad->ad_class->ac_init(ad, e))
+			{
+				if (tTd(27, 4))
+					printf("%s:%s: valid\n",
+						ad->ad_class->ac_name,
+						ad->ad_name);
 				ad->ad_flags |= ADF_VALID;
+			}
+			else if (tTd(27, 4))
+				printf("%s:%s: invalid: %s\n",
+					ad->ad_class->ac_name, ad->ad_name,
+					errstring(errno));
 		}
 	}
 }
@@ -440,7 +453,10 @@ rebuildaliases(ad, automatic, e)
 	/* try to lock the source file */
 	if ((af = fopen(ad->ad_name, "r+")) == NULL)
 	{
-		syserr("554 Can't open %s", ad->ad_name);
+		if (tTd(27, 1))
+			printf("Can't open %s: %s\n",
+				ad->ad_name, errstring(errno));
+		ad->ad_flags &= ~ADF_VALID;
 		errno = 0;
 		return;
 	}
@@ -1041,11 +1057,7 @@ stab_ainit(ad, e)
 
 	af = fopen(ad->ad_name, "r");
 	if (af == NULL)
-	{
-		syserr("554 Can't open %s", ad->ad_name);
-		errno = 0;
 		return FALSE;
-	}
 
 	readaliases(ad, af, TRUE, e);
 }
@@ -1098,14 +1110,27 @@ nis_alookup(ad, name, e)
 {
 	auto char *vp;
 	auto int vsize;
+	int yperr;
+	int keylen;
 
 	if (tTd(27, 20))
 		printf("nis_lookup(%s)\n", name);
 
-	if (ypmatch(ad->ad_domain, ad->ad_name, name, strlen(name),
-			&vp, &vsize) != 0)
-		return NULL;
-	return vp;
+	keylen = strlen(name);
+	yperr = yp_match(ad->ad_domain, ad->ad_name, name, keylen,
+			&vp, &vsize);
+	if (yperr == YPERR_KEY)
+		yperr = yp_match(ad->ad_domain, ad->ad_name, name, ++keylen,
+				&vp, &vsize);
+	if (yperr == 0)
+		return vp;
+
+	if (tTd(27, 10))
+		printf("nis_alookup: yp_match(%s, %s, %s) => %s\n",
+			ad->ad_domain, ad->ad_name, name, yperr_string(yperr));
+	if (yperr != YPERR_KEY && yperr != YPERR_BUSY)
+		ad->ad_flags &= ~ADF_VALID;
+	return NULL;
 }
 
 /*
@@ -1132,7 +1157,9 @@ nis_ainit(ad, e)
 	ENVELOPE *e;
 {
 	register char *p;
-	auto char *ypmaster;
+	int yperr;
+	auto char *vp;
+	auto int vsize;
 
 	if (tTd(27, 2))
 		printf("nis_ainit(%s)\n", ad->ad_name);
@@ -1150,8 +1177,14 @@ nis_ainit(ad, e)
 	if (*ad->ad_name == '\0')
 		ad->ad_name = "mail.aliases";
 
-	yperr = yp_master(ad->ad_domain, ad->ad_name, &ypmaster);
-	return (yperr == 0);
+	yperr = yp_match(ad->ad_domain, ad->ad_name, "@", 1,
+			&vp, &vsize);
+	if (tTd(27, 10))
+		printf("nis_ainit: yp_match(%s, %s) => %s\n",
+			ad->ad_domain, ad->ad_name, yperr_string(yperr));
+	if (yperr == 0 || yperr == YPERR_KEY || yperr == YPERR_BUSY)
+		return TRUE;
+	return FALSE;
 }
 
 /*
