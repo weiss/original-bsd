@@ -3,18 +3,16 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.17 (Berkeley) 05/09/89
+ *	@(#)tty.c	7.18 (Berkeley) 10/27/89
  */
 
 #include "param.h"
 #include "systm.h"
 #include "user.h"
 #include "ioctl.h"
-#include "tty.h"
 #define TTYDEFCHARS
-#include "ttydefaults.h"
+#include "tty.h"
 #undef TTYDEFCHARS
-#include "termios.h"
 #include "proc.h"
 #include "file.h"
 #include "conf.h"
@@ -214,9 +212,7 @@ ttioctl(tp, com, data, flag)
 	caddr_t data;
 {
 	extern int nldisp;
-	int softset = 0;
 	int s, error;
-
 
 	/*
 	 * If the ioctl involves modification,
@@ -232,9 +228,11 @@ ttioctl(tp, com, data, flag)
 	case TIOCSETA:
 	case TIOCSETAW:
 	case TIOCSETAF:
+/**** these get removed ****
 	case TIOCSETAS:
 	case TIOCSETAWS:
 	case TIOCSETAFS:
+/***************************/
 		while (u.u_procp->p_pgid != tp->t_pgid &&
 		   tp == u.u_ttyp &&
 		   u.u_procp->p_pgrp->pg_jobc &&
@@ -360,19 +358,35 @@ ttioctl(tp, com, data, flag)
 		break;
 	}
 
-	case TIOCSETAS:
-	case TIOCSETAWS:
-	case TIOCSETAFS:
-		softset = 1;
-		/*FALLTHROUGH*/
+	/*** THIS ALL GETS REMOVED ***/
+	case JUNK_TIOCSETAS:
+	case JUNK_TIOCSETAWS:
+	case JUNK_TIOCSETAFS:
+		((struct termios *)data)->c_cflag |= CIGNORE;
+		switch(com) {
+		case JUNK_TIOCSETAS:
+			com = TIOCSETA;
+			break;
+		case JUNK_TIOCSETAWS:
+			com = TIOCSETAW;
+			break;
+		case JUNK_TIOCSETAFS:
+			com = TIOCSETAF;
+			break;
+		}
+	/*******************************/
+		/*FALLTHROGH*/
 	case TIOCSETA:
 	case TIOCSETAW:
 	case TIOCSETAF: {
 		register struct termios *t = (struct termios *)data;
-		int error;
-
 		s = spltty();
-		if (!softset) {
+		if (com == TIOCSETAW || com == TIOCSETAF) {
+			ttywait(tp);
+			if (com == TIOCSETAF);
+				ttyflush(tp, FREAD);
+		}
+		if (!(t->c_cflag&CIGNORE)) {
 			/*
 			 * set device hardware
 			 */
@@ -393,11 +407,7 @@ ttioctl(tp, com, data, flag)
 			}
 			ttsetwater(tp);
 		}
-		if (com == TIOCSETAF || com == TIOCSETAFS) 
-			ttywflush(tp);
-		else {
-			if (com == TIOCSETAW || com == TIOCSETAWS)
-				ttywait(tp);
+		if (com != TIOCSETAF) {
 			if ((t->c_lflag&ICANON) != (tp->t_lflag&ICANON))
 				if (t->c_lflag&ICANON) {	
 					tp->t_lflag |= PENDIN;
@@ -432,7 +442,7 @@ ttioctl(tp, com, data, flag)
 		if (u.u_ttyp || 
 		    (tp->t_session && tp->t_session != p->p_session) ||
 		    (!tp->t_session && !SESS_LEADER(p)))
-			return(EPERM);
+			return (EPERM);
 		u.u_ttyp = tp;
 		u.u_ttyd = tp->t_dev;
 		if (tp->t_pgid == 0)
@@ -501,8 +511,8 @@ ttioctl(tp, com, data, flag)
 	case TIOCLBIC:
 	case TIOCLSET:
 	case TIOCLGET:
-	case TIOCGETDCOMPAT:
-	case TIOCSETDCOMPAT:
+	case OTIOCGETD:
+	case OTIOCSETD:
 		return(ttcompat(tp, com, data, flag));
 #endif
 
@@ -657,8 +667,11 @@ nullmodem(tp, flag)
 	
 	if (flag)
 		tp->t_state |= TS_CARR_ON;
-	else
+	else {
 		tp->t_state &= ~TS_CARR_ON;
+		if ((tp->t_lflag & NOHANG) == 0)
+			gsignal(tp->t_pgid, SIGHUP);
+	}
 	return (flag);
 }
 
@@ -769,7 +782,7 @@ parmrk:
 	 * Control chars which aren't controlled
 	 * by ICANON, ISIG, or IXON.
 	 */
-	if (iflag&IEXTEN) {
+	if (lflag&IEXTEN) {
 		if (CCEQ(cc[VLNEXT],c)) {
 			if (lflag&ECHO) {
 				if (lflag&ECHOE)
@@ -810,6 +823,10 @@ parmrk:
 				ttyflush(tp, FREAD);
 			ttyecho(c, tp);
 			gsignal(tp->t_pgid, SIGTSTP);
+			goto endcase;
+		}
+		if (CCEQ(cc[VINFO],c)) {
+			ttyinfo(tp);
 			goto endcase;
 		}
 	}
@@ -871,7 +888,7 @@ parmrk:
 	/*
 	 * erase (^H / ^?)
 	 */
-	if (CCEQ(cc[VERASE], c) || CCEQ(cc[VERASE2], c)) {
+	if (CCEQ(cc[VERASE], c)) {
 		if (tp->t_rawq.c_cc)
 			ttyrub(unputc(&tp->t_rawq), tp);
 		goto endcase;
@@ -1530,7 +1547,8 @@ ttyrub(c, tp)
 			tp->t_lflag |= FLUSHO;
 			tp->t_col = tp->t_rocol;
 			cp = tp->t_rawq.c_cf;
-			c = *cp;	/* XXX FIX NEXTC */
+			if (cp)
+				c = *cp;	/* XXX FIX NEXTC */
 			for (; cp; cp = nextc(&tp->t_rawq, cp, &c))
 				ttyecho(c, tp);
 			tp->t_lflag &= ~FLUSHO;
@@ -1688,4 +1706,45 @@ ttspeedtab(speed, table)
 		if (table[i].sp_speed == speed)
 			return(table[i].sp_code);
 	return(-1);
+}
+
+/*
+ * (^T)
+ * Report on state of foreground process group.
+ */
+ttyinfo(tp)
+	struct tty *tp;
+{
+	register struct proc *p;
+	struct pgrp *pg = pgfind(tp->t_pgid);
+
+	if (ttycheckoutq(tp,0) == 0) 
+		return;
+	if (pg == NULL)
+		ttyprintf(tp, "kernel: no foreground process group\n");
+	else if ((p = pg->pg_mem) == NULL)
+		ttyprintf(tp, "kernel: empty process group: %d\n", 
+			tp->t_pgid);
+	else {
+		int i = 0;
+		for (; p != NULL; p = p->p_pgrpnxt) {
+			ttyprintf(tp, 
+			 "kernel: pid: %d state: %x wchan: %x ticks: %d\n",
+				p->p_pid, p->p_stat, p->p_wchan, p->p_cpticks);
+			if (++i > 6) {
+				ttyprintf(tp, "kernel: more...\n");
+				break;
+			}
+		}
+	}
+}
+
+#define TOTTY	0x2	/* XXX should be in header */
+/*VARARGS2*/
+ttyprintf(tp, fmt, x1)
+	register struct tty *tp;
+	char *fmt;
+	unsigned x1;
+{
+	prf(fmt, &x1, TOTTY, tp);
 }
