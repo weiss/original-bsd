@@ -262,11 +262,12 @@ main(argc,argv)
 		fprintf(stdout," wrote  %d files in %d blocks (%d lines, %d chars)\n",
 			totalwritefiles,totalwriteblocks,totalwritelines,totalwritechars);
 	}
+	return(0);
 }
 usage() {
 	fprintf(stderr,
 			"ansitape: usage: ansitape -{rxtc}[flnvb] [filename] [label] [filename] [blocksize] [files]\n");
-	exit();
+	exit(1);
 }
 
 writefile(tape,file,filename,tapename,filenum,year,day,blocksize,recordsize)
@@ -565,7 +566,7 @@ writevol(tapename,tape)
 	char *tapename;
 {
 	char buf[81];
-	sprintf(buf,"VOL1%-6.6s %26.26sD%56810.10s1%28.28s3",tapename," "," "," ");
+	sprintf(buf,"VOL1%-6.6s %26.26sD%56910.10s1%28.28s3",tapename," "," "," ");
 	write(tape,buf,80);
 	if(vflag) {
 		fprintf(stdout," tape labeled %-6.6s\n",tapename);
