@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)shutdown.c	4.12 (Berkeley) 82/03/15";
+static	char *sccsid = "@(#)shutdown.c	4.13 (Berkeley) 82/03/15";
 
 #include <stdio.h>
 #include <ctype.h>
@@ -286,7 +286,7 @@ warn(term, sdt, nowtime)
 	if (shutter)
 		fprintf(term,
 		    "\007\007*** System shutdown message from %s!%s ***\n",
-		    sysname,shutter);
+		    hostname,shutter);
 	else
 		fprintf(term,
 		    "\007\007*** System shutdown message ***\n");
@@ -363,7 +363,7 @@ time_t now;
 	for (mess = nolog2; *mess; mess++)
 		fprintf(fp, " %s", *mess);
 	if (shutter)
-		fprintf(fp, " (by %s!%s)", sysname,shutter);
+		fprintf(fp, " (by %s!%s)", hostname,shutter);
 	fputc('\n', fp);
 	fclose(fp);
 }
