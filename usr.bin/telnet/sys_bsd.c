@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sys_bsd.c	1.10 (Berkeley) 03/08/88";
+static char sccsid[] = "@(#)sys_bsd.c	1.11 (Berkeley) 03/27/88";
 #endif /* not lint */
 
 /*
@@ -41,11 +41,6 @@ int
 	tin,			/* Input file descriptor */
 	net,
 	HaveInput;		/* There is input available to scan */
-
-#if	defined(TN3270)
-static char	tline[200];
-char	*transcom = 0;	/* transparent mode command (default: none) */
-#endif	/* defined(TN3270) */
 
 static struct	tchars otc = { 0 }, ntc = { 0 };
 static struct	ltchars oltc = { 0 }, nltc = { 0 };
