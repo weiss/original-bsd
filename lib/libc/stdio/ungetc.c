@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ungetc.c	5.4 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)ungetc.c	5.5 (Berkeley) 02/01/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
@@ -71,7 +71,7 @@ ungetc(c, fp)
 		if ((fp->_flags & __SRW) == 0)
 			return (EOF);
 		if (fp->_flags & __SWR) {
-			if (fflush(fp))
+			if (__sflush(fp))
 				return (EOF);
 			fp->_flags &= ~__SWR;
 			fp->_w = 0;
