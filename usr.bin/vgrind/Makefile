@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/06/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 DESTDIR=
 CFLAGS=-O 
@@ -26,6 +26,8 @@ install: all
 
 clean:
 	rm -f ${CMDS} ${OBJS}
+
+depend:
 
 vprintall:
 	csh /usr/ucb/vprint ${SOURCES}
