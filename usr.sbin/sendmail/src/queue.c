@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.12 (Berkeley) 02/18/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.13 (Berkeley) 02/19/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.12 (Berkeley) 02/18/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.13 (Berkeley) 02/19/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -862,13 +862,20 @@ readqf(e)
 	if (flock(fileno(qfp), LOCK_EX|LOCK_NB) < 0)
 # endif
 	{
-		/* being processed by another queuer */
-		if (Verbose)
-			printf("%s: locked\n", e->e_id);
+		if (errno == EWOULDBLOCK)
+		{
+			/* being processed by another queuer */
+			if (Verbose)
+				printf("%s: locked\n", e->e_id);
 # ifdef LOG
-		if (LogLevel > 19)
-			syslog(LOG_DEBUG, "%s: locked", e->e_id);
+			if (LogLevel > 19)
+				syslog(LOG_DEBUG, "%s: locked", e->e_id);
 # endif /* LOG */
+		}
+		else
+		{
+			syserr("%s: flock failure", e->e_id);
+		}
 		(void) fclose(qfp);
 		return FALSE;
 	}
