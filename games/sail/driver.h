@@ -4,9 +4,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)driver.h	8.1 (Berkeley) 05/31/93
+ *	@(#)driver.h	8.2 (Berkeley) 05/03/95
  */
 
-#include "externs.h"
+#include "extern.h"
 
 int dtab[];
