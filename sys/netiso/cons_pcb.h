@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)cons_pcb.h	7.4 (Berkeley) 05/06/91
+ */
+
 /***********************************************************
 		Copyright IBM Corporation 1987
 
@@ -26,7 +35,6 @@ SOFTWARE.
  */
 /* $Header: cons_pcb.h,v 4.2 88/06/29 14:59:08 hagens Exp $ */
 /* $Source: /usr/argo/sys/netiso/RCS/cons_pcb.h,v $ */
-/*	@(#)cons_pcb.h	7.3 (Berkeley) 08/29/89 */
 
 /*
  * protocol control block for the connection oriented network service

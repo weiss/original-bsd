@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)clnp_stat.h	7.4 (Berkeley) 05/06/91
+ */
+
 /***********************************************************
 		Copyright IBM Corporation 1987
 
