@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)strings.c	5.9 (Berkeley) 05/09/91";
+static char sccsid[] = "@(#)strings.c	5.10 (Berkeley) 05/23/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -102,7 +102,7 @@ main(argc, argv)
 		exit(1);
 	}
 	bfr[minlen] = '\0';
-	file = NULL;
+	file = "stdin";
 	do {
 		if (*argv) {
 			file = *argv++;
