@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.23 (Berkeley) 10/11/91
+ *	@(#)sendmail.h	5.24 (Berkeley) 11/20/91
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.23		10/11/91";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.24		11/20/91";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -322,6 +322,13 @@ EXTERN struct rewrite	*RewriteRules[MAXRWSETS];
 # define HOSTEND	'\036'	/* hostname lookup end */
 
 /* \001 is also reserved as the macro expansion character */
+
+/* external <==> internal mapping table */
+struct metamac
+{
+	char	metaname;	/* external code (after $) */
+	char	metaval;	/* internal code (as above) */
+};
 /*
 **  Information about hosts that we have looked up recently.
 **
