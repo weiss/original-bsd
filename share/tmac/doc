@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)doc	1.1 (Berkeley) 03/07/91
+.\"     @(#)doc	5.1 (Berkeley) 03/07/91
 .\"
 .\" mdoc-parse - attempt to parse troff request arguments
 .\"     %beginstrip%
