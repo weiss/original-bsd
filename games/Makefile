@@ -1,6 +1,7 @@
-#	@(#)Makefile	5.15 (Berkeley) 06/25/90
+#	@(#)Makefile	5.15.1.1 (Berkeley) 05/06/91
 
-# don't compile: adventure dungeon hunt warp phantasia 
+Missing: adventure boggle ching dungeon hunt phantasia quiz warp 
+
 SUBDIR=	arithmetic atc backgammon battlestar bcd boggle caesar canfield \
 	chess ching cribbage dm factor fish fortune hack hangman larn \
 	mille monop morse number pom ppt primes quiz rain robots rogue \
