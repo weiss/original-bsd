@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.84 (Berkeley) 05/18/95";
+static char sccsid[] = "@(#)recipient.c	8.85 (Berkeley) 05/19/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -114,19 +114,34 @@ sendtolist(list, ctladdr, sendq, aliaslevel, e)
 			ADDRESS *b;
 			extern ADDRESS *self_reference();
 
-#if 0
 			/* self reference test */
 			if (sameaddr(ctladdr, a))
+			{
+				if (tTd(27, 5))
+				{
+					printf("sendtolist: QSELFREF ");
+					printaddr(ctladdr, FALSE);
+				}
 				ctladdr->q_flags |= QSELFREF;
-#endif
+			}
 
 			/* check for address loops */
 			b = self_reference(a, e);
 			if (b != NULL)
 			{
 				b->q_flags |= QSELFREF;
+				if (tTd(27, 5))
+				{
+					printf("sendtolist: QSELFREF ");
+					printaddr(b, FALSE);
+				}
 				if (a != b)
 				{
+					if (tTd(27, 5))
+					{
+						printf("sendtolist: QDONTSEND ");
+						printaddr(a, FALSE);
+					}
 					a->q_flags |= QDONTSEND;
 					continue;
 				}
