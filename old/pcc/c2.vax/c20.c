@@ -1,6 +1,7 @@
-#
-static	char sccsid[] = "@(#)c20.c 4.5 07/05/81";
-/* char C20[] = {"@(#)c20.c 1.35 80/08/26 14:13:40"}; /* sccs ident */
+#ifndef lint
+static	char sccsid[] = "@(#)c20.c	4.6 (Berkeley) 08/11/83";
+#endif
+
 /*
  *	 C object code improver
  */
