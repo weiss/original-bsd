@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/06/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 RDIST = /usr/ucb/rdist
 DESTDIR=
@@ -19,6 +19,8 @@ ${OBJS}:  defs.h
 
 clean:
 	rm -f *.o gram.c errs
+
+depend:
 
 install: rdist
 	install -s -m 4751 rdist ${DESTDIR}${RDIST}
