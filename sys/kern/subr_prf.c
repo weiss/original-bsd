@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_prf.c	7.4 (Berkeley) 02/21/87
+ *	@(#)subr_prf.c	7.5 (Berkeley) 02/26/87
  */
 #include "../machine/mtpr.h"
 
@@ -277,7 +277,7 @@ printn(n, b, flags, ttyp)
 panic(s)
 	char *s;
 {
-	int bootopt = RB_AUTOBOOT;
+	int bootopt = RB_AUTOBOOT | RB_DUMP;
 
 	if (panicstr)
 		bootopt |= RB_NOSYNC;
@@ -285,7 +285,7 @@ panic(s)
 		panicstr = s;
 	}
 	printf("panic: %s\n", s);
-	boot(RB_PANIC, bootopt);
+	boot(bootopt);
 }
 
 /*
