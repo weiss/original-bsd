@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_prf.c	7.3 (Berkeley) 11/03/86
+ *	@(#)subr_prf.c	7.4 (Berkeley) 02/21/87
  */
 #include "../machine/mtpr.h"
 
@@ -32,6 +32,11 @@
  * call to panic.
  */
 char	*panicstr;
+
+extern	cnputc();			/* standard console putc */
+extern	struct tty cons;		/* standard console tty */
+struct	tty *constty;			/* pointer to console "window" tty */
+int	(*v_putc)() = cnputc;		/* routine to putc on virtual console */
 
 /*
  * Scaled down version of C Library printf.
@@ -112,7 +117,6 @@ tprintf(tp, fmt, x1)
 	unsigned x1;
 {
 	int flags = TOTTY | TOLOG;
-	extern struct tty cons;
 
 	logpri(LOG_INFO);
 	if (tp == (struct tty *)NULL)
@@ -317,7 +321,14 @@ putchar(c, flags, tp)
 	register int c;
 	struct tty *tp;
 {
+	int startflags = flags;
 
+	if (panicstr)
+		constty = 0;
+	if ((flags & TOCONS) && tp == 0 && constty) {
+		tp = constty;
+		flags |= TOTTY;
+	}
 	if (flags & TOTTY) {
 		register s = spltty();
 
@@ -327,7 +338,8 @@ putchar(c, flags, tp)
 				(void) ttyoutput('\r', tp);
 			(void) ttyoutput(c, tp);
 			ttstart(tp);
-		}
+		} else if ((flags & TOCONS) && tp == constty)
+			constty = 0;
 		splx(s);
 	}
 	/*
@@ -347,6 +359,6 @@ putchar(c, flags, tp)
 		if (msgbuf.msg_bufx < 0 || msgbuf.msg_bufx >= MSG_BSIZE)
 			msgbuf.msg_bufx = 0;
 	}
-	if ((flags & TOCONS) && c != '\0')
-		cnputc(c);
+	if ((flags & TOCONS) && constty == 0 && c != '\0')
+		(*v_putc)(c);
 }
