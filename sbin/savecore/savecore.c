@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.35 (Berkeley) 12/03/92";
+static char sccsid[] = "@(#)savecore.c	5.36 (Berkeley) 12/11/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -327,7 +327,7 @@ err1:			syslog(LOG_WARNING, "%s: %s", path, strerror(errno));
 			exit(1);
 		}
 	} else
-		ofd = Create(path, S_IRUSR | S_IWUSR);
+		ofd = Create(path, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 
 	/* Open the raw device. */
 	rawp = rawname(ddname);
