@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mkfont.c	4.1 06/07/82";
+static char sccsid[] = "@(#)mkfont.c	4.2 09/11/87";
 #endif lint
 
 #include "mkfont1.c"
@@ -46,7 +46,7 @@ char **argv;
 		if(font[i].name < 0177){
 			ascii[i] = font[i].name;
 		}else{
-			for(j=0; chtab[j] != 0; j =+ 2){
+			for(j=0; chtab[j] != 0; j += 2){
 				if(font[i].name == chtab[j])break;
 			}
 			ascii[i] = chtab[j+1] & 0377;
