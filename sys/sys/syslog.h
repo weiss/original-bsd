@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)syslog.h	7.5 (Berkeley) 11/15/86
+ *	@(#)syslog.h	7.6 (Berkeley) 11/24/86
  */
 
 /*
@@ -46,12 +46,6 @@
 #define LOG_DEBUG	7	/* debug-level messages */
 
 #define LOG_PRIMASK	0x0007	/* mask to extract priority part (internal) */
-
-/*
- * arguments to setlogmask.
- */
-#define	LOG_MASK(pri)	(1 << (pri))		/* mask for one priority */
-#define	LOG_UPTO(pri)	((1 << ((pri)+1)) - 1)	/* all priorities through pri */
 
 /*
  *  Option flags for openlog.
