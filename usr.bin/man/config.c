@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)config.c	5.4 (Berkeley) 06/28/90";
+static char sccsid[] = "@(#)config.c	5.5 (Berkeley) 06/29/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -19,7 +19,8 @@ static char sccsid[] = "@(#)config.c	5.4 (Berkeley) 06/28/90";
 
 #define	MAXLINE		1024
 
-extern char *progname, *pathbuf, **arorder;
+extern char *progname;
+char *pathbuf, **arorder;
 
 static FILE *cfp;
 

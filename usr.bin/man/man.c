@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)man.c	5.22 (Berkeley) 06/28/90";
+static char sccsid[] = "@(#)man.c	5.23 (Berkeley) 06/29/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -27,7 +27,7 @@ extern int errno;
 
 int f_all, f_cat, f_where;
 char *command, *machine, *p_augment, *p_path, *pager, *progname;
-char **arorder, *pathbuf;
+extern char **arorder, *pathbuf;
 
 main(argc, argv)
 	int argc;
