@@ -1,8 +1,8 @@
 #ifndef lint
-static char *sccsid ="@(#)trees.c	4.6 (Berkeley) 01/18/85";
+static char *sccsid ="@(#)trees.c	4.7 (Berkeley) 03/19/85";
 #endif
 
-# include "mfile1"
+# include "pass1.h"
 
 int bdebug = 0;
 int adebug = 0;
