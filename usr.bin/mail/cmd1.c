@@ -8,7 +8,7 @@
  * User commands.
  */
 
-static char *SccsId = "@(#)cmd1.c	2.1 07/01/81";
+static char *SccsId = "@(#)cmd1.c	2.2 09/19/81";
 
 /*
  * Print the current active headings.
@@ -221,8 +221,8 @@ type(msgvec)
 	obuf = stdout;
 	if (setjmp(pipestop)) {
 		if (obuf != stdout) {
-			pclose(obuf);
 			pipef = NULL;
+			pclose(obuf);
 		}
 		sigset(SIGPIPE, SIG_DFL);
 		return(0);
@@ -250,8 +250,8 @@ type(msgvec)
 		print(mp, obuf);
 	}
 	if (obuf != stdout) {
-		pclose(obuf);
 		pipef = NULL;
+		pclose(obuf);
 	}
 	sigset(SIGPIPE, SIG_DFL);
 	return(0);
@@ -265,8 +265,8 @@ type(msgvec)
 brokpipe()
 {
 
-	longjmp(pipestop, 1);
 	sigrelse(SIGPIPE);
+	longjmp(pipestop, 1);
 }
 
 /*
