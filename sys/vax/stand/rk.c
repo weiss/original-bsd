@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)rk.c	7.5 (Berkeley) 02/24/88
+ *	@(#)rk.c	7.6 (Berkeley) 03/03/88
  */
 
 /*
@@ -54,19 +54,18 @@ rkopen(io)
 	tio.i_ma = lbuf;
 	tio.i_cc = SECTSIZ;
 	tio.i_flgs |= F_RDDATA;
-	if (rkstrategy(&tio, READ) != SECTSIZ) {
-		printf("rk: can't read disk label\n");
-		return (EIO);
-	}
+	if (rkstrategy(&tio, READ) != SECTSIZ)
+		return (ERDLAB);
 	*lp = *(struct disklabel *)(lbuf + LABELOFFSET);
-	if (lp->d_magic != DISKMAGIC || lp->d_magic2 != DISKMAGIC) {
-		printf("rk%d: unlabeled\n", io->i_unit);
+	if (lp->d_magic != DISKMAGIC || lp->d_magic2 != DISKMAGIC)
 #ifdef COMPAT_42
+	{
+		printf("rk%d: unlabeled\n", io->i_unit);
 		rkmaptype(io, lp);
-#else
-		return (ENXIO);
-#endif
 	}
+#else
+		return (EUNLAB);
+#endif
 	if ((u_int)io->i_part >= lp->d_npartitions ||
 	    (io->i_boff = lp->d_partitions[io->i_part].p_offset) == -1)
 		return (EPART);
