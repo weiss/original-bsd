@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	8.3 (Berkeley) 03/28/94";
+static char sccsid[] = "@(#)main.c	8.4 (Berkeley) 04/15/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -91,7 +91,7 @@ main(argc, argv)
 	}
 	argv++;
 	argc -= 2;
-	for (cp = *argv++; *cp; cp++) {
+	for (cp = *argv++; cp != NULL && *cp != '\0'; cp++) {
 		switch (*cp) {
 		case '-':
 			break;
