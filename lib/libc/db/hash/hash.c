@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)hash.c	5.1 (Berkeley) 02/12/91";
+static char sccsid[] = "@(#)hash.c	5.2 (Berkeley) 02/14/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -135,6 +135,7 @@ HASHINFO	*info;		/* Special directives for create */
     if ( file && ((hashp->fp = open ( file, flags, mode )) == -1)) {
 	RETURN_ERROR (errno, error0);
     }
+    (void)fcntl(hashp->fp, F_SETFD, 1);
 
     if ( new_table ) {
 	if ( !(hashp = init_hash( info )) ) {
