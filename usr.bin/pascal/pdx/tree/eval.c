@@ -1,6 +1,12 @@
-/* Copyright (c) 1982 Regents of the University of California */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
 
-static char sccsid[] = "@(#)eval.c 1.10 02/14/83";
+#ifndef lint
+static char sccsid[] = "@(#)eval.c	5.1 (Berkeley) 06/06/85";
+#endif not lint
 
 /*
  * Parse tree evaluation.
