@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)fend.c 1.8 06/01/81";
+static char sccsid[] = "@(#)fend.c 1.9 02/02/82";
 
 #include "whoami.h"
 #include "0.h"
@@ -579,6 +579,15 @@ funcend(fp, bundle, endline)
 #ifdef DEBUG
 	dumpnl(fp->ptr[2], fp->symbol);
 #endif
+
+#ifdef OBJ
+	/*
+	 * save the namelist for the debugger pdx
+	 */
+
+	savenl(fp->ptr[2], fp->symbol);
+#endif
+
 	/*
 	 * Restore the
 	 * (virtual) name list
