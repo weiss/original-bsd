@@ -1,7 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)lval.c 1.9.1.1 02/04/84";
+static char sccsid[] = "@(#)lval.c 1.11 02/04/84";
 #endif
 
 #include "whoami.h"
@@ -383,7 +383,7 @@ int arycod(np, el)
 		    if (constsub) {
 			sub *= w;
 			if (sub != 0) {
-			    w = width(ap);
+			    w = bytes(sub, sub);
 			    (void) put(2, w <= 2 ? O_CON2 : O_CON4, sub);
 			    (void) gen(NIL, T_ADD, sizeof(char *), w);
 			}
