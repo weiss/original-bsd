@@ -1,4 +1,4 @@
-(Version 8.2 of 09/26/93)
+(Version 8.3 of 09/30/93)
 
 *****	Database (keyed lookup) locking and rebuild.
 
@@ -54,3 +54,5 @@
 
 ****	Add M_NOLOOPBACKCHK (k) mailer flag to turn off check of name in
 	HELO command.
+
+***	Add ability to disable Return-Receipt-To: on a privacy flag.
