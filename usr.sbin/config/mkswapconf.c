@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkswapconf.c	5.3 (Berkeley) 04/05/88";
+static char sccsid[] = "@(#)mkswapconf.c	5.4 (Berkeley) 04/26/88";
 #endif not lint
 
 /*
@@ -36,7 +36,7 @@ do_swap(fl)
 	register struct file_list *fl;
 {
 	FILE *fp;
-	char  swapname[80], *cp;
+	char  swapname[80];
 	register struct file_list *swap;
 	dev_t dev;
 
