@@ -1,5 +1,8 @@
-/*  VPLOT: version 4.2				updated 03/24/83
- *
+#ifndef lint
+static char sccsid[] = "@(#)vplot.c	4.3 (Berkeley) 08/11/83";
+#endif
+
+/*
  *  Reads standard graphics input and produces a plot on the
  *  Varian or Versatec
  */
@@ -17,7 +20,7 @@
 #define DOTDASHED 054
 #define LONGDASHED 074
 
-char *Sid = "@(#)\t03/24/83";
+char *Sid = "@(#)\t08/11/83";
 
 int	linmod	= SOLID;
 int	done1;
