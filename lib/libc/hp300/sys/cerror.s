@@ -10,13 +10,15 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)cerror.s	5.1 (Berkeley) 05/12/90"
+	.asciz "@(#)cerror.s	5.2 (Berkeley) 07/07/92"
 #endif /* LIBC_SCCS and not lint */
 
 #include "SYS.h"
 
+	.even
 	.globl	_errno
 cerror:
 	movl	d0,_errno
 	movl	#-1,d0
+	movl	#-1,d1
 	rts
