@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	4.13 (Berkeley) 10/11/85";
+static char sccsid[] = "@(#)cp.c	4.14 (Berkeley) 12/02/86";
 #endif not lint
 
 /*
@@ -75,11 +75,14 @@ usage:
 	exit(1);
 }
 
+			/* I/O buffer; guarantee long-word alignment */
+static char	buf[MAXBSIZE];
+
 copy(from, to)
 	char *from, *to;
 {
 	int fold, fnew, n, exists;
-	char *last, destname[MAXPATHLEN + 1], buf[MAXBSIZE];
+	char *last, destname[MAXPATHLEN + 1];
 	struct stat stfrom, stto;
 
 	fold = open(from, 0);
