@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)shutdown.c	4.11 (Berkeley) 82/02/01";
+static	char *sccsid = "@(#)shutdown.c	4.12 (Berkeley) 82/03/15";
 
 #include <stdio.h>
 #include <ctype.h>
@@ -6,7 +6,6 @@ static	char *sccsid = "@(#)shutdown.c	4.11 (Berkeley) 82/02/01";
 #include <utmp.h>
 #include <time.h>
 #include <sys/types.h>
-#include <whoami.h>
 /*
  *	/etc/shutdown when [messages]
  *
@@ -36,6 +35,8 @@ static	char *sccsid = "@(#)shutdown.c	4.11 (Berkeley) 82/02/01";
 #define NLOG		20		/* no of args possible for message */
 #define	NOLOGTIME	5 MINUTES
 #define IGNOREUSER	"sleeper"
+
+char	hostname[32];
 
 int	do_nothing();
 time_t	getsdt();
@@ -90,6 +91,7 @@ main(argc,argv)
 	FILE *termf;
 
 	shutter = getlogin();
+	gethostname(hostname, sizeof (hostname));
 	argc--, argv++;
 	while (argc > 0 && (f = argv[0], *f++ == '-')) {
 		while (i = *f++) switch (i) {
