@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.53 (Berkeley) 12/10/93";
+static char sccsid[] = "@(#)deliver.c	8.54 (Berkeley) 12/12/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1896,9 +1896,6 @@ logdelivery(m, mci, stat, ctladdr, e)
 		if (p != NULL && p[0] != '\0')
 			syslog(LOG_INFO, "%s: relay=%s", e->e_id, p);
 	}
-
-	strcpy(bp, ", stat=");
-	bp += strlen(bp);
 
 	syslog(LOG_INFO, "%s: stat=%s", e->e_id, shortenstring(stat, 63));
 #  endif /* short log buffer */
