@@ -11,7 +11,7 @@
  * %sccs.include.redist.c%
  *
  * from: Utah $Hdr: mem.c 1.13 89/10/08$
- *	@(#)mem.c	7.2 (Berkeley) 05/09/91
+ *	@(#)mem.c	7.3 (Berkeley) 09/03/91
  */
 
 /*
@@ -29,7 +29,6 @@
 
 #include "vm/vm_param.h"
 #include "vm/lock.h"
-#include "vm/vm_statistics.h"
 #include "vm/pmap.h"
 #include "vm/vm_prot.h"
 
