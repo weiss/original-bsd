@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.5 (Berkeley) 08/22/89";
+static char sccsid[] = "@(#)util.c	5.6 (Berkeley) 09/02/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -57,6 +57,6 @@ nomem()
 
 usage()
 {
-	(void)fprintf(stderr, "usage: ls [-1ACFLRacdgiklqrstu] [file ...]\n");
+	(void)fprintf(stderr, "usage: ls [-1ACFLRacdfgiklqrstu] [file ...]\n");
 	exit(1);
 }
