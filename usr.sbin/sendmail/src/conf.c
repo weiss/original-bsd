@@ -113,7 +113,7 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	2.5	02/07/81";
+static char SccsId[] = "@(#)conf.c	2.6	02/15/81";
 
 
 bool	UseMsgId = FALSE;	/* don't put message id's in anywhere */
@@ -173,6 +173,12 @@ static char	*BerkLocal[] = { "y", "cory", NULL };
 char		*MyLocName = "Cory";
 char		*DaemonName = "Cory:~MAILER~DAEMON~";
 # endif CORY
+
+# ifdef ONYX
+static char	*BerkLocal[[] = { "x", "onyx", NULL };
+char		*MyLocName = "Onyx";
+char		*DaemonName = "Onyx:~MAILER~DAEMON~";
+# endif ONYX
 
 # ifdef IMAGE
 /* untested */
