@@ -7,14 +7,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.45 (Berkeley) 03/16/93";
+static char sccsid[] = "@(#)deliver.c	6.46 (Berkeley) 03/17/93";
 #endif /* not lint */
 
 #include "sendmail.h"
 #include <signal.h>
 #include <sys/stat.h>
 #include <netdb.h>
-#include <fcntl.h>
 #include <errno.h>
 #ifdef NAMED_BIND
 #include <arpa/nameser.h>
@@ -347,7 +346,6 @@ deliver(e, firstto)
 	if (tobuf[0] == '\0')
 	{
 		define('g', (char *) NULL, e);
-		define('<', (char *) NULL, e);
 		return (0);
 	}
 
@@ -510,7 +508,6 @@ deliver(e, firstto)
 
 	errno = 0;
 	define('g', (char *) NULL, e);
-	define('<', (char *) NULL, e);
 	return (rcode);
 }
 /*
@@ -1492,9 +1489,6 @@ sendall(e, mode)
 	char *owner;
 	int otherowners;
 	ENVELOPE *splitenv = NULL;
-# ifdef LOCKF
-	struct flock lfd;
-# endif
 
 	/* determine actual delivery mode */
 	if (mode == SM_DEFAULT)
@@ -1722,6 +1716,9 @@ sendenvelope(e, mode)
 	bool oldverbose;
 	int pid;
 	register ADDRESS *q;
+#ifdef LOCKF
+	struct flock lfd;
+#endif
 
 	oldverbose = Verbose;
 	switch (mode)
