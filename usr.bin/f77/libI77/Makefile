@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 05/13/90
+#	@(#)Makefile	5.11 (Berkeley) 06/08/90
 
 LIB=	I77
 SRCS=	backspace.c c_dfe.c c_iio.c c_sfe.c close.c dofio.c dolio.c douio.c \
@@ -39,5 +39,3 @@ beforeinstall:
 	${CC} -p ${CFLAGS} -c ${.IMPSRC} -o ${.TARGET}
 	@${LD} -x -r ${.TARGET}
 	@mv a.out ${.TARGET}
-
-.include <bsd.own.mk>
