@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)gmon.c	1.3 (Berkeley) 10/20/81";
+static	char *sccsid = "@(#)gmon.c	1.4 (Berkeley) 11/06/81";
 
 #include <stdio.h>
 
@@ -150,7 +150,8 @@ _mcleanup()
 	frompc = s_lowpc + (fromindex<<1);
 	for (toindex=froms[fromindex]; toindex!=0; toindex=tos[toindex].link) {
 #	    ifdef DEBUG
-		fprintf( stderr , "[mcleanup] frompc %d selfpc %d count %d\n" ,
+		fprintf( stderr ,
+			"[mcleanup] frompc 0x%x selfpc 0x%x count %d\n" ,
 			frompc , tos[toindex].selfpc , tos[toindex].count );
 #	    endif DEBUG
 	    fwrite( &frompc, 1, sizeof frompc, fd );
