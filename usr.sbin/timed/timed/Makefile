@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.12 (Berkeley) 05/07/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 #
 # optional flags are: MEASURE TESTING DEBUG
 
