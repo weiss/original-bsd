@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)raw_ip.c	8.2 (Berkeley) 01/04/94
+ *	@(#)raw_ip.c	8.3 (Berkeley) 01/12/95
  */
 
 #include <sys/param.h>
@@ -153,8 +153,11 @@ rip_ctloutput(op, so, level, optname, m)
 	register struct inpcb *inp = sotoinpcb(so);
 	register int error;
 
-	if (level != IPPROTO_IP)
+	if (level != IPPROTO_IP) {
+		if (m != 0 && *m != 0)
+			(void)m_free(*m);
 		return (EINVAL);
+	}
 
 	switch (optname) {
 
