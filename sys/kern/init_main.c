@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	8.6 (Berkeley) 12/10/93
+ *	@(#)init_main.c	8.7 (Berkeley) 12/13/93
  */
 
 #include <sys/param.h>
@@ -98,10 +98,9 @@ main(framep)
 	kmeminit();
 	cpu_startup();
 
-	/* Create process 0 (the swapper). */
-	p = &proc0;
-	curproc = p;
-
+	/*
+	 * Create process 0 (the swapper).
+	 */
 	allproc = (volatile struct proc *)p;
 	p->p_prev = (struct proc **)&allproc;
 	p->p_pgrp = &pgrp0;
