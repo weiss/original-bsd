@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)df.c	5.31 (Berkeley) 10/02/92";
+static char sccsid[] = "@(#)df.c	5.32 (Berkeley) 01/22/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -108,7 +108,7 @@ main(argc, argv)
 				} else
 					fprintf(stderr, "df: %s: %s\n",
 					    *argv, strerror(errno));
-				(void)unmount(mntpt, MNT_NOFORCE);
+				(void)unmount(mntpt, 0);
 				(void)rmdir(mntpt);
 				continue;
 			}
