@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vnode.h	7.15 (Berkeley) 11/30/89
+ *	@(#)vnode.h	7.16 (Berkeley) 12/29/89
  */
 
 /*
@@ -244,7 +244,11 @@ extern void vrele();			/* release vnode */
 extern void vgone();			/* completely recycle vnode */
 extern void vgoneall();			/* recycle vnode and all its aliases */
 
+#ifdef notdef
 #define VREF(vp)    (vp)->v_count++;	/* increase reference to a vnode */
+#else
+#define VREF(vp)    vref(vp)
+#endif
 
 /*
  * Global vnode data.
