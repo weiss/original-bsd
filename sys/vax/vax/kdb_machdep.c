@@ -1,4 +1,4 @@
-/*	@(#)kdb_machdep.c	7.5 (Berkeley) 03/29/90	*/
+/*	@(#)kdb_machdep.c	7.6 (Berkeley) 04/02/90	*/
 
 #include "param.h"
 #include "conf.h"
@@ -22,6 +22,10 @@
 #define	KDBSPACE	1024	/* 1K of memory for breakpoint table */
 static	char kdbbuf[KDBSPACE];
 static	char *kdbend = kdbbuf;
+
+extern 	int (*v_putc)();
+extern 	int (*v_getc)();
+extern 	int (*v_poll)();
 /*
  * Dynamically allocate space for the debugger.
  */
