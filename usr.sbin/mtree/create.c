@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)create.c	5.3 (Berkeley) 09/06/89";
+static char sccsid[] = "@(#)create.c	5.4 (Berkeley) 03/05/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -237,6 +237,7 @@ stats(ip)
 
 shostats()
 {
+	extern int dflag;
 	register ID *p;
 	register mode_t cnt;
 	register u_long max;
