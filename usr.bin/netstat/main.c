@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.5 (Berkeley) 03/04/86";
+static char sccsid[] = "@(#)main.c	5.6 (Berkeley) 05/08/86";
 #endif not lint
 
 #include <sys/param.h>
@@ -126,14 +126,14 @@ int	nflag;
 int	rflag;
 int	sflag;
 int	tflag;
-int	uflag;
 int	fflag;
 int	interval;
 char	*interface;
 int	unit;
-char	usage[] = "[ -Aaihmnrstu ] [-f address_family] [-I interface] [ interval ] [ system ] [ core ]";
+char	usage[] = "[ -Aaihmnrst ] [-f address_family] [-I interface] [ interval ] [ system ] [ core ]";
 
 int	af = AF_UNSPEC;
+
 main(argc, argv)
 	int argc;
 	char *argv[];
@@ -186,16 +186,22 @@ main(argc, argv)
 			break;
 
 		case 'u':
-			uflag++;
+			af = AF_UNIX;
 			break;
 
 		case 'f':
 			argv++;
 			argc--;
-			if (strcmp(*argv,"ns")==0) {
+			if (strcmp(*argv, "ns") == 0)
 				af = AF_NS;
-			} else if (strcmp(*argv,"inet")==0) {
+			else if (strcmp(*argv, "inet") == 0)
 				af = AF_INET;
+			else if (strcmp(*argv, "unix") == 0)
+				af = AF_UNIX;
+			else {
+				fprintf(stderr, "%s: unknown address family\n",
+					*argv);
+				exit(10);
 			}
 			break;
 			
@@ -263,11 +269,6 @@ use:
 		mbpr(nl[N_MBSTAT].n_value);
 		exit(0);
 	}
-	if (uflag) {
-		unixpr(nl[N_NFILE].n_value, nl[N_FILE].n_value,
-		    nl[N_UNIXSW].n_value);
-		exit(0);
-	}
 	/*
 	 * Keep file descriptors open to avoid overhead
 	 * of open/close on each call to get* routines.
@@ -319,6 +320,9 @@ use:
 			(*tp->pr_cblocks)(nl[tp->pr_index].n_value, tp->pr_name);
 	}
     }
+    if (af == AF_UNIX || af == AF_UNSPEC)
+	    unixpr(nl[N_NFILE].n_value, nl[N_FILE].n_value,
+		nl[N_UNIXSW].n_value);
     exit(0);
 }
 
