@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)hunt.c	5.1 (Berkeley) 04/30/85";
+static char sccsid[] = "@(#)hunt.c	5.2 (Berkeley) 04/23/87";
 #endif not lint
 
 #include "tip.h"
@@ -30,8 +30,8 @@ hunt(name)
 	int (*f)();
 
 	f = signal(SIGALRM, dead);
-	deadfl = 0;
 	while (cp = getremote(name)) {
+		deadfl = 0;
 		uucplock = rindex(cp, '/')+1;
 		if (mlock(uucplock) < 0) {
 			delock(uucplock);
