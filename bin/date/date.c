@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)date.c	5.4 (Berkeley) 03/09/91";
+static char sccsid[] = "@(#)date.c	5.5 (Berkeley) 03/18/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -53,7 +53,7 @@ main(argc, argv)
 			tval = atol(optarg);
 			break;
 		case 'u':		/* do everything in GMT */
-			(void)setenv("TZ", "GMT", 1);
+			(void)setenv("TZ", "GMT0", 1);
 			break;
 		case 't':		/* minutes west of GMT */
 					/* error check; don't allow "PST" */
