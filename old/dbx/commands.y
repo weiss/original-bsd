@@ -2,7 +2,7 @@
 
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)commands.y 1.3 02/20/83";
+static char sccsid[] = "@(#)commands.y 1.4 04/08/83";
 
 /*
  * Yacc grammar for debugger commands.
@@ -140,7 +140,12 @@ command:
 |
     CONT
 {
-	$$ = build(O_CONT);
+	$$ = build(O_CONT, (long) 0);
+}
+|
+    CONT INT
+{
+	$$ = build(O_CONT, $2);
 }
 |
     DELETE INT
