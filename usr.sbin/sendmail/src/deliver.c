@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.124		10/25/82);
+SCCSID(@(#)deliver.c	3.125		11/03/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1140,7 +1140,7 @@ commaize(h, p, fp, oldstyle, m)
 		}
 
 		/* output the name with nice formatting */
-		opos += strlen(name);
+		opos += qstrlen(name);
 		if (!firstone)
 			opos += 2;
 		if (opos > 78 && !firstone)
@@ -1157,8 +1157,14 @@ commaize(h, p, fp, oldstyle, m)
 			(void) sprintf(obp, ", ");
 			obp += 2;
 		}
-		(void) sprintf(obp, "%s", name);
-		obp += strlen(obp);
+
+		/* strip off quote bits as we output */
+		while (*name != '\0')
+		{
+			if (bitset(0200, *name))
+				*obp++ = '\\';
+			*obp++ = *name++ & ~0200;
+		}
 		firstone = FALSE;
 		*p = savechar;
 	}
