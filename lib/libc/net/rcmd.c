@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rcmd.c	5.14 (Berkeley) 10/22/87";
+static char sccsid[] = "@(#)rcmd.c	5.15 (Berkeley) 11/07/87";
 #endif LIBC_SCCS and not lint
 
 #include <stdio.h>
@@ -286,7 +286,7 @@ int len;
 		return(0);
 	if (!domainp) {
 		if (gethostname(ldomain, sizeof(ldomain)) == -1) {
-			domainp = (char *)1;
+			nodomain = 1;
 			return(0);
 		}
 		ldomain[MAXHOSTNAMELEN] = NULL;
