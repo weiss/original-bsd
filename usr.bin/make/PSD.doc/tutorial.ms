@@ -8,10 +8,10 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)tutorial.ms	5.4 (Berkeley) 08/13/93
+.\"	@(#)tutorial.ms	5.5 (Berkeley) 08/18/93
 .\"
 .EH 'PSD:12-%''PMake \*- A Tutorial'
-.OH 'PMake \*- A Tutorial''PSD:9-%'
+.OH 'PMake \*- A Tutorial''PSD:12-%'
 .\" xH is a macro to provide numbered headers that are automatically stuffed
 .\" into a table-of-contents, properly indented, etc. If the first argument
 .\" is numeric, it is taken as the depth for numbering (as for .NH), else
