@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 1985 Sun Microsystems, Inc.
- * Copyright (c) 1980 The Regents of the University of California.
- * Copyright (c) 1976 Board of Trustees of the University of Illinois.
+ * Copyright (c) 1980, 1993
+ *	The Regents of the University of California.  All rights reserved.
  * All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)indent_globs.h	5.11 (Berkeley) 02/26/91
+ *	@(#)indent_globs.h	8.1 (Berkeley) 06/06/93
  */
 
 #define BACKSLASH '\\'
