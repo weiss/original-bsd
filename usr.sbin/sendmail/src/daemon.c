@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.22 (Berkeley) 03/23/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.23 (Berkeley) 03/23/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.22 (Berkeley) 03/23/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.23 (Berkeley) 03/23/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -631,9 +631,9 @@ getrealhostname(fd)
 	extern struct hostent *gethostbyaddr();
 
 	salen = sizeof sa;
-	if (getsockname(fd, &sa, &salen) < 0 || salen <= 0)
+	if (getsockname(fd, &sa.sa, &salen) < 0 || salen <= 0)
 		return NULL;
-	hp = gethostbyaddr(sa.sa_data, salen, sa.sa_family);
+	hp = gethostbyaddr(sa.sa.sa_data, salen, sa.sa.sa_family);
 	if (hp != NULL)
 		(void) strcpy(hbuf, hp->h_name);
 	else
