@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)defs.h	7.4 (Berkeley) 12/15/86
+ *	@(#)defs.h	7.5 (Berkeley) 04/25/89
  */
 
 /*
@@ -66,7 +66,7 @@ struct	pcb kdbpcb;		/* must go before redef.h */
 #define SP	' '
 #define TB	'\t'
 #define EOR	'\n'
-#define	CTRL(c)	('c'&037)
+#define	CTRL(c)	(c&037)
 
 #define	eqstr(a,b)	(strcmp(a,b)==0)
 
