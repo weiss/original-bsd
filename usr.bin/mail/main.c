@@ -11,7 +11,7 @@ char *copyright =
 #endif not lint
 
 #ifndef lint
-static char *sccsid = "@(#)main.c	5.2 (Berkeley) 06/21/85";
+static char *sccsid = "@(#)main.c	5.3 (Berkeley) 09/15/85";
 #endif not lint
 
 #include "rcv.h"
@@ -290,7 +290,7 @@ main(argc, argv)
 			fprintf(stderr, "No mail for %s\n", myname);
 		exit(1);
 	}
-	if (!edit && !noheader && value("noheader") == NOSTR) {
+	if (!noheader && value("noheader") == NOSTR) {
 		if (setjmp(hdrjmp) == 0) {
 			if ((prevint = sigset(SIGINT, SIG_IGN)) != SIG_IGN)
 				sigset(SIGINT, hdrstop);
@@ -299,8 +299,6 @@ main(argc, argv)
 			sigset(SIGINT, prevint);
 		}
 	}
-	if (edit)
-		newfileinfo();
 	if (!edit && msgCount == 0) {
 		printf("No mail\n");
 		fflush(stdout);
