@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuclean.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)uuclean.c	5.2 (Berkeley) 07/02/83";
 #endif
 
 #include "uucp.h"
@@ -10,7 +10,7 @@ static char sccsid[] = "@(#)uuclean.c	5.1 (Berkeley) 07/02/83";
 #ifdef	NDIR
 #include "ndir.h"
 #else
-#include <dir.h>
+#include <sys/dir.h>
 #endif
 
 extern time_t time();
