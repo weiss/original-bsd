@@ -12,7 +12,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tan.c	1.1	1.1 (ucb.elefunt) 07/24/87";
+static char sccsid[] = "@(#)tan.c	5.1	5.1 (ucb.elefunt) 11/30/87";
 #endif	/* not lint */
 
 #include "trig.h"
