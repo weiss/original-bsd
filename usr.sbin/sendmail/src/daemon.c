@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.15 (Berkeley) 03/07/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.16 (Berkeley) 03/09/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.15 (Berkeley) 03/07/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.16 (Berkeley) 03/09/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -407,6 +407,9 @@ gothostent:
 			printf("makeconnection (%s [%s])\n", host,
 			    inet_ntoa(addr.sin_addr));
 
+		/* save for logging */
+		CurHostAddr = addr;
+
 		if (usesecureport)
 		{
 			int rport = IPPORT_RESERVED - 1;
@@ -476,9 +479,6 @@ gothostent:
 	/* connection ok, put it into canonical form */
 	mci->mci_out = fdopen(s, "w");
 	mci->mci_in = fdopen(dup(s), "r");
-
-	/* save for logging */
-	CurHostAddr = addr;
 
 	return (EX_OK);
 }
