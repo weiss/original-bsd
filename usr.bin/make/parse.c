@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parse.c	5.14 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)parse.c	5.15 (Berkeley) 06/28/90";
 #endif /* not lint */
 
 /*-
@@ -1711,7 +1711,7 @@ ParseReadLine ()
 	c = ParseReadc();
 
 	if ((c == '\t') || (c == '.')) {
-	    ignComment = ignDepOp = TRUE;
+	    ignComment = TRUE;
 	    break;
 	} else if (c == '\n') {
 	    lineno++;
