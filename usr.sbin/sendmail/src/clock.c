@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)clock.c	6.1 (Berkeley) 12/21/92";
+static char sccsid[] = "@(#)clock.c	6.2 (Berkeley) 02/23/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -45,7 +45,7 @@ setevent(intvl, func, arg)
 
 	if (intvl <= 0)
 	{
-		syserr("setevent: intvl=%ld\n", intvl);
+		syserr("554 setevent: intvl=%ld\n", intvl);
 		return (NULL);
 	}
 

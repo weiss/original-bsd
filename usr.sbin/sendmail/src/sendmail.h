@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.18 (Berkeley) 02/22/93
+ *	@(#)sendmail.h	6.19 (Berkeley) 02/23/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.18		02/22/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.19		02/23/93";
 # endif lint
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -636,7 +636,6 @@ EXTERN int	PrivacyFlags;	/* privacy flags */
 extern char	*ConfFile;	/* location of configuration file [conf.c] */
 extern char	*FreezeFile;	/* location of frozen memory image [conf.c] */
 extern char	*PidFile;	/* location of proc id file [conf.c] */
-extern char	Arpa_Info[];	/* the reply code for Arpanet info [conf.c] */
 extern ADDRESS	NullAddress;	/* a null (template) address [main.c] */
 EXTERN char	SpaceSub;	/* substitution for <lwsp> */
 EXTERN long	WkClassFact;	/* multiplier for message class -> priority */
