@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.40 (Berkeley) 12/14/91 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.41 (Berkeley) 12/17/91 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.40 (Berkeley) 12/14/91 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.41 (Berkeley) 12/17/91 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -419,6 +419,9 @@ again:
 		  case ECONNRESET:
 		  case EHOSTUNREACH:
 		  case ENETUNREACH:
+#ifdef ENOSR
+		  case ENOSR:
+#endif
 			/* there are others, I'm sure..... */
 			return (EX_TEMPFAIL);
 
