@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.29 (Berkeley) 02/25/94";
+static char sccsid[] = "@(#)headers.c	8.30 (Berkeley) 02/25/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -1099,14 +1099,14 @@ commaize(h, p, oldstyle, mci, e)
 			(void) strcpy(obp, ",\n");
 			putline(obuf, mci);
 			obp = obuf;
-			(void) sprintf(obp, "        ");
+			(void) strcpy(obp, "        ");
 			opos = strlen(obp);
 			obp += opos;
 			opos += strlen(name);
 		}
 		else if (!firstone)
 		{
-			(void) sprintf(obp, ", ");
+			(void) strcpy(obp, ", ");
 			obp += 2;
 		}
 
