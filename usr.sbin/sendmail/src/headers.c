@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.40		11/28/82);
+SCCSID(@(#)headers.c	3.41		12/13/82);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -121,7 +121,7 @@ chompheader(line, def)
 
 	/* send to this person if we so desire */
 	if (!def && GrabTo && bitset(H_RCPT, h->h_flags))
-		sendto(h->h_value, (ADDRESS *) NULL, &CurEnv->e_sendqueue);
+		sendtolist(h->h_value, (ADDRESS *) NULL, &CurEnv->e_sendqueue);
 
 	return (h->h_flags);
 }
@@ -295,7 +295,7 @@ eatheader(e)
 	/* errors to */
 	p = hvalue("errors-to");
 	if (p != NULL)
-		sendto(p, (ADDRESS *) NULL, &e->e_errorqueue);
+		sendtolist(p, (ADDRESS *) NULL, &e->e_errorqueue);
 
 	/* from person */
 	if (OpMode == MD_ARPAFTP)
