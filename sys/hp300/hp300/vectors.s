@@ -1,10 +1,10 @@
 | Copyright (c) 1988 University of Utah
 | Copyright (c) 1990, 1993
-|	Regents of the University of California.  All rights reserved.
+|	The Regents of the University of California.  All rights reserved.
 |
 | %sccs.include.redist.gas%
 |
-|	@(#)vectors.s	8.1 (Berkeley) 06/10/93
+|	@(#)vectors.s	8.2 (Berkeley) 01/21/94
 |
 #ifdef HPFPLIB
 /*
