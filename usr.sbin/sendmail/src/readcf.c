@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)readcf.c	4.9		12/05/84);
+SCCSID(@(#)readcf.c	4.10		02/14/85);
 
 /*
 **  READCF -- read control file.
@@ -724,7 +724,7 @@ setoption(opt, val, safe, sticky)
 		break;
 
 	  case 'F':		/* file mode */
-		FileMode = atooct(val);
+		FileMode = atooct(val) & 0777;
 		break;
 
 	  case 'f':		/* save Unix-style From lines on front */
