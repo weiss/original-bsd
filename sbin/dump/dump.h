@@ -3,10 +3,9 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dump.h	5.13 (Berkeley) 03/01/91
+ *	@(#)dump.h	5.14 (Berkeley) 03/07/91
  */
 
-#define	NI		16
 #define MAXINOPB	(MAXBSIZE / sizeof(struct dinode))
 #define MAXNINDIR	(MAXBSIZE / sizeof(daddr_t))
 
