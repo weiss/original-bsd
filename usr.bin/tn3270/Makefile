@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/11/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 SUBDIR=	tn3270 mset
 
