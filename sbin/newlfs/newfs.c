@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	8.4 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)newfs.c	8.5 (Berkeley) 05/24/95";
 #endif /* not lint */
 
 /*
@@ -288,7 +288,7 @@ main(argc, argv)
 		fatal("%s: `%c' partition is unavailable", argv[0], *cp);
 
 	/* If we're making a LFS, we break out here */
-	exit(make_lfs(fso, lp, pp, minfree, bsize, segsize));
+	exit(make_lfs(fso, lp, pp, minfree, bsize, fsize, segsize));
 }
 
 #ifdef COMPAT
