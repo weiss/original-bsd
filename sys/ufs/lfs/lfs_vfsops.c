@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)lfs_vfsops.c	7.24 (Berkeley) 10/24/89
+ *	@(#)lfs_vfsops.c	7.25 (Berkeley) 10/29/89
  */
 
 #include "param.h"
@@ -46,6 +46,7 @@ int ufs_statfs();
 int ufs_sync();
 int ufs_fhtovp();
 int ufs_vptofh();
+int ufs_init();
 
 struct vfsops ufs_vfsops = {
 	ufs_mount,
@@ -55,7 +56,8 @@ struct vfsops ufs_vfsops = {
 	ufs_statfs,
 	ufs_sync,
 	ufs_fhtovp,
-	ufs_vptofh
+	ufs_vptofh,
+	ufs_init
 };
 
 /*
