@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.16 (Berkeley) 12/10/93";
+static char sccsid[] = "@(#)headers.c	8.17 (Berkeley) 12/10/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -971,7 +971,8 @@ commaize(h, p, fp, oldstyle, m, e)
 			auto char *oldp;
 			char pvpbuf[PSBUFSIZE];
 
-			(void) prescan(p, oldstyle ? ' ' : ',', pvpbuf, &oldp);
+			(void) prescan(p, oldstyle ? ' ' : ',', pvpbuf,
+				       sizeof pvpbuf, &oldp);
 			p = oldp;
 
 			/* look to see if we have an at sign */
