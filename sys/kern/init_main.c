@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.39 (Berkeley) 05/07/91
+ *	@(#)init_main.c	7.40 (Berkeley) 05/09/91
  */
 
 #include "param.h"
@@ -63,8 +63,7 @@ int	boothowto;
  * routines including startup(), which does memory initialization
  * and autoconfiguration.
  */
-main(firstaddr)
-	int firstaddr;
+main()
 {
 	register int i;
 	register struct proc *p;
@@ -86,7 +85,7 @@ main(firstaddr)
 
 	vm_mem_init();
 	kmeminit();
-	startup(firstaddr);
+	cpu_startup();
 
 	/*
 	 * set up system process 0 (swapper)
