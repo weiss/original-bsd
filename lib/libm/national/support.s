@@ -1,4 +1,4 @@
-; @(#)support.s	1.3 (ucb.elefunt) 07/13/87
+; @(#)support.s	5.1 (ucb.elefunt) 11/30/87
 ; 
 ; IEEE recommended functions
 ; 

@@ -1,4 +1,4 @@
-; @(#)sqrt.s	1.1 (ucb.elefunt) 03/04/86
+; @(#)sqrt.s	5.1 (ucb.elefunt) 11/30/87
 ;
 ; double sqrt(x)
 ; double x;
