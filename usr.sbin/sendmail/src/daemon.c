@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.29 (Berkeley) 12/22/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.30 (Berkeley) 01/08/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.29 (Berkeley) 12/22/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.30 (Berkeley) 01/08/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -276,7 +276,6 @@ getrequests()
 			*/
 
 			(void) setsignal(SIGCHLD, SIG_DFL);
-			OpMode = MD_SMTP;
 
 			/* determine host name */
 			p = hostnamebyanyaddr(&RealHostAddr);

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.7 (Berkeley) 11/17/93";
+static char sccsid[] = "@(#)collect.c	8.8 (Berkeley) 01/08/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -234,7 +234,8 @@ collect(smtpmode, requeueflag, e)
 			break;
 
 		/* check for transparent dot */
-		if (OpMode == MD_SMTP && bp[0] == '.' && bp[1] == '.')
+		if ((OpMode == MD_SMTP || OpMode == MD_DAEMON) &&
+		    bp[0] == '.' && bp[1] == '.')
 			bp++;
 
 		/*
@@ -269,7 +270,7 @@ readerr:
 	}
 
 	/* An EOF when running SMTP is an error */
-	if (inputerr && OpMode == MD_SMTP)
+	if (inputerr && (OpMode == MD_SMTP || OpMode == MD_DAEMON))
 	{
 		char *host;
 		char *problem;
