@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parse.c	5.16 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)parse.c	5.17 (Berkeley) 01/10/91";
 #endif /* not lint */
 
 /*-
@@ -2174,7 +2174,7 @@ Parse_MainName()
     main = Lst_Init (FALSE);
 
     if (mainNode == NILGNODE) {
-	Punt ("I don't know what to DO!\n");
+	Punt ("make: no target to make.\n");
     	/*NOTREACHED*/
     } else if (mainNode->type & OP_DOUBLEDEP) {
 	Lst_Concat(main, mainNode->cohorts, LST_CONCNEW);
