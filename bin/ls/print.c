@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)print.c	5.16 (Berkeley) 01/03/90";
+static char sccsid[] = "@(#)print.c	5.17 (Berkeley) 02/23/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -99,7 +99,12 @@ printcol(stats, num)
 		colwidth += 5;
 	if (f_type)
 		colwidth += 1;
+
 	colwidth = (colwidth + TAB) & ~(TAB - 1);
+	if (termwidth < 2 * colwidth) {
+		printscol(stats, num);
+		return;
+	}
 
 	numcols = termwidth / colwidth;
 	numrows = num / numcols;
