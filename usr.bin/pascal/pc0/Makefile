@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 02/06/91
+#	@(#)Makefile	5.6 (Berkeley) 03/16/91
 
 PROG=	pc0
 SRCDIR=	${.CURDIR}/../src
@@ -6,6 +6,7 @@ CFLAGS=	-I. -I${.CURDIR} -I${SRCDIR}
 .PATH:	${SRCDIR}
 BINDIR=	/usr/libexec/pascal
 NOMAN=	noman
+CLEANFILES+=main.c xmain.c
 
 EYACC=	/usr/libexec/pascal/eyacc
 
