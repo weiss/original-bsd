@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] =	"@(#)srvrsmtp.c	3.4	10/22/81";
+static char	SccsId[] =	"@(#)srvrsmtp.c	3.5	10/22/81";
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -290,8 +290,9 @@ help(topic)
 	int len;
 	char buf[MAXLINE];
 	bool noinfo;
+	extern char *HelpFile;
 
-	hf = fopen("/usr/lib/sendmail.hf", "r");
+	hf = fopen(HelpFile, "r");
 	if (hf == NULL)
 	{
 		/* no help */
