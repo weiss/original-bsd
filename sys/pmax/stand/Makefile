@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/29/93
+#	@(#)Makefile	8.1 (Berkeley) 06/29/93
 
 DESTDIR=
 STAND=	../../stand
