@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sys_machdep.c	8.1 (Berkeley) 06/10/93
+ *	@(#)sys_machdep.c	8.2 (Berkeley) 01/13/94
  */
 
 #include <sys/param.h>
@@ -106,7 +106,7 @@ cachectl(req, addr, len)
 
 #if defined(HP380)
 	if (mmutype == MMU_68040) {
-		register int inc;
+		register int inc = 0;
 		int pa = 0, doall = 0;
 		caddr_t end;
 
