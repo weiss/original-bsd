@@ -22,10 +22,11 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)fingerd.c	5.4 (Berkeley) 11/23/88";
+static char sccsid[] = "@(#)fingerd.c	5.5 (Berkeley) 04/02/89";
 #endif /* not lint */
 
 #include <stdio.h>
+#include "pathnames.h"
 
 main()
 {
@@ -72,7 +73,7 @@ main()
 			(void)dup2(p[1], 1);
 			(void)close(p[1]);
 		}
-		execv("/usr/ucb/finger", av);
+		execv(_PATH_FINGER, av);
 		_exit(1);
 	case -1:
 		fatal("fork");
