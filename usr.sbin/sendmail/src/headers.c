@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.7 (Berkeley) 08/08/93";
+static char sccsid[] = "@(#)headers.c	8.8 (Berkeley) 08/08/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -75,7 +75,7 @@ chompheader(line, def, e)
 	fvalue = p;
 	while (isascii(*p) && isspace(*p))
 		p++;
-	if (*p++ != ':')
+	if (*p++ != ':' || fname == fvalue)
 	{
 		syserr("553 header syntax error, line \"%s\"", line);
 		return (0);
