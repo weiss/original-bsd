@@ -8,9 +8,10 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)mail.cs.mc	8.2 (Berkeley) 08/12/93')
+VERSIONID(`@(#)mail.cs.mc	8.3 (Berkeley) 10/15/93')
 OSTYPE(ultrix4.1)dnl
-DOMAIN(cs.hidden)dnl
+DOMAIN(Berkeley)dnl
+MASQUERADE_AS(CS.Berkeley.EDU)dnl
 FEATURE(notsticky)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
