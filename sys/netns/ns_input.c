@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ns_input.c	8.1 (Berkeley) 06/10/93
+ *	@(#)ns_input.c	8.2 (Berkeley) 09/22/94
  */
 
 #include <sys/param.h>
@@ -53,8 +53,6 @@ long	ns_pexseq;
 
 ns_init()
 {
-	extern struct timeval time;
-
 	ns_broadhost = * (union ns_host *) allones;
 	ns_broadnet = * (union ns_net *) allones;
 	nspcb.nsp_next = nspcb.nsp_prev = &nspcb;
