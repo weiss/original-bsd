@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)word.c	4.5 09/20/85";
+static char sccsid[] = "@(#)word.c	4.6 10/31/85";
 #endif
 
 #
@@ -28,7 +28,8 @@ word()
 
 	WHILE (c=nextc(0), space(c)) DONE
 
-	IF c=='#' ANDF ((flags&prompt)==0 ORF !isatty(input))
+	IF c=='#' ANDF ((flags&prompt)==0 ORF ((flags&ttyflg) ANDF
+	    standin->fstak!=0))
 	THEN	WHILE (c=readc()) ANDF c!=NL DONE
 	FI
 
