@@ -3,11 +3,12 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Jim R. Oldroyd at The Instruction Set.
+ * Jim R. Oldroyd at The Instruction Set and Keith Gabryelski at
+ * Commodore Business Machines.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)quiz.h	5.1 (Berkeley) 11/10/91
+ *	@(#)quiz.h	5.2 (Berkeley) 01/08/92
  */
 
 #define	TRUE		1
