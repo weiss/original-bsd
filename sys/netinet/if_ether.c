@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_ether.c	7.17 (Berkeley) 01/30/92
+ *	@(#)if_ether.c	7.18 (Berkeley) 01/30/92
  */
 
 /*
@@ -174,6 +174,7 @@ arp_rtrequest(req, rt, sa)
 /*
  * Broadcast an ARP packet, asking who has addr on interface ac.
  */
+void
 arpwhohas(ac, addr)
 	register struct arpcom *ac;
 	struct inaddr *addr;
