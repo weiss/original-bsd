@@ -27,7 +27,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lesskey.c	5.1 (Berkeley) 07/21/88";
+static char sccsid[] = "@(#)lesskey.c	5.2 (Berkeley) 07/22/88";
 #endif /* not lint */
 
 /*
@@ -141,7 +141,7 @@ main(argc, argv)
 	char line[100];
 	char *outfile;
 
-	extern char *getenv();
+	extern char *getenv(), *strcat(), *strcpy();
 
 	/*
 	 * Process command line arguments.
