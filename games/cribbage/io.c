@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)io.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)io.c	5.2 (Berkeley) 10/07/87";
 #endif not lint
 
 # include	<curses.h>
@@ -22,10 +22,10 @@ static char sccsid[] = "@(#)io.c	5.1 (Berkeley) 05/30/85";
 # endif
 # define	CTRL(X)			('X' - 'A' + 1)
 
-# ifndef	attron
+# ifdef	notdef				/* defined in curses.h */
 #	define	erasechar()	_tty.sg_erase
 #	define	killchar()	_tty.sg_kill
-# endif		attron
+# endif
 
 char		linebuf[ LINESIZE ];
 
