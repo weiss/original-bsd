@@ -8,7 +8,7 @@
  */
 
 #include "defs.h"
-static	char sccsid[] = "@(#)access.c 4.4 5/15/81";
+static	char sccsid[] = "@(#) 4.6 06/27/82";
 
 
 MAP		txtmap;
