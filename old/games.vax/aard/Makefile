@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 05/29/85
+#	@(#)Makefile	5.2 (Berkeley) 02/01/86
 #
 DESTDIR=
 
@@ -15,4 +15,4 @@ install:
 	install -c -m 755 frontend ${DESTDIR}/usr/games/aardvark
 
 clean:
-	rm -f ddlcomp.out
+	rm -f ddlcomp.out aard
