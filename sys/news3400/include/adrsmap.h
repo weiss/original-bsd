@@ -9,7 +9,7 @@
  *
  * from: $Hdr: adrsmap.h,v 4.300 91/06/09 06:34:29 root Rel41 $ SONY
  *
- *	@(#)adrsmap.h	7.2 (Berkeley) 12/17/92
+ *	@(#)adrsmap.h	7.3 (Berkeley) 03/09/93
  */
 
 /*
@@ -20,8 +20,6 @@
 
 #ifndef __ADRSMAP__
 #define	__ADRSMAP__	1
-
-#include <machine/fix_machine_type.h>
 
 #ifdef news3400
 /*----------------------------------------------------------------------
