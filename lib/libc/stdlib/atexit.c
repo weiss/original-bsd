@@ -9,12 +9,14 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)atexit.c	8.1 (Berkeley) 06/04/93";
+static char sccsid[] = "@(#)atexit.c	8.2 (Berkeley) 07/03/94";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stddef.h>
 #include <stdlib.h>
 #include "atexit.h"
+
+struct atexit *__atexit;	/* points to head of LIFO stack */
 
 /*
  * Register a function to be performed at exit.
