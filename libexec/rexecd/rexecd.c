@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)rexecd.c	4.11 (Berkeley) 04/11/84";
+static	char sccsid[] = "@(#)rexecd.c	4.12 (Berkeley) 09/11/84";
 #endif
 
 #include <sys/ioctl.h>
@@ -172,7 +172,8 @@ doit(f, fromp)
 	}
 	if (*pwd->pw_shell == '\0')
 		pwd->pw_shell = "/bin/sh";
-	(void) close(f);
+	if (f > 2)
+		(void) close(f);
 	initgroups(pwd->pw_name, pwd->pw_gid);
 	(void) setuid(pwd->pw_uid);
 	(void) setgid(pwd->pw_gid);
