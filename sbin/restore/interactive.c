@@ -1,7 +1,11 @@
-/* Copyright (c) 1985 Regents of the University of California */
+/*
+ * Copyright (c) 1985 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
 
 #ifndef lint
-static char sccsid[] = "@(#)interactive.c	3.5	(Berkeley)	05/27/85";
+static char sccsid[] = "@(#)interactive.c	5.1 (Berkeley) 05/28/85";
 #endif not lint
 
 #include "restore.h"
