@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.14 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)misc.c	5.15 (Berkeley) 09/04/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -303,10 +303,10 @@ lshift(v, c)
     register Char **v;
     register int c;
 {
-    register Char **u = v;
+    register Char **u;
 
-    while (*u && --c >= 0)
-	xfree((ptr_t) * u++);
+    for (u = v; *u && --c >= 0; u++)
+	xfree((ptr_t) *u);
     (void) blkcpy(v, u);
 }
 
