@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)limits.h	5.5 (Berkeley) 06/01/90
+ *	@(#)limits.h	5.6 (Berkeley) 06/22/90
  */
 
 #define	_POSIX_ARG_MAX		4096
@@ -21,6 +21,4 @@
 #include <machine/machlimits.h>
 #include <sys/syslimits.h>
 
-#ifndef _POSIX_SOURCE
-#define	LINE_MAX		2048
-#endif
+#define	_BSD_LINE_MAX		2048
