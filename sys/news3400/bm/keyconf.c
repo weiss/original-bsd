@@ -9,15 +9,15 @@
  *
  * from: $Hdr: keyconf.c,v 4.300 91/06/09 06:14:53 root Rel41 $ SONY
  *
- *	@(#)keyconf.c	7.1 (Berkeley) 06/04/92
+ *	@(#)keyconf.c	7.2 (Berkeley) 12/17/92
  */
 
 #ifdef CPU_DOUBLE
-#include "../../iop/keyboard.h"
-#include "../../iop/kbreg.h"
+#include <news3400/iop/keyboard.h>
+#include <news3400/iop/kbreg.h>
 #else
-#include "../iop/keyboard.h"
-#include "../iop/kbreg.h"
+#include <news3400/iop/keyboard.h>
+#include <news3400/iop/kbreg.h>
 #endif
 
 #ifndef NULL
