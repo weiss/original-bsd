@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)shutdown.c	8.2 (Berkeley) 02/16/94";
+static char sccsid[] = "@(#)shutdown.c	8.3 (Berkeley) 04/27/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -447,7 +447,8 @@ void
 finish(signo)
 	int signo;
 {
-	(void)unlink(_PATH_NOLOGIN);
+	if (!killflg)
+		(void)unlink(_PATH_NOLOGIN);
 	exit(0);
 }
 
