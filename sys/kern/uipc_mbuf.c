@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1982, 1986 Regents of the University of California.
+ * Copyright (c) 1982, 1986, 1988 Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)uipc_mbuf.c	7.5 (Berkeley) 12/30/87
+ *	@(#)uipc_mbuf.c	7.4.1.2 (Berkeley) 02/08/88
  */
 
 #include "../machine/pte.h"
@@ -99,6 +99,10 @@ m_clalloc(ncl, how, canwait)
 			(void) m_free(m);
 			m++;
 		}
+		break;
+
+	case MPG_SPACE:
+		mbstat.m_space++;
 		break;
 	}
 	return ((caddr_t)m);
