@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)exec.h	8.3 (Berkeley) 01/21/94
+ *	@(#)exec.h	8.4 (Berkeley) 02/19/95
  */
 
 #include <machine/exec.h>
@@ -34,12 +34,3 @@ struct ps_strings {
  */
 #define	PS_STRINGS \
 	((struct ps_strings *)(USRSTACK - sizeof(struct ps_strings)))
-
-/*
- * Arguments to the exec system call.
- */
-struct execve_args {
-	char	*fname;
-	char	**argp;
-	char	**envp;
-};
