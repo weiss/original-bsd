@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: reg.h 1.1 90/07/09$
  *
- *	@(#)reg.h	8.1 (Berkeley) 06/10/93
+ *	@(#)reg.h	8.2 (Berkeley) 01/03/94
  */
 
 /*
@@ -45,6 +45,16 @@
 int ipcreg[NIPCREG] =
 	{D0,D1,D2,D3,D4,D5,D6,D7,A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
+
+/*
+ * Register set accessible via /proc/$pid/reg
+ */
+struct reg {
+        int     r_regs[16];	/* numbered as above */
+	int	r_pc;
+	int	r_sr;
+};
+
 
 #ifdef KERNEL
 /*
