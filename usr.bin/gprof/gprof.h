@@ -1,11 +1,11 @@
-    /* sccsid:  @(#)gprof.h	1.8 (Berkeley) 11/11/81 */
+    /* sccsid:  @(#)gprof.h	1.9 (Berkeley) 11/12/81 */
 
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <a.out.h>
 #include <pagsiz.h>
-#include "gmcrt0.h"
+#include "gcrt0.h"
 
     /*
      *	ticks per second
@@ -38,16 +38,6 @@ struct arcstruct {
 };
 typedef struct arcstruct	arctype;
 
-    /*
-     *	a raw arc,
-     *	    with pointers to the calling site and the called site
-     *	    and a count.
-     */
-struct rawarc {
-    unsigned long	raw_frompc;
-    unsigned long	raw_selfpc;
-    long		raw_count;
-};
 /*
  * The symbol table;
  * for each external in the specified file we gather
