@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ld.c	6.16 (Berkeley) 05/18/93";
+static char sccsid[] = "@(#)ld.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 /* Linker `ld' for GNU

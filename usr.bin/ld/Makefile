@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.2 (Berkeley) 04/30/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	ld
 SRCS=	ld.c cplus-dem.c
