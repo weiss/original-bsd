@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)icu.s	7.8 (Berkeley) 06/11/93
+ *	@(#)icu.s	8.1 (Berkeley) 06/11/93
  */
 
 	.data
