@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)names.c	5.10 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)names.c	5.11 (Berkeley) 07/07/88";
 #endif /* not lint */
 
 /*
@@ -265,28 +265,16 @@ outof(names, fo, hp)
 
 		if (ispipe) {
 			(void) wait(&s);
-			switch (fork()) {
-			case 0:
-				(void) signal(SIGHUP, SIG_IGN);
-				(void) signal(SIGINT, SIG_IGN);
-				(void) signal(SIGQUIT, SIG_IGN);
-				(void) close(0);
-				(void) dup(image);
-				(void) close(image);
-				if ((shell = value("SHELL")) == NOSTR)
-					shell = SHELL;
-				execl(shell, shell, "-c", fname, 0);
-				perror(shell);
-				exit(1);
-				break;
-
-			case -1:
-				perror("fork");
+			if ((shell = value("SHELL")) == NOSTR)
+				shell = SHELL;
+			if (start_command(shell,
+					sigmask(SIGHUP)|sigmask(SIGINT)|
+							sigmask(SIGQUIT),
+					image, -1, "-c", fname, NOSTR) < 0) {
 				senderr++;
 				goto cant;
 			}
-		}
-		else {
+		} else {
 			if ((fout = fopen(fname, "a")) == NULL) {
 				perror(fname);
 				senderr++;
