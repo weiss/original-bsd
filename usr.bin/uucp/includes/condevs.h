@@ -1,4 +1,4 @@
-/*	@(#)condevs.h	4.7	(Berkeley)	05/05/88	*/
+/*	@(#)condevs.h	4.8	(Berkeley)	03/02/91	*/
 
 #include "uucp.h"
 #include <errno.h>
@@ -16,7 +16,7 @@
 extern char devSel[];	/* name to pass to delock() in close */
 extern int errno, next_fd;
 extern jmp_buf Sjbuf;
-extern int alarmtr();
+extern void alarmtr();
 int nulldev(), nodev(), Acuopn(), diropn(), dircls();
 
 #ifdef DATAKIT
