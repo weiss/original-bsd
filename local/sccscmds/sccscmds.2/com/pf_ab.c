@@ -1,6 +1,6 @@
 # include	"../hdr/defines.h"
 
-SCCSID(@(#)pf_ab.c	1.3	05/04/85);
+static char Sccsid[] = "@(#)pf_ab.c	1.4	02/15/87";
 
 pf_ab(s,pp,all)
 char *s;
@@ -39,7 +39,7 @@ int all;
 	pp->pf_elist = 0;
 	if (!all || !*p)
 		return;
-	p =+ 2;
+	p += 2;
 	xp = alloc(size(p));
 	copy(p,xp);
 	p = xp;
