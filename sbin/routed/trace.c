@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)trace.c	5.8 (Berkeley) 02/18/89";
+static char sccsid[] = "@(#)trace.c	5.9 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 /*
@@ -27,6 +27,7 @@ static char sccsid[] = "@(#)trace.c	5.8 (Berkeley) 02/18/89";
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/signal.h>
+#include "pathnames.h"
 
 #define	NRECORDS	50		/* size of circular trace buffer */
 #ifdef DEBUG
@@ -93,7 +94,7 @@ traceoff()
 	if (!traceactions)
 		return;
 	if (ftrace != NULL) {
-		int fd = open("/dev/null", O_RDWR);
+		int fd = open(_PATH_DEVNULL, O_RDWR);
 
 		fprintf(ftrace, "Tracing disabled %s\n",
 		    ctime((time_t *)&now.tv_sec));
