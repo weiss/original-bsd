@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)macro.c	8.9 (Berkeley) 03/14/95";
+static char sccsid[] = "@(#)macro.c	8.10 (Berkeley) 03/14/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -22,8 +22,7 @@ int	NextMacroId = 0240;	/* codes for long named macros */
 **	Parameters:
 **		s -- the string to expand.
 **		buf -- the place to put the expansion.
-**		buflim -- the buffer limit, i.e., the address
-**			of the first byte after buf.
+**		bufsize -- the size of the buffer.
 **		e -- envelope in which to work.
 **
 **	Returns:
@@ -34,10 +33,10 @@ int	NextMacroId = 0240;	/* codes for long named macros */
 */
 
 void
-expand(s, buf, buflim, e)
+expand(s, buf, bufsize, e)
 	register char *s;
 	register char *buf;
-	char *buflim;
+	size_t bufsize;
 	register ENVELOPE *e;
 {
 	register char *xp;
@@ -138,14 +137,14 @@ expand(s, buf, buflim, e)
 	/* recurse as appropriate */
 	if (recurse)
 	{
-		expand(xbuf, buf, buflim, e);
+		expand(xbuf, buf, bufsize, e);
 		return;
 	}
 
 	/* copy results out */
-	i = buflim - buf - 1;
-	if (i > xp - xbuf)
-		i = xp - xbuf;
+	i = xp - xbuf;
+	if (i >= bufsize)
+		i = bufsize - 1;
 	bcopy(xbuf, buf, i);
 	buf[i] = '\0';
 }

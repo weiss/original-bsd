@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.73 (Berkeley) 03/14/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.74 (Berkeley) 03/14/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.73 (Berkeley) 03/14/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.74 (Berkeley) 03/14/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -145,7 +145,7 @@ getrequests()
 	{
 		char jbuf[MAXHOSTNAMELEN];
 
-		expand("\201j", jbuf, &jbuf[sizeof jbuf - 1], CurEnv);
+		expand("\201j", jbuf, sizeof jbuf, CurEnv);
 		j_has_dot = strchr(jbuf, '.') != NULL;
 	}
 #endif
@@ -190,7 +190,7 @@ getrequests()
 		{
 			char jbuf[MAXHOSTNAMELEN];
 
-			expand("\201j", jbuf, &jbuf[sizeof jbuf - 1], CurEnv);
+			expand("\201j", jbuf, sizeof jbuf, CurEnv);
 			if (!wordinclass(jbuf, 'w'))
 			{
 				dumpstate("daemon lost $j");
