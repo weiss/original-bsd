@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.72 (Berkeley) 05/05/93";
+static char sccsid[] = "@(#)deliver.c	6.73 (Berkeley) 05/12/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1270,6 +1270,11 @@ tryhost:
 			syserr("554 deliver: rcode=%d, mci_state=%d, sig=%s",
 				rcode, mci->mci_state, firstsig);
 			rcode = EX_SOFTWARE;
+		}
+		else if (rcode == EX_TEMPFAIL)
+		{
+			/* try next MX site */
+			goto tryhost;
 		}
 	}
 	else if (!clever)
