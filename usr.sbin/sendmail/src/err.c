@@ -4,7 +4,7 @@
 # include <log.h>
 # endif LOG
 
-static char	SccsId[] = "@(#)err.c	1.5	10/21/80";
+static char	SccsId[] = "@(#)err.c	2.1	11/05/80";
 
 /*
 **  SYSERR -- Print error message.

@@ -1,7 +1,7 @@
 # include <sysexits.h>
 # include "useful.h"
 
-static char	SccsId[] = "@(#)util.c	1.4	10/21/80";
+static char	SccsId[] = "@(#)util.c	2.1	11/05/80";
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
