@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)slattach.c	4.4 (Berkeley) 04/21/89";
+static char sccsid[] = "@(#)slattach.c	4.5 (Berkeley) 05/08/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -36,7 +36,7 @@ static char sccsid[] = "@(#)slattach.c	4.4 (Berkeley) 04/21/89";
 #include <netdb.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "pathnames.h"
+#include <paths.h>
 
 #define DEFAULT_BAUD	9600
 int	slipdisc = SLIPDISC;
