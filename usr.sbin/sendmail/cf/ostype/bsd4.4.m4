@@ -6,7 +6,7 @@ divert(-1)
 #
 # %sccs.include.redist.sh%
 #
-VERSIONID(@(#)bsd4.4.m4	2.2 (Berkeley) 12/12/91)
+VERSIONID(`@(#)bsd4.4.m4	2.3 (Berkeley) 11/13/92')
 #
 
 define(`HELP_FILE', /usr/share/misc/sendmail.hf)dnl
