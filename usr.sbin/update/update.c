@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)update.c	4.5 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)update.c	4.6 (Berkeley) 03/02/91";
 #endif
 
 /*
@@ -22,7 +22,7 @@ main()
 {
 	struct itimerval value;
 	register char **f;
-	extern int sync();
+	void sync();
 
 	daemon(0, 0);
 	for (f = fillst; *f; f++)
