@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.4 (Berkeley) 05/05/92
+#	@(#)Makefile	7.5 (Berkeley) 05/05/92
 
 # Makefile for tahoe tags file
 
@@ -28,6 +28,6 @@ tags: FRC
 
 links:
 	-for i in ${DTAHOE}; do \
-	    cd $$i && rm -f tags; ln -s ../tags tags; done
+	    (cd $$i && rm -f tags; ln -s ../tags tags); done
 
 FRC:
