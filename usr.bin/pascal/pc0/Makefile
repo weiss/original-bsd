@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.4 08/28/80"
+SCCSID = "@(#)Makefile 1.5 08/31/80"
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
@@ -101,6 +101,7 @@ print:	sources
 	@pr yy.h yy*.c
 
 install: a.out
+	sccs check
 	cp ${ERRORSTRINGS} ${LIBDIR}/${ERRORSTRINGS}
 	-mv ${INSTALLDIR}/pc0 ${INSTALLDIR}/pc0.bak
 	cp a.out ${INSTALLDIR}/pc0
