@@ -1,3 +1,7 @@
+#ifndef lint
+static char sccsid[] = "@(#)tick.c	4.2 (Berkeley) 08/11/83";
+#endif
+
 /* time programs */
 # include "stdio.h"
 # include "sys/types.h"
