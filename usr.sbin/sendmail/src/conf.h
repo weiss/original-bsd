@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.40 (Berkeley) 10/17/93
+ *	@(#)conf.h	8.41 (Berkeley) 10/17/93
  */
 
 /*
@@ -376,6 +376,7 @@ typedef int		pid_t;
 */
 
 #ifdef _AUX_SOURCE
+# include <sys/sysmacros.h>
 # define BSD			/* has BSD routines */
 # define HASSTATFS	1	/* has the statfs(2) syscall */
 # define HASUNAME	1	/* use System V uname(2) system call */
