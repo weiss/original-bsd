@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.50 (Berkeley) 09/08/94 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.51 (Berkeley) 11/04/94 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.50 (Berkeley) 09/08/94 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.51 (Berkeley) 11/04/94 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -39,6 +39,8 @@ struct work
 typedef struct work	WORK;
 
 WORK	*WorkQ;			/* queue of things to be done */
+
+#define QF_VERSION	1	/* version number of this queue format */
 /*
 **  QUEUEUP -- queue a message up for future transmission.
 **
@@ -131,8 +133,13 @@ queueup(e, queueall, announce)
 	}
 
 	if (tTd(40, 1))
-		printf("\n>>>>> queueing %s%s >>>>>\n", e->e_id,
-			newid ? " (new id)" : "");
+		printf("\n>>>>> queueing %s%s queueall=%d >>>>>\n", e->e_id,
+			newid ? " (new id)" : "", queueall);
+	if (tTd(40, 32))
+	{
+		printf("  sendq=");
+		printaddr(e->e_sendqueue, TRUE);
+	}
 	if (tTd(40, 9))
 	{
 		printf("  tfp=");
@@ -180,6 +187,9 @@ queueup(e, queueall, announce)
 	**	Priority and creation time should be first, since
 	**	they are required by orderq.
 	*/
+
+	/* output queue version number (must be first!) */
+	fprintf(tfp, "V%d\n", QF_VERSION);
 
 	/* output message priority */
 	fprintf(tfp, "P%ld\n", e->e_msgpriority);
@@ -253,7 +263,24 @@ queueup(e, queueall, announce)
 		    (queueall && !bitset(QDONTSEND|QBADADDR|QSENT, q->q_flags)))
 		{
 			printctladdr(q, tfp);
-			fprintf(tfp, "R%s\n", q->q_paddr);
+			putc('R', tfp);
+			if (bitset(QPRIMARY, q->q_flags))
+				putc('P', tfp);
+			if (bitset(QPINGONSUCCESS, q->q_flags))
+				putc('S', tfp);
+			if (bitset(QPINGONFAILURE, q->q_flags))
+				putc('F', tfp);
+			if (bitset(QPINGONDELAY, q->q_flags))
+				putc('D', tfp);
+			if (bitset(QHASRETPARAM, q->q_flags))
+			{
+				if (bitset(QNOBODYRETURN, q->q_flags))
+					putc('N', tfp);
+				else
+					putc('B', tfp);
+			}
+			putc(':', tfp);
+			fprintf(tfp, "%s\n", q->q_paddr);
 			if (announce)
 			{
 				e->e_to = q->q_paddr;
@@ -431,7 +458,6 @@ printctladdr(a, tfp)
 
 	fprintf(tfp, "C%s:%s\n", uname, a->q_paddr);
 }
-
 /*
 **  RUNQUEUE -- run the jobs in the queue.
 **
@@ -1133,6 +1159,8 @@ readqf(e)
 	ADDRESS *ctladdr;
 	struct stat st;
 	char *bp;
+	int qfver = 0;
+	register char *p;
 	char qf[20];
 	char buf[MAXLINE];
 	extern long atol();
@@ -1234,17 +1262,70 @@ readqf(e)
 	{
 		register char *p;
 		struct stat st;
+		u_long qflags;
+		ADDRESS *q;
 
 		if (tTd(40, 4))
 			printf("+++++ %s\n", bp);
 		switch (bp[0])
 		{
+		  case 'V':		/* queue file version number */
+			qfver = atoi(&bp[1]);
+			if (qfver > QF_VERSION)
+			{
+				syserr("Version number in qf (%d) greater than max (%d)",
+					qfver, QF_VERSION);
+			}
+			break;
+
 		  case 'C':		/* specify controlling user */
 			ctladdr = setctluser(&bp[1]);
 			break;
 
 		  case 'R':		/* specify recipient */
-			(void) sendtolist(&bp[1], ctladdr, &e->e_sendqueue, e);
+			p = bp;
+			qflags = 0;
+			if (qfver >= 1)
+			{
+				/* get flag bits */
+				while (*++p != '\0' && *p != ':')
+				{
+					switch (*p)
+					{
+					  case 'S':
+						qflags |= QPINGONSUCCESS;
+						break;
+
+					  case 'F':
+						qflags |= QPINGONFAILURE;
+						break;
+
+					  case 'D':
+						qflags |= QPINGONDELAY;
+						break;
+
+					  case 'B':
+						qflags |= QHASRETPARAM;
+						break;
+
+					  case 'N':
+						qflags |= QHASRETPARAM|QNOBODYRETURN;
+						break;
+
+					  case 'P':
+						qflags |= QPRIMARY;
+						break;
+					}
+				}
+			}
+			else
+				qflags |= QPRIMARY;
+			q = parseaddr(++p, NULLADDR, RF_COPYALL, '\0', NULL, e);
+			if (q == NULL)
+				break;
+			q->q_alias = ctladdr;
+			q->q_flags |= qflags;
+			(void) recipient(q, &e->e_sendqueue, e);
 			break;
 
 		  case 'E':		/* specify error recipient */
@@ -1442,6 +1523,7 @@ printqueue()
 		auto time_t submittime = 0;
 		long dfsize = -1;
 		int flags = 0;
+		int qfver;
 		char message[MAXLINE];
 		char bodytype[MAXNAME];
 
@@ -1462,6 +1544,7 @@ printqueue()
 		errno = 0;
 
 		message[0] = bodytype[0] = '\0';
+		qfver = 0;
 		while (fgets(buf, sizeof buf, f) != NULL)
 		{
 			register int i;
@@ -1470,6 +1553,10 @@ printqueue()
 			fixcrlf(buf, TRUE);
 			switch (buf[0])
 			{
+			  case 'V':	/* queue file version */
+				qfver = atoi(&buf[1]);
+				break;
+
 			  case 'M':	/* error message */
 				if ((i = strlen(&buf[1])) >= sizeof message)
 					i = sizeof message - 1;
@@ -1510,10 +1597,18 @@ printqueue()
 				break;
 
 			  case 'R':	/* recipient name */
+				p = &buf[1];
+				if (qfver >= 1)
+				{
+					p = strchr(p, ':');
+					if (p == NULL)
+						break;
+					p++;
+				}
 				if (Verbose)
-					printf("\n\t\t\t\t\t  %.38s", &buf[1]);
+					printf("\n\t\t\t\t\t  %.38s", p);
 				else
-					printf("\n\t\t\t\t   %.45s", &buf[1]);
+					printf("\n\t\t\t\t   %.45s", p);
 				break;
 
 			  case 'T':	/* creation time */
