@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)init.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)init.c	5.5 (Berkeley) 03/08/92";
 #endif /* not lint */
 
 # include	"mille.h"
@@ -67,7 +67,7 @@ shuffle() {
 		r = roll(1, DECK_SZ) - 1;
 		if (r < 0 || r > DECK_SZ - 1) {
 			fprintf(stderr, "shuffle: card no. error: %d\n", r);
-			die();
+			die(1);
 		}
 		temp = Deck[r];
 		Deck[r] = Deck[i];
@@ -158,8 +158,7 @@ newscore() {
 		mvaddstr(4, 37, "300");
 		new = TRUE;
 	}
-	else if (((Window == W_FULL || Finished) ^ was_full) ||
-		 pp->was_finished != Finished) {
+	else if ((Window == W_FULL || Finished) ^ was_full) {
 		move(5, 1);
 		clrtobot();
 		new = TRUE;
