@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.8 (Berkeley) 06/29/90
+#	@(#)Makefile	5.9 (Berkeley) 01/14/91
 
 PROG=	px
 SRCDIR=	${.CURDIR}/../src
-CFLAGS+=-I. -I${.CURDIR}/../../../lib/libpc -I${SRCDIR}
+CFLAGS+=-I. -I${.CURDIR}/../libpc -I${SRCDIR}
 .PATH:	${SRCDIR}
 SRCS=	int.c interp.c utilities.c Version.c
 DPADD=	${LIBPC} ${LIBM} ${LIBCOMPAT}
