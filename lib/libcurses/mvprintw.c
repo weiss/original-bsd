@@ -1,10 +1,19 @@
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)mvprintw.c	5.1 (Berkeley) 06/07/85";
+#endif not lint
+
 # include	"curses.ext"
 
 /*
  * implement the mvprintw commands.  Due to the variable number of
  * arguments, they cannot be macros.  Sigh....
  *
- * @(#)mvprintw.c	1.2 (Berkeley) 05/01/85
  */
 
 mvprintw(y, x, fmt, args)
