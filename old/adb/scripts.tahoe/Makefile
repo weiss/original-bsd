@@ -9,9 +9,9 @@
 # software without specific prior written permission. This software
 # is provided ``as is'' without express or implied warranty.
 #
-#	@(#)Makefile	5.1 (Berkeley) 03/30/88
+#	@(#)Makefile	5.2 (Berkeley) 05/09/88
 #
-LIST=	findproc.nxt frame pcb proc setproc.nxt trapframe tty
+LIST=	dirblk findproc.nxt frame pcb proc setproc.nxt trapframe tty
 
 all:
 
