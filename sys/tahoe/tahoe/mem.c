@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1988 Regents of the University of California.
+ * Copyright (c) 1988, 1990 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mem.c	7.3 (Berkeley) 05/09/89
+ *	@(#)mem.c	7.4 (Berkeley) 04/03/90
  */
 
 /*
@@ -78,10 +78,9 @@ mmrw(dev, uio, flag)
 
 /* minor device 2 is EOF/RATHOLE */
 		case 2:
-			if (uio->uio_rw == UIO_READ)
-				return (0);
-			c = iov->iov_len;
-			break;
+			if (uio->uio_rw == UIO_WRITE)
+				uio->uio_resid = 0;
+			return (0);
 
 /* minor device 3 is versabus memory (addressed by shorts) */
 		case 3:
