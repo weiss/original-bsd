@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uulog.c	5.3 (Berkeley) 04/10/85";
+static char sccsid[] = "@(#)uulog.c	5.4 (Berkeley) 06/23/85";
 #endif
 
 #include "uucp.h"
@@ -30,8 +30,8 @@ char *argv[];
 				argv++;
 				argc--;
 			}
-			if (strlen(sys) > 7)
-				sys[7] = '\0';
+			if (strlen(sys) > MAXBASENAME)
+				sys[MAXBASENAME] = '\0';
 			if (versys(&sys) != SUCCESS){
 				fprintf(stderr,"uulog: unknown system %s\n", sys);
 				sys = NULL;
