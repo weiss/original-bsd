@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.16 (Berkeley) 06/19/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	mail
 CFLAGS+=-R -DUSE_OLD_TTY
