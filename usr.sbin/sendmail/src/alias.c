@@ -8,12 +8,12 @@
 
 #ifndef lint
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.23 (Berkeley) 07/26/91 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (with DBM)";
 #else
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.23 (Berkeley) 07/26/91 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (with NEWDB)";
 #else
-static char sccsid[] = "@(#)alias.c	5.23 (Berkeley) 07/26/91 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (without DBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -222,6 +222,12 @@ initaliases(aliasfile, init)
 		(void) strcpy(buf, aliasfile);
 		(void) strcat(buf, ".db");
 		AliasDBptr = hash_open(buf, O_RDONLY, DBMMODE, NULL);
+		if (AliasDBptr == NULL)
+		{
+			syserr("initaliases: cannot open %s", buf);
+			NoAlias = TRUE;
+			return;
+		}
 # else
 		dbminit(aliasfile);
 # endif
@@ -250,6 +256,12 @@ initaliases(aliasfile, init)
 			(void) strcpy(buf, aliasfile);
 			(void) strcat(buf, ".db");
 			AliasDBptr = hash_open(buf, O_RDONLY, DBMMODE, NULL);
+			if (AliasDBptr == NULL)
+			{
+				syserr("initaliases: cannot open %s", buf);
+				NoAlias = TRUE;
+				return;
+			}
 # else
 # ifdef NDBM
 			dbminit(aliasfile);
@@ -413,6 +425,12 @@ readaliases(aliasfile, init)
 		(void) strcpy(line, aliasfile);
 		(void) strcat(line, ".db");
 		dbp = hash_open(line, O_RDWR|O_CREAT|O_TRUNC, DBMMODE, NULL);
+		if (dbp == NULL)
+		{
+			syserr("readaliases: cannot create %s", line);
+			(void) signal(SIGINT, oldsigint);
+			return;
+		}
 # endif
 	}
 
@@ -543,9 +561,7 @@ readaliases(aliasfile, init)
 			store(key, content);
 # else
 			if (dbp->put(dbp, &key, &content, R_PUT) != 0)
-			{
-				syserr("cannot put alias %s", al.q_user);
-			}
+				syserr("readaliases: db put (%s)", al.q_user);
 # endif
 		}
 		else
@@ -571,8 +587,10 @@ readaliases(aliasfile, init)
 		key.size = 2;
 		key.data = "@";
 # ifdef NEWDB
-		dbp->put(dbp, &key, &key, R_PUT);
-		dbp->close(dbp);
+		if (dbp->sync(dbp) != 0 ||
+		    dbp->put(dbp, &key, &key, R_PUT) != 0 ||
+		    dbp->close(dbp) != 0)
+			syserr("readaliases: db close failure");
 # else
 		store(key, key);
 # endif
