@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.31 (Berkeley) 03/25/93";
+static char sccsid[] = "@(#)parseaddr.c	6.32 (Berkeley) 03/25/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -641,20 +641,27 @@ rewrite(pvp, ruleset)
 			switch (*rp & 0377)
 			{
 				register STAB *s;
+				char buf[MAXLINE];
 
 			  case MATCHCLASS:
 			  case MATCHNCLASS:
 				/* match any token in (not in) a class */
-				s = stab(ap, ST_CLASS, ST_FIND);
+				mlp->first = avp;
+	extendclass:
+				if (*avp == NULL)
+					goto backup;
+				mlp->last = avp++;
+				cataddr(mlp->first, mlp->last, buf, sizeof buf, '\0');
+				s = stab(buf, ST_CLASS, ST_FIND);
 				if (s == NULL || !bitnset(rp[1], s->s_class))
 				{
 					if ((*rp & 0377) == MATCHCLASS)
-						goto backup;
+						goto extendclass;
 				}
 				else if ((*rp & 0377) == MATCHNCLASS)
-					goto backup;
-
-				/* explicit fall-through */
+					goto extendclass;
+				mlp++;
+				break;
 
 			  case MATCHONE:
 			  case MATCHANY:
@@ -701,10 +708,16 @@ rewrite(pvp, ruleset)
 					rvp++;
 					break;
 				}
-				avp--;
-				if ((*rp & 0377) == MATCHONE ||
-				    (*rp & 0377) == MATCHCLASS ||
+				if ((*rp & 0377) == MATCHCLASS ||
 				    (*rp & 0377) == MATCHNCLASS)
+				{
+					/* extend binding and try again */
+					mlp--;
+					avp = ++mlp->last;
+					goto extendclass;
+				}
+				avp--;
+				if ((*rp & 0377) == MATCHONE)
 				{
 					/* back out binding */
 					mlp--;
@@ -872,7 +885,7 @@ rewrite(pvp, ruleset)
 
 				if (xpvp != NULL)
 				{
-					cataddr(xpvp, replac,
+					cataddr(xpvp, NULL, replac,
 						&pvpbuf[sizeof pvpbuf] - replac,
 						'\0');
 					*++arg_rvp = replac;
@@ -894,7 +907,7 @@ rewrite(pvp, ruleset)
 				*rvp++ = NULL;
 			if (xpvp != NULL)
 			{
-				cataddr(xpvp, replac,
+				cataddr(xpvp, NULL, replac,
 					&pvpbuf[sizeof pvpbuf] - replac, 
 					'\0');
 				*++arg_rvp = replac;
@@ -906,7 +919,7 @@ rewrite(pvp, ruleset)
 			bcopy((char *) rvp, (char *) pvpb1, trsize);
 
 			/* look it up */
-			cataddr(key_rvp, buf, sizeof buf, '\0');
+			cataddr(key_rvp, NULL, buf, sizeof buf, '\0');
 			argvect[0] = buf;
 			if (map != NULL && bitset(MF_VALID, map->s_map.map_flags))
 			{
@@ -933,7 +946,7 @@ rewrite(pvp, ruleset)
 				char buf2[sizeof buf];
 
 				/* rewrite the default with % translations */
-				cataddr(default_rvp, buf2, sizeof buf2, '\0');
+				cataddr(default_rvp, NULL, buf2, sizeof buf2, '\0');
 				map_rewrite(buf2, sizeof buf2, buf, sizeof buf,
 					argvect);
 				replac = buf;
@@ -1078,7 +1091,7 @@ buildaddr(tv, a)
 		}
 		if ((**tv & 0377) != CANONUSER)
 			syserr("554 buildaddr: error: no user");
-		cataddr(++tv, buf, sizeof buf, ' ');
+		cataddr(++tv, NULL, buf, sizeof buf, ' ');
 		stripquotes(buf);
 		usrerr(buf);
 		return (NULL);
@@ -1156,7 +1169,7 @@ buildaddr(tv, a)
 		else if (*p == ':')
 		{
 			/* may be :include: */
-			cataddr(tv, buf, sizeof buf, '\0');
+			cataddr(tv, NULL, buf, sizeof buf, '\0');
 			stripquotes(buf);
 			if (strncasecmp(buf, ":include:", 9) == 0)
 			{
@@ -1178,7 +1191,7 @@ buildaddr(tv, a)
 	rewrite(tv, 4);
 
 	/* save the result for the command line/RCPT argument */
-	cataddr(tv, buf, sizeof buf, '\0');
+	cataddr(tv, NULL, buf, sizeof buf, '\0');
 	a->q_user = buf;
 
 	/*
@@ -1197,6 +1210,8 @@ buildaddr(tv, a)
 **
 **	Parameters:
 **		pvp -- parameter vector to rebuild.
+**		evp -- last parameter to include.  Can be NULL to
+**			use entire pvp.
 **		buf -- buffer to build the string into.
 **		sz -- size of buf.
 **		spacesub -- the space separator character; if null,
@@ -1209,8 +1224,9 @@ buildaddr(tv, a)
 **		Destroys buf.
 */
 
-cataddr(pvp, buf, sz, spacesub)
+cataddr(pvp, evp, buf, sz, spacesub)
 	char **pvp;
+	char **evp;
 	char *buf;
 	register int sz;
 	char spacesub;
@@ -1239,7 +1255,8 @@ cataddr(pvp, buf, sz, spacesub)
 		oatomtok = natomtok;
 		p += i;
 		sz -= i + 1;
-		pvp++;
+		if (pvp++ == evp)
+			break;
 	}
 	*p = '\0';
 }
