@@ -1,4 +1,4 @@
-/*	mba.c	1.1	06/28/80	*/
+/*	mba.c	1.2	07/21/80	*/
 
 #include "../h/param.h"
 #include "../h/inode.h"
@@ -28,7 +28,7 @@ int *adcr;
 	extern int mbanum[], *mbaloc[];
 	register struct mba_regs *mbap;
 
-	mbap = (struct mba_regs *)mbaloc[mbanum[io->i_unit]];
+	mbap = (struct mba_regs *)mbaloc[mbanum[io->i_ino.i_dev]];
 	pte = (struct pte *)mbap;
 	pte += (MBA_MAP + 128*4)/4;
 	v = btop(io->i_ma);
