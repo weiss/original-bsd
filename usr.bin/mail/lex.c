@@ -11,7 +11,7 @@
  */
 
 #ifdef notdef
-static char sccsid[] = "@(#)lex.c	5.8 (Berkeley) 04/12/88";
+static char sccsid[] = "@(#)lex.c	5.9 (Berkeley) 06/11/88";
 #endif /* notdef */
 
 #include "rcv.h"
@@ -166,7 +166,8 @@ top:
 			printf(prompt);
 		}
 		fflush(stdout);
-		sreset();
+		if (!sourcing)
+			sreset();
 
 		/*
 		 * Read a line of commands from the current input
