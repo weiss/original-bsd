@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)vfs_bio.c	6.7 (Berkeley) 09/17/85
+ *	@(#)vfs_bio.c	6.8 (Berkeley) 10/23/85
  */
 
 #include "../machine/pte.h"
@@ -273,6 +273,8 @@ getblk(dev, blkno, size)
 	register struct buf *bp, *dp;
 	int s;
 
+	if (size > MAXBSIZE)
+		panic("getblk: size too big");
 	/*
 	 * To prevent overflow of 32-bit ints when converting block
 	 * numbers to byte offsets, blknos > 2^32 / DEV_BSIZE are set
@@ -332,6 +334,8 @@ geteblk(size)
 {
 	register struct buf *bp, *flist;
 
+	if (size > MAXBSIZE)
+		panic("geteblk: size too big");
 loop:
 	bp = getnewbuf();
 	bp->b_flags |= B_INVAL;
