@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)logent.c	5.10 (Berkeley) 04/24/91";
+static char sccsid[] = "@(#)logent.c	5.11 (Berkeley) 05/17/93";
 #endif /* not lint */
 
 #include "uucp.h"
@@ -21,7 +21,7 @@ static char sccsid[] = "@(#)logent.c	5.10 (Berkeley) 04/24/91";
 
 extern int errno;
 extern int sys_nerr;
-extern char *sys_errlist[];
+extern const char *const sys_errlist[];
 
 static FILE *Lp = NULL;
 static FILE *Sp = NULL;
