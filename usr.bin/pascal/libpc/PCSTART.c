@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)PCSTART.c 1.1 10/30/80";
+static char sccsid[] = "@(#)PCSTART.c 1.2 01/16/81";
 
 #include "h00vars.h"
 
@@ -14,6 +14,7 @@ long		_stlim = 500000;
 long		_stcnt = 0;
 char		*_minptr = (char *)0x7fffffff;
 char		*_maxptr = (char *)0;
+struct errentry _entry[MAXERRS];
 
 /*
  * file record variables
