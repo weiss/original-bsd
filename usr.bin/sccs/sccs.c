@@ -92,7 +92,7 @@
 **		Copyright 1980 Regents of the University of California
 */
 
-static char SccsId[] = "@(#)sccs.c	1.54 01/14/81";
+static char SccsId[] = "@(#)sccs.c	1.55 01/14/81";
 
 /*******************  Configuration Information  ********************/
 
@@ -200,6 +200,7 @@ struct sccsprog SccsProg[] =
 	"unedit",	UNEDIT,	NO_SDOT,		NULL,
 	"diffs",	DIFFS,	NO_SDOT|REALUSER,	NULL,
 	"-diff",	DODIFF,	NO_SDOT|REALUSER,	PROGPATH(bdiff),
+	"print",	CMACRO,	0,			"prt -e/get -p -m -s",
 	NULL,		-1,	0,			NULL
 };
 
