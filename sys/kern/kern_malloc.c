@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_malloc.c	7.29 (Berkeley) 02/05/92
+ *	@(#)kern_malloc.c	7.30 (Berkeley) 02/15/92
  */
 
 #include "param.h"
@@ -225,11 +225,9 @@ free(addr, type)
 		alloc = addrmask[BUCKETINDX(NBPG * CLSIZE)];
 	else
 		alloc = addrmask[kup->ku_indx];
-	if (((u_long)addr & alloc) != 0) {
-		printf("free: unaligned addr 0x%x, size %d, type %d, mask %d\n",
-			addr, size, type, alloc);
-		panic("free: unaligned addr");
-	}
+	if (((u_long)addr & alloc) != 0)
+		panic("free: unaligned addr 0x%x, size %d, type %s, mask %d\n",
+			addr, size, memname[type], alloc);
 #endif /* DIAGNOSTIC */
 	if (size > MAXALLOCSAVE) {
 		kmem_free(kmem_map, (vm_offset_t)addr, ctob(kup->ku_pagecnt));
