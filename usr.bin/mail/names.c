@@ -8,7 +8,7 @@
 
 #include "rcv.h"
 
-static char *SccsId = "@(#)names.c	2.4 09/16/81";
+static char *SccsId = "@(#)names.c	2.5 02/26/82";
 
 /*
  * Allocate a single element of a name list,
@@ -394,6 +394,8 @@ isfileaddr(name)
 
 	if (any('@', name))
 		return(0);
+	if (*name == '+')
+		return(1);
 	for (cp = name; *cp; cp++) {
 		if (*cp == '.')
 			continue;
