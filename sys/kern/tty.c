@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.31 (Berkeley) 06/20/90
+ *	@(#)tty.c	7.32 (Berkeley) 06/20/90
  */
 
 #include "param.h"
@@ -997,7 +997,7 @@ parmrk:
 		ttyretype(tp);
 		goto endcase;
 	}
-	if (CCEQ(cc[VINFO], c)) {
+	if (CCEQ(cc[VSTATUS], c)) {
 		pgsignal(tp->t_pgrp, SIGINFO, 1);
 		if ((lflag&NOKERNINFO) == 0)
 			ttyinfo(tp);
