@@ -1,11 +1,11 @@
 #ifndef lint
-static char *sccsid = "@(#)du.c	4.4 (Berkeley) 03/31/82";
+static char *sccsid = "@(#)du.c	4.5 (Berkeley) 05/07/82";
 #endif
 
 #include <stdio.h>
 #include <sys/param.h>
 #include <sys/stat.h>
-#include <ndir.h>
+#include <dir.h>
 
 #define howmany(x, y)	(((x) + (y) - 1) / (y))
 
