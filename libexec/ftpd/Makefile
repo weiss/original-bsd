@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.12 (Berkeley) 05/11/90
+#	@(#)Makefile	5.13 (Berkeley) 06/24/90
 
 PROG=	ftpd
-CFLAGS+=-I${.CURDIR}/../../../usr.bin/ftp -DSETPROCTITLE
+CFLAGS+=-DSETPROCTITLE
 SRCS=	ftpd.c ftpcmd.c glob.c logwtmp.c popen.c vers.c
-CLEANFILES+=ftpcmd.c
+CLEANFILES+=ftpcmd.c vers.c version y.tab.h
 
 vers.o: ftpd.c ftpcmd.y
 	sh ${.CURDIR}/newvers.sh
