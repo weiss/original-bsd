@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)udp_usrreq.c	7.30 (Berkeley) 04/18/93
+ *	@(#)udp_usrreq.c	7.31 (Berkeley) 04/26/93
  */
 
 #include <sys/param.h>
@@ -574,4 +574,30 @@ udp_detach(inp)
 		udp_last_inpcb = &udb;
 	in_pcbdetach(inp);
 	splx(s);
+}
+
+/*
+ * Sysctl for udp variables.
+ */
+udp_sysctl(name, namelen, oldp, oldlenp, newp, newlen)
+	int *name;
+	u_int namelen;
+	void *oldp;
+	size_t *oldlenp;
+	void *newp;
+	size_t newlen;
+{
+	extern int ip_ttl;
+
+	/* all sysctl names at this level are terminal */
+	if (namelen != 1)
+		return (ENOTDIR);
+
+	switch (name[0]) {
+	case UDPCTL_CHECKSUM:
+		return (sysctl_int(oldp, oldlenp, newp, newlen, &udpcksum));
+	default:
+		return (ENOPROTOOPT);
+	}
+	/* NOTREACHED */
 }
