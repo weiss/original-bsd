@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.h	7.20 (Berkeley) 10/11/92
+ *	@(#)if.h	7.21 (Berkeley) 04/08/93
  */
 
 /*
@@ -147,7 +147,7 @@ struct ifnet {
 /* flags set internally only: */
 #define	IFF_CANTCHANGE \
 	(IFF_BROADCAST|IFF_POINTOPOINT|IFF_RUNNING|IFF_OACTIVE|\
-	    IFF_SIMPLEX|IFF_MULTICAST)
+	    IFF_SIMPLEX|IFF_MULTICAST|IFF_ALLMULTI)
 
 /*
  * Output queues (ifp->if_snd) and internetwork datagram level (pup level 1)
