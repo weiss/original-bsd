@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lprint.c	5.11 (Berkeley) 06/05/90";
+static char sccsid[] = "@(#)lprint.c	5.12 (Berkeley) 06/24/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -19,8 +19,8 @@ static char sccsid[] = "@(#)lprint.c	5.11 (Berkeley) 06/05/90";
 #include <tzfile.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <paths.h>
 #include "finger.h"
-#include "pathnames.h"
 
 #define	LINE_LEN	80
 #define	TAB_LEN		8		/* 8 spaces between tabs */

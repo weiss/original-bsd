@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.12 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)util.c	5.13 (Berkeley) 06/24/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -18,8 +18,8 @@ static char sccsid[] = "@(#)util.c	5.12 (Berkeley) 06/01/90";
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <paths.h>
 #include "finger.h"
-#include "pathnames.h"
 
 find_idle_and_ttywrite(w)
 	register WHERE *w;
