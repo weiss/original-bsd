@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)startup.c	5.9 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)startup.c	5.10 (Berkeley) 11/29/90";
 #endif /* not lint */
 
 /*
@@ -66,6 +66,7 @@ ifinit()
 	cplim = buf + ifc.ifc_len; /*skip over if's with big ifr_addr's */
 	for (cp = buf; cp < cplim;
 			cp += sizeof (ifr->ifr_name) + size(ifr->ifr_addr)) {
+		ifr = (struct ifreq *)cp;
 		bzero((char *)&ifs, sizeof(ifs));
 		ifs.int_addr = ifr->ifr_addr;
 		ifreq = *ifr;
