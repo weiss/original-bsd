@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernel.h	7.4 (Berkeley) 02/15/91
+ *	@(#)kernel.h	7.5 (Berkeley) 12/19/91
  */
 
 /* Global variables for the kernel. */
@@ -16,6 +16,7 @@ char hostname[MAXHOSTNAMELEN];
 int hostnamelen;
 
 /* 1.2 */
+struct timeval mono_time;
 struct timeval boottime;
 struct timeval time;
 struct timezone tz;			/* XXX */
