@@ -1,4 +1,4 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/07/93
+#	@(#)Makefile	8.2 (Berkeley) 02/28/94
 
 SRCS=	usenix.me
 MACROS=	-me
@@ -6,6 +6,7 @@ MACROS=	-me
 all: usenix.ps
 
 usenix.ps: ${SRCS}
+	rm -f ${.TARGET}
 	${PIC} ${SRCS} | ${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
