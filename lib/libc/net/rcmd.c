@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)rcmd.c	5.6 (Berkeley) 09/10/85";
+static char sccsid[] = "@(#)rcmd.c	5.7 (Berkeley) 09/17/85";
 #endif not lint
 
 #include <stdio.h>
@@ -230,7 +230,7 @@ _checkhost(rhost, lhost, len)
 char *rhost, *lhost;
 int len;
 {
-	static char ldomain[MAXHOSTNAMELEN];
+	static char ldomain[MAXHOSTNAMELEN + 1];
 	static char *domainp = NULL;
 	register char *cp;
 
