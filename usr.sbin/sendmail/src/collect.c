@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	6.19 (Berkeley) 05/30/93";
+static char sccsid[] = "@(#)collect.c	6.20 (Berkeley) 06/03/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -72,7 +72,8 @@ collect(smtpmode, requeueflag, e)
 	**  Try to read a UNIX-style From line
 	*/
 
-	if (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock) == NULL)
+	if (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock,
+			"initial message read") == NULL)
 		goto readerr;
 	fixcrlf(buf, FALSE);
 # ifndef NOTUNIX
@@ -81,7 +82,8 @@ collect(smtpmode, requeueflag, e)
 		if (!flusheol(buf, InChannel))
 			goto readerr;
 		eatfrom(buf, e);
-		if (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock) == NULL)
+		if (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock,
+				"message header read") == NULL)
 			goto readerr;
 		fixcrlf(buf, FALSE);
 	}
@@ -127,7 +129,9 @@ collect(smtpmode, requeueflag, e)
 		{
 			int clen;
 
-			if (sfgets(freebuf, MAXLINE, InChannel, TimeOuts.to_datablock) == NULL)
+			if (sfgets(freebuf, MAXLINE, InChannel,
+					TimeOuts.to_datablock,
+					"message header read") == NULL)
 				goto readerr;
 
 			/* is this a continuation line? */
@@ -203,7 +207,8 @@ collect(smtpmode, requeueflag, e)
 	if (*workbuf == '\0')
 	{
 		/* throw away a blank line */
-		if (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock) == NULL)
+		if (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock,
+				"message separator read") == NULL)
 			goto readerr;
 	}
 	else if (workbuf == buf2)	/* guarantee `buf' contains data */
@@ -237,7 +242,8 @@ collect(smtpmode, requeueflag, e)
 		fputs("\n", tf);
 		if (ferror(tf))
 			tferror(tf, e);
-	} while (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock) != NULL);
+	} while (sfgets(buf, MAXLINE, InChannel, TimeOuts.to_datablock,
+			"message body read") != NULL);
 
 readerr:
 	if (fflush(tf) != 0)
@@ -342,7 +348,8 @@ flusheol(buf, fp)
 		if (printmsg)
 			usrerr("553 header line too long");
 		printmsg = FALSE;
-		if (sfgets(junkbuf, MAXLINE, fp, TimeOuts.to_datablock) == NULL)
+		if (sfgets(junkbuf, MAXLINE, fp, TimeOuts.to_datablock,
+				"long line flush") == NULL)
 			return (FALSE);
 		p = junkbuf;
 	}

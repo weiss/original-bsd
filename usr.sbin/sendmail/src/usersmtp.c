@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.32 (Berkeley) 05/27/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.33 (Berkeley) 06/03/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.32 (Berkeley) 05/27/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.33 (Berkeley) 06/03/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -110,7 +110,7 @@ smtpinit(m, mci, e)
 	**	happen.
 	*/
 
-	SmtpPhase = mci->mci_phase = "greeting wait";
+	SmtpPhase = mci->mci_phase = "client greeting";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_initial, esmtp_check);
 	if (r < 0 || REPLYTYPE(r) != 2)
@@ -128,12 +128,12 @@ tryhelo:
 	if (bitset(MCIF_ESMTP, mci->mci_flags))
 	{
 		smtpmessage("EHLO %s", m, mci, MyHostName);
-		SmtpPhase = mci->mci_phase = "EHLO wait";
+		SmtpPhase = mci->mci_phase = "client EHLO";
 	}
 	else
 	{
 		smtpmessage("HELO %s", m, mci, MyHostName);
-		SmtpPhase = mci->mci_phase = "HELO wait";
+		SmtpPhase = mci->mci_phase = "client HELO";
 	}
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_helo, helo_options);
@@ -318,7 +318,7 @@ smtpmailfrom(m, mci, e)
 		smtpmessage("MAIL From:<@%s%c%s>%s", m, mci, MyHostName,
 			buf[0] == '@' ? ',' : ':', buf, optbuf);
 	}
-	SmtpPhase = mci->mci_phase = "MAIL wait";
+	SmtpPhase = mci->mci_phase = "client MAIL";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_mail, NULL);
 	if (r < 0 || REPLYTYPE(r) == 4)
@@ -380,7 +380,7 @@ smtprcpt(to, m, mci, e)
 
 	smtpmessage("RCPT To:<%s>", m, mci, to->q_user);
 
-	SmtpPhase = mci->mci_phase = "RCPT wait";
+	SmtpPhase = mci->mci_phase = "client RCPT";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_rcpt, NULL);
 	if (r < 0 || REPLYTYPE(r) == 4)
@@ -433,7 +433,7 @@ smtpdata(m, mci, e)
 
 	/* send the command and check ok to proceed */
 	smtpmessage("DATA", m, mci);
-	SmtpPhase = mci->mci_phase = "DATA wait";
+	SmtpPhase = mci->mci_phase = "client DATA 354";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_datainit, NULL);
 	if (r < 0 || REPLYTYPE(r) == 4)
@@ -470,7 +470,7 @@ smtpdata(m, mci, e)
 		nmessage(">>> .");
 
 	/* check for the results of the transaction */
-	SmtpPhase = mci->mci_phase = "result wait";
+	SmtpPhase = mci->mci_phase = "client DATA 250";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_datafinal, NULL);
 	if (r < 0)
@@ -518,6 +518,7 @@ smtpquit(m, mci, e)
 	/* send the quit message if we haven't gotten I/O error */
 	if (mci->mci_state != MCIS_ERROR)
 	{
+		SmtpPhase = "client QUIT";
 		smtpmessage("QUIT", m, mci);
 		(void) reply(m, mci, e, TimeOuts.to_quit, NULL);
 		if (mci->mci_state == MCIS_CLOSED)
@@ -540,6 +541,7 @@ smtprset(m, mci, e)
 {
 	int r;
 
+	SmtpPhase = "client RSET";
 	smtpmessage("RSET", m, mci);
 	r = reply(m, mci, e, TimeOuts.to_rset, NULL);
 	if (r < 0)
@@ -563,6 +565,7 @@ smtpprobe(mci)
 	extern ENVELOPE BlankEnvelope;
 	ENVELOPE *e = &BlankEnvelope;
 
+	SmtpPhase = "client probe";
 	smtpmessage("RSET", m, mci);
 	r = reply(m, mci, e, TimeOuts.to_miscshort, NULL);
 	if (r < 0 || REPLYTYPE(r) != 2)
@@ -627,7 +630,7 @@ reply(m, mci, e, timeout, pfunc)
 			fflush(mci->mci_out);
 
 		/* get the line from the other side */
-		p = sfgets(bufp, MAXLINE, mci->mci_in, timeout);
+		p = sfgets(bufp, MAXLINE, mci->mci_in, timeout, SmtpPhase);
 		mci->mci_lastuse = curtime();
 
 		if (p == NULL)
