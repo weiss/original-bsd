@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)scan.l	5.3 (Berkeley) 04/16/86";
+static char sccsid[] = "@(#)scan.l	5.4 (Berkeley) 04/19/86";
 #endif not lint
 
 #include "y.tab.h"
@@ -41,6 +41,13 @@ NAMECHR	[0-9A-Za-z./-]
 		}
 
 {ALPHA}		{
+			yylval.namelist = newname(yytext);
+			return (NAME);
+		}
+
+{DIGIT}+{ALPHA}{NAMECHR}* {
+			fprintf(stderr, "Warning: nonstandard name \"%s\"\n",
+				yytext);
 			yylval.namelist = newname(yytext);
 			return (NAME);
 		}
