@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rshd.c	5.41 (Berkeley) 10/04/92";
+static char sccsid[] = "@(#)rshd.c	5.42 (Berkeley) 10/17/92";
 #endif /* not lint */
 
 /*
@@ -685,8 +685,8 @@ error(fmt, va_alist)
 		len = 1;
 	} else
 		len = 0;
-	len += vsnprintf(bp, sizeof(buf) - 1, fmt, ap);
-	(void)write(STDERR_FILENO, buf, len);
+	(void)vsnprintf(bp, sizeof(buf) - 1, fmt, ap);
+	(void)write(STDERR_FILENO, buf, len + strlen(bp));
 }
 
 void
