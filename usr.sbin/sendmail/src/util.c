@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.32 (Berkeley) 02/07/94";
+static char sccsid[] = "@(#)util.c	8.33 (Berkeley) 02/25/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1295,7 +1295,7 @@ dumpfd(fd, printclosed, logit)
 		p += strlen(p);
 		goto defprint;
 
-#ifdef S_IFIFO
+#if defined(S_IFIFO) && (!defined(S_IFSOCK) || S_IFIFO != S_IFSOCK)
 	  case S_IFIFO:
 		sprintf(p, "FIFO: ");
 		p += strlen(p);
