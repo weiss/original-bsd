@@ -1,4 +1,4 @@
-#	@(#)Makefile	1.18 (Berkeley) 06/18/90
+#	@(#)Makefile	1.19 (Berkeley) 06/20/90
 
 PROG=	ccom
 MIP=	${.CURDIR}/../mip
@@ -9,6 +9,7 @@ OBJS+=	cgram.o rodata.o
 NOMAN=	noman
 .PATH:	${MIP}
 CLEANFILES+=cgram.c rodata.c pcctokens pcclocal.h
+LINKS=	${BINDIR}/ccom ${BINDIR}/sccom
 
 rodata.c cgram.c: ${MIP}/cgram.y pcctokens
 	cat pcctokens ${MIP}/cgram.y | ${YACC} /dev/stdin
