@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mount.c	5.30 (Berkeley) 04/08/90";
+static char sccsid[] = "@(#)mount.c	5.31 (Berkeley) 04/10/90";
 #endif /* not lint */
 
 #include "pathnames.h"
@@ -387,7 +387,12 @@ getmnttype(fstype)
 
 usage()
 {
-	fprintf(stderr, "usage: mount [-afurw]\nor mount [-furw] special | node\nor mount [-furw] special node\n");
+
+	fprintf(stderr, "usage:\n  mount %s %s\n  mount %s\n  mount %s\n",
+		"[ -frwu ] [ -t nfs | ufs | external_type ]",
+		"[ -o options ] special node",
+		"[ -afrwu ] [ -t nfs | ufs | external_type ]",
+		"[ -frwu ] special | node");
 	exit(1);
 }
 
