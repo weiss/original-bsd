@@ -8,7 +8,7 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)bitdomain.m4	8.5 (Berkeley) 02/16/94')
+VERSIONID(`@(#)bitdomain.m4	8.6 (Berkeley) 02/19/94')
 divert(-1)
 
 
@@ -19,5 +19,5 @@ POPDIVERT
 
 PUSHDIVERT(2)
 # handle BITNET mapping
-R$* < @ $+ .BITNET. > $*	$: $1 < @ $(bitdomain $2 $: $2.BITNET. $) > $3
+R$* < @ $+ .BITNET > $*		$: $1 < @ $(bitdomain $2 $: $2.BITNET $) > $3
 POPDIVERT
