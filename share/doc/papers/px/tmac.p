@@ -3,9 +3,8 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)tmac.p	5.2 (Berkeley) 04/17/91
+.\"	@(#)tmac.p	5.3 (Berkeley) 10/09/94
 .\"
-'if \n(FM=0 'so /usr/lib/tmac/tmac.s
 .if n .nr FM 1.2i
 .if t .tr *\(**=\(eq/\(sl+\(pl
 .bd S B 3
