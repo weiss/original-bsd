@@ -1,3 +1,3 @@
-#	@(#)Makefile.inc	5.1 (Berkeley) 07/10/92
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/10/93
 
 SRCS+=	mul.s rem.s sdiv.s udiv.s umul.s urem.s
