@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)uipc_mbuf.c	7.4.1.2 (Berkeley) 02/08/88
+ *	@(#)uipc_mbuf.c	7.6 (Berkeley) 02/08/88
  */
 
 #include "../machine/pte.h"
@@ -99,10 +99,6 @@ m_clalloc(ncl, how, canwait)
 			(void) m_free(m);
 			m++;
 		}
-		break;
-
-	case MPG_SPACE:
-		mbstat.m_space++;
 		break;
 	}
 	return ((caddr_t)m);
