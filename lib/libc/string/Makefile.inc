@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.12 (Berkeley) 05/12/93
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 .PATH: ${.CURDIR}/${MACHINE}/string ${.CURDIR}/string
 
