@@ -17,14 +17,15 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tzfile.h	5.4 (Berkeley) 03/12/89
+ *	@(#)tzfile.h	5.5 (Berkeley) 04/12/89
  */
 
 /*
 ** Information about time zone files.
 */
 
-#define TZDIR		"/etc/zoneinfo"	/* Time zone object file directory */
+			/* Time zone object file directory */
+#define TZDIR		"/usr/share/zoneinfo"
 #define TZDEFAULT	"localtime"
 #define TZDEFRULES	"posixrules"
 
