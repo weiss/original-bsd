@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)string.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)string.c	5.2 (Berkeley) 11/11/86";
 #endif not lint
 
 #include "whoami.h"
@@ -145,12 +145,6 @@ sreloc(i)
 	if (i > strmax || i < 0)
 		panic("sreloc");
 	return (strp[(i / STRINC) - 1] + (i % STRINC));
-}
-
-evenit()
-{
-
-	strngp = (strngp + 1) &~ 1;
 }
 #endif
 #endif
