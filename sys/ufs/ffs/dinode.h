@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dinode.h	7.20 (Berkeley) 03/03/93
+ *	@(#)dinode.h	8.1 (Berkeley) 06/11/93
  */
 
 /*
