@@ -8,10 +8,8 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)swapgeneric.c	7.2 (Berkeley) 12/17/92
+ *	@(#)swapgeneric.c	7.3 (Berkeley) 03/09/93
  */
-
-#include <machine/fix_machine_type.h>
 
 #include <sysparam.h>
 #include <sysconf.h>
