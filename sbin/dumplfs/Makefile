@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/18/93
+#	@(#)Makefile	8.1 (Berkeley) 06/18/93
 
 PROG=	dumplfs
 CFLAGS+=-I/sys/ufs/lfs
