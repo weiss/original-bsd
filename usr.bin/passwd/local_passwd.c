@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)local_passwd.c	5.1 (Berkeley) 02/12/91";
+static char sccsid[] = "@(#)local_passwd.c	5.2 (Berkeley) 03/03/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -48,7 +48,7 @@ local_passwd(uname)
 	 */
 	pw->pw_passwd = getnewpasswd(pw);
 	pw->pw_change = 0;
-	pw_copy(pfd, pw);
+	pw_copy(pfd, tfd, pw);
 
 	if (!pw_mkdb())
 		pw_error((char *)NULL, 0, 1);
