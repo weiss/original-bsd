@@ -1,8 +1,10 @@
 #ifndef lint
-static char sccsid[] = "@(#)getargs.c	5.2 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)getargs.c	5.3 (Berkeley) 06/19/85";
 #endif
 
 #include "uucp.h"
+
+/*LINTLIBRARY*/
 
 /*
  *	getargs  -  this routine will generate a vector of
