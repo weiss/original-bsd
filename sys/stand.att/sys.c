@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)sys.c	7.18 (Berkeley) 10/11/92
+ *	@(#)sys.c	7.19 (Berkeley) 05/24/93
  */
 
 #include <sys/param.h>
@@ -37,4 +37,12 @@ _stop(s)
 	}
 	printf("%s\n", s);
 	_rtt();
+}
+
+/*
+ * For gcc
+ */
+__main()
+{
+	return;
 }
