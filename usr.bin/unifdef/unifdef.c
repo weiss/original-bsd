@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)unifdef.c	4.1	(Berkeley)	10/22/82";
+static char sccsid[] = "@(#)unifdef.c	4.2	(Berkeley)	04/29/83";
 
 #ifdef COMMENT
 
@@ -105,7 +105,7 @@ Usage: %s [-l] [-t] [-c] [[-dsym] [-usym] [-idsym] [-iusym]]... [file]\n\
 	}
 	else {
 	    prname ();
-	    fprintf (stderr, "can't open %s\n", *curarg);
+	    perror(*curarg);
 	}
     }
     else {
