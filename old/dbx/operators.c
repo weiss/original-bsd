@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)operators.c 1.2 12/15/82";
+static char sccsid[] = "@(#)operators.c 1.3 02/20/83";
 
 /*
  * Tree node classes.
@@ -75,6 +75,8 @@ typedef enum {
     O_STOPX,		/* stop execution */
     O_TRACEON,		/* begin tracing source line, variable, or all lines */
     O_TRACEOFF,		/* end tracing source line, variable, or all lines */
+
+    O_TYPERENAME,	/* state the type of an expression */
 
     O_LASTOP
 } Operator;
@@ -192,4 +194,5 @@ public Opinfo opinfo[] ={
 /* O_STOPX */		0,	null,		"stop",
 /* O_TRACEON */		1,	null,		"traceon",
 /* O_TRACEOFF */	1,	null,		"traceoff",
+/* O_TYPERENAME */	2,	UNARY,		"traceoff",
 };
