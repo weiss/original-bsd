@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)pubuse	6.2 (Berkeley) 04/17/91
+.\"	@(#)pubuse	8.1 (Berkeley) 06/08/93
 .\"
 ..... use tbl and troff \-ms
 .if \nP=0 .IM
