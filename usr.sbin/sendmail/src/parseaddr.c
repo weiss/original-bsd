@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.60 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)parseaddr.c	6.61 (Berkeley) 06/12/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -826,7 +826,7 @@ rewrite(pvp, ruleset, e)
 				if ((*rp & 0377) == MATCHCLASS)
 				{
 					/* extend binding and try again */
-					mlp->last = avp++;
+					mlp->last = avp;
 					goto extendclass;
 				}
 			}
