@@ -1,4 +1,4 @@
-#	@(#)Makefile	1.5 (Berkeley) 10/04/92
+#	@(#)Makefile	1.6 (Berkeley) 06/08/93
 
 DIR=	papers/sysperf
 MACROS= -ms
@@ -7,7 +7,7 @@ EXTRA=	a1.t a2.t
 OBJS=	paper.tmp appendix.tmp
 CLEANFILES+=${OBJS}
 
-paper.${PRINTER}: ${OBJS}
+paper.ps: ${OBJS}
 	${ROFF} ${OBJS} > ${.TARGET}
 
 paper.tmp: ${SRCS}
