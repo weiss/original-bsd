@@ -1,10 +1,11 @@
-#	@(#)Makefile	5.6 (Berkeley) 09/27/90
+#	@(#)Makefile	5.6.1.1 (Berkeley) 10/21/90
 
 PROG=	rsh
-CFLAGS+=-DKERBEROS -DCRYPT
-SRCS=	rsh.c krcmd.c kcmd.c des_rw.c
-DPADD=	${LIBKRB} ${LIBDES}
-LDADD=	-lkrb -ldes
+SRCS=	rsh.c
+#CFLAGS+=-DKERBEROS -DCRYPT
+#SRCS=	rsh.c krcmd.c kcmd.c des_rw.c
+#DPADD=	${LIBKRB} ${LIBDES}
+#LDADD=	-lkrb -ldes
 BINOWN=	root
 BINMODE=4555
 .PATH:	${.CURDIR}/../rlogin
