@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)spp_debug.c	6.6 (Berkeley) 02/03/86
+ *	@(#)spp_debug.c	6.7 (Berkeley) 03/04/86
  */
 
 #include "param.h"
@@ -46,7 +46,7 @@ spp_trace(act, ostate, sp, si, req)
 	int flags;
 	struct spp_debug *sd = &spp_debug[spp_debx++];
 	extern char *prurequests[];
-	extern char *tanames[];
+	extern char *sanames[];
 	extern char *tcpstates[];
 	extern char *tcptimers[];
 
@@ -73,7 +73,7 @@ spp_trace(act, ostate, sp, si, req)
 		printf("%x %s:", sp, tcpstates[ostate]);
 	else
 		printf("???????? ");
-	printf("%s ", tanames[act]);
+	printf("%s ", sanames[act]);
 	switch (act) {
 
 	case SA_RESPOND:
