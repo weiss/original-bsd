@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.6 (Berkeley) 07/15/83
+#	@(#)Makefile	4.7 (Berkeley) 01/03/84
 #
 # make file for debugger "dbx"
 #
@@ -20,7 +20,7 @@ DEST	= ${DESTDIR}/usr/ucb/dbx
 LIBRARIES =
 
 CC	= cc
-CFLAGS	= # -g
+CFLAGS	= -g
 LDFLAGS	= -g
 
 OBJ = \
