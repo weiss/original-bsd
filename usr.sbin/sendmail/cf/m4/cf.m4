@@ -6,7 +6,7 @@ divert(0)dnl
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)cf.m4	2.7 (Berkeley) 10/03/91
+#	@(#)cf.m4	2.8 (Berkeley) 10/03/91
 #
 
 
@@ -41,6 +41,7 @@ define(`DOL', ``$'$1')
 define(`SITECONFIG',
 `CONCAT(D, $3, $2)
 define(`_CLASS_$3_')dnl
+ifelse($3, U, Cw$2, `dnl')
 define(`SITE', `ifelse(CONCAT($'2`, $3), SU,
 		CONCAT(CY, $'1`),
 		CONCAT(C, $3, $'1`))')
