@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tty.c	8.1 (Berkeley) 06/07/93";
+static char sccsid[] = "@(#)tty.c	8.2 (Berkeley) 01/02/94";
 #endif /* not lint */
 
 #include <sys/ioctl.h>
@@ -199,6 +199,8 @@ __startwin()
 int
 endwin()
 {
+	__restore_stophandler();
+
 	if (curscr != NULL) {
 		if (curscr->flags & __WSTANDOUT) {
 			tputs(SE, 0, __cputchar);
