@@ -20,7 +20,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)linenum.c	5.2 (Berkeley) 07/21/88";
+static char sccsid[] = "@(#)linenum.c	5.3 (Berkeley) 07/22/88";
 #endif /* not lint */
 
 /*
@@ -385,7 +385,7 @@ debug()
 	clear_eol();
 	for (p = anchor.next;  p != &anchor;  p = p->next)
 	{
-		sprintf(buf, "%d-%d ", p->line, p->pos);
+		(void)sprintf(buf, "%d-%d ", p->line, p->pos);
 		putstr(buf);
 	}
 	putstr("\n");
