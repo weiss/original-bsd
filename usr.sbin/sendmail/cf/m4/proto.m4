@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.18 (Berkeley) 10/02/93')
+VERSIONID(`@(#)proto.m4	8.19 (Berkeley) 10/15/93')
 
 MAILER(local)dnl
 
@@ -548,13 +548,13 @@ undivert(4)dnl
 ifdef(`_NO_UUCP_', `dnl',
 `# resolve remotely connected UUCP links (if any)
 ifdef(`_CLASS_V_',
-`R$* < @ $=V . UUCP > $*		$: $>_SET_95_ < $V > <@ $V> : $1 @ $2.UUCP $3',
+`R$* < @ $=V . UUCP > $*		$: $>_SET_95_ < $V > $1 <@$2.UUCP> $3',
 	`dnl')
 ifdef(`_CLASS_W_',
-`R$* < @ $=W . UUCP > $*		$: $>_SET_95_ < $W > <@ $W> : $1 @ $2.UUCP $3',
+`R$* < @ $=W . UUCP > $*		$: $>_SET_95_ < $W > $1 <@$2.UUCP> $3',
 	`dnl')
 ifdef(`_CLASS_X_',
-`R$* < @ $=X . UUCP > $*		$: $>_SET_95_ < $X > <@ $X> : $1 @ $2.UUCP $3',
+`R$* < @ $=X . UUCP > $*		$: $>_SET_95_ < $X > $1 <@$2.UUCP> $3',
 	`dnl')')
 
 # resolve fake top level domains by forwarding to other hosts
@@ -572,7 +572,7 @@ ifdef(`_MAILER_fax_',
 
 ifdef(`UUCP_RELAY',
 `# forward non-local UUCP traffic to our UUCP relay
-R$*<@$*.UUCP>$*		$: $>_SET_95_ < $Y > <@ $Y> : $1 @ $2.UUCP $3	uucp mail',
+R$*<@$*.UUCP>$*		$: $>_SET_95_ < $Y > $1 @ <$2.UUCP> $3	uucp mail',
 `ifdef(`_MAILER_uucp_',
 `# forward other UUCP traffic straight to UUCP
 R< @ $+ .UUCP > : $+	$#uucp $@ $1 $: $2		@host.UUCP:...
