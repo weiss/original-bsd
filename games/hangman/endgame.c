@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)endgame.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)endgame.c	5.4 (Berkeley) 02/03/93";
 #endif /* not lint */
 
 # include	"hangman.h"
@@ -43,5 +43,17 @@ endgame()
 
 	leaveok(stdscr, TRUE);
 	move(MESGY, MESGX);
-	addstr("\n\n\n");
+	deleteln();
+	deleteln();
+	deleteln();
 }
+
+
+
+
+
+
+
+
+
+
