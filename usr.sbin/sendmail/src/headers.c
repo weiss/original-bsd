@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	6.15 (Berkeley) 03/06/93";
+static char sccsid[] = "@(#)headers.c	6.16 (Berkeley) 03/07/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -385,7 +385,8 @@ eatheader(e, queuejob)
 
 		/* some versions of syslog only take 5 printf args */
 		sprintf(sbuf, "from=%.200s, size=%ld, class=%d, pri=%ld, nrcpts=%d, msgid=%.100s",
-		    e->e_from.q_paddr, e->e_msgsize, e->e_class,
+		    bitset(EF_RESPONSE, e->e_flags) ? "[RESPONSE]" : e->e_from.q_paddr,
+		    e->e_msgsize, e->e_class,
 		    e->e_msgpriority, e->e_nrcpts, msgid);
 		syslog(LOG_INFO, "%s: %s, received from %s",
 		    e->e_id, sbuf, name);
