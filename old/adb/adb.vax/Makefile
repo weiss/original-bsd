@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/24/90
+#	@(#)Makefile	5.8 (Berkeley) 06/24/90
 
 PROG=	adb
 SRCS=	access.c command.c expr.c format.c kstack.c machdep.c main.c \
@@ -21,3 +21,5 @@ instrs.adb: ${INSTR}
 
 .include "../../Makefile.inc"
 .include <bsd.prog.mk>
+
+.depend: instrs.adb
