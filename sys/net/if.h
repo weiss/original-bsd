@@ -1,4 +1,10 @@
-/*	if.h	6.6	85/03/19	*/
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)if.h	6.7 (Berkeley) 06/08/85
+ */
 
 /*
  * Structures defining a network interface, providing a packet
