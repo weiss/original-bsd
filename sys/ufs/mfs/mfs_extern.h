@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfs_extern.h	8.1 (Berkeley) 06/11/93
+ *	@(#)mfs_extern.h	8.2 (Berkeley) 06/16/94
  */
 
 struct buf;
@@ -21,7 +21,7 @@ int	mfs_bmap __P((struct vop_bmap_args *));
 int	mfs_close __P((struct vop_close_args *));
 void	mfs_doio __P((struct buf *bp, caddr_t base));
 int	mfs_inactive __P((struct vop_inactive_args *)); /* XXX */
-int	mfs_reclaim __P((struct vop_reclaim_args *)); /* XXX */
+int	mfs_reclaim __P((struct vop_reclaim_args *));
 int	mfs_init __P((void));
 int	mfs_ioctl __P((struct vop_ioctl_args *));
 int	mfs_mount __P((struct mount *mp,
