@@ -20,7 +20,7 @@
  */
 
 #ifndef	lint
-static	char	sccsid[] = "@(#)termin.c	1.13 (Berkeley) 07/29/87";
+static	char	sccsid[] = "@(#)termin.c	3.1 (Berkeley) 08/11/87";
 #endif	/* ndef lint */
 
 /* this takes characters from the keyboard, and produces 3270 keystroke
