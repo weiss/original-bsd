@@ -1,4 +1,4 @@
-/* "@(#)mac.h 4.2 08/17/82" */
+/* "@(#)mac.h 4.3 12/24/82" */
 #
 /*
  *	UNIX debugger
@@ -24,6 +24,7 @@
 #define OD	}
 #define REP	do{
 #define PER	}while(
+#undef DONE
 #define DONE	);
 #define LOOP	for(;;){
 #define POOL	}
