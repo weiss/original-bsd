@@ -1,11 +1,14 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/19/93
+#	@(#)Makefile	8.2 (Berkeley) 04/22/94
 
 MAN8=	nologin.0
 
-nologin clean cleandir depend lint tags:
+nologin clean depend lint tags:
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
 	    ${.CURDIR}/nologin.sh ${DESTDIR}/sbin/nologin
+
+cleandir:
+	rm -f nologin.0
 
 .include <bsd.prog.mk>
