@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/25/90
+#	@(#)Makefile	5.2 (Berkeley) 05/25/93
 
 LIB=	kdb
 CFLAGS+=-DKERBEROS -DDEBUG -I${.CURDIR}/../include
 SRCS=	krb_cache.c krb_dbm.c krb_kdb_utils.c krb_lib.c print_princ.c
 
+NOPROFILE=
 .include <bsd.lib.mk>
