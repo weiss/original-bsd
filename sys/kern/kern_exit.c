@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_exit.c	7.1 (Berkeley) 06/05/86
+ *	@(#)kern_exit.c	7.2 (Berkeley) 11/03/86
  */
 
 #include "../machine/reg.h"
@@ -179,6 +179,11 @@ done:
 	p->p_cptr = NULL;
 	psignal(p->p_pptr, SIGCHLD);
 	wakeup((caddr_t)p->p_pptr);
+#if defined(tahoe)
+	dkeyrelease(p->p_dkey), p->p_dkey = 0;
+	ckeyrelease(p->p_ckey), p->p_ckey = 0;
+	u.u_pcb.pcb_savacc.faddr = (float *)NULL;
+#endif
 	swtch();
 }
 

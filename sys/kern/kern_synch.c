@@ -3,10 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_synch.c	7.1 (Berkeley) 06/05/86
+ *	@(#)kern_synch.c	7.2 (Berkeley) 11/03/86
  */
 
 #include "../machine/pte.h"
+#include "../machine/psl.h"
+#include "../machine/mtpr.h"
 
 #include "param.h"
 #include "systm.h"
@@ -19,9 +21,6 @@
 #include "kernel.h"
 #include "buf.h"
 
-#ifdef vax
-#include "../vax/mtpr.h"	/* XXX */
-#endif
 /*
  * Force switch among equal priority processes every 100ms.
  */

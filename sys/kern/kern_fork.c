@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_fork.c	7.1 (Berkeley) 06/05/86
+ *	@(#)kern_fork.c	7.2 (Berkeley) 11/03/86
  */
 
 #include "../machine/reg.h"
@@ -161,6 +161,10 @@ again:
 #ifdef QUOTA
 	rpp->p_quota = rip->p_quota;
 	rpp->p_quota->q_cnt++;
+#endif
+#if defined(tahoe)
+	rpp->p_ckey = rip->p_ckey;
+	rpp->p_dkey = 0;
 #endif
 	rpp->p_stat = SIDL;
 	timerclear(&rpp->p_realtimer.it_value);
