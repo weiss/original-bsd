@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.7 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)main.c	5.8 (Berkeley) 10/11/88";
 #endif /* not lint */
 
 /* Many bug fixes are from Jim Guyton <guyton@rand-unix> */
@@ -291,8 +291,9 @@ put(argc, argv)
 		targ = index(cp, ':');
 		*targ++ = 0;
 		hp = gethostbyname(cp);
-		if (hp == 0) {
-			printf("%s: Unknown host.\n", cp);
+		if (hp == NULL) {
+			fprintf(stderr, "tftp: %s: ", cp);
+			herror((char *)NULL);
 			return;
 		}
 		bcopy(hp->h_addr, (caddr_t)&sin.sin_addr, hp->h_length);
@@ -383,8 +384,9 @@ get(argc, argv)
 
 			*src++ = 0;
 			hp = gethostbyname(argv[n]);
-			if (hp == 0) {
-				printf("%s: Unknown host.\n", argv[n]);
+			if (hp == NULL) {
+				fprintf(stderr, "tftp: %s: ", argv[n]);
+				herror((char *)NULL);
 				continue;
 			}
 			bcopy(hp->h_addr, (caddr_t)&sin.sin_addr, hp->h_length);
