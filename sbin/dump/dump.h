@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dump.h	5.12 (Berkeley) 02/28/91
+ *	@(#)dump.h	5.13 (Berkeley) 03/01/91
  */
 
 #define	NI		16
@@ -98,10 +98,6 @@ char	*rawname();
 struct dinode *getino();
 
 void	interrupt();		/* in case operator bangs on console */
-
-#define	HOUR	(60L*60L)
-#define	DAY	(24L*HOUR)
-#define	YEAR	(365L*DAY)
 
 /*
  *	Exit status codes
