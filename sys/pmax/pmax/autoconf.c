@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: autoconf.c 1.31 91/01/21$
  *
- *	@(#)autoconf.c	7.6 (Berkeley) 11/15/92
+ *	@(#)autoconf.c	7.7 (Berkeley) 12/20/92
  */
 
 /*
@@ -126,6 +126,7 @@ configure()
 		case DS_3MAX:
 		case DS_3MIN:
 		case DS_MAXINE:
+		case DS_3MAXPLUS:
 			/*
 			 * If the device is still in an unknown slot,
 			 * then it was not found by tc_find_all_options().
