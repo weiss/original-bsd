@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	4.32 (Berkeley) 02/27/88";
+static char sccsid[] = "@(#)mail.local.c	4.33 (Berkeley) 02/27/88";
 #endif
 
 #include <sys/param.h>
@@ -662,7 +662,7 @@ delex(i)
 {
 	if (i != SIGINT) {
 		setsig(i, SIG_DFL);
-		sigsetmask(sigblock(0) &~ sigmask(i));
+		sigsetmask(sigblock(0L) &~ sigmask(i));
 	}
 	putc('\n', stderr);
 	if (delflg)
