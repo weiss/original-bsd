@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mci.c	6.1 (Berkeley) 12/21/92";
+static char sccsid[] = "@(#)mci.c	6.2 (Berkeley) 01/01/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -208,4 +208,38 @@ mci_get(host, m)
 	}
 
 	return mci;
+}
+/*
+**  MCI_DUMP -- dump the contents of an MCI structure.
+**
+**	Parameters:
+**		mci -- the MCI structure to dump.
+**
+**	Returns:
+**		none.
+**
+**	Side Effects:
+**		none.
+*/
+
+mci_dump(mci)
+	register MCI *mci;
+{
+	extern char *ctime();
+
+	printf("MCI@%x: ", mci);
+	if (mci == NULL)
+	{
+		printf("NULL\n");
+		return;
+	}
+	printf("flags=%o, errno=%d, exitstat=%d, state=%d, pid=%d,\n",
+		mci->mci_flags, mci->mci_errno, mci->mci_exitstat,
+		mci->mci_state, mci->mci_pid);
+	printf("\tphase=%s, mailer=%s,\n",
+		mci->mci_phase == NULL ? "NULL" : mci->mci_phase,
+		mci->mci_mailer == NULL ? "NULL" : mci->mci_mailer->m_name);
+	printf("\thost=%s, lastuse=%s\n",
+		mci->mci_host == NULL ? "NULL" : mci->mci_host,
+		ctime(&mci->mci_lastuse));
 }
