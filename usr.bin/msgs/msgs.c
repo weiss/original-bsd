@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)msgs.c	4.7 05/18/83";
+static char sccsid[] = "@(#)msgs.c	4.8 06/27/83";
 #endif lint
 /*
  * msgs - a user bulletin board program
@@ -480,6 +480,7 @@ cmnd:
 			case 'n':
 			case 'N':
 				if (msg >= nextmsg) sep = "Flushed";
+				prevmsg = msg;
 				break;
 
 			case 'p':
