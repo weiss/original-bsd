@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fts.h	5.23 (Berkeley) 03/05/92
+ *	@(#)fts.h	5.24 (Berkeley) 05/05/92
  */
 
 #ifndef	_FTS_H_
@@ -72,7 +72,7 @@ typedef struct _ftsent {
 	u_short fts_info;		/* user flags for FTSENT structure */
 
 #define	FTS_DONTCHDIR	 0x01		/* don't chdir .. to the parent */
-#define	FTS_SYMFOLLOW	 0x01		/* followed a symlink to get here */
+#define	FTS_SYMFOLLOW	 0x02		/* followed a symlink to get here */
 	u_short fts_flags;		/* private flags for FTSENT structure */
 
 #define	FTS_AGAIN	 1		/* read node again */
