@@ -3,8 +3,8 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Steve Hayman of Indiana University, Michiro Hikida and David
- * Goodenough.
+ * Steve Hayman of the Computer Science Department, Indiana University,
+ * Michiro Hikida and David Goodenough.
  *
  * %sccs.include.redist.c%
  */
@@ -16,7 +16,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)join.c	5.1 (Berkeley) 11/18/91";
+static char sccsid[] = "@(#)join.c	5.2 (Berkeley) 11/18/91";
 #endif /* not lint */
 
 #include <sys/types.h>
