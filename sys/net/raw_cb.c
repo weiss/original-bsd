@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)raw_cb.c	7.8 (Berkeley) 04/22/89
+ *	@(#)raw_cb.c	7.9 (Berkeley) 04/25/89
  */
 
 #include "param.h"
@@ -31,7 +31,7 @@
 #include "raw_cb.h"
 #include "../netinet/in.h"
 
-#include "../machine/mtpr.h"
+#include "machine/mtpr.h"
 
 /*
  * Routines to manage the raw protocol control blocks. 
