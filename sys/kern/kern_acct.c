@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)kern_acct.c	7.20 (Berkeley) 06/21/91
+ *	@(#)kern_acct.c	7.21 (Berkeley) 02/03/92
  */
 
 #include "param.h"
@@ -74,9 +74,8 @@ sysacct(p, uap, retval)
 		}
 		return (error);
 	}
-	nd.ni_segflg = UIO_USERSPACE;
-	nd.ni_dirp = uap->fname;
-	if (error = vn_open(&nd, p, FWRITE, 0644))
+	NDINIT(&nd, LOOKUP, FOLLOW, UIO_USERSPACE, uap->fname, p);
+	if (error = vn_open(&nd, FWRITE, 0644))
 		return (error);
 	vp = nd.ni_vp;
 	VOP_UNLOCK(vp);
