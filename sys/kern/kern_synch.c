@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_synch.c	7.25 (Berkeley) 10/11/92
+ *	@(#)kern_synch.c	7.26 (Berkeley) 11/18/92
  */
 
 #include <sys/param.h>
@@ -153,6 +153,7 @@ schedcpu(arg)
 		 */
 		if (p->p_slptime > 1)
 			continue;
+		s = splstatclock();	/* prevent state changes */
 		/*
 		 * p_pctcpu is only for ps.
 		 */
@@ -169,7 +170,6 @@ schedcpu(arg)
 		newcpu = (u_int) decay_cpu(loadfac, p->p_cpu) + p->p_nice;
 		p->p_cpu = min(newcpu, UCHAR_MAX);
 		setpri(p);
-		s = splhigh();	/* prevent state changes */
 		if (p->p_pri >= PUSER) {
 #define	PPQ	(128 / NQS)		/* priorities per queue */
 			if ((p != curproc) &&
