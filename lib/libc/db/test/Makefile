@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 01/11/93
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 PROG=	dbtest
 SRCS=	dbtest.c
