@@ -1,10 +1,10 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)tmac.s	5.1 (Berkeley) 04/17/91
+.\"	@(#)tmac.s	5.2 (Berkeley) 10/07/91
 .\"
 .\" ancillary files reside in \*(//,
 .\" except local which are in \*(L/,
-.ds // /usr/share/ms/
+.ds // /usr/old/lib/ms/
 .ds L/ /usr/local/lib/tmac/
 .	\" IZ - initialize (before text begins)
 .de IZ
