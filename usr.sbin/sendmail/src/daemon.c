@@ -2,14 +2,14 @@
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	3.30		10/07/82	(w/o daemon mode));
+SCCSID(@(#)daemon.c	3.31		10/13/82	(w/o daemon mode));
 #else
 
 # include <sys/socket.h>
 # include <net/in.h>
 # include <wait.h>
 
-SCCSID(@(#)daemon.c	3.30		10/07/82	(with daemon mode));
+SCCSID(@(#)daemon.c	3.31		10/13/82	(with daemon mode));
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -68,7 +68,10 @@ getrequests()
 
 		while ((port = getconnection()) < 0)
 		{
-			syserr("getrequests: getconnection failed");
+# ifdef LOG
+			if (LogLevel > 0)
+				syslog(LOG_SALERT, "cannot get connection");
+# endif LOG
 			finis();
 		}
 
