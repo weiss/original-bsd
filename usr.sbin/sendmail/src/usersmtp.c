@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.42		02/20/83	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.43		03/26/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.42		02/20/83);
+SCCSID(@(#)usersmtp.c	3.43		03/26/83);
 
 
 
@@ -389,7 +389,7 @@ smtpmessage(f, m, a, b, c)
 	char *f;
 	MAILER *m;
 {
-	char buf[100];
+	char buf[MAXLINE];
 
 	(void) sprintf(buf, f, a, b, c);
 	if (tTd(18, 1) || (Verbose && !HoldErrs))
