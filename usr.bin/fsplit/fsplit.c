@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)fsplit.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)fsplit.c	5.5 (Berkeley) 03/12/91";
 #endif /* not lint */
 
 #include <ctype.h>
@@ -262,6 +262,9 @@ char *s;
 
 
 	ptr = skiplab(buf);
+	if (ptr == 0)
+		return (0);
+
 
 	/*  copy to buffer and converting to lower case */
 	p = ptr;
