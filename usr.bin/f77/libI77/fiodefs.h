@@ -1,5 +1,5 @@
 /*
-char id_fiodefs[] = "@(#)fiodefs.h	1.3";
+char id_fiodefs[] = "@(#)fiodefs.h	1.4";
  *
  * fortran file i/o type definitions
  */
@@ -8,7 +8,7 @@ char id_fiodefs[] = "@(#)fiodefs.h	1.3";
 #include "f_errno.h"
 
 /* Logical Unit Table Size */
-#define MXUNIT _NFILE
+#define MXUNIT 100
 
 #define GLITCH '\2'	/* special quote for Stu, generated in f77pass1 */
 
