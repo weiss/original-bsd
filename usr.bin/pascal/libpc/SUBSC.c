@@ -1,9 +1,10 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)SUBSC.c 1.1 10/30/80";
+static char sccsid[] = "@(#)SUBSC.c 1.2 03/07/81";
 
 #include	"h01errs.h"
 
+long
 SUBSC(i, lower, upper)
 
 	long	i, lower, upper;
