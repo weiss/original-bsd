@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_vnops.c	7.63 (Berkeley) 05/15/91
+ *	@(#)ffs_vnops.c	7.64 (Berkeley) 05/16/91
  */
 
 #include "param.h"
@@ -1418,7 +1418,7 @@ ufs_strategy(bp)
 #endif /* DIAGNOSTIC */
 	vp = ip->i_devvp;
 	bp->b_dev = vp->v_rdev;
-	(*(vp->v_op->vn_strategy))(bp);
+	(*(vp->v_op->vop_strategy))(bp);
 	return (0);
 }
 
