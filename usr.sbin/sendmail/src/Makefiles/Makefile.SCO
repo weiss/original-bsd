@@ -7,7 +7,7 @@
 #
 #  This has been tested on SCO.
 #
-#	@(#)Makefile.SCO	8.3 (Berkeley) 04/11/94
+#	@(#)Makefile.SCO	8.4 (Berkeley) 04/12/94
 #
 
 # use O=-O (usual) or O=-g (debugging)
@@ -46,7 +46,7 @@ STDIR=	${DESTDIR}/usr/lib
 HFDIR=	${DESTDIR}/usr/lib
 
 # additional .o files needed
-OBJADD=	fsync.o
+OBJADD=	
 
 ###################  end of user configuration flags  ######################
 
