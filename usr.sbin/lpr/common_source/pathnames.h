@@ -3,6 +3,8 @@
  * All rights reserved.
  *
  * %sccs.include.redist.c%
+ *
+ *      @(#)pathnames.h	5.7 (Berkeley) 09/15/92
  */
 
 #include <paths.h>
