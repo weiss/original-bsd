@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)stab.c	5.2 (Berkeley) 10/23/85";
+static char sccsid[] = "@(#)stab.c	5.3 (Berkeley) 01/03/88";
 #endif not lint
 
     /*
@@ -429,13 +429,13 @@ stabglabel( label , line )
     /*
      *	global constants
      */
-stabgconst( const , line )
-    char	*const;
+stabgconst( constant , line )
+    char	*constant;
     int		line;
     {
 
 	    putprintf( "	.stabs	\"%s\",0x%x,0,0x%x,0x%x" , 0 
-			, (int) const , N_PC , N_PGCONST , ABS( line ) );
+			, (int) constant , N_PC , N_PGCONST , ABS( line ) );
     }
 
 /*
