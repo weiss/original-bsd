@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)dbtest.c	5.8 (Berkeley) 01/10/93";
+static char sccsid[] = "@(#)dbtest.c	5.9 (Berkeley) 01/10/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -99,7 +99,8 @@ main(argc, argv)
 	if (infoarg == NULL)
 		infop = NULL;
 	else
-		while ((p = strsep(&infoarg, ",\t ")) != NULL)
+		for (p = strtok(infoarg, ",\t "); p != NULL;
+		    p = strtok(0, ",\t "))
 			if (*p != '\0')
 				infop = setinfo(type, p);
 
