@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ttydefaults.h	7.5 (Berkeley) 06/20/90
+ *	@(#)ttydefaults.h	7.6 (Berkeley) 06/21/90
  */
 
 /*
@@ -46,6 +46,7 @@
 /* compat */
 #define	CBRK		CEOL
 #define CRPRNT		CREPRINT
+#define	CFLUSH		CDISCARD
 
 /* PROTECTED INCLUSION ENDS HERE */
 #endif /* _TTYDEFAULTS_ */
