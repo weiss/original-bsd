@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.13 (Berkeley) 08/17/93
+ *	@(#)sendmail.h	8.14 (Berkeley) 08/17/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.13		08/17/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.14		08/17/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -166,14 +166,14 @@ typedef struct mailer	MAILER;
 		/*	'F'	/* CF: include From: or Resent-From: */
 # define M_NO_NULL_FROM	'g'	/* sender of errors should be $g */
 # define M_HST_UPPER	'h'	/* preserve host case distinction */
-		/*	'H'	/* UIUC: MAIL11V3: preview headers */
+# define M_PREHEAD	'H'	/* MAIL11V3: preview headers */
 # define M_INTERNAL	'I'	/* SMTP to another sendmail site */
 # define M_LOCALMAILER	'l'	/* delivery is to this host */
 # define M_LIMITS	'L'	/* must enforce SMTP line limits */
 # define M_MUSER	'm'	/* can handle multiple users at once */
 		/*	'M'	/* CF: include Message-Id: */
 # define M_NHDR		'n'	/* don't insert From line */
-		/*	'N'	/* UIUC: MAIL11V3: DATA returns multi-status */
+# define M_MANYSTATUS	'N'	/* MAIL11V3: DATA returns multi-status */
 # define M_FROMPATH	'p'	/* use reverse-path in MAIL FROM: */
 		/*	'P'	/* CF: include Return-Path: */
 # define M_ROPT		'r'	/* mailer takes picky -r flag */
@@ -429,6 +429,7 @@ MCI
 #define MCIF_EXPN	000020		/* EXPN command supported */
 #define MCIF_SIZE	000040		/* SIZE option supported */
 #define MCIF_8BITMIME	000100		/* BODY=8BITMIME supported */
+#define MCIF_MULTSTAT	000200		/* MAIL11V3: handles MULT status */
 
 /* states */
 #define MCIS_CLOSED	0		/* no traffic on this connection */
