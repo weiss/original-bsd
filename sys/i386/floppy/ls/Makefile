@@ -1,10 +1,8 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/03/91
+#	@(#)Makefile	5.2 (Berkeley) 04/27/93
 
 PROG=	ls
 SRCS=	cmp.c ls.c print.c util.c
 CFLAGS+=-DLETS_GET_SMALL
-DPADD=	${LIBUTIL}
-LDADD=	-lutil
 NOMAN=	noman
 LDFLAGS=-N
 .PATH:	${.CURDIR}/../../../../bin/ls
