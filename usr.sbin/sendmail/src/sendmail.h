@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.87 (Berkeley) 02/19/95
+ *	@(#)sendmail.h	8.88 (Berkeley) 02/19/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.87		02/19/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.88		02/19/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -621,6 +621,7 @@ struct symtab
 		MCI		sv_mci;		/* mailer connection info */
 		NAMECANON	sv_namecanon;	/* canonical name cache */
 		int		sv_macro;	/* macro name => id mapping */
+		int		sv_ruleset;	/* ruleset index */
 	}	s_value;
 };
 
@@ -637,6 +638,7 @@ typedef struct symtab	STAB;
 # define ST_HOSTSIG	7	/* host signature */
 # define ST_NAMECANON	8	/* cached canonical name */
 # define ST_MACRO	9	/* macro name to id mapping */
+# define ST_RULESET	10	/* ruleset index */
 # define ST_MCI		16	/* mailer connection info (offset) */
 
 # define s_class	s_value.sv_class
@@ -649,6 +651,7 @@ typedef struct symtab	STAB;
 # define s_map		s_value.sv_map
 # define s_namecanon	s_value.sv_namecanon
 # define s_macro	s_value.sv_macro
+# define s_ruleset	s_value.sv_ruleset
 
 extern STAB		*stab __P((char *, int, int));
 extern void		stabapply __P((void (*)(STAB *, int), int));
