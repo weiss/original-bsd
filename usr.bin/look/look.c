@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)look.c	5.2 (Berkeley) 06/24/92";
+static char sccsid[] = "@(#)look.c	5.3 (Berkeley) 10/24/92";
 #endif /* not lint */
 
 /*
@@ -62,7 +62,8 @@ void	 err __P((const char *fmt, ...));
 char	*linear_search __P((char *, char *, char *));
 int	 look __P((char *, char *, char *));
 void	 print_from __P((char *, char *, char *));
-void	 usage __P((void));
+
+static void usage __P((void));
 
 main(argc, argv)
 	int argc;
