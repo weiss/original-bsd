@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	8.4 (Berkeley) 04/03/94";
+static char sccsid[] = "@(#)main.c	8.5 (Berkeley) 08/31/94";
 #endif /* not lint */
 
 /*
@@ -52,7 +52,7 @@ main(argc, argv)
 	autologin = 1;
 
 	while ((ch = getopt(argc, argv, "dgintv")) != EOF) {
-		switch (*cp) {
+		switch (ch) {
 		case 'd':
 			options |= SO_DEBUG;
 			debug++;
