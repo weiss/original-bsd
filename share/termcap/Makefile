@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 06/08/90
+#	@(#)Makefile	5.11 (Berkeley) 06/22/90
 
 # reorder gives an editor command for most common terminals
 # (in reverse order from n'th to 1'st most commonly used)
@@ -20,7 +20,7 @@ cleandir: clean
 install: maninstall
 	install -o ${BINOWN} -g ${BINGRP} -m 444 termcap \
 	     ${DESTDIR}${BINDIR}/misc
-	install -c -o ${BINOWN} -g ${BINGRP} -m 444 map3270 \
+	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${.CURDIR}/map3270 \
 	     ${DESTDIR}${BINDIR}/misc
 
 depend lint tags:
