@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)defs.h	5.7 (Berkeley) 02/18/89
+ *	@(#)defs.h	5.8 (Berkeley) 05/28/90
  */
 
 /*
@@ -70,7 +70,6 @@ struct	rip *msg;
 char	**argv0;
 struct	servent *sp;
 
-extern	char *sys_errlist[];
 extern	int errno;
 
 struct	in_addr inet_makeaddr();
