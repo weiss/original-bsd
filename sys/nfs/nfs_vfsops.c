@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_vfsops.c	7.13 (Berkeley) 02/08/90
+ *	@(#)nfs_vfsops.c	7.14 (Berkeley) 02/08/90
  */
 
 #include "param.h"
@@ -34,6 +34,7 @@
 #include "errno.h"
 #include "malloc.h"
 #include "mbuf.h"
+#include "buf.h"
 #undef	m_data
 #include "socket.h"
 #include "socketvar.h"
