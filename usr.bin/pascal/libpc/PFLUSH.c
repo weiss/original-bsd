@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)PFLUSH.c 1.1 10/30/80";
+static char sccsid[] = "@(#)PFLUSH.c 1.2 01/21/83";
 
 #include "h00vars.h"
 
@@ -11,11 +11,10 @@ PFLUSH()
 {
 	register struct iorec	*next;
 
-	next = _fchain.fchain;
-	while(next != FILNIL) {
-		if ((next->funit & (FDEF | FREAD)) == 0) {
+	for (next = _fchain.fchain; next != FILNIL; next = next->fchain) {
+		if ((next->funit & (FDEF | FREAD)) != 0)
+			continue;
+		if (next->fbuf != 0)
 			fflush(next->fbuf);
-		}
-		next = next->fchain;
 	}
 }
