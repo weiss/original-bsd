@@ -1,4 +1,4 @@
-/*	lpr.c	4.5	83/01/05	*/
+/*	lpr.c	4.6	83/01/05	*/
 /*
  *      lpr -- off line print
  *              also known as print
@@ -26,7 +26,7 @@ int     mailflg;		/* send mail */
 int	qflag;			/* q job, but don't exec daemon */
 int	prflag;			/* ``pr'' files */
 int	rflag;			/* remove files upon completion */	
-int	cflag;			/* force copy */
+int	lflag;			/* link flag */
 char	*person;		/* user name */
 int	inchar;			/* location to increment char in file names */
 int     ncopies = 1;		/* # of copies to make */
@@ -140,8 +140,8 @@ main(argc, argv)
 			hdr = !hdr;
 			break;
 
-		case 'c':		/* force copy of files */
-			cflag++;
+		case 'l':		/* try to link files */
+			lflag++;
 			break;
 
 		case 'q':		/* just q job */
@@ -180,7 +180,7 @@ main(argc, argv)
 		if (test(arg = *++argv))
 			continue;	/* file unreasonable */
 
-		if (!cflag && linked(arg)) {
+		if (lflag && linked(arg)) {
 			if (prflag)
 				card('T', title ? title : arg);
 			for (i = 0;i < ncopies; i++)
