@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	4.28 (Berkeley) 02/01/85";
+static char sccsid[] = "@(#)lpr.c	4.29 (Berkeley) 02/14/85";
 #endif
 
 /*
@@ -209,16 +209,18 @@ main(argc, argv)
 	/*
 	 * Check for restricted group access.
 	 */
-	if (RG != 0) {
+	if (RG != NULL) {
 		if ((gptr = getgrnam(RG)) == NULL)
 			fatal("Restricted group specified incorrectly");
-		while (*gptr->gr_mem != NULL) {
-			if ((strcmp(person,*gptr->gr_mem)) == 0)
-				break;
-			gptr->gr_mem++;
+		if (gptr->gr_gid != getgid()) {
+			while (*gptr->gr_mem != NULL) {
+				if ((strcmp(person, *gptr->gr_mem)) == 0)
+					break;
+				gptr->gr_mem++;
+			}
+			if (*gptr->gr_mem == NULL)
+				fatal("Not a member of the restricted group");
 		}
-		if (*gptr->gr_mem == NULL)
-			fatal("Not a member of the restricted group");
 	}
 	/*
 	 * Check to make sure queuing is enabled if userid is not root.
@@ -586,7 +588,7 @@ chkprinter(s)
 		SD = DEFSPOOL;
 	if ((LO = pgetstr("lo", &bp)) == NULL)
 		LO = DEFLOCK;
-	RG = pgetstr("rg",&bp);
+	RG = pgetstr("rg", &bp);
 	if ((MX = pgetnum("mx")) < 0)
 		MX = DEFMX;
 	if ((MC = pgetnum("mc")) < 0)
