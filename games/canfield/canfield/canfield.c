@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)canfield.c 4.9 06/25/83";
+static char sccsid[] = "@(#)canfield.c 4.10 08/30/84";
 
 /*
  * The canfield program
@@ -1085,6 +1085,7 @@ tabprint(sour, des)
  * procedure to move from the tableau to the tableau
  */
 tabtotab(sour, des)
+	register int sour, des;
 {
 	struct cardtype *temp;
 
@@ -1093,6 +1094,8 @@ tabtotab(sour, des)
 			tabprint(sour, des);
 			temp = bottom[sour];
 			bottom[sour] = NIL;
+			if (bottom[des] == NIL)
+				bottom[des] = temp;
 			temp->next = tableau[des];
 			tableau[des] = tableau[sour];
 			tableau[sour] = NIL;
