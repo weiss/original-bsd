@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.85 (Berkeley) 02/08/94
+ *	@(#)conf.h	8.86 (Berkeley) 02/09/94
  */
 
 /*
@@ -238,6 +238,7 @@ extern char		*getenv();
 # define HASUNAME	1	/* use System V uname(2) system call */
 # define HASSETSID	1	/* has Posix setsid(2) call */
 # define HASINITGROUPS	1	/* has initgroups(3) call */
+# define HASGETUSERSHELL 0	/* does not have getusershell(3) */
 # ifndef IDENTPROTO
 #  define IDENTPROTO	0	/* TCP/IP implementation is broken */
 # endif
