@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mp.c	7.16 (Berkeley) 12/16/90
+ *	@(#)mp.c	7.17 (Berkeley) 05/16/91
  */
 
 #include "mp.h"
@@ -304,7 +304,7 @@ mpclose(dev, flag)
 			}
 	}
 	mp->mp_flags |= MP_PROGRESS;
-	(*linesw[tp->t_line].l_close)(tp);
+	(*linesw[tp->t_line].l_close)(tp, flag);
 	ev = mp_getevent(mp, unit, 1);
 	if (ev == 0) {
 		error = ENOBUFS;
