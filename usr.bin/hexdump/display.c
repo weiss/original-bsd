@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)display.c	5.7 (Berkeley) 05/15/90";
+static char sccsid[] = "@(#)display.c	5.8 (Berkeley) 05/25/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -154,7 +154,7 @@ display()
 		if (!eaddress) {
 			if (!address)
 				return;
-			eaddress = address + blocksize; 
+			eaddress = address;
 		}
 		for (pr = endfu->nextpr; pr; pr = pr->nextpr)
 			switch(pr->flags) {
