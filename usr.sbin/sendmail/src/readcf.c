@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.30 (Berkeley) 08/07/94";
+static char sccsid[] = "@(#)readcf.c	8.31 (Berkeley) 08/07/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -410,7 +410,7 @@ readcf(cfname, safe, e)
 				while (*p != '\0' && !(isascii(*p) && isspace(*p)))
 					p++;
 				while (isascii(*p) && isspace(*p))
-					*p++;
+					p++;
 			}
 			else
 				optional = FALSE;
