@@ -2,7 +2,7 @@
 # include <ctype.h>
 # include "dlvrmail.h"
 
-static char	SccsId[] = "@(#)parseaddr.c	1.6	10/21/80";
+static char	SccsId[] = "@(#)parseaddr.c	1.7	10/21/80";
 
 /*
 **  PARSE -- Parse an address
@@ -365,14 +365,14 @@ prescan(addr, buf, buflim, delim)
 	q = buf;
 	bslashmode = quotemode = FALSE;
 	cmntcnt = brccnt = 0;
-	for (p = addr; (c = *p++ & 0177) != '\0'; )
+	for (p = addr; (c = *p++) != '\0'; )
 	{
 		/* chew up special characters */
 		*q = '\0';
 		if (bslashmode)
 		{
 			c |= 0200;
-			bslashmode == FALSE;
+			bslashmode = FALSE;
 		}
 		else if (c == '"')
 			quotemode = !quotemode;
