@@ -1,12 +1,13 @@
-#	@(#)Makefile	4.10 (Berkeley) 05/11/90
+#	@(#)Makefile	4.11 (Berkeley) 05/29/90
 
 PROG=	c2
 SRCS=	c20.c c21.c c22.c
-CFLAGS+=-DCOPYCODE -DC2
+CFLAGS+=-DCOPYCODE -DC2 -I.
 ASDIR=	${.CURDIR}/../../pgrm/as.${MACHINE}
 NOMAN=	noman
+CLEANFILES=instrs.c2
 
-c22.o: instrs.c2
+c22.o:
 	${CC} ${CFLAGS} -R -c ${.IMPSRC}
 
 instrs.c2: ${ASDIR}/instrs
