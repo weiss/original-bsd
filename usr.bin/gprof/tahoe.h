@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1983 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1983, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tahoe.h	1.4 (Berkeley) 06/01/90
+ *	@(#)tahoe.h	8.1 (Berkeley) 06/06/93
  */
 
     /*
