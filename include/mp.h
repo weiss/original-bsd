@@ -1,9 +1,10 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980, 1991 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)mp.h	5.3 (Berkeley) 04/03/91
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)mp.h	5.4 (Berkeley) 04/08/91
  */
 
 #ifndef _MP_H_
