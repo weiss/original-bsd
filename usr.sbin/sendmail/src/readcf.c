@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.17 (Berkeley) 03/14/93";
+static char sccsid[] = "@(#)readcf.c	6.18 (Berkeley) 03/19/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -425,7 +425,7 @@ readcf(cfname, safe, e)
 			break;
 
 		  case 'O':		/* set option */
-			setoption(bp[1], &bp[2], safe, FALSE);
+			setoption(bp[1], &bp[2], safe, FALSE, e);
 			break;
 
 		  case 'P':		/* set precedence */
@@ -917,6 +917,7 @@ printrules()
 **			reset the user id to avoid security problems.
 **		sticky -- if set, don't let other setoptions override
 **			this value.
+**		e -- the main envelope.
 **
 **	Returns:
 **		none.
@@ -950,11 +951,12 @@ struct resolverflags
 
 #endif
 
-setoption(opt, val, safe, sticky)
+setoption(opt, val, safe, sticky, e)
 	char opt;
 	char *val;
 	bool safe;
 	bool sticky;
+	register ENVELOPE *e;
 {
 	register char *p;
 	extern bool atobool();
@@ -1044,7 +1046,7 @@ setoption(opt, val, safe, sticky)
 		switch (*val)
 		{
 		  case '\0':
-			SendMode = SM_DELIVER;
+			e->e_sendmode = SM_DELIVER;
 			break;
 
 		  case SM_QUEUE:	/* queue only */
@@ -1055,7 +1057,7 @@ setoption(opt, val, safe, sticky)
 
 		  case SM_DELIVER:	/* do everything */
 		  case SM_FORK:		/* fork after verification */
-			SendMode = *val;
+			e->e_sendmode = *val;
 			break;
 
 		  default:
@@ -1084,7 +1086,7 @@ setoption(opt, val, safe, sticky)
 			/* fall through... */
 
 		  case EM_PRINT:	/* print errors normally (default) */
-			ErrorMode = *val;
+			e->e_errormode = *val;
 			break;
 		}
 		break;

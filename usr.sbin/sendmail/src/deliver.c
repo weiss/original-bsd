@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.50 (Berkeley) 03/19/93";
+static char sccsid[] = "@(#)deliver.c	6.51 (Berkeley) 03/19/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1463,7 +1463,7 @@ mailfile(filename, ctladdr, e)
 **	Parameters:
 **		e -- the envelope to send.
 **		mode -- the delivery mode to use.  If SM_DEFAULT, use
-**			the current SendMode.
+**			the current e->e_sendmode.
 **
 **	Returns:
 **		none.
@@ -1490,7 +1490,7 @@ sendall(e, mode)
 	{
 		extern bool shouldqueue();
 
-		mode = SendMode;
+		mode = e->e_sendmode;
 		if (mode != SM_VERIFY &&
 		    shouldqueue(e->e_msgpriority, e->e_ctime))
 			mode = SM_QUEUE;
@@ -1625,6 +1625,7 @@ sendall(e, mode)
 			ee->e_xfp = NULL;
 			ee->e_lockfp = NULL;
 			ee->e_df = NULL;
+			ee->e_errormode = EM_MAIL;
 			ee->e_sibling = splitenv;
 			splitenv = ee;
 			
@@ -1675,6 +1676,7 @@ sendall(e, mode)
 			printaddr(&e->e_from, FALSE);
 		}
 		e->e_from.q_flags |= QDONTSEND;
+		e->e_errormode = EM_MAIL;
 	}
 
 # ifdef QUEUE

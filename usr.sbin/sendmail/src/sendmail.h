@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.29 (Berkeley) 03/18/93
+ *	@(#)sendmail.h	6.30 (Berkeley) 03/19/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.29		03/18/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.30		03/19/93";
 # endif lint
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -245,6 +245,8 @@ struct envelope
 	short		e_flags;	/* flags, see below */
 	short		e_hopcount;	/* number of times processed */
 	short		e_nsent;	/* number of sends since checkpoint */
+	short		e_sendmode;	/* message send mode */
+	short		e_errormode;	/* error return mode */
 	int		(*e_puthdr)();	/* function to put header of message */
 	int		(*e_putbody)();	/* function to put body of message */
 	struct envelope	*e_parent;	/* the message this one encloses */
@@ -539,8 +541,7 @@ EXTERN char	OpMode;		/* operation mode, see below */
 #define MD_FREEZE	'z'		/* freeze the configuration file */
 
 
-EXTERN char	SendMode;	/* send mode, see below */
-
+/* values for e_sendmode -- send modes */
 #define SM_DELIVER	'i'		/* interactive delivery */
 #define SM_QUICKD	'j'		/* deliver w/o queueing */
 #define SM_FORK		'b'		/* deliver in background */
@@ -551,8 +552,7 @@ EXTERN char	SendMode;	/* send mode, see below */
 #define SM_DEFAULT	'\0'		/* unspecified, use SendMode */
 
 
-EXTERN char	ErrorMode;	/* error mode, see below */
-
+/* values for e_errormode -- error handling modes */
 #define EM_PRINT	'p'		/* print errors */
 #define EM_MAIL		'm'		/* mail back errors */
 #define EM_WRITE	'w'		/* write back errors */
