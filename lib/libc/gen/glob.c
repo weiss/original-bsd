@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)glob.c	5.10 (Berkeley) 06/17/91";
+static char sccsid[] = "@(#)glob.c	5.11 (Berkeley) 06/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -96,9 +96,8 @@ glob(pattern, flags, errfunc, pglob)
 	glob_t *pglob;
 {
 	const char *compilepat, *patnext;
-	int err, oldpathc;
+	int c, err, oldpathc;
 	Char *bufnext, *bufend, *compilebuf, *qpatnext, patbuf[MAXPATHLEN+1];
-	char c;
 
 	patnext = pattern;
 	if (!(flags & GLOB_APPEND)) {
