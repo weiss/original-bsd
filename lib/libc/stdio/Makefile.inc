@@ -1,7 +1,7 @@
-#	@(#)Makefile.inc	5.6 (Berkeley) 04/15/91
+#	@(#)Makefile.inc	5.7 (Berkeley) 06/27/91
 
 # stdio sources
-.PATH: ${.CURDIR}/${MACHINE}/stdio ${.CURDIR}/stdio
+.PATH: ${.CURDIR}/stdio
 
 SRCS+=	clrerr.c fclose.c fdopen.c feof.c ferror.c fflush.c fgetc.c \
 	fgetline.c fgetpos.c fgets.c fileno.c findfp.c flags.c fopen.c \
