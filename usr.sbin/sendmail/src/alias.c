@@ -11,7 +11,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.1 (Berkeley) 06/07/93";
+static char sccsid[] = "@(#)alias.c	8.2 (Berkeley) 07/11/93";
 #endif /* not lint */
 
 
@@ -627,6 +627,10 @@ forward(user, sendq, e)
 {
 	char *pp;
 	char *ep;
+#ifdef _POSIX_SAVED_IDS
+	register ADDRESS *ca;
+	uid_t saveduid, uid;
+#endif
 
 	if (tTd(27, 1))
 		printf("forward(%s)\n", user->q_paddr);
@@ -646,6 +650,14 @@ forward(user, sendq, e)
 	if (ForwardPath == NULL)
 		ForwardPath = newstr("\201z/.forward");
 
+#ifdef _POSIX_SAVED_IDS
+	ca = getctladdr(user);
+	if (ca != NULL)
+		uid = ca->q_uid;
+	else
+		uid = DefUid;
+#endif
+
 	for (pp = ForwardPath; pp != NULL; pp = ep)
 	{
 		int err;
@@ -659,7 +671,20 @@ forward(user, sendq, e)
 			*ep++ = ':';
 		if (tTd(27, 3))
 			printf("forward: trying %s\n", buf);
+
+#ifdef _POSIX_SAVED_IDS
+		saveduid = geteuid();
+		if (saveduid == 0 && uid != 0)
+			(void) seteuid(uid);
+#endif                   
+
 		err = include(buf, TRUE, user, sendq, e);
+
+#ifdef _POSIX_SAVED_IDS
+		if (saveduid == 0 && uid != 0)
+			(void) seteuid(saveduid);
+#endif
+
 		if (err == 0)
 			break;
 		if (transienterror(err))

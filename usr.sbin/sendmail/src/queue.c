@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.1 (Berkeley) 06/07/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.2 (Berkeley) 07/11/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.1 (Berkeley) 06/07/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.2 (Berkeley) 07/11/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -261,12 +261,17 @@ notemp:
 		else if (bitset(H_FROM|H_RCPT, h->h_flags))
 		{
 			bool oldstyle = bitset(EF_OLDSTYLE, e->e_flags);
+			FILE *savetrace = TrafficLogFile;
+
+			TrafficLogFile = NULL;
 
 			if (bitset(H_FROM, h->h_flags))
 				oldstyle = FALSE;
 
 			commaize(h, h->h_value, tfp, oldstyle,
 				 &nullmailer, e);
+
+			TrafficLogFile = savetrace;
 		}
 		else
 			fprintf(tfp, "%s: %s\n", h->h_field, h->h_value);
@@ -910,6 +915,7 @@ readqf(e)
 		if (tTd(40, 8))
 			printf("readqf(%s): bogus file\n", qf);
 		fclose(qfp);
+		rename(qf, queuename(e, 'Q'));
 		return FALSE;
 	}
 
@@ -1030,7 +1036,9 @@ readqf(e)
 		  default:
 			syserr("readqf: bad line \"%s\"", e->e_id,
 				LineNumber, bp);
-			break;
+			fclose(qfp);
+			rename(qf, queuename(e, 'Q'));
+			return FALSE;
 		}
 
 		if (bp != buf)

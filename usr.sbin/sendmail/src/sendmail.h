@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.1 (Berkeley) 06/07/93
+ *	@(#)sendmail.h	8.2 (Berkeley) 07/11/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.1		06/07/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.2		07/11/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -401,6 +401,7 @@ MCI
 {
 	short		mci_flags;	/* flag bits, see below */
 	short		mci_errno;	/* error number on last connection */
+	short		mci_herrno;	/* h_errno from last DNS lookup */
 	short		mci_exitstat;	/* exit status from last connection */
 	short		mci_state;	/* SMTP state */
 	long		mci_maxsize;	/* max size this server will accept */
@@ -491,6 +492,8 @@ MAP
 # define MF_OPEN	0x0020		/* this entry is open */
 # define MF_WRITABLE	0x0040		/* open for writing */
 # define MF_ALIAS	0x0080		/* this is an alias file */
+# define MF_TRY0NULL	0x0100		/* try with no null byte */
+# define MF_TRY1NULL	0x0200		/* try with the null byte */
 # define MF_IMPL_HASH	0x1000		/* implicit: underlying hash database */
 # define MF_IMPL_NDBM	0x2000		/* implicit: underlying NDBM database */
 
@@ -788,6 +791,7 @@ EXTERN time_t	MciCacheTimeout;	/* maximum idle time on connections */
 EXTERN char	*QueueLimitRecipient;	/* limit queue runs to this recipient */
 EXTERN char	*QueueLimitSender;	/* limit queue runs to this sender */
 EXTERN char	*QueueLimitId;		/* limit queue runs to this id */
+EXTERN FILE	*TrafficLogFile;	/* file in which to log all traffic */
 
 
 /*
