@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)cc.c 4.11 01/24/85";
+static	char sccsid[] = "@(#)cc.c 4.12 09/05/85";
 /*
  * cc - front end for C compiler
  */
@@ -195,7 +195,7 @@ main(argc, argv)
 			printf("%s:\n", clist[i]);
 			fflush(stdout);
 		}
-		if (getsuf(clist[i]) == 's') {
+		if (!Mflag && getsuf(clist[i]) == 's') {
 			assource = clist[i];
 			goto assemble;
 		} else
