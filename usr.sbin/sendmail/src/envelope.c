@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	6.29 (Berkeley) 04/04/93";
+static char sccsid[] = "@(#)envelope.c	6.30 (Berkeley) 04/10/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -456,9 +456,9 @@ setsender(from, e, delimptr, internal)
 		realname = username();
 	}
 
-/*
-	SuprErrs = TRUE;
-*/
+	if (ConfigLevel < 2)
+		SuprErrs = TRUE;
+
 	delimchar = internal ? '\0' : ' ';
 	if (from == NULL ||
 	    parseaddr(from, &e->e_from, 1, delimchar, delimptr, e) == NULL)
@@ -586,9 +586,9 @@ setsender(from, e, delimptr, internal)
 # endif
 		finis();
 	}
-	rewrite(pvp, 3);
-	rewrite(pvp, 1);
-	rewrite(pvp, 4);
+	rewrite(pvp, 3, e);
+	rewrite(pvp, 1, e);
+	rewrite(pvp, 4, e);
 	cataddr(pvp, NULL, buf, sizeof buf, '\0');
 	e->e_sender = newstr(buf);
 	define('f', e->e_sender, e);
