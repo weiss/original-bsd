@@ -7,7 +7,7 @@
  *
  * %sccs.include.noredist.c%
  *
- *	@(#)isa.h	5.3 (Berkeley) 11/07/90
+ *	@(#)isa.h	5.4 (Berkeley) 11/08/90
  */
 
 /*
@@ -15,8 +15,8 @@
  */
 
 #ifndef LOCORE
-unsigned char inb() ;	/* XXX */
-extern outb();
+unsigned char inb(), rtcin();
+void outb();
 #endif
 
 
