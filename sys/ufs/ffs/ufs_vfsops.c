@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ufs_vfsops.c	7.46 (Berkeley) 05/10/90
+ *	@(#)ufs_vfsops.c	7.47 (Berkeley) 06/03/90
  */
 
 #include "param.h"
@@ -167,6 +167,8 @@ ufs_mount(mp, path, data, ndp)
 			return (error);
 		if (devvp != ump->um_devvp)
 			error = EINVAL;	/* needs translation */
+		else
+			vrele(devvp);
 	}
 	if (error) {
 		vrele(devvp);
