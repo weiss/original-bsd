@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inode.c	5.4 (Berkeley) 10/22/87";
+static char sccsid[] = "@(#)inode.c	5.5 (Berkeley) 12/21/87";
 #endif not lint
 
 #include <pwd.h>
@@ -69,7 +69,7 @@ iblock(idesc, ilevel, isize)
 	int i, n, (*func)(), nif, sizepb;
 	BUFAREA ib;
 	char buf[BUFSIZ];
-	extern int pass1check();
+	extern int dirscan(), pass1check();
 
 	if (idesc->id_type == ADDR) {
 		func = idesc->id_func;
