@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)sub2.c	4.3 (Berkeley) 06/24/90";
+static char sccsid[] = "@(#)sub2.c	4.4 (Berkeley) 01/22/93";
 #endif
 
 # include "ldefs.c"
@@ -865,7 +865,7 @@ layout(){
 					fprintf(fout, "0%-3o,",fbarr[i+j]);
 				putc('\n',fout);
 				}
-			cfree(fbarr);
+			free(fbarr);
 			}
 		fprintf(fout,"0};\n");
 		}
