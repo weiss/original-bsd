@@ -1,4 +1,10 @@
-/* @(#)csh.h	4.12 (Berkeley) 12/13/84 */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)csh.h	5.1 (Berkeley) 06/04/85
+ */
 
 #include <sys/time.h>
 #include <sys/resource.h>
