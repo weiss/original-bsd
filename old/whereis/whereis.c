@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)whereis.c	4.10 (Berkeley) 07/02/83";
+static char *sccsid = "@(#)whereis.c	4.11 (Berkeley) 02/22/84";
 #endif
 
 #include <sys/param.h>
@@ -31,6 +31,9 @@ static char *mandirs[] = {
 	"/usr/man/man6",
 	"/usr/man/man7",
 	"/usr/man/man8",
+	"/usr/man/manl",
+	"/usr/man/mann",
+	"/usr/man/mano",
 	0
 };
 static char *srcdirs[]  = {
