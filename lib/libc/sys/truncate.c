@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)truncate.c	5.2 (Berkeley) 05/25/93";
+static char sccsid[] = "@(#)truncate.c	5.3 (Berkeley) 06/16/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -22,5 +22,5 @@ truncate(path, length)
 	off_t	length;
 {
 
-	return(__indir((quad_t)SYS_truncate, path, 0, length));
+	return(__syscall((quad_t)SYS_truncate, path, 0, length));
 }
