@@ -1,4 +1,4 @@
-/*	kern_clock.c	6.5	84/03/13	*/
+/*	kern_clock.c	6.6	84/03/27	*/
 
 #include "../machine/reg.h"
 #include "../machine/psl.h"
@@ -21,10 +21,6 @@
 #ifdef GPROF
 #include "../h/gprof.h"
 #endif
-
-#define ADJTIME		/* For now... */
-#define	ADJ_TICK 1000
-int	adjtimedelta;
 
 /*
  * Clock handling routines.
@@ -196,21 +192,7 @@ hardclock(pc, ps)
 	 * so we don't keep the relatively high clock interrupt
 	 * priority any longer than necessary.
 	 */
-#ifdef ADJTIME
-	if (adjtimedelta == 0)
-		bumptime(&time, tick);
-	else {
-		if (adjtimedelta < 0) {
-			bumptime(&time, tick-ADJ_TICK);
-			adjtimedelta++;
-		} else {
-			bumptime(&time, tick+ADJ_TICK);
-			adjtimedelta--;
-		}
-	}
-#else
 	bumptime(&time, tick);
-#endif
 	if (needsoft)
 		setsoftclock();
 }
