@@ -1,11 +1,13 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)nl.c 1.10 02/01/83";
+static	char sccsid[] = "@(#)nl.c 1.11 05/31/83";
 
 #include "whoami.h"
 #include "0.h"
 #include "opcode.h"
 #include "objfmt.h"
+
+#ifdef PI
 
 /*
  * NAMELIST SEGMENT DEFINITIONS
@@ -421,6 +423,7 @@ nlfree(p)
 			panic("nlfree");
 	}
 }
+#endif PI
 
 
 char	*VARIABLE	= "variable";
