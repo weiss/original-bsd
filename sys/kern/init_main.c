@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.43 (Berkeley) 11/19/91
+ *	@(#)init_main.c	7.44 (Berkeley) 12/19/91
  */
 
 #include "param.h"
@@ -234,7 +234,7 @@ main()
 	 * Now can look at time, having had a chance
 	 * to verify the time from the file system.
 	 */
-	boottime = p->p_stats->p_start = time;
+	mono_time = boottime = p->p_stats->p_start = time;
 
 	/*
 	 * make init process
