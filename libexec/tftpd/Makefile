@@ -3,10 +3,10 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 02/07/86
+#	@(#)Makefile	5.2 (Berkeley) 02/07/86
 #
 
-ALL=	tftpd.o
+ALL=	tftpd.o tftpsubs.o
 DESTDIR=
 CFLAGS=	-O
 LDFLAGS=
