@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/10/91
+#	@(#)Makefile	8.1 (Berkeley) 06/11/93
 
 PROG=	rsh
 SRCS=   rsh.c
