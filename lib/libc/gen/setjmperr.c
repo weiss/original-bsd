@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)setjmperr.c	5.4 (Berkeley) 06/27/88";
+static char sccsid[] = "@(#)setjmperr.c	5.5 (Berkeley) 05/27/90";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -26,8 +26,10 @@ static char sccsid[] = "@(#)setjmperr.c	5.4 (Berkeley) 06/27/88";
  * If this routine returns, the program is aborted.
  */
 
+#include <stdio.h>
+
 longjmperror()
 {
 #define	ERRMSG	"longjmp botch\n"
-	write(2, ERRMSG, sizeof(ERRMSG) - 1);
+	write(fileno(stderr), ERRMSG, sizeof(ERRMSG) - 1);
 }
