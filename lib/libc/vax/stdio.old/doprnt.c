@@ -1,4 +1,8 @@
-/* @(#)doprnt.c	4.6 (Berkeley) 03/13/85 */
+	.data
+_sccsid:
+	.asciz	"@(#)doprnt.c	5.1 (Berkeley) 06/05/85"
+	.text
+
 	# C library -- conversions
 
 .globl	__doprnt
