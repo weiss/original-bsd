@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sys_bsd.c	1.25 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)sys_bsd.c	1.26 (Berkeley) 06/15/90";
 #endif /* not lint */
 
 /*
@@ -244,7 +244,7 @@ TerminalDefaultChars()
     nttyb.sg_erase = ottyb.sg_erase;
 #else	/* USE_TERMIO */
     memcpy(new_tc.c_cc, old_tc.c_cc, sizeof(old_tc.c_cc));
-# ifndef	VFLUSHO
+# ifndef	VDISCARD
     termFlushChar = 'O'&0x37;
 # endif
 # ifndef	VWERASE

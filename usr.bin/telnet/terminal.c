@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)terminal.c	1.19 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)terminal.c	1.20 (Berkeley) 06/15/90";
 #endif /* not lint */
 
 #include <arpa/telnet.h>
@@ -23,7 +23,7 @@ char	ttyobuf[2*BUFSIZ], ttyibuf[BUFSIZ];
 int termdata;			/* Debugging flag */
 
 #ifdef	USE_TERMIO
-# ifndef VFLUSHO
+# ifndef VDISCARD
 char termFlushChar;
 # endif
 # ifndef VLNEXT
