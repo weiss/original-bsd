@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)csh.c 4.14 11/02/83";
+static	char *sccsid = "@(#)csh.c 4.15 06/06/84";
 
 #include "sh.h"
 #include <sys/ioctl.h>
@@ -558,7 +558,7 @@ rechist()
 			return;
 		strcpy(buf, value("home"));
 		strcat(buf, "/.history");
-		fp = creat(buf, 0777);
+		fp = creat(buf, 0666);
 		if (fp == -1)
 			return;
 		oldidfds = didfds;
