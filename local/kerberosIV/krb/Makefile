@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/25/90
+#	@(#)Makefile	5.2 (Berkeley) 05/25/93
 
 LIB=	krb
 CFLAGS+=-DKERBEROS -DDEBUG -I${.CURDIR}/../include
@@ -19,4 +19,5 @@ TDIR=	${.CURDIR}/..
 krb_err.et.c: ${TDIR}/compile_et/obj/compile_et
 	${TDIR}/compile_et/obj/compile_et ${.CURDIR}/krb_err.et -n
 
+NOPROFILE=
 .include <bsd.lib.mk>
