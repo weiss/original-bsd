@@ -1,3 +1,4 @@
+static char	*sccsid = "@(#)cards.c	1.4 (Berkeley) 05/19/83";
 
 #include	<stdio.h>
 #include	"deck.h"
