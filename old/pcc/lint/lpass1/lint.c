@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lint.c	1.4	(Berkeley)	03/29/83";
+static char sccsid[] = "@(#)lint.c	1.5	(Berkeley)	03/30/83";
 #endif lint
 
 # include "mfile1"
@@ -782,7 +782,7 @@ fsave( s ) char *s; {
 #ifndef FLEXNAMES
 	if( strncmp( s, fsname.f.fn, LFNM ) ){
 #else
-	if( strcmp(s, fsname.f.fn)) {
+	if (fsname.f.fn == NULL || strcmp(s, fsname.f.fn)) {
 #endif
 		/* new one */
 #ifndef FLEXNAMES
