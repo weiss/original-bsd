@@ -1,7 +1,6 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/19/93
+#	@(#)Makefile	5.3 (Berkeley) 06/19/93
 
 MAN8=	nologin.0
-NOOBJ=noobj
 
 nologin clean cleandir depend lint tags:
 
