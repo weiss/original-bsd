@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	7.30 (Berkeley) 02/03/92
+ *	@(#)uipc_usrreq.c	7.31 (Berkeley) 03/13/92
  */
 
 #include "param.h"
@@ -303,6 +303,9 @@ unp_attach(so)
 		case SOCK_DGRAM:
 			error = soreserve(so, unpdg_sendspace, unpdg_recvspace);
 			break;
+
+		default:
+			panic("unp_attach");
 		}
 		if (error)
 			return (error);
