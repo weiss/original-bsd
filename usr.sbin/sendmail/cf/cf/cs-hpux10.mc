@@ -18,8 +18,9 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)cs-hpux10.mc	8.1 (Berkeley) 04/25/95')
+VERSIONID(`@(#)cs-hpux10.mc	8.2 (Berkeley) 05/29/95')
 OSTYPE(hpux10)dnl
 DOMAIN(CS.Berkeley.EDU)dnl
+define(`MAIL_HUB', mailspool.CS.Berkeley.EDU)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
