@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.13 (Berkeley) 07/23/91
+#	@(#)Makefile	5.14 (Berkeley) 09/23/91
 
 #	dump.h			header file
 #	dumpitime.c		reads /etc/dumpdates
@@ -21,7 +21,7 @@ BINOWN=	root
 BINGRP=	tty
 BINMODE=6555
 MAN8=	dump.0
-MLINKS+=dump.0 rdump.0
+MLINKS+=dump.8 rdump.8
 
 all: dump
 
