@@ -6,13 +6,15 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)logwtmp.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)logwtmp.c	5.6 (Berkeley) 05/19/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/time.h>
 #include <sys/stat.h>
+
+#include <unistd.h>
 #include <utmp.h>
 
 logwtmp(line, name, host)
