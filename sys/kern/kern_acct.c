@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)kern_acct.c	7.21 (Berkeley) 02/03/92
+ *	@(#)kern_acct.c	7.22 (Berkeley) 05/14/92
  */
 
 #include "param.h"
@@ -54,6 +54,7 @@ sysacct(p, uap, retval)
 	} *uap;
 	int *retval;
 {
+	USES_VOP_UNLOCK;
 	register struct vnode *vp;
 	extern int acctwatch();
 	struct vnode *oacctp;
