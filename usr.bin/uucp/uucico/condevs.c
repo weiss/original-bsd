@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)condevs.c	5.14 (Berkeley) 01/24/86";
+static char sccsid[] = "@(#)condevs.c	5.15 (Berkeley) 02/12/86";
 #endif
 
 extern int errno;
@@ -106,6 +106,10 @@ struct condev condevs[] = {
 #ifdef SYTEK
 	{ "SYTEK", "sytek", sykopn, nulldev, sykcls },
 #endif SYTEK
+#ifdef ATT2224
+	{ "ACU", "att", Acuopn, attopn, attcls },	
+#endif ATT2224
+
 
 	/* Insert new entries before this line */
 	{ NULL, NULL, NULL, NULL, NULL }
