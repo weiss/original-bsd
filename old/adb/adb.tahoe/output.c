@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)output.c	1.1 (Berkeley) 02/25/86";
+static	char sccsid[] = "@(#)output.c	1.2 (Berkeley) 10/22/87";
 #endif
 /*
  *
@@ -137,7 +137,7 @@ printf(fmat,a1)
 		    case 'f':
 		    case 'F':
 			dptr++;
-			sprintf(s=digits, "%*.*f", width, prec, *rptr); prec= -1; break;
+			(void)sprintf(s=digits, "%*.*f", width, prec, *rptr); prec= -1; break;
 #endif
 		    case 'm':
 			break;
