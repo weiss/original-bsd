@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)macro.c	4.1		07/25/83);
+SCCSID(@(#)macro.c	4.2		03/11/84);
 
 /*
 **  EXPAND -- macro expand a string using $x escapes.
@@ -17,11 +17,6 @@ SCCSID(@(#)macro.c	4.1		07/25/83);
 **
 **	Side Effects:
 **		none.
-**
-**	Bugs:
-**		The handling of $$ (to get one dollar) is rather bizarre,
-**			especially if there should be another macro
-**			expansion in the same string.
 */
 
 expand(s, buf, buflim, e)
@@ -75,10 +70,8 @@ expand(s, buf, buflim, e)
 			skipping = FALSE;
 			continue;
 
-		  case '$':		/* macro interpolation */
+		  case '\001':		/* macro interpolation */
 			c = *++s;
-			if (c == '$')
-				break;
 			q = macvalue(c & 0177, e);
 			if (q == NULL)
 				continue;
