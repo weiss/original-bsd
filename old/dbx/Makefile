@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.13 (Berkeley) 10/25/88
+#	@(#)Makefile	5.14 (Berkeley) 03/06/89
 #
 # make file for debugger "dbx"
 #
@@ -140,7 +140,7 @@ SRC = \
 .c.h:
 	./makedefs -f $*.c $*.h
 
-${AOUT}: makedefs mkdate ${HDR} ${OBJ}
+all ${AOUT}: makedefs mkdate ${HDR} ${OBJ}
 	@rm -f date.c
 	@./mkdate > date.c
 	@echo "linking"
