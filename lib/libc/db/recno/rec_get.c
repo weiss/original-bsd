@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rec_get.c	5.5 (Berkeley) 02/11/93";
+static char sccsid[] = "@(#)rec_get.c	5.6 (Berkeley) 02/14/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -136,7 +136,7 @@ __rec_vpipe(t, top)
 {
 	DBT data;
 	recno_t nrec;
-	index_t len;
+	indx_t len;
 	size_t sz;
 	int bval, ch;
 	char *p;
