@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdesc_vfsops.c	8.1 (Berkeley) 06/10/93
+ *	@(#)fdesc_vfsops.c	8.2 (Berkeley) 01/04/94
  *
  * $Id: fdesc_vfsops.c,v 1.9 1993/04/06 15:28:33 jsp Exp $
  */
@@ -169,7 +169,6 @@ fdesc_root(mp, vpp)
 	struct vnode **vpp;
 {
 	struct vnode *vp;
-	int error;
 
 #ifdef FDESC_DIAGNOSTIC
 	printf("fdesc_root(mp = %x)\n", mp);

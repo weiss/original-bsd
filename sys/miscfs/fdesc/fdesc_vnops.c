@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdesc_vnops.c	8.5 (Berkeley) 01/04/94
+ *	@(#)fdesc_vnops.c	8.6 (Berkeley) 01/04/94
  *
  * $Id: fdesc_vnops.c,v 1.12 1993/04/06 16:17:17 jsp Exp $
  */
@@ -616,7 +616,6 @@ fdesc_readdir(ap)
 		if (fdp->fd_ofiles[i] != NULL) {
 			struct dirent d;
 			struct dirent *dp = &d;
-			char *cp = dp->d_name;
 			bzero((caddr_t) dp, UIO_MX);
 
 			dp->d_namlen = sprintf(dp->d_name, "%d", i);
