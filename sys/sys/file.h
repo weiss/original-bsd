@@ -1,4 +1,4 @@
-/*	file.h	3.2	06/07/80	*/
+/*	file.h	3.3	09/27/80	*/
 
 /*
  * One file structure is allocated
@@ -9,8 +9,8 @@
  */
 struct	file
 {
-	char	f_flag;
-	char	f_count;		/* reference count */
+	short	f_flag;
+	short	f_count;		/* reference count */
 	struct inode *f_inode;		/* pointer to inode structure */
 	union {
 		off_t	f_offset;	/* read/write character pointer */
