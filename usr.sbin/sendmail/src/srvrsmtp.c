@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.12 (Berkeley) 02/20/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.13 (Berkeley) 02/20/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.12 (Berkeley) 02/20/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.13 (Berkeley) 02/20/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -287,6 +287,11 @@ smtp(e)
 			}
 			QuickAbort = TRUE;
 			LogUsrErrs = TRUE;
+
+			/* optimization -- if queueing, don't expand aliases */
+			if (SendMode == SM_QUEUE)
+				e->e_flags |= EF_VRFYONLY;
+
 			p = skipword(p, "to");
 			if (p == NULL)
 				break;
