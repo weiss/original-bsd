@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.76 (Berkeley) 03/04/94";
+static char sccsid[] = "@(#)deliver.c	8.77 (Berkeley) 03/07/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1736,6 +1736,10 @@ giveresponse(stat, m, mci, ctladdr, e)
 
 	if (LogLevel > ((stat == EX_TEMPFAIL) ? 8 : (stat == EX_OK) ? 7 : 6))
 		logdelivery(m, mci, &statmsg[4], ctladdr, e);
+
+	if (tTd(11, 2))
+		printf("giveresponse: stat=%d, e->e_message=%s\n",
+			stat, e->e_message);
 
 	if (stat != EX_TEMPFAIL)
 		setstat(stat);
