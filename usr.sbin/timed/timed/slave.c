@@ -16,12 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)slave.c	2.19 (Berkeley) 09/20/88";
+static char sccsid[] = "@(#)slave.c	2.20 (Berkeley) 04/02/89";
 #endif /* not lint */
 
 #include "globals.h"
 #include <protocols/timed.h>
 #include <setjmp.h>
+#include "pathnames.h"
 
 extern jmp_buf jmpenv;
 
@@ -67,7 +68,7 @@ slave()
 	if (status & MASTER) {
 #ifdef MEASURE
 		if (fp == NULL) {
-			fp = fopen("/usr/adm/timed.masterlog", "w");
+			fp = fopen(_PATH_MASTERLOG, "w");
 			setlinebuf(fp);
 		}
 #endif
@@ -129,7 +130,7 @@ loop:
 			 * (file not open)
 			 */
 			if (fp == NULL) {
-				fp = fopen("/usr/adm/timed.masterlog", "w");
+				fp = fopen(_PATH_MASTERLOG, "w");
 				setlinebuf(fp);
 			}
 #endif
