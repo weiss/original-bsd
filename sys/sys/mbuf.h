@@ -3,13 +3,23 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mbuf.h	7.7 (Berkeley) 06/21/87
+ *	@(#)mbuf.h	7.8 (Berkeley) 07/03/87
  */
 
 /*
  * Constants related to memory allocator.
  */
 #define	MSIZE		128			/* size of an mbuf */
+
+#if CLBYTES > 1024
+#define	MCLBYTES	1024
+#define	MCLSHIFT	10
+#define	MCLOFSET	(MCLBYTES - 1)
+#else
+#define	MCLBYTES	CLBYTES
+#define	MCLSHIFT	CLSHIFT
+#define	MCLOFSET	CLOFSET
+#endif
 
 #define	MMINOFF		12			/* mbuf header length */
 #define	MTAIL		4
@@ -27,8 +37,8 @@
  */
 
 /* network cluster number to virtual address, and back */
-#define	cltom(x) ((struct mbuf *)((int)mbutl + ((x) << CLSHIFT)))
-#define	mtocl(x) (((int)x - (int)mbutl) >> CLSHIFT)
+#define	cltom(x) ((struct mbuf *)((int)mbutl + ((x) << MCLSHIFT)))
+#define	mtocl(x) (((int)x - (int)mbutl) >> MCLSHIFT)
 
 /* address in mbuf to mbuf head */
 #define	dtom(x)		((struct mbuf *)((int)x & ~(MSIZE-1)))
@@ -92,7 +102,7 @@ struct mbuf {
  * MCLALLOC allocates mbuf page clusters.
  * Note that it works only with a count of 1 at the moment.
  * MCLGET adds such clusters to a normal mbuf.
- * m->m_len is set to CLBYTES upon success.
+ * m->m_len is set to MCLBYTES upon success, and to MLEN on failure.
  * MCLFREE frees clusters allocated by MCLALLOC.
  */
 #define	MCLALLOC(m, i) \
@@ -103,15 +113,16 @@ struct mbuf {
 	     {++mclrefcnt[mtocl(m)];mbstat.m_clfree--;mclfree = (m)->m_next;} \
 	  splx(ms); }
 #define	M_HASCL(m)	((m)->m_off >= MSIZE)
-#define	MTOCL(m)	((struct mbuf *)(mtod((m), int)&~CLOFSET))
+#define	MTOCL(m)	((struct mbuf *)(mtod((m), int) &~ MCLOFSET))
 
 #define	MCLGET(m) \
 	{ struct mbuf *p; \
 	  MCLALLOC(p, 1); \
 	  if (p) { \
 		(m)->m_off = (int)p - (int)(m); \
-		(m)->m_len = CLBYTES; \
-	  } \
+		(m)->m_len = MCLBYTES; \
+	  } else \
+		(m)->m_len = MLEN; \
 	}
 #define	MCLFREE(m) { \
 	if (--mclrefcnt[mtocl(m)] == 0) \
