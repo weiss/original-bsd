@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwinit.c	3.20 05/23/84";
+static char sccsid[] = "@(#)wwinit.c	3.21 11/19/84";
 #endif
 
 #include "ww.h"
@@ -13,7 +13,7 @@ wwinit()
 	register i, j;
 	char *kp;
 	register char **p, **q;
-	char **env, **termcap;
+	char **env, **termcap = 0;
 	extern char **environ;
 	int s;
 
