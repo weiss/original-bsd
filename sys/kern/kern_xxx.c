@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_xxx.c	6.6 (Berkeley) 02/20/86
+ *	@(#)kern_xxx.c	6.7 (Berkeley) 03/04/86
  */
 
 #include "param.h"
@@ -34,7 +34,7 @@ gethostname()
 {
 	register struct a {
 		char	*hostname;
-		int	len;
+		u_int	len;
 	} *uap = (struct a *)u.u_ap;
 	register u_int len;
 
