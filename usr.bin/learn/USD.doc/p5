@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)p5	8.1 (Berkeley) 06/08/93
+.\"	@(#)p5	8.2 (Berkeley) 06/01/94
 .\"
 .NH
 The Script Interpreter.
@@ -202,6 +202,7 @@ For example,
 .LP
 causes printing of any text that follows,
 up to the next line that begins with a sharp.
+.ne 1i
 .LP
 .ul
 	#print file
