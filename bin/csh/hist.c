@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)hist.c	5.2 (Berkeley) 06/06/85";
+static char *sccsid = "@(#)hist.c	5.3 (Berkeley) 06/25/87";
 #endif
 
 #include "sh.h"
@@ -82,7 +82,7 @@ dohist(vp)
 	if (getn(value("history")) == 0)
 		return;
 	if (setintr)
-		(void) sigsetmask(sigblock(0) & ~sigmask(SIGINT));
+		(void) sigsetmask(sigblock(0L) & ~sigmask(SIGINT));
  	while (*++vp && **vp == '-') {
  		char *vp2 = *vp;
  
