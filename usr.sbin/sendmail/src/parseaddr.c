@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.47 (Berkeley) 12/28/94";
+static char sccsid[] = "@(#)parseaddr.c	8.48 (Berkeley) 01/24/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -715,7 +715,6 @@ rewrite(pvp, ruleset, reclevel, e)
 
 			switch (*rp & 0377)
 			{
-				register STAB *s;
 				char buf[MAXLINE];
 
 			  case MATCHCLASS:
@@ -728,8 +727,7 @@ rewrite(pvp, ruleset, reclevel, e)
 					goto backup;
 				mlp->last = avp++;
 				cataddr(mlp->first, mlp->last, buf, sizeof buf, '\0');
-				s = stab(buf, ST_CLASS, ST_FIND);
-				if (s == NULL || !bitnset(rp[1], s->s_class))
+				if (!wordinclass(buf, rp[1]))
 				{
 					if (tTd(21, 36))
 					{
@@ -748,8 +746,7 @@ rewrite(pvp, ruleset, reclevel, e)
 
 			  case MATCHNCLASS:
 				/* match any token not in a class */
-				s = stab(ap, ST_CLASS, ST_FIND);
-				if (s != NULL && bitnset(rp[1], s->s_class))
+				if (wordinclass(ap, rp[1]))
 					goto backup;
 
 				/* fall through */
