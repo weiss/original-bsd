@@ -6,10 +6,10 @@ divert(-1)
 #
 # %sccs.include.redist.sh%
 #
-VERSIONID(@(#)hpux9.m4	2.2 (Berkeley) 07/14/92)
+VERSIONID(@(#)hpux9.m4	2.3 (Berkeley) 11/13/92)
 #
 
-define(`_HPUX_')dnl
+define(`_HPUX_', `')dnl
 define(`LOCAL_MAILER_FLAGS', `')dnl
 
 divert(0)
