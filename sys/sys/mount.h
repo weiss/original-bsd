@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mount.h	7.31 (Berkeley) 03/17/92
+ *	@(#)mount.h	7.32 (Berkeley) 05/31/92
  */
 
 #ifndef KERNEL
@@ -56,7 +56,10 @@ struct statfs {
 #define	MOUNT_MFS	3
 #define	MOUNT_PC	4
 #define	MOUNT_LFS	5
-#define	MOUNT_MAXTYPE	5
+#define	MOUNT_LOFS	6
+#define	MOUNT_FDESC	7
+#define	MOUNT_PORTAL	8
+#define	MOUNT_MAXTYPE	8
 
 /*
  * Structure per mounted file system.  Each mounted file system has an
