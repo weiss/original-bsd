@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.41 (Berkeley) 05/28/93";
+static char sccsid[] = "@(#)readcf.c	6.42 (Berkeley) 06/03/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1182,6 +1182,10 @@ setoption(opt, val, safe, sticky, e)
 		MciCacheTimeout = convtime(val, 'm');
 		break;
 
+	  case 'l':		/* use Errors-To: header */
+		UseErrorsTo = atobool(val);
+		break;
+
 	  case 'L':		/* log level */
 		LogLevel = atoi(val);
 		break;
@@ -1198,6 +1202,8 @@ setoption(opt, val, safe, sticky, e)
 	  case 'n':		/* validate RHS in newaliases */
 		CheckAliases = atobool(val);
 		break;
+
+	    /* 'N' available -- was "net name" */
 
 	  case 'O':		/* daemon options */
 		setdaemonoptions(val);
@@ -1304,6 +1310,10 @@ setoption(opt, val, safe, sticky, e)
 	  case 'v':		/* run in verbose mode */
 		Verbose = atobool(val);
 		break;
+
+	    /* 'w' available -- was "no wildcard MX matching" */
+
+	    /* 'W' available -- was wizard password */
 
 	  case 'x':		/* load avg at which to auto-queue msgs */
 		QueueLA = atoi(val);

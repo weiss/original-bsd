@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	6.36 (Berkeley) 05/28/93";
+static char sccsid[] = "@(#)headers.c	6.37 (Berkeley) 06/03/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -338,7 +338,7 @@ eatheader(e, full)
 			e->e_receiptto = h->h_value;
 
 		/* see if this is an errors-to header */
-		if (bitset(H_ERRORSTO, h->h_flags))
+		if (UseErrorsTo && bitset(H_ERRORSTO, h->h_flags))
 			(void) sendtolist(h->h_value, (ADDRESS *) NULL,
 					  &e->e_errorqueue, e);
 	}
