@@ -1,7 +1,7 @@
 /*
  * Machine Language Assist for UC Berkeley Virtual Vax/Unix
  *
- *	locore.s		4.11	01/15/81
+ *	locore.s		4.12	01/26/81
  */
 
 	.set	HIGH,31		# mask for total disable
@@ -33,7 +33,7 @@ doadump:
 	.data
 	.align	2
 	.globl	dumpstack
-	.space	58*4			# separate stack for tape dumps
+	.space	96*4			# separate stack for tape dumps
 dumpstack: 
 	.space	4
 	.text
