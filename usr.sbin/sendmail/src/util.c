@@ -2,8 +2,9 @@
 # include <sysexits.h>
 # include "useful.h"
 # include <ctype.h>
+# include "conf.h"
 
-static char	SccsId[] = "@(#)util.c	3.8	09/12/81";
+static char	SccsId[] = "@(#)util.c	3.8.1.1	09/23/81";
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
