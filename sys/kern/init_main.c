@@ -1,4 +1,4 @@
-/*	init_main.c	3.5	06/07/80	*/
+/*	init_main.c	3.6	06/24/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -179,6 +179,7 @@ binit()
 	register struct buf *dp;
 	register int i;
 	struct bdevsw *bdp;
+	struct swdevt *swp;
 
 	bfreelist.b_forw = bfreelist.b_back =
 	    bfreelist.av_forw = bfreelist.av_back = &bfreelist;
@@ -201,6 +202,19 @@ binit()
 		}
 		nblkdev++;
 	}
+	/*
+	 * Count swap devices, and adjust total swap space available.
+	 * Some of this space will not be available until a vswapon()
+	 * system is issued, usually when the system goes multi-user.
+	 */
+	nswdev = 0;
+	for (swp = swdevt; swp->sw_dev; swp++)
+		nswdev++;
+	if (nswdev == 0)
+		panic("binit");
+	nswap *= nswdev;
+	maxpgio *= nswdev;
+	swfree(0);
 }
 
 /*
