@@ -1,9 +1,9 @@
 .\" Copyright (c) 1985 The Regents of the University of California.
 .\" All rights reserved.
 .\"
-.\" %sccs.include.redist.roff%
+.\" %sccs.include.redist.man%
 .\"
-.\"	@(#)0.t	1.5 (Berkeley) 10/14/90
+.\"	@(#)0.t	5.1 (Berkeley) 04/17/91
 .\"
 .if n .ND
 .TL
