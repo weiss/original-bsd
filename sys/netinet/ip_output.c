@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ip_output.c	7.5 (Berkeley) 05/24/87
+ *	@(#)ip_output.c	7.6 (Berkeley) 06/20/87
  */
 
 #include "param.h"
@@ -350,7 +350,7 @@ ip_ctloutput(op, so, level, optname, m)
 		}
 		break;
 	}
-	if (op == PRCO_SETOPT)
+	if (op == PRCO_SETOPT && *m)
 		(void)m_free(*m);
 	return (error);
 }

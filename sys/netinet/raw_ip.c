@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)raw_ip.c	7.1 (Berkeley) 06/05/86
+ *	@(#)raw_ip.c	7.2 (Berkeley) 06/20/87
  */
 
 #include "param.h"
@@ -146,7 +146,7 @@ rip_ctloutput(op, so, level, optname, m)
 		}
 		break;
 	}
-	if (op == PRCO_SETOPT)
+	if (op == PRCO_SETOPT && *m)
 		(void)m_free(*m);
 	return (error);
 }
