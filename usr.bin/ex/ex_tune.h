@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ex_tune.h	7.12 (Berkeley) 05/11/89
+ *	@(#)ex_tune.h	7.13 (Berkeley) 06/29/90
  */
 
 #include "pathnames.h"
@@ -104,7 +104,7 @@
 #define	TUBESIZE	5000	/* Maximum screen size for visual */
 #else
 #define	TUBELINES	100
-#define	TUBECOLS	160
+#define	TUBECOLS	220
 #define	TUBESIZE	(TUBELINES * 100)
 #endif
 
