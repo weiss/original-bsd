@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)yycosts.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)yycosts.c	5.2 (Berkeley) 04/06/87";
 #endif not lint
 
 #include "whoami.h"
@@ -235,6 +235,6 @@ yydocost(c)
 	printf("%4d\t", delcost(c));
 	if (repcost(c, YID) != inscost(YID, c) + delcost(c))
 		printf("%4d", repcost(c, YID));
-	printf("\t%s%s\n", charname(c,1));
+	printf("\t%s\n", charname(c,1));
 }
 #endif
