@@ -1,4 +1,4 @@
-# @(#)Makefile	4.4 05/04/83
+# @(#)Makefile	4.5 05/28/83
 OPTIONS=-DLOCALNET=46
 CFLAGS=	-O
 DESTDIR=
