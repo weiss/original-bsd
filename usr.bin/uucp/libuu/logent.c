@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)logent.c	5.7 (Berkeley) 02/24/88";
+static char sccsid[] = "@(#)logent.c	5.8	(Berkeley) 04/05/88";
 #endif
 
 #include "uucp.h"
@@ -142,7 +142,7 @@ logcls()
 /*
  *	make system log entry
  */
-syslog(text)
+log_xferstats(text)
 char *text;
 {
 	register struct tm *tp;
