@@ -11,7 +11,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)machdep.c	7.9 (Berkeley) 03/10/93
+ *	@(#)machdep.c	7.10 (Berkeley) 04/08/93
  */
 
 /* from: Utah $Hdr: machdep.c 1.63 91/04/24$ */
@@ -627,6 +627,11 @@ boot(howto)
 	/* take a snap shot before clobbering any registers */
 	if (curproc)
 		savectx(curproc->p_addr, 0);
+
+#ifdef DEBUG
+	if (panicstr)
+		traceback();
+#endif
 
 	boothowto = howto;
 	if ((howto & RB_NOSYNC) == 0 && waittime < 0) {
