@@ -3,7 +3,7 @@
 /*
  *	This routine adds the character to the current position
  *
- * 01/26/81 (Berkeley) @(#)addch.c	1.1
+ * 02/09/81 (Berkeley) @(#)addch.c	1.2
  */
 waddch(win, c)
 reg WINDOW	*win;
@@ -23,8 +23,7 @@ char		c;
 	  {
 		reg int		newx;
 
-		--x;
-		for (newx = x + (8 - (x & 07)) + 1; x <= newx; x++)
+		for (newx = x + (8 - (x & 07)); x < newx; x++)
 			if (waddch(win, ' ') == ERR)
 				return ERR;
 		return OK;
