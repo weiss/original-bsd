@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dead_vnops.c	7.15 (Berkeley) 02/03/92
+ *	@(#)dead_vnops.c	7.16 (Berkeley) 04/21/92
  */
 
 #include "param.h"
@@ -186,7 +186,7 @@ int	dead_print __P((
 		int mode))) dead_badop)
 #define dead_truncate ((int (*) __P(( \
 		struct vnode *vp, \
-		u_long length, \
+		off_t length, \
 		int flags))) nullop)
 #define dead_update ((int (*) __P(( \
 		struct vnode *vp, \
