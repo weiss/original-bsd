@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stty.h	5.3 (Berkeley) 06/10/91
+ *	@(#)stty.h	8.1 (Berkeley) 05/31/93
  */
 
 #include <sys/ioctl.h>
