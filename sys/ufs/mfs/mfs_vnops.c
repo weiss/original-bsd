@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfs_vnops.c	7.37 (Berkeley) 07/03/92
+ *	@(#)mfs_vnops.c	7.38 (Berkeley) 07/13/92
  */
 
 #include <sys/param.h>
@@ -16,7 +16,8 @@
 #include <sys/map.h>
 #include <sys/vnode.h>
 #include <sys/malloc.h>
-#include <sys/specdev.h>
+
+#include <miscfs/specfs/specdev.h>
 
 #include <machine/vmparam.h>
 
