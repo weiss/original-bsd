@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	4.33 (Berkeley) 02/27/88";
+static char sccsid[] = "@(#)mail.local.c	4.34 (Berkeley) 09/20/88";
 #endif
 
 #include <sys/param.h>
@@ -454,7 +454,7 @@ char **argv;
 				usage();
 			truename = argv[1];
 			fgets(line, LSIZE, stdin);
-			if (strcmpn("From", line, 4) == 0)
+			if (strncmp("From", line, 4) == 0)
 				line[0] = '\0';
 			argv++;
 			argc--;
