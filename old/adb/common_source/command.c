@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)command.c	5.3 (Berkeley) 05/08/89";
+static char sccsid[] = "@(#)command.c	5.4 (Berkeley) 09/26/89";
 #endif
 
 /*
@@ -9,7 +9,7 @@ static char sccsid[] = "@(#)command.c	5.3 (Berkeley) 05/08/89";
 #include "defs.h"
 #include <ctype.h>
 #include <sys/wait.h>
-#include "pathnames.h"
+#include <paths.h>
 
 extern char BADEQ[];		/* "unexpected `='" */
 extern char NOMATCH[];		/* "cannot locate value" */
