@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mman.h	7.7 (Berkeley) 06/23/92
+ *	@(#)mman.h	7.8 (Berkeley) 06/02/93
  */
 
 /*
@@ -56,6 +56,8 @@ caddr_t	mmap __P((caddr_t, size_t, int, int, int, off_t));
 int	mprotect __P((caddr_t, size_t, int));
 int	munmap __P((caddr_t, size_t));
 int	msync __P((caddr_t, size_t));
+int	mlock __P((caddr_t, size_t));
+int	munlock __P((caddr_t, size_t));
 __END_DECLS
 
 #endif /* !KERNEL */
