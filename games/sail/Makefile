@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 09/17/85
+#	@(#)Makefile	5.3 (Berkeley) 05/31/87
 #
 
 CTAGS = ctags -w
@@ -40,6 +40,8 @@ $(CFILES) $(HFILES) $(OTHERFILES):
 
 clean:
 	rm -f $(OBJS) $(JUNKFILES)
+
+depend:
 
 install: sail $(TARGET)/$(LOGFILE)
 	install -s -m 4755 -o $(SAILMASTER) sail $(TARGET)/sail
