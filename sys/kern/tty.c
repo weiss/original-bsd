@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.29 (Berkeley) 06/14/90
+ *	@(#)tty.c	7.30 (Berkeley) 06/14/90
  */
 
 #include "param.h"
@@ -834,7 +834,7 @@ parmrk:
 			tp->t_state |= TS_LNCH;
 			goto endcase;
 		}
-		if (CCEQ(cc[VFLUSHO], c)) {
+		if (CCEQ(cc[VDISCARD], c)) {
 			if (lflag&FLUSHO)
 				tp->t_lflag &= ~FLUSHO;
 			else {
