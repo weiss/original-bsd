@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_sig.c	7.47 (Berkeley) 06/25/92
+ *	@(#)kern_sig.c	7.48 (Berkeley) 07/03/92
  */
 
 #define	SIGPROP		/* include signal properties table */
@@ -1055,9 +1055,6 @@ sigexit(p, sig)
 coredump(p)
 	register struct proc *p;
 {
-	USES_VOP_GETATTR;
-	USES_VOP_SETATTR;
-	USES_VOP_UNLOCK;
 	register struct vnode *vp;
 	register struct pcred *pcred = p->p_cred;
 	register struct ucred *cred = pcred->pc_ucred;
