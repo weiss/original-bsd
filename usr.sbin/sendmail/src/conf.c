@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.22 (Berkeley) 08/20/93";
+static char sccsid[] = "@(#)conf.c	8.23 (Berkeley) 08/21/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1262,12 +1262,6 @@ vsprintf(s, fmt, ap)
 **		Puts the filesystem block size into bsize.
 */
 
-#ifndef HASSTATFS
-# if defined(BSD4_4) || defined(__osf__)
-#  define HASSTATFS
-# endif
-#endif
-
 #ifdef HASSTATFS
 # undef HASUSTAT
 #endif
@@ -1277,10 +1271,10 @@ vsprintf(s, fmt, ap)
 #endif
 
 #ifdef HASSTATFS
-# if defined(sgi) || defined(apollo) || defined(_SCO_unix_)
+# if defined(IRIX) || defined(apollo) || defined(_SCO_unix_)
 #  include <sys/statfs.h>
 # else
-#  if (defined(sun) && !defined(BSD)) || defined(__hpux) || defined(_CONVEX_SOURCE)
+#  if (defined(sun) && !defined(BSD)) || defined(__hpux) || defined(_CONVEX_SOURCE) || defined(NeXT)
 #   include <sys/vfs.h>
 #  else
 #   include <sys/mount.h>
@@ -1317,7 +1311,7 @@ freespace(dir, bsize)
 # if defined(HASUSTAT)
 	if (stat(dir, &statbuf) == 0 && ustat(statbuf.st_dev, &fs) == 0)
 # else
-#  if defined(sgi) || defined(apollo)
+#  if defined(IRIX) || defined(apollo)
 	if (statfs(dir, &fs, sizeof fs, 0) == 0)
 #  else
 #   if defined(ultrix)
