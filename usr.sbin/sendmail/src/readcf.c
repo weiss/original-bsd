@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.108 (Berkeley) 06/21/95";
+static char sccsid[] = "@(#)readcf.c	8.109 (Berkeley) 06/21/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1467,6 +1467,7 @@ setoption(opt, val, safe, sticky, e)
 			{
 				if (tTd(37, 1))
 					printf("(Resetting uid)");
+				endpwent();
 				(void) setgid(RealGid);
 				(void) setuid(RealUid);
 			}
