@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_loop.c	7.15 (Berkeley) 01/30/92
+ *	@(#)if_loop.c	7.16 (Berkeley) 03/15/92
  */
 
 /*
@@ -123,9 +123,11 @@ looutput(ifp, m, dst, rt)
 
 /* ARGSUSED */
 lortrequest(cmd, rt, sa)
-struct rtentry *rt;
-struct sockaddr *sa;
+	int cmd;
+	struct rtentry *rt;
+	struct sockaddr *sa;
 {
+
 	if (rt)
 		rt->rt_rmx.rmx_mtu = LOMTU;
 }
