@@ -1,4 +1,4 @@
-/*	mem.h	4.13	83/07/09	*/
+/*	mem.h	4.14	83/07/09	*/
 
 /*
  * Memory controller registers
@@ -76,7 +76,7 @@ struct	mcr {
 #define	M730_ADDR(mcr)	(((mcr)->mc_reg[0] >> 8) & 0x7fff)
 #endif
 
-#define	MEMINTVL	(hz*60*10)		/* 10 minutes */
+#define	MEMINTVL	(60*10)		/* 10 minutes */
 
 #ifdef	KERNEL
 int	nmcr;
