@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)fstab.c	4.4 (Berkeley) 06/19/83";
-#endif
+static char sccsid[] = "@(#)fstab.c	5.1 (Berkeley) 05/30/85";
+#endif not lint
 
 #include <fstab.h>
 #include <stdio.h>
