@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ns_pcb.c	6.7 (Berkeley) 02/21/86
+ *	@(#)ns_pcb.c	6.8 (Berkeley) 06/02/86
  */
 
 #include "param.h"
@@ -263,6 +263,7 @@ ns_pcbnotify(dst, errno, notify, param)
 	splx(s);
 }
 
+#ifdef notdef
 /*
  * After a routing change, flush old routing
  * and allocate a (hopefully) better one.
@@ -280,6 +281,7 @@ ns_rtchange(nsp)
 	}
 	/* SHOULD NOTIFY HIGHER-LEVEL PROTOCOLS */
 }
+#endif
 
 struct nspcb *
 ns_pcblookup(faddr, lport, wildp)
