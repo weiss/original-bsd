@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)arp.c	5.6 (Berkeley) 06/30/88";
+static char sccsid[] = "@(#)arp.c	5.7 (Berkeley) 08/18/88";
 #endif /* not lint */
 
 /*
@@ -319,7 +319,7 @@ dump(kernel, mem)
 	}
 	mf = open(mem, O_RDONLY);
 	if (mf < 0) {
-		fprintf(fprintf, "arp: cannot open %s\n", mem);
+		fprintf(stderr, "arp: cannot open %s\n", mem);
 		exit(1);
 	}
 	if (kflag) {
