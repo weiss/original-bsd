@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfs_vfsops.c	8.4 (Berkeley) 04/16/94
+ *	@(#)mfs_vfsops.c	8.5 (Berkeley) 03/30/95
  */
 
 #include <sys/param.h>
@@ -51,6 +51,7 @@ struct vfsops mfs_vfsops = {
 	ffs_fhtovp,
 	ffs_vptofh,
 	mfs_init,
+	ffs_sysctl,
 };
 
 /*
@@ -276,6 +277,6 @@ mfs_statfs(mp, sbp, p)
 	int error;
 
 	error = ffs_statfs(mp, sbp, p);
-	sbp->f_type = MOUNT_MFS;
+	sbp->f_type = mp->mnt_vfc->vfc_typenum;
 	return (error);
 }
