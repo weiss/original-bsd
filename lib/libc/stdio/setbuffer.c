@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)setbuffer.c	5.5 (Berkeley) 03/18/91";
+static char sccsid[] = "@(#)setbuffer.c	5.6 (Berkeley) 12/04/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
@@ -21,16 +21,16 @@ setbuffer(fp, buf, size)
 	int size;
 {
 
-	(void) setvbuf(fp, buf, buf ? _IOFBF : _IONBF, size);
+	(void)setvbuf(fp, buf, buf ? _IOFBF : _IONBF, size);
 }
 
 /*
  * set line buffering
  */
+int
 setlinebuf(fp)
 	FILE *fp;
 {
 
-	(void) setvbuf(fp, (char *)NULL, _IOLBF, (size_t)0);
-	return (0);	/* ??? */
+	return (setvbuf(fp, (char *)NULL, _IOLBF, (size_t)0));
 }
