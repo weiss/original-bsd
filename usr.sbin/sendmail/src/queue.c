@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.14 (Berkeley) 08/22/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.15 (Berkeley) 08/23/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.14 (Berkeley) 08/22/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.15 (Berkeley) 08/23/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -105,7 +105,7 @@ queueup(e, queueall, announce)
 				continue;
 			}
 
-			if (lockfile(fd, tf, LOCK_EX|LOCK_NB))
+			if (lockfile(fd, tf, NULL, LOCK_EX|LOCK_NB))
 				break;
 #ifdef LOG
 			else if (LogLevel > 0 && (i % 32) == 0)
@@ -916,7 +916,7 @@ readqf(e, announcefile)
 		return FALSE;
 	}
 
-	if (!lockfile(fileno(qfp), qf, LOCK_EX|LOCK_NB))
+	if (!lockfile(fileno(qfp), qf, NULL, LOCK_EX|LOCK_NB))
 	{
 		/* being processed by another queuer */
 		if (tTd(40, 8))
@@ -1197,7 +1197,7 @@ printqueue()
 			continue;
 		}
 		printf("%8s", w->w_name + 2);
-		if (!lockfile(fileno(f), w->w_name, LOCK_SH|LOCK_NB))
+		if (!lockfile(fileno(f), w->w_name, NULL, LOCK_SH|LOCK_NB))
 			printf("*");
 		else if (shouldqueue(w->w_pri, w->w_ctime))
 			printf("X");
@@ -1363,7 +1363,7 @@ queuename(e, type)
 					qf, QueueDir);
 				exit(EX_UNAVAILABLE);
 			}
-			if (lockfile(i, qf, LOCK_EX|LOCK_NB))
+			if (lockfile(i, qf, NULL, LOCK_EX|LOCK_NB))
 			{
 				e->e_lockfp = fdopen(i, "w");
 				break;
