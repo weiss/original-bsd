@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1983 Regents of the University of California.
+ * Copyright (c) 1983, 1988 Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)defs.h	5.4 (Berkeley) 02/16/88
+ *	@(#)defs.h	5.5 (Berkeley) 05/31/88
  */
 
 /*
@@ -67,6 +67,7 @@ extern	int errno;
 struct	in_addr inet_makeaddr();
 int	inet_addr();
 char	*malloc();
+char	*ctime();
 int	exit();
 int	sendmsg();
 int	supply();
