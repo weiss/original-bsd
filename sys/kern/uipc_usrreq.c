@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_usrreq.c	7.2.1.1 (Berkeley) 05/02/89
+ *	@(#)uipc_usrreq.c	7.10 (Berkeley) 05/02/89
  */
 
 #include "param.h"
@@ -40,7 +40,7 @@
  *	rethink name space problems
  *	need a proper out-of-band
  */
-struct	sockaddr sun_noname = { AF_UNIX };
+struct	sockaddr sun_noname = { sizeof(sun_noname), AF_UNIX };
 ino_t	unp_vno;			/* prototype for fake vnode numbers */
 
 /*ARGSUSED*/
@@ -250,6 +250,12 @@ uipc_usrreq(so, req, m, nam, rights)
 		break;
 
 	case PRU_SOCKADDR:
+		if (unp->unp_addr) {
+			nam->m_len = unp->unp_addr->m_len;
+			bcopy(mtod(unp->unp_addr, caddr_t),
+			    mtod(nam, caddr_t), (unsigned)nam->m_len);
+		} else
+			nam->m_len = 0;
 		break;
 
 	case PRU_PEERADDR:
@@ -257,7 +263,8 @@ uipc_usrreq(so, req, m, nam, rights)
 			nam->m_len = unp->unp_conn->unp_addr->m_len;
 			bcopy(mtod(unp->unp_conn->unp_addr, caddr_t),
 			    mtod(nam, caddr_t), (unsigned)nam->m_len);
-		}
+		} else
+			nam->m_len = 0;
 		break;
 
 	case PRU_SLOWTIMO:
@@ -281,10 +288,10 @@ release:
  * be large enough for at least one max-size datagram plus address.
  */
 #define	PIPSIZ	4096
-int	unpst_sendspace = PIPSIZ;
-int	unpst_recvspace = PIPSIZ;
-int	unpdg_sendspace = 2*1024;	/* really max datagram size */
-int	unpdg_recvspace = 4*1024;
+u_long	unpst_sendspace = PIPSIZ;
+u_long	unpst_recvspace = PIPSIZ;
+u_long	unpdg_sendspace = 2*1024;	/* really max datagram size */
+u_long	unpdg_recvspace = 4*1024;
 
 int	unp_rights;			/* file descriptors in flight */
 
@@ -295,18 +302,20 @@ unp_attach(so)
 	register struct unpcb *unp;
 	int error;
 	
-	switch (so->so_type) {
+	if (so->so_snd.sb_hiwat == 0 || so->so_rcv.sb_hiwat == 0) {
+		switch (so->so_type) {
 
-	case SOCK_STREAM:
-		error = soreserve(so, unpst_sendspace, unpst_recvspace);
-		break;
+		case SOCK_STREAM:
+			error = soreserve(so, unpst_sendspace, unpst_recvspace);
+			break;
 
-	case SOCK_DGRAM:
-		error = soreserve(so, unpdg_sendspace, unpdg_recvspace);
-		break;
+		case SOCK_DGRAM:
+			error = soreserve(so, unpdg_sendspace, unpdg_recvspace);
+			break;
+		}
+		if (error)
+			return (error);
 	}
-	if (error)
-		return (error);
 	m = m_getclr(M_DONTWAIT, MT_PCB);
 	if (m == NULL)
 		return (ENOBUFS);
@@ -348,9 +357,13 @@ unp_bind(unp, nam)
 	int error;
 
 	ndp->ni_dirp = soun->sun_path;
-	if (unp->unp_vnode != NULL || nam->m_len == MLEN)
+	if (unp->unp_vnode != NULL)
 		return (EINVAL);
-	*(mtod(nam, caddr_t) + nam->m_len) = 0;
+	if (nam->m_len == MLEN) {
+		if (*(mtod(nam, caddr_t) + nam->m_len - 1) != 0)
+			return (EINVAL);
+	} else
+		*(mtod(nam, caddr_t) + nam->m_len) = 0;
 /* SHOULD BE ABLE TO ADOPT EXISTING AND wakeup() ALA FIFO's */
 	ndp->ni_nameiop = CREATE | FOLLOW | LOCKPARENT;
 	ndp->ni_segflg = UIO_SYSSPACE;
@@ -380,14 +393,17 @@ unp_connect(so, nam)
 {
 	register struct sockaddr_un *soun = mtod(nam, struct sockaddr_un *);
 	register struct vnode *vp;
-	int error;
-	register struct socket *so2;
+	register struct socket *so2, *so3;
 	register struct nameidata *ndp = &u.u_nd;
+	struct unpcb *unp2, *unp3;
+	int error;
 
 	ndp->ni_dirp = soun->sun_path;
-	if (nam->m_len + (nam->m_off - MMINOFF) == MLEN)
-		return (EMSGSIZE);
-	*(mtod(nam, caddr_t) + nam->m_len) = 0;
+	if (nam->m_data + nam->m_len == &nam->m_dat[MLEN]) {	/* XXX */
+		if (*(mtod(nam, caddr_t) + nam->m_len - 1) != 0)
+			return (EMSGSIZE);
+	} else
+		*(mtod(nam, caddr_t) + nam->m_len) = 0;
 	ndp->ni_nameiop = LOOKUP | FOLLOW;
 	ndp->ni_segflg = UIO_SYSSPACE;
 	if (error = namei(ndp))
@@ -408,11 +424,18 @@ unp_connect(so, nam)
 		error = EPROTOTYPE;
 		goto bad;
 	}
-	if (so->so_proto->pr_flags & PR_CONNREQUIRED &&
-	    ((so2->so_options&SO_ACCEPTCONN) == 0 ||
-	     (so2 = sonewconn(so2)) == 0)) {
-		error = ECONNREFUSED;
-		goto bad;
+	if (so->so_proto->pr_flags & PR_CONNREQUIRED) {
+		if ((so2->so_options & SO_ACCEPTCONN) == 0 ||
+		    (so3 = sonewconn(so2)) == 0) {
+			error = ECONNREFUSED;
+			goto bad;
+		}
+		unp2 = sotounpcb(so2);
+		unp3 = sotounpcb(so3);
+		if (unp2->unp_addr)
+			unp3->unp_addr =
+				  m_copy(unp2->unp_addr, 0, (int)M_COPYALL);
+		so2 = so3;
 	}
 	error = unp_connect2(so, so2);
 bad:
@@ -608,9 +631,9 @@ restart:
 					continue;
 				fp->f_flag |= FMARK;
 			}
-			if (fp->f_type != DTYPE_SOCKET)
+			if (fp->f_type != DTYPE_SOCKET ||
+			    (so = (struct socket *)fp->f_data) == 0)
 				continue;
-			so = (struct socket *)fp->f_data;
 			if (so->so_proto->pr_domain != &unixdomain ||
 			    (so->so_proto->pr_flags&PR_RIGHTS) == 0)
 				continue;
