@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufsmount.h	7.15 (Berkeley) 10/07/92
+ *	@(#)ufsmount.h	7.16 (Berkeley) 10/07/92
  */
 
 struct buf;
@@ -49,3 +49,13 @@ struct ufsmount {
 
 /* Convert mount ptr to ufsmount ptr. */
 #define VFSTOUFS(mp)	((struct ufsmount *)((mp)->mnt_data))
+
+/*
+ * Macros to access file system parameters in the ufsmount structure.
+ * Used by ufs_bmap.
+ */
+#define	blkptrtodb(ump, b)	((b) << (ump)->um_bptrtodb)
+#define	is_sequential(ump, a, b) ((b) == (a) + ump->um_seqinc)
+#define MNINDIR(ump)	((ump)->um_nindir)
+
+
