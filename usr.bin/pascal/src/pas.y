@@ -89,7 +89,7 @@
 
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)pas.y 1.4 03/18/81"; */
+/* static	char sccsid[] = "@(#)pas.y 1.5 08/26/82"; */
 
 /*
  * The following line marks the end of the yacc
@@ -99,7 +99,7 @@
 ##
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pas.y 1.4 03/18/81";
+static	char sccsid[] = "@(#)pas.y 1.5 08/26/82";
 
 #include "whoami.h"
 #include "0.h"
@@ -603,9 +603,6 @@ stat:
 		|
 	YIF expr YTHEN stat YELSE stat
 		= $$ = tree5(T_IFEL, lineof($1), $2, $4, $6);
-		|
-	YIF expr YTHEN stat YELSE
-		= $$ = tree5(T_IFEL, lineof($1), $2, $4, NIL);
 		|
 	YASSERT '(' expr ')'
 		= $$ = tree3(T_ASRT, lineof($1), $3);
