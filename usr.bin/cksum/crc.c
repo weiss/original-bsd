@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)crc.c	5.1 (Berkeley) 04/01/91";
+static char sccsid[] = "@(#)crc.c	5.2 (Berkeley) 04/04/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -89,8 +89,8 @@ crc(fd, cval, clen)
 
 	crc = step = total = 0;
 	while ((nr = read(fd, buf, sizeof(buf))) > 0)
-		for (total += nr, p = buf; nr--;) {
-			if (!(i = crc >> 24 ^ *p++)) {
+		for (total += nr, p = buf; nr--; ++p) {
+			if (!(i = crc >> 24 ^ *p)) {
 				i = step++;
 				if (step >= sizeof(crctab)/sizeof(crctab[0]))
 					step = 0;
