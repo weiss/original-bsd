@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	5.30 (Berkeley) 07/12/92";
+static char sccsid[] = "@(#)recipient.c	5.31 (Berkeley) 07/12/92";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -188,7 +188,7 @@ recipient(a, sendq)
 		if (!isascii(*p) && (*p & 0377) != (SpaceSub & 0377))
 			quoted = TRUE;
 	}
-	stripquotes(buf, TRUE);
+	stripquotes(buf);
 
 	/* do sickly crude mapping for program mailing, etc. */
 	if (m == LocalMailer && buf[0] == '|')
