@@ -1,15 +1,15 @@
-SCCSID = "@(#)Makefile 1.27 05/06/82"
+SCCSID = "@(#)Makefile 1.28 07/26/82"
+
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
 WHOAMI = pc
 VERSION = 2.3
-DATE = 05/06/82
+DATE = 07/26/82
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
 RM = -rm -f
-GET = sccs -d/usr/src/cmd/pascal get
-#GET = touch
+TOUCH = touch -f
 
 CFLAGS = -O -w
 LDFLAGS = -z
@@ -60,11 +60,6 @@ OBJS =	ato.o \
 a.out: ${OBJS} config.c
 	${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} config.c
 
-sources: ${SRCS} ${HDRS} ${OTHERS}
-	
-${SRCS} ${HDRS} ${OTHERS}:
-	${GET} $@
-
 .c.o:
 	${RM} ${TMPDIR}/$*.c
 	${MKSTR} - ${ERRORSTRINGS} ${TMPDIR}/ $*.c
@@ -83,6 +78,12 @@ opcode.h: OPnames.h opc.c
 	cc opc.c -o opc
 	opc >opcode.h
 	${RM} opc
+
+0.h:
+	${TOUCH} 0.h
+
+yy.h:
+	${TOUCH} yy.h
 
 pTree.h:
 	echo "/* this is not pTree.h */" > pTree.h
