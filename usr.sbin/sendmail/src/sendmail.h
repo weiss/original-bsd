@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.63 (Berkeley) 05/05/93
+ *	@(#)sendmail.h	6.64 (Berkeley) 05/17/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.63		05/05/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.64		05/17/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -390,9 +390,6 @@ struct metamac
 	char	metaname;	/* external code (after $) */
 	char	metaval;	/* internal code (as above) */
 };
-
-
-#define ALIASCLASS	struct _aliasclass
 /*
 **  Information about currently open connections to mailers, or to
 **  hosts that we have looked up recently.
@@ -475,21 +472,26 @@ NAMECANON
 MAP
 {
 	MAPCLASS	*map_class;	/* the class of this map */
+	char		*map_mname;	/* name of this map */
 	int		map_flags;	/* flags, see below */
 	char		*map_file;	/* the (nominal) filename */
-	void		*map_db;	/* the open database ptr */
+	void		*map_db1;	/* the open database ptr */
+	void		*map_db2;	/* an "extra" database pointer */
 	char		*map_app;	/* to append to successful matches */
 	char		*map_domain;	/* the (nominal) NIS domain */
 	char		*map_rebuild;	/* program to run to do auto-rebuild */
-	char		**map_deplist;	/* dependency list */
 };
 
 /* bit values for map_flags */
-# define MF_VALID	00001		/* this entry is valid */
-# define MF_INCLNULL	00002		/* include null byte in key */
-# define MF_OPTIONAL	00004		/* don't complain if map not found */
-# define MF_NOFOLDCASE	00010		/* don't fold case in keys */
-# define MF_MATCHONLY	00020		/* don't use the map value */
+# define MF_VALID	0x0001		/* this entry is valid */
+# define MF_INCLNULL	0x0002		/* include null byte in key */
+# define MF_OPTIONAL	0x0004		/* don't complain if map not found */
+# define MF_NOFOLDCASE	0x0008		/* don't fold case in keys */
+# define MF_MATCHONLY	0x0010		/* don't use the map value */
+# define MF_OPEN	0x0020		/* this entry is open */
+# define MF_WRITABLE	0x0040		/* open for writing */
+# define MF_IMPL_HASH	0x1000		/* implicit: underlying hash database */
+# define MF_IMPL_NDBM	0x2000		/* implicit: underlying NDBM database */
 
 
 /*
@@ -498,10 +500,20 @@ MAP
 
 MAPCLASS
 {
-	bool	(*map_init)__P((MAP *, char *, char *));
-					/* initialization function */
-	char	*(*map_lookup)__P((MAP *, char *, int, char **, int *));
+	char	*map_cname;		/* name of this map class */
+	char	*map_ext;		/* extension for database file */
+	bool	(*map_parse)__P((MAP *, char *));
+					/* argument parsing function */
+	char	*(*map_lookup)__P((MAP *, char *, char **, int *));
 					/* lookup function */
+	void	(*map_store)__P((MAP *, char *, char *));
+					/* store function */
+	void	(*map_rebuild)__P((MAP *, FILE *, int));
+					/* rebuild function */
+	bool	(*map_open)__P((MAP *, int));
+					/* open function */
+	void	(*map_close)__P((MAP *));
+					/* close function */
 };
 /*
 **  Symbol table definitions
@@ -518,12 +530,11 @@ struct symtab
 		ADDRESS		*sv_addr;	/* pointer to address header */
 		MAILER		*sv_mailer;	/* pointer to mailer */
 		char		*sv_alias;	/* alias */
-		MAPCLASS	sv_mapclass;	/* mapping function class */
+		MAPCLASS	*sv_mapclass;	/* mapping function class */
 		MAP		sv_map;		/* mapping function */
 		char		*sv_hostsig;	/* host signature */
 		MCI		sv_mci;		/* mailer connection info */
 		NAMECANON	sv_namecanon;	/* canonical name cache */
-		ALIASCLASS	*sv_aliasclass;	/* alias class (type) */
 	}	s_value;
 };
 
@@ -539,7 +550,6 @@ typedef struct symtab	STAB;
 # define ST_MAP		6	/* mapping function */
 # define ST_HOSTSIG	7	/* host signature */
 # define ST_NAMECANON	8	/* cached canonical name */
-# define ST_ALIASCLASS	9	/* alias class */
 # define ST_MCI		16	/* mailer connection info (offset) */
 
 # define s_class	s_value.sv_class
@@ -551,7 +561,6 @@ typedef struct symtab	STAB;
 # define s_hostsig	s_value.sv_hostsig
 # define s_map		s_value.sv_map
 # define s_namecanon	s_value.sv_namecanon
-# define s_aliasclass	s_value.sv_aliasclass
 
 extern STAB	*stab();
 
@@ -834,28 +843,28 @@ EXTERN u_char	tTdvect[100];
 **  Declarations of useful functions
 */
 
-extern ADDRESS	*parseaddr __P((char *, ADDRESS *, int, int, char **, ENVELOPE *));
-extern char	*xalloc __P((int));
-extern bool	sameaddr __P((ADDRESS *, ADDRESS *));
-extern FILE	*dfopen __P((char *, int, int));
-extern EVENT	*setevent __P((time_t, int(*)(), int));
-extern char	*sfgets __P((char *, int, FILE *, time_t));
-extern char	*queuename __P((ENVELOPE *, int));
-extern time_t	curtime __P(());
-extern bool	transienterror __P((int));
-extern char	*errstring __P((int));
+extern ADDRESS		*parseaddr __P((char *, ADDRESS *, int, int, char **, ENVELOPE *));
+extern char		*xalloc __P((int));
+extern bool		sameaddr __P((ADDRESS *, ADDRESS *));
+extern FILE		*dfopen __P((char *, int, int));
+extern EVENT		*setevent __P((time_t, int(*)(), int));
+extern char		*sfgets __P((char *, int, FILE *, time_t));
+extern char		*queuename __P((ENVELOPE *, int));
+extern time_t		curtime __P(());
+extern bool		transienterror __P((int));
+extern const char	*errstring __P((int));
 
 /* ellipsis is a different case though */
 #ifdef __STDC__
-extern void	auth_warning(ENVELOPE *, char *, ...);
-extern void	syserr(char *, ...);
-extern void	usrerr(char *, ...);
-extern void	message(char *, ...);
-extern void	nmessage(char *, ...);
+extern void		auth_warning(ENVELOPE *, char *, ...);
+extern void		syserr(char *, ...);
+extern void		usrerr(char *, ...);
+extern void		message(char *, ...);
+extern void		nmessage(char *, ...);
 #else
-extern void	auth_warning();
-extern void	syserr();
-extern void	usrerr();
-extern void	message();
-extern void	nmessage();
+extern void		auth_warning();
+extern void		syserr();
+extern void		usrerr();
+extern void		message();
+extern void		nmessage();
 #endif

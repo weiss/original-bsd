@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.48 (Berkeley) 05/14/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.49 (Berkeley) 05/17/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.48 (Berkeley) 05/14/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.49 (Berkeley) 05/17/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -55,7 +55,7 @@ static char sccsid[] = "@(#)daemon.c	6.48 (Berkeley) 05/14/93 (without daemon mo
 **		appropriate for communication.  Returns zero on
 **		success, else an exit status describing the
 **		error.
-**	maphostname(map, hbuf, hbufsiz, avp)
+**	host_map_lookup(map, hbuf, avp, pstat)
 **		Convert the entry in hbuf into a canonical form.
 */
 
@@ -664,8 +664,6 @@ gothostent:
 		(void) close(s);
 		if (hp && hp->h_addr_list[i])
 		{
-			extern char *errstring();
-
 			if (tTd(16, 1))
 				printf("Connect failed (%s); trying new address....\n",
 					errstring(sav_errno));
@@ -697,8 +695,6 @@ gothostent:
 			return EX_TEMPFAIL;
 		else
 		{
-			extern char *errstring();
-
 			message("%s", errstring(sav_errno));
 			return (EX_UNAVAILABLE);
 		}
@@ -945,12 +941,11 @@ finish:
 	return hbuf;
 }
 /*
-**  MAPHOSTNAME -- turn a hostname into canonical form
+**  HOST_MAP_LOOKUP -- turn a hostname into canonical form
 **
 **	Parameters:
 **		map -- a pointer to this map (unused).
-**		hbuf -- a buffer containing a hostname.
-**		hbsize -- the size of hbuf.
+**		name -- the (presumably unqualified) hostname.
 **		avp -- unused -- for compatibility with other mapping
 **			functions.
 **		statp -- an exit status (out parameter) -- set to
@@ -967,10 +962,9 @@ finish:
 */
 
 char *
-maphostname(map, hbuf, hbsize, avp, statp)
+host_map_lookup(map, name, avp, statp)
 	MAP *map;
-	char *hbuf;
-	int hbsize;
+	char *name;
 	char **avp;
 	int *statp;
 {
@@ -979,23 +973,21 @@ maphostname(map, hbuf, hbsize, avp, statp)
 	char *cp;
 	int i;
 	register STAB *s;
+	static char hbuf[MAXNAME];
 	extern struct hostent *gethostbyaddr();
 	extern int h_errno;
-
-	/* allow room for null */
-	hbsize--;
 
 	/*
 	**  See if we have already looked up this name.  If so, just
 	**  return it.
 	*/
 
-	s = stab(hbuf, ST_NAMECANON, ST_ENTER);
+	s = stab(name, ST_NAMECANON, ST_ENTER);
 	if (bitset(NCF_VALID, s->s_namecanon.nc_flags))
 	{
 		if (tTd(9, 1))
-			printf("maphostname(%s, %d) => CACHE %s\n",
-				hbuf, hbsize, s->s_namecanon.nc_cname);
+			printf("host_map_lookup(%s) => CACHE %s\n",
+				name, s->s_namecanon.nc_cname);
 		errno = s->s_namecanon.nc_errno;
 		h_errno = s->s_namecanon.nc_herrno;
 		*statp = s->s_namecanon.nc_stat;
@@ -1005,18 +997,19 @@ maphostname(map, hbuf, hbsize, avp, statp)
 	/*
 	**  If first character is a bracket, then it is an address
 	**  lookup.  Address is copied into a temporary buffer to
-	**  strip the brackets and to preserve hbuf if address is
+	**  strip the brackets and to preserve name if address is
 	**  unknown.
 	*/
 
-	if (*hbuf != '[')
+	if (*name != '[')
 	{
 		extern bool getcanonname();
 
 		if (tTd(9, 1))
-			printf("maphostname(%s, %d) => ", hbuf, hbsize);
+			printf("host_map_lookup(%s) => ", name);
 		s->s_namecanon.nc_flags |= NCF_VALID;		/* will be soon */
-		if (getcanonname(hbuf, hbsize))
+		(void) strcpy(hbuf, name);
+		if (getcanonname(hbuf, sizeof hbuf - 1))
 		{
 			if (tTd(9, 1))
 				printf("%s\n", hbuf);
@@ -1065,7 +1058,7 @@ maphostname(map, hbuf, hbsize, avp, statp)
 			**  Try to look it up in /etc/hosts
 			*/
 
-			hp = gethostbyname(hbuf);
+			hp = gethostbyname(name);
 			if (hp == NULL)
 			{
 				/* no dice there either */
@@ -1078,18 +1071,18 @@ maphostname(map, hbuf, hbsize, avp, statp)
 			return hp->h_name;
 		}
 	}
-	if ((cp = strchr(hbuf, ']')) == NULL)
+	if ((cp = strchr(name, ']')) == NULL)
 		return (NULL);
 	*cp = '\0';
-	in_addr = inet_addr(&hbuf[1]);
+	in_addr = inet_addr(&name[1]);
 
 	/* check to see if this is one of our addresses */
 	for (i = 0; MyIpAddrs[i].s_addr != 0; i++)
 	{
 		if (MyIpAddrs[i].s_addr == in_addr)
 		{
-			strncpy(hbuf, MyHostName, hbsize);
-			hbuf[hbsize] = '\0';
+			strncpy(hbuf, MyHostName, sizeof hbuf - 1);
+			hbuf[sizeof hbuf - 1] = '\0';
 			return hbuf;
 		}
 	}
@@ -1107,8 +1100,8 @@ maphostname(map, hbuf, hbsize, avp, statp)
 
 	/* found a match -- copy out */
 	s->s_namecanon.nc_cname = newstr(hp->h_name);
-	if (strlen(hp->h_name) > hbsize)
-		hp->h_name[hbsize] = '\0';
+	if (strlen(hp->h_name) > sizeof hbuf - 1)
+		hp->h_name[sizeof hbuf - 1] = '\0';
 	(void) strcpy(hbuf, hp->h_name);
 	s->s_namecanon.nc_stat = *statp = EX_OK;
 	return hbuf;
@@ -1281,8 +1274,7 @@ getauthinfo(fd)
 **
 **	Parameters:
 **		map -- a pointer to the database map.
-**		hbuf -- a buffer containing a hostname.
-**		hbsize -- size of hbuf.
+**		name -- a buffer containing a hostname.
 **		avp -- a pointer to a (cf file defined) argument vector.
 **		statp -- an exit status (out parameter).
 **
@@ -1291,7 +1283,7 @@ getauthinfo(fd)
 **		FALSE otherwise.
 **
 **	Side Effects:
-**		Looks up the host specified in hbuf.  If it is not
+**		Looks up the host specified in name.  If it is not
 **		the canonical name for that host, replace it with
 **		the canonical name.  If the name is unknown, or it
 **		is already the canonical name, leave it unchanged.
@@ -1299,16 +1291,15 @@ getauthinfo(fd)
 
 /*ARGSUSED*/
 char *
-maphostname(map, hbuf, hbsize, avp, statp)
+host_map_lookup(map, name, avp, statp)
 	MAP *map;
-	char *hbuf;
-	int hbsize;
+	char *name;
 	char **avp;
 	char *statp;
 {
 	register struct hostent *hp;
 
-	hp = gethostbyname(hbuf);
+	hp = gethostbyname(name);
 	if (hp != NULL)
 		return hp->h_name;
 	*statp = EX_NOHOST;
