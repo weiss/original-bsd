@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.19 (Berkeley) 11/28/93";
+static char sccsid[] = "@(#)parseaddr.c	8.20 (Berkeley) 12/02/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -76,14 +76,6 @@ parseaddr(addr, a, flags, delim, delimptr, e)
 
 	if (delimptr == NULL)
 		delimptr = &delimptrbuf;
-
-	if (strlen(addr) >= MAXNAME)
-	{
-		usrerr("Name too long, %d characters max", MAXNAME - 1);
-		if (tTd(20, 1))
-			printf("parseaddr-->NULL\n");
-		return NULL;
-	}
 
 	pvp = prescan(addr, delim, pvpbuf, delimptr);
 	if (pvp == NULL)
@@ -378,6 +370,7 @@ prescan(addr, delim, pvpbuf, delimptr)
 				if (q >= &pvpbuf[PSBUFSIZE - 5])
 				{
 					usrerr("553 Address too long");
+	returnnull:
 					if (delimptr != NULL)
 						*delimptr = p;
 					CurEnv->e_to = saveto;
@@ -509,10 +502,12 @@ prescan(addr, delim, pvpbuf, delimptr)
 			if (avp >= &av[MAXATOM])
 			{
 				syserr("553 prescan: too many tokens");
-				if (delimptr != NULL)
-					*delimptr = p;
-				CurEnv->e_to = saveto;
-				return (NULL);
+				goto returnnull;
+			}
+			if (q - tok > MAXNAME)
+			{
+				syserr("553 prescan: token too long");
+				goto returnnull;
 			}
 			*avp++ = tok;
 		}

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	8.19.1.1 (Berkeley) 11/27/93";
+static char sccsid[] = "@(#)envelope.c	8.20 (Berkeley) 12/02/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -605,7 +605,7 @@ setsender(from, e, delimptr, internal)
 			}
 			syslog(LOG_NOTICE,
 				"setsender: %s: invalid or unparseable, received from %s",
-				from, p);
+				shortenstring(from, 83), p);
 		}
 # endif /* LOG */
 		if (from != NULL)
@@ -692,9 +692,7 @@ setsender(from, e, delimptr, internal)
 			    strcmp(pw->pw_name, e->e_from.q_user) == 0 &&
 			    !internal)
 			{
-				if (buildfname(pw->pw_gecos, e->e_from.q_user, buf) &&
-					hvalue("MIME-Version", e) == NULL)
-						addheader("MIME-Version", "1.0", e);
+				buildfname(pw->pw_gecos, e->e_from.q_user, buf);
 				if (buf[0] != '\0')
 					FullName = newstr(buf);
 			}
