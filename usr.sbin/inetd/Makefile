@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 04/27/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	inetd
 MAN8=	inetd.0
