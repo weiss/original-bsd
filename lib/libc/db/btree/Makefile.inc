@@ -1,7 +1,8 @@
-#	@(#)Makefile.inc	5.1 (Berkeley) 01/08/91
+#	@(#)Makefile.inc	5.2 (Berkeley) 01/23/91
 
 # btree sources
 
 .PATH: ${.CURDIR}/btree
 
-SRCS+=	btree.c lrucache.c
+SRCS+=	big.c btree.c delete.c insert.c lrucache.c lruhash.c lrutils.c \
+	search.c seq.c split.c storage.c updutils.c utils.c
