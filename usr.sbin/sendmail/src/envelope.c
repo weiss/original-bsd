@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	6.33 (Berkeley) 04/27/93";
+static char sccsid[] = "@(#)envelope.c	6.34 (Berkeley) 05/03/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -199,6 +199,8 @@ clearenvelope(e, fullclear)
 
 	/* now clear out the data */
 	STRUCTCOPY(BlankEnvelope, *e);
+	if (Verbose)
+		e->e_sendmode = SM_DELIVER;
 	bh = BlankEnvelope.e_header;
 	nhp = &e->e_header;
 	while (bh != NULL)
