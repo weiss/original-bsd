@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)kern_exec.c	7.57 (Berkeley) 05/29/92
+ *	@(#)kern_exec.c	7.58 (Berkeley) 06/04/92
  */
 
 #include "param.h"
@@ -147,7 +147,7 @@ execve(p, uap, retval)
 		goto bad;
 	}
 #endif
-#if defined(hp300)
+#if defined(hp300) || defined(luna68k)
 	switch ((int)exdata.ex_exec.a_mid) {
 
 	/*
