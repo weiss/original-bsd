@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.96 (Berkeley) 05/29/95";
+static char sccsid[] = "@(#)readcf.c	8.97 (Berkeley) 05/30/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -570,7 +570,7 @@ readcf(cfname, safe, e)
 			break;
 
 		  case 'K':
-			makemapentry(&bp[1]);
+			(void) makemapentry(&bp[1]);
 			break;
 
 		  case 'E':
@@ -2073,13 +2073,14 @@ setclass(class, str)
 **		line -- the config file line
 **
 **	Returns:
-**		none.
+**		A pointer to the map that has been created.
+**		NULL if there was a syntax error.
 **
 **	Side Effects:
 **		Enters the map into the dictionary.
 */
 
-void
+MAP *
 makemapentry(line)
 	char *line;
 {
@@ -2094,7 +2095,7 @@ makemapentry(line)
 	if (!(isascii(*p) && isalnum(*p)))
 	{
 		syserr("readcf: config K line: no map name");
-		return;
+		return NULL;
 	}
 
 	mapname = p;
@@ -2107,7 +2108,7 @@ makemapentry(line)
 	if (!(isascii(*p) && isalnum(*p)))
 	{
 		syserr("readcf: config K line, map %s: no map class", mapname);
-		return;
+		return NULL;
 	}
 	classname = p;
 	while (isascii(*++p) && isalnum(*p))
@@ -2122,7 +2123,7 @@ makemapentry(line)
 	if (class == NULL)
 	{
 		syserr("readcf: map %s: class %s not available", mapname, classname);
-		return;
+		return NULL;
 	}
 
 	/* enter the map */
@@ -2144,6 +2145,8 @@ makemapentry(line)
 			s->s_map.map_domain == NULL ? "(null)" : s->s_map.map_domain,
 			s->s_map.map_rebuild == NULL ? "(null)" : s->s_map.map_rebuild);
 	}
+
+	return &s->s_map;
 }
 /*
 **  INITTIMEOUTS -- parse and set timeout values
