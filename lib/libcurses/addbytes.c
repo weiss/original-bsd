@@ -6,11 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)addbytes.c	8.1 (Berkeley) 06/11/93";
+static char sccsid[] = "@(#)addbytes.c	8.2 (Berkeley) 01/09/94";
 #endif	/* not lint */
 
 #include <curses.h>
-#include <termios.h>
 
 #define	SYNCH_IN	{y = win->cury; x = win->curx;}
 #define	SYNCH_OUT	{win->cury = y; win->curx = x;}
