@@ -7,23 +7,22 @@
  */
 
 #include <errno.h>
+#include <signal.h>
 #include "sendmail.h"
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.8 (Berkeley) 02/23/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.9 (Berkeley) 02/23/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.8 (Berkeley) 02/23/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.9 (Berkeley) 02/23/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
 #ifdef DAEMON
 
 # include <netdb.h>
-# include <sys/signal.h>
 # include <sys/wait.h>
 # include <sys/time.h>
-# include <sys/resource.h>
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
