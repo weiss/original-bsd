@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)trsp.c	6.5 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)trsp.c	6.6 (Berkeley) 03/05/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -297,8 +297,8 @@ spp_trace(act, ostate, asp, sp, si, req)
 			printf("flags=%x", flags);
 			if (flags) {
 				char *cp = "<";
-#define pf(f) { if (flags&SP_/**/f) { printf("%s%s", cp, "f"); cp = ","; } }
-				pf(SP); pf(SA); pf(OB); pf(EM);
+#define pf(f) { if (flags&f) { printf("%s%s", cp, "f"); cp = ","; } }
+				pf(SP_SP); pf(SP_SA); pf(SP_OB); pf(SP_EM);
 				printf(">");
 			}
 			printf(", ");
