@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ld.c	5.6 (Berkeley) 11/11/86";
+static char sccsid[] = "@(#)ld.c	5.7 (Berkeley) 03/17/87";
 #endif not lint
 
 /*
@@ -1396,7 +1396,7 @@ putl(cp, v)
  * each relocation datum address by our base position in the new segment.
  */
 load2td(creloc, position, b1, b2)
-	long creloc, offset;
+	long creloc, position;
 	struct biobuf *b1, *b2;
 {
 	register struct nlist *sp;
