@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uio.h	7.7 (Berkeley) 03/07/91
+ *	@(#)uio.h	7.8 (Berkeley) 04/15/91
  */
 
 #ifndef _UIO_H_
@@ -33,6 +33,7 @@ struct uio {
 	int	uio_resid;
 	enum	uio_seg uio_segflg;
 	enum	uio_rw uio_rw;
+	struct	proc *uio_procp;
 };
 
  /*
