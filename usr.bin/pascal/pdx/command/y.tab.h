@@ -2,11 +2,9 @@
  * Copyright (c) 1982 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)y.tab.h	5.2 (Berkeley) 06/07/85
  */
-
-#ifndef lint
-static char sccsid[] = "@(#)y.tab.h	5.1 (Berkeley) 06/07/85";
-#endif not lint
 
 typedef union  {
 	SYM *y_sym;
