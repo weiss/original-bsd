@@ -9,7 +9,7 @@
  * Startup -- interface with user.
  */
 
-static char *SccsId = "@(#)main.c	1.4 04/01/81";
+static char *SccsId = "@(#)main.c	2.1 07/01/81";
 
 /*
  * Find out who the user is, copy his mail file (if exists) into

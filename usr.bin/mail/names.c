@@ -8,7 +8,7 @@
 
 #include "rcv.h"
 
-static char *SccsId = "@(#)names.c	1.2 04/01/81";
+static char *SccsId = "@(#)names.c	2.1 07/01/81";
 
 /*
  * Allocate a single element of a name list,
