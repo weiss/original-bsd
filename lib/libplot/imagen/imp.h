@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1985 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1985, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)imp.h	5.3 (Berkeley) 04/22/91
+ *	@(#)imp.h	8.1 (Berkeley) 06/04/93
  */
 
 #include <stdio.h>
