@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_subr.c	7.1	07/08/81";
+static char *sccsid = "@(#)ex_subr.c	7.2	07/26/81";
 #include "ex.h"
 #include "ex_re.h"
 #include "ex_tty.h"
@@ -352,7 +352,7 @@ merror(seekpt, i)
 	merror1(seekpt);
 	if (*cp == '\n')
 		putnl(), cp++;
-	if (inopen && CE)
+	if (inopen > 0 && CE)
 		vclreol();
 	if (SO && SE)
 		putpad(SO);
