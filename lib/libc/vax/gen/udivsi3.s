@@ -1,6 +1,6 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Donn Seeley at UUNET Technologies, Inc.
@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)udivsi3.s	6.2 (Berkeley) 04/15/91"
+	.asciz "@(#)udivsi3.s	8.1 (Berkeley) 06/04/93"
 #endif /* LIBC_SCCS and not lint */
 
 /*
