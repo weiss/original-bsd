@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.17 (Berkeley) 05/11/90
+#	@(#)Makefile	5.18 (Berkeley) 07/04/90
 
 PROG=	sendmail
 CFLAGS+=-I${.CURDIR} -DVMUNIX
@@ -13,6 +13,7 @@ MAN5=	aliases.0
 MAN8=	sendmail.0 
 LINKS=	${DESTDIR}/usr/sbin/sendmail ${DESTDIR}/usr/bin/newaliases \
 	${DESTDIR}/usr/sbin/sendmail ${DESTDIR}/usr/bin/mailq
+BINDIR=	/usr/sbin
 BINOWN=	root
 BINGRP=	kmem
 BINMODE=6555
