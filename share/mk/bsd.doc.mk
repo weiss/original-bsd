@@ -1,4 +1,4 @@
-#	@(#)bsd.doc.mk	5.9 (Berkeley) 06/05/93
+#	@(#)bsd.doc.mk	5.10 (Berkeley) 06/05/93
 
 BIB?=		bib
 EQN?=		eqn
@@ -7,7 +7,7 @@ GRIND?=		vgrind -f
 INDXBIB?=	indxbib
 PIC?=		pic
 REFER?=		refer
-ROFF?=		groff -M/usr/old/lib/tmac ${MACROS} ${PAGES}
+ROFF?=		groff -M/usr/share/tmac -M/usr/old/lib/tmac ${MACROS} ${PAGES}
 SOELIM?=	soelim
 TBL?=		tbl
 
