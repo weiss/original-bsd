@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.22 (Berkeley) 11/14/91
+#	@(#)Makefile	5.23 (Berkeley) 07/15/92
 
-SUBDIR=	compact cpp crypt groups hostid ld lex make more refer rev roff \
-	sum symorder which whoami yacc
+SUBDIR=	awk compact cpp crypt groups hostid ld lex make more refer roff \
+	sed sum symorder which whoami yacc
 
 .if   (${MACHINE} == "hp300")
 SUBDIR+=as.hpux
