@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)ss..	6.3 (Berkeley) 06/05/93
+.\"	@(#)ss..	8.1 (Berkeley) 06/08/93
 .\"
 .EH 'PSD:15-%''Yacc: Yet Another Compiler-Compiler'
 .OH 'Yacc: Yet Another Compiler-Compiler''PSD:15-%'
