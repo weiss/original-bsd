@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.1 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)util.c	8.2 (Berkeley) 04/01/94";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -26,12 +26,12 @@ static char sccsid[] = "@(#)util.c	8.1 (Berkeley) 05/31/93";
 
 void
 prcopy(src, dest, len)
-	register char *src, *dest;
-	register int len;
+	char *src, *dest;
+	int len;
 {
-	register int ch;
+	int ch;
 
-	while(len--) {
+	while (len--) {
 		ch = *src++;
 		*dest++ = isprint(ch) ? ch : '?';
 	}
