@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)gmon.c	4.1 (Berkeley) 11/29/81";
+static	char *sccsid = "@(#)gmon.c	4.2 (Berkeley) 03/13/82";
 
 #ifdef DEBUG
 #include <stdio.h>
@@ -295,4 +295,15 @@ monitor( lowpc , highpc , buf , bufsiz )
     else
 	o = 65536;
     profil( buf , bufsiz , lowpc , o );
+}
+
+/*
+ * This is a stub for the "brk" system call, which we want to
+ * catch and ignore, so that it will not deallocate our data
+ * space. (of which the program is not aware)
+ */
+brk(addr)
+	int *addr;
+{
+	;
 }
