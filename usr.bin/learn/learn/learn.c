@@ -1,12 +1,13 @@
 #ifndef lint
-static char sccsid[] = "@(#)learn.c	4.4	(Berkeley)	05/15/86";
+static char sccsid[] = "@(#)learn.c	4.5	(Berkeley)	05/10/89";
 #endif not lint
 
-#include "stdio.h"
+#include <sys/signal.h>
+#include <stdio.h>
 #include "lrnref.h"
-#include "signal.h"
+#include "pathnames.h"
 
-char	*direct	= "/usr/lib/learn";	/* CHANGE THIS ON YOUR SYSTEM */
+char	*direct	= _PATH_LEARN;
 int	more;
 char	*level;
 int	speed;
