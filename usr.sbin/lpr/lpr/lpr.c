@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	5.6 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)lpr.c	5.7 (Berkeley) 06/22/89";
 #endif /* not lint */
 /*
  *      lpr -- off line print
@@ -452,7 +452,7 @@ card(c, p2)
 
 	*p1++ = c;
 	while ((c = *p2++) != '\0') {
-		*p1++ = c;
+		*p1++ = (c == '\n') ? ' ' : c;
 		len++;
 	}
 	*p1++ = '\n';
