@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signal.h	7.11 (Berkeley) 07/01/90
+ *	@(#)signal.h	7.12 (Berkeley) 10/23/90
  */
 
 #ifndef	NSIG
@@ -193,6 +193,11 @@ struct	sigcontext {
 #endif /* KERNEL */
 
 #if __STDC__ || c_plusplus
+#ifdef KERNEL
+#include "types.h"
+#else
+#include <sys/types.h>
+#endif
 int kill(pid_t, int);
 int sigaction(int, const struct sigaction *, struct sigaction *);
 int sigprocmask(int, const sigset_t *, sigset_t *);
