@@ -9,11 +9,12 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)err.c	5.6 (Berkeley) 10/24/85";
+static char	SccsId[] = "@(#)err.c	5.7 (Berkeley) 11/22/85";
 #endif not lint
 
 # include "sendmail.h"
 # include <errno.h>
+# include <netdb.h>
 
 /*
 **  SYSERR -- Print error message.
@@ -351,6 +352,10 @@ errstring(errno)
 		if (CurHostName == NULL)
 			break;
 		(void) sprintf(buf, "Connection refused by %s", CurHostName);
+		return (buf);
+
+	  case (TRY_AGAIN+MAX_ERRNO):
+		(void) sprintf(buf, "Host Name Lookup Failure");
 		return (buf);
 	}
 # endif VMUNIX
