@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)sa.c	4.9 (Berkeley) 12/12/84";
+static char *sccsid = "@(#)sa.c	4.10 (Berkeley) 10/22/87";
 #endif
 
 /*
@@ -953,7 +953,7 @@ char *
 makekey(uid)
 	int uid;
 {
-	sprintf(UserKey+1, "%04x", uid);
+	(void)sprintf(UserKey+1, "%04x", uid);
 	UserKey[0] = USERKEY;
 	return(UserKey);
 }
