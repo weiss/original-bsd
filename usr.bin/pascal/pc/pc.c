@@ -1,8 +1,10 @@
-static	char sccsid[] = "@(#)pc.c 3.24 06/10/83";
+#ifndef lint
+static	char sccsid[] = "@(#)pc.c	3.25 (Berkeley) 07/02/83";
+#endif
 
 #include <stdio.h>
 #include <signal.h>
-#include <wait.h>
+#include <sys/wait.h>
 #include <sys/param.h>
 
 /*
