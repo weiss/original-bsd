@@ -32,7 +32,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.60		10/27/82);
+SCCSID(@(#)conf.c	3.61		11/03/82);
 
 
 
@@ -103,6 +103,12 @@ char	Arpa_Usrerr[] =		"554";	/* some (fatal) user error */
 
 char	*ConfFile =	"/usr/lib/sendmail.cf";	/* runtime configuration */
 char	*XcriptFile =	"/tmp/mailxXXXXXX";	/* template for transcript */
+
+/*
+**  Some other configuration....
+*/
+
+char	SpaceSub =	'.';
 
 # ifdef V6
 /*
