@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)up.c	6.9 (Berkeley) 09/17/85
+ *	@(#)up.c	6.10 (Berkeley) 02/23/86
  */
 
 #include "up.h"
@@ -721,7 +721,7 @@ doattn:
 	 * the unit start routine to place the slave
 	 * on the controller device queue.
 	 */
-	while (unit = ffs(as)) {
+	while (unit = ffs((long)as)) {
 		unit--;		/* was 1 origin */
 		as &= ~(1<<unit);
 		upaddr->upas = 1<<unit;
