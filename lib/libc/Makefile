@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.19 (Berkeley) 03/09/86
+#	@(#)Makefile	4.20 (Berkeley) 10/13/86
 #
 #
 # The system has two monitoring schemes, utilizing either ``prof''
@@ -42,7 +42,10 @@ HOSTLOOKUP=	named
 DESTDIR=
 INSTALL=install -m 644
 DFLMON=	mon.o
-MACHINE=vax
+#ifdef vax
+#MACHINE=vax
+#endif
+MACHINE=tahoe
 DEFS=
 COMPAT=	compat-4.1 compat-sys5
 ALL=	gen inet net ns stdio ${MACHINE} ${COMPAT}
