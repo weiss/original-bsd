@@ -4,9 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)prf.c	7.4 (Berkeley) 05/05/91
+ *	@(#)prf.c	7.5 (Berkeley) 06/18/92
  */
 
+/*
+ * XXX we know that scankbd is only called from read/write to interrupt
+ * a boot program.  Since we restart only on ^C and we do that here, we
+ * always return 0 to avoid a longjmp in the caller.
+ */
 scankbd()
 {
 	register int c;
@@ -17,7 +22,7 @@ scankbd()
 		_stop("");
 		/* NOTREACHED */
 	}
-	return(c);
+	return(0);
 }
 
 getchar()
@@ -33,7 +38,8 @@ getchar()
 		_stop("");
 		/* NOTREACHED */
 	}
-	putchar(c);
+	if (c != '\b' && c != '\177')
+		putchar(c);
 	return(c);
 }
 
