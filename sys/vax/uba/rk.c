@@ -1,4 +1,4 @@
-/*	rk.c	4.5	01/15/81	*/
+/*	rk.c	4.6	02/08/81	*/
 
 #include "rk.h"
 #if NRK > 0
@@ -286,5 +286,11 @@ dev_t dev;
 {
 
 	physio(rkstrategy, &rrkbuf, dev, B_WRITE, minphys);
+}
+
+rkdump()
+{
+
+	printf("don't know how to dump to rk (yet)\n");
 }
 #endif
