@@ -2,12 +2,12 @@
 # include	<ctype.h>
 
 # define	min(a,b)	(a < b ? a : b)
-# define	max(a,b)	(a < b ? a : b)
+# define	max(a,b)	(a > b ? a : b)
 
 /*
  *	This routine writes win1 on win2 non-destructively.
  *
- * 02/16/82 (Berkeley) @(#)overlay.c	1.3
+ * 11/05/82 (Berkeley) @(#)overlay.c	1.4
  */
 overlay(win1, win2)
 reg WINDOW	*win1, *win2; {
