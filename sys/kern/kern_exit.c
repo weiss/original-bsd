@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_exit.c	7.17 (Berkeley) 04/05/90
+ *	@(#)kern_exit.c	7.18 (Berkeley) 04/27/90
  */
 
 #include "param.h"
@@ -124,9 +124,6 @@ exit(rv)
 	}
 	u.u_rlimit[RLIMIT_FSIZE].rlim_cur = RLIM_INFINITY;
 	acct();
-#ifdef QUOTA
-	qclean();
-#endif
 	crfree(u.u_cred);
 #ifdef KTRACE
 	/* 
