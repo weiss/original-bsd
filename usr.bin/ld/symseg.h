@@ -1,3 +1,7 @@
+/*-
+ *	@(#)symseg.h	5.2 (Berkeley) 04/30/91
+ */
+
 /* GDB symbol table format definitions.
    Copyright (C) 1987, 1988 Free Software Foundation, Inc.
 
