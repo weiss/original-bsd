@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fsck.h	5.15 (Berkeley) 06/01/90
+ *	@(#)fsck.h	5.16 (Berkeley) 07/20/90
  */
 
 #define	MAXDUP		10	/* limit on dup blks (per inode) */
@@ -180,6 +180,6 @@ struct	dinode zino;
 time_t time();
 struct dinode *ginode();
 struct inoinfo *getinoinfo();
-struct bufarea *getblk();
+void getblk();
 ino_t allocino();
 int findino();
