@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/05/93
+#	@(#)Makefile	5.6 (Berkeley) 06/05/93
 
 DIR=	smm/16.sendmail
 SRCS=	intro.me
 MACROS=	-me
 
-all: intro.${PRINTER}
+all: intro.ps
 
 intro.ps: ${SRCS}
 	${PIC} ${SRCS} | ${ROFF} > ${.TARGET}
