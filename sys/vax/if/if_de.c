@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_de.c	6.11 (Berkeley) 06/19/85
+ *	@(#)if_de.c	6.12 (Berkeley) 06/22/85
  */
 #include "de.h"
 #if NDE > 0
@@ -1066,11 +1066,12 @@ int unit;
 	register struct dedevice *addr= (struct dedevice *)ui->ui_addr;
 	int csr0;
 	
+	if (! (ds->ds_flags & DSF_RUNNING))
+		return;
+		
 	bcopy(physaddr, &ds->ds_pcbb.pcbb2, 6);
 	ds->ds_pcbb.pcbb0 = FC_WTPHYAD;
-	addr->pclow = CMD_GETCMD;
-	while ((addr->pcsr0 & PCSR0_INTR) == 0)
-			;
+	addr->pclow = PCSR0_INTE|CMD_PDMD;
 	csr0 = addr->pcsr0;
 	addr->pchigh = csr0 >> 8;
 	if (csr0 & PCSR0_PCEI)
