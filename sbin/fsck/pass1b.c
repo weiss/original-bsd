@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass1b.c	8.1 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)pass1b.c	8.2 (Berkeley) 03/21/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -51,7 +51,7 @@ pass1bcheck(idesc)
 {
 	register struct dups *dlp;
 	int nfrags, res = KEEPON;
-	daddr_t blkno = idesc->id_blkno;
+	ufs_daddr_t blkno = idesc->id_blkno;
 
 	for (nfrags = idesc->id_numfrags; nfrags > 0; blkno++, nfrags--) {
 		if (chkrange(blkno, 1))

@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setup.c	8.6 (Berkeley) 01/06/95";
+static char sccsid[] = "@(#)setup.c	8.7 (Berkeley) 03/21/95";
 #endif /* not lint */
 
 #define DKTYPENAMES
@@ -272,7 +272,7 @@ badsb:
 readsb(listerr)
 	int listerr;
 {
-	daddr_t super = bflag ? bflag : SBOFF / dev_bsize;
+	ufs_daddr_t super = bflag ? bflag : SBOFF / dev_bsize;
 
 	if (bread(fsreadfd, (char *)&sblock, super, (long)SBSIZE) != 0)
 		return (0);
