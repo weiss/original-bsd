@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)main.c	1.3 (Berkeley) 10/25/81";
+static	char *sccsid = "@(#)main.c	1.4 (Berkeley) 11/07/81";
 #include "dump.h"
 
 int	notify = 0;	/* notify operator flag */
@@ -165,7 +165,7 @@ main(argc, argv)
 
 	fetapes =
 		(	 esize		/* blocks */
-			*BSIZE		/* bytes / block */
+			*FSIZE		/* bytes / block */
 			*(1.0/density)	/* 0.1" / byte */
 		  +
 			 esize		/* blocks */
