@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)pstat.c	5.13 (Berkeley) 08/06/87";
+static char sccsid[] = "@(#)pstat.c	5.14 (Berkeley) 08/27/87";
 #endif not lint
 
 /*
@@ -607,6 +607,10 @@ struct tty *atp;
 
 	case TABLDISC:
 		printf(" tab\n");
+		break;
+
+	case SLIPDISC:
+		printf(" slip\n");
 		break;
 
 	default:
