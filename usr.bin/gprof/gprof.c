@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)gprof.c	1.21 (Berkeley) 03/31/83";
+    static	char *sccsid = "@(#)gprof.c	1.22 (Berkeley) 05/11/83";
 #endif lint
 
 #include "gprof.h"
@@ -20,6 +20,7 @@ main(argc, argv)
     --argc;
     argv++;
     debug = 0;
+    bflag = TRUE;
     while ( *argv != 0 && **argv == '-' ) {
 	(*argv)++;
 	switch ( **argv ) {
@@ -27,7 +28,7 @@ main(argc, argv)
 	    aflag = TRUE;
 	    break;
 	case 'b':
-	    bflag = TRUE;
+	    bflag = FALSE;
 	    break;
 	case 'c':
 	    cflag = TRUE;
