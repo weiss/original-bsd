@@ -12,7 +12,6 @@ Summary: This posting contains a list of Frequently Asked Questions
 
 Archive-name: mail/sendmail-faq
 Posting-Frequency: monthly (first Monday)
-Last-modified: Sat Feb 11 03:26:18 EST 1995
 
 
 [The most recent copy of this document can be obtained via anonymous
@@ -25,7 +24,7 @@ usenet/news.answers/mail/sendmail-faq" in the message.]
 
 			    Sendmail Version 8
 			Frequently Asked Questions
-		         Last updated 02/15/95
+		         Last updated 02/16/95
 
 
 This FAQ is specific to Version 8.6.9 of sendmail.  Other questions,
@@ -725,5 +724,5 @@ RESOLVING PROBLEMS
 	directory and have them processed by the same uid that
 	submitted the job in the first place.
 ----------------------------------------------------------------------
-@(#)FAQ	8.13	(Berkeley)	02/15/95
+@(#)FAQ	8.14	(Berkeley)	02/16/95
 Send updates to sendmail@CS.Berkeley.EDU.
