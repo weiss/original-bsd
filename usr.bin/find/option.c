@@ -9,13 +9,15 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)option.c	5.4 (Berkeley) 11/15/90";
+static char sccsid[] = "@(#)option.c	5.5 (Berkeley) 03/09/91";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fts.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "find.h"
 
 typedef struct _option {
