@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.15 (Berkeley) 11/20/93";
+static char sccsid[] = "@(#)readcf.c	8.16 (Berkeley) 11/26/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -514,8 +514,10 @@ readcf(cfname, safe, e)
 	{
 		/* user didn't initialize: set up host map */
 		strcpy(buf, "host host");
+#ifdef NAMED_BIND
 		if (ConfigLevel >= 2)
 			strcat(buf, " -a.");
+#endif
 		makemapentry(buf);
 	}
 }
