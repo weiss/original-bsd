@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.46 (Berkeley) 09/05/91
+ *	@(#)tty.c	7.47 (Berkeley) 09/09/91
  */
 
 #include "param.h"
@@ -973,7 +973,8 @@ parmrk:
 		 * ^T - kernel info and generate SIGINFO
 		 */
 		if (CCEQ(cc[VSTATUS], c)) {
-			pgsignal(tp->t_pgrp, SIGINFO, 1);
+			if (lflag&ISIG)
+				pgsignal(tp->t_pgrp, SIGINFO, 1);
 			if ((lflag&NOKERNINFO) == 0)
 				ttyinfo(tp);
 			goto endcase;
