@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)machdep.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)machdep.c	5.6 (Berkeley) 02/05/91";
 #endif /* not lint */
 
 /*
@@ -99,21 +99,7 @@ static char sccsid[] = "@(#)machdep.c	5.5 (Berkeley) 06/01/90";
 
 md_slurp()
 {
-	long ln = 0;
-
-#ifdef UNIX_BSD4_2
-	ioctl(0, FIONREAD, &ln);
-#endif
-#ifdef UNIX_SYSV
-	ioctl(0, TCFLSH, &ln);
-	ln = 0;
-#endif
-
-	ln += stdin->_cnt;
-
-	for (; ln > 0; ln--) {
-		(void) getchar();
-	}
+	(void)fpurge(stdin);
 }
 
 /* md_control_keyboard():
