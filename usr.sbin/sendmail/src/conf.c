@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.162 (Berkeley) 05/15/95";
+static char sccsid[] = "@(#)conf.c	8.163 (Berkeley) 05/15/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1203,6 +1203,8 @@ getla()
 #endif /* LA_TYPE == LA_INT or LA_SHORT or LA_FLOAT */
 
 #if LA_TYPE == LA_READKSYM
+
+# include <sys/ksym.h>
 
 getla()
 {
