@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.40 (Berkeley) 11/13/93";
+static char sccsid[] = "@(#)deliver.c	8.41 (Berkeley) 11/14/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -936,12 +936,19 @@ deliver(e, firstto)
 		register int i;
 		register u_short port;
 
+		if (pv[0] == NULL || pv[1] == NULL || pv[1][0] == '\0')
+		{
+			syserr("null host name for %s mailer", m->m_mailer);
+			rcode = EX_CONFIG;
+			goto give_up;
+		}
+
 		CurHostName = pv[1];
 		curhost = hostsignature(m, pv[1], e);
 
 		if (curhost == NULL || curhost[0] == '\0')
 		{
-			syserr("null signature");
+			syserr("null host signature for %s", pv[1]);
 			rcode = EX_OSERR;
 			goto give_up;
 		}
