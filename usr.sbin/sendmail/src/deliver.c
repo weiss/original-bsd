@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.33 (Berkeley) 10/17/93";
+static char sccsid[] = "@(#)deliver.c	8.34 (Berkeley) 10/17/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -968,6 +968,7 @@ tryhost:
 			if (p == curhost)
 			{
 				syserr("deliver: null host name in signature");
+				curhost++;
 				continue;
 			}
 			strncpy(hostbuf, curhost, p - curhost);
