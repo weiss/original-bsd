@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ccitt_proto.c	7.8 (Berkeley) 12/08/92
+ *	@(#)ccitt_proto.c	7.9 (Berkeley) 06/05/93
  */
 
 #include <sys/param.h>
@@ -29,13 +29,15 @@ extern	struct domain ccittdomain;
 #define DOMAIN &ccittdomain
 
 #ifdef LLC
-int	llc_output(), llc_ctlinput(), llc_init(), llc_timer();
+int	llc_output();
+void	llc_ctlinput(), llc_init(), llc_timer();
 #endif
 #ifdef HDLC
-int	hd_output(), hd_ctlinput(), hd_init(), hd_timer();
+int	hd_output();
+void	hd_ctlinput(), hd_init(), hd_timer();
 #endif
-int	pk_usrreq(), pk_timer(), pk_init(), pk_ctloutput();
-int	pk_input(), pk_ctlinput();
+int	pk_usrreq(), pk_ctloutput();
+void	pk_timer(), pk_init(), pk_input(), pk_ctlinput();
 
 struct protosw ccittsw[] = {
 #ifdef LLC
