@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)sysctl.c	8.2 (Berkeley) 04/26/95";
+static char sccsid[] = "@(#)sysctl.c	8.3 (Berkeley) 04/27/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -126,7 +126,7 @@ main(argc, argv)
 	}
 	if (argc == 0)
 		usage();
-	while (argc-- > 0)
+	for (; *argv != NULL; ++argv)
 		parse(*argv, 1);
 	exit(0);
 }
