@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_extern.h	7.4 (Berkeley) 03/09/93
+ *	@(#)vm_extern.h	8.1 (Berkeley) 06/11/93
  */
 
 struct buf;
