@@ -1,5 +1,5 @@
 /*
- *	@(#)screen.h	3.1  10/29/86
+ * @(#)terminal.h	1.6 (Berkeley) 07/17/87
  */
 
 #define	INCLUDED_TERMINAL
