@@ -8,11 +8,10 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)mail.cs.mc	8.3 (Berkeley) 10/15/93')
+VERSIONID(`@(#)mail.cs.mc	8.4 (Berkeley) 11/13/94')
 OSTYPE(ultrix4.1)dnl
 DOMAIN(Berkeley)dnl
 MASQUERADE_AS(CS.Berkeley.EDU)dnl
-FEATURE(notsticky)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
 define(`confUSERDB_SPEC', ``/usr/local/lib/users.cs.db,/usr/local/lib/users.eecs.db'')dnl

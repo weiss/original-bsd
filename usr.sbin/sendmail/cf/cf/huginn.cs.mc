@@ -8,10 +8,9 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)huginn.cs.mc	8.2 (Berkeley) 06/26/94')
+VERSIONID(`@(#)huginn.cs.mc	8.3 (Berkeley) 11/13/94')
 OSTYPE(hpux)dnl
 DOMAIN(cs.hidden)dnl
-FEATURE(notsticky)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
 DDBerkeley.EDU
