@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)repquota.c	4.2 (Berkeley, from Melbourne) 05/27/83";
+static char sccsid[] = "@(#)repquota.c	4.3 (Berkeley, from Melbourne) 03/22/85";
 #endif
 
 /*
@@ -64,9 +64,10 @@ again:
 	setpwent();
 	while ((pw = getpwent()) != 0) {
 		fup = lookup(pw->pw_uid);
-		if (fup == 0)
+		if (fup == 0) {
 			fup = adduid(pw->pw_uid);
-		strncpy(fup->fu_name, pw->pw_name, sizeof(fup->fu_name));
+			strncpy(fup->fu_name, pw->pw_name, sizeof(fup->fu_name));
+		}
 	}
 	endpwent();
 	setfsent();
