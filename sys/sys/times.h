@@ -4,14 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)times.h	7.6 (Berkeley) 03/09/91
+ *	@(#)times.h	7.7 (Berkeley) 06/23/92
  */
 
 #include <machine/ansi.h>
 
-#ifdef	_CLOCK_T_
-typedef	_CLOCK_T_	clock_t;
-#undef	_CLOCK_T_
+#ifdef	_BSD_CLOCK_T_
+typedef	_BSD_CLOCK_T_	clock_t;
+#undef	_BSD_CLOCK_T_
 #endif
 
 struct tms {
