@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwopen.c	3.25 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)wwopen.c	3.26 (Berkeley) 02/16/89";
 #endif /* not lint */
 
 #include "ww.h"
@@ -78,8 +78,6 @@ wwopen(flags, nrow, ncol, row, col, nline)
 		struct winsize winsize;
 
 		if (wwgetpty(w) < 0)
-			goto bad;
-		if (wwsettty(w->ww_pty, &wwwintty, (struct ww_tty *)0) < 0)
 			goto bad;
 		winsize.ws_row = nrow;
 		winsize.ws_col = ncol;
