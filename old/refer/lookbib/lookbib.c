@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)lookbib.c	4.1 (Berkeley) 05/06/83";
+static char *sccsid = "@(#)lookbib.c	4.2 (Berkeley) 06/22/83";
 #endif
 
 #include <stdio.h>
@@ -16,8 +16,6 @@ char **argv;
 	{
 		fputs("Usage:  lookbib database\n",
 			stderr);
-		fputs("\tdatabase must have indexes built by indxbib\n",
-			stderr);
 		fputs("\tfinds citations specified on standard input\n",
 			stderr);
 		exit(1);
@@ -31,9 +29,13 @@ char **argv;
 	}
 	sprintf(s, "%s.ia", argv[1]);
 	if (access(s, 0) == -1) {
-		perror(s);
-		fputs("\trun indxbib to make inverted indexes\n", stderr);
-		exit(1);
+		sprintf (s, "%s", argv[1]);
+		if (access(s, 0) == -1) {
+			perror(s);
+			fputs("\tNeither index file %s.ia ", s, stderr);
+			fputs("nor reference file %s found\n", s, stderr);
+			exit(1);
+		}
 	}
 	sprintf(hunt, "/usr/lib/refer/hunt %s", argv[1]);
 
