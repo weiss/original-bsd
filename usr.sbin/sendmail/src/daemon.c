@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.74 (Berkeley) 03/14/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.75 (Berkeley) 03/27/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.74 (Berkeley) 03/14/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.75 (Berkeley) 03/27/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1116,6 +1116,14 @@ getauthinfo(fd)
 	}
 
 	/* p now points to the OSTYPE field */
+	while (isascii(*p) && isspace(*p))
+		p++;
+	if (strncasecmp(p, "other", 5) == 0 &&
+	    (p[5] == ':' || p[5] == ' ' || p[5] == ',' || p[5] == '\0'))
+	{
+		/* not useful information */
+		goto noident;
+	}
 	p = strchr(p, ':');
 	if (p == NULL)
 	{
