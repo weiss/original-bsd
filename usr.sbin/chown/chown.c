@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chown.c	8.7 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)chown.c	8.8 (Berkeley) 04/04/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -46,7 +46,6 @@ main(argc, argv)
 	int argc;
 	char *argv[];
 {
-	extern int optind;
 	FTS *ftsp;
 	FTSENT *p;
 	int Hflag, Lflag, Pflag, ch, fts_options, hflag, rval;
