@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.119 (Berkeley) 11/22/94";
+static char sccsid[] = "@(#)conf.c	8.120 (Berkeley) 11/22/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -372,7 +372,7 @@ setupmaps()
 		seq_map_lookup, seq_map_store);
 
 	/* switched interface to sequenced maps */
-	MAPDEF("switch", NULL, MCF_ALIASOK|MCF_REBUILDABLE,
+	MAPDEF("switch", NULL, MCF_ALIASOK,
 		map_parseargs, switch_map_open, seq_map_close,
 		seq_map_lookup, seq_map_store);
 }
