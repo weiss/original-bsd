@@ -4,14 +4,19 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stdarg.h	7.1 (Berkeley) 04/03/91
+ *	@(#)stdarg.h	7.2 (Berkeley) 05/04/91
  */
 
 typedef char *va_list;
 
+#ifdef KERNEL
+#define	va_arg(ap, type) \
+	((type *)(ap += sizeof(type)))[-1]
+#else
 #define	va_arg(ap, type) \
 	((type *)(ap += sizeof(type) < sizeof(int) ? \
 		(abort(), 0) : sizeof(type)))[-1]
+#endif
 
 #define	va_end(ap)
 
