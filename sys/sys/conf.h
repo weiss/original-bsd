@@ -1,4 +1,4 @@
-/*	conf.h	3.5	06/07/80	*/
+/*	conf.h	3.6	06/22/80	*/
 
 /*
  * Declaration of block device
@@ -28,6 +28,7 @@ extern struct cdevsw
 	int	(*d_write)();
 	int	(*d_ioctl)();
 	int	(*d_stop)();
+	int	(*d_reset)();
 	struct tty *d_ttys;
 } cdevsw[];
 
