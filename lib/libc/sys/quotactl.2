@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)quotactl.2	6.3 (Berkeley) 05/24/85
+.\"	@(#)quotactl.2	6.4 (Berkeley) 06/06/85
 .\"
 .TH QUOTA 2 ""
 .UC 5
@@ -99,6 +99,9 @@ about excessive disc usage.
 This call causes the system to check its current disc usage
 information and print a message on the terminal of
 the caller for each file system on which the user is over quota.
+If the user is under quota, his warning count is reset to MAX_*_WARN
+(defined in
+.RI < sys/quota.h >).
 If the
 .I arg
 parameter is specified as NODEV, all file systems which have
