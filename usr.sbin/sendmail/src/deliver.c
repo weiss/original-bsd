@@ -6,7 +6,7 @@
 # include <syslog.h>
 # endif LOG
 
-SCCSID(@(#)deliver.c	3.85		06/07/82);
+SCCSID(@(#)deliver.c	3.86		06/07/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -940,7 +940,7 @@ putfromline(fp, m)
 	else
 # endif UGLYUUCP
 		expand("$l\n", buf, &buf[sizeof buf - 1], CurEnv);
-	fputs(buf, fp);
+	putline(buf, fp, bitset(M_FULLSMTP, m->m_flags));
 }
 /*
 **  PUTHEADER -- put the header part of a message from the in-core copy
@@ -969,6 +969,9 @@ putheader(fp, m, e)
 	extern char *hvalue();
 	extern bool samefrom();
 	char *of_line;
+	char obuf[MAXLINE];
+	register char *obp;
+	bool fullsmtp = bitset(M_FULLSMTP, m->m_flags);
 
 	of_line = hvalue("original-from");
 	for (h = e->e_header; h != NULL; h = h->h_link)
@@ -1006,8 +1009,10 @@ putheader(fp, m, e)
 			p = h->h_value;
 			if (p == NULL || *p == '\0' || nooutput)
 				continue;
-			fprintf(fp, "%s: ", capitalize(h->h_field));
+			obp = obuf;
+			sprintf(obp, "%s: ", capitalize(h->h_field));
 			opos = strlen(h->h_field) + 2;
+			obp += opos;
 			while (*p != '\0')
 			{
 				register char *name = p;
@@ -1051,12 +1056,20 @@ putheader(fp, m, e)
 					opos += 2;
 				if (opos > 78 && !firstone)
 				{
-					fprintf(fp, ",\n        ");
+					(void) sprintf(obp, ",\n");
+					putline(obuf, fp, fullsmtp);
+					obp = obuf;
+					(void) sprintf(obp, "        ");
+					obp += strlen(obp);
 					opos = 8 + strlen(name);
 				}
 				else if (!firstone)
-					fprintf(fp, ", ");
-				fprintf(fp, "%s", name);
+				{
+					(void) sprintf(obp, ", ");
+					obp += 2;
+				}
+				(void) sprintf(obp, "%s", name);
+				obp += strlen(obp);
 				firstone = FALSE;
 
 				/* clean up the source string */
@@ -1064,7 +1077,8 @@ putheader(fp, m, e)
 				while (*p != '\0' && (isspace(*p) || *p == ','))
 					p++;
 			}
-			fprintf(fp, "\n");
+			strcpy(obp, "\n");
+			putline(obp, fp, fullsmtp);
 			nooutput = TRUE;
 		}
 		else
@@ -1077,7 +1091,10 @@ putheader(fp, m, e)
 		{
 			/* output new Original-From line if needed */
 			if (of_line == NULL && !samefrom(p, origfrom))
-				fprintf(fp, "Original-From: %s\n", origfrom);
+			{
+				(void) sprintf(obuf, "Original-From: %s\n", origfrom);
+				putline(obuf, fp, fullsmtp);
+			}
 			if (of_line != NULL && !nooutput && samefrom(p, of_line))
 			{
 				/* delete Original-From: line if redundant */
@@ -1091,7 +1108,8 @@ putheader(fp, m, e)
 		/* finally, output the header line */
 		if (!nooutput)
 		{
-			fprintf(fp, "%s: %s\n", capitalize(h->h_field), p);
+			(void) sprintf(obuf, "%s: %s\n", capitalize(h->h_field), p);
+			putline(obuf, fp, fullsmtp);
 			h->h_flags |= H_USED;
 		}
 	}
@@ -1117,6 +1135,7 @@ putbody(fp, m, xdot)
 	bool xdot;
 {
 	char buf[MAXLINE + 1];
+	bool fullsmtp = bitset(M_FULLSMTP, m->m_flags);
 
 	/*
 	**  Output the body of the message
@@ -1133,7 +1152,7 @@ putbody(fp, m, xdot)
 		rewind(TempFile);
 		buf[0] = '.';
 		while (!ferror(fp) && fgets(&buf[1], sizeof buf - 1, TempFile) != NULL)
-			fputs((xdot && buf[1] == '.') ? buf : &buf[1], fp);
+			putline((xdot && buf[1] == '.') ? buf : &buf[1], fp, fullsmtp);
 
 		if (ferror(TempFile))
 		{
@@ -1388,7 +1407,7 @@ mailfile(filename, ctladdr)
 
 		putfromline(f, Mailer[1]);
 		(*CurEnv->e_puthdr)(f, Mailer[1], CurEnv);
-		fprintf(f, "\n");
+		fputs("\n", f);
 		(*CurEnv->e_putbody)(f, Mailer[1], FALSE);
 		fputs("\n", f);
 		(void) fclose(f);
