@@ -10,10 +10,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)arith_lex.l	8.2 (Berkeley) 04/27/95";
+static char sccsid[] = "@(#)arith_lex.l	8.3 (Berkeley) 05/04/95";
 #endif /* not lint */
 
+#include <unistd.h>
 #include "y.tab.h"
+#include "error.h"
 
 extern yylval;
 extern char *arith_buf, *arith_startbuf;
@@ -50,6 +52,7 @@ extern char *arith_buf, *arith_startbuf;
 .	{ error("arith: syntax error: \"%s\"\n", arith_startbuf); }
 %%
 
+void
 arith_lex_reset() {
 	YY_NEW_FILE;
 }
