@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)tset.c	1.7 (Berkeley) 12/19/83";
+static char sccsid[] = "@(#)tset.c	1.8 (Berkeley) 03/15/84";
 #endif
 
 /*
@@ -895,7 +895,12 @@ mapold:				Map->Ident = NewType;
 
 	/* check for dialup or other mapping */
 	if (Mapped)
+	{
+		if (!(Alias[0] && isalias(TtyType)))
+			if (tgetent(Capbuf, TtyType) > 0)
+				makealias(Capbuf);
 		TtyType = mapped(TtyType);
+	}
 
 	/* TtyType now contains a pointer to the type of the terminal */
 	/* If the first character is '?', ask the user */
