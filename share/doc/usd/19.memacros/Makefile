@@ -1,10 +1,7 @@
-#	@(#)Makefile	6.4 (Berkeley) 06/30/90
+#	@(#)Makefile	6.5 (Berkeley) 06/05/93
 
-DIR=	usd/22.memacros
+DIR=	usd/19.memacros
 SRCS=	intro.me
 MACROS=	-me
-
-paper.${PRINTER}: ${SRCS}
-	${ROFF} ${SRCS} > ${.TARGET}
 
 .include <bsd.doc.mk>
