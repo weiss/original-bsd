@@ -16,10 +16,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)score.c	5.3 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)score.c	5.4 (Berkeley) 03/05/89";
 #endif /* not lint */
 
 # include	"robots.h"
+# include	<sys/types.h>
 # include	<pwd.h>
 
 typedef struct {
