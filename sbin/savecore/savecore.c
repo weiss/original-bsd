@@ -22,15 +22,13 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.14 (Berkeley) 10/31/88";
+static char sccsid[] = "@(#)savecore.c	5.15 (Berkeley) 04/02/89";
 #endif /* not lint */
 
 /*
  * savecore
  */
 
-#include <stdio.h>
-#include <nlist.h>
 #include <sys/param.h>
 #include <sys/dir.h>
 #include <sys/stat.h>
@@ -38,6 +36,9 @@ static char sccsid[] = "@(#)savecore.c	5.14 (Berkeley) 10/31/88";
 #include <sys/time.h>
 #include <sys/file.h>
 #include <sys/syslog.h>
+#include <stdio.h>
+#include <nlist.h>
+#include "pathnames.h"
 
 #define	DAY	(60L*60L*24L)
 #define	LEEWAY	(3*DAY)
@@ -240,8 +241,8 @@ read_kmem()
 	char *dump_sys;
 	int kmem, i;
 	
-	dump_sys = system ? system : "/vmunix";
-	nlist("/vmunix", current_nl);
+	dump_sys = system ? system : _PATH_UNIX;
+	nlist(_PATH_UNIX, current_nl);
 	nlist(dump_sys, dump_nl);
 	/*
 	 * Some names we need for the currently running system,
@@ -253,7 +254,7 @@ read_kmem()
 	 */
 	for (i = 0; cursyms[i] != -1; i++)
 		if (current_nl[cursyms[i]].n_value == 0) {
-			log(LOG_ERR, "/vmunix: %s not in namelist\n",
+			log(LOG_ERR, "%s: %s not in namelist\n", _PATH_UNIX,
 			    current_nl[cursyms[i]].n_name);
 			exit(1);
 		}
@@ -263,7 +264,7 @@ read_kmem()
 			    dump_nl[dumpsyms[i]].n_name);
 			exit(1);
 		}
-	kmem = Open("/dev/kmem", O_RDONLY);
+	kmem = Open(_PATH_KMEM, O_RDONLY);
 	Lseek(kmem, (long)current_nl[X_DUMPDEV].n_value, L_SET);
 	Read(kmem, (char *)&dumpdev, sizeof (dumpdev));
 	Lseek(kmem, (long)current_nl[X_DUMPLO].n_value, L_SET);
@@ -298,7 +299,7 @@ check_kmem()
 	fgets(core_vers, sizeof (core_vers), fp);
 	fclose(fp);
 	if (!eq(vers, core_vers) && system == 0) {
-		log(LOG_WARNING, "Warning: vmunix version mismatch:\n");
+		log(LOG_WARNING, "Warning: %s version mismatch:\n", _PATH_UNIX);
 		log(LOG_WARNING, "\t%s\n", vers);
 		log(LOG_WARNING, "and\t%s\n", core_vers);
 	}
@@ -408,7 +409,7 @@ save_core()
 		return;
 	}
 	bounds = read_number("bounds");
-	ifd = Open(system?system:"/vmunix", O_RDONLY);
+	ifd = Open(system ? system : _PATH_UNIX, O_RDONLY);
 	(void)sprintf(cp, "vmunix.%d", bounds);
 	ofd = Create(path(cp), 0644);
 	while((n = Read(ifd, cp, BUFSIZ)) > 0)
