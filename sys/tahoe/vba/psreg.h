@@ -1,4 +1,6 @@
-/*	psreg.h	1.2	87/12/22	*/
+/*
+ *	@(#)psreg.h	7.1 (Berkeley) 05/21/88
+ */
 
 #ifndef _PSREG_
 #define _PSREG_

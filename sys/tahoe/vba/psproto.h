@@ -1,4 +1,6 @@
-/*	psproto.h	1.1	86/11/29	*/
+/*
+ *	@(#)psproto.h	7.1 (Berkeley) 05/21/88
+ */
 
 /*
  * PS300-Host Handshake Protocol Definitions.
