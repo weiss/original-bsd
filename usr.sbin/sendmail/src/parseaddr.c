@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.70 (Berkeley) 05/28/95";
+static char sccsid[] = "@(#)parseaddr.c	8.71 (Berkeley) 05/30/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1248,11 +1248,7 @@ rewrite(pvp, ruleset, reclevel, e)
 					(int) (avp - npvp - 2) * sizeof *avp);
 				if (tTd(21, 3))
 					printf("-----callsubr %s\n", npvp[1]);
-				s = stab(npvp[1], ST_RULESET, ST_FIND);
-				if (s == NULL)
-					ruleset = atoi(npvp[1]);
-				else
-					ruleset = s->s_ruleset;
+				ruleset = strtorwset(npvp[1], NULL, ST_FIND);
 				stat = rewrite(pvp, ruleset, reclevel, e);
 				if (rstat == EX_OK || stat == EX_TEMPFAIL)
 					rstat = stat;
