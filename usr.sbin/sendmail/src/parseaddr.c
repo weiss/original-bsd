@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.68 (Berkeley) 04/25/95";
+static char sccsid[] = "@(#)parseaddr.c	8.69 (Berkeley) 05/26/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1141,6 +1141,9 @@ rewrite(pvp, ruleset, reclevel, e)
 			if (map != NULL && bitset(MF_OPEN, map->s_map.map_mflags))
 			{
 				auto int stat = EX_OK;
+
+				if (!bitset(MF_KEEPQUOTES, map->s_map.map_mflags))
+					stripquotes(buf);
 
 				/* XXX should try to auto-open the map here */
 
