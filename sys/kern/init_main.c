@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.40 (Berkeley) 05/09/91
+ *	@(#)init_main.c	7.41 (Berkeley) 05/15/91
  */
 
 #include "param.h"
@@ -110,6 +110,7 @@ main()
 	/*
 	 * Setup credentials
 	 */
+	cred0.p_refcnt = 1;
 	p->p_cred = &cred0;
 	p->p_ucred = crget();
 	p->p_ucred->cr_ngroups = 1;	/* group 0 */
