@@ -1,7 +1,6 @@
-#	@(#)Makefile	5.8 (Berkeley) 05/11/90
+#	@(#)Makefile	5.9 (Berkeley) 02/26/91
 
 PROG=	error
-SRCS=	errormain.c errorinput.c errorpi.c errorsubr.c errorfilter.c \
-	errortouch.c
+SRCS=	main.c input.c pi.c subr.c filter.c touch.c
 
 .include <bsd.prog.mk>
