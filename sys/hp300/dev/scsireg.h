@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)scsireg.h	7.4 (Berkeley) 06/05/92
+ *	@(#)scsireg.h	7.5 (Berkeley) 07/20/92
  */
 
 /*
@@ -418,13 +418,6 @@ struct scsi_cache {
 	u_char	minimum_prefetch_multiplier;
 	u_char	reserved[8];
 };
-
-/*
- * Driver ioctl's for various scsi operations.
- */
-#ifndef _IOCTL_
-#include "ioctl.h"
-#endif
 
 /*
  * Control for SCSI "format" mode.
