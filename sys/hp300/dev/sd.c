@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sd.c	7.11 (Berkeley) 11/05/91
+ *	@(#)sd.c	7.12 (Berkeley) 02/19/92
  */
 
 /*
@@ -872,7 +872,7 @@ sddump(dev)
 		if (i && (i % NPGMB) == 0)
 			printf("%d ", i / NPGMB);
 #undef NPBMG
-		pmap_enter(pmap_kernel(), (vm_offset_t)vmmap, maddr,
+		pmap_enter(kernel_pmap, (vm_offset_t)vmmap, maddr,
 		    VM_PROT_READ, TRUE);
 		stat = scsi_tt_write(hp->hp_ctlr, hp->hp_slave, sc->sc_punit,
 				     vmmap, NBPG, baddr, sc->sc_bshift);
