@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ufs_vfsops.c	7.27 (Berkeley) 11/10/89
+ *	@(#)ufs_vfsops.c	7.28 (Berkeley) 11/14/89
  */
 
 #include "param.h"
@@ -607,8 +607,10 @@ getmdev(devvpp, fname, ndp)
 		vput(vp);
 		return (ENOTBLK);
 	}
-	if (major(vp->v_rdev) >= nblkdev)
+	if (major(vp->v_rdev) >= nblkdev) {
+		vput(vp);
 		return (ENXIO);
+	}
 	iunlock(VTOI(vp));
 	*devvpp = vp;
 	return (0);
