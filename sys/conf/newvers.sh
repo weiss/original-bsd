@@ -5,7 +5,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)newvers.sh	7.9 (Berkeley) 04/20/94
+#	@(#)newvers.sh	8.1 (Berkeley) 04/20/94
 
 if [ ! -r version ]
 then
