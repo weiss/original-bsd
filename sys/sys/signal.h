@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signal.h	7.17 (Berkeley) 09/03/91
+ *	@(#)signal.h	7.18 (Berkeley) 09/03/91
  */
 
 #ifndef	_SIGNAL_H_
@@ -159,8 +159,8 @@ struct	sigcontext {
  */
 #define sigmask(m)	(1 << ((m)-1))
 
-#define	BADSIG		(void (*)())-1
-#endif	/* _POSIX_SOURCE */
+#define	BADSIG		SIG_ERR
+#endif	/* !_POSIX_SOURCE */
 
 #define	SIG_DFL		(void (*)())0
 #define	SIG_IGN		(void (*)())1
