@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uusend.c	5.2 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)uusend.c	5.3 (Berkeley) 05/11/89";
 #endif
 
 /*
@@ -22,10 +22,10 @@ static char sccsid[] = "@(#)uusend.c	5.2 (Berkeley) 01/22/85";
  * can now be a directory.	June 1983  CCW
  */
 
-#include <stdio.h>
-#include <pwd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdio.h>
+#include <pwd.h>
 
 /*
  * define RECOVER to permit requests like 'uusend file sys1!sys2!~uucp'
