@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)config.c	1.1 (Berkeley/CCI) 07/05/86";
+static char sccsid[] = "@(#)config.c	1.2 (Berkeley/CCI) 11/04/86";
 #endif
 
 /*
@@ -35,3 +35,4 @@ struct	vdconfig vdconfig[] = {
       "160Mb CDC Winchester" },
 };
 int	ndrives = sizeof (vdconfig) / sizeof (vdconfig[0]);
+int	smddrives = 3;			/* first 3 types are smd-e only */

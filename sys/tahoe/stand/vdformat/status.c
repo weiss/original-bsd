@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)status.c	1.1 (Berkeley/CCI) 07/05/86";
+static char sccsid[] = "@(#)status.c	1.2 (Berkeley/CCI) 11/04/86";
 #endif
 
 #include	"vdfmt.h"
@@ -33,6 +33,10 @@ status()
 		case exec :
 			dump_state("Exercising disk");
 			break;
+		case setup:
+			printf("Initializing for operation ");
+			printf("on controller %d, drive %d.\n",
+				cur.controller, cur.drive);
 		default:
 			print("Current state is unknown.\n");
 	}
