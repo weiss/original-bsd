@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dir.c	5.18 (Berkeley) 07/20/90";
+static char sccsid[] = "@(#)dir.c	5.19 (Berkeley) 07/26/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -522,12 +522,14 @@ allocdir(parent, request, mode)
 	inodirty();
 	if (ino == ROOTINO) {
 		lncntp[ino] = dp->di_nlink;
+		cacheino(dp, ino);
 		return(ino);
 	}
 	if (statemap[parent] != DSTATE && statemap[parent] != DFOUND) {
 		freeino(ino);
 		return (0);
 	}
+	cacheino(dp, ino);
 	statemap[ino] = statemap[parent];
 	if (statemap[ino] == DSTATE) {
 		lncntp[ino] = dp->di_nlink;
