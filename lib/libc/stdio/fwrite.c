@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fwrite.c	5.5 (Berkeley) 02/24/91";
+static char sccsid[] = "@(#)fwrite.c	5.6 (Berkeley) 09/03/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
@@ -20,6 +20,7 @@ static char sccsid[] = "@(#)fwrite.c	5.5 (Berkeley) 02/24/91";
  * Write `count' objects (each size `size') from memory to the given file.
  * Return the number of whole objects written.
  */
+size_t
 fwrite(buf, size, count, fp)
 	const void *buf;
 	size_t size, count;
