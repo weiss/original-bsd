@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in_pcb.c	8.1 (Berkeley) 06/10/93
+ *	@(#)in_pcb.c	8.2 (Berkeley) 01/04/94
  */
 
 #include <sys/param.h>
@@ -36,7 +36,6 @@ in_pcballoc(so, head)
 	struct socket *so;
 	struct inpcb *head;
 {
-	struct mbuf *m;
 	register struct inpcb *inp;
 
 	MALLOC(inp, struct inpcb *, sizeof(*inp), M_PCB, M_WAITOK);
