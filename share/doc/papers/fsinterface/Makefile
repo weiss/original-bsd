@@ -1,8 +1,9 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/30/90
+#	@(#)Makefile	5.2 (Berkeley) 12/16/90
 
 DIR=	papers/fsinterface
-SRCS=	abstract.ms fsinterface.ms
+SRCS=	fsinterface.ms
 MACROS=	-ms
+PRINTER=lz
 
 paper.${PRINTER}: ${SRCS}
 	${ROFF} ${SRCS} > ${.TARGET}
