@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)conf.h	7.2 (Berkeley) 04/02/87
+ *	@(#)conf.h	7.3 (Berkeley) 05/14/88
  */
 
 /*
@@ -44,6 +44,7 @@ struct cdevsw
 	struct tty *d_ttys;
 	int	(*d_select)();
 	int	(*d_mmap)();
+	int	(*d_strategy)();
 };
 #ifdef KERNEL
 struct	cdevsw cdevsw[];
