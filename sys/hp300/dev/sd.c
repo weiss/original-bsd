@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sd.c	7.6 (Berkeley) 05/07/91
+ *	@(#)sd.c	7.7 (Berkeley) 06/09/91
  */
 
 /*
@@ -695,8 +695,11 @@ sdintr(unit, stat)
 #endif
 		retry = sderror(unit, sc, hp, stat);
 		if (retry && sdtab[unit].b_errcnt++ < SDRETRY) {
-			printf("sd%d: retry #%d\n",
-			       unit, sdtab[unit].b_errcnt);
+#ifdef DEBUG
+			if (sddebug & SDB_ERROR)
+				printf("sd%d: retry #%d\n",
+				       unit, sdtab[unit].b_errcnt);
+#endif
 			sdstart(unit);
 			return;
 		}
