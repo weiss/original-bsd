@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.11 (Berkeley) 01/09/86";
+static char sccsid[] = "@(#)login.c	5.12 (Berkeley) 03/05/86";
 #endif not lint
 
 /*
@@ -156,6 +156,8 @@ main(argc, argv)
 	 */
 	if (rflag)
 		doremoteterm(term, &ttyb);
+	ttyb.sg_erase = CERASE;
+	ttyb.sg_kill = CKILL;
 	ioctl(0, TIOCSLTC, &ltc);
 	ioctl(0, TIOCSETC, &tc);
 	ioctl(0, TIOCSETP, &ttyb);
