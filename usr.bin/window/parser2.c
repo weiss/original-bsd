@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)parser2.c	3.8 07/12/84";
+static char sccsid[] = "@(#)parser2.c	3.9 04/03/85";
 #endif
 
 #include "parser.h"
@@ -37,11 +37,20 @@ register struct value *v;
 	for (vp = av; vp < &av[LCMD_NARG + 1]; vp++)
 		vp->v_type = V_ERR;
 
-	for (i = 0; p_expr0(&t, flag) >= 0;) {
-		if (t.v_type == V_ERR)
-			flag = 0;
+	if (token == T_LP)
+		(void) s_gettok();
+	i = 0;
+	for (;;) {
 		ap = 0;
 		vp = 0;
+		if (token == T_COMMA)		/* null argument */
+			t.v_type = V_ERR;
+		else {
+			if (p_expr0(&t, flag) < 0)
+				break;
+			if (t.v_type == V_ERR)
+				flag = 0;
+		}
 		if (token != T_ASSIGN) {
 			if (i >= LCMD_NARG ||
 			    c != 0 && (ap = lp) == 0 &&
@@ -130,7 +139,9 @@ register struct value *v;
 
 	if (p_erred())
 		flag = 0;
-	if (token != T_RP && token != T_EOL && token != T_EOF)
+	if (token == T_RP)
+		(void) s_gettok();
+	else if (token != T_EOL && token != T_EOF)
 		flag = 0;		/* look for legal follow set */
 	v->v_type = V_ERR;
 	if (flag)
