@@ -1,5 +1,5 @@
 /*
- * "@(#)dump.h	1.5 (Berkeley) 02/23/82"
+ * "@(#)dump.h	1.6 (Berkeley) 05/07/82"
  */
 #define	NI		16
 #define MAXINOPB	(MAXBSIZE / sizeof(struct dinode))
@@ -7,11 +7,11 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include "../../h/param.h"
-#include "../../h/stat.h"
-#include "../../h/fs.h"
-#include "../../h/inode.h"
-#include "../../h/dumprestor.h"
+#include <sys/param.h>
+#include <sys/stat.h>
+#include <sys/fs.h>
+#include <sys/inode.h>
+#include <dumprestor.h>
 #include <utmp.h>
 #include <time.h>
 #include <signal.h>
