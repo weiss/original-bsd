@@ -6,7 +6,7 @@ extern char	*getenv();
 /*
  *	This routine initializes the current and standard screen.
  *
- * @(#)initscr.c	1.5 (Berkeley) 05/01/85
+ * @(#)initscr.c	1.6 (Berkeley) 05/23/85
  */
 WINDOW *
 initscr() {
@@ -21,14 +21,9 @@ initscr() {
 	if (My_term)
 		setterm(Def_term);
 	else {
-		if (isatty(2))
-			_tty_ch = 2;
-		else {
-			nfd = getdtablesize();
-			for (_tty_ch = 0; _tty_ch < nfd; _tty_ch++)
-				if (isatty(_tty_ch))
-					break;
-		}
+		for (_tty_ch = 0; _tty_ch < nfd; _tty_ch++)
+			if (isatty(_tty_ch))
+				break;
 		gettmode();
 		if ((sp = getenv("TERM")) == NULL)
 			sp = Def_term;
