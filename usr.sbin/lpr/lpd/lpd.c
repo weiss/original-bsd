@@ -13,7 +13,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lpd.c	5.19 (Berkeley) 11/30/92";
+static char sccsid[] = "@(#)lpd.c	5.20 (Berkeley) 02/25/93";
 #endif /* not lint */
 
 /*
@@ -156,8 +156,10 @@ main(argc, argv)
 	signal(SIGTERM, mcleanup);
 	un.sun_family = AF_UNIX;
 	strcpy(un.sun_path, _PATH_SOCKETNAME);
-	if (bind(funix,
-	     (struct sockaddr *)&un, strlen(un.sun_path) + 2) < 0) {
+#ifndef SUN_LEN
+#define SUN_LEN(unp) (strlen((unp)->sun_path) + 2)
+#endif
+	if (bind(funix, (struct sockaddr *)&un, SUN_LEN(&un)) < 0) {
 		syslog(LOG_ERR, "ubind: %m");
 		exit(1);
 	}
