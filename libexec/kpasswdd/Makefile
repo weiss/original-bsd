@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 01/15/91
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 PROG=	kpasswdd
 SRCS=	kpasswdd.c des_rw.c
