@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ftpd.c	5.17 (Berkeley) 11/01/88";
+static char sccsid[] = "@(#)ftpd.c	5.18 (Berkeley) 11/18/88";
 #endif /* not lint */
 
 /*
@@ -462,8 +462,8 @@ dataconn(name, size, mode)
 		}
 		(void) close(pdata);
 		pdata = s;
-		reply(150, "Opening data connection for %s (%s mode)%s.",
-		     name, type == TYPE_A ? "ascii" : "binary", sizebuf);
+		reply(150, "Opening %s mode data connection for %s%s.",
+		     type == TYPE_A ? "ASCII" : "BINARY", name, sizebuf);
 		return(fdopen(pdata, mode));
 	}
 	if (data >= 0) {
@@ -496,8 +496,8 @@ dataconn(name, size, mode)
 		data = -1;
 		return (NULL);
 	}
-	reply(150, "Opening data connection for %s (%s mode)%s.",
-	    name, type == TYPE_A ? "ascii" : "binary", sizebuf);
+	reply(150, "Opening %s mode data connection for %s%s.",
+	     type == TYPE_A ? "ASCII" : "BINARY", name, sizebuf);
 	return (file);
 }
 
