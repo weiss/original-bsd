@@ -16,10 +16,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cards.c	5.2 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)cards.c	5.3 (Berkeley) 05/12/90";
 #endif /* not lint */
 
 # include	"monop.ext"
+# include	"pathnames.h"
 
 /*
  *	These routine deal with the card decks
@@ -28,7 +29,7 @@ static char sccsid[] = "@(#)cards.c	5.2 (Berkeley) 06/18/88";
 # define	GOJF	'F'	/* char for get-out-of-jail-free cards	*/
 
 # ifndef DEV
-static char	*cardfile	= "/usr/games/lib/cards.pck";
+static char	*cardfile	= _PATH_CARDS;
 # else
 static char	*cardfile	= "cards.pck";
 # endif
