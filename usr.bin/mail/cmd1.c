@@ -8,7 +8,7 @@
  * User commands.
  */
 
-static char *SccsId = "@(#)cmd1.c	2.9 10/21/82";
+static char *SccsId = "@(#)cmd1.c	2.10 01/29/83";
 
 /*
  * Print the current active headings.
@@ -52,6 +52,36 @@ headers(msgvec)
 		printf("No more mail.\n");
 		return(1);
 	}
+	return(0);
+}
+
+/*
+ * Set the list of alternate names for out host.
+ */
+local(namelist)
+	char **namelist;
+{
+	register int c;
+	register char **ap, **ap2, *cp;
+
+	c = argcount(namelist) + 1;
+	if (c == 1) {
+		if (localnames == 0)
+			return(0);
+		for (ap = localnames; *ap; ap++)
+			printf("%s ", *ap);
+		printf("\n");
+		return(0);
+	}
+	if (localnames != 0)
+		cfree((char *) localnames);
+	localnames = (char **) calloc(c, sizeof (char *));
+	for (ap = namelist, ap2 = localnames; *ap; ap++, ap2++) {
+		cp = (char *) calloc(strlen(*ap) + 1, sizeof (char));
+		strcpy(cp, *ap);
+		*ap2 = cp;
+	}
+	*ap2 = 0;
 	return(0);
 }
 
