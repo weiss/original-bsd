@@ -1,7 +1,7 @@
 /* Copyright (c) 1984 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)langpats.c	2.4 (Berkeley) 08/23/84";
+static char sccsid[] = "@(#)langpats.c	2.5 (Berkeley) 11/16/84";
 #endif
 
 #include "inline.h"
@@ -57,11 +57,15 @@ struct pats language_ptab[] = {
 "	mfpr	$18,r0\n\
 	mtpr	$0x18,$18\n" },
 
+	{ "0,_splhigh\n",
+"	mfpr	$18,r0\n\
+	mtpr	$0x18,$18\n" },
+
 	{ "0,_spl7\n",
 "	mfpr	$18,r0\n\
 	mtpr	$0x1f,$18\n" },
 
-	{ "0,_splhigh\n",
+	{ "0,_splextreme\n",
 "	mfpr	$18,r0\n\
 	mtpr	$0x1f,$18\n" },
 
