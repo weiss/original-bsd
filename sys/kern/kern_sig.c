@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_sig.c	6.18 (Berkeley) 08/23/85
+ *	@(#)kern_sig.c	6.19 (Berkeley) 09/18/85
  */
 
 #include "../machine/reg.h"
@@ -580,7 +580,7 @@ issig()
 				continue;
 			}
 		}
-		switch (u.u_signal[sig]) {
+		switch ((int)u.u_signal[sig]) {
 
 		case SIG_DFL:
 			/*
