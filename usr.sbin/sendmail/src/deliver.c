@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.17 (Berkeley) 08/28/93";
+static char sccsid[] = "@(#)deliver.c	8.18 (Berkeley) 08/30/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1303,6 +1303,7 @@ tryhost:
 					*t++ = ',';
 					for (p = to->q_paddr; *p; *t++ = *p++)
 						continue;
+					*t = '\0';
 				}
 			}
 
