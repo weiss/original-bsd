@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	8.6 (Berkeley) 07/28/94";
+static char sccsid[] = "@(#)ls.c	8.7 (Berkeley) 08/05/94";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -196,8 +196,10 @@ main(argc, argv)
 	/*
 	 * If -W, show whiteout entries
 	 */
+#ifdef FTS_WHITEOUT
 	if (f_whiteout)
 		fts_options |= FTS_WHITEOUT;
+#endif
 
 	/* If -l or -s, figure out block size. */
 	if (f_longform || f_size) {
