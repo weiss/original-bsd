@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: vn.c 1.13 94/04/02$
  *
- *	@(#)vn.c	8.6 (Berkeley) 04/01/94
+ *	@(#)vn.c	8.7 (Berkeley) 08/24/94
  */
 
 /*
@@ -418,7 +418,7 @@ vnioctl(dev, cmd, data, flag, p)
 		break;
 
 	default:
-		return(ENXIO);
+		return(ENOTTY);
 	}
 	return(0);
 }
