@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)fly.c	5.5 (Berkeley) 02/27/91";
+static char sccsid[] = "@(#)fly.c	5.6 (Berkeley) 03/04/91";
 #endif /* not lint */
 
 #include "externs.h"
@@ -39,7 +39,7 @@ succumb()
 
 visual()
 {
-	int moveenemy();
+	void moveenemy();
 
 	destroyed = 0;
 	savetty();
