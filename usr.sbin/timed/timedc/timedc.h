@@ -4,7 +4,7 @@
  * specifies the terms and conditions for redistribution.
  */
 
-/*	@(#)timedc.h	1.2	(Berkeley)	09/18/85	*/
+/*	@(#)timedc.h	1.3	(Berkeley)	10/23/85	*/
 
 #include <sys/param.h>
 #include <stdio.h>
@@ -20,8 +20,8 @@ extern int errno;
 #define ON		1
 #define OFF		0
 
-#define MSGS 		4
-#define TRIALS		8
+#define MSGS 		6
+#define TRIALS		5
 
 #define GOOD		1
 #define UNREACHABLE	2
