@@ -1,4 +1,4 @@
-/* static	char *sccsid = "@(#)0.h	2.1 (Berkeley) 02/08/84";*/
+/* static	char *sccsid = "@(#)0.h	2.2 (Berkeley) 01/09/85";*/
 /* Copyright (c) 1979 Regents of the University of California */
 /* #define DEBUG */
 #define	CHAR
@@ -246,17 +246,23 @@ int	line;
  * other than "integer" to be
  * assumed by the compiler.
  */
-int	*tree();
+struct tnode	*tree();
+char		*skipbl();
 int	*hash();
 char	*alloc();
 long	cntof();
 long	nowcnt();
 
 /*
+ *	type cast nils to keep lint happy.
+ */
+#define	TR_NIL	((struct tnode *) NIL)
+
+/*
  * Funny structures to use
  * pointers in wild and wooly ways
  */
-struct {
+struct cstruct {
 	char	pchar;
 };
 struct {
@@ -325,6 +331,7 @@ int	gocnt;
 int	cnts;
 
 #include <stdio.h>
+#include <sys/types.h>
 
 typedef enum {FALSE, TRUE} bool;
 
