@@ -1,8 +1,8 @@
 #ifndef lint
-static char *sccsid ="@(#)table.c	1.7 (Berkeley) 01/24/85";
+static char *sccsid ="@(#)table.c	1.8 (Berkeley) 04/02/85";
 #endif lint
 
-# include "mfile2"
+# include "pass2.h"
 
 # define WPTR TPTRTO|TINT|TLONG|TFLOAT|TDOUBLE|TPOINT|TUNSIGNED|TULONG
 # define AWD SNAME|SOREG|SCON|STARNM|STARREG
