@@ -1,4 +1,4 @@
-/*	lpr.c	4.12	83/03/17	*/
+/*	lpr.c	4.13	83/03/29	*/
 /*
  *      lpr -- off line print
  *
@@ -318,7 +318,8 @@ copy(f, n)
 		nc += i;
 		if (nc >= BUFSIZ) {
 			nc -= BUFSIZ;
-			if (nr++ > MX) {
+			nr++;
+			if (MX > 0 && nr > MX) {
 				printf("%s: %s: copy file is too large\n", name, n);
 				break;
 			}
@@ -432,23 +433,20 @@ out()
 	signal(SIGTERM, SIG_IGN);
 	i = inchar;
 	if (tfname)
-		while (tfname[i] != 'A') {
-			tfname[i]--;
+		do
 			unlink(tfname);
-		}
+		while (tfname[i]-- != 'A');
 	if (cfname)
-		while (cfname[i] != 'A') {
-			cfname[i]--;
+		do
 			unlink(cfname);
-		}
+		while (cfname[i]-- != 'A');
 	if (dfname)
-		while (dfname[i-2] >= 'd') {
-			while (dfname[i] != 'A') {
-				dfname[i]--;
+		do {
+			do
 				unlink(dfname);
-			}
-			dfname[i-2]--;
-		}
+			while (dfname[i]-- != 'A');
+			dfname[i] = 'z';
+		} while (dfname[i-2]-- != 'd');
 	exit();
 }
 
