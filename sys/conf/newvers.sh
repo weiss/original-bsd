@@ -4,7 +4,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)newvers.sh	7.2 (Berkeley) 04/25/89
+#	@(#)newvers.sh	7.3 (Berkeley) 07/01/90
 #
 if [ ! -r version ]
 then
@@ -12,7 +12,7 @@ then
 fi
 touch version
 v=`cat version` u=${USER-root} d=`pwd` h=`hostname` t=`date`
-( echo "char sccs[] = \"@(#)4.3 BSD #${v}: ${t} (${u}@${h}:${d})\\n\";" ;
-  echo "char version[] = \"4.3 BSD UNIX #${v}: ${t}\\n    ${u}@${h}:${d}\\n\";"
+( echo "char sccs[] = \"@(#)4.3 BSD Reno #${v}: ${t} (${u}@${h}:${d})\\n\";" ;
+  echo "char version[] = \"4.3 BSD Reno UNIX #${v}: ${t}\\n    ${u}@${h}:${d}\\n\";"
 ) > vers.c
 echo `expr ${v} + 1` > version
