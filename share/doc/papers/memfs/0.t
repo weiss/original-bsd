@@ -1,4 +1,10 @@
-.\"	@(#)0.t	1.4	(Copyright 1990 M. K. McKusick)	90/04/16
+.\" Copyright (c) 1990 The Regents of the University of California.
+.\" All rights reserved.
+.\"
+.\" %sccs.include.redist.man%
+.\"
+.\"	@(#)0.t	5.1 (Berkeley) 04/16/91
+.\"
 .rm CM
 .nr PO 1.25i
 .ds CH "
