@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.12 (Berkeley) 02/15/93";
+static char sccsid[] = "@(#)parseaddr.c	6.13 (Berkeley) 02/16/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1197,8 +1197,8 @@ buildaddr(tv, a)
 
 	/* rewrite according recipient mailer rewriting rules */
 	rewrite(tv, 2);
-	if (m->m_r_rwset > 0)
-		rewrite(tv, m->m_r_rwset);
+	if (m->m_re_rwset > 0)
+		rewrite(tv, m->m_re_rwset);
 	rewrite(tv, 4);
 
 	/* save the result for the command line/RCPT argument */
@@ -1356,8 +1356,11 @@ printaddr(a, follow)
 **			to.
 **		senderaddress -- if set, uses the sender rewriting rules
 **			rather than the recipient rewriting rules.
+**		header -- set if this address is in the header, rather
+**			than an envelope header.
 **		canonical -- if set, strip out any comment information,
 **			etc.
+**		e -- the current envelope.
 **
 **	Returns:
 **		the text string representing this address relative to
@@ -1372,10 +1375,11 @@ printaddr(a, follow)
 */
 
 char *
-remotename(name, m, senderaddress, canonical, e)
+remotename(name, m, senderaddress, header, canonical, e)
 	char *name;
 	struct mailer *m;
 	bool senderaddress;
+	bool header;
 	bool canonical;
 	register ENVELOPE *e;
 {
@@ -1383,6 +1387,7 @@ remotename(name, m, senderaddress, canonical, e)
 	char *fancy;
 	extern char *macvalue();
 	char *oldg = macvalue('g', e);
+	int rwset;
 	static char buf[MAXNAME];
 	char lbuf[MAXNAME];
 	char pvpbuf[PSBUFSIZE];
@@ -1393,7 +1398,11 @@ remotename(name, m, senderaddress, canonical, e)
 		printf("remotename(%s)\n", name);
 
 	/* don't do anything if we are tagging it as special */
-	if ((senderaddress ? m->m_s_rwset : m->m_r_rwset) < 0)
+	if (senderaddress)
+		rwset = header ? m->m_sh_rwset : m->m_se_rwset;
+	else
+		rwset = header ? m->m_rh_rwset : m->m_re_rwset;
+	if (rwset < 0)
 		return (name);
 
 	/*
@@ -1445,17 +1454,11 @@ remotename(name, m, senderaddress, canonical, e)
 	*/
 
 	if (senderaddress)
-	{
 		rewrite(pvp, 1);
-		if (m->m_s_rwset > 0)
-			rewrite(pvp, m->m_s_rwset);
-	}
 	else
-	{
 		rewrite(pvp, 2);
-		if (m->m_r_rwset > 0)
-			rewrite(pvp, m->m_r_rwset);
-	}
+	if (rwset > 0)
+		rewrite(pvp, rwset);
 
 	/*
 	**  Do any final sanitation the address may require.

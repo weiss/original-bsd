@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.7 (Berkeley) 02/15/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.8 (Berkeley) 02/16/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.7 (Berkeley) 02/15/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.8 (Berkeley) 02/16/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -214,7 +214,7 @@ smtpmailfrom(m, mci, e)
 	}
 
 #ifdef LOG
-	if (LogLevel >= 4)
+	if (LogLevel > 1)
 	{
 		syslog(LOG_CRIT, "%s: SMTP MAIL protocol error: %s",
 			e->e_id, SmtpReplyBuffer);
@@ -265,7 +265,7 @@ smtprcpt(to, m, mci, e)
 		return (EX_UNAVAILABLE);
 
 #ifdef LOG
-	if (LogLevel >= 4)
+	if (LogLevel > 1)
 	{
 		syslog(LOG_CRIT, "%s: SMTP RCPT protocol error: %s",
 			e->e_id, SmtpReplyBuffer);
@@ -321,7 +321,7 @@ smtpdata(m, mci, e)
 	else if (r != 354)
 	{
 #ifdef LOG
-		if (LogLevel >= 4)
+		if (LogLevel > 1)
 		{
 			syslog(LOG_CRIT, "%s: SMTP DATA-1 protocol error: %s",
 				e->e_id, SmtpReplyBuffer);
@@ -358,7 +358,7 @@ smtpdata(m, mci, e)
 	else if (r == 552 || r == 554)
 		return (EX_UNAVAILABLE);
 #ifdef LOG
-	if (LogLevel >= 4)
+	if (LogLevel > 1)
 	{
 		syslog(LOG_CRIT, "%s: SMTP DATA-2 protocol error: %s",
 			e->e_id, SmtpReplyBuffer);
@@ -512,7 +512,7 @@ reply(m, mci, e, timeout)
 			if (tTd(18, 100))
 				pause();
 # ifdef LOG
-			if (LogLevel > 0)
+			if (LogLevel > 1)
 				syslog(LOG_INFO, "%s", &MsgBuf[4]);
 # endif /* LOG */
 			mci->mci_state = MCIS_ERROR;
