@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)npreg.h	7.2 (Berkeley) 04/08/87
+ *	@(#)npreg.h	7.3 (Berkeley) 09/07/90
  *
  * Merged header file for MICOM-Interlan NP100.
  */
@@ -400,14 +400,6 @@ struct npbase {
  *	This version retrieved: 8/18/86 @ 18:58:45
  *	    This delta created: 8/18/86 @ 18:27:38
  */
-#ifndef IOC_VOID
-#    ifdef KERNEL
-#         include "../h/ioctl.h"
-#    else
-#         include <sys/ioctl.h>
-#    endif
-#endif
-
 #ifdef KERNEL
 #    define IoVOID 0
 #else
