@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mbuf.h	6.5 (Berkeley) 06/08/85
+ *	@(#)mbuf.h	6.6 (Berkeley) 06/29/85
  */
 
 /*
@@ -88,7 +88,7 @@ struct mbuf {
 	  if ((m)->m_type == MT_FREE) panic("mfree"); \
 	  mbstat.m_mtypes[(m)->m_type]--; mbstat.m_mtypes[MT_FREE]++; \
 	  (m)->m_type = MT_FREE; \
-	  if ((m)->m_off > MSIZE) { \
+	  if ((m)->m_off >= MSIZE) { \
 		(n) = (struct mbuf *)(mtod(m, int)&~CLOFSET); \
 		if (--mclrefcnt[mtocl(n)] == 0) \
 		    { (n)->m_next = mclfree;mclfree = (n);mbstat.m_clfree++;} \
