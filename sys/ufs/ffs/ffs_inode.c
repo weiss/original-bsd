@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_inode.c	7.68 (Berkeley) 02/28/93
+ *	@(#)ffs_inode.c	7.69 (Berkeley) 04/02/93
  */
 
 #include <sys/param.h>
@@ -148,7 +148,7 @@ ffs_truncate(ap)
 	}
 	if (oip->i_size <= length) {
 		oip->i_flag |= ICHG|IUPD;
-		return (VOP_UPDATE(ovp, &tv, &tv, 1));
+		return (VOP_UPDATE(ovp, &tv, &tv, 0));
 	}
 	vnode_pager_setsize(ovp, (u_long)length);
 	/*
