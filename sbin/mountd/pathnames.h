@@ -4,10 +4,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	6.4 (Berkeley) 06/21/90
+ *	@(#)pathnames.h	6.5 (Berkeley) 06/27/90
  */
 #include <paths.h>
 
 #define	_PATH_EXPORTS		"/etc/exports"
-#define	_PATH_RMOUNTLIST	"/var/run/mountdtab"
+#define	_PATH_RMOUNTLIST	"/var/db/mountdtab"
 #define _PATH_MOUNTDPID		"/var/run/mountd.pid"
