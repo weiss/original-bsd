@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)netstat.h	5.1 (Berkeley) 04/27/92
+ *	@(#)netstat.h	5.2 (Berkeley) 05/27/92
  */
 
 #include <sys/cdefs.h>
@@ -65,7 +65,7 @@ void	ns_erputil __P((int, int));
 
 void	intpr __P((int, off_t));
 
-void	unixpr __P((off_t, off_t, struct protosw *));
+void	unixpr __P((struct protosw *));
 
 void	esis_stats __P((off_t, char *));
 void	clnp_stats __P((off_t, char *));
