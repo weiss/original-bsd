@@ -18,9 +18,9 @@
 
 #ifndef lint
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.19 (Berkeley) 03/21/90 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.20 (Berkeley) 04/18/90 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.19 (Berkeley) 03/21/90 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.20 (Berkeley) 04/18/90 (without DBM)";
 #endif
 #endif /* not lint */
 
@@ -311,7 +311,7 @@ readaliases(aliasfile, init)
 	bool skipping;
 	int naliases, bytes, longest;
 	FILE *af;
-	int (*oldsigint)();
+	void (*oldsigint)();
 	ADDRESS al, bl;
 	register STAB *s;
 	char line[BUFSIZ];
