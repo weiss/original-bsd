@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.32 (Berkeley) 03/19/93
+ *	@(#)sendmail.h	6.33 (Berkeley) 03/23/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.32		03/19/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.33		03/23/93";
 # endif lint
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -42,8 +42,13 @@ static char SmailSccsId[] =	"@(#)sendmail.h	6.32		03/19/93";
 
 # ifdef DAEMON
 # include <sys/socket.h>
+# endif
+# ifdef NETINET
 # include <netinet/in.h>
-# endif /* DAEMON */
+# endif
+# ifdef NETISO
+# include <netiso/iso.h>
+# endif
 
 
 
@@ -586,22 +591,18 @@ struct prival
 **  we are forced to declare a supertype here.
 */
 
-struct bigsockaddr
+union bigsockaddr
 {
-	u_char	sa_len;			/* address length */
-	u_char	sa_family;		/* address family */
-	union
-	{
-		char	sa_data[256];	/* make sure there's plenty of space */
-		struct
-		{
-			u_short		sin_port;	/* INET port */
-			struct in_addr	sin_addr;	/* INET address */
-		} sa_inet;
-	} sa_u;
+	struct sockaddr		sa;	/* general version */
+#ifdef NETINET
+	struct sockaddr_in	sin;	/* INET family */
+#endif
+#ifdef NETISO
+	struct sockaddr_iso	siso;	/* ISO family */
+#endif
 };
 
-#define SOCKADDR	struct bigsockaddr
+#define SOCKADDR	union bigsockaddr
 
 /*
 **  Global variables.
