@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)nfsstat.c	5.13 (Berkeley) 01/27/92";
+static char sccsid[] = "@(#)nfsstat.c	5.14 (Berkeley) 11/02/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -34,6 +34,7 @@ static char sccsid[] = "@(#)nfsstat.c	5.13 (Berkeley) 01/27/92";
 #include <fcntl.h>
 #include <ctype.h>
 #include <errno.h>
+#include <kvm.h>
 #include <nlist.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -46,6 +47,7 @@ struct nlist nl[] = {
 	{ "_nfsstats" },
 	"",
 };
+kvm_t *kd;
 
 void intpr(), printhdr(), sidewaysintpr(), usage();
 
@@ -58,6 +60,7 @@ main(argc, argv)
 	u_int interval;
 	int ch;
 	char *memf, *nlistf;
+	char errbuf[80];
 
 	interval = 0;
 	memf = nlistf = NULL;
@@ -97,12 +100,12 @@ main(argc, argv)
 	if (nlistf != NULL || memf != NULL)
 		setgid(getgid());
 
-	if (kvm_openfiles(nlistf, memf, NULL) == -1) {
-		fprintf(stderr, "nfsstate: kvm_openfiles: %s\n", kvm_geterr());
+	if ((kd = kvm_openfiles(nlistf, memf, NULL, O_RDONLY, errbuf)) == 0) {
+		fprintf(stderr, "nfsstat: kvm_openfiles: %s\n", errbuf);
 		exit(1);
 	}
-	if (kvm_nlist(nl) != 0) {
-		fprintf(stderr, "nfsstate: kvm_nlist: can't get names\n");
+	if (kvm_nlist(kd, nl) != 0) {
+		fprintf(stderr, "nfsstat: kvm_nlist: can't get names\n");
 		exit(1);
 	}
 
@@ -118,11 +121,14 @@ main(argc, argv)
  */
 void
 intpr(nfsstataddr)
-	off_t nfsstataddr;
+	u_long nfsstataddr;
 {
 	struct nfsstats nfsstats;
 
-	kvm_read((void *)nfsstataddr, (char *)&nfsstats, sizeof(struct nfsstats));
+	if (kvm_read(kd, (u_long)nfsstataddr, (char *)&nfsstats, sizeof(struct nfsstats)) < 0) {
+		fprintf(stderr, "nfsstat: kvm_read failed\n");
+		exit(1);
+	}
 	printf("Client Info:\n");
 	printf("Rpc Counts:\n");
 	printf("%9.9s %9.9s %9.9s %9.9s %9.9s %9.9s %9.9s %9.9s\n",
@@ -250,7 +256,7 @@ u_char	signalled;			/* set if alarm goes off "early" */
 void
 sidewaysintpr(interval, off)
 	u_int interval;
-	off_t off;
+	u_long off;
 {
 	struct nfsstats nfsstats, lastst;
 	int hdrcnt, oldmask;
@@ -266,7 +272,10 @@ sidewaysintpr(interval, off)
 			printhdr();
 			hdrcnt = 20;
 		}
-		kvm_read((void *)off, (char *)&nfsstats, sizeof nfsstats);
+		if (kvm_read(kd, off, (char *)&nfsstats, sizeof nfsstats) < 0) {
+			fprintf(stderr, "nfsstat: kvm_read failed\n");
+			exit(1);
+		}
 		printf("Client: %8d %8d %8d %8d %8d %8d %8d %8d\n",
 		    nfsstats.rpccnt[1]-lastst.rpccnt[1],
 		    nfsstats.rpccnt[4]-lastst.rpccnt[4],
