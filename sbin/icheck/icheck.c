@@ -1,4 +1,13 @@
-static	char *sccsid = "@(#)icheck.c	2.4 (Berkeley) 11/18/82";
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)icheck.c	5.1 (Berkeley) 05/28/85";
+#endif not lint
+
 
 /*
  * icheck
