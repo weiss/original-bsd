@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)sccs.c	5.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)sccs.c	5.2 (Berkeley) 02/12/87";
 #endif not lint
 
 # include <stdio.h>
@@ -913,7 +913,7 @@ clean(mode, argv)
 	struct direct *dir;
 	char buf[FBUFSIZ];
 	char *bufend;
-	register DIR *dirfd;
+	register DIR *dirp;
 	register char *basefile;
 	bool gotedit;
 	bool gotpfent;
@@ -977,8 +977,8 @@ clean(mode, argv)
 	gstrcat(buf, SccsPath, sizeof(buf));
 	bufend = &buf[strlen(buf)];
 
-	dirfd = opendir(buf);
-	if (dirfd == NULL)
+	dirp = opendir(buf);
+	if (dirp == NULL)
 	{
 		usrerr("cannot open %s", buf);
 		return (EX_NOINPUT);
@@ -991,7 +991,7 @@ clean(mode, argv)
 	*/
 
 	gotedit = FALSE;
-	while (dir = readdir(dirfd)) {
+	while (dir = readdir(dirp)) {
 		if (strncmp(dir->d_name, "s.", 2) != 0)
 			continue;
 		
@@ -1040,7 +1040,7 @@ clean(mode, argv)
 	}
 
 	/* cleanup & report results */
-	closedir(dirfd);
+	closedir(dirp);
 	if (!gotedit && mode == INFOC)
 	{
 		printf("Nothing being edited");
