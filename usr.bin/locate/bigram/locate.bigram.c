@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)locate.bigram.c	4.3	(Berkeley)	03/29/89";
+static char sccsid[] = "@(#)locate.bigram.c	4.4	(Berkeley)	05/04/89";
 #endif not lint
 
 /*
@@ -10,11 +10,10 @@ static char sccsid[] = "@(#)locate.bigram.c	4.3	(Berkeley)	03/29/89";
  */
 
 #include <stdio.h>
+#include <sys/param.h>			/* for MAXPATHLEN */
 
-#define MAXPATH	1024		/* maximum pathname length */
-
-char buf1[MAXPATH] = " ";	
-char buf2[MAXPATH];
+char buf1[MAXPATHLEN] = " ";	
+char buf2[MAXPATHLEN];
 
 main ( )
 {
@@ -28,8 +27,8 @@ main ( )
 			if ( *oldpath == NULL )
 				break;
 		/*
-		   output post-residue bigrams only
-		*/
+		 * output post-residue bigrams only
+		 */
 		while ( *cp != NULL && *(cp + 1) != NULL ) {
 			putchar ( *cp++ );
 			putchar ( *cp++ );
