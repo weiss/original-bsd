@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)ssc	6.2 (Berkeley) 04/17/91
+.\"	@(#)ssc	6.3 (Berkeley) 08/02/93
 .\"
 .SH
 Appendix C: An Advanced Example
@@ -105,7 +105,7 @@ If the lexical analyzer detects an error,
 it responds by returning a token that
 is illegal in the grammar, provoking a syntax error
 in the parser, and thence error recovery.
-.DS L
+.LD
 
 %{
 
