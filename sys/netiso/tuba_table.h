@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tuba_table.h	7.2 (Berkeley) 10/09/92
+ *	@(#)tuba_table.h	7.3 (Berkeley) 10/15/92
  */
 
 struct tuba_cache {
@@ -22,6 +22,7 @@ struct tuba_cache {
 #define ICKSUM(a, b) ((a = (b) % 0xffff), (a == 0 ? a = 0xffff : a))
 
 #ifdef KERNEL
-extern struct tuba_cache **tuba_table;
-struct radix_node_head *tuba_tree;
+extern int	tuba_table_size;
+extern struct	tuba_cache **tuba_table;
+extern struct	radix_node_head *tuba_tree;
 #endif
