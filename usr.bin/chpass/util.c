@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.5 (Berkeley) 03/09/89";
+static char sccsid[] = "@(#)util.c	5.6 (Berkeley) 03/11/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -116,6 +116,7 @@ print(fp, pw)
 	    pw->pw_name);
 	if (!uid) {
 		fprintf(fp, "Login: %s\n", pw->pw_name);
+		fprintf(fp, "Password: %s\n", pw->pw_passwd);
 		fprintf(fp, "Uid [#]: %d\n", pw->pw_uid);
 		fprintf(fp, "Gid [# or name]: %d\n", pw->pw_gid);
 		fprintf(fp, "Change [month day year]: %s\n", ttoa(pw->pw_change));
