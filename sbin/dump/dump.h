@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dump.h	5.16 (Berkeley) 05/29/91
+ *	@(#)dump.h	5.17 (Berkeley) 07/23/91
  */
 
 #define MAXINOPB	(MAXBSIZE / sizeof(struct dinode))
@@ -116,7 +116,7 @@ struct	fstab	*fstabsearch();	/* search in fs_file and fs_spec */
  *	a linked list, and then (eventually) arrayified.
  */
 struct dumpdates {
-	char	dd_name[MAXNAMLEN+3];
+	char	dd_name[NAME_MAX+3];
 	char	dd_level;
 	time_t	dd_ddate;
 };
