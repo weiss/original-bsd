@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)param.h	7.26 (Berkeley) 07/12/92
+ *	@(#)param.h	7.27 (Berkeley) 12/09/92
  */
 
 #define	BSD	199207		/* System version (year & month). */
@@ -118,7 +118,7 @@
  * made larger without any effect on existing file systems; however making
  * it smaller make make some file systems unmountable.
  */
-#define	MAXBSIZE	8192
+#define	MAXBSIZE	MAXPHYS
 #define MAXFRAG 	8
 
 /*
