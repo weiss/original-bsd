@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	6.20 (Berkeley) 05/03/93 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	6.21 (Berkeley) 05/27/93 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	6.20 (Berkeley) 05/03/93 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	6.21 (Berkeley) 05/27/93 (without USERDB)";
 #endif
 #endif
 
@@ -603,7 +603,7 @@ _udbx_init()
 			{
 			  case UDB_REMOTE:
 				printf("REMOTE: addr %s, timeo %d\n",
-					anynet_ntoa(&up->udb_addr),
+					anynet_ntoa((SOCKADDR *) &up->udb_addr),
 					up->udb_timeout);
 				break;
 

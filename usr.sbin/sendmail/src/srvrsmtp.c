@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.55 (Berkeley) 05/23/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.56 (Berkeley) 05/27/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.55 (Berkeley) 05/23/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.56 (Berkeley) 05/27/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -111,11 +111,7 @@ smtp(e)
 	char inp[MAXLINE];
 	char cmdbuf[MAXLINE];
 	extern char Version[];
-	extern char *macvalue();
-	extern ADDRESS *recipient();
 	extern ENVELOPE BlankEnvelope;
-	extern ENVELOPE *newenvelope();
-	extern char *anynet_ntoa();
 
 	if (fileno(OutChannel) != fileno(stdout))
 	{

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.39 (Berkeley) 05/21/93";
+static char sccsid[] = "@(#)readcf.c	6.40 (Berkeley) 05/27/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -74,12 +74,10 @@ readcf(cfname, safe, e)
 	int nfuzzy;
 	char buf[MAXLINE];
 	register char *p;
-	extern char **prescan();
 	extern char **copyplist();
 	struct stat statb;
 	char exbuf[MAXLINE];
 	char pvpbuf[PSBUFSIZE];
-	extern char *fgetfolded();
 	extern char *munchstring();
 	extern void makemapentry();
 
@@ -962,7 +960,6 @@ setoption(opt, val, safe, sticky, e)
 	extern int QueueLA;
 	extern int RefuseLA;
 	extern bool trusteduser();
-	extern char *username();
 
 	if (tTd(37, 1))
 		printf("setoption %c=%s", opt, val);

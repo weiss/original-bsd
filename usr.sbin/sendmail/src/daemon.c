@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.51 (Berkeley) 05/27/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.52 (Berkeley) 05/27/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.51 (Berkeley) 05/27/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.52 (Berkeley) 05/27/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -58,8 +58,6 @@ static char sccsid[] = "@(#)daemon.c	6.51 (Berkeley) 05/27/93 (without daemon mo
 **	host_map_lookup(map, hbuf, avp, pstat)
 **		Convert the entry in hbuf into a canonical form.
 */
-
-extern char	*anynet_ntoa();
 /*
 **  GETREQUESTS -- open mail IPC port and get requests.
 **
@@ -977,7 +975,6 @@ host_map_lookup(map, name, av, statp)
 	char hbuf[MAXNAME];
 	extern struct hostent *gethostbyaddr();
 	extern int h_errno;
-	extern char *map_rewrite();
 
 	/*
 	**  See if we have already looked up this name.  If so, just

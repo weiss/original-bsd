@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.56 (Berkeley) 05/22/93";
+static char sccsid[] = "@(#)parseaddr.c	6.57 (Berkeley) 05/27/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -69,7 +69,6 @@ parseaddr(addr, a, copyf, delim, delimptr, e)
 	auto char *delimptrbuf;
 	bool queueup;
 	char pvpbuf[PSBUFSIZE];
-	extern char **prescan();
 	extern ADDRESS *buildaddr();
 	extern bool invalidaddr();
 
@@ -618,7 +617,6 @@ rewrite(pvp, ruleset, e)
 	int rstat = EX_OK;		/* return status */
 	struct match mlist[MAXMATCH];	/* stores match on LHS */
 	char *npvp[MAXATOM+1];		/* temporary space for rebuild */
-	extern char *macvalue();
 
 	if (OpMode == MD_TEST || tTd(21, 2))
 	{
@@ -1529,13 +1527,11 @@ remotename(name, m, flags, pstat, e)
 {
 	register char **pvp;
 	char *fancy;
-	extern char *macvalue();
 	char *oldg = macvalue('g', e);
 	int rwset;
 	static char buf[MAXNAME];
 	char lbuf[MAXNAME];
 	char pvpbuf[PSBUFSIZE];
-	extern char **prescan();
 	extern char *crackaddr();
 
 	if (tTd(12, 1))

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	6.34 (Berkeley) 05/11/93";
+static char sccsid[] = "@(#)headers.c	6.35 (Berkeley) 05/27/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -384,7 +384,6 @@ eatheader(e, full)
 		char *name;
 		char hbuf[MAXNAME];
 		char sbuf[MAXLINE];
-		extern char *macvalue();
 
 		if (bitset(EF_RESPONSE, e->e_flags))
 			name = "[RESPONSE]";
@@ -394,8 +393,6 @@ eatheader(e, full)
 			name = RealHostName;
 		else
 		{
-			extern char *anynet_ntoa();
-
 			name = hbuf;
 			(void) sprintf(hbuf, "%.80s", RealHostName);
 			if (RealHostAddr.sa.sa_family != 0)
@@ -853,7 +850,6 @@ commaize(h, p, fp, oldstyle, m, e)
 		char savechar;
 		int flags;
 		auto int stat;
-		extern char *remotename();
 
 		/*
 		**  Find the end of the name.  New style names
@@ -871,7 +867,6 @@ commaize(h, p, fp, oldstyle, m, e)
 		{
 			auto char *oldp;
 			char pvpbuf[PSBUFSIZE];
-			extern char **prescan();
 
 			(void) prescan(p, oldstyle ? ' ' : ',', pvpbuf, &oldp);
 			p = oldp;
