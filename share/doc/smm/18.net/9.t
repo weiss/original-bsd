@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)9.t	5.1 (Berkeley) 05/26/86
+.\"	@(#)9.t	6.1 (Berkeley) 05/26/86
 .\"
 .nr H2 1
 .ds RH "Protocol/network-interface
