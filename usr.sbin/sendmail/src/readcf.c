@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.10 (Berkeley) 08/16/93";
+static char sccsid[] = "@(#)readcf.c	8.11 (Berkeley) 08/21/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -383,12 +383,7 @@ readcf(cfname, safe, e)
 				delim = *p;
 				*p = '\0';
 				if (wd[0] != '\0')
-				{
-					if (tTd(37, 2))
-						printf("setclass(%c, %s)\n",
-							bp[1], wd);
 					setclass(bp[1], wd);
-				}
 				*p = delim;
 			}
 			break;
@@ -1420,7 +1415,7 @@ setclass(class, word)
 	register STAB *s;
 
 	if (tTd(37, 8))
-		printf("%s added to class %c\n", word, class);
+		printf("setclass(%c, %s)\n", class, word);
 	s = stab(word, ST_CLASS, ST_ENTER);
 	setbitn(class, s->s_class);
 }
