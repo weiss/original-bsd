@@ -1,4 +1,4 @@
-/*	ffs_inode.c	3.5	10/03/80	*/
+/*	ffs_inode.c	4.1	11/09/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
