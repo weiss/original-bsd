@@ -1,9 +1,9 @@
 #!/bin/sh -
 #
-#	@(#)monthly	5.6 (Berkeley) 08/01/91
+#	@(#)monthly	5.7 (Berkeley) 01/09/92
 #
 
-host=`hostname -s`
+host=`hostname`
 echo "Subject: $host monthly run output"
 
 # echo ""
