@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mtree.c	5.9 (Berkeley) 12/11/91";
+static char sccsid[] = "@(#)mtree.c	5.10 (Berkeley) 04/17/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -63,13 +63,13 @@ main(argc, argv)
 		case 'K':
 			while ((p = strsep(&optarg, " \t,")) != NULL)
 				if (*p != '\0')
-					keys |= parsekey(p);
+					keys |= parsekey(p, NULL);
 			break;
 		case 'k':
 			keys = F_TYPE;
 			while ((p = strsep(&optarg, " \t,")) != NULL)
 				if (*p != '\0')
-					keys |= parsekey(p);
+					keys |= parsekey(p, NULL);
 			break;
 		case 'p':
 			dir = optarg;
