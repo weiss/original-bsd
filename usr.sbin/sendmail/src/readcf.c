@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.42 (Berkeley) 07/19/92";
+static char sccsid[] = "@(#)readcf.c	5.43 (Berkeley) 07/19/92";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -869,7 +869,8 @@ setoption(opt, val, safe, sticky)
 		break;
 
 	  case 'E':		/* error message header/header file */
-		ErrMsgFile = newstr(val);
+		if (*val != '\0')
+			ErrMsgFile = newstr(val);
 		break;
 
 	  case 'e':		/* set error processing mode */
