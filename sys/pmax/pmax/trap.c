@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: trap.c 1.32 91/04/06$
  *
- *	@(#)trap.c	7.3 (Berkeley) 02/29/92
+ *	@(#)trap.c	7.4 (Berkeley) 03/20/92
  */
 
 #include "param.h"
@@ -422,7 +422,7 @@ trap(statusReg, causeReg, vadr, pc, args)
 				}
 			}
 		} else {
-			if (code >= numsys)
+			if ((u_int)code >= numsys)
 				callp = &systab[0];	/* indir (illegal) */
 			else
 				callp = &systab[code];
