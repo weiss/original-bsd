@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sprint.c	5.7 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)sprint.c	5.8 (Berkeley) 12/04/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -47,7 +47,7 @@ sflag_print()
 	 */
 #define	MAXREALNAME	20
 	(void)printf("%-*s %-*s %s\n", UT_NAMESIZE, "Login", MAXREALNAME,
-	    "Name", "Tty  Idle  Login        Office     Office Phone");
+	    "Name", "Tty  Idle  Login Time   Office     Office Phone");
 	for (cnt = 0; cnt < entries; ++cnt) {
 		pn = list[cnt];
 		for (w = pn->whead; w != NULL; w = w->next) {
