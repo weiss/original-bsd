@@ -3,7 +3,7 @@
 /*
  *	This routine deletes a window and releases it back to the system.
  *
- * 01/26/81 (Berkeley) @(#)delwin.c	1.1
+ * 03/27/83 (Berkeley) @(#)delwin.c	1.2
  */
 delwin(win)
 reg WINDOW	*win; {
@@ -14,5 +14,7 @@ reg WINDOW	*win; {
 		for (i = 0; i < win->_maxy && win->_y[i]; i++)
 			cfree(win->_y[i]);
 	cfree(win->_y);
+	cfree(win->_firstch);
+	cfree(win->_lastch);
 	cfree(win);
 }
