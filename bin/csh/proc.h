@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)proc.h	5.4 (Berkeley) 06/04/91
+ *	@(#)proc.h	5.5 (Berkeley) 06/09/91
  */
 
 /*
@@ -51,7 +51,6 @@ struct process {
 #define	PPTIME		(1<<14)	/* time individual process */
 #define	PNEEDNOTE	(1<<15)	/* notify as soon as practical */
 
-#define	PNULL		(struct process *)0
 #define	PMAXLEN		80
 
 /* defines for arguments to pprint */
