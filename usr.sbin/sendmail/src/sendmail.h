@@ -15,7 +15,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)sendmail.h	5.12 (Berkeley) 06/30/88
+ *	@(#)sendmail.h	5.13 (Berkeley) 09/20/88
  */
 
 /*
@@ -25,7 +25,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.12		06/30/88";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.13		09/20/88";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -491,6 +491,7 @@ EXTERN bool	SuperSafe;	/* be extra careful, even if expensive */
 EXTERN bool	ForkQueueRuns;	/* fork for each job when running the queue */
 EXTERN bool	AutoRebuild;	/* auto-rebuild the alias database as needed */
 EXTERN bool	CheckAliases;	/* parse addresses during newaliases */
+EXTERN bool	UseNameServer;	/* use internet domain name server */
 EXTERN int	SafeAlias;	/* minutes to wait until @:@ in alias file */
 EXTERN time_t	TimeOut;	/* time until timeout */
 EXTERN FILE	*InChannel;	/* input connection */
