@@ -3,13 +3,14 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 03/18/86
+#	@(#)Makefile	5.3 (Berkeley) 11/13/86
 #
 DESTDIR=
 CFLAGS=	-O
 INCPATH=-I${SRCDIR}
 LFLAGS=	
-SRCDIR=	/sys/vax/inline
+MACHINE= unknown
+SRCDIR=	/sys/${MACHINE}/inline
 
 # The program itself
 #
