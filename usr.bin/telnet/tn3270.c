@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tn3270.c	1.13 (Berkeley) 08/28/88";
+static char sccsid[] = "@(#)tn3270.c	1.14 (Berkeley) 11/04/88";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -301,6 +301,9 @@ void
 _putchar(c)
 char c;
 {
+#if	defined(sun)		/* SunOS 4.0 bug */
+    c &= 0x7f;
+#endif	/* defined(sun) */
     if (TTYBYTES()) {
 	(void) DataToTerminal(&c, 1);
     } else {
