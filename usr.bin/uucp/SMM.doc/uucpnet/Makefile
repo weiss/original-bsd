@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.3 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 DIR=	smm/15.uucpnet
 SRCS=	network.ms
