@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ttyname.c	5.11 (Berkeley) 09/14/91";
+static char sccsid[] = "@(#)ttyname.c	5.12 (Berkeley) 09/25/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -49,8 +49,10 @@ ttyname(fd)
 		if (!(db->get)(db, &key, &data, 0)) {
 			bcopy(data.data,
 			    buf + sizeof(_PATH_DEV) - 1, data.size);
+			(void)(db->close)(db);
 			return(buf);
 		}
+		(void)(db->close)(db);
 	}
 	return(__oldttyname(fd, &sb));
 }
