@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)rm.c	4.20 (Berkeley) 04/08/87";
+static char *sccsid = "@(#)rm.c	4.21 (Berkeley) 12/20/87";
 
 /*
  * rm - for ReMoving files, directories & trees.
@@ -200,7 +200,8 @@ rm(arg, level)
 	}
 rm:	if (unlink(arg) < 0) {
 		if (!fflg || iflg) {
-			fprintf(stderr, "rm: %s not removed\n", arg);
+			fprintf(stderr, "rm: %s: ", arg);
+			perror((char *)NULL);
 			errcode++;
 		}
 		return (0);
