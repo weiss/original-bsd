@@ -1,4 +1,10 @@
-/* @(#)cribcur.h	1.5 (Berkeley) 05/19/83 */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)cribcur.h	5.1 (Berkeley) 05/30/85
+ */
 
 # define	PLAY_Y		15	/* size of player's hand window */
 # define	PLAY_X		12
