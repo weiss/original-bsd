@@ -1,4 +1,7 @@
-/*	io.c	4.1	83/03/09	*/
+#ifndef lint
+static char sccsid[] = "@(#)io.c	4.2 (Berkeley) 08/11/83";
+#endif
+
 /*
  * io.c: font file I/O subroutines for fed.
  */
