@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ttydev.h	7.1 (Berkeley) 06/04/86
+ *	@(#)ttydev.h	7.2 (Berkeley) 10/13/86
  */
 
 /*
@@ -33,13 +33,6 @@
 #define EXTB	15
 
 #ifdef KERNEL
-/*
- * Hardware bits.
- * SHOULD NOT BE HERE.
- */
-#define	DONE	0200
-#define	IENABLE	0100
-
 /*
  * Modem control commands.
  */
