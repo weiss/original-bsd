@@ -1,4 +1,4 @@
-/*	errno.h	6.1	83/07/29	*/
+/*	errno.h	6.2	85/06/02	*/
 
 /*
  * Error codes
@@ -88,3 +88,13 @@
 #define	EPROCLIM	67		/* Too many processes */
 #define	EUSERS		68		/* Too many users */
 #define	EDQUOT		69		/* Disc quota exceeded */
+
+/*
+ * User variables for accessing the error codes
+ */
+
+#ifndef KERNEL
+extern int errno;
+extern int sys_nerr;
+extern char *sys_errlist[];
+#endif
