@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)memory.h	5.3 (Berkeley) 02/12/90
+ *	@(#)memory.h	5.4 (Berkeley) 05/15/90
  */
 
-#include <strings.h>
+#include <string.h>
