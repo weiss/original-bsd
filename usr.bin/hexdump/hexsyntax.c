@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)hexsyntax.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)hexsyntax.c	8.2 (Berkeley) 05/04/95";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -14,6 +14,8 @@ static char sccsid[] = "@(#)hexsyntax.c	8.1 (Berkeley) 06/06/93";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
 #include "hexdump.h"
 
 off_t skip;				/* bytes to skip */
