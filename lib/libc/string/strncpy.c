@@ -9,11 +9,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strncpy.c	5.5 (Berkeley) 05/17/90";
+static char sccsid[] = "@(#)strncpy.c	5.6 (Berkeley) 01/26/91";
 #endif /* LIBC_SCCS and not lint */
 
+#include <sys/cdefs.h>
 #include <string.h>
-#include <sys/stdc.h>
 
 /*
  * Copy src to dst, truncating or null-padding to always copy n bytes.

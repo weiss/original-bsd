@@ -6,11 +6,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strpbrk.c	5.7 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)strpbrk.c	5.8 (Berkeley) 01/26/91";
 #endif /* LIBC_SCCS and not lint */
 
+#include <sys/cdefs.h>
 #include <string.h>
-#include <sys/stdc.h>
 
 /*
  * Find the first occurrence in s1 of a character in s2 (excluding NUL).
