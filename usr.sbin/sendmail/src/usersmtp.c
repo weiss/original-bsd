@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.27 (Berkeley) 04/26/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.28 (Berkeley) 04/29/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.27 (Berkeley) 04/26/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.28 (Berkeley) 04/29/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -276,7 +276,8 @@ smtpmailfrom(m, mci, e)
 
 	mci->mci_state = MCIS_ACTIVE;
 
-	if (bitset(EF_RESPONSE, e->e_flags))
+	if (bitset(EF_RESPONSE, e->e_flags) &&
+	    !bitnset(M_NO_NULL_FROM, m->m_flags))
 		(void) strcpy(buf, "");
 	else
 		expand("\201g", buf, &buf[sizeof buf - 1], e);
