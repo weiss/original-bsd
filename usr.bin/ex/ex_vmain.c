@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_vmain.c	7.2	10/31/81";
+static char *sccsid = "@(#)ex_vmain.c	7.3	06/10/83";
 #include "ex.h"
 #include "ex_tty.h"
 #include "ex_vis.h"
@@ -419,7 +419,7 @@ reread:
 		case CTRL(b):
 			vsave();
 			if (one + vcline != dot && vcnt > 2) {
-				addr = dot - vcline - 2 + (cnt-1)*basWLINES;
+				addr = dot - vcline + 2 + (cnt-1)*basWLINES;
 				forbid (addr <= zero);
 				dot = addr;
 				vcnt = vcline = 0;
