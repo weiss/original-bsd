@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.10 (Berkeley) 05/11/90
+#	@(#)Makefile	4.11 (Berkeley) 06/08/90
 
 CFLAGS=	-I${.CURDIR}/../common_source
 LIBC=	/usr/lib/libc.a
@@ -29,10 +29,6 @@ cleandir: clean
 depend: ${SRCS}
 	mkdep ${CFLAGS:M-[ID]*} ${.ALLSRC}
 
-install: maninstall
-
-maninstall: beforeinstall
-
 beforeinstall:
 	install -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}${DEST}
@@ -45,4 +41,4 @@ lint: ${SRCS}
 tags: ${SRCS}
 	${CTAGS} -f ${.CURDIR}/tags ${.ALLSRC}
 
-.include <bsd.own.mk>
+.include <bsd.prog.mk>
