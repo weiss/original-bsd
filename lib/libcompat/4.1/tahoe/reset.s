@@ -4,7 +4,7 @@
  * specifies the terms and conditions for redistribution.
  */
 #ifdef LIBC_SCCS
-_sccsid:.asciz	"@(#)reset.s	1.1 (Berkeley/CCI) 07/02/86"
+_sccsid:.asciz	"@(#)reset.s	1.2 (Berkeley/CCI) 08/01/86"
 #endif LIBC_SCCS
 
 /*
@@ -25,7 +25,7 @@ _sccsid:.asciz	"@(#)reset.s	1.1 (Berkeley/CCI) 07/02/86"
  */
 #include "DEFS.h"
 
-ENTRY(setexit)
+ENTRY(setexit, 0)
 	movab	setsav,r0
 	storer	$0x1ffc, (r0)
 	movl	(fp),44(r0)		# fp
@@ -34,7 +34,7 @@ ENTRY(setexit)
 	clrl	r0
 	ret
 
-ENTRY(reset)
+ENTRY(reset, 0)
 	movl	4(fp),r0	# returned value
 	movab	setsav,r1
 	loadr	$0x1ffc,(r1)
