@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.35 (Berkeley) 08/25/88";
+static char sccsid[] = "@(#)gethostnamadr.c	6.36 (Berkeley) 10/07/88";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -57,7 +57,7 @@ typedef union {
     u_char buf[MAXPACKET];
 } querybuf;
 
-static union {
+typedef union {
     long al;
     char ac;
 } align;
