@@ -2,11 +2,11 @@
 .\" Copyright (c) 1990 The Regents of the University of California.
 .\" All rights reserved.
 .\"
-.\" %sccs.include.redist.man%
+.\" %sccs.include.redist.roff%
 .\"
-.\"     @(#)tmac.andoc	5.5 (Berkeley) 03/07/91
+.\"	@(#)tmac.andoc	5.6 (Berkeley) 08/05/91
 .\"
-.\" 132 section one files still have not ben upgraded from tmac.doc.old
+.\" 12 section one files still have not ben upgraded from tmac.doc.old
 .\" once those are done this `.de Vx' can go away.
 .nr Vx 0
 .de Vx
