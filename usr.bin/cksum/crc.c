@@ -3,13 +3,13 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * James W. Williams of the University of Maryland.
+ * James W. Williams of NASA Goddard Space Flight Center.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)crc.c	5.2 (Berkeley) 04/04/91";
+static char sccsid[] = "@(#)crc.c	5.3 (Berkeley) 09/09/91";
 #endif /* not lint */
 
 #include <sys/types.h>
