@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)rtsock.c	7.27 (Berkeley) 03/02/92
+ *	@(#)rtsock.c	7.28 (Berkeley) 06/19/92
  */
 
 #include "param.h"
@@ -608,6 +608,7 @@ rt_newaddrmsg(cmd, ifa, error, rt)
 			ifam = mtod(m, struct ifa_msghdr *);
 			ifam->ifam_index = ifp->if_index;
 			ifam->ifam_metric = ifa->ifa_metric;
+			ifam->ifam_flags = ifa->ifa_flags;
 			ifam->ifam_addrs = info.rti_addrs;
 		}
 		if ((cmd == RTM_ADD && pass == 2) ||
