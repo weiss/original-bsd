@@ -1,4 +1,15 @@
-/*	swapgeneric.c	1.5	86/11/25	*/
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * William Jolitz.
+ *
+ * %sccs.include.386.c%
+ *
+ *	@(#)swapgeneric.c	5.2 (Berkeley) 04/24/90
+ */
+
 
 #include "../machine/pte.h"
 

@@ -1,4 +1,15 @@
-/*	mem.c	1.4	86/12/15	*/
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * William Jolitz.
+ *
+ * %sccs.include.noredist.c%
+ *
+ *	@(#)mem.c	5.2 (Berkeley) 04/24/90
+ */
+
 
 /*
  * Memory special file

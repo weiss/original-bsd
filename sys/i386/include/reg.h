@@ -7,7 +7,7 @@
  *
  * %sccs.include.noredist.c%
  *
- *	@(#)reg.h	1.2 (Berkeley) 04/24/90
+ *	@(#)reg.h	5.1 (Berkeley) 04/24/90
  */
 
 /*
