@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)exec.c 4.5 12/30/82";
+static	char *sccsid = "@(#)exec.c 4.6 06/10/83";
 
 #include "sh.h"
 #include <dir.h>
@@ -90,10 +90,11 @@ doexec(t)
 	closech();		/* Close random fd's */
 
 	/*
-	 * We must do this after any possible forking (like `foo`
+	 * We must do this AFTER any possible forking (like `foo`
 	 * in glob) so that this shell can still do subprocesses.
 	 */
-	sigsys(SIGCHLD, SIG_IGN);	/* sigsys for vforks sake */
+	signal(SIGCHLD, SIG_IGN);
+	sigsetmask(0);			/* sanity */
 
 	/*
 	 * If no path, no words in path, or a / in the filename
