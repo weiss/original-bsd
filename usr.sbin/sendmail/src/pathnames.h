@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	6.5 (Berkeley) 02/23/93
+ *	@(#)pathnames.h	8.1 (Berkeley) 06/07/93
  */
 
 #ifndef _PATH_SENDMAILCF
