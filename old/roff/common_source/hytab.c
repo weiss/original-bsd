@@ -1,6 +1,14 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)hytab.c	4.1 06/07/82";
-#endif lint
+static char sccsid[] = "@(#)hytab.c	4.2 (Berkeley) 04/18/91";
+#endif /* not lint */
+
 /*
  * Hyphenation digram tables
  */
