@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.69 (Berkeley) 06/18/95";
+static char sccsid[] = "@(#)headers.c	8.70 (Berkeley) 06/19/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -530,7 +530,7 @@ eatheader(e, full)
 	else if ((p = hvalue("Content-Type", e->e_header)) != NULL)
 	{
 		/* this may be an RFC 1049 message */
-		p = strtok(p, ";/");
+		p = strpbrk(p, ";/");
 		if (p == NULL || *p == ';')
 		{
 			/* yep, it is */
