@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)sysexits.h	4.3 (Berkeley) 12/15/87
+ *	@(#)sysexits.h	4.4 (Berkeley) 03/24/88
  */
 
 /*
@@ -73,7 +73,7 @@
 **	Maintained by Eric Allman (eric@berkeley, ucbvax!eric) --
 **		please mail changes to me.
 **
-**			@(#)sysexits.h	4.3		12/15/87
+**			@(#)sysexits.h	4.4		03/24/88
 */
 
 # define EX_OK		0	/* successful termination */
@@ -94,3 +94,4 @@
 # define EX_TEMPFAIL	75	/* temp failure; user is invited to retry */
 # define EX_PROTOCOL	76	/* remote error in protocol */
 # define EX_NOPERM	77	/* permission denied */
+# define EX_CONFIG	78	/* configuration error */
