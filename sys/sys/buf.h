@@ -4,8 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)buf.h	7.17 (Berkeley) 06/23/92
+ *	@(#)buf.h	7.18 (Berkeley) 07/03/92
  */
+
+#ifndef _BUF_H_
+#define	_BUF_H_
 
 /*
  * The header for buffers in the buffer pool and otherwise used
@@ -202,3 +205,4 @@ __END_DECLS
 }
 #define B_CLRBUF	0x1	/* request allocated buffer be cleared */
 #define B_SYNC		0x2	/* do all allocations synchronously */
+#endif /* !_BUF_H_ */
