@@ -1,4 +1,11 @@
-/*	@(#)defs.h	5.4 (Berkeley) 02/20/90	*/
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)defs.h	5.5 (Berkeley) 04/04/91
+ */
 
 /*
  * adb: common definitions

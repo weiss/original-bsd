@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)setup.c	5.4 (Berkeley) 01/14/91";
-#endif
+static char sccsid[] = "@(#)setup.c	5.5 (Berkeley) 04/04/91";
+#endif /* not lint */
 
 /*
  * adb - routines to read a.out and core files at startup

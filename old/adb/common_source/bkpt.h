@@ -1,7 +1,10 @@
-/*
- * adb: breakpoints.
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)bkpt.h	5.1 (Berkeley) 01/16/89
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)bkpt.h	5.2 (Berkeley) 04/04/91
  */
 
 #define	MAX_BKPTCOM	64	/* maximum length of command at bkpt */

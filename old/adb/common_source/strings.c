@@ -1,13 +1,20 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)strings.c	5.1 (Berkeley) 01/16/89";
-#endif
+static char sccsid[] = "@(#)strings.c	5.2 (Berkeley) 04/04/91";
+#endif /* not lint */
 
 /*
  * adb - readonly data
  */
 
 #ifndef lint
-char VERSION[] = "\nVERSION VM/VAX4.3	DATE 01/16/89\n";
+char VERSION[] = "\nVERSION VM/VAX4.3	DATE 04/04/91\n";
 #endif
 
 char	BADMOD[] = "bad modifier";
