@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.27 (Berkeley) 02/23/93";
+static char sccsid[] = "@(#)conf.c	6.28 (Berkeley) 02/23/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -1056,7 +1056,7 @@ initgroups(name, basegid)
 bool
 enoughspace()
 {
-#ifdef defined(HASSTATFS) || defined(HASUSTAT)
+#if defined(HASSTATFS) || defined(HASUSTAT)
 # if defined(HASUSTAT)
 	struct ustat fs;
 	struct stat statbuf;
