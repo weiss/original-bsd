@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/28/92
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	cp
 SRCS=	cp.c utils.c
