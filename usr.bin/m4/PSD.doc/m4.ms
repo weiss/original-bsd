@@ -1,4 +1,4 @@
-.\"	@(#)m4.ms	4.1 (Berkeley) 05/08/86
+.\"	@(#)m4.ms	5.1 (Berkeley) 05/08/86
 .\"
 .if n .ls 2
 .tr _\(em
