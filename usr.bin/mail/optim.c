@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)optim.c	5.5 (Berkeley) 11/02/85";
+static char *sccsid = "@(#)optim.c	5.6 (Berkeley) 11/26/86";
 #endif not lint
 
 /*
@@ -17,6 +17,7 @@ static char *sccsid = "@(#)optim.c	5.5 (Berkeley) 11/02/85";
 #include "rcv.h"
 #include "configdefs.h"
 #include <ctype.h>
+#include <strings.h>
 
 /*
  * Map a name into the correct network "view" of the
@@ -577,7 +578,6 @@ optimex(net, name)
 {
 	register char *cp, *rp;
 	register int m;
-	char *rindex();
 
 	strcpy(name, net);
 	cp = name;
