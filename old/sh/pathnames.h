@@ -4,10 +4,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.2 (Berkeley) 05/31/90
+ *	@(#)pathnames.h	5.3 (Berkeley) 02/23/91
  */
 
 #include <paths.h>
 
-#define	_PATH_DEFPATH	":/bin:/usr/bin"
 #define	_PATH_TMPOUT	"/tmp/sh-"
