@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 08/14/92
+#	@(#)Makefile	5.3 (Berkeley) 10/11/92
 
 LIB=	sa
 SRCS=	bmap.c close.c dev.c getfile.c gets.c ioctl.c lseek.c open.c \
@@ -8,4 +8,4 @@ NOPROFILE=noprofile
 
 .include <bsd.lib.mk>
 
-CFLAGS+=-I../../.. -I..
+CFLAGS+=-I../../..
