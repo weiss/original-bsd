@@ -1,10 +1,6 @@
-#	@(#)Makefile	5.3 (Berkeley) 06/19/90
+#	@(#)Makefile	5.4 (Berkeley) 07/01/90
 
 MAN1=	roffbib.0
-
-all OTHERS: ${MAN}
-
-clean cleandir depend lint tags:
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
