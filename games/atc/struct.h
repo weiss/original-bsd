@@ -1,3 +1,15 @@
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Ed James.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)struct.h	5.2 (Berkeley) 04/30/90
+ */
+
 /*
  * Copyright (c) 1987 by Ed James, UC Berkeley.  All rights reserved.
  *
