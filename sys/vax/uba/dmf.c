@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dmf.c	6.15 (Berkeley) 02/23/86
+ *	@(#)dmf.c	6.16 (Berkeley) 03/13/86
  */
 
 #include "dmf.h"
@@ -40,6 +40,7 @@
 #include "conf.h"
 #include "dir.h"
 #include "user.h"
+#include "proc.h"
 #include "ioctl.h"
 #include "tty.h"
 #include "map.h"
