@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogin.c	5.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)rlogin.c	5.2 (Berkeley) 06/08/85";
 #endif not lint
 
 /*
@@ -367,7 +367,8 @@ oob()
 		}
 		if (atmark)
 			break;
-		(void) read(rem, waste, sizeof (waste));
+		if (read(rem, waste, sizeof (waste)) <= 0)
+			break;
 	}
 	recv(rem, &mark, 1, MSG_OOB);
 	if (mark & TIOCPKT_NOSTOP) {
