@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_vnops.c	7.90 (Berkeley) 07/12/92
+ *	@(#)ffs_vnops.c	7.91 (Berkeley) 07/14/92
  */
 
 #include <sys/param.h>
@@ -296,7 +296,8 @@ ffs_write(ap)
 	if (uio->uio_resid == 0)
 		return (0);
 	fs = ip->i_fs;
-	if (uio->uio_offset + uio->uio_resid > fs->fs_maxfilesize)
+	if (uio->uio_offset < 0 ||
+	    (u_quad_t)uio->uio_offset + uio->uio_resid > fs->fs_maxfilesize)
 		return (EFBIG);
 	/*
 	 * Maybe this should be above the vnode op call, but so long as
