@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty_pty.c	6.20 (Berkeley) 02/23/86
+ *	@(#)tty_pty.c	6.21 (Berkeley) 05/19/86
  */
 
 /*
@@ -541,7 +541,7 @@ ptyioctl(dev, cmd, data, flag)
 	}
 	if (error < 0) {
 		if (pti->pt_flags & PF_UCNTL &&
-		    (cmd & ~0xff) == _IO(u,0)) {
+		    (cmd & ~0xff) == UIOCCMD(0)) {
 			if (cmd & 0xff) {
 				pti->pt_ucntl = (u_char)cmd;
 				ptcwakeup(tp, FREAD);
