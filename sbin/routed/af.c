@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)af.c	4.15 (Berkeley) 07/20/84";
+static char sccsid[] = "@(#)af.c	4.16 (Berkeley) 02/25/85";
 #endif
 
 #include "defs.h"
@@ -51,10 +51,6 @@ inet_portmatch(sin)
 	register struct sockaddr_in *sin;
 {
 	
-#ifdef COMPAT
-	if (ntohs(sin->sin_port) == ntohs(sp->s_port) + 1)
-		return (1);
-#endif
 	return (sin->sin_port == sp->s_port);
 }
 
