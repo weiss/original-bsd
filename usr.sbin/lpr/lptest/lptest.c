@@ -12,15 +12,16 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lptest.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)lptest.c	5.5 (Berkeley) 07/21/92";
 #endif /* not lint */
+
+#include <stdlib.h>
+#include <stdio.h>
 
 /*
  * lptest -- line printer test program (and other devices).
  */
-
-#include <stdio.h>
-
+int
 main(argc, argv)
 	int argc;
 	char **argv;
@@ -51,4 +52,5 @@ main(argc, argv)
 		putchar('\n');
 	}
 	(void) fflush(stdout);
+	exit(0);
 }
