@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_vnops.c	7.87 (Berkeley) 05/14/92
+ *	@(#)ufs_vnops.c	7.88 (Berkeley) 05/14/92
  */
 
 #include <sys/param.h>
@@ -770,8 +770,7 @@ bad:
  *    directory.
  */
 int
-ufs_rename(fdvp, fvp, fcnp,
-	   tdvp, tvp, tcnp)
+ufs_rename(fdvp, fvp, fcnp, tdvp, tvp, tcnp)
 	struct vnode *fdvp, *fvp;
 	struct componentname *fcnp;
 	struct vnode *tdvp, *tvp;
