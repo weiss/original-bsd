@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)adreg.h	7.1 (Berkeley) 06/05/86
+ *	@(#)adreg.h	7.2 (Berkeley) 12/22/87
  */
 
 struct addevice {
@@ -13,8 +13,8 @@ struct addevice {
 
 #define AD_CHAN		ADIOSCHAN
 #define AD_READ		ADIOGETW
-#define	ADIOSCHAN	_IOW(a, 0, int)		/* set channel */
-#define	ADIOGETW	_IOR(a, 1, int)		/* read one word */
+#define	ADIOSCHAN	_IOW('a', 0, int)	/* set channel */
+#define	ADIOGETW	_IOR('a', 1, int)	/* read one word */
 
 /*
  * Unibus CSR register bits
