@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk_acct.c	7.7 (Berkeley) 02/05/92
+ *	@(#)pk_acct.c	7.8 (Berkeley) 05/14/92
  */
 
 #include "param.h"
@@ -38,6 +38,7 @@ struct	vnode *pkacctp;
 pk_accton (path)
 	char *path;
 {
+	USES_VOP_UNLOCK;
 	register struct vnode *vp = NULL;
 	struct nameidata nd;
 	struct vnode *oacctp = pkacctp;
