@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setterm.c	8.5 (Berkeley) 05/19/94";
+static char sccsid[] = "@(#)setterm.c	8.6 (Berkeley) 07/27/94";
 #endif /* not lint */
 
 #include <sys/ioctl.h>		/* TIOCGWINSZ on old systems. */
@@ -128,8 +128,11 @@ setterm(type)
 	aoftspace = tspace;
 	ttytype = longname(genbuf, __ttytype);
 
-	if ((!AL && !al) || (!DL && !dl))
-		__noqch = 1;
+	/* If no scrolling commands, no quick change. */
+	__noqch =
+	    CS != NULL && HO != NULL &&
+	    (SF != NULL || sf != NULL) && (SR != NULL || sr != NULL) ||
+	    (AL != NULL || al != NULL) && (DL != NULL || dl != NULL);
 
 	return (unknown ? ERR : OK);
 }
