@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ifconfig.c	4.15 (Berkeley) 02/16/86";
+static char sccsid[] = "@(#)ifconfig.c	4.16 (Berkeley) 02/27/86";
 #endif not lint
 
 #include <sys/types.h>
@@ -326,7 +326,7 @@ in_status()
 	}
 	strncpy(ifr.ifr_name, name, sizeof (ifr.ifr_name));
 	sin = (struct sockaddr_in *)&ifr.ifr_addr;
-	printf("\tinet %s ", name, inet_ntoa(sin->sin_addr));
+	printf("\tinet %s ", inet_ntoa(sin->sin_addr));
 	if (flags & IFF_POINTOPOINT) {
 		if (ioctl(s, SIOCGIFDSTADDR, (caddr_t)&ifr) < 0) {
 			if (errno == EADDRNOTAVAIL)
