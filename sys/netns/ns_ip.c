@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ns_ip.c	8.1 (Berkeley) 06/10/93
+ *	@(#)ns_ip.c	8.2 (Berkeley) 01/09/95
  */
 
 /*
@@ -349,10 +349,10 @@ nsip_route(m)
 	 */
 	ifr.ifr_name[4] = '0' + nsipif.if_unit - 1;
 	ifr.ifr_dstaddr = * (struct sockaddr *) ns_dst;
-	(void)ns_control((struct socket *)0, (int)SIOCSIFDSTADDR, (caddr_t)&ifr,
+	(void)ns_control((struct socket *)0, SIOCSIFDSTADDR, (caddr_t)&ifr,
 			(struct ifnet *)ifn);
 	satons_addr(ifr.ifr_addr).x_host = ns_thishost;
-	return (ns_control((struct socket *)0, (int)SIOCSIFADDR, (caddr_t)&ifr,
+	return (ns_control((struct socket *)0, SIOCSIFADDR, (caddr_t)&ifr,
 			(struct ifnet *)ifn));
 }
 
