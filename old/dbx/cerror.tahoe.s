@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)cerror.tahoe.s	1.1 (Berkeley) 02/22/86
+#	@(#)cerror.tahoe.s	5.1 (Berkeley) 02/22/86
 #
 #
 # modified version of cerror
