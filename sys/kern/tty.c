@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.9 (Berkeley) 01/05/88
+ *	@(#)tty.c	7.10 (Berkeley) 01/28/88
  */
 
 #include "../machine/reg.h"
@@ -511,7 +511,7 @@ ttioctl(tp, com, data, flag)
 #endif
 			constty = tp;
 		} else if (tp == constty)
-			constty == NULL;
+			constty = NULL;
 		break;
 
 	default:
