@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pk1.c	5.14 (Berkeley) 07/15/91";
+static char sccsid[] = "@(#)pk1.c	5.15 (Berkeley) 05/17/93";
 #endif /* not lint */
 
 #include <signal.h>
@@ -37,7 +37,7 @@ int iomask[2];
 
 extern int errno;
 extern int Retries;
-extern char *sys_errlist[];
+extern const char *const sys_errlist[];
 extern jmp_buf Sjbuf;
 extern	char *malloc();
 
