@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vnops.c	8.10 (Berkeley) 08/11/94
+ *	@(#)nfs_vnops.c	8.11 (Berkeley) 02/22/95
  */
 
 /*
@@ -2027,6 +2027,8 @@ nfs_bmap(ap)
 		*ap->a_vpp = vp;
 	if (ap->a_bnp != NULL)
 		*ap->a_bnp = ap->a_bn * btodb(vp->v_mount->mnt_stat.f_iosize);
+	if (ap->a_runp != NULL)
+		*ap->a_runp = 0;
 	return (0);
 }
 
