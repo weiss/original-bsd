@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tape.c	8.1 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)tape.c	8.2 (Berkeley) 03/17/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -616,6 +616,9 @@ dumpabort(signo)
 		killall();
 		msg("The ENTIRE dump is aborted.\n");
 	}
+#ifdef RDUMP
+	rmtclose();
+#endif
 	Exit(X_ABORT);
 }
 
