@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.12 (Berkeley) 09/23/91
+#	@(#)Makefile	5.13 (Berkeley) 03/16/92
 
 PROG=	restore
 LINKS=	${BINDIR}/restore ${BINDIR}/rrestore
@@ -12,6 +12,6 @@ MAN8=	restore.0
 MLINKS+=restore.8 rrestore.8
 .PATH:	${.CURDIR}/../dump
 
-all: restore
+all: ${PROG} ${MAN8}
 
 .include <bsd.prog.mk>
