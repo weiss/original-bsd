@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_socket.c	7.39 (Berkeley) 03/06/93
+ *	@(#)uipc_socket.c	7.40 (Berkeley) 05/12/93
  */
 
 #include <sys/param.h>
@@ -43,7 +43,7 @@ socreate(dom, aso, type, proto)
 		prp = pffindproto(dom, proto, type);
 	else
 		prp = pffindtype(dom, type);
-	if (prp == 0)
+	if (prp == 0 || prp->pr_usrreq == 0)
 		return (EPROTONOSUPPORT);
 	if (prp->pr_type != type)
 		return (EPROTOTYPE);
