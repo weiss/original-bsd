@@ -16,13 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)field.c	5.10 (Berkeley) 06/01/89";
+static char sccsid[] = "@(#)field.c	5.11 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <pwd.h>
 #include <grp.h>
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 #include <ctype.h>
 #include "chpass.h"
