@@ -15,7 +15,7 @@ static char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)nfsiod.c	8.3 (Berkeley) 02/22/94";
+static char sccsid[] = "@(#)nfsiod.c	8.4 (Berkeley) 05/03/95";
 #endif not lint
 
 #include <sys/param.h>
@@ -24,7 +24,10 @@ static char sccsid[] = "@(#)nfsiod.c	8.3 (Berkeley) 02/22/94";
 #include <sys/ucred.h>
 #include <sys/wait.h>
 
-#include <nfs/nfsv2.h>
+#include <sys/mount.h>
+#include <sys/time.h>
+#include <nfs/rpcv2.h>
+#include <nfs/nfsproto.h>
 #include <nfs/nfs.h>
 
 #include <err.h>
