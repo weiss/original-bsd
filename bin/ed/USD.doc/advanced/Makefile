@@ -1,9 +1,6 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/30/90
+#	@(#)Makefile	5.2 (Berkeley) 06/05/93
 
-DIR=	usd/13.edadv
+DIR=	usd/10.edadv
 SRCS=	ae.mac ae0 ae1 ae2 ae3 ae4 ae5 ae6 ae7 ae9
-
-paper.${PRINTER}: ${SRCS}
-	${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
