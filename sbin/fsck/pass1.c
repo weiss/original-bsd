@@ -1,5 +1,5 @@
 #ifndef lint
-static char version[] = "@(#)pass1.c	3.3 (Berkeley) 02/08/85";
+static char version[] = "@(#)pass1.c	3.4 (Berkeley) 02/11/85";
 #endif
 
 #include <sys/param.h>
@@ -44,8 +44,7 @@ pass1()
 		for (i = 0; i < sblock.fs_ipg; i++, inumber++) {
 			if (inumber < ROOTINO)
 				continue;
-			if ((dp = ginode(inumber)) == NULL)
-				continue;
+			dp = ginode(inumber);
 			if (!ALLOC(dp)) {
 				if (bcmp((char *)dp->di_db, (char *)zino.di_db,
 					NDADDR * sizeof(daddr_t)) ||
