@@ -1,5 +1,5 @@
 /*
- *	@(#)string.h	3.3 84/04/05
+ * @(#)string.h	3.4 05/23/84
  */
 #define STR_DEBUG
 
