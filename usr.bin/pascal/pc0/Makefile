@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.25 04/16/82"
+SCCSID = "@(#)Makefile 1.26 04/16/82"
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
 WHOAMI = pc
@@ -36,7 +36,7 @@ SRCS =	ato.c \
 	p2put.c stab.c pcproc.c pcfunc.c pccaseop.c pclval.c
 
 HDRS =	0.h OPnames.h align.h iorec.h objfmt.h pstab.h pc.h pcops.h \
-	send.h tree.h whoami.h yy.h
+	send.h tree.h whoami.h yy.h config.h
 
 OTHERS = pas.y opc.c CONFIG.c gram pic.c
 
