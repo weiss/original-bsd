@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)ww.h	3.44 (Berkeley) 02/21/88
+ *	@(#)ww.h	3.45 (Berkeley) 03/19/88
  */
 
 #include <sgtty.h>
@@ -99,7 +99,7 @@ struct ww_tty {
 union ww_char {
 	short c_w;		/* as a word */
 	struct {
-#if defined(vax)
+#if defined(vax) || defined(MIPSEL)
 		char C_c;	/* the character part */
 		char C_m;	/* the mode part */
 #else
