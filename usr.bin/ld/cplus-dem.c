@@ -4,7 +4,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cplus-dem.c	5.4 (Berkeley) 04/30/91";
+static char sccsid[] = "@(#)cplus-dem.c	5.5 (Berkeley) 11/13/91";
 #endif /* not lint */
 
 /* Demangler for GNU C++ 
@@ -66,10 +66,6 @@ static char sccsid[] = "@(#)cplus-dem.c	5.4 (Berkeley) 04/30/91";
 #define memcmp(s1, s2, n) bcmp ((s2), (s1), (n))
 #define strchr index 
 #define strrchr rindex
-#endif
-
-#ifndef __STDC__
-#define const
 #endif
 
 #ifdef __STDC__
