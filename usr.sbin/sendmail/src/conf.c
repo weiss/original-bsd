@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.33 (Berkeley) 09/02/93";
+static char sccsid[] = "@(#)conf.c	8.34 (Berkeley) 09/04/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -465,6 +465,11 @@ checkcompat(to, e)
 	if (to == NULL)
 		to++;
 # endif /* lint */
+
+	if (tTd(49, 1))
+		printf("checkcompat(to=%s, from=%s)\n",
+			to->q_paddr, e->e_from.q_paddr);
+
 # ifdef EXAMPLE_CODE
 	/* this code is intended as an example only */
 	register STAB *s;
