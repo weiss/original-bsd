@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1986, 1991, 1993
+ * Copyright (c) 1982, 1986, 1991, 1993, 1995
  *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in_pcb.c	8.3 (Berkeley) 11/04/94
+ *	@(#)in_pcb.c	8.4 (Berkeley) 05/24/95
  */
 
 #include <sys/param.h>
@@ -38,7 +38,7 @@ in_pcballoc(so, head)
 {
 	register struct inpcb *inp;
 
-	MALLOC(inp, struct inpcb *, sizeof(*inp), M_PCB, M_WAITOK);
+	MALLOC(inp, struct inpcb *, sizeof(*inp), M_PCB, M_NOWAIT);
 	if (inp == NULL)
 		return (ENOBUFS);
 	bzero((caddr_t)inp, sizeof(*inp));
