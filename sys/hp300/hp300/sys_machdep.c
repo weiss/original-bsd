@@ -4,13 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sys_machdep.c	7.3 (Berkeley) 06/28/90
+ *	@(#)sys_machdep.c	7.4 (Berkeley) 06/28/90
  */
 
 #include "param.h"
 #include "systm.h"
 #include "ioctl.h"
 #include "file.h"
+#include "time.h"
 #include "proc.h"
 #include "uio.h"
 #include "kernel.h"
