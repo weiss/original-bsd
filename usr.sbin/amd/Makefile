@@ -1,5 +1,5 @@
-#	@(#)Makefile	5.2 (Berkeley) 07/25/90
+#       @(#)Makefile	5.3 (Berkeley) 03/17/91
 
-SUBDIR=	amd amq mk-amd-map
+SUBDIR= amd amq fsinfo mk-amd-map
 
 .include <bsd.subdir.mk>
