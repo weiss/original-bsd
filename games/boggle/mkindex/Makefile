@@ -1,0 +1,9 @@
+#	@(#)Makefile	5.1 (Berkeley) 06/11/93
+
+PROG=	mkindex
+CFLAGS+=-I${.CURDIR}/../boggle
+NOMAN=noman
+
+install:
+
+.include <bsd.prog.mk>
