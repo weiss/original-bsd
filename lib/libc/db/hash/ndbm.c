@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ndbm.c	5.3 (Berkeley) 02/22/91";
+static char sccsid[] = "@(#)ndbm.c	5.4 (Berkeley) 02/22/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -19,7 +19,8 @@ static char sccsid[] = "@(#)ndbm.c	5.3 (Berkeley) 02/22/91";
 
 #include <sys/param.h>
 #include <ndbm.h>
-#include <stddef.h>
+#include <db.h>
+#include <stdio.h>
 #include "hash.h"
 
 /*
