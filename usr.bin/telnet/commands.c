@@ -6,13 +6,16 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)commands.c	5.1 (Berkeley) 09/14/90";
+static char sccsid[] = "@(#)commands.c	5.2 (Berkeley) 09/19/90";
 #endif /* not lint */
 
-#include <sys/types.h>
 #if	defined(unix)
+#include <sys/param.h>
 #include <sys/file.h>
+#else
+#include <sys/types.h>
 #endif	/* defined(unix) */
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #ifdef	CRAY
@@ -38,9 +41,6 @@ static char sccsid[] = "@(#)commands.c	5.1 (Berkeley) 09/14/90";
 #ifdef	SRCRT
 # ifndef CRAY
 # include <netinet/in_systm.h>
-#  if (defined(vax) || defined(tahoe) || defined(hp300)) && !defined(ultrix)
-#  include <machine/endian.h>
-#  endif /* vax */
 # endif /* CRAY */
 #include <netinet/ip.h>
 #endif /* SRCRT */
