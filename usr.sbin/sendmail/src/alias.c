@@ -3,7 +3,7 @@
 # include <pwd.h>
 # include "postbox.h"
 
-static char SccsId[] = "@(#)alias.c	3.1	03/07/81";
+static char SccsId[] = "@(#)alias.c	3.2	03/07/81";
 
 /*
 **  ALIAS -- Compute aliases.
@@ -234,7 +234,7 @@ alias()
 		q2 = nxtinq(q);
 
 		/* only alias local users */
-		if (q->q_mailer != &Mailer[0])
+		if (q->q_mailer != 0)
 			continue;
 
 		/* create a key for fetch */
