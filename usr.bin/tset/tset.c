@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tset.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)tset.c	5.2 (Berkeley) 06/19/85";
 #endif not lint
 
 /*
@@ -1112,9 +1112,12 @@ ask:
 
 		/* Set window size */
 		if (DoSetenv) {
-			win.ws_row = lines;
-			win.ws_col = columns;
-			ioctl(FILEDES, TIOCSWINSZ, &win);
+			ioctl(FILEDES, TIOCGWINSZ, &win);
+			if (win.ws_row == 0 && win.ws_col == 0) {
+				win.ws_row = lines;
+				win.ws_col = columns;
+				ioctl(FILEDES, TIOCSWINSZ, &win);
+			}
 		}
 		/* output startup string */
 		if (!NoInit)
