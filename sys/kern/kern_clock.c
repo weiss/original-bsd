@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_clock.c	6.16 (Berkeley) 05/27/86
+ *	@(#)kern_clock.c	6.17 (Berkeley) 06/02/86
  */
 
 #include "../machine/reg.h"
@@ -78,7 +78,8 @@ hardclock(pc, ps)
 	register struct proc *p;
 	register int s;
 	int needsoft = 0;
-	extern int timedelta, tickdelta;
+	extern int tickdelta;
+	extern long timedelta;
 
 	/*
 	 * Update real-time timeout queue.
