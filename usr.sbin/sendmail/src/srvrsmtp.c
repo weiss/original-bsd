@@ -1,12 +1,26 @@
+/*
+**  Sendmail
+**  Copyright (c) 1983  Eric P. Allman
+**  Berkeley, California
+**
+**  Copyright (c) 1983 Regents of the University of California.
+**  All rights reserved.  The Berkeley software License Agreement
+**  specifies the terms and conditions for redistribution.
+*/
+
+#ifndef lint
+static char	SccsId[] = "@(#)srvrsmtp.c	5.1 (Berkeley) 06/07/85";
+#endif not lint
+
 # include <errno.h>
 # include "sendmail.h"
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	4.11		04/28/85	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	5.1		06/07/85	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	4.11		04/28/85);
+SCCSID(@(#)srvrsmtp.c	5.1		06/07/85);
 
 /*
 **  SMTP -- run the SMTP protocol.
