@@ -1,5 +1,5 @@
 #ifdef LIBC_SCCS
-	.asciz	"@(#)strncat.s	1.1 (Berkeley/CCI) 08/01/86"
+	.asciz	"@(#)strncat.s	1.2 (Berkeley/CCI) 08/25/87"
 #endif LIBC_SCCS
 
 /*
@@ -17,7 +17,6 @@ ENTRY(strncat, 0)
 	tstl	12(fp)
 	jgtr	n_ok
 	movl	4(fp),r0
-	clrb	r0
 	ret
 n_ok:
 	movl	8(fp),r0
