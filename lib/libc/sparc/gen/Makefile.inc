@@ -1,8 +1,7 @@
-#	@(#)Makefile.inc	5.3 (Berkeley) 07/24/92
+#	@(#)Makefile.inc	5.4 (Berkeley) 04/12/93
 
 # machine-dependent gen sources
-SRCS+=	_setjmp.s fabs.s fixunsdfsi.s main.s modf.s mul.s saveregs.s \
-	setjmp.s umul.s
+SRCS+=	_setjmp.s fabs.s fixunsdfsi.s modf.s mul.s saveregs.s setjmp.s umul.s
 SRCS+=	frexp.c isinf.c isnan.c ldexp.c
 
 # `source' files built from m4 source
