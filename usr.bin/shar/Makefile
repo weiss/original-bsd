@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/23/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 MAN1=	shar.0
 
