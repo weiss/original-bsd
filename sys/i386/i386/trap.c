@@ -7,7 +7,7 @@
  *
  * %sccs.include.386.c%
  *
- *	@(#)trap.c	5.5 (Berkeley) 11/25/90
+ *	@(#)trap.c	5.6 (Berkeley) 01/15/91
  */
 
 /*
