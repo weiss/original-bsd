@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)eprintf.c	5.1 (Berkeley) 06/07/90"
+static char sccsid[] = "@(#)eprintf.c	5.2 (Berkeley) 06/08/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
