@@ -2,7 +2,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.3 (Berkeley) 09/07/85
+#	@(#)Makefile	5.4 (Berkeley) 05/31/87
 #
 ALL=	implog implogd
 DESTDIR=
@@ -22,3 +22,5 @@ clean:
 install: ${ALL}
 	install -s implog ${DESTDIR}/etc
 	install -s implogd ${DESTDIR}/etc
+
+depend:
