@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)v7.local.c	5.2 (Berkeley) 06/21/85";
+static char *sccsid = "@(#)v7.local.c	5.3 (Berkeley) 05/18/87";
 #endif not lint
 
 /*
@@ -25,10 +25,8 @@ static char *sccsid = "@(#)v7.local.c	5.2 (Berkeley) 06/21/85";
 
 findmail()
 {
-	register char *cp;
 
-	cp = copy("/usr/spool/mail/", mailname);
-	copy(myname, cp);
+	strcpy(copy("/usr/spool/mail/", mailname), myname);
 	if (isdir(mailname)) {
 		stradd(mailname, '/');
 		strcat(mailname, myname);

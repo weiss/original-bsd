@@ -3,29 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)local.h	5.1 (Berkeley) 06/06/85
+ *	@(#)local.h	5.2 (Berkeley) 05/18/87
  */
 
-#ifdef V7
 #include "v7.local.h"
-#endif
-
-#ifdef CORY
-#include "c.local.h"
-#endif
-
-#ifdef INGRES
-#include "ing.local.h"
-#endif
-
-#ifdef V6
-#include "v6.local.h"
-#endif
-
-#ifdef CC
-#include "cc.local.h"
-#endif
-
-#ifdef V40
-#include "40.local.h"
-#endif
