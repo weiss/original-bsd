@@ -16,10 +16,10 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)gethostid.s	5.5 (Berkeley) 06/27/88"
+	.asciz "@(#)gethostid.s	5.6 (Berkeley) 05/12/90"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
 
 SYSCALL(gethostid)
-	ret		# hostid = gethostid()
+	ret		/* hostid = gethostid() */
