@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1990 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1990, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)lorder.sh	5.4 (Berkeley) 03/08/93
+#	@(#)lorder.sh	8.1 (Berkeley) 06/06/93
 #
 
 PATH=/bin:/usr/bin
