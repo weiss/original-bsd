@@ -1,4 +1,4 @@
-#	@(#)Makefile	1.6 (Berkeley) 07/25/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	pi
 SRCDIR=	${.CURDIR}/../src
