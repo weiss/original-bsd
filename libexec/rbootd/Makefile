@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 07/23/92
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 PROG=	rbootd
 SRCS=	bpf.c conf.c parseconf.c rbootd.c rmpproto.c utils.c
