@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)route.h	7.8 (Berkeley) 04/05/90
+ *	@(#)route.h	7.9 (Berkeley) 06/08/90
  */
 
 /*
@@ -49,6 +49,14 @@ struct rt_metrics {
 	u_long	rmx_rtt;	/* estimated round trip time */
 	u_long	rmx_rttvar;	/* estimated rtt variance */
 };
+
+/*
+ * rmx_rtt and rmx_rttvar are stored as microseconds;
+ * RTTTOPRHZ(rtt) converts to a value suitable for use
+ * by a protocol slowtimo counter.
+ */
+#define	RTM_RTTUNIT	1000000	/* units for rtt, rttvar, as units per sec */
+#define	RTTTOPRHZ(r)	((r) / (RTM_RTTUNIT / PR_SLOWHZ))
 
 /*
  * We distinguish between routes to hosts and routes to networks,
