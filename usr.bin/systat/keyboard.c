@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)keyboard.c	1.4 (Berkeley) 04/28/85";
+static char sccsid[] = "@(#)keyboard.c	1.5 (Berkeley) 05/01/85";
 #endif
 
 /*
@@ -7,7 +7,6 @@ static char sccsid[] = "@(#)keyboard.c	1.4 (Berkeley) 04/28/85";
  */
 
 #include "systat.h"
-#include <signal.h>
 #include <ctype.h>
 
 keyboard()
