@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 06/24/90
 
 PROG=	expr
 SRCS=	expr.c
-CLEANFILES=	expr.c
+CLEANFILES=	expr.c y.tab.h
 
 .include <bsd.prog.mk>
