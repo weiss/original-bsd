@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	5.11 (Berkeley) 12/04/91 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	5.12 (Berkeley) 12/12/91 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	5.11 (Berkeley) 12/04/91 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	5.12 (Berkeley) 12/12/91 (without USERDB)";
 #endif
 #endif
 
@@ -239,6 +239,11 @@ _udbx_init()
 	int i;
 	register struct udbent *up;
 	char buf[8192];
+
+# ifdef UDB_DEFAULT_SPEC
+	if (UdbSpec == NULL)
+		UdbSpec = UDB_DEFAULT_SPEC;
+# endif
 
 	p = UdbSpec;
 	up = UdbEnts;
