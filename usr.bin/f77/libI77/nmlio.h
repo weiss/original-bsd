@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)nmlio.h	1.1	07/30/85
+ *	@(#)nmlio.h	5.1	07/30/85
  */
 
 /*	header for namelist I/O */
