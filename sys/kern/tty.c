@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.52 (Berkeley) 07/12/92
+ *	@(#)tty.c	7.53 (Berkeley) 08/24/92
  */
 
 #include "param.h"
@@ -679,7 +679,7 @@ ttymodem(tp, flag)
 	int flag;
 {
 
-	if ((tp->t_state&TS_WOPEN) == 0 && (tp->t_lflag&MDMBUF)) {
+	if ((tp->t_state&TS_WOPEN) == 0 && (tp->t_cflag&MDMBUF)) {
 		/*
 		 * MDMBUF: do flow control according to carrier flag
 		 */
