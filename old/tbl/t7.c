@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)t7.c	4.3 08/11/83";
+static char sccsid[] = "@(#)t7.c	4.4 05/02/87";
 #endif
 
  /* t7.c: control to write table entries */
@@ -79,6 +79,9 @@ for(texlin=horlin=i=0; i<nlin; i++)
 	else
 	if (instead[i]!=0)
 		continue;
+	else
+	if (allh(i))
+		horlin++;
 	else
 		texlin++;
 	}
