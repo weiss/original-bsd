@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fgets.c	5.4 (Berkeley) 05/04/91";
+static char sccsid[] = "@(#)fgets.c	5.5 (Berkeley) 03/04/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
@@ -63,13 +63,13 @@ fgets(buf, n, fp)
 			len = ++t - p;
 			fp->_r -= len;
 			fp->_p = t;
-			(void) bcopy((void *)p, (void *)s, len);
+			(void)memcpy((void *)s, (void *)p, len);
 			s[len] = 0;
 			return (buf);
 		}
 		fp->_r -= len;
 		fp->_p += len;
-		(void) bcopy((void *)p, (void *)s, len);
+		(void)memcpy((void *)s, (void *)p, len);
 		s += len;
 	} while ((n -= len) != 0);
 	*s = 0;
