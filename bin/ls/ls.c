@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.53 (Berkeley) 01/29/92";
+static char sccsid[] = "@(#)ls.c	5.54 (Berkeley) 02/03/92";
 #endif /* not lint */
 
 #include <sys/types.h>	
@@ -269,7 +269,8 @@ traverse(argc, argv, options)
 			is_ddot = IS_DDOT(name);
 			if (!is_ddot ||
 			    (is_ddot && p->fts_level == FTS_ROOTLEVEL)) {
-				if (name[0] == '.' && !f_listdot && !is_ddot)
+				if (name[0] == '.' && !f_listdot && !is_ddot &&
+				    p->fts_level != FTS_ROOTLEVEL)
 					break;
 				display(argc, p, fts_children(ftsp));
 				if (!f_recursive)
@@ -331,14 +332,6 @@ display(argc, p, list)
 			 * it.
 			 */
 			if (cur->fts_info == FTS_D && !f_listdir) {
-				cur->fts_number = NO_PRINT;
-				continue;
-			}
-			/*
-			 * If file is dot file and no -a or -A is set,
-			 * do not display.
-			 */
-			if (cur->fts_name[0] == '.' && !f_listdot) {
 				cur->fts_number = NO_PRINT;
 				continue;
 			}
