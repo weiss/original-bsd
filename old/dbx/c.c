@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)c.c 1.5 07/07/83";
+static char sccsid[] = "@(#)c.c 1.6 08/05/83";
 
 /*
  * C-dependent symbol routines.
@@ -482,7 +482,6 @@ Symbol s;
 	    break;
 
 	case RECORD:
-	case VARNT:
 	    c_printstruct(s);
 	    break;
 
@@ -531,8 +530,9 @@ Symbol s;
 	    if (ord(s->class) > ord(TYPEREF)) {
 		panic("printval: bad class %d", ord(s->class));
 	    }
-	    error("don't know how to print a %s", c_classname(s));
-	    /* NOTREACHED */
+	    sp -= size(s);
+	    printf("<%s>", c_classname(s));
+	    break;
     }
 }
 
