@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)cmp.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)cmp.c	4.2 (Berkeley) 04/29/83";
 #include <stdio.h>
 #include <ctype.h>
 
@@ -98,7 +98,7 @@ narg:
 
 barg:
 	if (lflg)
-	printf("cmp: cannot open %s\n", arg);
+	perror(arg);
 	exit(2);
 
 earg:
