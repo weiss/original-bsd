@@ -1,4 +1,4 @@
-#	@(#)bsd.prog.mk	5.33 (Berkeley) 07/29/92
+#	@(#)bsd.prog.mk	5.34 (Berkeley) 08/25/92
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -190,7 +190,7 @@ objdir: _PROGSUBDIR
 tags: ${SRCS} _PROGSUBDIR
 .if defined(PROG)
 	-cd ${.CURDIR}; ctags -f /dev/stdout ${.ALLSRC} | \
-	    sed "s;\${.CURDIR}/;;" > tags
+	    sed "s;${.CURDIR}/;;" > tags
 .endif
 .endif
 
