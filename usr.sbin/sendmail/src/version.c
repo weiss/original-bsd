@@ -1,3 +1,3 @@
-static char	SccsId[] = "@(#)SendMail version 3.14 of 08/25/81";
+static char	SccsId[] = "@(#)SendMail version 3.15 of 08/27/81";
 
-char	Version[] = "3.14 [08/25/81]";
+char	Version[] = "3.15 [08/27/81]";
