@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.52 (Berkeley) 05/06/90";
+static char sccsid[] = "@(#)login.c	5.53 (Berkeley) 05/11/90";
 #endif /* not lint */
 
 /*
@@ -52,6 +52,7 @@ static char sccsid[] = "@(#)login.c	5.52 (Berkeley) 05/06/90";
 #include "pathnames.h"
 
 #ifdef	KERBEROS
+#include <kerberosIV/des.h>
 #include <kerberosIV/krb.h>
 #include <netdb.h>
 char		realm[REALM_SZ];
