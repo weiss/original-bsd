@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/24/90
+#	@(#)Makefile	5.2 (Berkeley) 06/08/90
 
 all learnlib clean cleandir depend lint tags:
 
@@ -8,4 +8,4 @@ install:
 	cp -pr C editor eqn files macros morefiles ${DESTDIR}${LLIB}/learn
 
 .include "../Makefile.inc"
-.include <bsd.own.mk>
+.include <bsd.prog.mk>
