@@ -1,5 +1,5 @@
 #ifndef lint
-static char version[] = "@(#)setup.c	3.4 (Berkeley) 05/31/85";
+static char version[] = "@(#)setup.c	3.5 (Berkeley) 05/31/85";
 #endif
 
 #include <sys/param.h>
@@ -54,7 +54,6 @@ setup(dev)
 	if (preen == 0)
 		printf("\n");
 	dfile.mod = 0;
-	muldup = enddup = &duplist[0];
 	badlnp = &badlncnt[0];
 	lfdir = 0;
 	initbarea(&sblk);
