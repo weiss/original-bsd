@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.14 (Berkeley) 09/21/85	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.15 (Berkeley) 09/23/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.14 (Berkeley) 09/21/85";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.15 (Berkeley) 09/23/85";
 # endif not lint
 
 /*
@@ -411,6 +411,7 @@ smtp()
 
 		  case CMDVERB:		/* set verbose mode */
 			Verbose = TRUE;
+			SendMode = SM_DELIVER;
 			message("200", "Verbose mode");
 			break;
 
