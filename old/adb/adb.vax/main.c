@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)main.c 4.2 05/15/81";
+static	char sccsid[] = "@(#)main.c 4.3 04/01/82";
 /*
  * adb - main command loop and error/interrupt handling
  */
