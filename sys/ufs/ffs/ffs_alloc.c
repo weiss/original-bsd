@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_alloc.c	7.39 (Berkeley) 11/02/92
+ *	@(#)ffs_alloc.c	7.40 (Berkeley) 12/04/92
  */
 
 #include <sys/param.h>
@@ -710,10 +710,13 @@ ffs_alloccgblk(fs, cgp, bpref)
 		goto norot;
 	if (fs->fs_cpc == 0) {
 		/*
-		 * block layout info is not available, so just have
-		 * to take any block in this cylinder.
+		 * Block layout information is not available.
+		 * Leaving bpref unchanged means we take the
+		 * next available free block following the one 
+		 * we just allocated. Hopefully this will at
+		 * least hit a track cache on drives of unknown
+		 * geometry (e.g. SCSI).
 		 */
-		bpref = howmany(fs->fs_spc * cylno, NSPF(fs));
 		goto norot;
 	}
 	/*
