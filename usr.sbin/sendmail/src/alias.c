@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.26 (Berkeley) 05/29/94";
+static char sccsid[] = "@(#)alias.c	8.27 (Berkeley) 06/19/94";
 #endif /* not lint */
 
 
@@ -52,7 +52,7 @@ alias(a, sendq, e)
 	extern char *aliaslookup();
 
 	if (tTd(27, 1))
-		printf("alias(%s)\n", a->q_paddr);
+		printf("alias(%s)\n", a->q_user);
 
 	/* don't realias already aliased names */
 	if (bitset(QDONTSEND|QBADADDR|QVERIFIED, a->q_flags))
