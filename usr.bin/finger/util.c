@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.17 (Berkeley) 09/23/91";
+static char sccsid[] = "@(#)util.c	5.18 (Berkeley) 10/27/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -31,6 +31,7 @@ static void	 find_idle_and_ttywrite __P((WHERE *));
 static void	 userinfo __P((PERSON *, struct passwd *));
 static WHERE	*walloc __P((PERSON *));
 
+int
 match(pw, user)
 	struct passwd *pw;
 	char *user;
@@ -130,10 +131,11 @@ PERSON *
 enter_person(pw)
 	register struct passwd *pw;
 {
-	PERSON *pn;
 	DBT data, key;
+	PERSON *pn;
 
-	if (db == NULL && (db = dbopen(NULL, O_RDWR, 0, DB_HASH, NULL)) == NULL)
+	if (db == NULL &&
+	    (db = dbopen(NULL, O_RDWR, 0, DB_BTREE, NULL)) == NULL)
 		err("%s", strerror(errno));
 
 	key.data = pw->pw_name;
