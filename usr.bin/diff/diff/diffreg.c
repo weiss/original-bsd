@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)diffreg.c 4.16 03/29/86";
+static	char sccsid[] = "@(#)diffreg.c 4.17 10/22/87";
 
 #include "diff.h"
 /*
@@ -305,7 +305,7 @@ splice(dir, file)
 		tail = file;
 	else
 		tail++;
-	sprintf(buf, "%s/%s", dir, tail);
+	(void)sprintf(buf, "%s/%s", dir, tail);
 	return (savestr(buf));
 }
 
