@@ -1,6 +1,7 @@
-#	@(#)Makefile	5.5 (Berkeley) 07/01/90
+#	@(#)Makefile	5.6 (Berkeley) 04/01/91
 
 PROG=	disklabel
+SRCS=	disklabel.c dkcksum.c
 MAN8=	disklabel.0
 BINGRP=operator
 BINMODE=2550
