@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)tsort.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)tsort.c	4.2 (Berkeley) 10/20/82";
 /*	topological sort
  *	input is sequence of pairs of items (blank-free strings)
  *	nonidentical pair is a directed edge in graph
@@ -6,7 +6,7 @@ static char *sccsid = "@(#)tsort.c	4.1 (Berkeley) 10/01/80";
  *	output is ordered list of items consistent with
  *	the partial ordering specified by the graph
 */
-#include "stdio.h"
+#include <stdio.h>
 
 /*	the nodelist always has an empty element at the end to
  *	make it easy to grow in natural order
