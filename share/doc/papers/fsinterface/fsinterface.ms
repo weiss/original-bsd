@@ -1,4 +1,10 @@
-.\" @(#)fsinterface.ms	1.3 10/22/86
+.\" Copyright (c) 1986 The Regents of the University of California.
+.\" All rights reserved.
+.\"
+.\" %sccs.include.redist.man%
+.\"
+.\"	@(#)fsinterface.ms	1.4 (Berkeley) 04/16/91
+.\"
 .if \nv .rm CM
 .de UX
 .ie \\n(UX \s-1UNIX\s0\\$1
