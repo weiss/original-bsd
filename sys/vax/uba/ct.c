@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ct.c	7.3 (Berkeley) 02/08/90
+ *	@(#)ct.c	7.4 (Berkeley) 02/17/90
  */
 
 #include "ct.h"
@@ -20,7 +20,6 @@
 #include "map.h"
 #include "buf.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "kernel.h"
 #include "tsleep.h"

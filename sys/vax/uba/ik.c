@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ik.c	7.4 (Berkeley) 02/08/90
+ *	@(#)ik.c	7.5 (Berkeley) 02/17/90
  */
 
 #include "ik.h"
@@ -14,7 +14,6 @@
 #include "machine/pte.h"
 
 #include "param.h"
-#include "dir.h"
 #include "user.h"
 #include "buf.h"
 #include "systm.h"

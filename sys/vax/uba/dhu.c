@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dhu.c	7.8 (Berkeley) 02/08/90
+ *	@(#)dhu.c	7.9 (Berkeley) 02/17/90
  */
 
 /*
@@ -23,7 +23,6 @@
 
 #include "param.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
 #include "ioctl.h"

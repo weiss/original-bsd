@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)rl.c	7.8 (Berkeley) 05/29/89
+ *	@(#)rl.c	7.9 (Berkeley) 02/17/90
  */
 
 #include "rl.h"
@@ -21,7 +21,6 @@
 #include "disklabel.h"
 #include "buf.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "map.h"
 #include "vm.h"

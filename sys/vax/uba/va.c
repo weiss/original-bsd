@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)va.c	7.2 (Berkeley) 04/25/89
+ *	@(#)va.c	7.3 (Berkeley) 02/17/90
  */
 
 #include "va.h"
@@ -14,7 +14,6 @@
 #include "machine/pte.h"
 
 #include "param.h"
-#include "dir.h"
 #include "user.h"
 #include "buf.h"
 #include "systm.h"
