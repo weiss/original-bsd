@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.3 (Berkeley) 08/26/90
+ *	@(#)pathnames.h	5.4 (Berkeley) 03/02/91
  */
 
 #include <paths.h>
 
-#define	PROGPATH(name)	"/usr/local/bin/name"
+#define	_SCCSPATH	"/usr/local/bin/"
 #undef _PATH_TMP
 #define	_PATH_TMP	"/tmp/sccsXXXXX"
