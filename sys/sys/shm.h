@@ -7,9 +7,9 @@
  * the Systems Programming Group of the University of Utah Computer
  * Science Department.
  *
- * %sccs.include.redist.c%
+ * %sccs.include.proprietary.c%
  *
- *	@(#)shm.h	8.1 (Berkeley) 06/02/93
+ *	@(#)shm.h	8.2 (Berkeley) 09/22/93
  */
 
 /*
