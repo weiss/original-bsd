@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)uipc_socket.c	7.8 (Berkeley) 01/20/88
+ *	@(#)uipc_socket.c	7.9 (Berkeley) 05/26/88
  */
 
 #include "param.h"
@@ -671,8 +671,9 @@ sosetopt(so, level, optname, m0)
 
 			case SO_SNDBUF:
 			case SO_RCVBUF:
-				if (sbreserve(optname == SO_SNDBUF ? &so->so_snd :
-				    &so->so_rcv, *mtod(m, int *)) == 0) {
+				if (sbreserve(optname == SO_SNDBUF ?
+				    &so->so_snd : &so->so_rcv,
+				    (u_long) *mtod(m, int *)) == 0) {
 					error = ENOBUFS;
 					goto bad;
 				}
