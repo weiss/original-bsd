@@ -1,4 +1,4 @@
-#	@(#)PIT	7.2 (Berkeley) 05/12/93
+#	@(#)PIT	7.3 (Berkeley) 05/12/93
 #
 
 machine		"luna68k"
@@ -8,7 +8,6 @@ ident		PIT
 
 timezone	5
 maxusers	16
-hz		60
 
 # Standard options
 options		QUOTA
