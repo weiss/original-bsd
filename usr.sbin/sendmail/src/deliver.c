@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	5.31 (Berkeley) 04/18/90";
+static char sccsid[] = "@(#)deliver.c	5.32 (Berkeley) 04/19/90";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -699,8 +699,8 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 	int pid;
 	int mpvect[2];
 	int rpvect[2];
-	FILE *mfile;
-	FILE *rfile;
+	FILE *mfile = NULL;
+	FILE *rfile = NULL;
 	extern FILE *fdopen();
 
 	if (tTd(11, 1))
@@ -1338,7 +1338,7 @@ sendall(e, mode)
 	register ADDRESS *q;
 	bool oldverbose;
 	int pid;
-	FILE *lockfp, *queueup();
+	FILE *lockfp = NULL, *queueup();
 
 	/* determine actual delivery mode */
 	if (mode == SM_DEFAULT)
