@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.8 (Berkeley) 05/08/91
+#	@(#)Makefile	7.9 (Berkeley) 02/24/92
 
 DESTDIR=
 STAND=	../../stand
@@ -19,7 +19,8 @@ DRIVERS=autoconf.c cons.c ct.c dca.c dcm.c fhpib.c hil.c hpib.c ite.c \
 	ite_dv.c ite_gb.c ite_rb.c ite_subr.c ite_tc.c nhpib.c rd.c \
 	scsi.c sd.c
 SRCS=	conf.c machdep.c prf.c ${DRIVERS}
-LIBS=	libsa/libsa.a libdrive.a ${DESTDIR}/usr/lib/libc.a
+LIBS=	libsa/libsa.a libdrive.a ${DESTDIR}/usr/lib/libgnulib.a \
+	${DESTDIR}/usr/lib/libc.a
 
 ALL=	dboot nboot tboot tcopy
 
