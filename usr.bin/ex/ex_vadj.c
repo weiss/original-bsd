@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_vadj.c	7.4	09/09/81";
+static char *sccsid = "@(#)ex_vadj.c	7.5	10/17/81";
 #include "ex.h"
 #include "ex_tty.h"
 #include "ex_vis.h"
@@ -408,6 +408,9 @@ vmoveitup(cnt, doclr)
 	if (doclr && (SO || SE))
 		vclrech(0);
 	if (SF) {
+		destline = WECHO;
+		destcol = (NONL ? 0 : outcol % WCOLS);
+		fgoto();
 		while (cnt > 0)
 			vputp(SF, 0), cnt--;
 		return;
