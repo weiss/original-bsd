@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)netcmds.c	5.3 (Berkeley) 09/15/87";
+static char sccsid[] = "@(#)netcmds.c	5.4 (Berkeley) 04/11/90";
 #endif not lint
 
 /*
@@ -21,6 +21,7 @@ static char sccsid[] = "@(#)netcmds.c	5.3 (Berkeley) 09/15/87";
 
 #include <net/route.h>
 #include <netinet/in_systm.h>
+#include <netinet/ip.h>
 #include <netinet/in_pcb.h>
 
 #define	streq(a,b)	(strcmp(a,b)==0)
