@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_dmc.c	7.5 (Berkeley) 10/22/88
+ *	@(#)if_dmc.c	7.6 (Berkeley) 04/25/89
  */
 
 #include "dmc.h"
@@ -32,7 +32,7 @@
 
 /* #define DEBUG	/* for base table dump on fatal error */
 
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_de.c	7.7 (Berkeley) 04/22/89
+ *	@(#)if_de.c	7.8 (Berkeley) 04/25/89
  */
 
 #include "de.h"
@@ -29,7 +29,7 @@
  * TODO:
  *	timeout routine (get statistics)
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

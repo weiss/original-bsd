@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_il.c	7.4 (Berkeley) 04/22/89
+ *	@(#)if_il.c	7.5 (Berkeley) 04/25/89
  */
 
 #include "il.h"
@@ -23,7 +23,7 @@
 /*
  * Interlan Ethernet Communications Controller interface
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_ix.c	7.5 (Berkeley) 04/22/89
+ *	@(#)if_ix.c	7.6 (Berkeley) 04/25/89
  */
 
 #include "np.h"
@@ -26,7 +26,7 @@
 /*
  * Interlan NP100 Ethernet Communications Controller interface
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"

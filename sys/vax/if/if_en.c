@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_en.c	7.4 (Berkeley) 04/22/89
+ *	@(#)if_en.c	7.5 (Berkeley) 04/25/89
  */
 
 #include "en.h"
@@ -23,7 +23,7 @@
 /*
  * Xerox prototype (3 Mb) Ethernet interface driver.
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "systm.h"
