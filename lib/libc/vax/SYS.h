@@ -3,10 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)SYS.h	5.1 (Berkeley) 06/05/85
+ *	@(#)SYS.h	5.2 (Berkeley) 05/19/88
  */
 
-#include <syscall.h>
+#include <sys/syscall.h>
 
 #ifdef PROF
 #define	ENTRY(x)	.globl _/**/x; .align 2; _/**/x: .word 0; \
