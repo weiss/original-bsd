@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char sccsid[] = "@(#)strsep.c	5.4 (Berkeley) 01/26/91";
+static char sccsid[] = "@(#)strsep.c	5.5 (Berkeley) 11/16/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
