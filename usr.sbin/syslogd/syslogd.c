@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.51 (Berkeley) 03/08/93";
+static char sccsid[] = "@(#)syslogd.c	5.52 (Berkeley) 04/28/93";
 #endif /* not lint */
 
 /*
@@ -162,7 +162,6 @@ int	MarkSeq = 0;		/* mark sequence number */
 
 void  cfline __P((char *, struct filed *));
 char *cvthname __P((struct sockaddr_in *));
-void  daemon __P((int, int));
 int   decode __P((const char *, CODE *));
 void  die __P((int));
 void  domark __P((int));
@@ -213,7 +212,7 @@ main(argc, argv)
 		usage();
 
 	if (!Debug)
-		daemon(0, 0);
+		(void)daemon(0, 0);
 	else
 		setlinebuf(stdout);
 
