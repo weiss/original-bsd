@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ns_ip.c	6.12 (Berkeley) 12/19/85
+ *	@(#)ns_ip.c	6.13 (Berkeley) 03/04/86
  */
 
 /*
@@ -49,7 +49,6 @@ int	nsipoutput(), nsipioctl();
 #define LOMTU	(1024+512);
 
 struct ifnet nsipif;
-union ns_net nsip_net;
 struct mbuf *nsip_list;		/* list of all hosts and gateways or
 					broadcast addrs */
 
