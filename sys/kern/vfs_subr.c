@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_subr.c	7.32 (Berkeley) 03/19/90
+ *	@(#)vfs_subr.c	7.33 (Berkeley) 03/27/90
  */
 
 /*
@@ -367,17 +367,17 @@ loop:
 		break;
 	}
 	if (vp == NULL || vp->v_tag != VT_NON) {
-		if (vp != NULL) {
-			nvp->v_flag |= VALIASED;
-			vp->v_flag |= VALIASED;
-			vput(vp);
-		}
 		MALLOC(nvp->v_specinfo, struct specinfo *,
 			sizeof(struct specinfo), M_VNODE, M_WAITOK);
 		nvp->v_rdev = nvp_rdev;
 		nvp->v_hashchain = vpp;
 		nvp->v_specnext = *vpp;
 		*vpp = nvp;
+		if (vp != NULL) {
+			nvp->v_flag |= VALIASED;
+			vp->v_flag |= VALIASED;
+			vput(vp);
+		}
 		return ((struct vnode *)0);
 	}
 	VOP_UNLOCK(vp);
