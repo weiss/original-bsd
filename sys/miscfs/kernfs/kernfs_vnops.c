@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernfs_vnops.c	8.5 (Berkeley) 01/21/94
+ *	@(#)kernfs_vnops.c	8.6 (Berkeley) 02/10/94
  */
 
 /*
@@ -421,7 +421,7 @@ kernfs_read(ap)
 	char *cp;
 
 	if (vp->v_flag & VROOT)
-		return (0);
+		return (EOPNOTSUPP);
 
 	kt = VTOKERN(vp)->kf_kt;
 
