@@ -1,6 +1,5 @@
-#	@(#)Makefile	5.2 (Berkeley) 11/11/91
+#	@(#)Makefile	5.3 (Berkeley) 03/08/93
 
 PROG=	file
-CFLAGS+=-I/sys
 
 .include <bsd.prog.mk>
