@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.9 (Berkeley) 07/25/90
+#	@(#)Makefile	5.10 (Berkeley) 09/06/91
 
 # EXTRA
 #	Incorporates code to gather additional performance statistics
@@ -53,7 +53,7 @@
 
 PROG=	larn
 MAN6=	larn.0
-CFLAGS+=-DBSD -DVER=12 -DSUBVER=0 -DNONAP
+CFLAGS+=-DBSD -DVER=12 -DSUBVER=0 -DNONAP -fwritable-strings
 SRCS=	main.c object.c create.c tok.c display.c global.c data.c io.c \
 	monster.c store.c diag.c help.c config.c nap.c bill.c scores.c \
 	signal.c moreobj.c movem.c regen.c fortune.c savelev.c
