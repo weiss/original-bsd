@@ -1,4 +1,7 @@
-.\" @(#)toc.ms	1.3 (Berkeley) 06/02/90
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)toc.ms	5.1 (Berkeley) 04/17/91
+.\"
 .	\" XS - begin index entry
 .de XS
 .if !\\n(1T .BG
