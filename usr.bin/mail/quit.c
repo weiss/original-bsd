@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)quit.c	2.8 (Berkeley) 07/19/84";
+static char *sccsid = "@(#)quit.c	2.9 (Berkeley) 05/27/85";
 #endif
 
 #include "rcv.h"
@@ -269,7 +269,8 @@ cream:
 
 newmail:
 	printf("Thou hast new mail.\n");
-	fclose(fbuf);
+	if (fbuf != NULL)
+		fclose(fbuf);
 }
 
 /*
