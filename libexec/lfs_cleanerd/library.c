@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)library.c	5.6 (Berkeley) 10/24/92";
+static char sccsid[] = "@(#)library.c	5.7 (Berkeley) 11/01/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -460,7 +460,8 @@ pseg_valid (fsp, ssp)
 	u_long *datap;
 	SEGUSE *sup;
 
-	if ((nblocks = dump_summary(&fsp->fi_lfs, ssp, 0, NULL)) <= 0)
+	if ((nblocks = dump_summary(&fsp->fi_lfs, ssp, 0, NULL)) <= 0 ||
+	    nblocks > fsp->fi_lfs.lfs_ssize - 1)
 		return(0);
 		
 	/* check data/inode block(s) checksum too */
