@@ -6,7 +6,7 @@
 # include <ctype.h>
 # include "sendmail.h"
 
-SCCSID(@(#)util.c	4.4		12/27/83);
+SCCSID(@(#)util.c	4.5		03/11/84);
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -629,6 +629,10 @@ xunlink(f)
 
 static jmp_buf	CtxReadTimeout;
 
+#ifndef ETIMEDOUT
+#define ETIMEDOUT	EINTR
+#endif
+
 char *
 sfgets(buf, siz, fp)
 	char *buf;
@@ -644,10 +648,11 @@ sfgets(buf, siz, fp)
 	{
 		if (setjmp(CtxReadTimeout) != 0)
 		{
+			errno = ETIMEDOUT;
 			syserr("sfgets: timeout on read (mailer may be hung)");
 			return (NULL);
 		}
-		ev = setevent(ReadTimeout, readtimeout, 0);
+		ev = setevent((time_t) ReadTimeout, readtimeout, 0);
 	}
 
 	/* try to read */
