@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.74 (Berkeley) 06/10/95";
+static char sccsid[] = "@(#)map.c	8.75 (Berkeley) 06/12/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -2694,14 +2694,14 @@ prog_map_lookup(map, name, av, statp)
 		*statp = EX_SOFTWARE;
 		rval = NULL;
 	}
-	else if (WIFEXITED(*statp))
+	else if (WIFEXITED(stat))
 	{
-		*statp = WEXITSTATUS(*statp);
+		*statp = WEXITSTATUS(stat);
 	}
 	else
 	{
 		syserr("prog_map_lookup(%s): child died on signal %d",
-			map->map_mname, *statp);
+			map->map_mname, stat);
 		*statp = EX_UNAVAILABLE;
 		rval = NULL;
 	}
