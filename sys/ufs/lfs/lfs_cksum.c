@@ -4,10 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_cksum.c	7.3 (Berkeley) 05/04/92
+ *	@(#)lfs_cksum.c	7.4 (Berkeley) 05/14/92
  */
 
 #include <sys/param.h>
+#include <sys/vnode.h>
 
 #include <ufs/lfs/lfs.h>
 #include <ufs/lfs/lfs_extern.h>
