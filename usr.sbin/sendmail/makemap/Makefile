@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 11/15/92
+#	@(#)Makefile	5.2 (Berkeley) 12/19/92
 
 PROG=	makemap
-CFLAGS+=-I${.CURDIR}/../src -DBTREE_MAP -DDBM_MAP
+CFLAGS+=-I${.CURDIR}/../src -DDBM_MAP -DBTREE_MAP -DHASH_MAP
 DPADD=	${LIBDBM}
 LDADD=	-ldbm
 NOMAN=	noman
