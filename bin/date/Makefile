@@ -1,6 +1,7 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/11/90
+#	@(#)Makefile	5.3 (Berkeley) 12/04/90
 
 PROG=	date
+SRCS=	date.c netdate.c
 DPADD=	${LIBUTIL}
 LDADD=	-lutil
 
