@@ -1,11 +1,12 @@
 C
-C Copyright (c) 1980 Regents of the University of California.
-C All rights reserved.  The Berkeley software License Agreement
-C specifies the terms and conditions for redistribution.
+C Copyright (c) 1980 The Regents of the University of California.
+C All rights reserved.
 C
-C	@(#)ioinit.f	5.1 (Berkeley) 06/08/85
+C %sccs.include.proprietary.f%
 C
+C	@(#)ioinit.f	5.2 (Berkeley) 04/12/91
 C
+
 C ioinit - initialize the I/O system
 C
 C synopsis:
