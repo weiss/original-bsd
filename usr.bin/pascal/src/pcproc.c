@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pcproc.c 1.17 01/17/83";
+static	char sccsid[] = "@(#)pcproc.c 1.18 02/01/83";
 
 #include "whoami.h"
 #ifdef PC
@@ -988,7 +988,7 @@ pcproc(r)
 				else /* Magic */
 					putRV( "_input" , 0 , 0 , NGLOBAL ,
 						P2PTR | P2STRTY );
-				putop( P2CALL , P2INT );
+				putop(P2CALL, ADDTYPE(p2type(filetype), P2PTR));
 				switch ( classify( filetype ) ) {
 				    case TBOOL:
 				    case TCHAR:
