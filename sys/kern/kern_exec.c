@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_exec.c	6.13 (Berkeley) 06/08/85
+ *	@(#)kern_exec.c	6.14 (Berkeley) 08/12/85
  */
 
 #include "../machine/reg.h"
@@ -225,7 +225,7 @@ execve()
 			break;
 		na++;
 		if (ap == -1) {
-			error = EFAULT;
+			u.u_error = EFAULT;
 			break;
 		}
 		do {
