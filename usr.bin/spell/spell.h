@@ -1,4 +1,4 @@
-/*	@(#)spell.h	4.1	12/18/82	*/
+/*	@(#)spell.h	4.2	02/02/91	*/
 
 #include <stdio.h>
 #include <ctype.h>
@@ -44,7 +44,9 @@ long	p[] = {
 
 long	pow2[NP][NW];
 
-prime(argc, argv) register char **argv;
+prime(argc, argv)
+	int argc;
+	register char **argv;
 {
 	int i, j;
 	long h;
