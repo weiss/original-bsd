@@ -8,8 +8,8 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)s2k-osf1.mc	6.1 (Berkeley) 12/21/92')
+VERSIONID(`@(#)s2k-osf1.mc	6.2 (Berkeley) 01/20/93')
 OSTYPE(osf1)dnl
-DOMAIN(s2000)dnl
+DOMAIN(s2k)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
