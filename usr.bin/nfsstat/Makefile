@@ -1,7 +1,9 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/11/90
+#	@(#)Makefile	5.3 (Berkeley) 07/01/91
 
 PROG=	nfsstat
 CFLAGS+=-DNFS
+DPADD=  ${LIBUTIL}
+LDADD= -lutil
 BINGRP=	kmem
 BINMODE=2555
 
