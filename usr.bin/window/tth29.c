@@ -16,11 +16,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tth29.c	3.7 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)tth29.c	3.8 (Berkeley) 08/27/89";
 #endif /* not lint */
 
 #include "ww.h"
 #include "tt.h"
+#include "char.h"
 
 /*
  * H29 Driver
@@ -38,9 +39,6 @@ kC|h29|heath-29|z29|zenith-29:\
  *
  */
 
-#define pc(c)	ttputc(c)
-#define esc()	pc('\033')
-
 h29_setmodes(new)
 register new;
 {
@@ -56,15 +54,14 @@ register new;
 		modes += 0x08;
 	if (new & WWM_USR)
 		modes += 0x10;
-	esc();
-	pc('s');
-	pc(modes);
+	ttesc('s');
+	ttputc(modes);
 	if (new & WWM_GRP) {
 		if ((tt.tt_modes & WWM_GRP) == 0)
-			esc(), pc('F');
+			ttesc('F');
 	} else
 		if (tt.tt_modes & WWM_GRP)
-			esc(), pc('G');
+			ttesc('G');
 	tt.tt_modes = new;
 }
 
