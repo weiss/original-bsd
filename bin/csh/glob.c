@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)glob.c	5.27 (Berkeley) 08/02/91";
+static char sccsid[] = "@(#)glob.c	5.28 (Berkeley) 08/07/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -458,6 +458,8 @@ globall(v)
 	if ((gflg & G_CSH) && vl != vo)
 	    blkfree(vo);
     }
+    else
+	trim(vl);
 
     gargc = vl ? blklen(vl) : 0;
     return (gargv = vl);
