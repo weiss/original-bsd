@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_extern.h	7.7 (Berkeley) 05/13/92
+ *	@(#)ffs_extern.h	7.8 (Berkeley) 05/14/92
  */
 
 struct buf;
@@ -72,7 +72,7 @@ extern struct vnodeops ffs_vnodeops;
 extern struct vnodeops ffs_specops;
 #ifdef FIFO
 extern struct vnodeops ffs_fifoops;
-#define FFS_FIFOOPS &ffs_fifoops
+#define FFS_FIFOOPS ffs_fifoop_p
 #else
 #define FFS_FIFOOPS NULL
 #endif
