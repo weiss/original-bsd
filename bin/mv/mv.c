@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)mv.c	5.3 (Berkeley) 05/15/86";
+static char sccsid[] = "@(#)mv.c	5.4 (Berkeley) 04/13/87";
 #endif not lint
 
 /*
@@ -172,14 +172,14 @@ move(source, target)
 		}
 		symln[m] = '\0';
 
-		m = umask(~(s1.st_mode & MODEBITS));
+		(void) umask(~(s1.st_mode & MODEBITS));
 		if (symlink(symln, target) < 0) {
 			Perror(target);
 			return (1);
 		}
-		(void) umask(m);
 		goto cleanup;
 	}
+	(void) umask(0);
 	if (ISDEV(s1)) {
 		struct timeval tv[2];
 
