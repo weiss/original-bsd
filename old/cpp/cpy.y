@@ -1,5 +1,5 @@
 /*
- * @(#)cpy.y 1.1 08/30/82
+ * @(#)cpy.y 1.2 01/02/83
  */
 %term number stop DEFINED
 %term EQ NE LE GE LS RS
@@ -66,7 +66,7 @@ e:	  e '*' e
 		={$$ = $1;}
 term:
 	  '-' term %prec UMINUS
-		={$$ = -$1;}
+		={$$ = -$2;}
 	| '!' term
 		={$$ = !$2;}
 	| '~' term
