@@ -9,7 +9,7 @@
  * Still more user commands.
  */
 
-static char *SccsId = "@(#)cmd3.c	1.11 03/17/81";
+static char *SccsId = "@(#)cmd3.c	1.12 03/20/81";
 
 /*
  * Process a shell escape by saving signals, ignoring signals,
@@ -290,6 +290,7 @@ preserve(msgvec)
 		mesg = *ip;
 		mp = &message[mesg-1];
 		mp->m_flag |= MPRESERVE;
+		mp->m_flag &= ~MBOX;
 		dot = mp;
 	}
 	return(0);
