@@ -1,9 +1,9 @@
-# Copyright (c) 1982 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1982, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)cerror.s	5.2 (Berkeley) 04/16/91
+#	@(#)cerror.s	5.3 (Berkeley) 06/06/93
 #
 
 # modified version of cerror
