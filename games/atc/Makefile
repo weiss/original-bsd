@@ -14,9 +14,9 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.2 (Berkeley) 10/19/88
+#	@(#)Makefile	5.3 (Berkeley) 05/11/89
 #
-CFLAGS=	-O -DBSD -DDEST=\"${DESTDIR}/usr/games/lib/atc/\"
+CFLAGS=	-O -DBSD
 YFLAGS=	-d
 LIBC=	/lib/libc.a
 LIBS=	-ll -lm -lcurses -ltermcap
