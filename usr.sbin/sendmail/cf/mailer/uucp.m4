@@ -11,15 +11,13 @@ POPDIVERT
 ###   UUCP Mailer specification   ###
 #####################################
 
-VERSIONID(@(#)uucp.m4	2.6 (Berkeley) 06/16/92)
+VERSIONID(@(#)uucp.m4	2.7 (Berkeley) 07/20/92)
 
 Msuucp,	P=ifdef(`UUCP_MAILER', `UUCP_MAILER', /usr/bin/uux), F=mDFMhuU, S=12, R=12, M=100000
 	A=uux - -r -z -a$f -gC $h!rmail ($u)
 
 Muucp,	P=ifdef(`UUCP_MAILER', `UUCP_MAILER', /usr/bin/uux), F=DFMhuU, S=12, R=12, M=100000
 	A=uux - -r -z -a$f -gC $h!rmail ($u)
-
-define(`_UUCP_LINKED_')dnl
 
 S12
 
