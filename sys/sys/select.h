@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)select.h	7.4 (Berkeley) 02/19/92
+ *	@(#)select.h	7.5 (Berkeley) 02/20/92
  */
 
 #ifndef _SELECT_H_
@@ -20,10 +20,11 @@ struct selinfo {
 };
 #define	SI_COLL	0x0001		/* collision occurred */
 
+#ifdef KERNEL
 struct proc;
-struct selinfo;
 
 void	selrecord __P((struct proc *selector, struct selinfo *));
 void	selwakeup __P((struct selinfo *));
+#endif
 
 #endif /* !_SELECT_H_ */
