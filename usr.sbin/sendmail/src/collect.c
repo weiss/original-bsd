@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.40 (Berkeley) 04/29/95";
+static char sccsid[] = "@(#)collect.c	8.41 (Berkeley) 05/23/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -378,8 +378,14 @@ nextstate:
 readerr:
 	if ((feof(fp) && smtpmode) || ferror(fp))
 	{
+		const char *errmsg = errstring(errno);
+
 		if (tTd(30, 1))
-			printf("collect: %s\n", errstring(errno));
+			printf("collect: premature EOM: %s\n", errmsg);
+#ifdef LOG
+		if (LogLevel >= 2)
+			syslog(LOG_WARNING, "collect: premature EOM: %s", errmsg);
+#endif
 		inputerr = TRUE;
 	}
 
