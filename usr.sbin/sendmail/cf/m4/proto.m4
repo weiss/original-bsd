@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.75 (Berkeley) 05/26/95')
+VERSIONID(`@(#)proto.m4	8.76 (Berkeley) 05/27/95')
 
 MAILER(local)dnl
 
@@ -363,6 +363,9 @@ _OPTION(SafeFileEnvironment, `confSAFE_FILE_ENV', /arch)
 
 # are colons OK in addresses?
 _OPTION(ColonOkInAddr, `confCOLON_OK_IN_ADDR')
+
+# how many jobs can you process in the queue?
+_OPTION(MaxQueueRunSize, `confMAX_QUEUE_RUN_SIZE', 10000)
 
 ###########################
 #   Message precedences   #
