@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)process.rep 1.1 01/18/82";
+/* static char sccsid[] = "@(#)process.rep 1.2 01/18/82"; */
 
 /*
  * This file defines the representation of a process.
