@@ -6,7 +6,7 @@
 # include <ctype.h>
 # include "sendmail.h"
 
-SCCSID(@(#)util.c	3.36		12/09/82);
+SCCSID(@(#)util.c	3.37		12/30/82);
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -696,8 +696,9 @@ fgetfolded(buf, n, f)
 	register int i;
 
 	n--;
-	while (sfgets(p, n, f) != NULL)
+	while (fgets(p, n, f) != NULL)
 	{
+		LineNumber++;
 		fixcrlf(p, TRUE);
 		i = fgetc(f);
 		if (i != EOF)
