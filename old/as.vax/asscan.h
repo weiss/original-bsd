@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-/* "@(#)asscan.h 4.2 08/15/80" */
+/* "@(#)asscan.h 4.3 08/15/80" */
 /*
  *	The character scanner is called to fill up one token buffer
  *
