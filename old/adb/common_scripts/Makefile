@@ -9,9 +9,9 @@
 # software without specific written prior permission. This software
 # is provided ``as is'' without express or implied warranty.
 #
-#	@(#)Makefile	5.1 (Berkeley) 03/30/88
+#	@(#)Makefile	5.2 (Berkeley) 05/09/88
 #
-LIST=	buf callout callout.next clist clist.nxt dino dir dir.nxt dirblk \
+LIST=	buf callout callout.next clist clist.nxt dino dir dir.nxt \
 	dmap file filsys findinode findinode.nxt findproc host.nxt hosts \
 	hosts.nxt hosttable idp ifaddr ifnet ifrw imp in_ifaddr inode inpcb \
 	iovec ipreass ipreass.nxt mact mact.nxt mbstat mbuf mbuf.nxt \
