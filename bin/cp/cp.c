@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	5.22 (Berkeley) 04/03/91";
+static char sccsid[] = "@(#)cp.c	5.23 (Berkeley) 04/03/91";
 #endif /* not lint */
 
 /*
@@ -34,11 +34,12 @@ static char sccsid[] = "@(#)cp.c	5.22 (Berkeley) 04/03/91";
 
 #include <sys/param.h>
 #include <sys/stat.h>
-#include <sys/file.h>
-#include <sys/dir.h>
 #include <sys/time.h>
-#include <stdio.h>
+#include <dirent.h>
+#include <fcntl.h>
 #include <errno.h>
+#include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "cp.h"
@@ -339,7 +340,7 @@ copy_file(fs, dne)
 copy_dir()
 {
 	struct stat from_stat;
-	struct direct *dp, **dir_list;
+	struct dirent *dp, **dir_list;
 	register int dir_cnt, i;
 	char *old_from, *old_to;
 
