@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.110 (Berkeley) 11/20/94";
+static char sccsid[] = "@(#)deliver.c	8.111 (Berkeley) 11/20/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -2661,7 +2661,7 @@ setstatus(a, msg)
 		strncpy(buf, msg, 4);
 		p = &buf[4];
 		*p++ = '(';
-		for (q = &msg[4]; *q != NULL; q++)
+		for (q = &msg[4]; *q != '\0'; q++)
 		{
 			switch (*q)
 			{
