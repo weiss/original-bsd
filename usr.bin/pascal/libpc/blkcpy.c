@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)blkcpy.c 1.1 03/07/81";
+static char sccsid[] = "@(#)blkcpy.c 1.2 09/28/81";
 
 blkcpy(siz, from, to)
 	long		siz;
@@ -9,7 +9,7 @@ blkcpy(siz, from, to)
 {
 	register int	size = siz;
 
-	if (from + size < to)
+	if (to < from)
 		while(size-- > 0)
 			*to++ = *from++;
 	else {
