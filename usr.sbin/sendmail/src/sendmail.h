@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.35 (Berkeley) 12/14/93
+ *	@(#)sendmail.h	8.36 (Berkeley) 12/24/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.35		12/14/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.36		12/24/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -124,6 +124,7 @@ typedef struct address ADDRESS;
 # define QSELFREF	000200	/* this address references itself */
 # define QVERIFIED	000400	/* verified, but not expanded */
 # define QREPORT	001000	/* report this address in return message */
+# define QBOGUSSHELL	002000	/* this entry has an invalid shell listed */
 
 # define NULLADDR	((ADDRESS *) NULL)
 /*
