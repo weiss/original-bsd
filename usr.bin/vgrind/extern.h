@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 1980 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1980, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  *
  * %sccs.include.redist.c%
  *
- *      @(#)extern.h	1.3 (Berkeley) 09/15/92
+ *      @(#)extern.h	8.1 (Berkeley) 06/06/93
  */
 
 typedef int boolean;
