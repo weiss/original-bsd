@@ -10,7 +10,7 @@
  * Perform message editing functions.
  */
 
-static char *SccsId = "@(#)edit.c	2.1 07/01/81";
+static char *SccsId = "@(#)edit.c	2.2 07/26/82";
 
 /*
  * Edit a message list.
@@ -144,6 +144,7 @@ edit1(msgvec, ed)
 			goto out;
 		}
 		if (pid == 0) {
+			sigchild();
 			if (sigint != SIG_IGN)
 				sigsys(SIGINT, SIG_DFL);
 			if (sigquit != SIG_IGN)
