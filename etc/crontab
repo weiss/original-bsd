@@ -1,6 +1,6 @@
 # Crontab file; see cron(8) for more information.
 #
-#	@(#)crontab	5.5 (Berkeley) 06/09/93
+#	@(#)crontab	8.1 (Berkeley) 06/09/93
 
 0,15,30,45 * * * *	root /usr/libexec/atrun
 
