@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.10 (Berkeley) 07/27/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.11 (Berkeley) 08/06/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.10 (Berkeley) 07/27/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.11 (Berkeley) 08/06/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -646,7 +646,7 @@ smtp(e)
 			break;
 
 		  case CMDNOOP:		/* noop -- do nothing */
-			message("200 OK");
+			message("250 OK");
 			break;
 
 		  case CMDQUIT:		/* quit -- leave mail */
