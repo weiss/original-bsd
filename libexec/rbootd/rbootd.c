@@ -12,14 +12,20 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)rbootd.c	5.3 (Berkeley) 06/04/93
+ *	@(#)rbootd.c	5.4 (Berkeley) 06/04/93
  *
  * Utah $Hdr: rbootd.c 3.1 92/07/06$
  * Author: Jeff Forys, University of Utah CSS
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)rbootd.c	5.3 (Berkeley) 06/04/93";
+char copyright[] =
+"@(#) Copyright (c) 1993 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@(#)rbootd.c	5.4 (Berkeley) 06/04/93";
 #endif /* not lint */
 
 #include <sys/param.h>
