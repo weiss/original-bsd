@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)more.c	5.21 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)more.c	5.22 (Berkeley) 07/30/89";
 #endif /* not lint */
 
 /*
@@ -1152,7 +1152,7 @@ register FILE *f;
 		scanstr (Currline - dlines < 0 ? 0
 				: Currline - (dlines + 1) / 2, &cmdbuf[1]);
 		pr ("vi "); pr (cmdbuf); putchar (' '); pr (fnames[fnum]);
-		execute (filename, VI, "vi", cmdbuf, fnames[fnum], 0);
+		execute (filename, _PATH_VI, "vi", cmdbuf, fnames[fnum], 0);
 		break;
 	    }
 	default:
