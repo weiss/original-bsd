@@ -1,4 +1,4 @@
-/*	@(#)tmscp.h	5.2 (Berkeley) 04/28/86 */
+/*	@(#)tmscp.h	7.1 (Berkeley) 06/05/86 */
 
 /*
  *	@(#)tmscp.h	1.3	10/21/85
