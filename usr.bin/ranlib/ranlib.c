@@ -1,11 +1,12 @@
-static	char sccsid[] = "@(#)ranlib.c 4.5 02/18/83";
+#ifndef lint
+static	char sccsid[] = "@(#)ranlib.c 4.6 05/22/83";
+#endif
 /*
  * ranlib - create table of contents for archive; string table version
  */
 #include <sys/types.h>
 #include <ar.h>
 #include <ranlib.h>
-#include <pagsiz.h>
 #include <a.out.h>
 #include <stdio.h>
 
