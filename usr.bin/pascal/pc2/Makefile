@@ -3,13 +3,12 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4 (Berkeley) 05/10/87
+#	@(#)Makefile	5.5 (Berkeley) 10/26/87
 #
 DESTDIR=
 CFLAGS=	-O
 INCPATH=-I${SRCDIR}
 LFLAGS=	
-MACHINE= unknown
 SRCDIR=	/sys/${MACHINE}/inline
 
 # The program itself
