@@ -1,4 +1,4 @@
-/*	if_en.c	4.50	82/04/04	*/
+/*	if_en.c	4.51	82/04/04	*/
 
 #include "en.h"
 #include "imp.h"
@@ -422,6 +422,9 @@ COUNT(ENRINT);
 		goto setup;
 	}
 #endif
+	default:
+		m_freem(m);
+		goto setup;
 	}
 
 	if (IF_QFULL(inq)) {
