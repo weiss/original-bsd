@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.c	7.20 (Berkeley) 01/30/92
+ *	@(#)in.c	7.21 (Berkeley) 02/03/92
  */
 
 #include "param.h"
@@ -305,10 +305,6 @@ in_control(so, cmd, data, ifp)
 	case SIOCGIFBRDADDR:
 		if (ia == (struct in_ifaddr *)0)
 			return (EADDRNOTAVAIL);
-		break;
-
-	default:
-		return (EOPNOTSUPP);
 		break;
 	}
 	switch (cmd) {
