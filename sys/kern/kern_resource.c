@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_resource.c	8.1 (Berkeley) 06/10/93
+ *	@(#)kern_resource.c	8.2 (Berkeley) 09/05/93
  */
 
 #include <sys/param.h>
@@ -153,7 +153,7 @@ donice(curp, chgp, n)
 	if (n < chgp->p_nice && suser(pcred->pc_ucred, &curp->p_acflag))
 		return (EACCES);
 	chgp->p_nice = n;
-	(void) setpri(chgp);
+	(void)resetpriority(chgp);
 	return (0);
 }
 
