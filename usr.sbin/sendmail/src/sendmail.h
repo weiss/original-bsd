@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.121 (Berkeley) 04/13/95
+ *	@(#)sendmail.h	8.122 (Berkeley) 04/20/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.121		04/13/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.122		04/20/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -165,6 +165,7 @@ struct mailer
 	char	*m_diagtype;	/* type for diagnostics */
 	BITMAP	m_flags;	/* status flags, see below */
 	short	m_mno;		/* mailer number internally */
+	short	m_nice;		/* niceness to run at (mostly for prog) */
 	char	**m_argv;	/* template argument vector */
 	short	m_sh_rwset;	/* rewrite set: sender header addresses */
 	short	m_se_rwset;	/* rewrite set: sender envelope addresses */
