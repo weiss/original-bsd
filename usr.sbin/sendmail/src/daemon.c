@@ -8,15 +8,12 @@
 **  specifies the terms and conditions for redistribution.
 */
 
-#ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.1 (Berkeley) 06/07/85";
-#endif not lint
 
 # include <errno.h>
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	5.1		06/07/85	(w/o daemon mode));
+static char	SccsId[] = "@(#)daemon.c	5.2 (Berkeley) 06/07/85	(w/o daemon mode)";
 #else
 
 #include <sys/socket.h>
@@ -24,7 +21,7 @@ SCCSID(@(#)daemon.c	5.1		06/07/85	(w/o daemon mode));
 #include <netdb.h>
 #include <sys/wait.h>
 
-SCCSID(@(#)daemon.c	5.1		06/07/85	(with daemon mode));
+static char	SccsId[] = "@(#)daemon.c	5.2 (Berkeley) 06/07/85 (with daemon mode)";
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
