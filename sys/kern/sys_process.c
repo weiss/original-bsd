@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)sys_process.c	7.14 (Berkeley) 12/05/90
+ *	@(#)sys_process.c	7.15 (Berkeley) 01/08/91
  */
 
 #define IPCREG
@@ -85,6 +85,19 @@ ptrace(curp, uap, retval)
 
 #define	PHYSOFF(p, o) \
 	((physadr)(p)+((o)/sizeof(((physadr)0)->r[0])))
+#if defined(i386)
+#undef        PC
+#undef        SP
+#undef        PS
+#undef        R0
+#undef        R1
+
+#define       PC      tEIP
+#define       SP      tESP
+#define       PS      tEFLAGS
+#define       R0      tEDX
+#define       R1      tECX
+#endif
 
 /*
  * Code that the child process
