@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: vm_mmap.c 1.6 91/10/21$
  *
- *	@(#)vm_mmap.c	7.15 (Berkeley) 07/10/92
+ *	@(#)vm_mmap.c	7.16 (Berkeley) 07/10/92
  */
 
 /*
@@ -109,7 +109,6 @@ osmmap(p, uap, retval)
 	register struct osmmap_args *uap;
 	int *retval;
 {
-	long spos;
 	struct mmap_args nargs;
 	static const char cvtbsdprot[8] = {
 		0,
