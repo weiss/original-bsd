@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)refresh.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)refresh.c	5.5 (Berkeley) 03/03/91";
 #endif /* not lint */
 
 /*
@@ -27,6 +27,8 @@ STATIC short	ly, lx;
 STATIC bool	curwin;
 
 WINDOW	*_win = NULL;
+
+STATIC int	domvcur(), makech();
 
 wrefresh(win)
 reg WINDOW	*win;
