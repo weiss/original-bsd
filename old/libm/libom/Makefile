@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.3	(Berkeley)	06/19/87
+#	@(#)Makefile	4.4	(Berkeley)	07/27/87
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -33,9 +33,12 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
+	rm -f ${DESTDIR}/usr/lib/libnm.a ${DESTDIR}/usr/lib/libnm_p.a
 	install -o bin -g bin -m 644 libom.a ${DESTDIR}/usr/lib/libom.a
+	ln ${DESTDIR}/usr/lib/libom.a ${DESTDIR}/usr/lib/libnm.a
 	ranlib ${DESTDIR}/usr/lib/libom.a
 	install -o bin -g bin -m 644 libom_p.a ${DESTDIR}/usr/lib/libom_p.a
+	ln ${DESTDIR}/usr/lib/libom_p.a ${DESTDIR}/usr/lib/libnm_p.a
 	ranlib ${DESTDIR}/usr/lib/libom_p.a
 
 lint: FRC
