@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)iostat.c	5.2 (Berkeley) 12/11/85";
+static char sccsid[] = "@(#)iostat.c	5.3 (Berkeley) 01/12/86";
 #endif not lint
 
 /*
@@ -46,10 +46,14 @@ static struct nlist nlst[] = {
 #define X_CP_TIME       5
         { "_cp_time" },
 #ifdef vax
-#define X_MBDINIT       6
+#define X_MBDINIT       (X_CP_TIME+1)
         { "_mbdinit" },
-#define X_UBDINIT       7
+#define X_UBDINIT       (X_CP_TIME+2)
         { "_ubdinit" },
+#endif
+#ifdef tahoe
+#define	X_VBDINIT	(X_CP_TIME+1)
+	{ "_vbdinit" },
 #endif
         { "" },
 };
