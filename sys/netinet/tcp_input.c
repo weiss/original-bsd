@@ -14,12 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tcp_input.c	7.20 (Berkeley) 10/12/88
+ *	@(#)tcp_input.c	7.15.1.3 (Berkeley) 02/15/89
  */
 
 #include "param.h"
 #include "systm.h"
-#include "malloc.h"
 #include "mbuf.h"
 #include "protosw.h"
 #include "socket.h"
@@ -43,6 +42,7 @@
 #include "tcp_debug.h"
 
 int	tcpprintfs = 0;
+int	tcpcksum = 1;
 int	tcprexmtthresh = 3;
 struct	tcpiphdr tcp_saveti;
 
@@ -183,12 +183,12 @@ drop:
  * TCP input routine, follows pages 65-76 of the
  * protocol specification dated September, 1981 very closely.
  */
-tcp_input(m, iphlen)
-	register struct mbuf *m;
-	int iphlen;
+tcp_input(m0)
+	struct mbuf *m0;
 {
 	register struct tcpiphdr *ti;
 	struct inpcb *inp;
+	register struct mbuf *m;
 	struct mbuf *om = 0;
 	int len, tlen, off;
 	register struct tcpcb *tp = 0;
@@ -205,10 +205,11 @@ tcp_input(m, iphlen)
 	 * Get IP and TCP header together in first mbuf.
 	 * Note: IP leaves IP header in first mbuf.
 	 */
+	m = m0;
 	ti = mtod(m, struct tcpiphdr *);
-	if (iphlen > sizeof (struct ip))
-		ip_stripoptions(m, (struct mbuf *)0);
-	if (m->m_flags & M_EXT || m->m_len < sizeof (struct tcpiphdr)) {
+	if (((struct ip *)ti)->ip_hl > (sizeof (struct ip) >> 2))
+		ip_stripoptions((struct ip *)ti, (struct mbuf *)0);
+	if (m->m_off > MMAXOFF || m->m_len < sizeof (struct tcpiphdr)) {
 		if ((m = m_pullup(m, sizeof (struct tcpiphdr))) == 0) {
 			tcpstat.tcps_rcvshort++;
 			return;
@@ -221,15 +222,17 @@ tcp_input(m, iphlen)
 	 */
 	tlen = ((struct ip *)ti)->ip_len;
 	len = sizeof (struct ip) + tlen;
-	ti->ti_next = ti->ti_prev = 0;
-	ti->ti_x1 = 0;
-	ti->ti_len = (u_short)tlen;
-	ti->ti_len = htons((u_short)ti->ti_len);
-	if (ti->ti_sum = in_cksum(m, len)) {
-		if (tcpprintfs)
-			printf("tcp sum: src %x\n", ti->ti_src);
-		tcpstat.tcps_rcvbadsum++;
-		goto drop;
+	if (tcpcksum) {
+		ti->ti_next = ti->ti_prev = 0;
+		ti->ti_x1 = 0;
+		ti->ti_len = (u_short)tlen;
+		ti->ti_len = htons((u_short)ti->ti_len);
+		if (ti->ti_sum = in_cksum(m, len)) {
+			if (tcpprintfs)
+				printf("tcp sum: src %x\n", ti->ti_src);
+			tcpstat.tcps_rcvbadsum++;
+			goto drop;
+		}
 	}
 
 	/*
@@ -260,7 +263,6 @@ tcp_input(m, iphlen)
 		{ caddr_t op = mtod(m, caddr_t) + sizeof (struct tcpiphdr);
 		  bcopy(op, mtod(om, caddr_t), (unsigned)om->m_len);
 		  m->m_len -= om->m_len;
-		  m->m_pkthdr.len -= om->m_len;
 		  bcopy(op+om->m_len, op,
 		   (unsigned)(m->m_len-sizeof (struct tcpiphdr)));
 		}
@@ -270,9 +272,8 @@ tcp_input(m, iphlen)
 	/*
 	 * Drop TCP and IP headers; TCP options were dropped above.
 	 */
-	m->m_data += sizeof(struct tcpiphdr);
+	m->m_off += sizeof(struct tcpiphdr);
 	m->m_len -= sizeof(struct tcpiphdr);
-	m->m_pkthdr.len -= sizeof(struct tcpiphdr);
 
 	/*
 	 * Convert TCP protocol specific fields to host format.
@@ -327,7 +328,9 @@ findpcb:
 		inp = (struct inpcb *)so->so_pcb;
 		inp->inp_laddr = ti->ti_dst;
 		inp->inp_lport = ti->ti_dport;
+#if BSD>=43
 		inp->inp_options = ip_srcroute();
+#endif
 		tp = intotcpcb(inp);
 		tp->t_state = TCPS_LISTEN;
 	}
@@ -359,7 +362,7 @@ findpcb:
 	win = sbspace(&so->so_rcv);
 	if (win < 0)
 		win = 0;
-	tp->rcv_wnd = max(win, (int)(tp->rcv_adv - tp->rcv_nxt));
+	tp->rcv_wnd = MAX(win, (int)(tp->rcv_adv - tp->rcv_nxt));
 	}
 
 	switch (tp->t_state) {
@@ -387,7 +390,7 @@ findpcb:
 			goto dropwithreset;
 		if ((tiflags & TH_SYN) == 0)
 			goto drop;
-		if (m->m_flags & M_BCAST)
+		if (in_broadcast(ti->ti_dst))
 			goto drop;
 		am = m_get(M_DONTWAIT, MT_SONAME);
 		if (am == NULL)
@@ -469,7 +472,7 @@ findpcb:
 			tcpstat.tcps_connects++;
 			soisconnected(so);
 			tp->t_state = TCPS_ESTABLISHED;
-			tp->t_maxseg = min(tp->t_maxseg, tcp_mss(tp));
+			tp->t_maxseg = MIN(tp->t_maxseg, tcp_mss(tp));
 			(void) tcp_reass(tp, (struct tcpiphdr *)0);
 			/*
 			 * if we didn't have to retransmit the SYN,
@@ -495,7 +498,17 @@ trimthenstep6:
 		ti->ti_seq++;
 		if (ti->ti_len > tp->rcv_wnd) {
 			todrop = ti->ti_len - tp->rcv_wnd;
+#if BSD>=43
 			m_adj(m, -todrop);
+#else
+			/* XXX work around 4.2 m_adj bug */
+			if (m->m_len) {
+				m_adj(m, -todrop);
+			} else {
+				/* skip tcp/ip header in first mbuf */
+				m_adj(m->m_next, -todrop);
+			}
+#endif
 			ti->ti_len = tp->rcv_wnd;
 			tiflags &= ~TH_FIN;
 			tcpstat.tcps_rcvpackafterwin++;
@@ -609,7 +622,17 @@ trimthenstep6:
 				goto dropafterack;
 		} else
 			tcpstat.tcps_rcvbyteafterwin += todrop;
+#if BSD>=43
 		m_adj(m, -todrop);
+#else
+		/* XXX work around m_adj bug */
+		if (m->m_len) {
+			m_adj(m, -todrop);
+		} else {
+			/* skip tcp/ip header in first mbuf */
+			m_adj(m->m_next, -todrop);
+		}
+#endif
 		ti->ti_len -= todrop;
 		tiflags &= ~(TH_PUSH|TH_FIN);
 	}
@@ -680,7 +703,7 @@ trimthenstep6:
 		tcpstat.tcps_connects++;
 		soisconnected(so);
 		tp->t_state = TCPS_ESTABLISHED;
-		tp->t_maxseg = min(tp->t_maxseg, tcp_mss(tp));
+		tp->t_maxseg = MIN(tp->t_maxseg, tcp_mss(tp));
 		(void) tcp_reass(tp, (struct tcpiphdr *)0);
 		tp->snd_wl1 = ti->ti_seq - 1;
 		/* fall into ... */
@@ -734,7 +757,7 @@ trimthenstep6:
 				else if (++tp->t_dupacks == tcprexmtthresh) {
 					tcp_seq onxt = tp->snd_nxt;
 					u_int win =
-					    min(tp->snd_wnd, tp->snd_cwnd) / 2 /
+					    MIN(tp->snd_wnd, tp->snd_cwnd) / 2 /
 						tp->t_maxseg;
 
 					if (win < 2)
@@ -844,9 +867,9 @@ trimthenstep6:
 		u_int incr = tp->t_maxseg;
 
 		if (tp->snd_cwnd > tp->snd_ssthresh)
-			incr = max(incr * incr / tp->snd_cwnd, 1);
+			incr = MAX(incr * incr / tp->snd_cwnd, 1);
 
-		tp->snd_cwnd = min(tp->snd_cwnd + incr, USHRT_MAX); /* XXX */
+		tp->snd_cwnd = MIN(tp->snd_cwnd + incr, IP_MAXPACKET); /* XXX */
 		}
 		if (acked > so->so_snd.sb_cc) {
 			tp->snd_wnd -= so->so_snd.sb_cc;
@@ -857,7 +880,8 @@ trimthenstep6:
 			tp->snd_wnd -= acked;
 			ourfinisacked = 0;
 		}
-		sowwakeup(so);
+		if ((so->so_snd.sb_flags & SB_WAIT) || so->so_snd.sb_sel)
+			sowwakeup(so);
 		tp->snd_una = ti->ti_ack;
 		if (SEQ_LT(tp->snd_nxt, tp->snd_una))
 			tp->snd_nxt = tp->snd_una;
@@ -991,8 +1015,11 @@ step6:
 		 * but if two URG's are pending at once, some out-of-band
 		 * data may creep in... ick.
 		 */
-		if (ti->ti_urp <= ti->ti_len &&
-		    (so->so_options & SO_OOBINLINE) == 0)
+		if (ti->ti_urp <= ti->ti_len
+#ifdef SO_OOBINLINE
+		     && (so->so_options & SO_OOBINLINE) == 0
+#endif
+							   )
 			tcp_pulloutofband(so, ti);
 	} else
 		/*
@@ -1109,14 +1136,14 @@ dropwithreset:
 	 * Make ACK acceptable to originator of segment.
 	 * Don't bother to respond if destination was broadcast.
 	 */
-	if ((tiflags & TH_RST) || m->m_flags & M_BCAST)
+	if ((tiflags & TH_RST) || in_broadcast(ti->ti_dst))
 		goto drop;
 	if (tiflags & TH_ACK)
-		tcp_respond(tp, ti, m, (tcp_seq)0, ti->ti_ack, TH_RST);
+		tcp_respond(tp, ti, (tcp_seq)0, ti->ti_ack, TH_RST);
 	else {
 		if (tiflags & TH_SYN)
 			ti->ti_len++;
-		tcp_respond(tp, ti, m, ti->ti_seq+ti->ti_len, (tcp_seq)0,
+		tcp_respond(tp, ti, ti->ti_seq+ti->ti_len, (tcp_seq)0,
 		    TH_RST|TH_ACK);
 	}
 	/* destroy temporarily created socket */
@@ -1172,7 +1199,7 @@ tcp_dooptions(tp, om, ti)
 				continue;
 			tp->t_maxseg = *(u_short *)(cp + 2);
 			tp->t_maxseg = ntohs((u_short)tp->t_maxseg);
-			tp->t_maxseg = min(tp->t_maxseg, tcp_mss(tp));
+			tp->t_maxseg = MIN(tp->t_maxseg, tcp_mss(tp));
 			break;
 		}
 	}
@@ -1262,7 +1289,38 @@ tcp_mss(tp)
 	if (in_localaddr(inp->inp_faddr))
 		return (mss);
 
-	mss = min(mss, TCP_MSS);
+	mss = MIN(mss, TCP_MSS);
 	tp->snd_cwnd = mss;
 	return (mss);
 }
+
+#if BSD<43
+/* XXX this belongs in netinet/in.c */
+in_localaddr(in)
+	struct in_addr in;
+{
+	register u_long i = ntohl(in.s_addr);
+	register struct ifnet *ifp;
+	register struct sockaddr_in *sin;
+	register u_long mask;
+
+	if (IN_CLASSA(i))
+		mask = IN_CLASSA_NET;
+	else if (IN_CLASSB(i))
+		mask = IN_CLASSB_NET;
+	else if (IN_CLASSC(i))
+		mask = IN_CLASSC_NET;
+	else
+		return (0);
+
+	i &= mask;
+	for (ifp = ifnet; ifp; ifp = ifp->if_next) {
+		if (ifp->if_addr.sa_family != AF_INET)
+			continue;
+		sin = (struct sockaddr_in *)&ifp->if_addr;
+		if ((sin->sin_addr.s_addr & mask) == i)
+			return (1);
+	}
+	return (0);
+}
+#endif
