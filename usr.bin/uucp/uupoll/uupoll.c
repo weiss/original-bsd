@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uupoll.c	5.4 (Berkeley) 06/23/85";
+static char sccsid[] = "@(#)uupoll.c	5.5 (Berkeley) 10/09/85";
 #endif
 
 /*
@@ -15,6 +15,7 @@ static char sccsid[] = "@(#)uupoll.c	5.4 (Berkeley) 06/23/85";
 #include "uucp.h"
 
 int TransferSucceeded = 1;
+struct timeb Now;
 
 main(argc, argv)
 register int argc;
