@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	8.6 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)function.c	8.7 (Berkeley) 07/28/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -832,9 +832,9 @@ c_size(arg)
 /*
  * -type c functions --
  *
- *	True if the type of the file is c, where c is b, c, d, p, or f for
- *	block special file, character special file, directory, FIFO, or
- *	regular file, respectively.
+ *	True if the type of the file is c, where c is b, c, d, p, f or w
+ *	for block special file, character special file, directory, FIFO,
+ *	regular file or whiteout respectively.
  */
 int
 f_type(plan, entry)
@@ -874,6 +874,10 @@ c_type(typestring)
 		break;
 	case 's':
 		mask = S_IFSOCK;
+		break;
+	case 'w':
+		mask = S_IFWHT;
+		ftsoptions |= FTS_WHITEOUT;
 		break;
 	default:
 		errx(1, "-type: %s: unknown type", typestring);

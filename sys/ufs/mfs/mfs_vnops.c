@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfs_vnops.c	8.4 (Berkeley) 06/16/94
+ *	@(#)mfs_vnops.c	8.5 (Berkeley) 07/28/94
  */
 
 #include <sys/param.h>

@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)print.c	8.4 (Berkeley) 04/17/94";
+static char sccsid[] = "@(#)print.c	8.5 (Berkeley) 07/28/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -237,6 +237,9 @@ printtype(mode)
 		return (1);
 	case S_IFSOCK:
 		(void)putchar('=');
+		return (1);
+	case S_IFWHT:
+		(void)putchar('%');
 		return (1);
 	}
 	if (mode & (S_IXUSR | S_IXGRP | S_IXOTH)) {
