@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.74 (Berkeley) 06/11/95";
+static char sccsid[] = "@(#)savemail.c	8.75 (Berkeley) 06/14/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1256,7 +1256,7 @@ xtextok(s)
 			if (!isascii(c) || !isxdigit(c))
 				return FALSE;
 		}
-		else if (c < '!' || c > '~' || c == '\\' || c == '(')
+		else if (c < '!' || c > '~' || c == '=')
 			return FALSE;
 	}
 	return TRUE;
