@@ -8,7 +8,7 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)use_cw_file.m4	2.5 (Berkeley) 11/14/92')
+VERSIONID(`@(#)use_cw_file.m4	6.1 (Berkeley) 12/21/92')
 divert(-1)
 
 # if defined, the sendmail.cf will read the /etc/sendmail.cw file
