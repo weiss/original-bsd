@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sprite.h	5.4 (Berkeley) 11/06/92
+ *	@(#)sprite.h	5.5 (Berkeley) 05/24/93
  */
 
 /*
@@ -60,7 +60,7 @@ typedef int  ReturnStatus;
  * by user processes.
  */
 
-#define NIL 		(~0)
+#define NIL 		0xFFFFFFFF
 #define USER_NIL 	0
 #ifndef NULL
 #define NULL	 	0

@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)config.h	5.9 (Berkeley) 06/01/90
+ *	@(#)config.h	5.10 (Berkeley) 05/24/93
  */
 
 #define	DEFSHELL	1			/* Bourne shell */
@@ -59,4 +59,8 @@
  */
 #define	LIBSUFF	".a"
 #define	RECHECK
+
+#ifndef RANLIBMAG
+#define RANLIBMAG "__.SYMDEF"
+#endif
 /*#define POSIX*/
