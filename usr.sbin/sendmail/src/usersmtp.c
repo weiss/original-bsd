@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.42 (Berkeley) 03/27/95 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.43 (Berkeley) 03/31/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.42 (Berkeley) 03/27/95 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.43 (Berkeley) 03/31/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -283,7 +283,7 @@ helo_options(line, firstline, m, mci, e)
 	if (firstline)
 		return;
 
-	if (strlen(line) < 5)
+	if (strlen(line) < (SIZE_T) 5)
 		return;
 	line += 4;
 	p = strchr(line, ' ');
