@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)defs.h	5.1 (Berkeley) 08/23/92
+ *	@(#)defs.h	5.2 (Berkeley) 08/24/92
  */
 
 /*
@@ -35,12 +35,14 @@ struct s_addr {
  * Substitution command
  */
 struct s_subst {
-	int n;					/* Occurrence to subst 0=g */
+	int n;					/* Occurrence to subst. */
 	int p;					/* True if p flag */
 	char *wfile;				/* NULL if no wfile */
 	int wfd;				/* Cached file descriptor */
-	regex_t re;				/* Regular expression */
+	regex_t *re;				/* Regular expression */
 	regmatch_t *pmatch;			/* Array of match strucs */
+	int maxbref;				/* Largest backreference. */
+	u_long linenum;				/* Line number. */
 	char *new;				/* Replacement text */
 };
 
