@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pmap.h	7.11 (Berkeley) 12/27/92
+ *	@(#)pmap.h	7.12 (Berkeley) 05/24/93
  */
 
 #ifndef	_PMAP_MACHINE_
@@ -107,6 +107,6 @@ pv_entry_t	pv_table;		/* array of entries, one per page */
 
 extern	struct pte *Sysmap;
 extern	char *vmmap;			/* map for mem, dumps, etc. */
-#endif	KERNEL
+#endif /* KERNEL */
 
-#endif	_PMAP_MACHINE_
+#endif /* _PMAP_MACHINE_ */
