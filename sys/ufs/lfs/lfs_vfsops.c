@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_vfsops.c	7.66 (Berkeley) 12/13/91
+ *	@(#)lfs_vfsops.c	7.67 (Berkeley) 12/14/91
  */
 
 #include <sys/param.h>
@@ -401,8 +401,8 @@ lfs_statfs(mp, sbp, p)
 	if (fs->lfs_magic != LFS_MAGIC)
 		panic("lfs_statfs: magic");
 	sbp->f_type = MOUNT_LFS;
-	sbp->f_fsize = fs->lfs_bsize;
 	sbp->f_bsize = fs->lfs_bsize;
+	sbp->f_iosize = fs->lfs_bsize;
 	sbp->f_blocks = fs->lfs_dsize;
 	sbp->f_bfree = fs->lfs_bfree;
 	sbp->f_bavail = (fs->lfs_dsize * (100 - fs->lfs_minfree) / 100) -
