@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kdb_print.c	7.5 (Berkeley) 12/15/86
+ *	@(#)kdb_print.c	7.6 (Berkeley) 04/25/89
  */
 
 #include "../kdb/defs.h"
@@ -107,6 +107,8 @@ printtrace(modif)
 			}
 			printf("%s(", name);
 			narg = getnargs(frame);
+			if (narg > 10)
+				narg = 10;
 			argp = frame;
 			if (ntramp != 1)
 				while (narg) {
