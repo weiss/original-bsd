@@ -14,14 +14,14 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)gprof.h	5.7 (Berkeley) 05/10/89
+ *	@(#)gprof.h	5.8 (Berkeley) 03/23/90
  */
 
-#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <a.out.h>
-#include "gcrt0.h"
+#include <stdio.h>
+#include "gmon.h"
 
 #if vax
 #   include "vax.h"
