@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.56		09/12/82);
+SCCSID(@(#)parseaddr.c	3.57		09/16/82);
 
 /*
 **  PARSE -- Parse an address
@@ -296,17 +296,6 @@ prescan(addr, delim)
 			}
 			else if (cmntcnt > 0)
 				c = NOCHAR;
-			else if (c == ':' && !CurEnv->e_oldstyle)
-			{
-				/* consume characters until a semicolon */
-				while (*p != '\0' && *p != ';')
-					p++;
-				if (*p == '\0')
-					usrerr("Unbalanced ':...;' group spec");
-				else
-					p++;
-				c = ' ';
-			}
 
 			if (c == NOCHAR)
 				continue;
@@ -591,20 +580,8 @@ rewrite(pvp, ruleset)
 			}
 # endif DEBUG
 
-			/* see if this is a "subroutine" call */
 			rp = *rvp;
-			if (*rp == CALLSUBR)
-			{
-				rp = *++rvp;
-# ifdef DEBUG
-				if (tTd(21, 3))
-					printf("-----callsubr %s\n", rp);
-# endif DEBUG
-				rewrite(pvp, atoi(rp));
-				rwr = rwr->r_next;
-				continue;
-			}
-			else if (*rp == CANONUSER)
+			if (*rp == CANONUSER)
 			{
 				rvp++;
 				rwr = rwr->r_next;
@@ -663,7 +640,21 @@ rewrite(pvp, ruleset)
 				}
 			}
 			*avp++ = NULL;
-			bmove((char *) npvp, (char *) pvp, (avp - npvp) * sizeof *avp);
+			if (**npvp == CALLSUBR)
+			{
+				bmove((char *) &npvp[2], (char *) pvp,
+					(avp - npvp - 2) * sizeof *avp);
+# ifdef DEBUG
+				if (tTd(21, 3))
+					printf("-----callsubr %s\n", npvp[1]);
+# endif DEBUG
+				rewrite(pvp, atoi(npvp[1]));
+			}
+			else
+			{
+				bmove((char *) npvp, (char *) pvp,
+					(avp - npvp) * sizeof *avp);
+			}
 # ifdef DEBUG
 			if (tTd(21, 4))
 			{
