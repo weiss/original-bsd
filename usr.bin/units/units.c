@@ -1,9 +1,10 @@
-static char *sccsid = "@(#)units.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)units.c	4.2 (Berkeley) 05/11/89";
 #include <stdio.h>
+#include "pathnames.h"
 
 #define	NDIM	10
 #define	NTAB	601
-char	*dfile	= "/usr/lib/units";
+char	*dfile	= _PATH_UNITS;
 char	*unames[NDIM];
 double	getflt();
 int	fperr();
