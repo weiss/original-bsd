@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fts.c	5.11 (Berkeley) 11/14/90";
+static char sccsid[] = "@(#)fts.c	5.12 (Berkeley) 11/18/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -454,16 +454,17 @@ fts_build(sp, type)
 		if (!FCHDIR(sp, dirfd(dirp))) 
 			descend = 1;
 		/*
-		 * Return all the information possible; fts_read doing a
-		 * relative walk of the tree will have to descend, so it
-		 * can't succeed.  Fts_children or absolute walks of the
-		 * tree can succeed, but no stat information will be available.
+		 * Return all the information possible; an fts_read doing a
+		 * relative walk of the tree will have to descend, so it can't
+		 * succeed.  Fts_children or absolute walks of the tree can
+		 * succeed, but no stat information will be available.  Reset
+		 * errno as necessary.
 		 */
 		else {
+			errno = 0;
 			if (type == BREAD) {
 				(void)closedir(dirp);
 				p->fts_info = FTS_DNX;
-				errno = 0;
 				return(NULL);
 			}
 			nlinks = 0;
