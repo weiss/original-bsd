@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vis.h	5.10 (Berkeley) 02/05/92
+ *	@(#)vis.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _VIS_H_
