@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_lookup.c	8.5 (Berkeley) 05/21/94
+ *	@(#)vfs_lookup.c	8.6 (Berkeley) 11/21/94
  */
 
 #include <sys/param.h>
@@ -403,15 +403,6 @@ unionlookup:
 
 	dp = ndp->ni_vp;
 	/*
-	 * Check for symbolic link
-	 */
-	if ((dp->v_type == VLNK) &&
-	    ((cnp->cn_flags & FOLLOW) || *ndp->ni_next == '/')) {
-		cnp->cn_flags |= ISSYMLINK;
-		return (0);
-	}
-
-	/*
 	 * Check to see if the vnode has been mounted on;
 	 * if so find the root of the mounted file system.
 	 */
@@ -426,6 +417,15 @@ unionlookup:
 			goto bad2;
 		vput(dp);
 		ndp->ni_vp = dp = tdp;
+	}
+
+	/*
+	 * Check for symbolic link
+	 */
+	if ((dp->v_type == VLNK) &&
+	    ((cnp->cn_flags & FOLLOW) || *ndp->ni_next == '/')) {
+		cnp->cn_flags |= ISSYMLINK;
+		return (0);
 	}
 
 nextname:
