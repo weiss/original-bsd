@@ -4,12 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- * All recipients should regard themselves as participants in an ongoing
- * research project and hence should feel obligated to report their
- * experiences (good or bad) with these elementary function codes, using
- * the sendbug(8) program, to the authors.
- *
- *	@(#)trig.h	5.5 (Berkeley) 06/01/90
+ *	@(#)trig.h	5.6 (Berkeley) 10/09/90
  */
 
 #include "mathimpl.h"
