@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/25/93
+#	@(#)Makefile	8.1 (Berkeley) 06/01/93
 
 LIB=	krb
 CFLAGS+=-DKERBEROS -DDEBUG -I${.CURDIR}/../include
