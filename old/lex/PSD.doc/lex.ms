@@ -1,4 +1,6 @@
-.\"	@(#)lex.ms	6.2 (Berkeley) 05/01/87
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)lex.ms	6.3 (Berkeley) 04/17/91
 .\"
 .EH 'PS1:16-%''Lex \- A Lexical Analyzer Generator'
 .OH 'Lex \- A Lexical Analyzer Generator''PS1:16-%'
