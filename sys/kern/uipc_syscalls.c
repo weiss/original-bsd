@@ -3,22 +3,18 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uipc_syscalls.c	7.1 (Berkeley) 06/05/86
+ *	@(#)uipc_syscalls.c	7.2 (Berkeley) 07/29/87
  */
 
 #include "param.h"
-#include "systm.h"
 #include "dir.h"
 #include "user.h"
-#include "proc.h"
 #include "file.h"
-#include "inode.h"
 #include "buf.h"
 #include "mbuf.h"
 #include "protosw.h"
 #include "socket.h"
 #include "socketvar.h"
-#include "uio.h"
 
 /*
  * System call interface to the socket abstraction.
