@@ -1,4 +1,4 @@
-/*	main.c	1.22	(Berkeley)	85/07/19
+/*	main.c	1.23	(Berkeley)	85/08/05
  *
  *	This file contains the main and file system dependent routines
  * for processing gremlin files into troff input.  The program watches
@@ -108,7 +108,7 @@ double SCREENtoINCH;			/* scaling factor, screen to inches */
 #define BIG	999999999999.0		/* unweildly large floating number */
 
 
-static char sccsid[] = "@(#) (Berkeley) 07/19/85";
+static char sccsid[] = "@(#) (Berkeley) 08/05/85";
 
 char	*printer = DEFAULTDEV;	/* device to look up resolution of */
 char	*gremlib = GREMLIB;	/* place to find files after current dir. */
@@ -368,9 +368,9 @@ initpic()
     setdefault = 0;		/* this is not the default settings (yet) */
 
     toppoint = BIG;		/* set the picture bounds out */
-    bottompoint = 0.0;		/* of range so they'll be set */
+    bottompoint = -BIG;		/* of range so they'll be set */
     leftpoint = BIG;		/* by "savebounds" on input */
-    rightpoint = 0.0;
+    rightpoint = -BIG;
 
     pointscale = defpoint;	/* Flag for scaling point sizes default. */
     xscale = scale;		/* default scale of individual pictures */
