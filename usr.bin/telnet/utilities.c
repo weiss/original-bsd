@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	5.8 (Berkeley) 05/20/93";
+static char sccsid[] = "@(#)utilities.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 #define	TELOPTS
