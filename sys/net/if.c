@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1980 Regents of the University of California.
+ * Copyright (c) 1980, 1986 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if.c	6.13 (Berkeley) 06/02/86
+ *	@(#)if.c	7.1 (Berkeley) 06/04/86
  */
 
 #include "param.h"
