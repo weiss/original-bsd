@@ -4,15 +4,15 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)saio.h	7.1 (Berkeley) 05/08/90
+ *	@(#)saio.h	7.2 (Berkeley) 06/24/90
  */
 
 /*
  * Header file for standalone package
  */
 
-#include "../h/types.h"
-#include "../h/param.h"
+#include "types.h"
+#include "param.h"
 #include "../ufs/dinode.h"
 #include "../ufs/fs.h"
 
