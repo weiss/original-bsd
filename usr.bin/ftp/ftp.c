@@ -1,18 +1,18 @@
 #ifndef lint
-static char sccsid[] = "@(#)ftp.c	4.9 (Berkeley) 06/19/83";
+static char sccsid[] = "@(#)ftp.c	4.10 (Berkeley) 07/02/83";
 #endif
 
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
+#include <sys/time.h>
 
 #include <netinet/in.h>
 #include <arpa/ftp.h>
 
 #include <stdio.h>
 #include <signal.h>
-#include <time.h>
 #include <errno.h>
 #include <netdb.h>
 
