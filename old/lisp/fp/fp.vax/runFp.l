@@ -1,7 +1,12 @@
-(setq SCCS-runFp.l "@(#)runFp.l	1.2	04/29/83")
 ;  FP interpreter/compiler
 ;  Copyright (c) 1982  Scott B. Baden
 ;  Berkeley, California
+;
+;  Copyright (c) 1982 Regents of the University of California.
+;  All rights reserved.  The Berkeley software License Agreement
+;  specifies the terms and conditions for redistribution.
+;
+(setq SCCS-runFp.l "@(#)runFp.l	5.1 (Berkeley) 05/31/85")
 
 ; FASL (or load if no object files exist) then run FP.
 ; also set up  user-top-level to 'runFp'.
