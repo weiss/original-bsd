@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)qvcons.c	7.6 (Berkeley) 06/28/90
+ *	@(#)qvcons.c	7.7 (Berkeley) 12/16/90
  */
 
 /*
@@ -49,11 +49,11 @@
  * ---------------------------------------------------------------------
  */
 
-#include "../sys/types.h"
+#include "sys/types.h"
 #define KERNEL
-#include "../vaxuba/qvioctl.h"
+#include "../uba/qvioctl.h"
 #undef KERNEL
-#include "../vax/cpu.h"
+#include "../include/cpu.h"
 
 /*
  * MicroVAX-II q-bus memory base

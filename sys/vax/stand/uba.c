@@ -3,17 +3,17 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uba.c	7.5 (Berkeley) 04/04/90
+ *	@(#)uba.c	7.6 (Berkeley) 12/16/90
  */
 
-#include "param.h"
-#include "vm.h"
+#include "sys/param.h"
+#include "sys/vm.h"
 
-#include "../vax/pte.h"
-#include "../vax/cpu.h"
-#include "../vaxuba/ubareg.h"
+#include "../include/pte.h"
+#include "../include/cpu.h"
+#include "../uba/ubareg.h"
 
-#include "saio.h"
+#include "stand/saio.h"
 #include "savax.h"
 
 /*

@@ -3,12 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)srt0.c	7.6 (Berkeley) 11/08/88
+ *	@(#)srt0.c	7.7 (Berkeley) 12/16/90
  */
 
-#include "../vax/mtpr.h"
+#include "../include/mtpr.h"
 #define	LOCORE
-#include "../vax/cpu.h"
+#include "../include/cpu.h"
 
 /*
  * Startup code for standalone system
