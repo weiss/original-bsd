@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.72 (Berkeley) 02/07/94";
+static char sccsid[] = "@(#)deliver.c	8.73 (Berkeley) 02/14/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1207,8 +1207,8 @@ tryhost:
 				}
 				(void) close(rpvect[1]);
 			}
-			else if ((OpMode == MD_SMTP || OpMode == MD_DAEMON ||
-				  HoldErrs) && !DisConnected)
+			else if (OpMode == MD_SMTP || OpMode == MD_DAEMON ||
+				  HoldErrs || DisConnected)
 			{
 				/* put mailer output in transcript */
 				if (dup2(fileno(e->e_xfp), STDOUT_FILENO) < 0)
