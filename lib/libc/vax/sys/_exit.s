@@ -8,8 +8,7 @@
 #include "SYS.h"
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	ASMSTR "@(#)_exit.s	5.7 (Berkeley) 05/30/90"
+	ASMSTR "@(#)_exit.s	5.8 (Berkeley) 05/31/90"
 #endif /* LIBC_SCCS and not lint */
 
-	.align	1
 PSEUDO(_exit,exit)	/* _exit(status) */
