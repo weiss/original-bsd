@@ -22,14 +22,14 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chmod.c	5.11 (Berkeley) 04/28/90";
+static char sccsid[] = "@(#)chmod.c	5.12 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fts.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 extern int errno;
 int retval;
