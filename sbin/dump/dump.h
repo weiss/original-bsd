@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dump.h	5.19 (Berkeley) 06/18/92
+ *	@(#)dump.h	5.20 (Berkeley) 07/02/92
  */
 
 #define MAXINOPB	(MAXBSIZE / sizeof(struct dinode))
@@ -90,7 +90,7 @@ void	bread __P((daddr_t blkno, char *buf, int size));
 
 /* tape writing routines */
 int	alloctape __P(());
-void	writerec __P((char *dp));
+void	writerec __P((char *dp, int isspcl));
 void	dumpblock __P((daddr_t blkno, int size));
 void	flushtape __P(());
 void	trewind __P(());
