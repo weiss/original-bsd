@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_dmc.c	6.8 (Berkeley) 12/19/85
+ *	@(#)if_dmc.c	6.9 (Berkeley) 01/08/86
  */
 
 #include "dmc.h"
@@ -38,9 +38,6 @@
 #include "../net/netisr.h"
 #include "../net/route.h"
 
-#ifdef	BBNNET
-#define	INET
-#endif
 #ifdef	INET
 #include "../netinet/in.h"
 #include "../netinet/in_systm.h"
