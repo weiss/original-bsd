@@ -1,4 +1,4 @@
-.\"	"@(#)bibdoc.ms	4.5	01/06/84";
+.\"	"@(#)bibdoc.ms	4.6	09/10/85";
 .TL
 \fBBIB \- A Program for Formatting Bibliographies\fP
 .AU
@@ -680,7 +680,7 @@ the output.
 File Naming Conventions
 .PP
 Standard database format files are kept in a standard library area.
-The string BMACLIB in bib.h points to this directory (/usr/lib/bmac in
+The string BMACLIB in bib.h points to this directory (/usr/new/lib/bmac in
 the distribution).  In addition, this name is always defined when
 reading format files.
 There are three types of files:
