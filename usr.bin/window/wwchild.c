@@ -9,10 +9,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwchild.c	3.13 (Berkeley) 08/12/90";
+static char sccsid[] = "@(#)wwchild.c	3.14 (Berkeley) 01/16/91";
 #endif /* not lint */
 
 #include "ww.h"
+#include <sys/types.h>
 #include <sys/wait.h>
 
 void
