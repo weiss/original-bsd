@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)du.c	5.18 (Berkeley) 06/01/92";
+static char sccsid[] = "@(#)du.c	5.19 (Berkeley) 06/22/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -124,7 +124,7 @@ main(argc, argv)
 			 * the root of a traversal, display the total.
 			 */
 			if (listfiles || !p->fts_level)
-				(void)printf("%ld\t%s\n",
+				(void)printf("%qd\t%s\n",
 				    howmany(p->fts_statp->st_blocks, blocksize),
 				    p->fts_path);
 			p->fts_parent->fts_number += p->fts_statp->st_blocks;
