@@ -6,20 +6,20 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)idlok.c	5.4 (Berkeley) 06/01/90";
-#endif /* not lint */
+static char sccsid[] = "@(#)idlok.c	5.5 (Berkeley) 08/23/92";
+#endif	/* not lint */
 
-# include	"curses.ext"
+#include <curses.h>
 
 /*
- * idlok:
- *	Turn on and off using insert/deleteln sequences for the given
- *	window.
- *
+ * idlok --
+ *	Turn on and off using insert/deleteln sequences for the
+ *	given window.
  */
+void
 idlok(win, bf)
-register WINDOW	*win;
-bool		bf;
+	WINDOW *win;
+	int bf;
 {
 	if (bf)
 		win->_flags |= _IDLINE;
