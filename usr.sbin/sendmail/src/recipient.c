@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	5.19 (Berkeley) 03/02/91";
+static char sccsid[] = "@(#)recipient.c	5.20 (Berkeley) 07/26/91";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -252,7 +252,16 @@ recipient(a, sendq)
 			}
 		}
 		else
+		{
+			/* try aliasing */
 			alias(a, sendq);
+
+# ifdef USERDB
+			/* if not  aliased, look it up in the user database */
+			if (!bitset(QDONTSEND, a->q_flags))
+				udbexpand(a, sendq);
+# endif
+		}
 	}
 
 	/*

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.23 (Berkeley) 07/25/91";
+static char sccsid[] = "@(#)readcf.c	5.24 (Berkeley) 07/26/91";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -856,6 +856,10 @@ setoption(opt, val, safe, sticky)
 		/*FALLTHROUGH*/
 
 	  case 't':		/* time zone name */
+		break;
+
+	  case 'U':		/* location of user database */
+		UdbFileName = newstr(val);
 		break;
 
 	  case 'u':		/* set default uid */
