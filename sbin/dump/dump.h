@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dump.h	5.15 (Berkeley) 03/07/91
+ *	@(#)dump.h	5.16 (Berkeley) 05/29/91
  */
 
 #define MAXINOPB	(MAXBSIZE / sizeof(struct dinode))
@@ -155,8 +155,7 @@ void	sigterm();
 #ifndef __STDC__
 #include <sys/file.h>
 #define _PATH_FSTAB	"/etc/fstab"
-typedef int (*sig_t)();
-extern char *strdup();
+extern char *index(), *strdup();
 extern char *ctime();
 extern int errno;
 #endif
