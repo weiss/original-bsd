@@ -3,7 +3,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lookbib.c	4.7 (Berkeley) 04/18/91";
+static char sccsid[] = "@(#)lookbib.c	4.8 (Berkeley) 06/02/92";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ char **argv;
 	char s[BUFSIZ], hunt[64];
 	int instructions = 1;
 
-	if (strcmp(argv[1],"-n") == 0)
+	if (argc > 1 && strcmp(argv[1],"-n") == 0)
 	{
 		argv++;
 		argc--;
