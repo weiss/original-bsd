@@ -3,7 +3,7 @@
 # include <syslog.h>
 # endif LOG
 
-static char	SccsId[] = "@(#)err.c	3.16	11/08/81";
+SCCSID(@(#)err.c	3.17		12/06/81);
 
 /*
 **  SYSERR -- Print error message.
