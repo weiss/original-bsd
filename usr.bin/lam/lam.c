@@ -1,7 +1,7 @@
 /* Copyright (c) 1983 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)lam.c	4.2	(Berkeley)	02/11/84";
+static char sccsid[] = "@(#)lam.c	4.3	(Berkeley)	07/28/84";
 #endif not lint
 
 /*
@@ -120,6 +120,8 @@ char	**av;
 		}
 	}
 	ip->fp = NULL;
+	if (!ip->sepstring)
+		ip->sepstring = "";
 }
 
 char	*
