@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.12 (Berkeley) 10/17/93";
+static char sccsid[] = "@(#)util.c	8.13 (Berkeley) 10/21/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1129,7 +1129,7 @@ checkfd012(where)
 
 	for (i = 0; i < 3; i++)
 	{
-		if (fstat(i, &stbuf) < 0)
+		if (fstat(i, &stbuf) < 0 && errno != EOPNOTSUPP)
 		{
 			/* oops.... */
 			int fd;
