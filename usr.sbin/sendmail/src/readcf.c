@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)readcf.c	5.6 (Berkeley) 09/21/85";
+static char	SccsId[] = "@(#)readcf.c	5.7 (Berkeley) 12/07/85";
 #endif not lint
 
 # include "sendmail.h"
@@ -647,7 +647,7 @@ setoption(opt, val, safe, sticky)
 	**  Check to see if this option can be specified by this user.
 	*/
 
-	if (!safe && getruid())
+	if (!safe && getruid() == 0)
 		safe = TRUE;
 	if (!safe && index("deiLmorsv", opt) == NULL)
 	{
