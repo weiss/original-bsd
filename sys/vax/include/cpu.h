@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)cpu.h	6.6 (Berkeley) 02/23/86
+ *	@(#)cpu.h	6.7 (Berkeley) 03/29/86
  */
 
 #ifndef LOCORE
@@ -74,9 +74,9 @@ struct	percpu {
 };
 
 struct iobus {
+	int	io_type;		/* io adaptor types */
 	caddr_t	io_addr;		/* phys address of IO adaptor */
 	int	io_size;		/* size of an IO space */
-	short	io_type;		/* io adaptor types if no cfg reg */
 	caddr_t	io_details;		/* specific to adaptor types */
 };
 
