@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strncat.c	5.3 (Berkeley) 07/18/88";
+static char sccsid[] = "@(#)strncat.c	5.4 (Berkeley) 05/15/90";
 #endif /* LIBC_SCCS and not lint */
 
 char *
@@ -24,11 +24,12 @@ strncat(s, append, cnt)
 	register char *s, *append;
 	register int cnt;
 {
+	register char ch;
 	char *save = s;
 
 	for (; *s; ++s);
-	for (; cnt; --cnt)
-		*s++ = *append++;
+	for (; cnt && (ch = *append++); --cnt)
+		*s++ = ch;
 	*s = '\0';
 	return(save);
 }
