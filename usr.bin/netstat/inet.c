@@ -16,11 +16,8 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inet.c	5.12 (Berkeley) 04/07/90";
+static char sccsid[] = "@(#)inet.c	5.13 (Berkeley) 05/15/90";
 #endif /* not lint */
-
-#include <strings.h>
-#include <stdio.h>
 
 #include <sys/param.h>
 #include <sys/socket.h>
@@ -48,6 +45,9 @@ static char sccsid[] = "@(#)inet.c	5.12 (Berkeley) 04/07/90";
 #include <netinet/udp_var.h>
 
 #include <netdb.h>
+
+#include <stdio.h>
+#include <string.h>
 
 struct	inpcb inpcb;
 struct	tcpcb tcpcb;
