@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Rich Salz.
+ * Rich $alz of BBN Inc.
  *
  * %sccs.include.redist.c%
  */
@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)clri.c	5.1 (Berkeley) 06/04/90";
+static char sccsid[] = "@(#)clri.c	5.2 (Berkeley) 06/11/90";
 #endif /* not lint */
 
 /*
