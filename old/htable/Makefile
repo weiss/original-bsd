@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 04/29/85
+#	@(#)Makefile	5.2 (Berkeley) 09/18/85
 #
 CFLAGS=	-O
 DESTDIR=
@@ -30,7 +30,7 @@ y.tab.h:
 	rm y.tab.c
 
 clean:
-	rm -f ${ALL} *.o *.s y.tab.h errs
+	rm -f ${ALL} *.o *.s parse.c scan.c y.tab.h errs
 
 install:
 	install -s htable ${DESTDIR}/etc/htable
