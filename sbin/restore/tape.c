@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tape.c	5.8 (Berkeley) 10/21/86";
+static char sccsid[] = "@(#)tape.c	5.9 (Berkeley) 11/25/86";
 #endif not lint
 
 #include "restore.h"
@@ -957,7 +957,7 @@ findinode(header)
 	curfile.ino = 0;
 	if (ishead(header) == FAIL) {
 		skipcnt++;
-		while (gethead(header) == FAIL || header->c_ddate != dumptime)
+		while (gethead(header) == FAIL || header->c_date != dumpdate)
 			skipcnt++;
 	}
 	for (;;) {
