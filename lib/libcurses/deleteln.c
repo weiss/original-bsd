@@ -4,7 +4,7 @@
  *	This routine deletes a line from the screen.  It leaves
  * (_cury,_curx) unchanged.
  *
- * 03/05/81 (Berkeley) @(#)deleteln.c	1.2
+ * 04/16/81 (Berkeley) @(#)deleteln.c	1.3
  */
 wdeleteln(win)
 reg WINDOW	*win; {
@@ -21,5 +21,5 @@ reg WINDOW	*win; {
 	}
 	for (end = &temp[win->_maxx]; temp < end; )
 		*temp++ = ' ';
-	win->_y[win->_maxy-1] = temp;
+	win->_y[win->_maxy-1] = temp - win->_maxx;
 }
