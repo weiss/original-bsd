@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)qd.c	1.11 (Berkeley) 02/07/89
+ *	@(#)qd.c	1.12 (Berkeley) 04/25/89
  */
 
 /************************************************************************
@@ -47,9 +47,9 @@
 
 #if NQD > 0
 #include "types.h"
-#include "../machine/pte.h"
-#include "../machine/mtpr.h"
-#include "../machine/cpu.h"
+#include "machine/pte.h"
+#include "machine/mtpr.h"
+#include "machine/cpu.h"
 #include "param.h"
 #include "conf.h"
 #include "dir.h"
