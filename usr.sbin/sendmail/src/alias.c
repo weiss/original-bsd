@@ -29,12 +29,12 @@
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.36 (Berkeley) 11/14/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.37 (Berkeley) 11/14/92 (with NEWDB)";
 #else
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.36 (Berkeley) 11/14/92 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.37 (Berkeley) 11/14/92 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.36 (Berkeley) 11/14/92 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.37 (Berkeley) 11/14/92 (without DBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -658,7 +658,8 @@ readaliases(aliasfile, init, e)
 			syserr("readaliases: db close failure");
 # endif
 # ifdef IF_MAKEDBMFILES
-		store(key, key);
+		IF_MAKEDBMFILES
+			store(key, key);
 # endif
 
 		/* restore the old signal */
