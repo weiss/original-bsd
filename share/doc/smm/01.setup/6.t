@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)6.t	6.9 (Berkeley) 07/15/93
+.\"	@(#)6.t	6.10 (Berkeley) 07/20/93
 .\"
 .ds LH "Installing/Operating \*(4B
 .ds CF \*(Dy
@@ -29,7 +29,7 @@ you must enter the root password to bring the machine to single-user mode.)
 It is also possible to allow the filesystem checks to complete
 and then to return to single-user mode by signaling
 .Xr fsck (8)
-with a QUIT signal (^\\).
+with a QUIT signal (^\|\e).
 .PP
 To bring the system up to a multi-user configuration from the single-user
 status,
