@@ -1,4 +1,4 @@
-.\"	@(#)password.ms	4.1 (Berkeley) 05/14/86
+.\"	@(#)password.ms	5.1 (Berkeley) 05/14/86
 .\"
 .\" tbl mm ^ eqn ^ troff -ms
 .EQ
