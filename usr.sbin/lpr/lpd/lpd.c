@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lpd.c	5.9 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)lpd.c	5.10 (Berkeley) 10/12/90";
 #endif /* not lint */
 
 /*
@@ -56,7 +56,7 @@ main(argc, argv)
 	int argc;
 	char **argv;
 {
-	int f, funix, finet, options, defreadfds, fromlen;
+	int f, funix, finet, options = 0, defreadfds, fromlen;
 	struct sockaddr_un sun, fromunix;
 	struct sockaddr_in sin, frominet;
 	int omask, lfd;
