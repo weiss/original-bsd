@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.1 (Berkeley) 07/05/92
+#	@(#)Makefile	5.2 (Berkeley) 07/05/92
 
-CFLAGS=	-I/usr/src/sys	# XXX
+CFLAGS=	-I/sys
 PROG=	mount_lofs
 MAN8=	mount_lofs.0
 
