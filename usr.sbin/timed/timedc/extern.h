@@ -4,10 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.1 (Berkeley) 05/11/93
+ *	@(#)extern.h	5.2 (Berkeley) 06/03/93
  */
 
+#if __STDC__
 struct tsp;
+#endif
+
+extern struct cmd cmdtab[];
 
 void	bytehostorder __P((struct tsp *));
 void	bytenetorder __P((struct tsp *));
