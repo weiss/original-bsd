@@ -2,9 +2,11 @@
  * Copyright (c) 1982, 1986, 1989 The Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.proprietary.c%
+ * This module is believed to contain source code proprietary to AT&T.
+ * Use and redistribution is subject to the Berkeley Software License
+ * Agreement and your Software Agreement with AT&T (Western Electric).
  *
- *	@(#)vfs_cluster.c	7.41 (Berkeley) 05/09/91
+ *	@(#)vfs_cluster.c	7.42 (Berkeley) 05/10/91
  */
 
 #include "param.h"
