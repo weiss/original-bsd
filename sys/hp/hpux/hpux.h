@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: hpux.h 1.18 91/02/09$
  *
- *	@(#)hpux.h	7.4 (Berkeley) 05/07/91
+ *	@(#)hpux.h	7.5 (Berkeley) 05/13/92
  */
 
 #include "hpux_exec.h"
@@ -72,7 +72,7 @@ struct	hpuxstat {
 	u_short	hst_uid;
 	u_short	hst_gid;
 	long	hst_rdev;
-	off_t	hst_size;
+	long	hst_size;
 	time_t	hst_atime;
 	int	hst_spare1;
 	time_t	hst_mtime;
