@@ -17,7 +17,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	1.5 (Berkeley) 03/08/88";
+static char sccsid[] = "@(#)main.c	1.6 (Berkeley) 05/15/88";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -41,6 +41,8 @@ tninit()
     init_telnet();
 
     init_sys();
+
+    init_3270();
 }
 
 
