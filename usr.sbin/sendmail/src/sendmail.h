@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.31 (Berkeley) 05/25/92
+ *	@(#)sendmail.h	5.32 (Berkeley) 05/29/92
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.31		05/25/92";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.32		05/29/92";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -598,6 +598,7 @@ EXTERN char	*UdbSpec;	/* user database source spec [udbexpand.c] */
 EXTERN int	MaxHopCount;	/* number of hops until we give an error */
 EXTERN int	ConfigLevel;	/* config file level -- what does .cf expect? */
 EXTERN char	*TimeZoneSpec;	/* override time zone specification */
+EXTERN bool	MatchGecos;	/* look for user names in gecos field */
 /*
 **  Trace information
 */
