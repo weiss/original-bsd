@@ -1,7 +1,10 @@
+#ifndef lint
+static	char *sccsid = "@(#)cat.c	4.6 (Berkeley) 08/11/83";
+#endif
+
 /*
  * Concatenate files.
  */
-static	char *Sccsid = "@(#)cat.c	4.5 (Berkeley) 04/26/83";
 
 #include <stdio.h>
 #include <sys/types.h>
