@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)unistd.h	5.14 (Berkeley) 12/06/91
+ *	@(#)unistd.h	5.15 (Berkeley) 03/02/92
  */
 
 #ifndef _UNISTD_H_
@@ -29,7 +29,8 @@
 #endif
 
 __BEGIN_DECLS
-void	 _exit __P((int));
+__dead void
+	 _exit __P((int));
 int	 access __P((const char *, int));
 u_int	 alarm __P((u_int));
 int	 chdir __P((const char *));
@@ -102,7 +103,8 @@ int	 getdtablesize __P((void));
 long	 gethostid __P((void));
 int	 gethostname __P((char *, int));
 mode_t	 getmode __P((const void *, mode_t));
-int	 getpagesize __P((void));
+__pure int
+	 getpagesize __P((void));
 char	*getpass __P((const char *));
 char	*getusershell __P((void));
 char	*getwd __P((char *));			/* obsoleted by getcwd() */
