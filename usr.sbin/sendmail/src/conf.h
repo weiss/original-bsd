@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.104 (Berkeley) 04/17/94
+ *	@(#)conf.h	8.105 (Berkeley) 05/12/94
  */
 
 /*
@@ -197,7 +197,7 @@ extern int	syslog(int, char *, ...);
 #  define gethostbyaddr	solaris_gethostbyaddr	/* get working version */
 #  define GIDSET_T	gid_t
 #  ifndef _PATH_UNIX
-#   define _PATH_UNIX	"/kernel/unix"
+#   define _PATH_UNIX	"/dev/ksyms"
 #  endif
 #  ifndef _PATH_SENDMAILCF
 #   define _PATH_SENDMAILCF	"/etc/mail/sendmail.cf"
