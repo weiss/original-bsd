@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.16		05/31/82	(no queueing));
+SCCSID(@(#)queue.c	3.17		05/31/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.16		05/31/82);
+SCCSID(@(#)queue.c	3.17		05/31/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -54,6 +54,7 @@ queueup(e, queueall)
 		syserr("queueup: cannot create control file %s", cf);
 		return;
 	}
+	(void) chmod(cf, 0600);
 
 # ifdef DEBUG
 	if (Debug)
@@ -78,6 +79,7 @@ queueup(e, queueall)
 			(void) fclose(cfp);
 			return;
 		}
+		(void) chmod(e->e_df, 0600);
 		(*e->e_putbody)(dfp, Mailer[1], FALSE);
 		(void) fclose(dfp);
 	}
