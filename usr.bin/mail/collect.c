@@ -7,7 +7,7 @@
  * ~ escapes.
  */
 
-static char *SccsId = "@(#)collect.c	1.4 04/01/81";
+static char *SccsId = "@(#)collect.c	1.5 04/20/81";
 
 #include "rcv.h"
 #include <sys/stat.h>
@@ -103,8 +103,7 @@ collect(hp)
 		hadintr = 0;
 		if (stopdot && equal(".", linebuf))
 			break;
-		if (linebuf[0] != escape ||
-		    (!intty && value("henry") == NOSTR)) {
+		if (linebuf[0] != escape || rflag != NOSTR) {
 			if ((t = putline(obuf, linebuf)) < 0)
 				goto err;
 			continue;
