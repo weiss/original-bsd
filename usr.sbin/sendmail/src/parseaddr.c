@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.39 (Berkeley) 04/14/93";
+static char sccsid[] = "@(#)parseaddr.c	6.40 (Berkeley) 04/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1745,12 +1745,14 @@ dequote_map(map, buf, bufsiz, av, statp)
 	int anglecnt;
 	int cmntcnt;
 	int quotecnt;
+	int spacecnt;
 	bool quotemode;
 	bool bslashmode;
 
 	anglecnt = 0;
 	cmntcnt = 0;
 	quotecnt = 0;
+	spacecnt = 0;
 	quotemode = FALSE;
 	bslashmode = FALSE;
 
@@ -1776,6 +1778,10 @@ dequote_map(map, buf, bufsiz, av, statp)
 		  case ')':
 			if (cmntcnt-- <= 0)
 				return NULL;
+			break;
+
+		  case ' ':
+			spacecnt++;
 			break;
 		}
 
@@ -1805,7 +1811,7 @@ dequote_map(map, buf, bufsiz, av, statp)
 	}
 
 	if (anglecnt != 0 || cmntcnt != 0 || bslashmode ||
-	    quotemode || quotecnt <= 0)
+	    quotemode || quotecnt <= 0 || spacecnt != 0)
 		return NULL;
 	*q++ = '\0';
 	return buf;
