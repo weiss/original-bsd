@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.66 (Berkeley) 04/26/93";
+static char sccsid[] = "@(#)deliver.c	6.67 (Berkeley) 04/26/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1959,11 +1959,11 @@ mailfile(filename, ctladdr, e)
 			exit(EX_CANTCREAT);
 		}
 
-		putfromline(f, ProgMailer, e);
-		(*e->e_puthdr)(f, ProgMailer, e);
-		putline("\n", f, ProgMailer);
-		(*e->e_putbody)(f, ProgMailer, e);
-		putline("\n", f, ProgMailer);
+		putfromline(f, FileMailer, e);
+		(*e->e_puthdr)(f, FileMailer, e);
+		putline("\n", f, FileMailer);
+		(*e->e_putbody)(f, FileMailer, e);
+		putline("\n", f, FileMailer);
 		if (ferror(f))
 		{
 			message("451 I/O error");
