@@ -1,4 +1,4 @@
-#	srt0.c	1.5	11/09/80
+#	srt0.c	4.1	11/09/80
 
 # Startup code for standalone system
 # Non-relocating version -- for programs which are loaded by boot

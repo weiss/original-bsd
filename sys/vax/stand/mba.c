@@ -1,4 +1,4 @@
-/*	mba.c	1.4	07/29/80	*/
+/*	mba.c	4.1	11/09/80	*/
 
 #include "../h/param.h"
 #include "../h/inode.h"

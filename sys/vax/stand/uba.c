@@ -1,4 +1,4 @@
-/*	uba.c	1.1	06/28/80	*/
+/*	uba.c	4.1	11/09/80	*/
 
 #include "../h/param.h"
 #include "../h/inode.h"

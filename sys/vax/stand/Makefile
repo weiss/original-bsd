@@ -1,4 +1,4 @@
-#	Makefile	1.6	10/22/80
+#	Makefile	4.1	11/09/80
 
 DESTDIR=
 CFLAGS = -O -DSTANDALONE
