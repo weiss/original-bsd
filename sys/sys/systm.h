@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)systm.h	6.3 (Berkeley) 06/08/85
+ *	@(#)systm.h	6.4 (Berkeley) 01/05/86
  */
 
 /*
@@ -86,5 +86,3 @@ extern	char vmmap[];		/* poor name! */
 /* casts to keep lint happy */
 #define	insque(q,p)	_insque((caddr_t)q,(caddr_t)p)
 #define	remque(q)	_remque((caddr_t)q)
-#define	queue(q,p)	_queue((caddr_t)q,(caddr_t)p)
-#define	dequeue(q)	_dequeue((caddr_t)q)
