@@ -1,3 +1,7 @@
+#ifndef lint
+static char sccsid[] = "@(#)dctype.c	1.2 (Berkeley) 07/17/87";
+#endif	/* not lint */
+
 #include "dctype.h"
 
 unsigned char dctype[192] = {

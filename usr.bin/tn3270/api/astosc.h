@@ -6,6 +6,8 @@
  * (Actually, map3270 does "ascii name ==> index", and
  * termin does "index ==> (scancode, shiftstate)".  Both
  * mappings use this structure.)
+ *
+ * @(#)astosc.h	1.4 (Berkeley) 07/17/87
  */
 
 #define	INCLUDED_ASTOSC
