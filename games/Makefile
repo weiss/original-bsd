@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.19 (Berkeley) 05/11/93
+#	@(#)Makefile	5.20 (Berkeley) 05/17/93
 
-# BROKEN: dungeon hunt larn warp
+# BROKEN: dungeon hunt larn
 # NOT INSTALLED: xneko
 
 SUBDIR=	adventure arithmetic atc backgammon battlestar bcd boggle \
