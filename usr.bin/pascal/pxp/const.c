@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)const.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)const.c	5.2 (Berkeley) 01/03/88";
 #endif not lint
 
 /*
@@ -40,7 +40,7 @@ constbeg(l, cline)
 	setline(cline);
 }
 
-const(cline, cid, cdecl)
+constant(cline, cid, cdecl)
 	int cline;
 	char *cid;
 	int *cdecl;
