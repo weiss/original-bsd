@@ -1,9 +1,9 @@
-.\" Copyright (c) 1992 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1992, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)tmac.sU	5.1 (Berkeley) 05/01/92
+.\"	@(#)tmac.sU	8.1 (Berkeley) 06/08/93
 .\"
 .\" Modify -ms macros for typesetting manuals for Usenix distribution.
 .\" Differences: page numbers even on page 1, MH = Bell Labs,
