@@ -1,10 +1,10 @@
-static char *sccsid = "@(#)rm.c	4.8 (Berkeley) 03/31/82";
+static char *sccsid = "@(#)rm.c	4.9 (Berkeley) 05/07/82";
 int	errcode;
 
 #include <stdio.h>
 #include <sys/param.h>
 #include <sys/stat.h>
-#include <ndir.h>
+#include <dir.h>
 
 char	*sprintf();
 
