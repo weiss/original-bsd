@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)externs.h	1.12 (Berkeley) 11/18/88
+ *	@(#)externs.h	1.13 (Berkeley) 11/29/88
  */
 
 #include <stdio.h>
@@ -37,7 +37,8 @@ extern int
     localchars,		/* we recognize interrupt/quit */
     donelclchars,		/* the user has set "localchars" */
     showoptions,
-    net,
+    net,		/* Network file descriptor */
+    tin,		/* Terminal input file descriptor */
     tout,		/* Terminal output file descriptor */
     crlf,		/* Should '\r' be mapped to <CR><LF> (or <CR><NUL>)? */
     autoflush,		/* flush output when interrupting? */
