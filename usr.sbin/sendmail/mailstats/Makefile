@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.1 (Berkeley) 12/21/92
+#	@(#)Makefile	8.1 (Berkeley) 06/07/93
 
 PROG=	mailstats
 CFLAGS+=-I${.CURDIR}/../src
