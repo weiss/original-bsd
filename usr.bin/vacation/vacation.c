@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)vacation.c	5.10 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)vacation.c	5.11 (Berkeley) 10/13/88";
 #endif /* not lint */
 
 /*
@@ -229,9 +229,9 @@ junkmail()
 		char	*name;
 		int	len;
 	} ignore[] = {
-		"-REQUEST", 8,	"Postmaster", 10,
-		"uucp", 4,	"MAILER-DAEMON", 13,
-		"MAILER", 6,	NULL, NULL,
+		"-request", 8,		"postmaster", 10,	"uucp", 4,
+		"mailer-daemon", 13,	"mailer", 6,		"-relay", 6,
+		NULL, NULL,
 	};
 	register struct ignore *cur;
 	register int len;
