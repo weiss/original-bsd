@@ -1,6 +1,6 @@
 /*-
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This software was developed by the Computer Systems Engineering group
  * at Lawrence Berkeley Laboratory under DARPA contract BG 91-66 and
@@ -8,17 +8,17 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)scsiformat.c	5.4 (Berkeley) 06/05/93
+ *	@(#)scsiformat.c	5.5 (Berkeley) 04/02/94
  */
 
 #ifndef lint
 char copyright[] =
-"@(#) Copyright (c) 1993 The Regents of the University of California.\n\
- All rights reserved.\n";
+"@(#) Copyright (c) 1992, 1993\n\
+	The Regents of the University of California.  All rights reserved.\n";
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)scsiformat.c	5.4 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)scsiformat.c	5.5 (Berkeley) 04/02/94";
 #endif /* not lint */
 
 #include <sys/param.h>
