@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)tsort.c	4.2 (Berkeley) 10/20/82";
+static char *sccsid = "@(#)tsort.c	4.3 (Berkeley) 09/14/87";
 /*	topological sort
  *	input is sequence of pairs of items (blank-free strings)
  *	nonidentical pair is a directed edge in graph
@@ -83,6 +83,7 @@ char **argv;
 		printf("%s\n",i->name);
 		i->live = DEAD;
 	}
+	exit(0);
 }
 
 /*	is i present on j's predecessor list?
