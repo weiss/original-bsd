@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_malloc.c	8.2 (Berkeley) 11/30/93
+ *	@(#)kern_malloc.c	8.3 (Berkeley) 01/04/94
  */
 
 #include <sys/param.h>
@@ -69,7 +69,7 @@ malloc(size, type, flags)
 	register struct kmembuckets *kbp;
 	register struct kmemusage *kup;
 	register struct freelist *freep;
-	long indx, npg, alloc, allocsize;
+	long indx, npg, allocsize;
 	int s;
 	caddr_t va, cp, savedlist;
 #ifdef DIAGNOSTIC
