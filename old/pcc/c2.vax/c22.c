@@ -1,6 +1,8 @@
-static	char sccsid[] = "@(#)c22.c 4.2 02/14/82";
+#ifndef lint
+static	char sccsid[] = "@(#)c22.c 4.3 03/19/85";
+#endif
+
 #include "c2.h"
-/* char c22[] = "@(#)c22.c 4.2 02/14/82"; */
 #define readonly
 
 readonly char revbr[] = {
