@@ -6,10 +6,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)insch.c	5.12 (Berkeley) 02/18/93";
+static char sccsid[] = "@(#)insch.c	5.13 (Berkeley) 02/18/93";
 #endif	/* not lint */
 
 #include <curses.h>
+#include <string.h>
 
 /*
  * winsch --
