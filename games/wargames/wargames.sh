@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1985 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1985, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)wargames.sh	5.4 (Berkeley) 06/01/90
+#	@(#)wargames.sh	8.1 (Berkeley) 05/31/93
 #
 echo -n "Would you like to play a game? "
 read x
