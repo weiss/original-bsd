@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)stats.c	4.1		07/25/83);
+SCCSID(@(#)stats.c	4.2		08/11/84);
 
 /*
 **  Statistics structure.
@@ -81,7 +81,7 @@ poststats(sfile)
 		}
 	}
 	else
-		bmove((char *) &Stat, (char *) &stat, sizeof stat);
+		bcopy((char *) &Stat, (char *) &stat, sizeof stat);
 
 	/* write out results */
 	(void) lseek(fd, 0L, 0);
