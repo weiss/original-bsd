@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)main.c	4.7 (Berkeley) 05/11/83";
+static char sccsid[] = "@(#)main.c	4.8 (Berkeley) 06/10/83";
 #endif
 
 /*
@@ -101,14 +101,14 @@ main(argc, argv)
 	if (argc > 0) {
 		if (setjmp(toplevel))
 			exit(0);
-		sigset(SIGINT, intr);
-		sigset(SIGPIPE, lostpeer);
+		signal(SIGINT, intr);
+		signal(SIGPIPE, lostpeer);
 		setpeer(argc + 1, argv - 1);
 	}
 	top = setjmp(toplevel) == 0;
 	if (top) {
-		sigset(SIGINT, intr);
-		sigset(SIGPIPE, lostpeer);
+		signal(SIGINT, intr);
+		signal(SIGPIPE, lostpeer);
 	}
 	for (;;) {
 		cmdscanner(top);
