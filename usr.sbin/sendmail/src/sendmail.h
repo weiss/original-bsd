@@ -1,7 +1,7 @@
 /*
 **  SENDMAIL.H -- Global definitions for sendmail.
 **
-**	@(#)sendmail.h	3.19	08/09/81
+**	@(#)sendmail.h	3.20	08/09/81
 */
 
 
@@ -228,3 +228,12 @@ extern char	FromLine[];	/* a UNIX-style From line for this message */
 # include	<sysexits.h>
 
 # define setstat(s)		{ if (ExitStat == EX_OK) ExitStat = s; }
+
+
+/* useful functions */
+
+extern char	*newstr();
+extern ADDRESS	*parse();
+extern char	*xalloc();
+extern char	*expand();
+extern bool	sameaddr();
