@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 07/03/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 MAN1=	pxref.0
 

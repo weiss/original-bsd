@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 03/12/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	ranlib
 SRCS=	archive.c build.c misc.c ranlib.c touch.c
