@@ -1,6 +1,6 @@
 #
 # GENERIC System -- distribution
-# @(#)GENERIC.i386	1.1 01/15/91
+# @(#)GENERIC.i386	8.1 06/11/93
 #
 machine		"i386"
 cpu		"i386"
