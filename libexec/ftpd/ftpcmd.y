@@ -1,3 +1,10 @@
+#
+# Copyright (c) 1980 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)ftpcmd.y	5.1 (Berkeley) 06/06/85
+#
 /*
  * Grammar for FTP commands.
  * See RFC 765.
@@ -6,7 +13,7 @@
 %{
 
 #ifndef lint
-static	char sccsid[] = "@(#)ftpcmd.y	4.13 (Berkeley) 03/12/85";
+static	char sccsid[] = "@(#)ftpcmd.y	5.1 (Berkeley) 06/06/85";
 #endif
 
 #include <sys/types.h>
