@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.3 (Berkeley) 01/20/93";
+static char sccsid[] = "@(#)misc.c	5.4 (Berkeley) 05/20/93";
 #endif /* not lint */
 
 #include "misc.h"
@@ -28,9 +28,9 @@ auth_encrypt_init(local, remote, name, server)
 #if	defined(AUTHENTICATION)
 	auth_init(name, server);
 #endif
-#if	defined(ENCRYPTION)
+#ifdef	ENCRYPTION
 	encrypt_init(name, server);
-#endif
+#endif	/* ENCRYPTION */
 	if (UserNameRequested) {
 		free(UserNameRequested);
 		UserNameRequested = 0;

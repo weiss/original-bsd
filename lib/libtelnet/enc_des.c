@@ -6,10 +6,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)enc_des.c	5.3 (Berkeley) 04/05/93";
+static char sccsid[] = "@(#)enc_des.c	5.4 (Berkeley) 05/20/93";
 #endif /* not lint */
 
-#if defined(AUTHENTICATION) && defined(ENCRYPTION) && defined(DES_ENCRYPTION)
+#ifdef	ENCRYPTION
+# ifdef	AUTHENTICATION
+#  ifdef DES_ENCRYPTION
 #include <arpa/telnet.h>
 #include <stdio.h>
 #ifdef	__STDC__
@@ -691,4 +693,6 @@ ofb64_decrypt(data)
 
 	return(data ^ stp->str_feed[index]);
 }
-#endif
+#  endif /* DES_ENCRYPTION */
+# endif	/* AUTHENTICATION */
+#endif	/* ENCRYPTION */
