@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	5.16 (Berkeley) 04/16/92";
+static char sccsid[] = "@(#)savemail.c	5.17 (Berkeley) 07/11/92";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -298,7 +298,7 @@ savemail(e)
 				break;
 			}
 
-			putfromline(fp, ProgMailer);
+			putfromline(fp, ProgMailer, e);
 			(*e->e_puthdr)(fp, ProgMailer, e);
 			putline("\n", fp, ProgMailer);
 			(*e->e_putbody)(fp, ProgMailer, e);
