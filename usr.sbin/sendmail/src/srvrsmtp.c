@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.22 (Berkeley) 03/01/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.23 (Berkeley) 03/03/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.22 (Berkeley) 03/01/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.23 (Berkeley) 03/03/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -485,7 +485,10 @@ smtp(e)
 			if (bitset(vrfy ? PRIV_NOVRFY : PRIV_NOEXPN,
 						PrivacyFlags))
 			{
-				message("502 That's none of your business");
+				if (vrfy)
+					message("252 Who's to say?");
+				else
+					message("502 That's none of your business");
 				break;
 			}
 			else if (!gothello &&
