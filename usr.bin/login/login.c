@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.35 (Berkeley) 03/05/89";
+static char sccsid[] = "@(#)login.c	5.36 (Berkeley) 03/05/89";
 #endif /* not lint */
 
 /*
@@ -377,7 +377,7 @@ main(argc, argv)
 	if (*pwd->pw_shell == '\0')
 		pwd->pw_shell = _PATH_BSHELL;
 	/* turn on new line discipline for the csh */
-	else if (!strcmp(pwd->pw_shell, "/bin/csh")) {
+	else if (!strcmp(pwd->pw_shell, _PATH_CSHELL)) {
 		ioctlval = NTTYDISC;
 		(void)ioctl(0, TIOCSETD, &ioctlval);
 	}
