@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.64 (Berkeley) 04/02/92";
+static char sccsid[] = "@(#)ls.c	5.65 (Berkeley) 06/01/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -318,8 +318,9 @@ display(p, list)
 	DISPLAY d;
 	NAMES *np;
 	u_long btotal, flen, glen, ulen;
-	u_long maxblock, maxgroup, maxinode, maxlen, maxnlink, maxsize;
+	u_long maxblock, maxgroup, maxinode, maxlen, maxnlink;
 	u_long maxuser, maxflags;
+	quad_t maxsize;
 	int entries, needstats;
 	char *user, *group, *flags, buf[20];	/* 32 bits == 10 digits */
 
