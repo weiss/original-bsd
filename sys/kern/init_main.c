@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)init_main.c	7.13 (Berkeley) 06/08/89
+ *	@(#)init_main.c	7.14 (Berkeley) 06/27/89
  */
 
 #include "param.h"
@@ -193,7 +193,7 @@ main(firstaddr)
 	if (VFS_ROOT(rootfs, &rootdir))
 		panic("cannot find root vnode");
 	u.u_cdir = rootdir;
-	u.u_cdir->v_count++;
+	VREF(u.u_cdir);
 	VOP_UNLOCK(rootdir);
 	u.u_rdir = NULL;
 	boottime = time;

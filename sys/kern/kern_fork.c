@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_fork.c	7.6 (Berkeley) 05/09/89
+ *	@(#)kern_fork.c	7.7 (Berkeley) 06/27/89
  */
 
 #include "param.h"
@@ -252,9 +252,9 @@ again:
 			continue;
 		fp->f_count++;
 	}
-	u.u_cdir->v_count++;
+	VREF(u.u_cdir);
 	if (u.u_rdir)
-		u.u_rdir->v_count++;
+		VREF(u.u_rdir);
 	crhold(u.u_cred);
 
 	/*
