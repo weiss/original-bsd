@@ -8,19 +8,16 @@
 **  specifies the terms and conditions for redistribution.
 */
 
-#ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.1 (Berkeley) 06/07/85";
-#endif not lint
 
 # include <errno.h>
 # include "sendmail.h"
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	5.1		06/07/85	(no SMTP));
+static char	SccsId[] = "@(#)srvrsmtp.c	5.2 (Berkeley) 06/07/85	(no SMTP)";
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	5.1		06/07/85);
+static char	SccsId[] = "@(#)srvrsmtp.c	5.2 (Berkeley) 06/07/85";
 
 /*
 **  SMTP -- run the SMTP protocol.
