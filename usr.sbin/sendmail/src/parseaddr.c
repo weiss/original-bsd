@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.61 (Berkeley) 06/12/93";
+static char sccsid[] = "@(#)parseaddr.c	6.62 (Berkeley) 06/24/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1117,6 +1117,8 @@ rewrite(pvp, ruleset, e)
 			stat = rewrite(pvp, atoi(npvp[1]), e);
 			if (rstat == EX_OK || stat == EX_TEMPFAIL)
 				rstat = stat;
+			if ((**pvp & 0377) == CANONNET)
+				rwr = NULL;
 		}
 		else
 		{
