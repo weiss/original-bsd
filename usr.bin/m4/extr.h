@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extr.h	5.2 (Berkeley) 06/01/90
+ *	@(#)extr.h	5.3 (Berkeley) 09/03/91
  */
 
 extern ndptr hashtab[];		/* hash table for macros etc.  */
