@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)icheck.c	5.5 (Berkeley) 07/30/89";
+static char sccsid[] = "@(#)icheck.c	5.6 (Berkeley) 05/04/90";
 #endif not lint
 
 /*
@@ -16,9 +16,7 @@ static char sccsid[] = "@(#)icheck.c	5.5 (Berkeley) 07/30/89";
 #define	MAXNINDIR	(MAXBSIZE / sizeof (daddr_t))
 
 #include <sys/param.h>
-#include <sys/time.h>
-#include <sys/vnode.h>
-#include <ufs/inode.h>
+#include <ufs/dinode.h>
 #include <ufs/fs.h>
 #ifndef STANDALONE
 #include <stdio.h>
