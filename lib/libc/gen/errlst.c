@@ -6,12 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)errlst.c	5.11 (Berkeley) 04/29/92";
+static char sccsid[] = "@(#)errlst.c	5.12 (Berkeley) 05/15/93";
 #endif /* LIBC_SCCS and not lint */
 
-#include <sys/cdefs.h>
+#include <stdio.h>
 
-char *const sys_errlist[] = {
+const char *const sys_errlist[] = {
 	"Undefined error: 0",			/*  0 - ENOERROR */
 	"Operation not permitted",		/*  1 - EPERM */
 	"No such file or directory",		/*  2 - ENOENT */
