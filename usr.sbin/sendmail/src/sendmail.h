@@ -7,7 +7,7 @@
 **  All rights reserved.  The Berkeley software License Agreement
 **  specifies the terms and conditions for redistribution.
 **
-**	@(#)sendmail.h	5.10.1.1 (Berkeley) 12/17/86
+**	@(#)sendmail.h	5.10.1.2 (Berkeley) 12/17/86
 */
 
 /*
@@ -19,7 +19,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.10.1.1		12/17/86";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.10.1.2		12/17/86";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -580,4 +580,4 @@ extern time_t	curtime();
 */
 
 #undef isascii
-#define isascii(x)	(((x) & ~0177) != 0)
+#define isascii(x)	(((x) & ~0177) == 0)
