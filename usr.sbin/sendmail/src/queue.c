@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.77 (Berkeley) 04/03/95 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.78 (Berkeley) 04/19/95 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.77 (Berkeley) 04/03/95 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.78 (Berkeley) 04/19/95 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -767,7 +767,6 @@ orderq(doall)
 			i |= NEED_R;
 		while (i != 0 && fgets(lbuf, sizeof lbuf, cf) != NULL)
 		{
-			extern long atol();
 			extern bool strcontainedin();
 
 			switch (lbuf[0])
@@ -1171,7 +1170,6 @@ readqf(e)
 	char *orcpt = NULL;
 	char qf[20];
 	char buf[MAXLINE];
-	extern long atol();
 	extern ADDRESS *setctluser();
 	extern void loseqfile();
 
