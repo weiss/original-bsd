@@ -27,7 +27,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)indent.c	5.10 (Berkeley) 09/15/88";
+static char sccsid[] = "@(#)indent.c	5.11 (Berkeley) 09/15/88";
 #endif /* not lint */
 
 #include "indent_globs.h"
@@ -55,7 +55,6 @@ main(argc, argv)
     int         hd_type;	/* used to store type of stmt for if (...),
 				 * for (...), etc */
     register int i;		/* local loop counter */
-    register int j;		/* local loop counter */
     int         scase;		/* set to true when we see a case, so we will
 				 * know what to do with the following colon */
     int         sp_sw;		/* when true, we are in the expressin of
