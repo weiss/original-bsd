@@ -1,5 +1,11 @@
 /*
- * @(#)parser.h	3.3 05/23/84
+ * @(#)parser.h	3.4 04/24/85
+ */
+
+/*
+ * Copyright (c) 1983 Regents of the University of California,
+ * All rights reserved.  Redistribution permitted subject to
+ * the terms of the Berkeley Software License Agreement.
  */
 
 #include <stdio.h>
