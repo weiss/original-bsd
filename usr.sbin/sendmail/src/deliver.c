@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)deliver.c	5.9 (Berkeley) 12/17/85";
+static char	SccsId[] = "@(#)deliver.c	5.10 (Berkeley) 03/02/86";
 #endif not lint
 
 # include <signal.h>
@@ -774,11 +774,17 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 	/*
 	**  Actually fork the mailer process.
 	**	DOFORK is clever about retrying.
+	**
+	**	Dispose of SIGCHLD signal catchers that may be laying
+	**	around so that endmail will get it.
 	*/
 
 	if (CurEnv->e_xfp != NULL)
 		(void) fflush(CurEnv->e_xfp);		/* for debugging */
 	(void) fflush(stdout);
+# ifdef SIGCHLD
+	(void) signal(SIGCHLD, SIG_DFL);
+# endif SIGCHLD
 	DOFORK(XFORK);
 	/* pid is set by DOFORK */
 	if (pid < 0)
