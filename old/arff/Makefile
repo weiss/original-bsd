@@ -1,8 +1,7 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 01/20/91
 
 PROG=	arff
 MAN8=	arff.0
 MANSUBDIR=/vax
-MLINKS=	arff.8 flcopy.8
 
 .include <bsd.prog.mk>
