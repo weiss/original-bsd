@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.16 (Berkeley) 05/13/91
+#	@(#)Makefile	5.17 (Berkeley) 12/18/92
 
 PROG=	telnetd
 CFLAGS+=-DLINEMODE -DKLUDGELINEMODE -DUSE_TERMIO -DDIAGNOSTICS
-CFLAGS+=-DAUTHENTICATE -DENCRYPT -I${.CURDIR}/../../lib
+CFLAGS+=-DAUTHENTICATION -DENCRYPTION -I${.CURDIR}/../../lib
 SRCS=	authenc.c global.c slc.c state.c sys_term.c telnetd.c \
 	termstat.c utility.c
 DPADD=	${LIBUTIL} ${LIBTERM}

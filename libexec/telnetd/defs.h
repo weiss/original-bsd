@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)defs.h	5.10 (Berkeley) 03/01/91
+ *	@(#)defs.h	5.11 (Berkeley) 12/18/92
  */
 
 /*
@@ -155,7 +155,9 @@ typedef struct fd_set { int fds_bits[1]; } fd_set;
 /*
  * Linemode support states, in decreasing order of importance
  */
-#define REAL_LINEMODE	0x02
+#define REAL_LINEMODE	0x04
+#define KLUDGE_OK	0x03
+#define	NO_AUTOKLUDGE	0x02
 #define KLUDGE_LINEMODE	0x01
 #define NO_LINEMODE	0x00
 
