@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2	(Berkeley)	06/03/87
+#	@(#)Makefile	5.3	(Berkeley)	09/21/87
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -25,7 +25,8 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	install -s -o bin -g bin -m 755 hangman ${DESTDIR}/etc/hangman
+	install -s -o games -g bin -m 700 hangman ${DESTDIR}/usr/games/hide
+	(cd ${DESTDIR}/usr/games; rm -f hangman; ln -s dm hangman; chown games.bin hangman)
 
 lint: FRC
 	lint ${CFLAGS} ${SRCS}
