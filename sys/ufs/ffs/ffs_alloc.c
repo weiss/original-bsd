@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_alloc.c	8.4 (Berkeley) 01/04/94
+ *	@(#)ffs_alloc.c	8.5 (Berkeley) 01/13/94
  */
 
 #include <sys/param.h>
@@ -829,7 +829,7 @@ ffs_nodealloccg(ip, cg, ipref, mode)
 		start = 0;
 		loc = skpc(0xff, len, &cg_inosused(cgp)[0]);
 		if (loc == 0) {
-			printf("cg = %s, irotor = %d, fs = %s\n",
+			printf("cg = %d, irotor = %d, fs = %s\n",
 			    cg, cgp->cg_irotor, fs->fs_fsmnt);
 			panic("ffs_nodealloccg: map corrupted");
 			/* NOTREACHED */
