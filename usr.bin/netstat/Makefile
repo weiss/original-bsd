@@ -1,8 +1,9 @@
-#	@(#)Makefile	5.17 (Berkeley) 07/14/92
+#	@(#)Makefile	5.18 (Berkeley) 06/03/93
 
 PROG=	netstat
 SRCS=	host.c if.c inet.c iso.c main.c mbuf.c mroute.c ns.c route.c \
 	tp_astring.c unix.c
+CFLAGS+=-I/sys
 .PATH:	${.CURDIR}/../../sys/netiso
 BINGRP=	kmem
 BINMODE=2555
