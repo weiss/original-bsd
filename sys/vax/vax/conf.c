@@ -1,4 +1,4 @@
-/*	conf.c	4.15	02/16/81	*/
+/*	conf.c	4.16	02/17/81	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -53,7 +53,7 @@ int	rkstrategy(),rkread(),rkwrite(),rkintr(),rkdump();
 #endif
 
 #include "tm.h"
-#if NTM > 0
+#if NTM03 > 0
 int	tmopen(),tmclose(),tmstrategy(),tmread(),tmwrite(),tmioctl(),tmdump();
 #else
 #define	tmopen		nodev
