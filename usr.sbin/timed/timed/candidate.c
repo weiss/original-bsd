@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)candidate.c	1.3 (Berkeley) 11/16/85";
+static char sccsid[] = "@(#)candidate.c	1.4 (Berkeley) 11/16/85";
 #endif not lint
 
 #include "globals.h"
@@ -48,6 +48,7 @@ election()
 
 	msg.tsp_type = TSP_ELECTION;
 	(void)strcpy(msg.tsp_name, hostname);
+	bytenetorder(&msg);
 	broadcast(&msg);
 
 	do {
