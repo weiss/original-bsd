@@ -1,5 +1,4 @@
-
-/* grem2.h -
+/* @(#)grem2.h	1.2	04/18/83
  *      This is an include file for database macros.
  */
 #define DBNextElt(elt) elt->nextelt
