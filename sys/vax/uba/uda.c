@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uda.c	7.14 (Berkeley) 05/14/88
+ *	@(#)uda.c	7.15 (Berkeley) 05/24/88
  *
  */
 
@@ -348,7 +348,6 @@ udaslave(ui, reg)
 	register struct uba_ctlr *um = probeum;
 	register struct mscp *mp;
 	register struct uda_softc *sc;
-	register struct ra_info *ra;
 	int next = 0, timeout, tries, i;
 
 #ifdef lint
