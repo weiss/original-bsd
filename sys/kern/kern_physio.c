@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_physio.c	7.1 (Berkeley) 06/05/86
+ *	@(#)kern_physio.c	7.2 (Berkeley) 11/03/86
  */
 
 #include "../machine/pte.h"
@@ -251,7 +251,12 @@ nextiov:
 	goto nextiov;
 }
 
+#if defined(tahoe)
+#define	MAXPHYS	(KLMAX * CLBYTES)
+#endif
+#if defined(vax)
 #define	MAXPHYS	(63 * 1024)
+#endif
 
 unsigned
 minphys(bp)
