@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)glob.c	5.28 (Berkeley) 08/07/91";
+static char sccsid[] = "@(#)glob.c	5.29 (Berkeley) 10/10/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -74,7 +74,8 @@ globtilde(nv, s)
     gstart = gbuf;
     *gstart++ = *s++;
     u = s;
-    for (b = gstart, e = &gbuf[MAXPATHLEN - 1]; *s && *s != '/' && b < e;
+    for (b = gstart, e = &gbuf[MAXPATHLEN - 1]; 
+	 *s && *s != '/' && *s != ':' && b < e;
 	 *b++ = *s++);
     *b = EOS;
     if (gethdir(gstart)) {
