@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogind.c	5.14 (Berkeley) 05/22/88";
+static char sccsid[] = "@(#)rlogind.c	5.15 (Berkeley) 05/23/88";
 #endif not lint
 
 /*
@@ -331,9 +331,7 @@ protocol(f, p)
 
 cleanup()
 {
-
 	rmut();
-	vhangup();		/* XXX */
 	shutdown(netf, 2);
 	exit(1);
 }
