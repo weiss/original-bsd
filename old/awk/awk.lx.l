@@ -5,13 +5,13 @@
  * %sccs.include.proprietary.c%
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)awk.lx.l	4.5 (Berkeley) 04/17/91";
-#endif /* not lint */
-
 %X str chc reg comment
 
 %{
+#ifndef lint
+static char sccsid[] = "@(#)awk.lx.l	4.6 (Berkeley) 01/28/94";
+#endif /* not lint */
+
 #include	<string.h>
 #include	"awk.h"
 #include	"awk.def"
