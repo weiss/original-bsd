@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	6.8 (Berkeley) 02/20/93";
+static char sccsid[] = "@(#)headers.c	6.9 (Berkeley) 02/21/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -355,13 +355,7 @@ eatheader(e, queuejob)
 	if (p == NULL)
 		p = hvalue("date", e);
 	if (p != NULL)
-	{
-		extern char *arpatounix();
-
 		define('a', p, e);
-		if ((p = arpatounix(p, e)) != NULL)
-			define('d', newstr(p), e);
-	}
 
 	/*
 	**  Log collection information.
