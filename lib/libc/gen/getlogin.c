@@ -1,5 +1,5 @@
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getlogin.c	5.2 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)getlogin.c	5.3 (Berkeley) 05/09/86";
 #endif LIBC_SCCS and not lint
 
 #include <utmp.h>
@@ -23,6 +23,8 @@ getlogin()
 		return (0);
 	}
 	close(uf);
+	if (ubuf.ut_name[0] == '\0')
+		return (0);
 	ubuf.ut_name[sizeof (ubuf.ut_name)] = ' ';
 	for (cp = ubuf.ut_name; *cp++ != ' '; )
 		;
