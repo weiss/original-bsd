@@ -1,8 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/11/90
+#	@(#)Makefile	5.2 (Berkeley) 05/24/91
 
 PROG=	find
-SRCS=	find.c function.c ls.c misc.c newsyntax.c oldsyntax.c operator.c \
-	option.c
+SRCS=	find.c function.c ls.c main.c misc.c operator.c option.c
 DPADD=	${LIBUTIL}
 LDADD=	-lutil
 
