@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)config.h	5.15 (Berkeley) 09/07/91
+ *	@(#)config.h	5.16 (Berkeley) 06/19/92
  */
 
 /*
@@ -110,6 +110,7 @@ char	*machinename;
 #define	MACHINE_I386	4
 #define MACHINE_MIPS	5
 #define MACHINE_PMAX	6
+#define MACHINE_LUNA68K	7
 
 /*
  * For each machine, a set of CPU's may be specified as supported.
