@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)glob.h	5.17 (Berkeley) 08/17/88
+ *	@(#)glob.h	5.18 (Berkeley) 10/20/88
  */
 
 /*
@@ -47,7 +47,7 @@ int	lexnumber;			/* Number of TNUMBER from scan() */
 char	lexstring[STRINGLEN];		/* String from TSTRING, scan() */
 int	regretp;			/* Pointer to TOS of regret tokens */
 int	regretstack[REGDEP];		/* Stack of regretted tokens */
-char	*stringstack[REGDEP];		/* Stack of regretted strings */
+char	*string_stack[REGDEP];		/* Stack of regretted strings */
 int	numberstack[REGDEP];		/* Stack of regretted numbers */
 struct	message	*dot;			/* Pointer to current message */
 struct	message	*message;		/* The actual message structure */
