@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_node.c	7.13 (Berkeley) 11/21/89
+ *	@(#)nfs_node.c	7.14 (Berkeley) 11/22/89
  */
 
 #include "param.h"
@@ -214,9 +214,9 @@ nfs_reclaim(vp)
 	 * Flush out any associated bio buffers that might be lying about
 	 */
 	if (vp->v_type == VREG && (np->n_flag & NBUFFERED)) {
-		nfs_lock(np);
+		nfs_lock(vp);
 		nfs_blkflush(vp, (daddr_t)0, np->n_size, TRUE);
-		nfs_unlock(np);
+		nfs_unlock(vp);
 	}
 	if (prtactive && vp->v_count != 0)
 		printf("nfs_reclaim: pushing active fileid %d fsid 0x%x\n",
