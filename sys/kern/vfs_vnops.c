@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_vnops.c	7.14 (Berkeley) 02/08/90
+ *	@(#)vfs_vnops.c	7.15 (Berkeley) 02/08/90
  */
 
 #include "param.h"
@@ -34,6 +34,7 @@
 #include "../ufs/quota.h"
 #include "ioctl.h"
 #include "tty.h"
+#include "tsleep.h"
 
 int	vn_read(), vn_write(), vn_ioctl(), vn_select(), vn_close();
 struct 	fileops vnops =
