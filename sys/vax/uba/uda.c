@@ -1,5 +1,5 @@
 /*
- *	@(#)uda.c	6.16 (Berkeley) 01/13/86
+ *	@(#)uda.c	6.17 (Berkeley) 01/31/86
  */
 
 /************************************************************************
@@ -730,8 +730,10 @@ udintr(d)
 		 * Requesting the error status (|= 2)
 		 * may hang older controllers.
 		 */
-		udaddr->udasa = UDA_GO | ((udaburst[d] - 1) << 2) |
-		     (udaerror? 2 : 0);
+		i = UDA_GO | (udaerror? 2 : 0);
+		if (udaburst[d])
+			i |= (udaburst[d] - 1) << 2;
+		udaddr->udasa = i;
 		udaddr->udasa = UDA_GO;
 		sc->sc_state = S_SCHAR;
 
