@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.66 (Berkeley) 04/22/95";
+static char sccsid[] = "@(#)savemail.c	8.67 (Berkeley) 04/22/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -521,7 +521,7 @@ returntosender(msg, returnq, sendbody, e)
 		ee->e_msgboundary = newstr(buf);
 		(void) sprintf(buf,
 #if DSN
-			"multipart/report; report-type=X-delivery-status-1; boundary=\"%s\"",
+			"multipart/report; report-type=X-delivery-status-2 (draft of April 20, 1995);\n\tboundary=\"%s\"",
 #else
 			"multipart/mixed; boundary=\"%s\"",
 #endif
@@ -965,8 +965,9 @@ errbody(mci, e, separator)
 		{
 			(void) sprintf(buf, "--%s", e->e_msgboundary);
 			putline(buf, mci);
-			(void) sprintf(buf, "Content-Type: message/rfc822%s",
-				sendbody ? "" : "-headers");
+			(void) sprintf(buf, "Content-Type: %s",
+				sendbody ? "message/rfc822"
+					 : "text/rfc822-headers");
 			putline(buf, mci);
 		}
 		putline("", mci);
