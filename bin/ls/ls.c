@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.46 (Berkeley) 04/02/91";
+static char sccsid[] = "@(#)ls.c	5.47 (Berkeley) 04/02/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -58,6 +58,8 @@ int f_dirname;			/* if precede with directory name */
 int f_timesort;			/* sort by time vice name */
 int f_total;			/* if precede with "total" line */
 int f_type;			/* add type character for non-regular files */
+
+int (*statfcn)(), stat(), lstat();
 
 main(argc, argv)
 	int argc;
@@ -205,6 +207,10 @@ main(argc, argv)
 	else
 		printfcn = printcol;
 
+	/* if -l, -d or -F, and not ignoring the link, use lstat() */
+	statfcn =
+	    (f_longform || f_listdir || f_type) && !f_ignorelink ? lstat : stat;
+
 	if (!argc) {
 		static char dot[] = ".";
 
@@ -227,7 +233,6 @@ doargs(argc, argv)
 	register int cnt, dircnt, maxlen, regcnt;
 	LS *dstats, *rstats;
 	struct stat sb;
-	int (*statfcn)(), stat(), lstat();
 	char top[MAXPATHLEN + 1];
 	u_long blocks;
 
@@ -236,17 +241,14 @@ doargs(argc, argv)
 	 * structures for directory and non-directory files.
 	 */
 	dstats = rstats = NULL;
-	statfcn =
-	    (f_longform || f_listdir || f_type) && !f_ignorelink ? lstat : stat;
 	for (dircnt = regcnt = 0; *argv; ++argv) {
-		if (statfcn(*argv, &sb)) {
-			if (statfcn != stat || lstat(*argv, &sb)) {
-				(void)fprintf(stderr, "ls: %s: %s\n", *argv,
-				    strerror(errno));
-				if (errno == ENOENT)
-					continue;
-				exit(1);
-			}
+		if (statfcn(*argv, &sb) &&
+		    statfcn == stat && lstat(*argv, &sb)) {
+			(void)fprintf(stderr,
+			    "ls: %s: %s\n", *argv, strerror(errno));
+			if (errno == ENOENT)
+				continue;
+			exit(1);
 		}
 		if (S_ISDIR(sb.st_mode) && !f_listdir) {
 			if (!dstats)
@@ -418,14 +420,15 @@ tabdir(lp, s_stats, s_names)
 			    (u_int)maxentry * sizeof(LS))))
 				nomem();
 		}
-		if (f_needstat && lstat(dp->d_name, &stats[cnt].lstat)) {
+		if (f_needstat && statfcn(dp->d_name, &stats[cnt].lstat) &&
+		    statfcn == stat && lstat(dp->d_name, &stats[cnt].lstat)) {
 			/*
 			 * don't exit -- this could be an NFS mount that has
 			 * gone away.  Flush stdout so the messages line up.
 			 */
 			(void)fflush(stdout);
-			(void)fprintf(stderr, "ls: %s: %s\n",
-			    dp->d_name, strerror(errno));
+			(void)fprintf(stderr,
+			    "ls: %s: %s\n", dp->d_name, strerror(errno));
 			continue;
 		}
 		stats[cnt].name = names;
