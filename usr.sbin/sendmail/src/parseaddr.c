@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.36 (Berkeley) 09/08/94";
+static char sccsid[] = "@(#)parseaddr.c	8.37 (Berkeley) 10/07/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1302,6 +1302,18 @@ badaddr:
 			strncpy(fmt, buf, 3);
 			strcpy(&fmt[3], " %s");
 			usrerr(fmt, buf + 4);
+
+			/*
+			**  If this is a 4xx code and we aren't running
+			**  SMTP on our input, bounce this message;
+			**  otherwise it disappears without a trace.
+			*/
+
+			if (fmt[0] == '4' && OpMode != MD_SMTP &&
+			    OpMode != MD_DAEMON)
+			{
+				e->e_flags |= EF_FATALERRS;
+			}
 		}
 		else
 		{
