@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.2 (Berkeley) 07/20/92
+#	@(#)Makefile	5.3 (Berkeley) 06/05/93
 
 PROG=	scsiformat
+MAN8=	scsiformat.0
 CFLAGS+=-I/sys
-NOMAN=	noman
 
 .include <bsd.prog.mk>
