@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.101 (Berkeley) 06/12/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.102 (Berkeley) 06/13/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.101 (Berkeley) 06/12/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.102 (Berkeley) 06/13/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -91,7 +91,7 @@ getrequests()
 	bool refusingconnections = TRUE;
 	FILE *pidf;
 	int socksize;
-#ifdef XDEBUG
+#if XDEBUG
 	bool j_has_dot;
 #endif
 	extern void reapchild();
@@ -146,7 +146,7 @@ getrequests()
 		fclose(pidf);
 	}
 
-#ifdef XDEBUG
+#if XDEBUG
 	{
 		char jbuf[MAXHOSTNAMELEN];
 
@@ -187,7 +187,7 @@ getrequests()
 			refusingconnections = FALSE;
 		}
 
-#ifdef XDEBUG
+#if XDEBUG
 		/* check for disaster */
 		{
 			char jbuf[MAXHOSTNAMELEN];
@@ -376,13 +376,13 @@ opendaemonsocket(firsttime)
 
 			switch (DaemonAddr.sa.sa_family)
 			{
-# ifdef NETINET
+# if NETINET
 			  case AF_INET:
 				socksize = sizeof DaemonAddr.sin;
 				break;
 # endif
 
-# ifdef NETISO
+# if NETISO
 			  case AF_ISO:
 				socksize = sizeof DaemonAddr.siso;
 				break;
@@ -476,19 +476,19 @@ setdaemonoptions(p)
 		  case 'F':		/* address family */
 			if (isascii(*v) && isdigit(*v))
 				DaemonAddr.sa.sa_family = atoi(v);
-#ifdef NETINET
+#if NETINET
 			else if (strcasecmp(v, "inet") == 0)
 				DaemonAddr.sa.sa_family = AF_INET;
 #endif
-#ifdef NETISO
+#if NETISO
 			else if (strcasecmp(v, "iso") == 0)
 				DaemonAddr.sa.sa_family = AF_ISO;
 #endif
-#ifdef NETNS
+#if NETNS
 			else if (strcasecmp(v, "ns") == 0)
 				DaemonAddr.sa.sa_family = AF_NS;
 #endif
-#ifdef NETX25
+#if NETX25
 			else if (strcasecmp(v, "x.25") == 0)
 				DaemonAddr.sa.sa_family = AF_CCITT;
 #endif
@@ -499,7 +499,7 @@ setdaemonoptions(p)
 		  case 'A':		/* address */
 			switch (DaemonAddr.sa.sa_family)
 			{
-#ifdef NETINET
+#if NETINET
 			  case AF_INET:
 				if (isascii(*v) && isdigit(*v))
 					DaemonAddr.sin.sin_addr.s_addr = htonl(inet_network(v));
@@ -528,7 +528,7 @@ setdaemonoptions(p)
 			{
 				short port;
 
-#ifdef NETINET
+#if NETINET
 			  case AF_INET:
 				if (isascii(*v) && isdigit(*v))
 					DaemonAddr.sin.sin_port = htons(atoi(v));
@@ -545,7 +545,7 @@ setdaemonoptions(p)
 				break;
 #endif
 
-#ifdef NETISO
+#if NETISO
 			  case AF_ISO:
 				/* assume two byte transport selector */
 				if (isascii(*v) && isdigit(*v))
@@ -648,7 +648,7 @@ makeconnection(host, port, mci, usesecureport)
 		if (p != NULL)
 		{
 			*p = '\0';
-#ifdef NETINET
+#if NETINET
 			hid = inet_addr(&host[1]);
 			if (hid == -1)
 #endif
@@ -680,7 +680,7 @@ makeconnection(host, port, mci, usesecureport)
 			mci->mci_status = "5.1.2";
 			return (EX_NOHOST);
 		}
-#ifdef NETINET
+#if NETINET
 		addr.sin.sin_family = AF_INET;		/*XXX*/
 		addr.sin.sin_addr.s_addr = hid;
 #endif
@@ -721,7 +721,7 @@ gothostent:
 		addr.sa.sa_family = hp->h_addrtype;
 		switch (hp->h_addrtype)
 		{
-#ifdef NETINET
+#if NETINET
 		  case AF_INET:
 			bcopy(hp->h_addr,
 				&addr.sin.sin_addr,
@@ -760,14 +760,14 @@ gothostent:
 
 	switch (addr.sa.sa_family)
 	{
-#ifdef NETINET
+#if NETINET
 	  case AF_INET:
 		addr.sin.sin_port = port;
 		addrlen = sizeof (struct sockaddr_in);
 		break;
 #endif
 
-#ifdef NETISO
+#if NETISO
 	  case AF_ISO:
 		/* assume two byte transport selector */
 		bcopy((char *) &port, TSEL((struct sockaddr_iso *) &addr), 2);
@@ -864,7 +864,7 @@ gothostent:
 					errstring(sav_errno));
 			switch (addr.sa.sa_family)
 			{
-#ifdef NETINET
+#if NETINET
 			  case AF_INET:
 				bcopy(hp->h_addr_list[i++],
 				      &addr.sin.sin_addr,
@@ -1454,7 +1454,7 @@ host_map_lookup(map, name, av, statp)
 **		A printable version of that sockaddr.
 */
 
-#ifdef NETLINK
+#if NETLINK
 # include <net/if_dl.h>
 #endif
 
@@ -1475,7 +1475,7 @@ anynet_ntoa(sap)
 
 	switch (sap->sa.sa_family)
 	{
-#ifdef NETUNIX
+#if NETUNIX
 	  case AF_UNIX:
 	  	if (sap->sunix.sun_path[0] != '\0')
 	  		sprintf(buf, "[UNIX: %.64s]", sap->sunix.sun_path);
@@ -1484,12 +1484,12 @@ anynet_ntoa(sap)
 		return buf;
 #endif
 
-#ifdef NETINET
+#if NETINET
 	  case AF_INET:
 		return inet_ntoa(sap->sin.sin_addr);
 #endif
 
-#ifdef NETLINK
+#if NETLINK
 	  case AF_LINK:
 		sprintf(buf, "[LINK: %s]",
 			link_ntoa((struct sockaddr_dl *) &sap->sa));
@@ -1541,7 +1541,7 @@ hostnamebyanyaddr(sap)
 
 	switch (sap->sa.sa_family)
 	{
-#ifdef NETINET
+#if NETINET
 	  case AF_INET:
 		hp = sm_gethostbyaddr((char *) &sap->sin.sin_addr,
 			INADDRSZ,
@@ -1549,7 +1549,7 @@ hostnamebyanyaddr(sap)
 		break;
 #endif
 
-#ifdef NETISO
+#if NETISO
 	  case AF_ISO:
 		hp = sm_gethostbyaddr((char *) &sap->siso.siso_addr,
 			sizeof sap->siso.siso_addr,

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.76 (Berkeley) 06/12/95";
+static char sccsid[] = "@(#)map.c	8.77 (Berkeley) 06/13/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -358,7 +358,7 @@ initmaps(rebuild, e)
 {
 	extern void map_init();
 
-#ifdef XDEBUG
+#if XDEBUG
 	checkfd012("entering initmaps");
 #endif
 	CurEnv = e;
@@ -371,7 +371,7 @@ initmaps(rebuild, e)
 	{
 		stabapply(map_init, 0);
 	}
-#ifdef XDEBUG
+#if XDEBUG
 	checkfd012("exiting initmaps");
 #endif
 }
@@ -1905,7 +1905,7 @@ hes_map_lookup(map, name, av, statp)
 **  NeXT NETINFO Modules
 */
 
-#ifdef NETINFO
+#if NETINFO
 
 #define NETINFO_DEFAULT_DIR		"/aliases"
 #define NETINFO_DEFAULT_PROPERTY	"members"
