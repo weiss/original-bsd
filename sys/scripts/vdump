@@ -1,4 +1,4 @@
-#	@(#)vdump	7.2 (Berkeley) 06/10/93
+#	@(#)vdump	8.1 (Berkeley) 06/10/93
 #
 # dump the vnode list
 
