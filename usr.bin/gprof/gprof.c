@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)gprof.c	1.22 (Berkeley) 05/11/83";
+    static	char *sccsid = "@(#)gprof.c	1.23 (Berkeley) 01/30/84";
 #endif lint
 
 #include "gprof.h"
@@ -97,9 +97,14 @@ main(argc, argv)
 	addlist( elist , *sp );
     }
 	/*
-	 *	how long is a clock tick?
+	 *	how many ticks per second?
+	 *	if we can't tell, report time in ticks.
 	 */
     hz = hertz();
+    if (hz == 0) {
+	hz = 1;
+	fprintf(stderr, "time is in ticks, not seconds\n");
+    }
 	/*
 	 *	get information about a.out file.
 	 */
