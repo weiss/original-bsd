@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.102 (Berkeley) 08/21/94";
+static char sccsid[] = "@(#)conf.c	8.103 (Berkeley) 09/09/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1023,57 +1023,60 @@ refuseconnections()
 **		display the title.
 */
 
-#ifdef SETPROCTITLE
+#define SPT_NONE	0	/* don't use it at all */
+#define SPT_REUSEARGV	1	/* cover argv with title information */
+#define SPT_BUILTIN	2	/* use libc builtin */
+#define SPT_PSTAT	3	/* use pstat(PSTAT_SETCMD, ...) */
+#define SPT_PSSTRINGS	4	/* use PS_STRINGS->... */
+#define SPT_WRITEUDOT	5	/* write u. area in kmem */
 
-# ifdef HASSETPROCTITLE
-   *** ERROR ***  Cannot have both SETPROCTITLE and HASSETPROCTITLE defined
-# endif
+#ifndef SPT_TYPE
+# define SPT_TYPE	SPT_REUSEARGV
+#endif
 
-# ifdef __hpux
+#if SPT_TYPE != SPT_NONE && SPT_TYPE != SPT_BUILTIN
+
+# if SPT_TYPE == SPT_PSTAT
 #  include <sys/pstat.h>
 # endif
-# ifdef BSD4_4
+# if SPT_TYPE == SPT_PSSTRINGS
 #  include <machine/vmparam.h>
 #  include <sys/exec.h>
-#  ifdef __bsdi__
-#   undef PS_STRINGS	/* BSDI 1.0 doesn't do PS_STRINGS as we expect */
-#   define PROCTITLEPAD	'\0'
+#  ifndef PS_STRINGS	/* hmmmm....  apparently not available after all */
+#   undef SPT_TYPE
+#   define SPT_TYPE	SPT_REUSEARGV
 #  endif
-#  ifdef PS_STRINGS
-#   define SETPROC_STATIC static
-#  endif
-# endif
-# ifdef _AIX3
-#  define PROCTITLEPAD	'\0'
 # endif
 
-# ifndef SETPROC_STATIC
+# if SPT_TYPE == SPT_PSSTRINGS
+#  define SETPROC_STATIC	static
+# else
 #  define SETPROC_STATIC
 # endif
 
-#endif
+# ifndef SPT_PADCHAR
+#  define SPT_PADCHAR	' '
+# endif
 
-#ifndef PROCTITLEPAD
-# define PROCTITLEPAD	' '
-#endif
+#endif /* SPT_TYPE != SPT_NONE && SPT_TYPE != SPT_BUILTIN */
 
-#ifndef HASSETPROCTITLE
+#if SPT_TYPE != SPT_BUILTIN
 
 /*VARARGS1*/
-#ifdef __STDC__
+# ifdef __STDC__
 setproctitle(char *fmt, ...)
-#else
+# else
 setproctitle(fmt, va_alist)
 	char *fmt;
 	va_dcl
-#endif
+# endif
 {
-# ifdef SETPROCTITLE
+# if SPT_TYPE != SPT_NONE
 	register char *p;
 	register int i;
 	SETPROC_STATIC char buf[MAXLINE];
 	VA_LOCAL_DECL
-#  ifdef __hpux
+#  if SPT_TYPE == SPT_PSTAT
 	union pstun pst;
 #  endif
 	extern char **Argv;
@@ -1092,11 +1095,11 @@ setproctitle(fmt, va_alist)
 
 	i = strlen(buf);
 
-#  ifdef __hpux
+#  if SPT_TYPE == SPT_PSTAT
 	pst.pst_command = buf;
 	pstat(PSTAT_SETCMD, pst, i, 0, 0);
 #  else
-#   ifdef PS_STRINGS
+#   if SPT_TYPE == SPT_PSSTRINGS
 	PS_STRINGS->ps_nargvstr = 1;
 	PS_STRINGS->ps_argvstr = buf;
 #   else
@@ -1108,14 +1111,14 @@ setproctitle(fmt, va_alist)
 	(void) strcpy(Argv[0], buf);
 	p = &Argv[0][i];
 	while (p < LastArgv)
-		*p++ = PROCTITLEPAD;
+		*p++ = SPT_PADCHAR;
 	Argv[1] = NULL;
-#   endif
-#  endif
-# endif /* SETPROCTITLE */
+#   endif /* SPT_TYPE == SPT_PSSTRINGS */
+#  endif /* SPT_TYPE == SPT_PSTAT */
+# endif /* SPT_TYPE != SPT_NONE */
 }
 
-#endif
+#endif /* SPT_TYPE != SPT_BUILTIN */
 /*
 **  REAPCHILD -- pick up the body of my child, lest it become a zombie
 **
