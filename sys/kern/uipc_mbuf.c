@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_mbuf.c	7.10 (Berkeley) 06/29/88
+ *	@(#)uipc_mbuf.c	7.4.1.3 (Berkeley) 02/15/89
  */
 
 #include "../machine/pte.h"
@@ -104,6 +104,10 @@ m_clalloc(ncl, how, canwait)
 			(void) m_free(m);
 			m++;
 		}
+		break;
+
+	case MPG_SPACE:
+		mbstat.m_space++;
 		break;
 	}
 	return ((caddr_t)m);
