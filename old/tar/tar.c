@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tar.c	5.8 (Berkeley) 11/17/86";
+static char sccsid[] = "@(#)tar.c	5.9 (Berkeley) 04/10/87";
 #endif not lint
 
 /*
@@ -553,7 +553,7 @@ putfile(longname, shortname, parent)
 		if (vflag)
 			fprintf(vfile, "a %s symbolic link to %s\n",
 			    longname, dblock.dbuf.linkname);
-		sprintf(dblock.dbuf.size, "%11lo", 0);
+		sprintf(dblock.dbuf.size, "%11lo", 0L);
 		sprintf(dblock.dbuf.chksum, "%6o", checksum());
 		(void) writetape((char *)&dblock);
 		break;
