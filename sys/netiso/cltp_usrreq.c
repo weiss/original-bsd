@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1989 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)cltp_usrreq.c	7.9 (Berkeley) 10/11/92
+ *	@(#)cltp_usrreq.c	8.1 (Berkeley) 06/10/93
  */
 
 #ifndef CLTPOVAL_SRC /* XXX -- till files gets changed */

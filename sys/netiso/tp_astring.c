@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_astring.c	7.5 (Berkeley) 06/29/92
+ *	@(#)tp_astring.c	8.1 (Berkeley) 06/10/93
  */
 
 char *tp_sstring[] = {

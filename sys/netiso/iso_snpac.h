@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)iso_snpac.h	7.9 (Berkeley) 06/04/93
+ *	@(#)iso_snpac.h	8.1 (Berkeley) 06/10/93
  */
 
 /***********************************************************
