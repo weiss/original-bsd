@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)scb.s	7.1 (Berkeley) 06/05/86
+ *	@(#)scb.s	7.2 (Berkeley) 02/21/87
  */
 
 #include "uba.h"
@@ -34,7 +34,7 @@ _scb:	.globl	_scb
 /* 080 */	STRAY;		STRAY;		KS(astflt);	STRAY;
 /* 090 */	STRAY;		STRAY;		STRAY;		STRAY;
 /* 0a0 */	IS(softclock);	STRAY;		STRAY;		STRAY;
-/* 0b0 */	IS(netintr);	STRAY;		STRAY;		STRAY;
+/* 0b0 */	IS(netintr);	STRAY;		STRAY;		IS(kdbintr);
 /* 0c0 */	IS(hardclock);	STRAY;		KS(emulate);	KS(emulateFPD);
 /* 0d0 */	STRAY;		STRAY;		STRAY;		STRAY;
 /* 0e0 */	STRAY;		STRAY;		STRAY;		STRAY;
