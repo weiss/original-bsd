@@ -1,4 +1,6 @@
-.\"	@(#)m2	6.2 (Berkeley) 04/21/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)m2	6.3 (Berkeley) 04/17/91
 .\"
 .tr |
 .rm mx
