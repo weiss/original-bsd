@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)floatunsdidf.c	5.1 (Berkeley) 06/02/92";
+static char sccsid[] = "@(#)floatunsdidf.c	5.2 (Berkeley) 06/25/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include "quad.h"
@@ -20,7 +20,8 @@ static char sccsid[] = "@(#)floatunsdidf.c	5.1 (Berkeley) 06/02/92";
  * This is exactly like floatdidf.c except that negatives never occur.
  */
 double
-__floatunsdidf(u_quad x)
+__floatunsdidf(x)
+	u_quad_t x;
 {
 	double d;
 	union uu u;

@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)adddi3.c	5.4 (Berkeley) 06/02/92";
+static char sccsid[] = "@(#)adddi3.c	5.5 (Berkeley) 06/25/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include "quad.h"
@@ -20,8 +20,9 @@ static char sccsid[] = "@(#)adddi3.c	5.4 (Berkeley) 06/02/92";
  * u_long addition x+y occurs if and only if the sum x+y is less than
  * either x or y (the choice to compare with x or y is arbitrary).
  */
-quad
-__adddi3(quad a, quad b)
+quad_t
+__adddi3(a, b)
+	quad_t a, b;
 {
 	union uu aa, bb, sum;
 

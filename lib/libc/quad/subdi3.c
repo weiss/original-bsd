@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)subdi3.c	5.4 (Berkeley) 06/02/92";
+static char sccsid[] = "@(#)subdi3.c	5.5 (Berkeley) 06/25/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include "quad.h"
@@ -19,8 +19,9 @@ static char sccsid[] = "@(#)subdi3.c	5.4 (Berkeley) 06/02/92";
  * Subtract two quad values.  This is trivial since a one-bit carry
  * from a single u_long difference x-y occurs if and only if (x-y) > x.
  */
-quad
-__subdi3(quad a, quad b)
+quad_t
+__subdi3(a, b)
+	quad_t a, b;
 {
 	union uu aa, bb, diff;
 

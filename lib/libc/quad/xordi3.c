@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)xordi3.c	5.3 (Berkeley) 06/02/92";
+static char sccsid[] = "@(#)xordi3.c	5.4 (Berkeley) 06/25/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include "quad.h"
@@ -18,8 +18,9 @@ static char sccsid[] = "@(#)xordi3.c	5.3 (Berkeley) 06/02/92";
 /*
  * Return a ^ b, in quad.
  */
-quad
-__xordi3(quad a, quad b)
+quad_t
+__xordi3(a, b)
+	quad_t a, b;
 {
 	union uu aa, bb;
 
