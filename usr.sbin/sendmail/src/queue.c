@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.19 (Berkeley) 09/26/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.20 (Berkeley) 10/08/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.19 (Berkeley) 09/26/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.20 (Berkeley) 10/08/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1035,7 +1035,7 @@ readqf(e, announcefile)
 			break;
 
 		  case 'M':		/* message */
-			e->e_message = newstr(&bp[1]);
+			/* ignore this; we want a new message next time */
 			break;
 
 		  case 'S':		/* sender */
@@ -1375,8 +1375,8 @@ queuename(e, type)
 			{
 				if (errno == EEXIST)
 					continue;
-				syserr("queuename: Cannot create \"%s\" in \"%s\"",
-					qf, QueueDir);
+				syserr("queuename: Cannot create \"%s\" in \"%s\" (euid=%d)",
+					qf, QueueDir, geteuid());
 				exit(EX_UNAVAILABLE);
 			}
 			if (lockfile(i, qf, NULL, LOCK_EX|LOCK_NB))
@@ -1390,8 +1390,8 @@ queuename(e, type)
 		}
 		if (c1 >= '~' && c2 >= 'Z')
 		{
-			syserr("queuename: Cannot create \"%s\" in \"%s\"",
-				qf, QueueDir);
+			syserr("queuename: Cannot create \"%s\" in \"%s\" (euid=%d)",
+				qf, QueueDir, geteuid());
 			exit(EX_OSERR);
 		}
 		e->e_id = newstr(&qf[2]);
