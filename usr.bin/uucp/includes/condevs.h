@@ -1,4 +1,4 @@
-/*	condevs.h	4.6	86/02/13	*/
+/*	@(#)condevs.h	4.7	(Berkeley)	05/05/88	*/
 
 #include "uucp.h"
 #include <errno.h>
