@@ -3,20 +3,11 @@
 /*
  *	This routine clears the window.
  *
- * 01/26/81 (Berkeley) @(#)clear.c	1.1
+ * @(#)clear.c	1.2 (Berkeley) 05/01/85
  */
 wclear(win)
 reg WINDOW	*win; {
 
-	if (win == curscr) {
-# ifdef DEBUG
-		fprintf(outf,"WCLEAR: win == curscr\n");
-		fprintf(outf,"WCLEAR: curscr = %d\n",curscr);
-		fprintf(outf,"WCLEAR: stdscr = %d\n",stdscr);
-# endif
-		clear();
-		return refresh();
-	}
 	werase(win);
 	win->_clear = TRUE;
 	return OK;
