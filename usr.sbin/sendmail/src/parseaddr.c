@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.35 (Berkeley) 08/17/94";
+static char sccsid[] = "@(#)parseaddr.c	8.36 (Berkeley) 09/08/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1885,6 +1885,9 @@ dequote_map(map, name, av, statp)
 			*q++ = c;
 			continue;
 		}
+
+		if (c == ' ' && SpaceSub != '\0')
+			c = SpaceSub;
 
 		switch (c)
 		{
