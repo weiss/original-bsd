@@ -1,6 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)ranf.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)ranf.c	4.2	(Berkeley)	05/27/83";
 #endif not lint
+
+# include	<stdio.h>
 
 ranf(max)
 int	max;

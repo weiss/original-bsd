@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)visual.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)visual.c	4.2	(Berkeley)	05/27/83";
 #endif not lint
 
 # include	"trek.h"
@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)visual.c	4.1	(Berkeley)	03/23/83";
 */
 
 /* This struct[] has the delta x, delta y for particular directions */
-struct xy	Visdelta[11]
+struct xy	Visdelta[11] =
 {
 	-1,	-1,
 	-1,	 0,

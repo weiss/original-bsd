@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lose.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)lose.c	4.2	(Berkeley)	05/27/83";
 #endif not lint
 
 # include	"trek.h"
@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)lose.c	4.1	(Berkeley)	03/23/83";
 **	actions which need be taken are taken.
 */
 
-char	*Losemsg[]
+char	*Losemsg[] =
 {
 	"You ran out of time",
 	"You ran out of energy",

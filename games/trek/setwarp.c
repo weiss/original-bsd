@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)setwarp.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)setwarp.c	4.2	(Berkeley)	05/27/83";
 #endif not lint
 
 # include	"trek.h"
@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)setwarp.c	4.1	(Berkeley)	03/23/83";
 
 setwarp()
 {
-	float	warpfac;
+	double	warpfac;
 
 	warpfac = getfltpar("Warp factor");
 	if (warpfac < 0.0)
