@@ -1,4 +1,20 @@
-static char *sccsid = "@(#)old.fgrep.c	4.4 (Berkeley) 10/07/87";
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
+#ifndef lint
+char copyright[] =
+"@(#) Copyright (c) 1991 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@(#)old.fgrep.c	4.5 (Berkeley) 04/17/91";
+#endif /* not lint */
+
 /*
  * fgrep -- print all lines containing any of a set of keywords
  *
