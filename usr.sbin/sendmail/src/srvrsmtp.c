@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.53 (Berkeley) 05/12/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.54 (Berkeley) 05/21/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.53 (Berkeley) 05/12/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.54 (Berkeley) 05/21/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -126,7 +126,8 @@ smtp(e)
 	CurHostName = RealHostName;
 	setproctitle("srvrsmtp %s startup", CurHostName);
 	expand("\201e", inp, &inp[sizeof inp], e);
-	message("220 %s", inp);
+	message("220-%s", inp);
+	message("220 ESMTP spoken here");
 	protocol = NULL;
 	sendinghost = macvalue('s', e);
 	gothello = FALSE;
@@ -233,8 +234,12 @@ smtp(e)
 				p = RealHostName;
 
 			/* send ext. message -- old systems must ignore */
-			message("250-%s Hello %s, pleased to meet you",
+			message("250%c%s Hello %s, pleased to meet you",
+				c->cmdcode == CMDEHLO ? '-' : ' ',
 				MyHostName, p);
+			gothello = TRUE;
+			if (c->cmdcode != CMDEHLO)
+				break;
 			if (!bitset(PRIV_NOEXPN, PrivacyFlags))
 				message("250-EXPN");
 			if (MaxMessageSize > 0)
@@ -242,7 +247,6 @@ smtp(e)
 			else
 				message("250-SIZE");
 			message("250 HELP");
-			gothello = TRUE;
 			break;
 
 		  case CMDMAIL:		/* mail -- designate sender */
