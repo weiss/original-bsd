@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/06/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 #  See the sysline program source for options you may want to modify
 #
@@ -24,3 +24,5 @@ install: sysline
 
 clean:
 	rm -f sysline
+
+depend:
