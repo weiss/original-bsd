@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.7 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)main.c	5.8 (Berkeley) 05/11/89";
 #endif not lint
 
 #include "dump.h"
@@ -36,8 +36,8 @@ main(argc, argv)
 	time(&(spcl.c_date));
 
 	tsize = 0;	/* Default later, based on 'c' option for cart tapes */
-	tape = TAPE;
-	disk = DISK;
+	tape = _PATH_DEFTAPE;
+	disk = _PATH_DEFDISK;
 	increm = _PATH_DUMPDATES;
 	temp = _PATH_DTMP;
 	if (TP_BSIZE / DEV_BSIZE == 0 || TP_BSIZE % DEV_BSIZE != 0) {
