@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.24 (Berkeley) 07/30/91";
+static char sccsid[] = "@(#)main.c	5.25 (Berkeley) 08/20/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -72,7 +72,7 @@ struct nlist nl[] = {
 #define N_NIMP		20
 	{ "_nimp"},
 #define N_RTREE		21
-	{ "_radix_node_head"},
+	{ "_rt_tables"},
 #define N_CLTP		22
 	{ "_cltb"},
 #define N_CLTPSTAT	23
