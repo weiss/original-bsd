@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.28 (Berkeley) 06/19/90
+#	@(#)Makefile	7.29 (Berkeley) 06/24/90
 
 VERSION=3.7
 
@@ -29,7 +29,7 @@ LINKS=	${BINDIR}/ex ${BINDIR}/vi ${BINDIR}/ex ${BINDIR}/view \
 	${BINDIR}/ex ${BINDIR}/edit
 
 # If we don't have ex we can't make ex_vars.h, so don't remove it!
-CLEANFILES+=	strings
+CLEANFILES+=	strings xs.c strings.o
 
 SHAREDSTRINGS=	sharedstrings
 
