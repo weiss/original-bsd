@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.40 (Berkeley) 03/30/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.41 (Berkeley) 04/01/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.40 (Berkeley) 03/30/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.41 (Berkeley) 04/01/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -478,7 +478,7 @@ runqueue(forkflag)
 		{
 			if (Verbose)
 				printf("\nSkipping %s\n", w->w_name + 2);
-			return;
+			continue;
 		}
 
 		dowork(w->w_name + 2, ForkQueueRuns, e);
