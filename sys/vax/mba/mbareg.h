@@ -1,5 +1,6 @@
-/*	mbareg.h	4.1	11/09/80	*/
+/*	mbareg.h	4.2	12/17/80	*/
 
+#if VAX==780
 /*
  * VAX Massbus adapter registers
  */
@@ -41,4 +42,5 @@ struct mba_info
 int	mbanum[];
 struct	mba_info mbainfo[];
 int	mbaact;
+#endif
 #endif
