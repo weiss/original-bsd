@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_sl.c	7.19 (Berkeley) 01/20/90
+ *	@(#)if_sl.c	7.20 (Berkeley) 04/05/90
  */
 
 /*
@@ -55,7 +55,6 @@
 #if NSL > 0
 
 #include "param.h"
-#include "dir.h"
 #include "user.h"
 #include "mbuf.h"
 #include "buf.h"
