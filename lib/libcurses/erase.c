@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)erase.c	5.9 (Berkeley) 10/27/92";
+static char sccsid[] = "@(#)erase.c	5.10 (Berkeley) 12/30/92";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -42,5 +42,5 @@ werase(win)
 			__touchline(win, y, minx, maxx - win->lines[y]->line,
 			   0);
 	}
-	return (OK);
+	return (CURSES_OK);
 }

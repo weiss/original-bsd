@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)scanw.c	5.11 (Berkeley) 12/30/92";
+static char sccsid[] = "@(#)scanw.c	5.12 (Berkeley) 12/30/92";
 #endif	/* not lint */
 
 /*
@@ -92,8 +92,8 @@ mvscanw(y, x, fmt, va_alist)
 	va_list ap;
 	int ret;
 
-	if (move(y, x) != OK)
-		return (ERR);
+	if (move(y, x) != CURSES_OK)
+		return (CURSES_ERR);
 #if __STDC__
 	va_start(ap, fmt);
 #else
@@ -119,8 +119,8 @@ mvwscanw(win, y, x, fmt, va_alist)
 	va_list ap;
 	int ret;
 
-	if (move(y, x) != OK)
-		return (ERR);
+	if (move(y, x) != CURSES_OK)
+		return (CURSES_ERR);
 #if __STDC__
 	va_start(ap, fmt);
 #else
@@ -144,5 +144,6 @@ vwscanw(win, fmt, ap)
 
 	char buf[1024];
 
-	return (wgetstr(win, buf) == OK ? vsscanf(buf, fmt, ap) : ERR);
+	return (wgetstr(win, buf) == CURSES_OK ? vsscanf(buf, fmt, ap) : 
+						 CURSES_ERR);
 }

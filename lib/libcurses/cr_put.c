@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cr_put.c	5.13 (Berkeley) 11/05/92";
+static char sccsid[] = "@(#)cr_put.c	5.14 (Berkeley) 12/30/92";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -49,7 +49,7 @@ mvcur(ly, lx, y, x)
 	outcol = lx;
 	outline = ly;
 	fgoto();
-	return (OK);
+	return (CURSES_OK);
 }
 
 static void
