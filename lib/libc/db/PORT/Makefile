@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 04/29/93
+#	@(#)Makefile	8.1 (Berkeley) 06/02/93
 
 LIBDB=	libdb.a
 OBJ1=	bt_close.o bt_conv.o bt_debug.o bt_delete.o bt_get.o bt_open.o \
