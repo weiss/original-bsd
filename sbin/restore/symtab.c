@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)symtab.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)symtab.c	5.6 (Berkeley) 07/29/91";
 #endif /* not lint */
 
 /*
@@ -20,7 +20,6 @@ static char sccsid[] = "@(#)symtab.c	5.5 (Berkeley) 06/01/90";
 
 #include "restore.h"
 #include <sys/stat.h>
-#include <ufs/dir.h>
 
 /*
  * The following variables define the inode symbol table.
@@ -337,7 +336,7 @@ struct strhdr {
 #define STRTBLINCR	(sizeof(struct strhdr))
 #define allocsize(size)	(((size) + 1 + STRTBLINCR - 1) & ~(STRTBLINCR - 1))
 
-static struct strhdr strtblhdr[allocsize(MAXNAMLEN) / STRTBLINCR];
+static struct strhdr strtblhdr[allocsize(NAME_MAX) / STRTBLINCR];
 
 /*
  * Allocate space for a name. It first looks to see if it already
