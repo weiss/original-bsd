@@ -1,10 +1,10 @@
 #ifndef lint
-    static	char *sccsid = "@(#)printgprof.c	1.1 (Berkeley) 10/15/81";
+    static	char *sccsid = "@(#)printgprof.c	1.2 (Berkeley) 10/20/81";
 #endif lint
 
-#include "dprof.h"
+#include "gprof.h"
 
-printdprof()
+printgprof()
 {
     nltype	**timesortnlp;
     int		index;
