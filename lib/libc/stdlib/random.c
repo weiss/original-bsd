@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)random.c	5.2 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)random.c	5.3 (Berkeley) 04/06/87";
 #endif LIBC_SCCS and not lint
 
 #include	<stdio.h>
@@ -223,7 +223,7 @@ initstate( seed, arg_state, n )
 	else  state[ -1 ] = MAX_TYPES*(rptr - state) + rand_type;
 	if(  n  <  BREAK_1  )  {
 	    if(  n  <  BREAK_0  )  {
-		fprintf( stderr, "initstate: not enough state (%d bytes) with which to do jack; ignored.\n" );
+		fprintf( stderr, "initstate: not enough state (%d bytes) with which to do jack; ignored.\n", n );
 		return;
 	    }
 	    rand_type = TYPE_0;
