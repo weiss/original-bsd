@@ -1,7 +1,14 @@
+/*-
+ * Copyright (c) 1994
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)swapgeneric.c	8.2 (Berkeley) 03/21/94
+ */
+
 /*
  * fake swapgeneric.c -- should do this differently.
- *
- *	@(#)swapgeneric.c	8.1 (Berkeley) 07/19/93
  */
 
 #include <sys/param.h>
