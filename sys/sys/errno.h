@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)errno.h	8.2 (Berkeley) 11/16/93
+ *	@(#)errno.h	8.3 (Berkeley) 01/04/94
  */
 
 #ifndef KERNEL
@@ -28,8 +28,8 @@ extern int errno;			/* global error number */
 #define	EFAULT		14		/* Bad address */
 #ifndef _POSIX_SOURCE
 #define	ENOTBLK		15		/* Block device required */
-#define	EBUSY		16		/* Device busy */
 #endif
+#define	EBUSY		16		/* Device busy */
 #define	EEXIST		17		/* File exists */
 #define	EXDEV		18		/* Cross-device link */
 #define	ENODEV		19		/* Operation not supported by device */
