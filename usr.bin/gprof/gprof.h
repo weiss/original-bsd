@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)gprof.h	5.13 (Berkeley) 07/08/92
+ *	@(#)gprof.h	5.14 (Berkeley) 09/02/92
  */
 
 #include <sys/types.h>
@@ -26,6 +26,9 @@
 #endif
 #if hp300
 #   include "hp300.h"
+#endif
+#if luna68k
+#   include "luna68k.h"
 #endif
 #if i386
 #   include "i386.h"
