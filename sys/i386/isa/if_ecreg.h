@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_ecreg.h	7.2 (Berkeley) 09/18/91
+ *	@(#)if_ecreg.h	8.1 (Berkeley) 06/11/93
  */
 /*
  * Device definitions for the i82586 generally and the 3com ec507

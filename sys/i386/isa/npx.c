@@ -1,11 +1,11 @@
 /*-
  * Copyright (c) 1990 William Jolitz.
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)npx.c	7.5 (Berkeley) 10/11/92
+ *	@(#)npx.c	8.1 (Berkeley) 06/11/93
  */
 #include "npx.h"
 #if NNPX > 0

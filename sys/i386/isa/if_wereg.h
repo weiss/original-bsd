@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Tim L. Tucker.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_wereg.h	7.1 (Berkeley) 05/09/91
+ *	@(#)if_wereg.h	8.1 (Berkeley) 06/11/93
  */
 
 /*
