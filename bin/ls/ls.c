@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.60 (Berkeley) 03/01/92";
+static char sccsid[] = "@(#)ls.c	5.61 (Berkeley) 03/02/92";
 #endif /* not lint */
 
 #include <sys/types.h>	
@@ -259,7 +259,12 @@ traverse(argc, argv, options)
 	if (f_listdir)
 		return;
 
+	/*
+	 * If not recursing down this tree and don't need stat info, just get
+	 * the names.
+	 */
 	ch_options = !f_recursive && options & FTS_NOSTAT ? FTS_NAMEONLY : 0;
+
 	while (p = fts_read(ftsp))
 		switch(p->fts_info) {
 		case FTS_DC:
@@ -287,10 +292,6 @@ traverse(argc, argv, options)
 				output = 1;
 			}
 
-			/*
-			 * If not recursing down this tree and don't need stat
-			 * info, just get the names.
-			 */
 			display(p, fts_children(ftsp, ch_options));
 
 			if (!f_recursive)
