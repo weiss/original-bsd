@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 04/16/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	lock
 BINOWN= root
