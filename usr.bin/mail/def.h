@@ -9,7 +9,7 @@
 #undef isdigit
 
 /*
- * Sccs Id = "@(#)def.h	1.9 01/26/81";
+ * Sccs Id = "@(#)def.h	1.10 03/11/81";
  */
 
 /*
@@ -257,6 +257,7 @@ char	*expand();
 char	*gets();
 char	*hfield();
 char	*index();
+char	*name1();
 char	*nameof();
 char	*nextword();
 char	*getenv();
@@ -273,6 +274,7 @@ char	*rpair();
 char	*salloc();
 char	*savestr();
 char	*savestr();
+char	*skin();
 char	*snarf();
 char	*value();
 char	*vcopy();
