@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk_subr.c	7.20 (Berkeley) 02/06/92
+ *	@(#)pk_subr.c	7.21 (Berkeley) 05/29/92
  */
 
 #include "param.h"
@@ -713,7 +713,7 @@ unsigned pr;
 	if (lcp -> lcd_window_condition == TRUE)
 		lcp -> lcd_window_condition = FALSE;
 
-	if (so && ((so -> so_snd.sb_flags & SB_WAIT) || so -> so_snd.sb_sel))
+	if (so && (so -> so_snd.sb_flags & SB_NOTIFY))
 		sowwakeup (so);
 
 	return (PACKET_OK);
