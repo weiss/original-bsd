@@ -9,7 +9,7 @@
  *
  * from: $Hdr: if_news.c,v 4.300 91/06/09 06:26:01 root Rel41 $ SONY
  *
- *	@(#)if_news.c	7.1 (Berkeley) 06/04/92
+ *	@(#)if_news.c	7.2 (Berkeley) 07/28/92
  */
 
 #include "types.h"
@@ -139,7 +139,7 @@ noncluster:
 		if (totlen >= MINCLSIZE)
 			MCLGET(m, M_DONTWAIT);
 		if (m->m_flags & M_EXT)
-			m->m_len = MIN(totlen, MCLBYTES);
+			m->m_len = min(totlen, MCLBYTES);
 		else if (totlen < m->m_len) {
 			/*
 			 * Place initial small packet/header at end of mbuf.
