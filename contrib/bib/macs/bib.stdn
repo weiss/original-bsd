@@ -1,9 +1,9 @@
 #
-#	"@(#)bib.stdn	2.2	09/09/83";
+#	"@(#)bib.stdn	2.3	05/27/93";
 #
 #  standard numeric format
 #
-I BMACLIB/bibinc.shortnames
+I bibinc.shortnames
 H
 AA
 EA

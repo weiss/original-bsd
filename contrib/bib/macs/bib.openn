@@ -1,11 +1,11 @@
 #
-#	"@(#)bib.openn	2.2	09/09/83";
+#	"@(#)bib.openn	2.3	05/27/93";
 #
 #  standard open numeric format
 #
 SAD-2
 C1
-I BMACLIB/bibinc.fullnames
+I bibinc.fullnames
 H
 T AT
 # a[ - amount to indent references

@@ -1,9 +1,9 @@
 #
-#	"@(#)bib.foot	2.3	05/17/84";
+#	"@(#)bib.foot	2.4	05/27/93";
 #
 #  footnoted format
 #
-I BMACLIB/bibinc.shortnames
+I bibinc.shortnames
 C1
 T AT
 H

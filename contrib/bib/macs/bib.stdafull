@@ -1,9 +1,9 @@
 #
-#	"@(#)bib.stdafull	1.1	01/06/84";
+#	"@(#)bib.stdafull	1.2	05/27/93";
 #
 #  standard alphabetic format, with full references
 #
-I BMACLIB/bibinc.fullnames
+I bibinc.fullnames
 SAD-2
 C2D-2
 AA

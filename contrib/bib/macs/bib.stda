@@ -1,9 +1,9 @@
 #
-#	"@(#)bib.stda	2.2	09/09/83";
+#	"@(#)bib.stda	2.3	05/27/93";
 #
 #  standard alphabetic format
 #
-I BMACLIB/bibinc.shortnames
+I bibinc.shortnames
 SAD-2
 C2D-2
 AA

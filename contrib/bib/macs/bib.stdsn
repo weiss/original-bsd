@@ -1,9 +1,9 @@
 #
-#	"@(#)bib.stdsn	2.3	07/26/84";
+#	"@(#)bib.stdsn	2.4	05/27/93";
 #
 #  standard sorted numeric
 #
-I BMACLIB/bib.stdn
+I bib.stdn
 SAD-2
 AA
 EA

@@ -1,9 +1,9 @@
 #
-#	"@(#)bib.list	2.2	09/09/83";
+#	"@(#)bib.list	2.3	05/27/93";
 #
 #  format for listrefs
 #
-I BMACLIB/bibinc.shortnames
+I bibinc.shortnames
 T AT
 H
 .so \*(l]/bmac.std
