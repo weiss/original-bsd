@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogind.c	5.53 (Berkeley) 04/20/91";
+static char sccsid[] = "@(#)rlogind.c	5.53.1.1 (Berkeley) 08/20/91";
 #endif /* not lint */
 
 #ifdef KERBEROS
@@ -116,11 +116,6 @@ main(argc, argv)
 		case 'v':
 			vacuous = 1;
 			break;
-#ifdef CRYPT
-		case 'x':
-			doencrypt = 1;
-			break;
-#endif
 #endif
 		case '?':
 		default:
@@ -268,10 +263,6 @@ doit(f, fromp)
 		confirmed = 1;		/* we sent the null! */
 	}
 #ifdef	KERBEROS
-#ifdef	CRYPT
-	if (doencrypt)
-		(void) des_write(f, SECURE_MESSAGE, sizeof(SECURE_MESSAGE));
-#endif
 	if (use_kerberos == 0)
 #endif
 	   if (!authenticated && !hostok)
@@ -308,16 +299,6 @@ doit(f, fromp)
 		fatal(STDERR_FILENO, _PATH_LOGIN, 1);
 		/*NOTREACHED*/
 	}
-#ifdef	CRYPT
-#ifdef	KERBEROS
-	/*
-	 * If encrypted, don't turn on NBIO or the des read/write
-	 * routines will croak.
-	 */
-
-	if (!doencrypt)
-#endif
-#endif
 		ioctl(f, FIONBIO, &on);
 	ioctl(master, FIONBIO, &on);
 	ioctl(master, TIOCPKT, &on);
@@ -422,13 +403,6 @@ protocol(f, p)
 			}
 		}
 		if (FD_ISSET(f, &ibits)) {
-#ifdef	CRYPT
-#ifdef	KERBEROS
-			if (doencrypt)
-				fcc = des_read(f, fibuf, sizeof(fibuf));
-			else
-#endif
-#endif
 				fcc = read(f, fibuf, sizeof(fibuf));
 			if (fcc < 0 && errno == EWOULDBLOCK)
 				fcc = 0;
@@ -475,11 +449,6 @@ protocol(f, p)
 				break;
 			else if (pibuf[0] == 0) {
 				pbp++, pcc--;
-#ifdef	CRYPT
-#ifdef	KERBEROS
-				if (!doencrypt)
-#endif
-#endif
 					FD_SET(f, &obits);	/* try write */
 			} else {
 				if (pkcontrol(pibuf[0])) {
@@ -490,13 +459,6 @@ protocol(f, p)
 			}
 		}
 		if ((FD_ISSET(f, &obits)) && pcc > 0) {
-#ifdef	CRYPT
-#ifdef	KERBEROS
-			if (doencrypt)
-				cc = des_write(f, pbp, pcc);
-			else
-#endif
-#endif
 				cc = write(f, pbp, pcc);
 			if (cc < 0 && errno == EWOULDBLOCK) {
 				/*
@@ -655,21 +617,6 @@ do_krb_login(host, dest)
 	instance[0] = '*';
 	instance[1] = '\0';
 
-#ifdef	CRYPT
-	if (doencrypt) {
-		rc = sizeof(faddr);
-		if (getsockname(0, (struct sockaddr *)&faddr, &rc))
-			return(-1);
-		authopts = KOPT_DO_MUTUAL;
-		rc = krb_recvauth(
-			authopts, 0,
-			ticket, "rcmd",
-			instance, dest, &faddr,
-			kdata, "", schedule, version);
-		 des_set_key(kdata->session, schedule);
-
-	} else
-#endif
 		rc = krb_recvauth(
 			authopts, 0,
 			ticket, "rcmd",
