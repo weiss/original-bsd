@@ -1,4 +1,4 @@
-#	@(#)README	5.2 (Berkeley) 01/12/93
+#	@(#)README	8.1 (Berkeley) 06/04/93
 
 These are the current memory pool routines.
 They aren't ready for prime time, yet, and
