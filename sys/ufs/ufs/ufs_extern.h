@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_extern.h	7.19 (Berkeley) 12/09/92
+ *	@(#)ufs_extern.h	7.20 (Berkeley) 05/25/93
  */
 
 struct buf;
@@ -72,6 +72,7 @@ int	 ufs_mknod __P((struct vop_mknod_args *));
 int	 ufs_mmap __P((struct vop_mmap_args *));
 int	 ufs_mountedon __P((struct vnode *));
 int	 ufs_open __P((struct vop_open_args *));
+int	 ufs_pathconf __P((struct vop_pathconf_args *));
 int	 ufs_print __P((struct vop_print_args *));
 int	 ufs_readdir __P((struct vop_readdir_args *));
 int	 ufs_readlink __P((struct vop_readlink_args *));
