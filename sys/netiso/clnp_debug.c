@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clnp_debug.c	7.8 (Berkeley) 05/27/91
+ *	@(#)clnp_debug.c	7.9 (Berkeley) 02/14/92
  */
 
 /***********************************************************
@@ -116,14 +116,15 @@ static char letters[] = "0123456789abcdef";
 char *
 clnp_hexp(src, len, where)
 char	*src;		/* src of data to print */
-int		len;		/* lengthof src */
+int		len;				/* lengthof src */
 char	*where;		/* where to put data */
 {
 	int i;
 
 	for (i=0; i<len; i++) {
-		*where++ = letters[src[i] >> 4];
-		*where++ = letters[src[i] & 0x0f];
+		register int j = ((u_char *)src)[i];
+		*where++ = letters[j >> 4];
+		*where++ = letters[j & 0x0f];
 	}
 	return where;
 }
