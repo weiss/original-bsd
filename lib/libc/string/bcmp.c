@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)bcmp.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)bcmp.c	5.5 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <string.h>
@@ -15,7 +15,7 @@ static char sccsid[] = "@(#)bcmp.c	5.4 (Berkeley) 06/01/90";
  * bcmp -- vax cmpc3 instruction
  */
 bcmp(b1, b2, length)
-	register char *b1, *b2;
+	register void *b1, *b2;
 	register size_t length;
 {
 
