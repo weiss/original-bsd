@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dead_vnops.c	7.11 (Berkeley) 08/24/90
+ *	@(#)dead_vnops.c	7.12 (Berkeley) 02/01/91
  */
 
 #include "param.h"
@@ -61,6 +61,7 @@ struct vnodeops dead_vnodeops = {
 	dead_strategy,	/* strategy */
 	dead_print,	/* print */
 	dead_nullop,	/* islocked */
+	dead_ebadf,	/* advlock */
 };
 
 /*
