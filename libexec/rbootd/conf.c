@@ -12,16 +12,20 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.c	5.1 (Berkeley) 07/23/92
+ *	@(#)conf.c	5.2 (Berkeley) 07/23/92
  *
  * Utah $Hdr: conf.c 3.1 92/07/06$
  * Author: Jeff Forys, University of Utah CSS
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	5.1 (Berkeley) 07/23/92";
+static char sccsid[] = "@(#)conf.c	5.2 (Berkeley) 07/23/92";
 #endif /* not lint */
 
+#include <sys/param.h>
+#include <sys/time.h>
+
+#include <stdio.h>
 #include "defs.h"
 #include "pathnames.h"
 
