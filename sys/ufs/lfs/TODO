@@ -1,4 +1,4 @@
-#	@(#)TODO	5.10 (Berkeley) 08/02/92
+#	@(#)TODO	8.1 (Berkeley) 06/11/93
 
 NOTE: Changed the lookup on a page of inodes to search from the back
 in case the same inode gets written twice on the same page.
