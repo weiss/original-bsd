@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)ftpd.c	4.24 (Berkeley) 07/01/83";
+static char sccsid[] = "@(#)ftpd.c	4.25 (Berkeley) 07/24/83";
 #endif
 
 /*
@@ -204,7 +204,9 @@ reapchild()
 lostconn()
 {
 
-	fatal("Connection closed.");
+	if (debug)
+		fprintf(stderr, "Lost connection.\n");
+	dologout(-1);
 }
 
 pass(passwd)
