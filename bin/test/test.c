@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)test.c	5.1 (Berkeley) 06/08/92";
+static char sccsid[] = "@(#)test.c	5.2 (Berkeley) 08/29/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -61,7 +61,6 @@ struct filestat {
 	struct stat stat;	/* Status info on file. */
 };
 
-static long	atol __P((const char *));
 static void	err __P((const char *, ...));
 static int	expr_is_false __P((struct value *));
 static void	expr_operator __P((int, struct value *, struct filestat *));
