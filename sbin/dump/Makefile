@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 05/06/85
+#	@(#)Makefile	5.2 (Berkeley) 06/18/85
 #
 #	dump.h			header file
 #	dumpitime.c		reads /etc/ddate
@@ -17,7 +17,7 @@
 #	TDEBUG			trace out the process forking
 #
 PSRCS = \
-	/usr/include/dumprestor.h dump.h \
+	/usr/include/protocols/dumprestore.h dump.h \
 	dumpmain.c dumptraverse.c dumptape.c dumpoptr.c dumpitime.c unctime.c
 
 SRCS =  \
@@ -67,4 +67,4 @@ print:
 
 $(OBJS): dump.h /usr/include/sys/param.h
 $(OBJS): /usr/include/sys/fs.h /usr/include/sys/inode.h
-$(OBJS): /usr/include/dumprestor.h /usr/include/sys/stat.h
+$(OBJS): /usr/include/protocols/dumprestore.h /usr/include/sys/stat.h
