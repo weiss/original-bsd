@@ -11,18 +11,18 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)umount.c	5.2 (Berkeley) 05/19/89";
+static char sccsid[] = "@(#)umount.c	5.3 (Berkeley) 06/28/89";
 #endif not lint
 
 /*
  * umount
  */
 #include <sys/param.h>
+#include <sys/mount.h>
 
 #include <stdio.h>
 #include <fstab.h>
 #include <mtab.h>
-#include </usr/src/local/mkmsys/macklem/mkmsys/h/mount.h>
 
 struct	mtab mtab[NMOUNT];
 
