@@ -2,10 +2,12 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)9.t	6.2 (Berkeley) 06/04/86
+.\"	@(#)9.t	6.3 (Berkeley) 06/05/86
 .\"
 .nr H2 1
-.ds RH "Protocol/network-interface
+.\".ds RH "Protocol/network-interface
+.br
+.ne 2i
 .NH
 \s+2Protocol/network-interface interface\s0
 .PP
@@ -93,4 +95,3 @@ if (IF_QFULL(inq)) {
 } else
 	IF_ENQUEUE(inq, m);
 .DE
-'ne 2i
