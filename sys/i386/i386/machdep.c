@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)machdep.c	8.2 (Berkeley) 01/12/94
+ *	@(#)machdep.c	8.3 (Berkeley) 05/09/95
  */
 
 #include <sys/param.h>
@@ -469,6 +469,11 @@ extern int cold;
 		if (panicstr == 0)
 			vnode_pager_umount(NULL);
 		sync((struct sigcontext *)0);
+		/*
+		 * Unmount filesystems
+		 */
+		if (panicstr == 0)
+			vfs_unmountall();
 
 		for (iter = 0; iter < 20; iter++) {
 			nbusy = 0;
