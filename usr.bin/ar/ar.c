@@ -1,11 +1,11 @@
-static	char sccsid[] = "@(#)ar.c 3.1 08/15/80";
+static	char sccsid[] = "@(#)ar.c 3.2 08/17/80";
 /*
  * ar - portable (ascii) format version
  */
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <newar.h>
+#include <ar.h>
 #include <signal.h>
 
 typedef	unsigned short ushort;
