@@ -15,7 +15,7 @@ static char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)nfsd.c	8.7 (Berkeley) 02/22/94";
+static char sccsid[] = "@(#)nfsd.c	8.8 (Berkeley) 02/14/95";
 #endif not lint
 
 #include <sys/param.h>
@@ -559,5 +559,5 @@ setproctitle(a)
 	(void)strncpy(cp, buf, LastArg - cp);
 	cp += strlen(cp);
 	while (cp < LastArg)
-		*cp++ = ' ';
+		*cp++ = '\0';
 }
