@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 05/02/90
+ *	@(#)pathnames.h	5.2 (Berkeley) 04/27/95
  */
 
 #define	_PATH_LOG		"/var/games/larn/llog12.0"
@@ -12,4 +12,4 @@
 #define	_PATH_HELP		"/usr/share/games/larn/larn.help"
 #define	_PATH_LEVELS		"/usr/share/games/larn/larnmaze"
 #define	_PATH_FORTS		"/usr/share/games/larn/lfortune"
-#define	_PATH_PLAYERIDS		"/usr/share/games/larn/playerids"
+#define	_PATH_PLAYERIDS		"/var/games/larn/playerids"
