@@ -1,4 +1,3 @@
-
 /*
 **  Sendmail
 **  Copyright (c) 1983  Eric P. Allman
@@ -10,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)parseaddr.c	5.4 (Berkeley) 11/22/85";
+static char	SccsId[] = "@(#)parseaddr.c	5.5 (Berkeley) 01/30/86";
 #endif not lint
 
 # include "sendmail.h"
@@ -1007,7 +1006,8 @@ sameaddr(a, b)
 		return (FALSE);
 
 	/* if receiving uid's don't match, these are "different" */
-	if (a->q_uid != b->q_uid || a->q_gid != b->q_gid)
+	if (bitset(QGOODUID, a->q_flags) && bitset(QGOODUID, b->q_flags) &&
+	    (a->q_uid != b->q_uid || a->q_gid != b->q_gid))
 		return (FALSE);
 
 	/* if the mailer ignores hosts, we have succeeded! */
