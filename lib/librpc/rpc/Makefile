@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 06/30/90
+#	@(#)Makefile	5.7 (Berkeley) 07/01/90
 
 LIB=	rpc
 CFLAGS+=-I${.CURDIR}
@@ -12,6 +12,7 @@ HDRS=	auth.h auth_unix.h clnt.h pmap_clnt.h pmap_prot.h rpc.h rpc_msg.h \
 	svc.h svc_auth.h types.h xdr.h
 MAN8=	portmap.0
 .PATH: ${.CURDIR} ${.CURDIR}/doc
+CLEANFILES=portmap
 
 all: portmap
 
