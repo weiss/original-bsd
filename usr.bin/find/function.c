@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	8.4 (Berkeley) 02/21/94";
+static char sccsid[] = "@(#)function.c	8.5 (Berkeley) 04/01/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -326,7 +326,7 @@ f_fstype(plan, entry)
 		 */
 		if (entry->fts_info == FTS_SL ||
 		    entry->fts_info == FTS_SLNONE) {
-			if (p = strrchr(entry->fts_accpath, '/'))
+			if ((p = strrchr(entry->fts_accpath, '/')) != NULL)
 				++p;
 			else
 				p = entry->fts_accpath;
