@@ -1,9 +1,8 @@
-static char	*sccsid = "@(#)io.c	1.12 (Berkeley) 09/06/83";
+static char	*sccsid = "@(#)io.c	1.13 (Berkeley) 09/26/83";
 
 # include	<curses.h>
 # include	<ctype.h>
 # include	<signal.h>
-# include	<unctrl.h>
 # include	"deck.h"
 # include	"cribbage.h"
 # include	"cribcur.h"
