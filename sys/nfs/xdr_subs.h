@@ -17,12 +17,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)xdr_subs.h	7.1 (Berkeley) 07/05/89
+ *	@(#)xdr_subs.h	7.2 (Berkeley) 12/20/89
  */
 
 /*
  * Macros used for conversion to/from xdr representation by nfs...
  * These use the MACHINE DEPENDENT routines ntohl, htonl
+ * As defined by "XDR: External Data Representation Standard" RFC1014
  */
 /* From xdr to machine */
 #define fxdr_unsigned(t, v)	((t)ntohl((long)(v)))
