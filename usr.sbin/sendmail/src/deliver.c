@@ -6,7 +6,7 @@
 # include <syslog.h>
 # endif LOG
 
-SCCSID(@(#)deliver.c	3.82		06/06/82);
+SCCSID(@(#)deliver.c	3.83		06/06/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1500,7 +1500,10 @@ sendall(e, verifyonly)
 
 			/* see if the owner list exists */
 			(void) strcpy(obuf, "owner-");
-			(void) strcat(obuf, qq->q_user);
+			if (strncmp(qq->q_user, "owner-", 6) == 0)
+				(void) strcat(obuf, "owner");
+			else
+				(void) strcat(obuf, qq->q_user);
 			if (aliaslookup(obuf) == NULL)
 				continue;
 
