@@ -20,7 +20,7 @@
  */
 
 #ifndef	lint
-static char sccsid[] = "@(#)inbound.c	1.18 (Berkeley) 07/17/87";
+static char sccsid[] = "@(#)inbound.c	3.1 (Berkeley) 08/11/87";
 #endif	/* ndef lint */
 
 

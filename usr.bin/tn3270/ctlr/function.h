@@ -6,7 +6,7 @@
  * and that the format must remain more-or-less consistent
  * [ \t]*TOKEN
  *
- * @(#)function.h	1.5 (Berkeley) 07/17/87
+ * @(#)function.h	3.1 (Berkeley) 08/11/87
  */
 
 enum ctlrfcn {
