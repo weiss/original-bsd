@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)clrtobot.c	5.7 (Berkeley) 09/14/92";
+static char sccsid[] = "@(#)clrtobot.c	5.8 (Berkeley) 10/20/92";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -27,11 +27,12 @@ wclrtobot(win)
 		minx = -1;
 		end = &win->lines[y]->line[win->maxx];
 		for (sp = &win->lines[y]->line[startx]; sp < end; sp++)
-			if (*sp != ' ') {
+			if (*sp != ' ' || *(sp + win->maxx) & __STANDOUT) {
 				maxx = sp;
 				if (minx == -1)
 					minx = sp - win->lines[y]->line;
 				*sp = ' ';
+				*(sp + win->maxx) &= ~__STANDOUT;
 			}
 		if (minx != -1)
 			touchline(win, y, minx, 
