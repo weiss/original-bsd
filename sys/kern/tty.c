@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.53 (Berkeley) 08/24/92
+ *	@(#)tty.c	7.54 (Berkeley) 08/24/92
  */
 
 #include "param.h"
@@ -1643,7 +1643,7 @@ ttyecho(c, tp)
 		return;
 	if (tp->t_lflag&ECHOCTL) {
 		if ((c&TTY_CHARMASK) <= 037 && c != '\t' && c != '\n' ||
-		    c == 0177) {
+		    (c&TTY_CHARMASK) == 0177) {
 			(void) ttyoutput('^', tp);
 			c &= TTY_CHARMASK;
 			if (c == 0177)
