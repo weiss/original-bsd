@@ -3,7 +3,7 @@
 #include "sendmail.h"
 #include <sys/stat.h>
 
-SCCSID(@(#)envelope.c	4.3		03/11/84);
+SCCSID(@(#)envelope.c	4.4		03/11/84);
 
 /*
 **  NEWENVELOPE -- allocate a new envelope
@@ -608,6 +608,7 @@ setsender(from)
 	else
 		FromFlag = TRUE;
 	CurEnv->e_from.q_flags |= QDONTSEND;
+	loweraddr(&CurEnv->e_from);
 	SuprErrs = FALSE;
 
 	if (pw == NULL && CurEnv->e_from.q_mailer == LocalMailer)
