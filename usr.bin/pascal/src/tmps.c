@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)tmps.c 1.10 09/05/83";
+static char sccsid[] = "@(#)tmps.c 1.11 09/09/83";
 
 #include "whoami.h"
 #include "0.h"
@@ -96,8 +96,7 @@ tmpalloc(size, type, mode)
 			if (offset < op->low_water[REG_GENERAL]) {
 				op->low_water[REG_GENERAL] = offset;
 			}
-			nlp = defnl(0, VAR, type,
-				offset + regtypes[REG_GENERAL].regno_offset );
+			nlp = defnl(0, VAR, type, offset );
 			nlp -> extra_flags = NLOCAL | NREGVAR;
 			putlbracket(ftnno, op);
 			return nlp;
