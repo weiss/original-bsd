@@ -7,7 +7,7 @@
 # include <syslog.h>
 # endif LOG
 
-static char SccsId[] = "@(#)deliver.c	3.10	03/28/81";
+static char SccsId[] = "@(#)deliver.c	3.11	04/27/81";
 
 /*
 **  DELIVER -- Deliver a message to a particular address.
@@ -656,7 +656,7 @@ recipient(a)
 	if (a->q_mailer == 0 && a->q_user[0] == '|')
 	{
 		a->q_mailer = 1;
-		m++;
+		m = Mailer[1];
 		a->q_user++;
 	}
 
