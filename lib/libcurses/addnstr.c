@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)addnstr.c	5.1 (Berkeley) 02/14/93";
+static char sccsid[] = "@(#)addnstr.c	5.2 (Berkeley) 02/14/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -25,10 +25,11 @@ waddnstr(win, s, n)
 	int n;
 {
 	size_t len;
+	const char *p;
 
-	len = strlen(s);
-
-	if (n > 0 && n < len)
-		len = n;
+	if (n > 0)
+		for (p = s, len = 0; n-- && *p++; ++len);
+	else
+		len = strlen(s);
 	return (waddbytes(win, s, len));
 }
