@@ -1,4 +1,4 @@
-#	@(#)bsd.prog.mk	5.37 (Berkeley) 07/19/93
+#	@(#)bsd.prog.mk	8.1 (Berkeley) 07/19/93
 
 .if !defined(NOINCLUDE) && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
