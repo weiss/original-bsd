@@ -14,7 +14,7 @@
 
 # ifndef DAEMON
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.19 (Berkeley) 05/06/86	(w/o daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.20 (Berkeley) 06/30/86	(w/o daemon mode)";
 # endif not lint
 # else
 
@@ -25,7 +25,7 @@ static char	SccsId[] = "@(#)daemon.c	5.19 (Berkeley) 05/06/86	(w/o daemon mode)"
 # include <sys/resource.h>
 
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.19 (Berkeley) 05/06/86 (with daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.20 (Berkeley) 06/30/86 (with daemon mode)";
 # endif not lint
 
 /*
@@ -300,7 +300,9 @@ makeconnection(host, port, outfile, infile)
 	FILE **outfile;
 	FILE **infile;
 {
-	register int s;
+	register int i, s;
+	register struct hostent *hp = (struct hostent *)NULL;
+	extern char *inet_ntoa();
 	int sav_errno;
 
 	/*
@@ -331,8 +333,7 @@ makeconnection(host, port, outfile, infile)
 	}
 	else
 	{
-		register struct hostent *hp = gethostbyname(host);
-
+		hp = gethostbyname(host);
 		if (hp == NULL)
 		{
 			if (errno == ETIMEDOUT || h_errno == TRY_AGAIN)
@@ -346,6 +347,7 @@ makeconnection(host, port, outfile, infile)
 			return (EX_NOHOST);
 		}
 		bcopy(hp->h_addr, (char *) &SendmailAddress.sin_addr, hp->h_length);
+		i = 1;
 	}
 
 	/*
@@ -370,9 +372,11 @@ makeconnection(host, port, outfile, infile)
 	**  Try to actually open the connection.
 	*/
 
+again:
 # ifdef DEBUG
 	if (tTd(16, 1))
-		printf("makeconnection (%s)\n", host);
+		printf("makeconnection (%s [%s])\n", host,
+		    inet_ntoa(SendmailAddress.sin_addr.s_addr));
 # endif DEBUG
 
 	s = socket(AF_INET, SOCK_STREAM, 0);
@@ -401,6 +405,13 @@ makeconnection(host, port, outfile, infile)
 	{
 		sav_errno = errno;
 		(void) close(s);
+		if (hp && hp->h_addr_list[i])
+		{
+			bcopy(hp->h_addr_list[i++],
+			    (char *)&SendmailAddress.sin_addr, hp->h_length);
+			goto again;
+		}
+
 		/* failure, decide if temporary or not */
 	failure:
 		switch (sav_errno)
