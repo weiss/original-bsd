@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)gio.c	5.8 (Berkeley) 02/24/88";
+static char sccsid[] = "@(#)gio.c	5.9	(Berkeley) 04/05/88";
 #endif
 
 #include "uucp.h"
@@ -137,7 +137,7 @@ FILE *fp1;
 	if (Retries > 0) 
 		sprintf((char *)text+strlen(text)," %d retries", Retries);
 	DEBUG(1, "%s\n", text);
-	syslog(text);
+	log_xferstats(text);
 	return SUCCESS;
 }
 
@@ -194,7 +194,7 @@ FILE *fp2;
 	if (Retries > 0) 
 		sprintf((char *)text+strlen(text)," %d retries", Retries);
 	DEBUG(1, "%s\n", text);
-	syslog(text);
+	log_xferstats(text);
 	return SUCCESS;
 }
 
