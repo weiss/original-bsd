@@ -17,12 +17,12 @@
 
 # ifndef QUEUE
 # ifndef lint
-static char	SccsId[] = "@(#)queue.c	5.13 (Berkeley) 09/21/85	(no queueing)";
+static char	SccsId[] = "@(#)queue.c	5.14 (Berkeley) 09/21/85	(no queueing)";
 # endif not lint
 # else QUEUE
 
 # ifndef lint
-static char	SccsId[] = "@(#)queue.c	5.13 (Berkeley) 09/21/85";
+static char	SccsId[] = "@(#)queue.c	5.14 (Berkeley) 09/21/85";
 # endif not lint
 
 /*
@@ -33,6 +33,7 @@ struct work
 {
 	char		*w_name;	/* name of control file */
 	long		w_pri;		/* priority of message, see below */
+	time_t		w_ctime;	/* creation time of message */
 	struct work	*w_next;	/* next in queue */
 };
 
@@ -420,6 +421,10 @@ orderq(doall)
 			  case 'P':
 				wlist[wn].w_pri = atol(&lbuf[1]);
 				break;
+
+			  case 'T':
+				wlist[wn].w_ctime = atol(&lbuf[1]);
+				break;
 			}
 		}
 		(void) fclose(cf);
@@ -450,6 +455,7 @@ orderq(doall)
 		w = (WORK *) xalloc(sizeof *w);
 		w->w_name = wlist[i].w_name;
 		w->w_pri = wlist[i].w_pri;
+		w->w_ctime = wlist[i].w_ctime;
 		w->w_next = WorkQ;
 		WorkQ = w;
 	}
@@ -484,8 +490,8 @@ workcmpf(a, b)
 	register WORK *a;
 	register WORK *b;
 {
-	long pa = a->w_pri;
-	long pb = b->w_pri;
+	long pa = a->w_pri + a->w_ctime;
+	long pb = b->w_pri + b->w_ctime;
 
 	if (pa == pb)
 		return (0);
