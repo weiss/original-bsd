@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)headers.c	5.2 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)headers.c	5.3 (Berkeley) 06/08/85";
 #endif not lint
 
 # include <errno.h>
@@ -469,7 +469,7 @@ crackaddr(addr)
 		printf("crackaddr(%s)\n", addr);
 # endif DEBUG
 
-	strcpy(buf, "");
+	(void) strcpy(buf, "");
 	rhs = NULL;
 
 	/* strip leading spaces */
@@ -486,8 +486,8 @@ crackaddr(addr)
 	{
 		/* copy the beginning of the addr field to the buffer */
 		*p = '\0';
-		strcpy(buf, addr);
-		strcat(buf, "<");
+		(void) strcpy(buf, addr);
+		(void) strcat(buf, "<");
 		*p++ = '<';
 
 		/* skip spaces */
@@ -566,7 +566,7 @@ crackaddr(addr)
 			*bp++ = *p;
 		else if (!gotaddr)
 		{
-			strcpy(bp, "\001g");
+			(void) strcpy(bp, "\001g");
 			bp += 2;
 			gotaddr = TRUE;
 		}
@@ -583,7 +583,7 @@ crackaddr(addr)
 	if (rhs != NULL)
 	{
 		*rhs = '>';
-		strcpy(bp, rhs);
+		(void) strcpy(bp, rhs);
 	}
 
 # ifdef DEBUG
