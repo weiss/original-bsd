@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_init.c	8.4 (Berkeley) 03/30/95
+ *	@(#)vfs_init.c	8.5 (Berkeley) 05/11/95
  */
 
 
@@ -185,7 +185,6 @@ vfs_op_init()
  */
 extern struct vnodeops dead_vnodeops;
 extern struct vnodeops spec_vnodeops;
-extern void vclean();
 struct vattr va_null;
 
 /*
