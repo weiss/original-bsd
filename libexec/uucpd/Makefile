@@ -1,8 +1,6 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/11/90
+#	@(#)Makefile	5.3 (Berkeley) 06/25/90
 
 PROG=	uucpd
-BINOWN=	uucp
-BINMODE=500
 NOMAN=	noman
 
 .include <bsd.prog.mk>
