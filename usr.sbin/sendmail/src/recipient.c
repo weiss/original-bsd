@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.73 (Berkeley) 03/21/95";
+static char sccsid[] = "@(#)recipient.c	8.74 (Berkeley) 03/25/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -41,7 +41,7 @@ static char sccsid[] = "@(#)recipient.c	8.73 (Berkeley) 03/21/95";
 #define MAXRCRSN	10	/* maximum levels of alias recursion */
 
 /* q_flags bits inherited from ctladdr */
-#define QINHERITEDBITS	(QPINGONSUCCESS|QPINGONFAILURE|QPINGONDELAY)
+#define QINHERITEDBITS	(QPINGONSUCCESS|QPINGONFAILURE|QPINGONDELAY|QHASNOTIFY)
 
 int
 sendtolist(list, ctladdr, sendq, aliaslevel, e)
