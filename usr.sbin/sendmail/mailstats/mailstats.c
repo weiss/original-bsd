@@ -15,11 +15,11 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char	SccsId[] = "@(#)mailstats.c	5.2 (Berkeley) 05/02/86";
+static char	SccsId[] = "@(#)mailstats.c	5.3 (Berkeley) 05/02/86";
 #endif not lint
-# include "sendmail.h"
 
-SCCSID(@(#)mailstats.c	5.2		05/02/86);
+# include "../src/sendmail.h"
+# include "../src/mailstats.h"
 
 /*
 **  MAILSTATS -- print mail statistics.
