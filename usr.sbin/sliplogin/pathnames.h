@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.3 (Berkeley) 07/15/92
+ *	@(#)pathnames.h	5.4 (Berkeley) 07/15/92
  */
 
 #ifndef COMPAT
@@ -13,8 +13,8 @@
 #define	_PATH_DEVNULL	"/dev/null"
 #endif
 
-#define	_PATH_ACCESS	"/etc/slip.hosts"
-#define	_PATH_LOGIN	"/etc/slip.login"
-#define	_PATH_LOGOUT	"/etc/slip.logout"
+#define	_PATH_ACCESS	"/etc/sliphome/slip.hosts"
+#define	_PATH_LOGIN	"/etc/sliphome/slip.login"
+#define	_PATH_LOGOUT	"/etc/sliphome/slip.logout"
 #define	_PATH_DEBUG	"/tmp/sliplogin.XXXXXX"
 
