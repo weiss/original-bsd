@@ -6,7 +6,7 @@
 # include <syslog.h>
 # endif LOG
 
-SCCSID(@(#)deliver.c	3.93		07/02/82);
+SCCSID(@(#)deliver.c	3.94		07/05/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -677,6 +677,7 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 	**	DOFORK is clever about retrying.
 	*/
 
+	fflush(Xscript);				/* for debugging */
 	DOFORK(XFORK);
 	/* pid is set by DOFORK */
 	if (pid < 0)
@@ -1549,7 +1550,7 @@ checkerrors(e)
 # ifdef DEBUG
 	if (Debug > 0)
 	{
-		printf("\ncheckerrors: errorqueue:\n");
+		printf("\ncheckerrors: FatalErrors %d, errorqueue:\n");
 		printaddr(e->e_errorqueue, TRUE);
 	}
 # endif DEBUG
