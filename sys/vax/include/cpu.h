@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)cpu.h	7.2 (Berkeley) 08/09/86
+ *	@(#)cpu.h	7.3 (Berkeley) 12/06/86
  */
 
 #ifndef LOCORE
@@ -123,4 +123,9 @@ struct qbus {
 int	cpu;
 struct	percpu percpu[];
 #endif
+
+/*
+ * Enable realtime clock (always enabled).
+ */
+#define	enablertclock()
 #endif
