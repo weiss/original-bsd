@@ -14,14 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)getfile.c	7.3 (Berkeley) 03/15/90
+ *	@(#)getfile.c	7.4 (Berkeley) 04/04/90
  */
 
 #include "sys/param.h"
 #include "sys/time.h"
-#include "sys/vnode.h"
-#include "ufs/inode.h"
-#include "ufs/fs.h"
 #include "saio.h"
 
 getfile(prompt, mode)
