@@ -1,4 +1,11 @@
-/* @(#)tmscpreg.h	7.1 (Berkeley) 06/05/86 */
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)tmscpreg.h	7.2 (Berkeley) 05/09/91
+ */
 
 /*	@(#)tmscpreg.h	1.1	11/2/84	84/09/25	*/
 

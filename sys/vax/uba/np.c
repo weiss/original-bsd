@@ -1,10 +1,14 @@
-/*
+/*-
  * Copyright (c) 1986 MICOM-Interlan, Inc., Boxborough Mass
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)np.c	7.9 (Berkeley) 12/16/90
+ * %sccs.include.redist.c%
  *
+ *	@(#)np.c	7.10 (Berkeley) 05/09/91
+ */
+
+/*
  * From:
  *	np.c version 1.5
  *

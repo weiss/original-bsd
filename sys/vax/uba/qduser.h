@@ -1,10 +1,12 @@
-/*
- * Copyright (c) 1982, 1986 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1982, 1986 The Regents of the University of California.
+ * All rights reserved.
  *
- * 		@(#)qduser.h	1.5  Berkeley  12/16/90
+ * %sccs.include.redist.c%
+ *
+ *	@(#)qduser.h	7.1 (Berkeley) 05/09/91
  */
+
 /* derived from: @(#)qduser.h	6.1	(ULTRIX)	11/24/87       */
 /************************************************************************
  *									*

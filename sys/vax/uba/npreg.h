@@ -1,10 +1,14 @@
-/*
+/*-
  * Copyright (c) 1986 MICOM-Interlan, Inc., Boxborough Mass
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)npreg.h	7.3 (Berkeley) 09/07/90
+ * %sccs.include.redist.c%
  *
+ *	@(#)npreg.h	7.4 (Berkeley) 05/09/91
+ */
+
+/*
  * Merged header file for MICOM-Interlan NP100.
  */
 
