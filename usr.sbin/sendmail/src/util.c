@@ -6,7 +6,7 @@
 # include <ctype.h>
 # include "sendmail.h"
 
-SCCSID(@(#)util.c	4.9		11/13/84);
+SCCSID(@(#)util.c	4.10		04/09/85);
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -443,25 +443,6 @@ fixcrlf(line, stripnl)
 		*p++ = '\n';
 	*p = '\0';
 }
-/*
-**  SYSLOG -- fake entry to fool lint
-*/
-
-# ifdef LOG
-# ifdef lint
-
-/*VARARGS2*/
-syslog(pri, fmt, args)
-	int pri;
-	char *fmt;
-{
-	pri = *fmt;
-	args = pri;
-	pri = args;
-}
-
-# endif lint
-# endif LOG
 /*
 **  DFOPEN -- determined file open
 **
