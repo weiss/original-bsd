@@ -3,10 +3,11 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_vv.c	6.12 (Berkeley) 10/14/85
+ *	@(#)if_vv.c	6.13 (Berkeley) 10/24/85
  */
 
 #include "vv.h"
+#if NVV > 0
 
 /*
  * Proteon proNET-10 and proNET-80 token ring driver.
@@ -990,3 +991,4 @@ vvprt_hdr(s, v)
 		0xff & (int)(v->vh_version), 0xff & (int)(v->vh_type),
 		0xffff & (int)(v->vh_info));
 }
+#endif
