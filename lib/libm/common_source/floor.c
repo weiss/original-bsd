@@ -1,4 +1,4 @@
-/*	@(#)floor.c	4.2	9/11/85; 1.4 (ucb.elefunt) 07/10/87 */
+/*	@(#)floor.c	4.2	9/11/85; 1.5 (ucb.elefunt) 07/13/87 */
 
 /*
  * floor and ceil-- greatest integer <= arg
@@ -31,6 +31,7 @@ double d;
 	return(-floor(-d));
 }
 
+#ifndef NATIONAL			/* rint() is in ./NATIONAL/support.s */
 /*
  * algorithm for rint(x) in pseudo-pascal form ...
  *
@@ -78,3 +79,4 @@ double x;
 	t = x + s;				/* x+s rounded to integer */
 	return (t - s);
 }
+#endif	/* NATIONAL */
