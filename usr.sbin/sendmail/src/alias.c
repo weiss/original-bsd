@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.14 (Berkeley) 09/02/93";
+static char sccsid[] = "@(#)alias.c	8.15 (Berkeley) 09/22/93";
 #endif /* not lint */
 
 
@@ -347,7 +347,7 @@ rebuildaliases(map, automatic)
 {
 	FILE *af;
 	bool nolock = FALSE;
-	void (*oldsigint)();
+	sigfunc_t oldsigint;
 
 	if (!bitset(MCF_REBUILDABLE, map->map_class->map_cflags))
 		return;
