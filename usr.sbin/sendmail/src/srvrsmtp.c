@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.22 (Berkeley) 12/11/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.23 (Berkeley) 12/21/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.22 (Berkeley) 12/11/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.23 (Berkeley) 12/21/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -603,7 +603,7 @@ smtp(e)
 				if (vrfy)
 					message("252 Who's to say?");
 				else
-					message("502 That's none of your business");
+					message("502 Sorry, we do not allow this operation");
 #ifdef LOG
 				if (LogLevel > 5)
 					syslog(LOG_INFO, "%s: %s [rejected]",
