@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.76 (Berkeley) 06/15/95";
+static char sccsid[] = "@(#)savemail.c	8.77 (Berkeley) 06/16/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -517,6 +517,7 @@ returntosender(msg, returnq, sendbody, e)
 	if (SendMIMEErrors)
 	{
 		addheader("MIME-Version", "1.0", &ee->e_header);
+
 		(void) sprintf(buf, "%s.%ld/%s",
 			ee->e_id, curtime(), MyHostName);
 		ee->e_msgboundary = newstr(buf);
@@ -528,6 +529,14 @@ returntosender(msg, returnq, sendbody, e)
 #endif
 			ee->e_msgboundary);
 		addheader("Content-Type", buf, &ee->e_header);
+
+		p = hvalue("Content-Transfer-Encoding", e->e_header);
+		if (p != NULL && strcasecmp(p, "binary") != 0)
+			p = NULL;
+		if (p == NULL && bitset(EF_HAS8BIT, e->e_flags))
+			p = "8bit";
+		if (p != NULL)
+			addheader("Content-Transfer-Encoding", p, &ee->e_header);
 	}
 	if (strncmp(msg, "Warning:", 8) == 0)
 	{
