@@ -1,4 +1,4 @@
-/*	systm.h	3.1	10/14/12	*/
+/*	systm.h	3.2	10/14/12	*/
 
 /*
  * Random set of variables
@@ -26,7 +26,7 @@ int	nblkdev;
 
 /*
  * Number of character switch entries.
- * Set by cinit/tty.c
+ * Set by cinit/prim.c
  */
 int	nchrdev;
 
