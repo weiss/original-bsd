@@ -1,4 +1,4 @@
-/*      systat.h     1.2     83/10/02     */
+/*      systat.h     1.3     83/10/02     */
 
 #include <sys/param.h>
 #include <sys/dir.h>
@@ -52,6 +52,7 @@ struct  cmdtab {
 
 struct	cmdtab *curcmd;
 struct	cmdtab cmdtab[];
+struct	cmdtab *lookup();
 
 char    *kmemf;
 char    *memf;
