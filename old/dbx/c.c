@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)c.c	5.3 (Berkeley) 09/01/86";
+static char sccsid[] = "@(#)c.c	5.1.1.1 (Berkeley) 10/14/86";
 #endif not lint
 
 static char rcsid[] = "$Header: c.c,v 1.5 84/12/26 10:38:23 linton Exp $";
@@ -434,7 +434,6 @@ Symbol s;
     register Symbol t;
     register Address a;
     integer i, len;
-    register String str;
 
     switch (s->class) {
 	case CONST:
@@ -450,8 +449,7 @@ Symbol s;
 	    if (isbitfield(s)) {
 		i = 0;
 		popn(size(s), &i);
-		i >>= (s->symvalue.field.offset mod BITSPERBYTE);
-		i &= ((1 << s->symvalue.field.length) - 1);
+		i = extractfield(i, s);
 		t = rtype(s->type);
 		if (t->class == SCAL) {
 		    printEnum(i, t);
@@ -469,18 +467,11 @@ Symbol s;
 		t == t_char->type
 	    ) {
 		len = size(s);
-		str = (String) (sp -= len);
-		if (s->language != primlang) {
-		    putchar('"');
-		}
-		while (--len > 0 and *str != '\0') {
-		    printchar(*str++);
-		}
-		if (*str != '\0') {	/* XXX - pitch trailing null */
-		    printchar(*str);
-		}
-		if (s->language != primlang) {
-		    putchar('"');
+		sp -= len;
+		if (s->language == primlang) {
+		    printf("%.*s", len, sp);
+		} else {
+		    printf("\"%.*s\"", len, sp);
 		}
 	    } else {
 		printarray(s);
@@ -684,7 +675,7 @@ long i;
     lb = s->symvalue.rangev.lower;
     ub = s->symvalue.rangev.upper;
     if (i < lb or i > ub) {
-	warning("subscript out of range");
+	error("subscript out of range");
     }
     push(long, base + (i - lb) * size(t->type));
 }
