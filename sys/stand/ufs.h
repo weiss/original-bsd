@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1993 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs.h	7.1 (Berkeley) 06/11/93
+ *	@(#)ufs.h	8.1 (Berkeley) 06/11/93
  */
 
 int	ufs_open __P((char *path, struct open_file *f));

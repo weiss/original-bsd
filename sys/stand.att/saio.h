@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1982, 1988, 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1988, 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)saio.h	7.20 (Berkeley) 05/24/93
+ *	@(#)saio.h	8.1 (Berkeley) 06/11/93
  */
 
 #include <sys/time.h>

@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1993 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)disklabel.c	7.1 (Berkeley) 06/11/93
+ *	@(#)disklabel.c	8.1 (Berkeley) 06/11/93
  */
 
 #include <sys/param.h>

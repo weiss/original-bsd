@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)saerrno.h	7.3 (Berkeley) 06/28/90
+ *	@(#)saerrno.h	8.1 (Berkeley) 06/11/93
  */
 
 extern	int errno;	/* just like unix */
