@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.110 (Berkeley) 06/21/95";
+static char sccsid[] = "@(#)readcf.c	8.111 (Berkeley) 06/21/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -827,7 +827,7 @@ makemailer(line)
 			p = endp;
 			if (*p++ == '/')
 			{
-				i = strtorwset(p, NULL);
+				i = strtorwset(p, NULL, ST_ENTER);
 				if (i < 0)
 					return;
 				if (fcode == 'S')
