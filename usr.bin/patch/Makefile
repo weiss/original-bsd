@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 06/30/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	patch
 SRCS=	patch.c pch.c inp.c version.c util.c
