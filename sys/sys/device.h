@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1992 Regents of the University of California.
+ * Copyright (c) 1992 The Regents of the University of California.
  * All rights reserved.
  *
  * This software was developed by the Computer Systems Engineering group
@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)device.h	7.3 (Berkeley) 06/19/92
+ *	@(#)device.h	7.4 (Berkeley) 07/10/92
  *
  * from: $Header: device.h,v 1.6 92/06/11 17:56:45 torek Exp $ (LBL)
  */
