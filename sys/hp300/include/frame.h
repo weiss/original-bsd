@@ -9,13 +9,14 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: frame.h 1.7 91/03/25$
+ * from: Utah $Hdr: frame.h 1.8 92/12/20$
  *
- *	@(#)frame.h	7.3 (Berkeley) 06/05/92
+ *	@(#)frame.h	7.4 (Berkeley) 12/27/92
  */
 
 struct frame {
 	int	f_regs[16];
+	short	f_pad;
 	short	f_stackadj;
 	u_short	f_sr;
 	u_int	f_pc;
