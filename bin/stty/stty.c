@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)stty.c	5.9 (Berkeley) 02/20/90";
+static char sccsid[] = "@(#)stty.c	5.10 (Berkeley) 02/23/90";
 #endif not lint
 
 /*
@@ -85,6 +85,8 @@ struct modes omodes[] = {
 	"-onlcr",	0, ONLCR,
 	"tabs",		0, OXTABS,	/* "preserve" tabs */
 	"-tabs",	OXTABS, 0,
+	"xtabs",	OXTABS, 0,
+	"-xtabs",	0, OXTABS,
 	"oxtabs",	OXTABS, 0,
 	"-oxtabs",	0, OXTABS,
 	0
@@ -186,7 +188,7 @@ struct modes lmodes[] = {
  */
 #define MAXNAMES 3
 struct {
-	char	*names[MAXNAMES];
+	char	*names[MAXNAMES+1];
 	int	sub;
 	u_char	def;
 } cchars[] = {
