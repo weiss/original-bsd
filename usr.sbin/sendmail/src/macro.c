@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)macro.c	6.2 (Berkeley) 01/18/93";
+static char sccsid[] = "@(#)macro.c	6.3 (Berkeley) 01/20/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -173,6 +173,7 @@ expand(s, buf, buflim, e)
 **		$h   to host
 **		$i   queue id
 **		$j   official SMTP hostname, used in messages+
+**		$k   UUCP node name
 **		$l   UNIX-style from line+
 **		$n   name of sendmail ("MAILER-DAEMON" on local
 **		     net typically)+
@@ -189,6 +190,7 @@ expand(s, buf, buflim, e)
 **		$x   signature (full name) of from person
 **		$y   the tty id of our terminal
 **		$z   home directory of to person
+**		$<   the return path (sender in envelope) relative to recipient
 **
 **		Macros marked with + must be defined in the
 **		configuration file and are used internally, but
