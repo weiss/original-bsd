@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ucred.h	7.1 (Berkeley) 04/24/89
+ *	@(#)ucred.h	7.2 (Berkeley) 08/26/89
  */
 
 #ifndef _UCRED_
@@ -35,6 +35,7 @@ struct ucred {
 	uid_t	cr_ruid;		/* real uid */
 };
 #define cr_gid cr_groups[0]
+#define NOCRED ((struct ucred *)-1)
 
 #ifdef KERNEL
 #define	crhold(cr)	(cr)->cr_ref++
