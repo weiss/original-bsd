@@ -13,7 +13,7 @@
 
 #ifndef lint
 static char sccsid[] =
-"@(#)cabs.c	1.2 (Berkeley) 8/21/85; 1.7 (ucb.elefunt) 08/03/87";
+"@(#)cabs.c	1.2 (Berkeley) 8/21/85; 5.1 (ucb.elefunt) 11/30/87";
 #endif	/* not lint */
 
 /* HYPOT(X,Y)
