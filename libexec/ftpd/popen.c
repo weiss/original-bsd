@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)popen.c	5.10 (Berkeley) 06/27/92";
+static char sccsid[] = "@(#)popen.c	5.11 (Berkeley) 05/17/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -48,7 +48,7 @@ ftpd_popen(program, type)
 			return(NULL);
 		if ((pids = (int *)malloc((u_int)(fds * sizeof(int)))) == NULL)
 			return(NULL);
-		bzero((char *)pids, fds * sizeof(int));
+		memset(pids, 0, fds * sizeof(int));
 	}
 	if (pipe(pdes) < 0)
 		return(NULL);
