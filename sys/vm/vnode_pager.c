@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vnode_pager.c	8.1 (Berkeley) 06/11/93
+ *	@(#)vnode_pager.c	8.2 (Berkeley) 11/10/93
  */
 
 /*
@@ -44,7 +44,8 @@ int	vpagerdebug = 0x00;
 #define VDB_SIZE	0x20
 #endif
 
-static vm_pager_t	 vnode_pager_alloc __P((caddr_t, vm_size_t, vm_prot_t));
+static vm_pager_t	 vnode_pager_alloc
+			    __P((caddr_t, vm_size_t, vm_prot_t, vm_offset_t));
 static void		 vnode_pager_dealloc __P((vm_pager_t));
 static int		 vnode_pager_getpage
 			    __P((vm_pager_t, vm_page_t, boolean_t));
@@ -79,10 +80,11 @@ vnode_pager_init()
  * Handle is a vnode pointer.
  */
 static vm_pager_t
-vnode_pager_alloc(handle, size, prot)
+vnode_pager_alloc(handle, size, prot, foff)
 	caddr_t handle;
 	vm_size_t size;
 	vm_prot_t prot;
+	vm_offset_t foff;
 {
 	register vm_pager_t pager;
 	register vn_pager_t vnp;

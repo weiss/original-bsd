@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_pager.c	8.1 (Berkeley) 06/11/93
+ *	@(#)vm_pager.c	8.2 (Berkeley) 11/10/93
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -107,17 +107,18 @@ vm_pager_init()
  * Allocate an instance of a pager of the given type.
  */
 vm_pager_t
-vm_pager_allocate(type, handle, size, prot)
+vm_pager_allocate(type, handle, size, prot, off)
 	int type;
 	caddr_t handle;
 	vm_size_t size;
 	vm_prot_t prot;
+	vm_offset_t off;
 {
 	vm_pager_t pager;
 	struct pagerops *ops;
 
 	ops = (type == PG_DFLT) ? dfltpagerops : pagertab[type];
-	return((*ops->pgo_alloc)(handle, size, prot));
+	return ((*ops->pgo_alloc)(handle, size, prot, off));
 }
 
 void
