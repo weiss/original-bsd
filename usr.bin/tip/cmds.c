@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmds.c	5.8 (Berkeley) 09/02/88";
+static char sccsid[] = "@(#)cmds.c	5.9 (Berkeley) 10/10/88";
 #endif /* not lint */
 
 #include "tip.h"
@@ -649,7 +649,7 @@ execute(s)
 		cp = value(SHELL);
 	else
 		cp++;
-	user_uid();
+	shell_uid();
 	execl(value(SHELL), cp, "-c", s, 0);
 }
 
