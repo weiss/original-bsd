@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Sony Corp. and Kazumasa Utashiro of Software Research Associates, Inc.
@@ -9,7 +9,7 @@
  *
  * from: $Hdr: sddefs.c,v 4.300 91/06/09 06:38:25 root Rel41 $ SONY
  *
- *	@(#)sddefs.c	7.2 (Berkeley) 12/17/92
+ *	@(#)sddefs.c	8.1 (Berkeley) 06/11/93
  */
 
 #include "sd.h"
