@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)types.h	7.11 (Berkeley) 06/25/90
+ *	@(#)types.h	7.12 (Berkeley) 12/16/90
  */
 
 #ifndef _TYPES_
@@ -25,11 +25,7 @@ typedef	unsigned int	u_int;
 typedef	unsigned long	u_long;
 typedef	unsigned short	ushort;		/* Sys V compatibility */
 
-#ifdef KERNEL
-#include "machine/machtypes.h"
-#else
-#include <machine/machtypes.h>
-#endif
+#include <machine/types.h>
 
 #ifdef	_CLOCK_T_
 typedef	_CLOCK_T_	clock_t;

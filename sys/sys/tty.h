@@ -3,14 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.h	7.7 (Berkeley) 06/28/90
+ *	@(#)tty.h	7.8 (Berkeley) 12/16/90
  */
 
-#ifdef KERNEL
-#include "termios.h"
-#else
 #include <sys/termios.h>
-#endif
 
 /*
  * A clist structure is the head of a linked list queue

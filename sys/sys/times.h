@@ -4,10 +4,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)times.h	7.3 (Berkeley) 10/31/90
+ *	@(#)times.h	7.4 (Berkeley) 12/16/90
  */
 
-#include <machine/machtypes.h>
+#include <machine/types.h>
 
 #ifdef	_CLOCK_T_
 typedef	_CLOCK_T_	clock_t;
