@@ -1,4 +1,4 @@
-/*	if_hy.c	4.5	83/06/12	*/
+/*	if_hy.c	4.6	83/06/12	*/
 
 #include "hy.h"
 #if NHY > 0
@@ -247,6 +247,7 @@ hyinit(unit)
 		is->hy_if.if_flags &= ~IFF_UP;
 		return;
 	}
+	is->is_hy.if_flags |= IFF_RUNNING;
 	/*
 	 * Issue wait for message and start the state machine
 	 */
