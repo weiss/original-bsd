@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clnp_raw.c	7.11 (Berkeley) 05/25/93
+ *	@(#)clnp_raw.c	7.12 (Berkeley) 06/04/93
  */
 
 /***********************************************************
@@ -85,11 +85,7 @@ int					hdrlen; /* length (in bytes) of clnp header */
 	}
 #endif	/* TROLL */
 
-	if (raw_input(m, &rclnp_proto, (struct sockaddr *)src,
-		(struct sockaddr *)dst) == 0) {
-			clnp_stat.cns_delivered--;
-			clnp_stat.cns_noproto++;
-	}
+	raw_input(m, &rclnp_proto, (struct sockaddr *)src, (struct sockaddr *)dst);
 }
 
 /*
