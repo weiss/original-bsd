@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_glue.c	7.15 (Berkeley) 05/04/92
+ *	@(#)vm_glue.c	7.16 (Berkeley) 06/04/92
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -417,7 +417,7 @@ swapout(p)
 #endif
 	size = round_page(ctob(UPAGES));
 	addr = (vm_offset_t) p->p_addr;
-#ifdef hp300
+#if defined(hp300) || defined(luna68k)
 	/*
 	 * Ugh!  u-area is double mapped to a fixed address behind the
 	 * back of the VM system and accesses are usually through that
