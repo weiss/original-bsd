@@ -14,21 +14,16 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	4.14 (Berkeley) 09/20/88
+#	@(#)Makefile	4.15 (Berkeley) 01/19/89
 #
-SUBDIR=	lib src aux
+SUBDIR=	src aux
 
 all: ${SUBDIR}
 
 ${SUBDIR}: FRC
 	cd $@; make ${MFLAGS}
 
-clean cleandir depend: FRC
-	for i in ${SUBDIR}; do (cd $$i; make ${MFLAGS} clean); done
+clean cleandir depend install: FRC
+	for i in ${SUBDIR}; do (cd $$i; make ${MFLAGS} $@); done
 
-install: FRC
-	-mkdir ${DESTDIR}/usr/spool/mqueue
-	chown root.wheel ${DESTDIR}/usr/spool/mqueue
-	chmod 775 ${DESTDIR}/usr/spool/mqueue
-	for i in ${SUBDIR}; do (cd $$i; make ${MFLAGS} install); done
-
+FRC:
