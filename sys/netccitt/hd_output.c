@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hd_output.c	7.5 (Berkeley) 10/04/90
+ *	@(#)hd_output.c	7.6 (Berkeley) 05/29/91
  */
 
 #include "param.h"
@@ -216,6 +216,6 @@ register struct hdcb *hdp;
 		hdp->hd_state = WAIT_UA;
 		SET_TIMER (hdp);
 		hd_message (hdp, "Timer recovery failed: link down");
-		(void) pk_ctlinput (PRC_LINKDOWN, hdp->hd_xcp);
+		(void) pk_ctlinput (PRC_LINKDOWN, hdp->hd_pkp);
 	}
 }

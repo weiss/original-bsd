@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hd_timer.c	7.3 (Berkeley) 08/30/90
+ *	@(#)hd_timer.c	7.4 (Berkeley) 05/29/91
  */
 
 #include "param.h"
@@ -83,7 +83,7 @@ hd_timer ()
 		case DM_SENT: 
 			if (++hdp->hd_retxcnt == hd_n2) {
 				/* Notify the packet level. */
-				(void) pk_ctlinput (PRC_LINKDOWN, hdp->hd_xcp);
+				(void) pk_ctlinput (PRC_LINKDOWN, hdp->hd_pkp);
 				hdp->hd_retxcnt = 0;
 				hdp->hd_state = SABM_SENT;
 				hd_writeinternal (hdp, SABM, POLLOFF);
