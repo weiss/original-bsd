@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)parser3.c	3.3 05/23/84";
+static char sccsid[] = "@(#)parser3.c	3.4 07/13/84";
 #endif
 
 #include "parser.h"
@@ -65,7 +65,7 @@ char flag;
 		true = v->v_num != 0;
 		break;
 	case V_STR:
-		p_error("Numeric value required for ?.");
+		p_error("?: Numeric left operand required.");
 		str_free(v->v_str);
 		v->v_type = V_ERR;
 	case V_ERR:
@@ -104,7 +104,7 @@ char flag;
 			v->v_num = true = true || v->v_num != 0;
 			break;
 		case V_STR:
-			p_error("Numeric value required for ||.");
+			p_error("||: Numeric operands required.");
 			str_free(v->v_str);
 			v->v_type = V_ERR;
 		case V_ERR:
@@ -138,7 +138,7 @@ char flag;
 			v->v_num = true = true && v->v_num != 0;
 			break;
 		case V_STR:
-			p_error("Numeric value required for &&.");
+			p_error("&&: Numeric operands required.");
 			str_free(v->v_str);
 			v->v_type = V_ERR;
 		case V_ERR:

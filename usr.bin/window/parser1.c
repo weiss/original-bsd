@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)parser1.c	3.15 05/23/84";
+static char sccsid[] = "@(#)parser1.c	3.16 07/13/84";
 #endif
 
 #include "parser.h"
@@ -65,7 +65,7 @@ top:
 		true = !true && t.v_num != 0;
 		break;
 	case V_STR:
-		p_error("Numeric value required for if.");
+		p_error("if: Numeric value required.");
 		str_free(t.v_str);
 	case V_ERR:
 		flag = 0;
