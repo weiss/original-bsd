@@ -1,8 +1,10 @@
-(Version 6.7 of 04/04/93)
+(Version 6.8 of 04/15/93)
 
 *****	Database (keyed lookup) locking and rebuild.
 
 *****	Extend UDB support for mailing lists: owner- equivalent and the like.
+
+****	8 -> 7 bit MIME conversion.
 
 **	Find a good test suite and include in the distribution.
 
