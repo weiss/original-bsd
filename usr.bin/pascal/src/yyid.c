@@ -5,11 +5,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)yyid.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)yyid.c	5.2 (Berkeley) 06/29/90";
 #endif not lint
 
 #include "whoami.h"
-#include "0.h"
+#include <0.h>
 #include "tree_ty.h"	/* must be included for yy.h */
 #include "yy.h"
 
