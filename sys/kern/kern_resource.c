@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_resource.c	7.6 (Berkeley) 04/03/90
+ *	@(#)kern_resource.c	7.7 (Berkeley) 05/10/90
  */
 
 #include "param.h"
@@ -130,8 +130,8 @@ donice(p, n)
 	register int n;
 {
 
-	if (u.u_uid && u.u_ruid &&
-	    u.u_uid != p->p_uid && u.u_ruid != p->p_uid) {
+	if (u.u_uid && u.u_procp->p_ruid &&
+	    u.u_uid != p->p_uid && u.u_procp->p_ruid != p->p_uid) {
 		u.u_error = EPERM;
 		return;
 	}
