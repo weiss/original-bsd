@@ -1,14 +1,15 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)PRED.c 1.1 10/30/80";
+static char sccsid[] = "@(#)PRED.c 1.2 03/07/81";
 
 #include "h01errs.h"
 
+long
 PRED(value, lower, upper)
 
-	int	value;
-	int	lower;
-	int	upper;
+	long	value;
+	long	lower;
+	long	upper;
 {
 	value--;
 	if (value < lower || value > upper) {

@@ -1,8 +1,10 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)RANDOM.c 1.2 01/16/81";
+static char sccsid[] = "@(#)RANDOM.c 1.3 03/07/81";
 
 #include "h00vars.h"
+
+extern long RAND();
 
 double
 RANDOM()
