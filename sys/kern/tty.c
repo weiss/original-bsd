@@ -3,12 +3,11 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.16 (Berkeley) 05/01/89
+ *	@(#)tty.c	7.17 (Berkeley) 05/09/89
  */
 
 #include "param.h"
 #include "systm.h"
-#include "dir.h"
 #include "user.h"
 #include "ioctl.h"
 #include "tty.h"
@@ -22,6 +21,7 @@
 #include "dkstat.h"
 #include "uio.h"
 #include "kernel.h"
+#include "vnode.h"
 #include "syslog.h"
 
 #include "machine/reg.h"
@@ -569,7 +569,6 @@ ttyopen(dev, tp)
 	dev_t dev;
 	register struct tty *tp;
 {
-	register struct proc *pp;
 
 	tp->t_dev = dev;
 
@@ -1144,7 +1143,6 @@ ttread(tp, uio, flag)
 	register struct clist *qp;
 	register int c;
 	register long lflag = tp->t_lflag;
-	register long iflag = tp->t_iflag;
 	register u_char *cc = tp->t_cc;
 	int s, first, error = 0;
 
@@ -1162,7 +1160,7 @@ loop:
 		if (tp->t_state&TS_ISOPEN) {
 			splx(s);
 			return (0);	/* EOF */
-		} else if (flag&FNDELAY) {
+		} else if (flag & IO_NDELAY) {
 			splx(s);
 			return (EWOULDBLOCK);
 		} else {
@@ -1208,7 +1206,7 @@ loop:
 			return (EWOULDBLOCK);
 		}
 		**/
-		if (flag&FNDELAY) {
+		if (flag & IO_NDELAY) {
 			splx(s);
 			return (EWOULDBLOCK);
 		}
@@ -1255,7 +1253,6 @@ loop:
 		}
 		first = 0;
 	}
-checktandem:
 	/*
 	 * Look to unblock output now that (presumably)
 	 * the input queue has gone down.
@@ -1311,7 +1308,7 @@ ttwrite(tp, uio, flag)
 	register struct uio *uio;
 {
 	register char *cp;
-	register int cc, ce, c;
+	register int cc, ce;
 	int i, hiwat, cnt, error, s;
 	char obuf[OBUFSIZ];
 
@@ -1324,7 +1321,7 @@ loop:
 		if (tp->t_state&TS_ISOPEN) {
 			splx(s);
 			return (EIO);
-		} else if (flag&FNDELAY) {
+		} else if (flag & IO_NDELAY) {
 			splx(s);
 			return (EWOULDBLOCK);
 		} else {
@@ -1376,7 +1373,7 @@ loop:
 		if (cc > OBUFSIZ)
 			cc = OBUFSIZ;
 		cp = obuf;
-		error = uiomove(cp, cc, UIO_WRITE, uio);
+		error = uiomove(cp, cc, uio);
 		if (error)
 			break;
 		if (tp->t_lflag&FLUSHO)
@@ -1468,7 +1465,7 @@ ovhiwat:
 		splx(s);
 		goto loop;
 	}
-	if (flag&FNDELAY) {
+	if (flag & IO_NDELAY) {
 		splx(s);
 		if (uio->uio_resid == cnt)
 			return (EWOULDBLOCK);
