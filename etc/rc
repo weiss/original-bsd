@@ -1,5 +1,5 @@
 #
-#	@(#)rc	5.7 (Berkeley) 09/05/89
+#	@(#)rc	5.8 (Berkeley) 10/26/89
 #
 
 HOME=/; export HOME
@@ -72,7 +72,7 @@ fi
 			echo -n 'checking quotas:'	>/dev/console
 quotacheck -a -p					>/dev/console 2>&1
 			echo ' done.'			>/dev/console
-quotaon -a
+quotaon -a						>/dev/console 2>&1
 
 # build ps data base
 ps -U							>/dev/console 2>&1
