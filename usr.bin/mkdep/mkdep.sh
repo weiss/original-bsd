@@ -15,7 +15,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)mkdep.sh	5.14 (Berkeley) 08/30/88
+#	@(#)mkdep.sh	5.15 (Berkeley) 10/21/88
 #
 PATH=/bin:/usr/bin:/usr/ucb
 export PATH
@@ -59,6 +59,7 @@ trap 'rm -f $TMP ; exit 1' 1 2 3 13 15
 cc -M $* |
 sed "
 	s; \./; ;g
+	/\.c:$/d
 	$SED" |
 awk '{
 	if ($1 != prev) {
