@@ -1,4 +1,4 @@
-#	@(#)cwscript	5.1 (Berkeley) 04/25/86
+#	@(#)cwscript	6.1 (Berkeley) 04/25/86
 #
 /^\.if/b
 /^\.ix/b
