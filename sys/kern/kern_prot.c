@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_prot.c	7.15 (Berkeley) 07/26/90
+ *	@(#)kern_prot.c	7.16 (Berkeley) 10/19/90
  */
 
 /*
@@ -555,7 +555,7 @@ setlogin(p, uap, retval)
 		return (error);
 	error = copyinstr((caddr_t)uap->namebuf, (caddr_t)p->p_logname,
 	    sizeof (p->p_logname) - 1, (int *) 0);
-	if (error == ENOENT)		/* name too long */
+	if (error == ENAMETOOLONG)		/* name too long */
 		error = EINVAL;
 	return (error);
 }
