@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 05/24/93
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 SRCS=	fortunes fortunes2 startrek zippy
 BLDS=	fortunes.dat fortunes2.dat startrek.dat zippy.dat \
