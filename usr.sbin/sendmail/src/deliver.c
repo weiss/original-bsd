@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.103 (Berkeley) 11/04/94";
+static char sccsid[] = "@(#)deliver.c	8.104 (Berkeley) 11/05/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1377,9 +1377,6 @@ tryhost:
 		}
 	}
 
-	if (bitset(EF_HAS8BIT, e->e_flags) && bitnset(M_7BITS, m->m_flags))
-		mci->mci_flags |= MCIF_CVT8TO7;
-
 	/*
 	**  If we are in SMTP opening state, send initial protocol.
 	*/
@@ -1388,6 +1385,12 @@ tryhost:
 	{
 		smtpinit(m, mci, e);
 	}
+
+	if (bitset(EF_HAS8BIT, e->e_flags) && bitnset(M_7BITS, m->m_flags))
+		mci->mci_flags |= MCIF_CVT8TO7;
+	else
+		mci->mci_flags &= ~MCIF_CVT8TO7;
+
 	if (tTd(11, 1))
 	{
 		printf("openmailer: ");
