@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_syscalls.c	8.4 (Berkeley) 02/21/94
+ *	@(#)uipc_syscalls.c	8.5 (Berkeley) 07/07/94
  */
 
 #include <sys/param.h>
@@ -479,10 +479,9 @@ sendit(p, s, mp, flags, retsize)
 	auio.uio_resid = 0;
 	iov = mp->msg_iov;
 	for (i = 0; i < mp->msg_iovlen; i++, iov++) {
-		if (iov->iov_len < 0)
+		if (auio.uio_resid + iov->iov_len < auio.uio_resid)
 			return (EINVAL);
-		if ((auio.uio_resid += iov->iov_len) < 0)
-			return (EINVAL);
+		auio.uio_resid += iov->iov_len;
 	}
 	if (mp->msg_name) {
 		if (error = sockargs(&to, mp->msg_name, mp->msg_namelen,
@@ -744,10 +743,9 @@ recvit(p, s, mp, namelenp, retsize)
 	auio.uio_resid = 0;
 	iov = mp->msg_iov;
 	for (i = 0; i < mp->msg_iovlen; i++, iov++) {
-		if (iov->iov_len < 0)
+		if (auio.uio_resid + iov->iov_len < auio.uio_resid)
 			return (EINVAL);
-		if ((auio.uio_resid += iov->iov_len) < 0)
-			return (EINVAL);
+		auio.uio_resid += iov->iov_len;
 	}
 #ifdef KTRACE
 	if (KTRPOINT(p, KTR_GENIO)) {
