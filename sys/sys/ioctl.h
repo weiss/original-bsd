@@ -1,4 +1,4 @@
-/*	ioctl.h	4.2	12/17/80	*/
+/*	ioctl.h	4.3	01/26/81	*/
 /*
  * ioctl definitions, and special character and local tty definitions
  */
@@ -138,4 +138,11 @@ struct ltchars {
 /* printer ioctls, see <lpio.h> */
 #define	LGETSTATE	(('v'<<8)|2)
 #define	LSETSTATE	(('v'<<8)|3)
+
+/* chaos net io control commands */
+#define CHIOCRNEXT	(('c'<<8)|1)	/* get chaos net unmatched rfc packet */
+#define CHIOCRSKIP	(('c'<<8)|2)	/* Skip the unmatched RFC */
+#define CHIOCRREAD	(('c'<<8)|3)	/* Read my RFC packet */
+#define CHIOCTTY	(('c'<<8)|4)	/* make this channel a tty */
+#define CHIOCFLUSH	(('c'<<8)|5)	/* flush current output packet */
 #endif
