@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 1992 Regents of the University of California.
  * Copyright (c) 1988, 1992 The University of Utah and the Center
  *	for Software Science (CSS).
+ * Copyright (c) 1992 Regents of the University of California.
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
@@ -12,7 +12,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)rmp_var.h	5.1 (Berkeley) 07/23/92
+ *	@(#)rmp_var.h	5.2 (Berkeley) 06/04/93
  *
  * Utah $Hdr: rmp_var.h 3.1 92/07/06$
  * Author: Jeff Forys, University of Utah CSS

@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 1992 Regents of the University of California.
  * Copyright (c) 1988, 1992 The University of Utah and the Center
  *	for Software Science (CSS).
+ * Copyright (c) 1992 Regents of the University of California.
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
@@ -12,14 +12,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)utils.c	5.2 (Berkeley) 07/23/92
+ *	@(#)utils.c	5.3 (Berkeley) 06/04/93
  *
  * Utah $Hdr: utils.c 3.1 92/07/06$
  * Author: Jeff Forys, University of Utah CSS
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utils.c	5.2 (Berkeley) 07/23/92";
+static char sccsid[] = "@(#)utils.c	5.3 (Berkeley) 06/04/93";
 #endif /* not lint */
 
 #include <sys/param.h>
