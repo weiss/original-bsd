@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	6.17 (Berkeley) 03/18/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.18 (Berkeley) 03/29/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	6.17 (Berkeley) 03/18/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	6.18 (Berkeley) 03/29/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -403,7 +403,7 @@ smtpquit(m, mci, e)
 	}
 
 	/* now actually close the connection and pick up the zombie */
-	i = endmailer(mci, m->m_argv[0]);
+	i = endmailer(mci, e, m->m_argv);
 	if (i != EX_OK)
 		syserr("451 smtpquit %s: stat %d", m->m_argv[0], i);
 }
