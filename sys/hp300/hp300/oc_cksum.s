@@ -3,7 +3,7 @@
 |
 | %sccs.include.redist.gas%
 |
-|	@(#)oc_cksum.s	7.3 (Berkeley) 06/10/93
+|	@(#)oc_cksum.s	8.1 (Berkeley) 06/10/93
 |
 |
 | oc_cksum: ones complement 16 bit checksum for MC68020.
