@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/08/90
+#	@(#)Makefile	5.6 (Berkeley) 01/02/91
 
 MSSRCS=	acc.ms cov.ms eqn.ms ref.ms tbl.ms ths.ms toc.ms
-TMSRCS=	tmac.s tmac.os tmac.scover
+TMSRCS=	tmac.s tmac.os tmac.scover tmac.sU
 NOOBJ=	noobj
 
 # sources for old tmac.*, previously installed in /usr/lib/tmac
