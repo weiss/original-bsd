@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)move.c	5.7 (Berkeley) 09/14/92";
+static char sccsid[] = "@(#)move.c	5.8 (Berkeley) 09/21/92";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -30,5 +30,6 @@ wmove(win, y, x)
 		return (ERR);
 	win->curx = x;
 	win->cury = y;
+	win->lines[y]->flags &= ~__ISPASTEOL;
 	return (OK);
 }
