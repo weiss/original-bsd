@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)eval.c	5.6 (Berkeley) 09/04/91";
+static char sccsid[] = "@(#)eval.c	5.7 (Berkeley) 10/02/91";
 #endif /* not lint */
 
 /*
@@ -532,6 +532,7 @@ char *ifile;
 		oops("too many include files.");
 	if ((infile[ilevel + 1] = fopen(ifile, "r")) != NULL) {
 		ilevel++;
+		bbase[ilevel] = bufbase = bp;
 		return (1);
 	}
 	else
