@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)errno.h	6.3 (Berkeley) 06/08/85
+ *	@(#)errno.h	6.4 (Berkeley) 06/19/85
  */
 
 /*
@@ -94,13 +94,3 @@
 #define	EPROCLIM	67		/* Too many processes */
 #define	EUSERS		68		/* Too many users */
 #define	EDQUOT		69		/* Disc quota exceeded */
-
-/*
- * User variables for accessing the error codes
- */
-
-#ifndef KERNEL
-extern int errno;
-extern int sys_nerr;
-extern char *sys_errlist[];
-#endif
