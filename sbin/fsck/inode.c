@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inode.c	5.19 (Berkeley) 11/04/91";
+static char sccsid[] = "@(#)inode.c	5.20 (Berkeley) 03/16/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -68,7 +68,7 @@ ckinode(dp, idesc)
 iblock(idesc, ilevel, isize)
 	struct inodesc *idesc;
 	register long ilevel;
-	u_long isize;
+	quad_t isize;
 {
 	register daddr_t *ap;
 	register daddr_t *aplim;
