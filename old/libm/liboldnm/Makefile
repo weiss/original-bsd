@@ -1,6 +1,11 @@
-#	@(#)Makefile	1.1	05/08/85
 #
-SCCSID = "@(#)Makefile 1.1 05/08/85"
+# Copyright (c) 1980 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)Makefile	5.1 (Berkeley) 05/08/85
+#
+SCCSID = "%W (Berkeley) 05/08/85"
 
 CFLAGS=-O
 

@@ -1,3 +1,11 @@
+#
+# Copyright (c) 1980 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)exp.s	5.1 (Berkeley) 05/08/85
+# 
+#
 # double exp(arg)
 # double arg; 0<= arg< 88
 # double exp10(arg)
