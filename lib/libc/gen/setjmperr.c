@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)setjmperr.c	5.1 (Berkeley) 01/09/86";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)setjmperr.c	5.2 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 #define ERRMSG	"longjmp botch\n"
 
