@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)x25.h	7.4 (Berkeley) 08/30/90
+ *	@(#)x25.h	7.5 (Berkeley) 11/13/90
  */
 
 #ifdef KERNEL
@@ -31,6 +31,7 @@
 
 /* socket options */
 #define PK_ACCTFILE		1	/* use level = CCITTPROTO_X25 */
+#define PK_FACILITIES		2	/* use level = CCITTPROTO_X25 */
 
 /*
  *  X.25 Socket address structure.  It contains the  X.121 or variation of
