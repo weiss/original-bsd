@@ -8,7 +8,7 @@
 #include <setjmp.h>
 #include <sysexits.h>
 
-static char SccsId[] = "@(#)mail.local.c	4.14	04/10/83";
+static char SccsId[] = "@(#)mail.local.c	4.15	04/12/83";
 
 #define SENDMAIL	"/usr/lib/sendmail"
 
@@ -22,7 +22,7 @@ static char SccsId[] = "@(#)mail.local.c	4.14	04/10/83";
 #define	FORWARD	4
 #define	LSIZE	256
 #define	MAXLET	300	/* maximum number of letters */
-#define	MAILMODE (~0644)		/* mode of created mail */
+#define	MAILMODE (~0600)		/* mode of created mail */
 
 char	line[LSIZE];
 char	resp[LSIZE];
