@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)envelope.c	5.9 (Berkeley) 09/23/85";
+static char	SccsId[] = "@(#)envelope.c	5.10 (Berkeley) 09/25/85";
 #endif not lint
 
 #include <pwd.h>
@@ -538,6 +538,7 @@ setsender(from)
 	}
 	rewrite(pvp, 3);
 	rewrite(pvp, 1);
+	rewrite(pvp, 4);
 	cataddr(pvp, buf, sizeof buf);
 	define('f', newstr(buf), CurEnv);
 
