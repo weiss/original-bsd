@@ -18,17 +18,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)less.h	5.2 (Berkeley) 07/21/88
+ *	@(#)less.h	5.3 (Berkeley) 07/22/88
  */
 
 /*
  * Standard include file for "less".
  */
-
-/*
- * Include the file of compile-time options.
- */
-#include "defines.h"
 
 /*
  * Language details.
@@ -86,6 +81,9 @@ typedef	int		HANDLER;
 
 #define	CONTROL(c)		((c)&037)
 #define	SIGNAL(sig,func)	signal(sig,func)
+
+#include <sys/param.h>
+#include <sys/file.h>
 
 /* Library function declarations */
 off_t lseek();
