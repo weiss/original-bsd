@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.c	6.28 (Berkeley) 04/22/86
+ *	@(#)machdep.c	6.29 (Berkeley) 05/27/86
  */
 
 #include "reg.h"
@@ -1176,7 +1176,7 @@ microtime(tvp)
 	}
 	if (tvp->tv_sec == lasttime.tv_sec &&
 	    tvp->tv_usec <= lasttime.tv_usec &&
-	    (tvp->tv_usec = lasttime.tv_sec + 1) > 1000000) {
+	    (tvp->tv_usec = lasttime.tv_usec + 1) > 1000000) {
 		tvp->tv_sec++;
 		tvp->tv_usec -= 1000000;
 	}
