@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/03/91
+#	@(#)Makefile	8.1 (Berkeley) 06/11/93
 
 PROG=	fsck
 SRCS=	dir.c inode.c main.c pass1.c pass1b.c pass2.c pass3.c pass4.c \
