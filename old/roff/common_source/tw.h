@@ -1,6 +1,5 @@
-/*
- *	@(#)tw.h	4.1 06/07/82
- */
+/*	tw.h	4.2	83/08/11	*/
+
 /* typewriter driving table structure*/
 struct {
 	int bset;
