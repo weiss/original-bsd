@@ -9,7 +9,7 @@
  * Still more user commands.
  */
 
-static char *SccsId = "@(#)cmd3.c	2.7 07/26/82";
+static char *SccsId = "@(#)cmd3.c	2.8 07/28/82";
 
 /*
  * Process a shell escape by saving signals, ignoring signals,
@@ -552,8 +552,10 @@ file(argv)
 	cp = getfilename(argv[0], &edit);
 	if (cp == NOSTR)
 		return(-1);
-	if (setfile(cp, edit))
+	if (setfile(cp, edit)) {
+		perror(cp);
 		return(-1);
+	}
 	newfileinfo();
 }
 
