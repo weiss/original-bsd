@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)delwin.c	5.10 (Berkeley) 01/11/93";
+static char sccsid[] = "@(#)delwin.c	5.11 (Berkeley) 02/18/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -22,7 +22,6 @@ delwin(win)
 {
 
 	register WINDOW *wp, *np;
-	register int i;
 
 	if (win->orig == NULL) {
 		/*
