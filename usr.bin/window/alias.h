@@ -1,5 +1,11 @@
 /*
- * @(#)alias.h	3.3 06/02/84
+ * @(#)alias.h	3.4 04/24/85
+ */
+
+/*
+ * Copyright (c) 1983 Regents of the University of California,
+ * All rights reserved.  Redistribution permitted subject to
+ * the terms of the Berkeley Software License Agreement.
  */
 
 #define alias var
