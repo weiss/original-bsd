@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)collect.c	3.42		07/05/82);
+SCCSID(@(#)collect.c	3.43		07/14/82);
 
 /*
 **  COLLECT -- read & parse message header & make temp file.
@@ -278,6 +278,8 @@ collect(sayok)
 		/*    that or reject the message.... */
 		for (q = CurEnv->e_sendqueue; q != NULL; q = q->q_next)
 		{
+			if (q->q_alias != NULL)
+				continue;
 # ifdef DEBUG
 			if (Debug > 1)
 				printf("Adding Apparently-To: %s\n", q->q_paddr);
