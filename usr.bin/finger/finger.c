@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)finger.c	5.22 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)finger.c	5.23 (Berkeley) 07/27/91";
 #endif /* not lint */
 
 /*
@@ -32,21 +32,29 @@ static char sccsid[] = "@(#)finger.c	5.22 (Berkeley) 06/29/90";
  */
 
 #include <sys/param.h>
-#include <sys/file.h>
+#include <fcntl.h>
+#include <time.h>
+#include <pwd.h>
+#include <utmp.h>
+#include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "finger.h"
 
 time_t now;
-int lflag, sflag, mflag, pplan;
+int entries, lflag, mflag, pplan, sflag;
 char tbuf[1024];
+PERSON *phead, *ptail, *htab[HSIZE];
+
+static void loginlist __P((void));
+static void userlist __P((int, char **));
 
 main(argc, argv)
 	int argc;
 	char **argv;
 {
-	extern int optind;
 	int ch;
-	time_t time();
 
 	while ((ch = getopt(argc, argv, "lmps")) != EOF)
 		switch(ch) {
@@ -103,6 +111,7 @@ main(argc, argv)
 	exit(0);
 }
 
+static void
 loginlist()
 {
 	register PERSON *pn;
@@ -110,10 +119,8 @@ loginlist()
 	struct utmp user;
 	char name[UT_NAMESIZE + 1];
 
-	if (!freopen(_PATH_UTMP, "r", stdin)) {
-		(void)fprintf(stderr, "finger: can't read %s.\n", _PATH_UTMP);
-		exit(2);
-	}
+	if (!freopen(_PATH_UTMP, "r", stdin))
+		err("%s: %s", _PATH_UTMP, strerror(errno));
 	name[UT_NAMESIZE] = NULL;
 	while (fread((char *)&user, sizeof(user), 1, stdin) == 1) {
 		if (!user.ut_name[0])
@@ -130,22 +137,20 @@ loginlist()
 		enter_lastlog(pn);
 }
 
+static void
 userlist(argc, argv)
-	register argc;
+	register int argc;
 	register char **argv;
 {
-	register i;
+	register int i;
 	register PERSON *pn;
 	PERSON *nethead, **nettail;
 	struct utmp user;
 	struct passwd *pw;
 	int dolocal, *used;
-	char *index();
 
-	if (!(used = (int *)calloc((u_int)argc, (u_int)sizeof(int)))) {
-		(void)fprintf(stderr, "finger: out of space.\n");
-		exit(1);
-	}
+	if (!(used = calloc((u_int)argc, (u_int)sizeof(int))))
+		err("%s", strerror(errno));
 
 	/* pull out all network requests */
 	for (i = 0, dolocal = 0, nettail = &nethead; i < argc; i++) {
@@ -203,10 +208,8 @@ net:	for (pn = nethead; pn; pn = pn->next) {
 	 * Scan thru the list of users currently logged in, saving
 	 * appropriate data whenever a match occurs.
 	 */
-	if (!freopen(_PATH_UTMP, "r", stdin)) {
-		(void)fprintf( stderr, "finger: can't read %s.\n", _PATH_UTMP);
-		exit(1);
-	}
+	if (!freopen(_PATH_UTMP, "r", stdin))
+		err("%s: %s", _PATH_UTMP, strerror(errno));
 	while (fread((char *)&user, sizeof(user), 1, stdin) == 1) {
 		if (!user.ut_name[0])
 			continue;

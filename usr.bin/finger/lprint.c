@@ -9,16 +9,21 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lprint.c	5.14 (Berkeley) 07/27/91";
+static char sccsid[] = "@(#)lprint.c	5.15 (Berkeley) 07/27/91";
 #endif /* not lint */
 
 #include <sys/types.h>
-#include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <fcntl.h>
+#include <time.h>
 #include <tzfile.h>
+#include <pwd.h>
+#include <utmp.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #include <paths.h>
 #include "finger.h"
 
@@ -28,6 +33,12 @@ static char sccsid[] = "@(#)lprint.c	5.14 (Berkeley) 07/27/91";
 #define	_PATH_PLAN	".plan"
 #define	_PATH_PROJECT	".project"
 
+static int	demi_print __P((char *, int));
+static void	lprint __P((PERSON *));
+static int	show_text __P((char *, char *, char *));
+static void	vputc __P((int));
+
+void
 lflag_print()
 {
 	extern int pplan;
@@ -48,6 +59,7 @@ lflag_print()
 	}
 }
 
+static void
 lprint(pn)
 	register PERSON *pn;
 {
@@ -57,8 +69,7 @@ lprint(pn)
 	register int cpr, len, maxlen;
 	struct tm *tp;
 	int oddfield;
-	time_t time();
-	char *t, *tzn, *prphone();
+	char *t, *tzn;
 
 	/*
 	 * long format --
@@ -177,6 +188,7 @@ lprint(pn)
 	}
 }
 
+static int
 demi_print(str, oddfield)
 	char *str;
 	int oddfield;
@@ -216,6 +228,7 @@ demi_print(str, oddfield)
 	return(oddfield);
 }
 
+static
 show_text(directory, file_name, header)
 	char *directory, *file_name, *header;
 {
@@ -263,6 +276,7 @@ show_text(directory, file_name, header)
 	return(1);
 }
 
+static void
 vputc(ch)
 	register int ch;
 {
