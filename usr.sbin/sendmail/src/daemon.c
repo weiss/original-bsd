@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.47 (Berkeley) 04/18/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.48 (Berkeley) 04/18/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.47 (Berkeley) 04/18/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.48 (Berkeley) 04/18/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -330,6 +330,8 @@ opendaemonsocket(firsttime)
 
 	do
 	{
+		if (ntries > 0)
+			sleep(5);
 		if (firsttime || DaemonSocket < 0)
 		{
 			DaemonSocket = socket(DaemonAddr.sa.sa_family, SOCK_STREAM, 0);
