@@ -2,11 +2,11 @@
  * Copyright (c) 1980, 1992 The Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.proprietary.c%
+ * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmdtab.c	5.3 (Berkeley) 07/23/92";
+static char sccsid[] = "@(#)cmdtab.c	5.4 (Berkeley) 05/21/93";
 #endif /* not lint */
 
 #include "systat.h"

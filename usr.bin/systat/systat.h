@@ -2,9 +2,9 @@
  * Copyright (c) 1980, 1989, 1992 The Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.proprietary.c%
+ * %sccs.include.redist.c%
  *
- *	@(#)systat.h	5.9 (Berkeley) 09/02/92
+ *	@(#)systat.h	5.10 (Berkeley) 05/21/93
  */
 
 #include <curses.h>

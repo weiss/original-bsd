@@ -2,11 +2,11 @@
  * Copyright (c) 1980, 1992 The Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.proprietary.c%
+ * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pigs.c	5.15 (Berkeley) 04/27/93";
+static char sccsid[] = "@(#)pigs.c	5.16 (Berkeley) 05/21/93";
 #endif /* not lint */
 
 /*
