@@ -6,7 +6,7 @@
 #  All rights reserved.  The Berkeley software License Agreement
 #  specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.1 (Berkeley) 09/07/85
+#	@(#)Makefile	4.2 (Berkeley) 05/31/87
 #
 DESTDIR =
 
@@ -44,3 +44,5 @@ listings:	${FP_SYS}
 		print runFp.l fpMain.l scanner.l parser.l codeGen.l \
 		primFp.l utils.l fpPP.l handlers.l fpMeasures.l \
 		specials.l fpMacs.l  &
+
+depend:
