@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.30 (Berkeley) 07/15/92
+#	@(#)Makefile	5.31 (Berkeley) 04/28/93
 
-SUBDIR=	libc libcurses libcompat libdbm libedit libg++ libkvm libm libmp \
+SUBDIR=	libc libcurses libcompat libedit libg++ libkvm libm libmp \
 	libplot libresolv librpc/rpc libtelnet libterm libutil liby
 
 .if	${MACHINE} == "tahoe"
