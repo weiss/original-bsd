@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)at.c	4.2 (Berkeley) 10/21/80";
+static char *sccsid = "@(#)at.c	4.3 (Berkeley) 07/03/81";
 /*
  * at time mon day
  * at time wday
@@ -128,8 +128,9 @@ char **argv;
 			putc('\'', file);
 			for (tmp++; *tmp; tmp++) {
 				if (*tmp == '\'')
-					putc('\\', file);
-				putc(*tmp, file);
+					fputs("'\\''", file);
+				else
+					putc(*tmp, file);
 			}
 			putc('\'', file);
 			fprintf(file, "\nexport ");
