@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	5.34 (Berkeley) 11/15/92";
+static char sccsid[] = "@(#)utilities.c	5.35 (Berkeley) 05/10/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -21,7 +21,6 @@ static char sccsid[] = "@(#)utilities.c	5.34 (Berkeley) 11/15/92";
 #include "fsck.h"
 
 long	diskreads, totalreads;	/* Disk cache statistics */
-long	lseek();
 
 ftypeok(dp)
 	struct dinode *dp;
