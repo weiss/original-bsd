@@ -1,4 +1,4 @@
-/*	ht.c	3.6	10/19/80	*/
+/*	ht.c	4.1	11/09/80	*/
 
 #include "../conf/ht.h"
 #if NHT > 0
