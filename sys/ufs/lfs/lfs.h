@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs.h	7.27 (Berkeley) 12/10/92
+ *	@(#)lfs.h	8.1 (Berkeley) 06/11/93
  */
 
 #define	LFS_LABELPAD	8192		/* LFS label size */
