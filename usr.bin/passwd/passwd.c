@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)passwd.c	4.10 (Berkeley) 01/09/85";
+static char sccsid[] = "@(#)passwd.c	4.11 (Berkeley) 01/10/85";
 #endif
 
 /*
@@ -200,9 +200,12 @@ replace(dp, pwd)
 #define	COMPACT(e)	tp = pwd->pw_/**/e; while (*cp++ = *tp++);
 	COMPACT(name);
 	COMPACT(passwd);
-	*(int *)cp = pwd->pw_uid; cp += sizeof (int);
-	*(int *)cp = pwd->pw_gid; cp += sizeof (int);
-	*(int *)cp = pwd->pw_quota; cp += sizeof (int);
+	bcopy((char *)&pwd->pw_uid, cp, sizeof (int));
+	cp += sizeof (int);
+	bcopy((char *)&pwd->pw_gid, cp, sizeof (int));
+	cp += sizeof (int);
+	bcopy((char *)&pwd->pw_quota, cp, sizeof (int));
+	cp += sizeof (int);
 	COMPACT(comment);
 	COMPACT(gecos);
 	COMPACT(dir);
