@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)unistd.h	5.22 (Berkeley) 10/04/92
+ *	@(#)unistd.h	5.23 (Berkeley) 01/12/93
  */
 
 #ifndef _UNISTD_H_
@@ -30,7 +30,6 @@ u_int	 alarm __P((u_int));
 int	 chdir __P((const char *));
 int	 chown __P((const char *, uid_t, gid_t));
 int	 close __P((int));
-char	*cuserid __P((char *));
 int	 dup __P((int));
 int	 dup2 __P((int, int));
 int	 execl __P((const char *, const char *, ...));
