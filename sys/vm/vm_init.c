@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_init.c	7.6 (Berkeley) 01/14/92
+ *	@(#)vm_init.c	7.7 (Berkeley) 05/04/92
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -40,11 +40,11 @@
  *	Initialize the Virtual Memory subsystem.
  */
 
-#include "param.h"
+#include <sys/param.h>
 
-#include "vm.h"
-#include "vm_page.h"
-#include "vm_kern.h"
+#include <vm/vm.h>
+#include <vm/vm_page.h>
+#include <vm/vm_kern.h>
 
 /*
  *	vm_init initializes the virtual memory system.
