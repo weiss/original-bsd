@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_syscalls.c	7.23 (Berkeley) 11/09/89
+ *	@(#)vfs_syscalls.c	7.24 (Berkeley) 11/12/89
  */
 
 #include "param.h"
@@ -422,7 +422,8 @@ chroot(scp)
 	ndp->ni_dirp = uap->fname;
 	if (error = chdirec(ndp))
 		RETURN (error);
-	vrele(scp->sc_rdir);
+	if (scp->sc_rdir != NULL)
+		vrele(scp->sc_rdir);
 	scp->sc_rdir = ndp->ni_vp;
 	RETURN (0);
 }
