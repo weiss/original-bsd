@@ -11,7 +11,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)tar.c	5.13 (Berkeley) 11/16/88";
+static char sccsid[] = "@(#)tar.c	5.14 (Berkeley) 05/08/89";
 #endif /* not lint */
 
 /*
@@ -29,6 +29,7 @@ static char sccsid[] = "@(#)tar.c	5.13 (Berkeley) 11/16/88";
 #include <fcntl.h>
 #include <strings.h>
 #include <stdio.h>
+#include "pathnames.h"
 
 #define TBLOCK	512
 #define NBLOCK	20
@@ -103,9 +104,9 @@ daddr_t	bsrch();
 
 FILE	*vfile = stdout;
 FILE	*tfile;
-char	tname[] = "/tmp/tarXXXXXX";
+char	tname[] = _PATH_TMP;
 char	*usefile;
-char	magtape[] = "/dev/rmt8";
+char	magtape[] = _PATH_MAGTAPE;
 char	*malloc();
 long	time();
 off_t	lseek();
