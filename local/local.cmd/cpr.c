@@ -2,7 +2,7 @@
 # include <sgtty.h>
 # include <signal.h>
 
-static char	SccsId[] =	"@(#)cpr.c	1.5		07/25/82";
+static char	SccsId[] =	"@(#)cpr.c	1.6		07/25/82";
 
 /*
 **  CPR -- print on concept 108
@@ -96,7 +96,7 @@ setupterm()
 	}
 	oldflags = tbuf.sg_flags;
 	tbuf.sg_flags &= ~ECHO;
-	tbuf.sg_flags |= CBREAK;
+	tbuf.sg_flags |= CBREAK | XTABS;
 	stty(1, &tbuf);
 	tbuf.sg_flags = oldflags;
 	if (SysLine > 0)
