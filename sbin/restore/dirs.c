@@ -16,12 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dirs.c	5.9 (Berkeley) 02/13/90";
+static char sccsid[] = "@(#)dirs.c	5.10 (Berkeley) 02/15/90";
 #endif /* not lint */
 
 #include "restore.h"
 #include <protocols/dumprestore.h>
 #include <sys/file.h>
+#include <ufs/dir.h>
 #include "pathnames.h"
 
 /*
@@ -49,6 +50,20 @@ struct modeinfo {
 	short uid;
 	short gid;
 };
+
+/*
+ * Definitions for library routines operating on directories.
+ */
+#define DIRBLKSIZ DEV_BSIZE
+struct dirdesc {
+	int	dd_fd;
+	long	dd_loc;
+	long	dd_size;
+	char	dd_buf[DIRBLKSIZ];
+};
+extern DIR *opendirfile();
+extern long rst_telldir();
+extern void rst_seekdir();
 
 /*
  * Global variables for this file.
