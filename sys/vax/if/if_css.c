@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_css.c	7.1 (Berkeley) 06/05/86
+ *	@(#)if_css.c	7.2 (Berkeley) 12/05/87
  */
 
 #include "css.h"
@@ -144,7 +144,7 @@ cssattach(ui)
         ip->ic_start = cssstart;
 	sc->css_ifuba.ifu_flags = UBA_CANTWAIT | UBA_NEED16;
 #ifdef notdef
-	sc->css_ifuba.ifu_flags =| UBA_NEEDBDP;
+	sc->css_ifuba.ifu_flags |= UBA_NEEDBDP;
 #endif
 }
 
