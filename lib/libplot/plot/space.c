@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1983 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)space.c	4.1 (Berkeley) 06/27/83";
-#endif
+static char sccsid[] = "@(#)space.c	4.2 (Berkeley) 04/22/91";
+#endif /* not lint */
 
 #include <stdio.h>
 space(x0,y0,x1,y1){
