@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.15 (Berkeley) 05/22/93
+ *	@(#)extern.h	8.1 (Berkeley) 05/31/93
  */
 
 #include <sys/cdefs.h>

@@ -1,12 +1,12 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)str.c	5.13 (Berkeley) 05/22/93";
+static char sccsid[] = "@(#)str.c	8.1 (Berkeley) 05/31/93";
 #endif /* not lint */
 
 #define MALLOC_INCR	128
