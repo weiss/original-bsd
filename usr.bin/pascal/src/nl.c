@@ -1,13 +1,12 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)nl.c 1.11 05/31/83";
+static	char sccsid[] = "@(#)nl.c 1.12 05/31/83";
 
 #include "whoami.h"
 #include "0.h"
+#ifdef PI
 #include "opcode.h"
 #include "objfmt.h"
-
-#ifdef PI
 
 /*
  * NAMELIST SEGMENT DEFINITIONS
