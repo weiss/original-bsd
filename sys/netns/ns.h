@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ns.h	6.10 (Berkeley) 02/04/86
+ *	@(#)ns.h	6.11 (Berkeley) 02/14/86
  */
 
 /*
@@ -67,6 +67,11 @@ union ns_host {
 union ns_net {
 	u_char	c_net[4];
 	u_short	s_net[2];
+};
+
+union ns_net_u {
+	union ns_net	net_e;
+	u_long		long_e;
 };
 
 struct ns_addr {
