@@ -1,7 +1,7 @@
 /*
- * sccsid = "@(#)machdep.h	1.3 03/18/83";
+ * sccsid = "@(#)machdep.h	1.4 05/19/83";
  */
-#define LOGFILE "/usr/public/.shipslog"
+#define LOGFILE "/usr/public/lib/shipslog"
 #define DRIVER "/usr/public/.driver"
 #define DRIVERNAME ".driver"
 #define UCBCORY
