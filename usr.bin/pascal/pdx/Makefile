@@ -2,7 +2,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.17 (Berkeley) 04/25/86
+#	@(#)Makefile	1.18 (Berkeley) 04/07/87
 #
 # make file for pdx
 #
@@ -31,7 +31,8 @@ SRCDIR	= ../src/
 INSTALL	= ${DESTDIR}/usr/ucb/pdx
 
 RM	= /bin/rm -f
-CFLAGS	= -Disvaxpx -I.. -I../${SRCDIR} -DOBJ -DADDR32 -O
+CFLAGS	= -I.. -I../${SRCDIR} -DOBJ -DADDR32 -O
+LINTFLAGS= -I. -I${SRCDIR} -DOBJ -DADDR32
 LDFLAGS	= # -i for pdp-11
 
 .c.o:
@@ -41,10 +42,6 @@ LDFLAGS	= # -i for pdp-11
 	    if ($$a:h != $$a) cd $$a:h; \
 	    ${CC} ${CFLAGS} -c $$a:t \
 	'
-
-.s.o:
-	@echo "assembling $*.s"
-	@cc -c $*.s
 
 #
 # source directory specifications
@@ -103,8 +100,7 @@ MACHOBJ =\
 	${MACHINE}optab.o\
 	${MACHINE}printdata.o\
 	${MACHINE}printerror.o\
-	${MACHINE}printinst.o\
-	${MACHINE}pxerrors.o
+	${MACHINE}printinst.o
 
 PROCOBJ =\
 	${PROCESS}runcont.o\
@@ -156,6 +152,15 @@ a.out: ${OBJS} ${LIB}
 profile: ${OBJS}
 	@echo "linking with -p"
 	@cc ${LDFLAGS} -p ${OBJS} ${LIB}
+
+lint:
+	@cd ${COMMAND}; yacc -d grammar.yacc; lex token.lex
+	-@lint ${LINTFLAGS} `echo ${OBJS} library.c | sed 's/\.o/.c/g'`
+	@${RM} ${COMMAND}lex.yy.c ${COMMAND}y.tab.c
+
+cerror.o:
+	@echo "assembling `machine`/$*.s"
+	@cc -c `machine`/$*.s
 
 ${COMMAND}y.tab.o: ${COMMAND}grammar.yacc
 	cd ${COMMAND}; yacc -d grammar.yacc; cc -c ${CFLAGS} y.tab.c
