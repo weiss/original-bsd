@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.38 (Berkeley) 05/21/93";
+static char sccsid[] = "@(#)readcf.c	6.39 (Berkeley) 05/21/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1429,8 +1429,10 @@ makemapentry(line)
 	map->s_map.map_class = &class->s_mapclass;
 	map->s_map.map_mname = newstr(mapname);
 
-	if ((*class->s_mapclass.map_parse)(&map->s_map, p))
-		map->s_map.map_mflags |= MF_VALID;
+	/* XXX shouldn't open the map here -- wait until usage time */
+	if (class->s_mapclass.map_parse(&map->s_map, p) &&
+	    class->s_mapclass.map_open(&map->s_map, O_RDONLY))
+		map->s_map.map_mflags |= MF_VALID|MF_OPEN;
 }
 /*
 **  SETTIMEOUTS -- parse and set timeout values
