@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs.h	7.16 (Berkeley) 03/16/92
+ *	@(#)nfs.h	7.17 (Berkeley) 08/11/92
  */
 
 /*
@@ -172,6 +172,14 @@ struct nfsstats nfsstats;
  */
 #define	NUIDHASHSIZ	32
 #define	NUIDHASH(uid)	((uid) & (NUIDHASHSIZ - 1))
+
+/*
+ * Network address hash list element
+ */
+union nethostaddr {
+	u_long had_inetaddr;
+	struct mbuf *had_nam;
+};
 
 struct nfsuid {
 	struct nfsuid	*nu_lrunext;	/* MUST be first */
