@@ -1,6 +1,10 @@
-# Copyright (c) 1982 Regents of the University of California
+#!/bin/csh -f
 #
-# static char sccsid[] = "@(#)cerror.vax.s	1.3 (Berkeley) 03/01/85";
+# Copyright (c) 1983 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)cerror.vax.s	5.1 (Berkeley) 05/31/85
 #
 # static char rcsid[] = "$Header: cerror.s,v 1.5 84/12/26 10:38:33 linton Exp $";
 #
