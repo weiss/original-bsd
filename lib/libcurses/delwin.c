@@ -3,7 +3,7 @@
 /*
  *	This routine deletes a window and releases it back to the system.
  *
- * 04/06/83 (Berkeley) @(#)delwin.c	1.3
+ * 04/06/83 (Berkeley) @(#)delwin.c	1.4
  */
 delwin(win)
 reg WINDOW	*win; {
