@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.30 (Berkeley) 06/25/90
+#	@(#)Makefile	5.31 (Berkeley) 07/01/90
 
 SUBDIR=	cat chmod cp csh date dd df echo ed expr hostname kill ls mkdir \
 	mv ps pwd rcp rm rmail rmdir sh sleep stty sync tar test
 
 .if   make(clean) || make(cleandir)
-SUBDIR+=adb
+SUBDIR+=
 .elif ${MACHINE} == "tahoe"
 SUBDIR+=adb
 .elif ${MACHINE} == "vax"
