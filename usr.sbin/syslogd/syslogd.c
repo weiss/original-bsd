@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.13 (Berkeley) 05/26/86";
+static char sccsid[] = "@(#)syslogd.c	5.14 (Berkeley) 10/21/86";
 #endif not lint
 
 /*
@@ -797,9 +797,15 @@ init()
 	 *  Close all open log files.
 	 */
 	for (f = Files; f < &Files[NLOGS]; f++) {
-		if (f->f_type == F_FILE || f->f_type == F_TTY)
+		switch (f->f_type) {
+		  case F_FILE:
+		  case F_TTY:
+		  case F_FORW:
+		  case F_CONSOLE:
 			(void) close(f->f_file);
-		f->f_type = F_UNUSED;
+			f->f_type = F_UNUSED;
+			break;
+		}
 	}
 
 	/* open the configuration file */
