@@ -1,4 +1,4 @@
-/*	@(#)macdefs.h	1.4	(Berkeley)	08/28/85	*/
+/*	@(#)macdefs.h	1.5	(Berkeley)	01/08/86	*/
 
 #if defined(pdp11) || defined(vax)
 #define makecc(val,i)  lastcon |= val<<(8*i);  /* pdp-11 womp next char  */
@@ -71,6 +71,7 @@ extern int ALSTRUCT;
 # define vfdzero(n) (inoff += (n))
 # define aobeg()
 # define aoend()
+# define econvert(p)
 
 # ifndef unix
 # define NOFORTRAN  {extern int pflag; if(pflag) werror( "fortran keyword nonportable" );}
