@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Herb Hasler and Rick Macklem at The University of Guelph.
@@ -9,13 +9,13 @@
  */
 
 #ifndef lint
-char copyright[] =
-"@(#) Copyright (c) 1989 Regents of the University of California.\n\
- All rights reserved.\n";
+static char copyright[] =
+"@(#) Copyright (c) 1989, 1993\n\
+	The Regents of the University of California.  All rights reserved.\n";
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)mountd.c	5.25 (Berkeley) 04/09/93";
+static char sccsid[] = "@(#)mountd.c	8.1 (Berkeley) 06/05/93";
 #endif not lint
 
 #include <pwd.h>
