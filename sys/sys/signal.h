@@ -1,4 +1,4 @@
-/*	signal.h	4.2	83/06/09	*/
+/*	signal.h	4.3	83/08/08	*/
 
 #ifndef	NSIG
 #define NSIG	32
@@ -47,7 +47,6 @@
 
 #ifndef KERNEL
 int	(*signal())();
-int	(*sigvec())();
 #endif
 
 /*
