@@ -1,4 +1,5 @@
-/* @(#)r.h	1.1 (Berkeley) 12/15/82 */
+/*	r.h	1.2	83/08/11	*/
+
 #include <stdio.h>
 #include "y.tab.h"
 
