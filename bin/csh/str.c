@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)str.c	5.7 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)str.c	5.8 (Berkeley) 07/22/91";
 #endif /* not lint */
 
 #define MALLOC_INCR	128
@@ -15,7 +15,6 @@ static char sccsid[] = "@(#)str.c	5.7 (Berkeley) 07/19/91";
  * tc.str.c: Short string package
  * 	     This has been a lesson of how to write buggy code!
  */
-#ifdef SHORT_STRINGS
 
 #if __STDC__
 # include <stdarg.h>
@@ -25,6 +24,8 @@ static char sccsid[] = "@(#)str.c	5.7 (Berkeley) 07/19/91";
 
 #include "csh.h"
 #include "extern.h"
+
+#ifdef SHORT_STRINGS
 
 Char  **
 blk2short(src)
