@@ -11,10 +11,10 @@
  *
  * from: Utah $Hdr: hpux.h 1.19 92/01/20$
  *
- *	@(#)hpux.h	7.6 (Berkeley) 06/05/92
+ *	@(#)hpux.h	7.7 (Berkeley) 10/11/92
  */
 
-#include "hpux_exec.h"
+#include <hp/hpux/hpux_exec.h>
 
 /* HP-UX style UTSNAME struct used by uname syscall */
 
