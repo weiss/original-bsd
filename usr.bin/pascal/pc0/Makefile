@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.18 04/01/81"
+SCCSID = "@(#)Makefile 1.19 07/23/81"
 WHOAMI = pc
 INSTALLNAME = $(DESTDIR)/usr/lib/pc0
 VERSION = 2.0
@@ -107,7 +107,6 @@ print:	sources
 
 install: a.out
 	cp ${ERRORSTRINGS} ${LIBDIR}/${ERRORSTRINGS}
-	cp ${INSTALLNAME} ${INSTALLNAME}.bak
 	cp a.out ${INSTALLNAME}
 
 depend:	sources
@@ -323,6 +322,7 @@ subr.o: whoami.h
 subr.o: 0.h
 tmps.o: whoami.h
 tmps.o: 0.h
+tmps.o: pc.h
 tree.o: whoami.h
 tree.o: 0.h
 type.o: whoami.h
