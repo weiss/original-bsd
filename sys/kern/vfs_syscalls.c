@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_syscalls.c	7.32 (Berkeley) 11/30/89
+ *	@(#)vfs_syscalls.c	7.33 (Berkeley) 12/19/89
  */
 
 #include "param.h"
@@ -93,7 +93,7 @@ mount(scp)
 		vput(vp);
 		RETURN (ENOTDIR);
 	}
-	if (uap->type > MOUNT_MAXTYPE ||
+	if ((unsigned long)uap->type > MOUNT_MAXTYPE ||
 	    vfssw[uap->type] == (struct vfsops *)0) {
 		vput(vp);
 		RETURN (ENODEV);
