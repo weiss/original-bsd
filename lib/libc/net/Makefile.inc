@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.9 (Berkeley) 03/09/93
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 # machine-independent net sources
 .PATH: ${.CURDIR}/${MACHINE}/net ${.CURDIR}/net
