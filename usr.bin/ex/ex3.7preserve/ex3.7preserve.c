@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-static char *sccsid = "@(#)ex3.7preserve.c	4.2 08/01/80";
+static char *sccsid = "@(#)ex3.7preserve.c	5.1 08/20/80";
 #include <stdio.h>
 #include <ctype.h>
 #include <sys/types.h>
