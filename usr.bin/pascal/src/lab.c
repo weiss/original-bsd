@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)lab.c 1.8 03/25/81";
+static char sccsid[] = "@(#)lab.c 1.9 06/01/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -130,8 +130,8 @@ gotoop(s)
 		     */
 		putleaf( P2ICON , 0 , 0 , ADDTYPE( P2FTN | P2INT , P2PTR )
 			, "_GOTO" );
-		putLV( DISPLAYNAME , 0 , bn * sizeof( struct dispsave )
-			, P2PTR | P2INT );
+		putLV( DISPLAYNAME , 0 , bn * sizeof( struct dispsave ) ,
+			NGLOBAL , P2PTR | P2INT );
 		putop( P2CALL , P2INT );
 		putdot( filename , line );
 	    }
