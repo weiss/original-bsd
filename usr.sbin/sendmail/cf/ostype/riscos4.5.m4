@@ -8,4 +8,9 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)riscos4.5.m4	8.1 (Berkeley) 06/07/93')
+VERSIONID(`@(#)riscos4.5.m4	8.2 (Berkeley) 12/01/93')
+
+define(`LOCAL_MAILER_ARGS', `rmail -d $u')dnl
+define(`ALIAS_FILE', `/usr/lib/aliases')dnl
+define(`QUEUE_DIR', `/usr/spool/mqueue')dnl
+define(`HELP_FILE', `/usr/lib/sendmail.hf')dnl
