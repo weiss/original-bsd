@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)strings.h	5.1 (Berkeley) 05/30/85
+ *	@(#)strings.h	5.2 (Berkeley) 08/03/87
  */
 
 /*
@@ -14,6 +14,8 @@ char	*strcat();
 char	*strncat();
 int	strcmp();
 int	strncmp();
+int	strcasecmp();
+int	strncasecmp();
 char	*strcpy();
 char	*strncpy();
 int	strlen();
