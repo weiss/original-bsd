@@ -1,6 +1,13 @@
-/*	@(#)as.c	6.2 (Berkeley) 03/15/91
+/*-
+ * This code is derived from software copyrighted by the Free Software
+ * Foundation.
+ *
+ * Modified 1991 by Donn Seeley at UUNET Technologies, Inc.
+ */
 
-Modified for Berkeley Unix by Donn Seeley, donn@okeeffe.berkeley.edu  */
+#ifndef lint
+static char sccsid[] = "@(#)as.c	6.3 (Berkeley) 05/08/91";
+#endif /* not lint */
 
 /* as.c - GAS main program.
    Copyright (C) 1987 Free Software Foundation, Inc.
