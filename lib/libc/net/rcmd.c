@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rcmd.c	5.13 (Berkeley) 09/30/87";
+static char sccsid[] = "@(#)rcmd.c	5.14 (Berkeley) 10/22/87";
 #endif LIBC_SCCS and not lint
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ static char sccsid[] = "@(#)rcmd.c	5.13 (Berkeley) 09/30/87";
 #include <errno.h>
 
 extern	errno;
-char	*index(), *sprintf();
+char	*index();
 
 rcmd(ahost, rport, locuser, remuser, cmd, fd2p)
 	char **ahost;
