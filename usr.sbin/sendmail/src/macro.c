@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)macro.c	8.6 (Berkeley) 01/24/95";
+static char sccsid[] = "@(#)macro.c	8.7 (Berkeley) 02/21/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -391,21 +391,21 @@ macid(p, ep)
 **  WORDINCLASS -- tell if a word is in a specific class
 **
 **	Parameters:
-**		word -- the name of the word to look up.
+**		str -- the name of the word to look up.
 **		cl -- the class name.
 **
 **	Returns:
-**		TRUE if word can be found in cl.
+**		TRUE if str can be found in cl.
 **		FALSE otherwise.
 */
 
 bool
-wordinclass(word, cl)
-	char *word;
+wordinclass(str, cl)
+	char *str;
 	char cl;
 {
 	register STAB *s;
 
-	s = stab(word, ST_CLASS, ST_FIND);
+	s = stab(str, ST_CLASS, ST_FIND);
 	return s != NULL && bitnset(cl, s->s_class);
 }
