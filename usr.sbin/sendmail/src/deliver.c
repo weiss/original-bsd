@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.63 (Berkeley) 04/17/93";
+static char sccsid[] = "@(#)deliver.c	6.64 (Berkeley) 04/19/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -630,8 +630,10 @@ deliver(e, firstto)
 	*/
 
 	/* rewrite from address, using rewriting rules */
-	(void) strcpy(rpathbuf, remotename(e->e_from.q_paddr, m, TRUE, FALSE,
-					   TRUE, FALSE, e));
+	rcode = EX_OK;
+	(void) strcpy(rpathbuf, remotename(e->e_from.q_paddr, m,
+					   RF_SENDERADDR|RF_CANONICAL,
+					   &rcode, e));
 	define('g', rpathbuf, e);		/* translated return path */
 	define('h', host, e);			/* to host */
 	Errors = 0;
