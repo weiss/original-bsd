@@ -1,13 +1,16 @@
-# @(#)Makefile	4.2 10/21/82
+# @(#)Makefile	4.3 12/31/82
 OPTIONS=-DLOCALNET=46
 CFLAGS=	-O
 DESTDIR=
-ALL=	htable
+ALL=	htable gettable
 
-all:	htable
+all:	${ALL}
 
 htable:	htable.o parse.o scan.o
 	${CC} htable.o parse.o scan.o -o htable
+
+gettable: gettable.o
+	${CC} gettable.o -o gettable
 
 htable.o: htable.c htable.h
 	${CC} ${CFLAGS} ${OPTIONS} -c htable.c
@@ -28,4 +31,5 @@ clean:
 	rm -f ${ALL} *.o *.s y.tab.h errs
 
 install:
-	install htable ${DESTDIR}/etc
+	install -s htable ${DESTDIR}/etc/htable
+	install -s gettable ${DESTDIR}/etc/gettable
