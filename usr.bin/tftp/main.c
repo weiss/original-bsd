@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.10 (Berkeley) 03/01/91";
+static char sccsid[] = "@(#)main.c	5.11 (Berkeley) 09/11/92";
 #endif /* not lint */
 
 /* Many bug fixes are from Jim Guyton <guyton@rand-unix> */
@@ -531,6 +531,8 @@ command(top)
 		if (line[0] == 0)
 			continue;
 		makeargv();
+		if (margc == 0)
+			continue;
 		c = getcmd(margv[0]);
 		if (c == (struct cmd *)-1) {
 			printf("?Ambiguous command\n");
