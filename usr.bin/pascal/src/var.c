@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)var.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)var.c 1.2 08/31/80";
 
 #include "whoami.h"
 #include "0.h"
@@ -121,7 +121,7 @@ var(vline, vidl, vtype)
 			putprintf( ",%d" , 0 , w );
 			putprintf( "	.text" , 0 );
 		    }
-		    stabvar( vidl[1] , p2type( np ) , cbn , o2 , w );
+		    stabvar( vidl[1] , p2type( np ) , cbn , o2 , w , line );
 #		endif PC
 	}
 #	ifdef PTREE
