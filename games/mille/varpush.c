@@ -16,9 +16,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)varpush.c	5.4 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)varpush.c	5.5 (Berkeley) 05/02/90";
 #endif /* not lint */
 
+# include	<paths.h>
 # include	"mille.h"
 
 /*
@@ -63,7 +64,7 @@ over:
 				perror(buf);
 				goto over;
 			}
-			if (strcmp(buf, "/dev/null") != 0)
+			if (strcmp(buf, _PATH_DEVNULL) != 0)
 				setbuf(outf, (char *)NULL);
 		}
 #endif
