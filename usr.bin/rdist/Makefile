@@ -14,10 +14,10 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.7 (Berkeley) 03/14/89
+#	@(#)Makefile	5.8 (Berkeley) 05/11/89
 #
 LIBC=	/lib/libc.a
-RDIST=	/usr/ucb/rdist
+RDIST=	/usr/bin/rdist
 CFLAGS=	-g
 SRCS=	docmd.c expand.c gram.y lookup.c main.c server.c
 OBJS=	docmd.o expand.o gram.o lookup.o main.o server.o

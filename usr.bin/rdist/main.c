@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)main.c	5.4 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include "defs.h"
@@ -34,7 +34,7 @@ static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 06/29/88";
  */
 
 char	*distfile = NULL;
-char	tmpfile[] = "/tmp/rdistXXXXXX";
+char	tmpfile[] = _PATH_TMP;
 char	*tmpname = &tmpfile[5];
 
 int	debug;		/* debugging flag */
