@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: locore.s 1.66 92/12/22$
  *
- *	@(#)locore.s	7.19 (Berkeley) 12/27/92
+ *	@(#)locore.s	7.20 (Berkeley) 12/28/92
  */
 
 /*
@@ -1497,12 +1497,6 @@ ENTRY(swtch_exit)
 	movl	#nullpcb,_curpcb	| save state into garbage pcb
 	lea	tmpstk,sp		| goto a tmp stack
 	jra	_cpu_swtch
-#ifdef GPROF
-	nop
-	nop
-	nop
-	nop
-#endif
 
 /*
  * When no processes are on the runq, Swtch branches to idle
