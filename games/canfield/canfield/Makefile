@@ -1,10 +1,11 @@
-#	@(#)Makefile	5.6 (Berkeley) 05/11/90
+#	@(#)Makefile	5.7 (Berkeley) 04/08/91
 
 PROG=	canfield
 MAN6=	canfield.0
 DPADD=	${LIBCURSES} ${LIBTERM} ${LIBCOMPAT}
 LDADD=	-lcurses -ltermcap -lcompat
-SUBDIR=	cfscores
 HIDEGAME=hidegame
 
+
+.include "../../Makefile.inc"
 .include <bsd.prog.mk>
