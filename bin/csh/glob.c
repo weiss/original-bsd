@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)glob.c	5.24 (Berkeley) 07/26/91";
+static char sccsid[] = "@(#)glob.c	5.25 (Berkeley) 07/28/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -238,7 +238,7 @@ globexpand(v)
 	Char   *b;
 	Char  **vp, **bp;
 
-	if ((b = Strchr(s, LBRC)) != NULL && b[1] != '\0') {
+	if ((b = Strchr(s, LBRC)) != NULL && b[1] != '\0' && b[1] != RBRC) {
 	    Char  **bl;
 	    int     len;
 
