@@ -1,9 +1,11 @@
 #ifndef lint
-static char sccsid[] = "@(#)dbm.c	4.4 (Berkeley) 06/04/85";
+static char sccsid[] = "@(#)dbm.c	4.5 (Berkeley) 06/19/85";
 #endif
 
 #include	"dbm.h"
+#undef		NULL
 #include	<sys/types.h>
+#undef		setbit
 #include	<sys/stat.h>
 
 dbminit(file)
