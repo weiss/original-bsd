@@ -1,7 +1,7 @@
 /*
 **  CONF.H -- All user-configurable parameters for sendmail
 **
-**	@(#)conf.h	4.2		03/11/84
+**	@(#)conf.h	4.3		04/28/85
 */
 
 
@@ -33,3 +33,4 @@
 #define QUEUE		1	/* enable queueing */
 #define UGLYUUCP	1	/* output ugly UUCP From lines */
 #define DAEMON		1	/* include the daemon (requires IPC) */
+#define FLOCK		1	/* use flock file locking */
