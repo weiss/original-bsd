@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty_conf.c	8.2 (Berkeley) 09/05/93
+ *	@(#)tty_conf.c	8.3 (Berkeley) 09/23/93
  */
 
 #include <sys/param.h>
@@ -73,7 +73,7 @@ struct	linesw linesw[] =
 #endif
 };
 
-int	nldisp = sizeof (linesw) / sizeof (linesw[0]);
+int	nlinesw = sizeof (linesw) / sizeof (linesw[0]);
 
 /*
  * Do nothing specific version of line
