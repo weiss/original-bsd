@@ -1,4 +1,4 @@
-/*	@(#)stdio.h	1.3 (Berkeley) 03/02/83	*/
+/*	@(#)stdio.h	1.4 (Berkeley) 06/30/83	*/
 #define	BUFSIZ	1024
 #define	_NFILE	20
 # ifndef FILE
@@ -41,4 +41,6 @@ FILE	*fdopen();
 FILE	*freopen();
 long	ftell();
 char	*fgets();
-char	*sprintf();
+#ifdef vax
+char	*sprintf();		/* too painful to do right */
+#endif
