@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cat.c	5.13 (Berkeley) 05/02/91";
+static char sccsid[] = "@(#)cat.c	5.14 (Berkeley) 05/06/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -76,6 +76,8 @@ main(argc, argv)
 		cook_args(argv);
 	else
 		raw_args(argv);
+	if (fclose(stdout))
+		err(1, "stdout: %s", strerror(errno));
 	exit(rval);
 }
 
