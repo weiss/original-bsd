@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ffs.c	5.4 (Berkeley) 05/17/90";
+static char sccsid[] = "@(#)ffs.c	5.5 (Berkeley) 10/04/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <string.h>
@@ -14,6 +14,7 @@ static char sccsid[] = "@(#)ffs.c	5.4 (Berkeley) 05/17/90";
 /*
  * ffs -- vax ffs instruction
  */
+int
 ffs(mask)
 	register int mask;
 {
