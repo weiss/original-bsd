@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)process.c	5.10 (Berkeley) 12/02/92";
+static char sccsid[] = "@(#)process.c	5.11 (Berkeley) 01/06/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -203,6 +203,8 @@ redirect:
 					    cp->t, strerror(errno));
 				break;
 			case 'x':
+				if (hs == NULL)
+					cspace(&HS, "", 0, REPLACE);
 				tspace = PS;
 				PS = HS;
 				HS = tspace;
