@@ -17,12 +17,12 @@
 
 # ifndef QUEUE
 # ifndef lint
-static char	SccsId[] = "@(#)queue.c	5.21 (Berkeley) 04/17/86	(no queueing)";
+static char	SccsId[] = "@(#)queue.c	5.22 (Berkeley) 10/14/86	(no queueing)";
 # endif not lint
 # else QUEUE
 
 # ifndef lint
-static char	SccsId[] = "@(#)queue.c	5.21 (Berkeley) 04/17/86";
+static char	SccsId[] = "@(#)queue.c	5.22 (Berkeley) 10/14/86";
 # endif not lint
 
 /*
@@ -352,7 +352,9 @@ runqueue(forkflag)
 		free(w->w_name);
 		free((char *) w);
 	}
-	finis();
+
+	/* exit without the usual cleanup */
+	exit(ExitStat);
 }
 /*
 **  ORDERQ -- order the work queue.
