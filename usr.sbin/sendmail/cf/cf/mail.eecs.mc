@@ -8,16 +8,16 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(@(#)mail.eecs.mc	2.8 (Berkeley) 06/25/92)
-OSTYPE(hpux)dnl
-DOMAIN(cs.exposed)dnl
+VERSIONID(@(#)mail.eecs.mc	2.9 (Berkeley) 07/24/92)
+OSTYPE(ultrix)dnl
+DOMAIN(eecs.hidden)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
 define(`USERDB_SPEC', `/usr/local/lib/users.cs.db,/usr/local/lib/users.eecs.db')dnl
 DDBerkeley.EDU
 
 # hosts for which we accept and forward mail (must be in .Berkeley.EDU)
-CF CS ucbarpa arpa ucbernie ernie renoir monet dali
+CF EECS
 
 LOCAL_RULE_0
 R< @ $=F . $D . > : $*		$@ $>7 $2		@here:... -> ...
