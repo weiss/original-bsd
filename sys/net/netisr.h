@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)netisr.h	6.2 (Berkeley) 06/08/85
+ *	@(#)netisr.h	6.3 (Berkeley) 08/02/85
  */
 
 /*
@@ -26,8 +26,8 @@
  */
 #define	NETISR_RAW	0		/* same as AF_UNSPEC */
 #define	NETISR_IP	2		/* same as AF_INET */
+#define	NETISR_IMP	3		/* same as AF_IMPLINK */
 #define	NETISR_NS	6		/* same as AF_NS */
-#define	NETISR_ND	7		/* network disk protocol */
 
 #define	schednetisr(anisr)	{ netisr |= 1<<(anisr); setsoftnet(); }
 
