@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dh.c	6.13 (Berkeley) 11/08/85
+ *	@(#)dh.c	6.14 (Berkeley) 11/22/85
  */
 
 #include "dh.h"
