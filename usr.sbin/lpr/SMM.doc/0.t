@@ -3,13 +3,13 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)0.t	6.6 (Berkeley) 04/17/91
+.\"	@(#)0.t	6.7 (Berkeley) 06/05/93
 .\"
 .if n .ND
 .TL
 4.3BSD Line Printer Spooler Manual
-.EH 'SMM:6-%''4.3BSD Line Printer Spooler Manual'
-.OH '4.3BSD Line Printer Spooler Manual''SMM:6-%'
+.EH 'SMM:7-%''4.3BSD Line Printer Spooler Manual'
+.OH '4.3BSD Line Printer Spooler Manual''SMM:7-%'
 .AU
 Ralph Campbell
 .AI
