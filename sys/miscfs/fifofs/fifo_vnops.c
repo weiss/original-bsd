@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fifo_vnops.c	7.8 (Berkeley) 11/05/91
+ *	@(#)fifo_vnops.c	7.9 (Berkeley) 02/03/92
  */
 
 #include "param.h"
@@ -79,14 +79,13 @@ struct vnodeops fifo_vnodeops = {
  * Trivial lookup routine that always fails.
  */
 /* ARGSUSED */
-fifo_lookup(vp, ndp, p)
-	struct vnode *vp;
-	struct nameidata *ndp;
-	struct proc *p;
+fifo_lookup(dvp, vpp, cnp)
+	struct vnode *dvp;
+	struct vnode **vpp;
+	struct componentname *cnp;
 {
-
-	ndp->ni_dvp = vp;
-	ndp->ni_vp = NULL;
+	
+	*vpp = NULL;
 	return (ENOTDIR);
 }
 
