@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_quota.c	7.5 (Berkeley) 08/29/90
+ *	@(#)ufs_quota.c	7.6 (Berkeley) 11/08/90
  */
 #include "param.h"
 #include "time.h"
@@ -837,8 +837,11 @@ dqsync(vp, dq)
 	while (dq->dq_flags & DQ_LOCK) {
 		dq->dq_flags |= DQ_WANT;
 		sleep((caddr_t)dq, PINOD+2);
-		if ((dq->dq_flags & DQ_MOD) == 0)
+		if ((dq->dq_flags & DQ_MOD) == 0) {
+			if (vp != dqvp)
+				VOP_UNLOCK(dqvp);
 			return (0);
+		}
 	}
 	dq->dq_flags |= DQ_LOCK;
 	auio.uio_iov = &aiov;
