@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vnops.c	7.97 (Berkeley) 10/09/92
+ *	@(#)nfs_vnops.c	7.98 (Berkeley) 10/12/92
  */
 
 /*
@@ -2166,7 +2166,7 @@ loop:
 		bremfree(bp);
 		bp->b_flags |= B_BUSY;
 		splx(s);
-		error = bawrite(bp);
+		bawrite(bp);
 		goto loop;
 	}
 	if (ap->a_waitfor == MNT_WAIT) {
