@@ -3,13 +3,13 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4	(Berkeley)	12/12/87
+#	@(#)Makefile	5.5	(Berkeley)	12/20/87
 #
 
 all: aard
 
 aard: FRC
-	../ddl/ddlcomp aard < aard.ddl > ddlcomp.out
+	-../ddl/ddlcomp aard < aard.ddl > ddlcomp.out
 
 clean: FRC
 	rm -f ddlcomp.out aard
