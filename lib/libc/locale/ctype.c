@@ -6,12 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ctype.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)ctype.c	5.7 (Berkeley) 03/12/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <ctype.h>
 
-char _ctype_[1 + 256] = {
+char __ctype[1 + 256] = {
 	0,
 	_C,	_C,	_C,	_C,	_C,	_C,	_C,	_C,
 	_C,	_C|_S,	_C|_S,	_C|_S,	_C|_S,	_C|_S,	_C,	_C,
