@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.71		01/03/83);
+SCCSID(@(#)parseaddr.c	3.72		01/06/83);
 
 /*
 **  PARSEADDR -- Parse an address
@@ -965,6 +965,10 @@ remotename(name, m, senderaddress)
 	if (tTd(12, 1))
 		printf("remotename(%s)\n", name);
 # endif DEBUG
+
+	/* don't do anything if we are tagging it as special */
+	if ((senderaddress ? m->m_s_rwset : m->m_r_rwset) < 0)
+		return (name);
 
 	/*
 	**  Do a heuristic crack of this name to extract any comment info.
