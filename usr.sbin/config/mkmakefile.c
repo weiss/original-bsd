@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkmakefile.c	5.12 (Berkeley) 04/06/87";
+static char sccsid[] = "@(#)mkmakefile.c	5.13 (Berkeley) 05/03/87";
 #endif not lint
 
 /*
@@ -437,7 +437,7 @@ do_cfiles(fp)
 				lpos = 8;
 				fputs("\\\n\t", fp);
 			}
-			fprintf(fp, "../%s ", swapname);
+			fprintf(fp, "../%s/%s ", machinename, swapname);
 			lpos += len + 1;
 		}
 	if (lpos != 8)
