@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)pl_1.c	1.3 83/03/19";
+static	char *sccsid = "@(#)pl_1.c	1.4 83/05/19";
 #endif
 #include "player.h"
 #include <sys/types.h>
@@ -562,7 +562,8 @@ main(argc, argv)
 int argc;
 char ** argv;
 {
-    register int crew, aheadfirst, ta, ma, n;
+    register int crew, aheadfirst, ma, n;
+    int ta;
     char message[60], ch;
     int uid;
     char nodrive = 0, randomize = 0, *badstring();
