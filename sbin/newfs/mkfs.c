@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkfs.c	8.8 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)mkfs.c	8.9 (Berkeley) 05/01/95";
 #endif /* not lint */
 
 #include <unistd.h>
@@ -811,9 +811,9 @@ fsinit(utime)
 	/*
 	 * initialize the node
 	 */
-	node.di_atime.ts_sec = utime;
-	node.di_mtime.ts_sec = utime;
-	node.di_ctime.ts_sec = utime;
+	node.di_atime = utime;
+	node.di_mtime = utime;
+	node.di_ctime = utime;
 #ifdef LOSTDIR
 	/*
 	 * create the lost+found directory
