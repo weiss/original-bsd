@@ -1,6 +1,4 @@
-(Version 6.5 of 03/31/93)
-
-RFC 931 validation.
+(Version 6.6 of 04/04/93)
 
 Database (keyed lookup) locking.
 
