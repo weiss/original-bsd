@@ -17,9 +17,10 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)mail.eecs.mc	8.6 (Berkeley) 04/21/95')
-OSTYPE(ultrix4.1)dnl
-DOMAIN(eecs.hidden)dnl
+VERSIONID(`@(#)mail.eecs.mc	8.7 (Berkeley) 04/21/95')
+OSTYPE(ultrix4)dnl
+DOMAIN(EECS.Berkeley.EDU)dnl
+MASQUERADE_AS(EECS.Berkeley.EDU)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
 define(`confUSERDB_SPEC', `/usr/local/lib/users.eecs.db,/usr/local/lib/users.cs.db,/usr/local/lib/users.coe.db')dnl
