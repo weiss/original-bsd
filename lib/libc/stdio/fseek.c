@@ -1,6 +1,6 @@
-#ifndef lint
-static char sccsid[] = "@(#)fseek.c	5.2 (Berkeley) 03/01/86";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)fseek.c	5.3 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /*
  * Seek for standard library.  Coordinates with buffering.
