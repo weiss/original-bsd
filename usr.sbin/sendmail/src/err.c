@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)err.c	8.9 (Berkeley) 09/19/93";
+static char sccsid[] = "@(#)err.c	8.10 (Berkeley) 10/03/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -394,8 +394,12 @@ fmtmsg(eb, to, num, eno, fmt, ap)
 		eb += strlen(eb);
 	}
 
-	if (CurEnv->e_message == NULL && strchr("45", num[0]) != NULL)
+	if (num[0] == '5' || (CurEnv->e_message == NULL && num[0] == '4'))
+	{
+		if (CurEnv->e_message != NULL)
+			free(CurEnv->e_message);
 		CurEnv->e_message = newstr(meb);
+	}
 }
 /*
 **  ERRSTRING -- return string description of error code
