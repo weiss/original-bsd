@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signal.h	5.4 (Berkeley) 11/12/91
+ *	@(#)signal.h	5.5 (Berkeley) 02/03/93
  */
 
 #ifndef _USER_SIGNAL_H
@@ -15,8 +15,8 @@
 #include <sys/signal.h>
 
 #if !defined(_ANSI_SOURCE) && !defined(_POSIX_SOURCE)
-extern char *sys_signame[NSIG];
-extern char *sys_siglist[NSIG];
+extern char *const sys_signame[NSIG];
+extern char *const sys_siglist[NSIG];
 #endif
 
 __BEGIN_DECLS
