@@ -10,9 +10,9 @@
 
 #ifndef lint
 # ifdef DBM
-static char	SccsId[] = "@(#)alias.c	5.3.1.1 (Berkeley) 09/19/85	(with DBM)";
+static char	SccsId[] = "@(#)alias.c	5.4 (Berkeley) 09/19/85	(with DBM)";
 # else DBM
-static char	SccsId[] = "@(#)alias.c	5.3.1.1 (Berkeley) 09/19/85	(without DBM)";
+static char	SccsId[] = "@(#)alias.c	5.4 (Berkeley) 09/19/85	(without DBM)";
 # endif DBM
 #endif not lint
 

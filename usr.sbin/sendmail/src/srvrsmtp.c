@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.5.1.1 (Berkeley) 09/19/85	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.8 (Berkeley) 09/19/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.5.1.1 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.8 (Berkeley) 09/19/85";
 # endif not lint
 
 /*
@@ -78,9 +78,11 @@ static struct cmd	CmdTab[] =
 # ifdef DEBUG
 	"showq",	CMDDBGQSHOW,
 	"debug",	CMDDBGDEBUG,
-	"kill",		CMDDBGKILL,
-	"wiz",		CMDDBGWIZ,
 # endif DEBUG
+# ifdef WIZ
+	"kill",		CMDDBGKILL,
+# endif WIZ
+	"wiz",		CMDDBGWIZ,
 	NULL,		CMDERROR,
 };
 
@@ -420,7 +422,9 @@ smtp()
 			tTflag(p);
 			message("200", "Debug set");
 			break;
+# endif DEBUG
 
+# ifdef WIZ
 		  case CMDDBGKILL:	/* kill the parent */
 			if (!iswiz())
 				break;
@@ -446,7 +450,12 @@ smtp()
 			}
 			message("500", "You are no wizard!");
 			break;
-# endif DEBUG
+
+# else WIZ
+		  case CMDDBGWIZ:	/* try to become a wizard */
+			message("500", "You wascal wabbit!  Wandering wizards won't win!");
+			break;
+# endif WIZ
 
 		  case CMDERROR:	/* unknown command */
 			message("500", "Command unrecognized");
@@ -580,7 +589,7 @@ help(topic)
 **		Prints a 500 exit stat if we are not a wizard.
 */
 
-#ifdef DEBUG
+#ifdef WIZ
 
 bool
 iswiz()
@@ -590,7 +599,7 @@ iswiz()
 	return (IsWiz);
 }
 
-#endif DEBUG
+#endif WIZ
 /*
 **  RUNINCHILD -- return twice -- once in the child, then in the parent again
 **
@@ -637,11 +646,9 @@ runinchild(label)
 		{
 			/* child */
 			InChild = TRUE;
+			clearenvelope(CurEnv);
 		}
 	}
-
-	/* child (or ONEX command specified) */
-	clearenvelope(CurEnv);
 
 	/* open alias database */
 	initaliases(AliasFile, FALSE);

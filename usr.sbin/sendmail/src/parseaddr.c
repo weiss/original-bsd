@@ -10,7 +10,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)parseaddr.c	5.1.1.1 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)parseaddr.c	5.2 (Berkeley) 09/19/85";
 #endif not lint
 
 # include "sendmail.h"

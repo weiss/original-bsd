@@ -7,7 +7,7 @@
 **  All rights reserved.  The Berkeley software License Agreement
 **  specifies the terms and conditions for redistribution.
 **
-**	@(#)sendmail.h	5.1.1.1 (Berkeley) 09/19/85
+**	@(#)sendmail.h	5.3 (Berkeley) 09/19/85
 */
 
 /*
@@ -19,7 +19,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.1.1.1		09/19/85";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.3		09/19/85";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -193,6 +193,7 @@ extern struct hdrinfo	HdrInfo[];
 # define H_FORCE	00100	/* force this field, even if default */
 # define H_TRACE	00200	/* this field contains trace information */
 # define H_FROM		00400	/* this is a from-type field */
+# define H_VALID	01000	/* this field has a validated value */
 /*
 **  Envelope structure.
 **	This structure defines the message itself.  There is usually

@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)conf.c	5.3.1.1 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)conf.c	5.6 (Berkeley) 09/19/85";
 #endif not lint
 
 # include <pwd.h>
@@ -371,7 +371,8 @@ username()
 			if(getuid() != pw->pw_uid)
 			{
 				pw = getpwuid(getuid());
-				myname = pw->pw_name;
+				if (pw != NULL)
+					myname = pw->pw_name;
 			}
 		}
 		if (myname == NULL || myname[0] == '\0')
@@ -559,7 +560,7 @@ getla()
 
 	if (kmem < 0)
 	{
-		kmem = open("/dev/kmem", 0);
+		kmem = open("/dev/kmem", 0, 0);
 		if (kmem < 0)
 			return (-1);
 		(void) ioctl(kmem, (int) FIOCLEX, (char *) 0);
@@ -567,7 +568,7 @@ getla()
 		if (Nl[0].n_type == 0)
 			return (-1);
 	}
-	if (lseek(kmem, (off_t) Nl[X_AVENRUN].n_value, 0) < 0 ||
+	if (lseek(kmem, (off_t) Nl[X_AVENRUN].n_value, 0) == -1 ||
 	    read(kmem, (char *) avenrun, sizeof(avenrun)) < sizeof(avenrun))
 	{
 		/* thank you Ian */

@@ -16,12 +16,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)usersmtp.c	5.3.1.1 (Berkeley) 09/19/85	(no SMTP)";
+static char	SccsId[] = "@(#)usersmtp.c	5.5 (Berkeley) 09/19/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)usersmtp.c	5.3.1.1 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)usersmtp.c	5.5 (Berkeley) 09/19/85";
 # endif not lint
 
 
@@ -418,7 +418,7 @@ reply(m)
 				pause();
 # endif DEBUG
 # ifdef LOG
-			syslog(LOG_MAIL, "%s", &MsgBuf[4]);
+			syslog(LOG_ERR, "%s", &MsgBuf[4]);
 # endif LOG
 			SmtpState = SMTP_CLOSED;
 			smtpquit(m);
