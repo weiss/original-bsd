@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tcp_debug.c	7.3 (Berkeley) 06/29/88
+ *	@(#)tcp_debug.c	7.4 (Berkeley) 04/03/90
  */
 
 #include "param.h"
@@ -30,9 +30,9 @@
 #include "../net/if.h"
 
 #include "in.h"
-#include "in_pcb.h"
 #include "in_systm.h"
 #include "ip.h"
+#include "in_pcb.h"
 #include "ip_var.h"
 #include "tcp.h"
 #define TCPSTATES
