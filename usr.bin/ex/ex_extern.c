@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ex_extern.c	1.1.1.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)ex_extern.c	7.3 (Berkeley) 05/31/85";
 #endif not lint
 
 /*
@@ -16,7 +16,7 @@ static char sccsid[] = "@(#)ex_extern.c	1.1.1.1 (Berkeley) 05/31/85";
  * book says!"
  */
 
-# define extern 	/* nothing */
+# define var 	/* nothing */
 # include "ex.h"
 # include "ex_argv.h"
 # include "ex_re.h"
@@ -25,5 +25,3 @@ static char sccsid[] = "@(#)ex_extern.c	1.1.1.1 (Berkeley) 05/31/85";
 # include "ex_tune.h"
 # include "ex_vars.h"
 # include "ex_vis.h"
-
-short tfile = -1;
