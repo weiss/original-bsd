@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.30 (Berkeley) 03/21/95";
+static char sccsid[] = "@(#)collect.c	8.31 (Berkeley) 03/21/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -81,6 +81,7 @@ collect(fp, smtpmode, requeueflag, hdrp, e)
 	int mstate;
 	char *pbp;
 	char peekbuf[8];
+	char dfname[20];
 	char bufbuf[MAXLINE];
 	extern bool isheader();
 	extern void eatheader();
@@ -101,11 +102,10 @@ collect(fp, smtpmode, requeueflag, hdrp, e)
 	{
 		struct stat stbuf;
 
-		e->e_df = queuename(e, 'd');
-		e->e_df = newstr(e->e_df);
-		if ((tf = dfopen(e->e_df, O_WRONLY|O_CREAT|O_TRUNC, FileMode)) == NULL)
+		strcpy(dfname, queuename(e, 'd'));
+		if ((tf = dfopen(dfname, O_WRONLY|O_CREAT|O_TRUNC, FileMode)) == NULL)
 		{
-			syserr("Cannot create %s", e->e_df);
+			syserr("Cannot create %s", dfname);
 			e->e_flags |= EF_NO_BODY_RETN;
 			finis();
 		}
@@ -118,6 +118,7 @@ collect(fp, smtpmode, requeueflag, hdrp, e)
 		}
 		HasEightBits = FALSE;
 		e->e_msgsize = 0;
+		e->e_flags |= EF_HAS_DF;
 	}
 
 	/*
@@ -413,7 +414,7 @@ readerr:
 		if (CollectErrno != 0)
 		{
 			errno = CollectErrno;
-			syserr(CollectErrorMessage, e->e_df);
+			syserr(CollectErrorMessage, dfname);
 			finis();
 		}
 		usrerr(CollectErrorMessage);
@@ -536,10 +537,10 @@ readerr:
 			usrerr("554 Eight bit data not allowed");
 	}
 
-	if ((e->e_dfp = fopen(e->e_df, "r")) == NULL)
+	if ((e->e_dfp = fopen(dfname, "r")) == NULL)
 	{
 		/* we haven't acked receipt yet, so just chuck this */
-		syserr("Cannot reopen %s", e->e_df);
+		syserr("Cannot reopen %s", dfname);
 		finis();
 	}
 }
@@ -586,7 +587,7 @@ tferror(tf, e)
 		e->e_flags |= EF_NO_BODY_RETN;
 		if (fstat(fileno(tf), &st) < 0)
 			st.st_size = 0;
-		(void) freopen(e->e_df, "w", tf);
+		(void) freopen(queuename(e, 'd'), "w", tf);
 		if (st.st_size <= 0)
 			fprintf(tf, "\n*** Mail could not be accepted");
 		else if (sizeof st.st_size > sizeof (long))
