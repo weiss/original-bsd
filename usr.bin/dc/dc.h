@@ -1,4 +1,11 @@
-/*	dc.h	1.4	89/09/15	*/
+/*-
+ * Copyright (c) 1989 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)dc.h	5.1 (Berkeley) 04/17/91
+ */
 
 #define FATAL 0
 #define NFATAL 1
