@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uipc_socket.c	6.22 (Berkeley) 02/19/86
+ *	@(#)uipc_socket.c	6.23 (Berkeley) 02/23/86
  */
 
 #include "param.h"
@@ -781,7 +781,7 @@ sogetopt(so, level, optname, mp)
 			break;
 
 		default:
-			m_free(m);
+			(void)m_free(m);
 			return (ENOPROTOOPT);
 		}
 		*mp = m;
