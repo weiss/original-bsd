@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)if_imphost.c	7.6 (Berkeley) 05/11/88
+ *	@(#)if_imphost.c	7.7 (Berkeley) 05/24/88
  */
 
 #include "imp.h"
@@ -158,7 +158,7 @@ hostrelease(hp)
 hostflush(hp)
 	register struct host *hp;
 {
-	register struct mbuf *m, **mprev;
+	register struct mbuf *m;
 
 	/*
 	 * Discard any packets left on the waiting q
