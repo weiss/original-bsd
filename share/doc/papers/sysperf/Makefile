@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.1 (Berkeley) 07/27/85
+#	@(#)Makefile	1.2 (Berkeley) 11/30/85
 #
-PRINTER=-Pip
+PRINTER=-Pdp
 TYPE=	-n
 SRCS=	0.t 1.t 2.t 3.t 4.t 5.t 6.t 7.t
 OBJS=	perf.t appendix.t
