@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)uniq.c	8.2 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)uniq.c	8.3 (Berkeley) 05/04/95";
 #endif /* not lint */
 
 #include <errno.h>
@@ -23,6 +23,7 @@ static char sccsid[] = "@(#)uniq.c	8.2 (Berkeley) 04/28/95";
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define	MAXLINELEN	(8 * 1024)
 
