@@ -4,7 +4,7 @@
  *	This routine draws a box around the given window with "vert"
  * as the vertical delimiting char, and "hor", as the horizontal one.
  *
- * 02/16/82 (Berkeley) @(#)box.c	1.2
+ * @(#)box.c	1.3 (Berkeley) 05/01/85
  */
 box(win, vert, hor)
 reg WINDOW	*win;
