@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)Usef.c	1.1	07/30/85	*/
+ *	@(#)Usef.c	1.2	08/01/85
  */
 
 /*		returns '-f' if need to use -f to bypass C bug		*/
