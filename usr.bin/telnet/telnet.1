@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)telnet.1	8.4 (Berkeley) 02/03/94
+.\"	@(#)telnet.1	8.5 (Berkeley) 03/01/94
 .\"
 .Dd 
 .Dt TELNET 1
@@ -15,23 +15,13 @@
 protocol
 .Sh SYNOPSIS
 .Nm telnet
-.Op Fl 8
-.Op Fl E
-.Op Fl F
-.Op Fl K
-.Op Fl L
+.Op Fl 8EFKLacdfrx
 .Op Fl S Ar tos
 .Op Fl X Ar authtype
-.Op Fl a
-.Op Fl c
-.Op Fl d
 .Op Fl e Ar escapechar
-.Op Fl f
 .Op Fl k Ar realm
 .Op Fl l Ar user
 .Op Fl n Ar tracefile
-.Op Fl r
-.Op Fl x
 .Oo
 .Ar host
 .Op port
