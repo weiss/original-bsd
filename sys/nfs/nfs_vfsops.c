@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vfsops.c	7.46 (Berkeley) 09/22/92
+ *	@(#)nfs_vfsops.c	7.47 (Berkeley) 10/08/92
  */
 
 #include "param.h"
@@ -628,7 +628,7 @@ loop:
 		 */
 		if (vp->v_mount != mp)
 			goto loop;
-		if (VOP_ISLOCKED(vp) || vp->v_dirtyblkhd == NULL)
+		if (VOP_ISLOCKED(vp) || vp->v_dirtyblkhd.le_next == NULL)
 			continue;
 		if (vget(vp))
 			goto loop;
