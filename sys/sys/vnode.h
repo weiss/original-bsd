@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vnode.h	7.45 (Berkeley) 01/22/92
+ *	@(#)vnode.h	7.46 (Berkeley) 02/03/92
  */
 
 #ifndef KERNEL
@@ -273,8 +273,7 @@ struct vnodeops {
 /*
  * public vnode manipulation functions
  */
-int 	vn_open __P((struct nameidata *ndp, struct proc *p, int fmode,
-	    int cmode));
+int 	vn_open __P((struct nameidata *ndp, int fmode, int cmode));
 int 	vn_close __P((struct vnode *vp, int flags, struct ucred *cred,
 	    struct proc *p));
 int 	vn_rdwr __P((enum uio_rw rw, struct vnode *vp, caddr_t base,
