@@ -2,7 +2,7 @@
 
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)@(#)commands.y 1.1 12/15/82";
+static char sccsid[] = "@(#)commands.y 1.2 12/15/82";
 
 /*
  * Yacc grammar for debugger commands.
