@@ -1,4 +1,4 @@
-/*	@(#)if_sl.c	5.8 (Berkeley) 06/03/86 */
+/*	@(#)if_sl.c	7.1 (Berkeley) 06/04/86 */
 
 /*
  * Serial Line interface
