@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_sig.c	7.15 (Berkeley) 05/15/90
+ *	@(#)kern_sig.c	7.16 (Berkeley) 05/17/90
  */
 
 #include "param.h"
@@ -454,19 +454,22 @@ gsignal(pgid, sig)
 	struct pgrp *pgrp;
 
 	if (pgid && (pgrp = pgfind(pgid)))
-		pgsignal(pgrp, sig);
+		pgsignal(pgrp, sig, 0);
 }
 /*
- * Send sig to all all members of the process group
+ * Send sig to every member of a process group.
+ * If checktty is 1, limit to members which have a controlling
+ * terminal.
  */
-pgsignal(pgrp, sig)
+pgsignal(pgrp, sig, checkctty)
 	struct pgrp *pgrp;
 {
 	register struct proc *p;
 
 	if (pgrp)
 		for (p = pgrp->pg_mem; p != NULL; p = p->p_pgrpnxt)
-			psignal(p, sig);
+			if (checkctty == 0 || p->p_flag&SCTTY)
+				psignal(p, sig);
 }
 
 /*
