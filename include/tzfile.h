@@ -3,11 +3,11 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Arthur Olson.
+ * Arthur David Olson of the National Cancer Institute.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tzfile.h	5.8 (Berkeley) 06/01/90
+ *	@(#)tzfile.h	5.9 (Berkeley) 06/11/90
  */
 
 /*
