@@ -1,15 +1,10 @@
-# Makefile 11/02/82
+# Makefile 12/25/82
 ALL=	routed
 OBJS=	af.o if.o input.o main.o output.o startup.o tables.o timer.o \
 	trace.o
 CFLAGS=	-O
 DESTDIR=
 LDFLAGS=
-
-.c.o:
-	${CC} -S ${CFLAGS} $*.c
-	sed -f ../asm.sed $*.s | ${AS} -o $*.o
-	rm -f $*.s
 
 all:	${ALL}
 
