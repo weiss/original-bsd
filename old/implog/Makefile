@@ -1,4 +1,11 @@
-# @(#)Makefile	4.5 06/12/83
+#
+# Copyright (c) 1983 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)Makefile	5.1 (Berkeley) 05/28/85
+#
+# @(#)Makefile	5.1 05/28/85
 ALL=	implog implogd
 DESTDIR=
 CFLAGS=-O
