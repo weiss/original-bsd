@@ -15,11 +15,11 @@
  *
  * from: hp300/hp300/locore.s   7.16 (Berkeley) 7/8/92
  *
- *	@(#)locore.s	7.5 (Berkeley) 09/08/92
+ *	@(#)locore.s	7.6 (Berkeley) 10/11/92
  */
 
 #include "assym.s"
-#include "vectors.s"
+#include <luna68k/luna68k/vectors.s>
 
 	.text
 /*

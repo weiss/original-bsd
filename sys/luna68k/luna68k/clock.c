@@ -15,12 +15,13 @@
  *
  * from: hp300/hp300/clock.c    7.14 (Berkeley) 7/8/92
  *
- *	@(#)clock.c	7.3 (Berkeley) 09/01/92
+ *	@(#)clock.c	7.4 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "kernel.h"
-#include "clockreg.h"
+#include <sys/param.h>
+#include <sys/kernel.h>
+
+#include <luna68k/luna68k/clockreg.h>
 
 extern int clock_on;
 
