@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vm_meter.c	7.7 (Berkeley) 05/02/90
+ *	@(#)vm_meter.c	7.8 (Berkeley) 05/15/90
  */
 
 #include "param.h"
@@ -153,7 +153,7 @@ loop:
 			 * Kick out deadwood.
 			 */
 			rp->p_flag &= ~SLOAD;
-			(void) swapout(rp, rp->p_dsize, rp->p_ssize);
+			(void) swapout(rp, rp->p_dsize, rp->p_mmsize, rp->p_ssize);
 		}
 		continue;
 	}
@@ -283,7 +283,7 @@ hardswap:
 			deficit += gives;
 		} else
 			gives = 0;	/* someone else taketh away */
-		if (swapout(p, p->p_dsize, p->p_ssize) == 0)
+		if (swapout(p, p->p_dsize, p->p_mmsize, p->p_ssize) == 0)
 			deficit -= imin(gives, deficit);
 		else
 			goto loop;
@@ -467,7 +467,7 @@ loadav(avg, n)
 	for (i = 0; i < 3; i++)
 		avg[i] = (cexp[i] * avg[i] + n * FSCALE * (FSCALE - cexp[i]))
 		         >> FSHIFT;
-#ifdef COMPAT_43
+#if defined(COMPAT_43) && (defined(vax) || defined(tahoe))
 	for (i = 0; i < 3; i++)
 		avenrun[i] = (double) averunnable[i] / FSCALE;
 #endif /* COMPAT_43 */
