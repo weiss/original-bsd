@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stty.h	5.2 (Berkeley) 06/05/91
+ *	@(#)stty.h	5.3 (Berkeley) 06/10/91
  */
 
 #include <sys/ioctl.h>
@@ -19,20 +19,6 @@ struct info {
 	char *arg;				/* argument */
 	struct termios t;			/* terminal info */
 	struct winsize win;			/* window info */
-};
-
-struct key {
-	char *name;				/* name */
-	void (*f) __P((struct info *));		/* function */
-#define	F_NEEDARG	0x01			/* needs an argument */
-#define	F_OFFOK		0x02			/* can turn off */
-	int flags;
-};
-
-struct modes {
-	char *name;
-	long set;
-	long unset;
 };
 
 struct cchar {

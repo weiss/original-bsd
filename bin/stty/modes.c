@@ -6,13 +6,19 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)modes.c	5.3 (Berkeley) 06/05/91";
+static char sccsid[] = "@(#)modes.c	5.4 (Berkeley) 06/10/91";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <stddef.h>
 #include <string.h>
 #include "stty.h"
+
+struct modes {
+	char *name;
+	long set;
+	long unset;
+};
 
 /*
  * The code in optlist() depends on minus options following regular
