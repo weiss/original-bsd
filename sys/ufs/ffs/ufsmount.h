@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ufsmount.h	7.3 (Berkeley) 05/09/89
+ *	@(#)ufsmount.h	7.4 (Berkeley) 03/06/90
  */
 
 /*
@@ -28,7 +28,6 @@ struct	ufsmount {
 	struct	vnode *um_devvp;	/* vnode for block device mounted */
 	struct	fs *um_fs;		/* pointer to superblock */
 	struct	inode *um_qinod;	/* QUOTA: pointer to quota file */
-	char	um_mntname[MNAMELEN];	/* mounted filesystem */
 };
 #ifdef KERNEL
 /*
