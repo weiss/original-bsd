@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)master.c	2.10 (Berkeley) 05/28/86";
+static char sccsid[] = "@(#)master.c	2.11 (Berkeley) 05/28/86";
 #endif not lint
 
 #include "globals.h"
@@ -18,7 +18,7 @@ extern int machup;
 extern int measure_delta;
 extern jmp_buf jmpenv;
 
-extern short sequence;
+extern u_short sequence;
 
 #ifdef MEASURE
 int header;
@@ -497,6 +497,7 @@ struct netinfo *net;
 }
 
 newslave(ind, seq)
+u_short seq;
 {
 	struct tsp to;
 	struct tsp *answer, *acksend();
