@@ -1,3 +1,5 @@
+static char sccsid[] = "@(#)vfontedpr.c	4.1	(Berkeley)	10/21/82";
+
 #include <ctype.h>
 #include <stdio.h>
 #include <sys/types.h>
