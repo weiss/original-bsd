@@ -4,9 +4,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-SCCSID(@(#)alias.c	3.32		05/31/82	(with DBM));
+SCCSID(@(#)alias.c	3.33		05/31/82	(with DBM));
 # else DBM
-SCCSID(@(#)alias.c	3.32		05/31/82	(without DBM));
+SCCSID(@(#)alias.c	3.33		05/31/82	(without DBM));
 # endif DBM
 
 /*
@@ -502,8 +502,8 @@ hostalias(a)
 	char buf[MAXNAME+2];
 	register char *p;
 
-	strcpy(buf, "/");
-	strcat(buf, a->q_host);
+	(void) strcpy(buf, "/");
+	(void) strcat(buf, a->q_host);
 	makelower(buf);
 
 	p = aliaslookup(buf);
