@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.57		12/05/82	(no queueing));
+SCCSID(@(#)queue.c	3.58		12/13/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.57		12/05/82);
+SCCSID(@(#)queue.c	3.58		12/13/82);
 
 /*
 **  Work queue.
@@ -545,7 +545,7 @@ readqf(e)
 		switch (buf[0])
 		{
 		  case 'R':		/* specify recipient */
-			sendto(&buf[1], (ADDRESS *) NULL, &e->e_sendqueue);
+			sendtolist(&buf[1], (ADDRESS *) NULL, &e->e_sendqueue);
 			break;
 
 		  case 'H':		/* header */
