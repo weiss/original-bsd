@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)collect.c	3.55		11/28/82);
+SCCSID(@(#)collect.c	3.56		12/05/82);
 
 /*
 **  COLLECT -- read & parse message header & make temp file.
@@ -210,7 +210,7 @@ collect(sayok)
 		}
 	}
 
-	if ((TempFile = fopen(CurEnv->e_df, "r")) == NULL)
+	if ((CurEnv->e_dfp = fopen(CurEnv->e_df, "r")) == NULL)
 		syserr("Cannot reopen %s", CurEnv->e_df);
 
 	/*
