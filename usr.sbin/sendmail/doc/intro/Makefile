@@ -1,4 +1,4 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/08/93
+#	@(#)Makefile	8.2 (Berkeley) 02/28/94
 
 DIR=	smm/09.sendmail
 SRCS=	intro.me
@@ -7,6 +7,7 @@ MACROS=	-me
 all: intro.ps
 
 intro.ps: ${SRCS}
+	rm -f ${.TARGET}
 	${PIC} ${SRCS} | ${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
