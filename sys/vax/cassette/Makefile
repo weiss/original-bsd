@@ -1,4 +1,9 @@
-#	Makefile	6.2	83/09/25
+#
+# Copyright (c) 1980 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)Makefile	4.8 (Berkeley) 06/08/85
 #
 # Make a 750/730 tu58 cassette
 # 
@@ -38,7 +43,7 @@ install: cassette ../mdec/tuboot
 update:	boot.730 ${STDBOO} ${DEFBOO} ${DEVBOO} format.730
 update:	copy.730 drtest.730
 	-mkdir fromdec
-	cd fromdec; arff mxf ${CASSETTE}; rm -f ${FROMDEC} ${OBJS}; \
+	cd fromdec; arff mxf ${CASSETTE}; rm -f ${FROMDEC}; \
 		flcopy -t3 -f ${CASSETTE}; arff mcrf ${CASSETTE} *
 	rm -rf fromdec
 	cp boot.730 boot
