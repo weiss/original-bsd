@@ -1,6 +1,7 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/11/90
+#	@(#)Makefile	5.5 (Berkeley) 06/29/90
 
 PROG=	inetd
+LDADD=	-lutil
 MAN8=	inetd.0
 MLINKS=	inetd.8 inetd.5
 
