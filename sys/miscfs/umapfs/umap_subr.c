@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)umap_subr.c	8.2 (Berkeley) 12/14/93
+ *	@(#)umap_subr.c	8.3 (Berkeley) 01/04/94
  *
  * $Id: lofs_subr.c,v 1.11 1992/05/30 10:05:43 jsp Exp jsp $
  */
@@ -135,8 +135,8 @@ umap_node_alloc(mp, lowervp, vpp)
 	struct vnode *othervp, *vp;
 	int error;
 
-	if (error = getnewvnode(VT_UFS, mp, umap_vnodeop_p, vpp))
-		return (error);	/* XXX: VT_UMAP above */
+	if (error = getnewvnode(VT_UMAP, mp, umap_vnodeop_p, vpp))
+		return (error);
 	vp = *vpp;
 
 	MALLOC(xp, struct umap_node *, sizeof(struct umap_node),
