@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.32 (Berkeley) 12/10/93
+ *	@(#)sendmail.h	8.33 (Berkeley) 12/10/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.32		12/10/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.33		12/10/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -899,6 +899,7 @@ extern void		expand __P((char *, char *, char *, ENVELOPE *));
 extern void		define __P((int, char *, ENVELOPE *));
 extern char		*macvalue __P((int, ENVELOPE *));
 extern char		**prescan __P((char *, int, char[], int, char **));
+extern int		rewrite __P((char **, int, int, ENVELOPE *));
 extern char		*fgetfolded __P((char *, int, FILE *));
 extern ADDRESS		*recipient __P((ADDRESS *, ADDRESS **, ENVELOPE *));
 extern ENVELOPE		*newenvelope __P((ENVELOPE *, ENVELOPE *));
