@@ -1,11 +1,11 @@
-#	@(#)Makefile.inc	5.41 (Berkeley) 04/27/93
+#	@(#)Makefile.inc	5.42 (Berkeley) 05/03/93
 
 # machine-independent gen sources
 .PATH: ${.CURDIR}/${MACHINE}/gen ${.CURDIR}/gen
 
 SRCS+=	alarm.c assert.c clock.c closedir.c crypt.c ctermid.c ctime.c \
 	ctype.c ctype_case.c daemon.c difftime.c disklabel.c err.c \
-	errlst.c exec.c fnmatch.c frexp.c fstab.c fts.c gcc2_support.c \
+	errlst.c exec.c fnmatch.c frexp.c fstab.c fts.c \
 	getcap.c getcwd.c getgrent.c getgrouplist.c gethostname.c \
 	getloadavg.c getlogin.c getmntinfo.c getnetgrent.c getpagesize.c \
 	getpass.c getpwent.c getttyent.c getusershell.c glob.c \
