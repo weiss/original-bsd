@@ -1,4 +1,4 @@
-/*	initgroups.c	4.1	82/11/07	*/
+/*	initgroups.c	4.2	83/02/15	*/
 
 /*
  * initgroups
@@ -23,11 +23,11 @@ initgroups(uname, agroup)
 	while (grp = getgrent())
 		for (i = 0; grp->gr_mem[i]; i++)
 			if (!strcmp(grp->gr_mem[i], uname)) {
-				groups[ngroups++] = grp->gr_gid;
 				if (ngroups == NGROUPS) {
 fprintf(stderr, "inigrp: %s is in too many groups\n", uname);
 					goto toomany;
 				}
+				groups[ngroups++] = grp->gr_gid;
 			}
 toomany:
 	if (setgroups(ngroups, groups) < 0) {
