@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)what.c	5.2 (Berkeley) 07/21/88";
+static char sccsid[] = "@(#)what.c	5.3 (Berkeley) 08/08/88";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -54,14 +54,14 @@ search()
 	register int c;
 
 	while ((c = getchar()) != EOF) {
-		if (c != '@') 
+loop:		if (c != '@')
 			continue;
 		if ((c = getchar()) != '(')
-			continue;
+			goto loop;
 		if ((c = getchar()) != '#')
-			continue;
+			goto loop;
 		if ((c = getchar()) != ')')
-			continue;
+			goto loop;
 		putchar('\t');
 		while ((c = getchar()) != EOF && c && c != '"' &&
 		    c != '>' && c != '\n')
