@@ -5,7 +5,7 @@
 #  old make program (I recommend that you get and port the new make if you
 #  are going to be doing any signficant work on sendmail).
 #
-#	@(#)Makefile.Mach386	8.5 (Berkeley) 04/10/95
+#	@(#)Makefile.Mach386	8.6 (Berkeley) 06/20/95
 #
 
 CC=	gcc
@@ -107,3 +107,5 @@ clean:
 # dependencies
 #   gross overkill, and yet still not quite enough....
 ${OBJS}: sendmail.h conf.h
+
+depend:

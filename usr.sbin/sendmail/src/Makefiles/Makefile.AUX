@@ -5,7 +5,7 @@
 #  old make program (I recommend that you get and port the new make if you
 #  are going to be doing any signficant work on sendmail).
 #
-#	@(#)Makefile.AUX	8.9 (Berkeley) 06/15/95
+#	@(#)Makefile.AUX	8.10 (Berkeley) 06/20/95
 #
 #  Tested on A/UX 3.1.
 #
@@ -108,3 +108,5 @@ clean:
 # dependencies
 #   gross overkill, and yet still not quite enough....
 ${OBJS}: sendmail.h conf.h
+
+depend:

@@ -7,7 +7,7 @@
 #
 #  This has been tested on AIX 3.1.5 and 3.2.3e.
 #
-#	@(#)Makefile.AIX	8.8 (Berkeley) 05/29/95
+#	@(#)Makefile.AIX	8.9 (Berkeley) 06/20/95
 #
 
 # use O=-O (usual) or O=-g (debugging)
@@ -113,3 +113,5 @@ clean:
 # dependencies
 #   gross overkill, and yet still not quite enough....
 ${OBJS}: sendmail.h conf.h
+
+depend:

@@ -10,7 +10,7 @@
 #		create empty files stdlib.h and stddef.h in your
 #		compile directory.
 #
-#	@(#)Makefile.SunOS	8.6 (Berkeley) 04/10/95
+#	@(#)Makefile.SunOS	8.7 (Berkeley) 06/20/95
 #
 
 # use O=-O (usual) or O=-g (debugging)
@@ -111,3 +111,5 @@ clean:
 # dependencies
 #   gross overkill, and yet still not quite enough....
 ${OBJS}: sendmail.h conf.h
+
+depend:

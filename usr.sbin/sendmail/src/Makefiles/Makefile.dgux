@@ -2,7 +2,7 @@
 #  Tested on DG/UX 5.4.2 by A. Bryan Curnutt <bryan@Stoner.COM>.
 #  Updated for DG/UX 5.4.3 by Mark T. Robinson <mtr@ornl.gov>.
 #
-#	@(#)Makefile.dgux	8.7 (Berkeley) 04/10/95
+#	@(#)Makefile.dgux	8.8 (Berkeley) 06/20/95
 #
 
 # use O=-O (usual) or O=-g (debugging)
@@ -103,3 +103,5 @@ clean:
 # dependencies
 #   gross overkill, and yet still not quite enough....
 ${OBJS}: sendmail.h conf.h
+
+depend:
