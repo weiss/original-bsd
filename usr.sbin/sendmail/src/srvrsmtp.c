@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	5.36 (Berkeley) 07/13/92 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.37 (Berkeley) 07/19/92 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	5.36 (Berkeley) 07/13/92 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.37 (Berkeley) 07/19/92 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -124,7 +124,7 @@ smtp(e)
 		CurHostName = MyHostName;
 	}
 	expand("\001e", inp, &inp[sizeof inp], e);
-	message("220", inp);
+	message("220", "%s", inp);
 	SmtpPhase = "startup";
 	sendinghost = NULL;
 	for (;;)
