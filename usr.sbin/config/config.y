@@ -70,7 +70,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)config.y	5.5 (Berkeley) 10/22/87
+ *	@(#)config.y	5.6 (Berkeley) 10/28/87
  */
 
 #include "config.h"
@@ -520,6 +520,7 @@ newdev(dp)
 
 	np = (struct device *) malloc(sizeof *np);
 	*np = *dp;
+	np->d_next = 0;
 	if (curp == 0)
 		dtab = np;
 	else
