@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: fdioctl.h 1.1 89/11/20$
+ * from: Utah $Hdr: fdioctl.h 1.1 90/07/09$
  *
- *	@(#)vnioctl.h	7.1 (Berkeley) 05/08/90
+ *	@(#)vnioctl.h	7.2 (Berkeley) 11/04/90
  */
 
 /*
