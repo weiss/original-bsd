@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.173 (Berkeley) 05/23/95";
+static char sccsid[] = "@(#)conf.c	8.174 (Berkeley) 05/24/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1088,20 +1088,20 @@ init_vendor_macros(e)
 # define FSCALE		(1 << FSHIFT)
 #endif
 
-#if (LA_TYPE == LA_INT) || (LA_TYPE == LA_FLOAT) || (LA_TYPE == LA_SHORT)
-
-#include <nlist.h>
-
-#ifdef IRIX64
-# define nlist		nlist64
-#endif
-
 #ifndef LA_AVENRUN
 # ifdef SYSTEM5
 #  define LA_AVENRUN	"avenrun"
 # else
 #  define LA_AVENRUN	"_avenrun"
 # endif
+#endif
+
+#if (LA_TYPE == LA_INT) || (LA_TYPE == LA_FLOAT) || (LA_TYPE == LA_SHORT)
+
+#include <nlist.h>
+
+#ifdef IRIX64
+# define nlist		nlist64
 #endif
 
 /* _PATH_UNIX should be defined in <paths.h> */
@@ -1556,7 +1556,7 @@ refuseconnections()
 #define SPT_BUILTIN	2	/* use libc builtin */
 #define SPT_PSTAT	3	/* use pstat(PSTAT_SETCMD, ...) */
 #define SPT_PSSTRINGS	4	/* use PS_STRINGS->... */
-#define SPT_WRITEUDOT	5	/* write u. area in kmem */
+#define SPT_SYSMIPS	5	/* use sysmips() supported by NEWS-OS 6 */
 
 #ifndef SPT_TYPE
 # define SPT_TYPE	SPT_REUSEARGV
@@ -1585,6 +1585,11 @@ typedef unsigned int	*pt_entry_t;
 #  define SETPROC_STATIC	static
 # else
 #  define SETPROC_STATIC
+# endif
+
+# if SPT_TYPE == SPT_SYSMIPS
+#  include <sys/sysmips.h>
+#  include <sys/sysnews.h>
 # endif
 
 # ifndef SPT_PADCHAR
@@ -1632,11 +1637,15 @@ setproctitle(fmt, va_alist)
 #  if SPT_TYPE == SPT_PSTAT
 	pst.pst_command = buf;
 	pstat(PSTAT_SETCMD, pst, i, 0, 0);
-#  else
-#   if SPT_TYPE == SPT_PSSTRINGS
+#  endif
+#  if SPT_TYPE == SPT_PSSTRINGS
 	PS_STRINGS->ps_nargvstr = 1;
 	PS_STRINGS->ps_argvstr = buf;
-#   else
+#  endif
+#  if SPT_TYPE == SPT_SYSMIPS
+	sysmips(SONY_SYSNEWS, NEWS_SETPSARGS, buf);
+#  endif
+#  if SPT_TYPE == SPT_REUSEARGV
 	if (i > LastArgv - Argv[0] - 2)
 	{
 		i = LastArgv - Argv[0] - 2;
@@ -1647,8 +1656,7 @@ setproctitle(fmt, va_alist)
 	while (p < LastArgv)
 		*p++ = SPT_PADCHAR;
 	Argv[1] = NULL;
-#   endif /* SPT_TYPE == SPT_PSSTRINGS */
-#  endif /* SPT_TYPE == SPT_PSTAT */
+#  endif
 # endif /* SPT_TYPE != SPT_NONE */
 }
 
@@ -1706,6 +1714,42 @@ reapchild(sig)
 # endif
 	errno = olderrno;
 }
+/*
+**  PUTENV -- emulation of putenv() in terms of setenv()
+**
+**	Not needed on Posix-compliant systems.
+**	This doesn't have full Posix semantics, but it's good enough
+**		for sendmail.
+**
+**	Parameter:
+**		env -- the environment to put.
+**
+**	Returns:
+**		none.
+*/
+
+#ifdef NEEDPUTENV
+
+void
+putenv(env)
+	char *env;
+{
+	char *p;
+	int l;
+	char nbuf[100];
+
+	p = strchr(env, '=');
+	if (p == NULL)
+		return;
+	l = p - env;
+	if (l > sizeof nbuf - 1)
+		l = sizeof nbuf - 1;
+	bcopy(env, nbuf, l);
+	nbuf[l] = '\0';
+	setenv(nbuf, ++p, 1);
+}
+
+#endif
 /*
 **  UNSETENV -- remove a variable from the environment
 **
@@ -2905,7 +2949,7 @@ struct hostent *
 sm_gethostbyname(name)
 	char *name;
 {
-#if defined(SOLARIS) && SOLARIS < 204
+#if defined(SOLARIS) && SOLARIS < 204 || defined(sony_news) && defined(__svr4)
 	extern int h_errno;
 
 # if SOLARIS == 203
