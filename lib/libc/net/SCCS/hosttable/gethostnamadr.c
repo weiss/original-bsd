@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)gethostnamadr.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)gethostnamadr.c	5.2 (Berkeley) 09/10/85";
 #endif not lint
 
 #include <stdio.h>
@@ -18,6 +18,7 @@ static char sccsid[] = "@(#)gethostnamadr.c	5.1 (Berkeley) 06/06/85";
 static struct hostent host;
 static char *host_aliases[MAXALIASES];
 static char hostbuf[BUFSIZ+1];
+static char *host_addrs[2];
 
 /*
  * The following is shared with gethostent.c
@@ -55,6 +56,7 @@ fetchhost(key)
 	cp += sizeof (int);
 	bcopy(cp, (char *)&host.h_length, sizeof (int));
 	cp += sizeof (int);
+	host.h_addr_list = host_addrs;
 	host.h_addr = tp;
 	bcopy(cp, tp, host.h_length);
         return (&host);
