@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)5.t	6.1 (Berkeley) 04/17/86
+.\"	@(#)5.t	6.2 (Berkeley) 04/17/86
 .\"
 .NH 1
 Output filter specifications
@@ -33,7 +33,7 @@ The
 .B of
 filter is called with the following arguments.
 .DS
-\fIofiler\fP \fB\-w\fPwidth \fB\-l\fPlength
+\fIfilter\fP \fB\-w\fPwidth \fB\-l\fPlength
 .DE
 The \fIwidth\fP and \fIlength\fP values come from the
 .B pw
