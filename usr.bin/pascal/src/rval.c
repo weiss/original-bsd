@@ -1,7 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
 ifndef lint
-static char sccsid[] = "@(#)rval.c 1.16.1.1 02/04/84";
+static char sccsid[] = "@(#)rval.c 1.19 02/04/84";
 #endif
 
 #include "whoami.h"
@@ -518,23 +518,17 @@ cstrng:
 		     * we need to infer the type 
 		     * before generating code.
 		     */
-		    if ( contype == NIL ) {
+		    if ( contype == NLNIL ) {
 			    codeoff();
 			    contype = rvalue( r->expr_node.rhs , NLNIL , RREQ );
 			    codeon();
-			    if ( contype == lookup((char *) intset ) -> type ) {
-				codeoff();
-				contype = rvalue( r->expr_node.lhs , NLNIL ,
-									RREQ );
-				codeon();
-			    }
 		    }
-		    if ( contype == NIL ) {
+		    if ( contype == NLNIL ) {
 			return NLNIL;
 		    }
 		    p = rvalue( r->expr_node.lhs , contype , RREQ );
 		    p1 = rvalue( r->expr_node.rhs , p , RREQ );
-		    if ( p == NIL || p1 == NIL )
+		    if ( p == NLNIL || p1 == NLNIL )
 			    return NLNIL;
 		    if (isa(p, "id") && isa(p1, "id"))
 			return (gen(NIL, r->tag, width(p), width(p1)));
@@ -560,7 +554,7 @@ cstrng:
 		    codeon();
 		    if ( isa( p1 , "id" ) ) {
 			p = rvalue( r->expr_node.lhs , contype , RREQ );
-			if ( ( p == NIL ) || ( p1 == NIL ) ) {
+			if ( ( p == NLNIL ) || ( p1 == NLNIL ) ) {
 			    return NLNIL;
 			}
 			tuac(p, p1, &rettype, (int *) (&ctype));
@@ -576,16 +570,12 @@ cstrng:
 			    , ADDTYPE( ADDTYPE( P2PTR | P2STRTY , P2FTN )
 					, P2PTR )
 			    , setop[ r->tag - T_MULT ] );
-			if ( contype == NIL ) {
-			    contype = p1;
-			    if ( contype == lookup((char *) intset ) -> type ) {
-				codeoff();
-				contype = rvalue( r->expr_node.lhs, NLNIL ,
-									LREQ );
-				codeon();
-			    }
+			if ( contype == NLNIL ) {
+			    codeoff();
+			    contype = rvalue( r->expr_node.lhs, p1 , LREQ );
+			    codeon();
 			}
-			if ( contype == NIL ) {
+			if ( contype == NLNIL ) {
 			    return NLNIL;
 			}
 			    /*
@@ -597,7 +587,7 @@ cstrng:
 			p = rvalue( r->expr_node.lhs , contype , LREQ );
 			if ( isa( p , "t" ) ) {
 			    putop( P2LISTOP , P2INT );
-			    if ( p == NIL || p1 == NIL ) {
+			    if ( p == NLNIL || p1 == NLNIL ) {
 				return NLNIL;
 			    }
 			    p1 = rvalue( r->expr_node.rhs , p , LREQ );
@@ -622,7 +612,7 @@ cstrng:
 			/*
 			 *	don't give spurious error messages.
 			 */
-		    if ( p == NIL || p1 == NIL ) {
+		    if ( p == NLNIL || p1 == NLNIL ) {
 			return NLNIL;
 		    }
 #		endif PC
@@ -647,7 +637,7 @@ cstrng:
 #		ifdef PC
 		    sconv(p2type(p1), P2INT);
 #		endif PC
-		if (p == NIL || p1 == NIL)
+		if (p == NLNIL || p1 == NLNIL)
 			return (NLNIL);
 		if (isnta(p, "i")) {
 			error("Left operand of %s must be integer, not %s", opname, nameof(p));
@@ -701,15 +691,6 @@ cstrng:
 				    return (NLNIL);
 			    if (width(p) > width(p1))
 				    contype = p;
-		    } else if ( isa( p1 , "t" ) ) {
-			if ( contype == lookup((char *) intset ) -> type ) {
-			    codeoff();
-			    contype = rvalue( r->expr_node.lhs , NLNIL , RREQ );
-			    codeon();
-			    if ( contype == NIL ) {
-				return NLNIL;
-			    }
-			}
 		    }
 		    /*
 		     * Now we generate code for
@@ -748,15 +729,13 @@ cstrng:
 				contype = p;
 			    }
 			} else if ( c1 == TSET ) {
-			    if ( contype == lookup((char *) intset ) -> type ) {
-				codeoff();
-				p = rvalue( r->expr_node.lhs , NLNIL , LREQ );
-				codeon();
-				if ( p == NLNIL ) {
-				    return NLNIL;
-				}
-				contype = p;
+			    codeoff();
+			    p = rvalue( r->expr_node.lhs , contype , LREQ );
+			    codeon();
+			    if ( p == NLNIL ) {
+				return NLNIL;
 			    }
+			    contype = p;
 			} 
 			    /*
 			     *	put out the width of the comparison.
@@ -863,6 +842,8 @@ cstrng:
 					error("%s not allowed on pointers - only allow = and <>" , opname );
 					return (NLNIL);
 				}
+				if (p != nl+TNIL && p1 != nl+TNIL && p != p1)
+					goto nonident;
 				break;
 			case TSTR:
 				if (c1 != TSTR)
