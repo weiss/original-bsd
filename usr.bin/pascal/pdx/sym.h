@@ -1,6 +1,10 @@
-/* Copyright (c) 1982 Regents of the University of California */
-
-/* static char sccsid[] = "@(#)sym.h 1.3 02/17/82"; */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)sym.h	5.1 (Berkeley) 06/06/85
+ */
 
 /*
  * This header file declares the variables and routines that
