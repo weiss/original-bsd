@@ -14,7 +14,7 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.1 (Berkeley) 10/19/88
+# @(#)Makefile	5.2 (Berkeley) 10/19/88
 #
 
 MAN=	fastboot.0
@@ -23,4 +23,5 @@ all fastboot clean cleandir depend lint tags:
 
 install: ${MAN}
 	install -c -o bin -g bin -m 755 fastboot.sh ${DESTDIR}/etc/fastboot
+	install -c -o bin -g bin -m 755 fasthalt.sh ${DESTDIR}/etc/fasthalt
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat8
