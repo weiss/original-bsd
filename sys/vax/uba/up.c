@@ -1,9 +1,9 @@
-/*	up.c	4.5	12/17/80	*/
+/*	up.c	4.6	12/19/80	*/
 
 #include "../conf/up.h"
 #if NUP > 0
-#ifdef SC11
-#include "up.c.SC11"
+#if SC11 > 0
+#include "../dev/up.c.SC11"
 #else
 /*
  * UNIBUS disk driver with overlapped seeks and ECC recovery.
