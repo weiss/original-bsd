@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)checknr.c	4.4 (Berkeley) 05/13/81";
+static char *sccsid = "@(#)checknr.c	4.5 (Berkeley) 11/07/82";
 /*
  * checknr: check an nroff/troff input file for matching macro calls.
  * we also attempt to match size and font changes, but only the embedded
@@ -136,8 +136,6 @@ char **argv;
 	char *cp;
 	char b1[4];
 
-	if (argc <= 1)
-		usage();
 	/* Figure out how many known commands there are */
 	while (knowncmds[ncmds])
 		ncmds++;
