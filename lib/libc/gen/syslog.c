@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)syslog.c	5.5 (Berkeley) 03/08/86";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)syslog.c	5.6 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /*
  * SYSLOG -- print message on log file
