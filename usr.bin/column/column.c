@@ -22,13 +22,13 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)column.c	5.4 (Berkeley) 11/01/89";
+static char sccsid[] = "@(#)column.c	5.5 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include <ctype.h>
 
 int termwidth = 80;		/* default terminal width */
