@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.19 (Berkeley) 06/04/93
+#	@(#)Makefile	5.20 (Berkeley) 06/12/93
 
 SUBDIR=	ac accton amd arp chown chroot cron dev_mkdb diskpart edquota \
-	inetd kgmon kvm_mkdb lpr mkproto mtree nvi.recover portmap \
-	pstat pwd_mkdb quot quotaon repquota rmt rwhod sa sendmail \
-	sliplogin sysctl syslogd traceroute trpt trsp update vipw
+	inetd kgmon kvm_mkdb lpr mkproto mtree portmap pstat pwd_mkdb \
+	quot quotaon repquota rmt rwhod sa sendmail sliplogin sysctl \
+	syslogd traceroute trpt trsp update vipw
 
 .if   make(clean) || make(cleandir)
 SUBDIR+=bad144 config config.new eeprom iostat timed
