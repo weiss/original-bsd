@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)sub1.c	4.2 (Berkeley) 02/21/85";
+static char sccsid[] = "@(#)sub1.c	4.3 (Berkeley) 12/04/87";
 #endif
 
 # include "ldefs.c"
@@ -564,7 +564,7 @@ allprint(c)
 		default:
 			if(!printable(c)){
 				printf("\\%-3o",c);
-				charc =+ 3;
+				charc += 3;
 				}
 			else 
 				putchar(c);
