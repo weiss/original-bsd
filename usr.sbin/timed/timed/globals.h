@@ -4,7 +4,7 @@
  * specifies the terms and conditions for redistribution.
  */
 
-/*	@(#)globals.h	2.2	(Berkeley)	04/11/86	*/
+/*	@(#)globals.h	2.3	(Berkeley)	04/21/86	*/
 
 #include <sys/param.h>
 #include <stdio.h>
@@ -21,7 +21,7 @@ extern int sock;
 
 #define RANGE		20
 #define MSGS 		5
-#define TRIALS		6
+#define TRIALS		10
 #define SAMPLEINTVL	240	
 #define MAXSEQ 		30000
 #define MINTOUT		360
