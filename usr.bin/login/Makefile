@@ -14,10 +14,10 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.3 (Berkeley) 05/09/89
+# @(#)Makefile	5.4 (Berkeley) 03/29/90
 #
 
-CFLAGS=	-O -DKERBEROS
+CFLAGS=	-O -DKERBEROS -I/usr/include/kerberosIV
 LIBC=	/lib/libc.a
 SRCS=	login.c
 OBJS=
