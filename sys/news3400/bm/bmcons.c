@@ -9,7 +9,7 @@
  *
  * from: $Hdr: cons.c,v 4.300 91/06/09 06:34:41 root Rel41 $ SONY
  *
- *	@(#)bmcons.c	7.1 (Berkeley) 06/04/92
+ *	@(#)bmcons.c	7.2 (Berkeley) 07/28/92
  */
 
 /*
@@ -609,7 +609,7 @@ cn_output(tp, n)
 {
 
 	msg_send(port_cnxmit_iop, port_cnxmit, tp->t_outq.c_cf,
-	    MIN(n, MAX_CIO), 0);
+	    min(n, MAX_CIO), 0);
 }
 
 cn_stop(flush)
