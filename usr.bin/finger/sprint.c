@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Tony Nardo of the Johns Hopkins University/Applied Physics Lab.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sprint.c	5.11 (Berkeley) 10/27/91";
+static char sccsid[] = "@(#)sprint.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 #include <sys/types.h>

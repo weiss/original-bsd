@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Tony Nardo of the Johns Hopkins University/Applied Physics Lab.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)finger.h	5.7 (Berkeley) 07/27/91
+ *	@(#)finger.h	8.1 (Berkeley) 06/06/93
  */
 
 typedef struct person {
