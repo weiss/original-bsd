@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.31 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)syslogd.c	5.32 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 /*
@@ -353,7 +353,7 @@ untty()
 	int i;
 
 	if (!Debug) {
-		i = open("/dev/tty", O_RDWR);
+		i = open(_PATH_TTY, O_RDWR);
 		if (i >= 0) {
 			(void) ioctl(i, (int) TIOCNOTTY, (char *)0);
 			(void) close(i);
