@@ -1,8 +1,9 @@
-#	@(#)Makefile	5.14 (Berkeley) 06/25/90
+#	@(#)Makefile	5.15 (Berkeley) 07/01/90
 
 PROG=	ftpd
 CFLAGS+=-I${.CURDIR}/../../usr.bin/ftp -DSETPROCTITLE
 SRCS=	ftpd.c ftpcmd.c glob.c logwtmp.c popen.c vers.c
+MAN8=	ftpd.0
 CLEANFILES+=ftpcmd.c y.tab.h
 .PATH:	${.CURDIR}/../../usr.bin/ftp
 
