@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vnode_pager.c	7.12 (Berkeley) 07/08/92
+ *	@(#)vnode_pager.c	7.13 (Berkeley) 09/21/92
  */
 
 /*
@@ -473,6 +473,6 @@ vnode_pager_io(vnp, m, rw)
 			bzero((void *)(kva + count), PAGE_SIZE - count);
 	}
 	vm_pager_unmap_page(kva);
-	return (error ? VM_PAGER_FAIL : VM_PAGER_OK);
+	return (error ? VM_PAGER_ERROR : VM_PAGER_OK);
 }
 #endif
