@@ -1,4 +1,4 @@
-/* @(#)m4y.y	1.1 (Berkeley) 12/15/82 */
+/* @(#)m4y.y	1.2 (Berkeley) 07/22/88 */
 %{
 extern long	evalval;
 #define	YYSTYPE	long
@@ -42,8 +42,8 @@ e	: e '|' e	={ $$ = ($1!=0 || $3!=0) ? 1 : 0; }
 
 %%
 
+extern char *pe;
 yylex() {
-	extern char *pe;
 
 	while (*pe==' ' || *pe=='\t' || *pe=='\n')
 		pe++;
