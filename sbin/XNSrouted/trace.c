@@ -9,13 +9,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)trace.c	5.10 (Berkeley) 02/26/91";
+static char sccsid[] = "@(#)trace.c	5.11 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 /*
  * Routing Table Management Daemon
  */
 #define	RIPCMDS
+#include <stdlib.h>
 #include "defs.h"
 
 #define	NRECORDS	50		/* size of circular trace buffer */
