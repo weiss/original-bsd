@@ -1,7 +1,7 @@
 #
-#	@(#)Makefile	4.4	06/04/85
+#	@(#)Makefile	4.5	06/05/85
 #
-SCCSID = "@(#)Makefile 4.4 06/04/85"
+SCCSID = "@(#)Makefile 4.5 06/05/85"
 #
 # This high quality math library is intended to run on either a VAX in
 # D_floating format or a machine that conforms to the IEEE standard 754
@@ -33,9 +33,9 @@ DESTDIR=
 #
 # files comprising the standard Math library
 #
-SRCS=	E.c L.c acosh.c asin.c asinh.c atan.c atanh.c atrig.c cosh.c \
-	erf.c exp.c exp__E.c floor.c gamma.c hypot.c j0.c j1.c jn.c \
-	log.c log10.c log__L.c pow.c sin.c sinh.c sqrt.c tan.c tanh.c
+SRCS=	E.c L.c acosh.c asinh.c atanh.c atrig.c cosh.c \
+	erf.c exp.c exp__E.c floor.c gamma.c j0.c j1.c jn.c \
+	log.c log10.c log__L.c pow.c sinh.c tanh.c
 FILES=cosh.o sinh.o tanh.o acosh.o asinh.o atanh.o atrig.o \
 E.o L.o exp.o log.o log10.o pow.o exp__E.o log__L.o \
 jn.o j0.o j1.o gamma.o erf.o floor.o
