@@ -1,12 +1,11 @@
-#	@(#)Makefile	4.8 (Berkeley) 05/11/90
+#	@(#)Makefile	5.1 (Berkeley) 05/11/90
 
-PROG=	xsend
+PROG=	enroll
 CFLAGS+=-I${.CURDIR}/../common_source
-SRCS=	xsend.c lib.c
+SRCS=	enroll.c lib.c
+NOMAN=	man
 DPADD=	${LIBMP} ${LIBCOMPAT}
 LDADD=	-lmp -lcompat
-MAN1=	xsend.0
-MLINKS=	xsend.1 enroll.1 xsend.1 xget.1
 .PATH:	${.CURDIR}/../common_source
 
 .include "../../Makefile.inc"
