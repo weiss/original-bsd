@@ -15,7 +15,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)showmount.c	6.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)showmount.c	6.5 (Berkeley) 03/01/91";
 #endif not lint
 
 #include <sys/types.h>
@@ -292,10 +292,9 @@ xdr_exports(xdrsp, exp)
 	return (1);
 }
 
-static
 usage()
 {
-	fprintf(stderr, "Usage: showmount [-ade] host\n");
+	fprintf(stderr, "usage: showmount [-ade] host\n");
 	exit(1);
 }
 
