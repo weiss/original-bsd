@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)print.c 4.5 07/23/82";
+static	char sccsid[] = "@(#)print.c 4.6 07/04/83";
 /*
  *
  *	UNIX debugger
@@ -305,7 +305,7 @@ printtrace(modif)
 			FI
 
 			if (ntramp == 1)
-				callpc=get(frame+64, DSP);
+				callpc=get(frame+76, DSP);
 			else
 				callpc=get(frame+16, DSP);
 			argp=get(frame+8, DSP);
