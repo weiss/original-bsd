@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	4.27 (Berkeley) 08/12/86";
+static char sccsid[] = "@(#)mail.local.c	4.28 (Berkeley) 05/30/87";
 #endif
 
 #include <sys/param.h>
@@ -619,7 +619,8 @@ notifybiff(msg)
 	if (addr.sin_family) {
 		if (f < 0)
 			f = socket(AF_INET, SOCK_DGRAM, 0);
-		sendto(f, msg, strlen(msg)+1, 0, &addr, sizeof (addr));
+		if (f >= 0)
+			sendto(f, msg, strlen(msg)+1, 0, &addr, sizeof (addr));
 	}
 }
 
