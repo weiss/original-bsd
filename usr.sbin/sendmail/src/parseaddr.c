@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.48		08/25/82);
+SCCSID(@(#)parseaddr.c	3.49		08/27/82);
 
 /*
 **  PARSE -- Parse an address
@@ -960,11 +960,12 @@ canonname(name)
 	char *name;
 {
 	static char nbuf[MAXNAME + 2];
+	register char **pvp;
 
-	if (name[0] == '<')
-		return (name);
-	strcpy(nbuf, "<");
-	strcat(nbuf, name);
+	pvp = prescan(name, '\0');
+	rewrite(pvp, 4);
+	cataddr(pvp, nbuf + 1, MAXNAME);
+	nbuf[0] = '<';
 	strcat(nbuf, ">");
 	return (nbuf);
 }
