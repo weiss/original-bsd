@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1988 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.proprietary.sh%
 #
-#	@(#)suggest.sh	5.3 (Berkeley) 04/17/91
+#	@(#)suggest.sh	8.1 (Berkeley) 06/06/93
 #
 
 trap 'rm $$; exit' 1 2 3 15
