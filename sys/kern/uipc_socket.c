@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uipc_socket.c	6.15 (Berkeley) 06/08/85
+ *	@(#)uipc_socket.c	6.16 (Berkeley) 09/04/85
  */
 
 #include "param.h"
@@ -344,7 +344,7 @@ restart:
 				if (p == 0)
 					goto nopages;
 				m->m_off = (int)p - (int)m;
-				len = min(CLBYTES, iov->iov_len);
+				len = MIN(CLBYTES, iov->iov_len);
 				space -= CLBYTES;
 			} else {
 nopages:
