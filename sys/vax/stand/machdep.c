@@ -1,4 +1,4 @@
-/*	machdep.c	4.1	11/09/80	*/
+/*	machdep.c	4.2	81/03/15	*/
 
 #include "../h/param.h"
 #include "../h/mtpr.h"
