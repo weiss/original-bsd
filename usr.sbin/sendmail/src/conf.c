@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.30 (Berkeley) 08/30/93";
+static char sccsid[] = "@(#)conf.c	8.31 (Berkeley) 09/02/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1565,8 +1565,17 @@ lockfile(fd, filename, ext, type)
 	}
 
 	if (!bitset(LOCK_NB, type) || (errno != EACCES && errno != EAGAIN))
-		syserr("cannot lockf(%s%s, fd=%d, type=%o)",
-			filename, ext, fd, type);
+	{
+		int omode = -1;
+#  ifdef F_GETFL
+		int oerrno = errno;
+
+		(void) fcntl(fd, F_GETFL, &omode);
+		errno = oerrno;
+#  endif
+		syserr("cannot lockf(%s%s, fd=%d, type=%o, omode=%o, euid=%d)",
+			filename, ext, fd, type, omode, geteuid());
+	}
 # else
 	if (ext == NULL)
 		ext = "";
@@ -1585,9 +1594,18 @@ lockfile(fd, filename, ext, type)
 		printf("(%s) ", errstring(errno));
 
 	if (!bitset(LOCK_NB, type) || errno != EWOULDBLOCK)
-		syserr("cannot flock(%s%s, fd=%d, type=%o)",
-			filename, ext, fd, type);
+	{
+		int omode = -1;
+#  ifdef F_GETFL
+		int oerrno = errno;
+
+		(void) fcntl(fd, F_GETFL, &omode);
+		errno = oerrno;
+#  endif
+		syserr("cannot flock(%s%s, fd=%d, type=%o, omode=%o, euid=%d)",
+			filename, ext, fd, type, omode, geteuid());
 # endif
+	}
 	if (tTd(55, 60))
 		printf("FAIL\n");
 	return FALSE;
