@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)nm.c 3.2 08/17/80";
+static	char sccsid[] = "@(#)nm.c 3.3 09/09/80";
 /*
  * nm - print name list; VAX string table version
  */
@@ -325,6 +325,7 @@ struct	stabnames {
 	N_ECOMM, "ECOMM",
 	N_ECOML, "ECOML",
 	N_LENG, "LENG",
+	N_PC, "PC",
 	0, 0
 };
 
