@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	7.1 (Berkeley) 06/05/86
+#	@(#)Makefile	7.2 (Berkeley) 03/13/87
 #
 # Put the ../h stuff near the end so that subroutine definitions win when
 # there is a struct tag with the same name (eg., vmmeter).  The real
@@ -37,7 +37,7 @@ all:
 tags: FRC
 	mv tags tags.old
 	-cp ../machine/astags tags
-	${CTAGS} -a ${SRCS}
+	${CTAGS} -at ${SRCS}
 	sort -o tags.new tags
 	mv tags.new tags
 	rm -f tags.old
