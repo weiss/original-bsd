@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)getpwinfo.c	5.3 (Berkeley) 06/19/85";
+static char sccsid[] = "@(#)getpwinfo.c	5.4 (Berkeley) 03/02/91";
 #endif
 
 #include "uucp.h"
@@ -19,7 +19,6 @@ int uid;
 register char *path, *name;
 {
 	register struct passwd *pwd;
-	struct passwd *getpwuid(), *getpwnam();
 	char *getlogin(), *getenv(), *l;
 
 	if ((l = getlogin()) == NULL) {
