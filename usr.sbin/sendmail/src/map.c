@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.37 (Berkeley) 11/22/94";
+static char sccsid[] = "@(#)map.c	8.38 (Berkeley) 12/10/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -408,15 +408,25 @@ map_init(s, rebuild)
 						map->map_file);
 			map->map_mflags |= MF_OPEN;
 		}
-		else if (tTd(38, 4))
-			printf("\t%s:%s %s: invalid: %s\n",
-				map->map_class->map_cname == NULL ? "NULL" :
-					map->map_class->map_cname,
-				map->map_mname == NULL ? "NULL" :
-					map->map_mname,
-				map->map_file == NULL ? "NULL" :
-					map->map_file,
-				errstring(errno));
+		else
+		{
+			if (tTd(38, 4))
+				printf("\t%s:%s %s: invalid: %s\n",
+					map->map_class->map_cname == NULL ? "NULL" :
+						map->map_class->map_cname,
+					map->map_mname == NULL ? "NULL" :
+						map->map_mname,
+					map->map_file == NULL ? "NULL" :
+						map->map_file,
+					errstring(errno));
+			if (!bitset(MF_OPTIONAL, map->map_mflags))
+			{
+				extern MAPCLASS BogusMapClass;
+
+				map->map_class = &BogusMapClass;
+				map->map_mflags |= MF_OPEN;
+			}
+		}
 	}
 }
 /*
@@ -998,7 +1008,7 @@ nis_map_open(map, mode)
 		if (yperr != 0)
 		{
 			if (!bitset(MF_OPTIONAL, map->map_mflags))
-				syserr("NIS map %s specified, but NIS not running\n",
+				syserr("421 NIS map %s specified, but NIS not running\n",
 					map->map_file);
 			return FALSE;
 		}
@@ -1014,7 +1024,7 @@ nis_map_open(map, mode)
 		return TRUE;
 
 	if (!bitset(MF_OPTIONAL, map->map_mflags))
-		syserr("Cannot bind to domain %s: %s", map->map_domain,
+		syserr("421 Cannot bind to domain %s: %s", map->map_domain,
 			yperr_string(yperr));
 
 	return FALSE;
@@ -1157,7 +1167,7 @@ nisplus_map_open(map, mode)
 		  default:		/* all other nisplus errors */
 #if 0
 			if (!bitset(MF_OPTIONAL, map->map_mflags))
-				syserr("Cannot find table %s.%s: %s",
+				syserr("421 Cannot find table %s.%s: %s",
 					map->map_file, map->map_domain,
 					nis_sperrno(res->status));
 #endif
@@ -1179,7 +1189,7 @@ nisplus_map_open(map, mode)
 			printf("nisplus_map_open: %s is not a table\n", qbuf);
 #if 0
 		if (!bitset(MF_OPTIONAL, map->map_mflags))
-			syserr("%s.%s: %s is not a table",
+			syserr("421 %s.%s: %s is not a table",
 				map->map_file, map->map_domain,
 				nis_sperrno(res->status));
 #endif
@@ -2293,3 +2303,26 @@ null_map_store(map, key, val)
 {
 	return;
 }
+
+
+/*
+**  BOGUS stubs
+*/
+
+char *
+bogus_map_lookup(map, key, args, pstat)
+	MAP *map;
+	char *key;
+	char **args;
+	int *pstat;
+{
+	*pstat = EX_TEMPFAIL;
+	return NULL;
+}
+
+MAPCLASS	BogusMapClass =
+{
+	"bogus-map",		NULL,		0,
+	NULL,		bogus_map_lookup,	null_map_store,
+	null_map_open,	null_map_close,
+};
