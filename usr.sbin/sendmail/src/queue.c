@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.19		06/07/82	(no queueing));
+SCCSID(@(#)queue.c	3.20		07/02/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.19		06/07/82);
+SCCSID(@(#)queue.c	3.20		07/02/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -483,6 +483,7 @@ dowork(w)
 		**	though we had just read it.
 		*/
 
+		FatalErrors = FALSE;
 		QueueRun = TRUE;
 		MailBack = TRUE;
 		(void) strcpy(buf, QueueDir);
