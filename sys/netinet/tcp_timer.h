@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tcp_timer.h	7.6 (Berkeley) 06/29/88
+ *	@(#)tcp_timer.h	7.7 (Berkeley) 04/03/90
  */
 
 /*
@@ -64,7 +64,7 @@
  * amount of time probing, then we drop the connection.
  */
 
-#define	TCP_TTL		30		/* default time to live for TCP segs */
+#define	TCP_TTL		60		/* default time to live for TCP segs */
 /*
  * Time constants.
  */
