@@ -1,5 +1,5 @@
 /*
- * sccsid = "@(#)machdep.h	1.8 05/20/83";
+ * sccsid = "@(#)machdep.h	1.9 07/20/83";
  */
 #define LOGFILE "/usr/games/lib/saillog"
 #define DRIVER "/usr/games/lib/saildriver"
