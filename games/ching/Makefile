@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 07/01/90
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 SUBDIR=	cno phx
 MAN6=	ching.0
