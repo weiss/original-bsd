@@ -10,7 +10,7 @@
  * File I/O.
  */
 
-static char *SccsId = "@(#)fio.c	2.14 06/12/83";
+static char *SccsId = "@(#)fio.c	2.15 06/17/83";
 
 /*
  * Set up the input pointers while copying the mail file into
@@ -352,11 +352,12 @@ edstop()
 	}
 	printf("\"%s\" ", editfile);
 	flush();
-	if ((obuf = fopen(editfile, "w")) == NULL) {
+	if ((obuf = fopen(editfile, "r+")) == NULL) {
 		perror(editfile);
 		relsesigs();
 		reset(0);
 	}
+	trunc(obuf);
 	c = 0;
 	for (mp = &message[0]; mp < &message[msgCount]; mp++) {
 		if ((mp->m_flag & MDELETED) != 0)
