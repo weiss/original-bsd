@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.56 (Berkeley) 04/21/95";
+static char sccsid[] = "@(#)map.c	8.57 (Berkeley) 04/24/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -597,9 +597,10 @@ ndbm_map_store(map, lhs, rhs)
 		{
 			static char *buf = NULL;
 			static int bufsiz = 0;
+			auto int xstat;
 			datum old;
 
-			old.dptr = ndbm_map_lookup(map, key.dptr, NULL);
+			old.dptr = ndbm_map_lookup(map, key.dptr, NULL, &xstat);
 			if (old.dptr != NULL && *old.dptr != '\0')
 			{
 				old.dsize = strlen(old.dptr);

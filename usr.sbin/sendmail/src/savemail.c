@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.68 (Berkeley) 04/23/95";
+static char sccsid[] = "@(#)savemail.c	8.69 (Berkeley) 04/24/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -530,12 +530,12 @@ returntosender(msg, returnq, sendbody, e)
 	}
 	if (strncmp(msg, "Warning:", 8) == 0)
 	{
-		addheader("Subject", msg, ee);
+		addheader("Subject", msg, &ee->e_header);
 		p = "warning-timeout";
 	}
 	else if (strcmp(msg, "Return receipt") == 0)
 	{
-		addheader("Subject", msg, ee);
+		addheader("Subject", msg, &ee->e_header);
 		p = "return-receipt";
 	}
 	else
