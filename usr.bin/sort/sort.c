@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)sort.c	4.15 (Berkeley) 05/11/89";
+static	char *sccsid = "@(#)sort.c	4.16 (Berkeley) 08/30/89";
 
 #include <sys/param.h>
 #include <sys/file.h>
@@ -8,7 +8,7 @@ static	char *sccsid = "@(#)sort.c	4.15 (Berkeley) 05/11/89";
 #include <sys/stat.h>
 #include "pathnames.h"
 
-#define	L	2048
+#define	L	4096
 #define	N	7
 #define	C	20
 #ifndef pdp11
