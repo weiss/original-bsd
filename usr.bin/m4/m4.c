@@ -1,9 +1,10 @@
 #ifndef lint
-static char sccsid[] = "@(#)m4.c	1.4 (Berkeley) 07/22/88";
+static char sccsid[] = "@(#)m4.c	1.5 (Berkeley) 05/10/89";
 #endif
 
 #include <stdio.h>
 #include <signal.h>
+#include "pathnames.h"
 
 #define ERROR NULL
 #define	READ	"r"
@@ -104,7 +105,7 @@ char	*syscmdloc;
 char	*dumploc;
 char	*errploc;
 
-char	tempname[] = "/tmp/m4aXXXXX";
+char	tempname[] = _PATH_TMP;
 struct nlist	*lookup();
 char	*install();
 char	*malloc();
