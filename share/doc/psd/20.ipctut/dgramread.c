@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)dgramread.c	6.1 (Berkeley) 05/04/86
+.\"	@(#)dgramread.c	6.2 (Berkeley) 05/06/86
 .\"
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -17,13 +17,10 @@
  *	struct in_addr sin_addr;
  *	char	sin_zero[8];
  * }; 
- */
-
-/*
+ *
  * This program creates a datagram socket, binds a name to it, then reads
  * from the socket.  
  */
-
 main()
 {
 	int             sock, length;
