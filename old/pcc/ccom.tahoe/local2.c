@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)local2.c	1.31 (Berkeley) 01/29/88";
+static char sccsid[] = "@(#)local2.c	1.32 (Berkeley) 02/29/88";
 #endif
 
 # include "pass2.h"
@@ -846,8 +846,7 @@ sconv(p, forcc)
 			adrput(dst);
 			putstr("\n\tmovab\t4(sp),sp");
 			if (forcc) {
-				/* inverted test */
-				putstr("\n\tcmpl\t$0,");
+				putstr("\n\ttstl\t");
 				adrput(dst);
 			}
 			return;
@@ -888,8 +887,7 @@ sconv(p, forcc)
 			adrput(dst);
 			putstr("\n\tmovab\t4(sp),sp");
 			if (forcc) {
-				/* inverted test */
-				putstr("\n\tcmpl\t$0,");
+				putstr("\n\ttstl\t");
 				adrput(dst);
 			}
 			return;
