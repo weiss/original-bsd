@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)fort.c	4.7 (Berkeley) 08/22/85";
+static char *sccsid ="@(#)fort.c	4.8 (Berkeley) 10/15/86";
 #endif lint
 
 # ifndef FORT
@@ -38,8 +38,7 @@ static char *sccsid ="@(#)fort.c	4.7 (Berkeley) 08/22/85";
 
 FILE * lrd;  /* for default reading routines */
 
-# ifndef NOLNREAD
-#ifdef FLEXNAMES
+# if !defined(NOLNREAD) && defined(FLEXNAMES)
 char *
 lnread()
 {
@@ -59,7 +58,6 @@ lnread()
 	return (tstr(buf));
 }
 #endif
-# endif NOLNREAD
 
 # ifndef NOLREAD
 long lread(){
