@@ -6,14 +6,13 @@
 
 # ifdef _DEFINE
 # define EXTERN
-static char SmailSccsId[] =	"@(#)sendmail.h	3.55	11/22/81";
+# ifndef lint
+static char SmailSccsId[] =	"@(#)sendmail.h	3.56		12/06/81";
+# endif lint
 # else  _DEFINE
 # define EXTERN extern
 # endif _DEFINE
 
-# ifndef major
-# include <sys/types.h>
-# endif major
 # include <stdio.h>
 # include <ctype.h>
 # include "useful.h"
