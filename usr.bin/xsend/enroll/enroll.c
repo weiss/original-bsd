@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)enroll.c	4.1 03/30/83";
+static char sccsid[] = "@(#)enroll.c	4.2 05/19/83";
 #endif
 
 #include "xmail.h"
@@ -14,7 +14,7 @@ main()
 	FILE *fd;
 	char *myname, fname[128];
 	uid = getuid();
-	myname = getlogin();
+	myname = (char *) getlogin();
 	if(myname == NULL)
 		myname = getpwuid(uid)->pw_name;
 	sprintf(fname, "%s/%s.key", maildir, myname);
@@ -29,7 +29,7 @@ main()
 	mka();
 	i = creat(fname, 0644);
 	if(i<0)
-	{	perror("fname");
+	{	perror(fname);
 		exit(1);
 	}
 	close(i);
