@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_input.c	8.2 (Berkeley) 08/10/93
+ *	@(#)tcp_input.c	8.3 (Berkeley) 01/04/94
  */
 
 #ifndef TUBA_INCLUDE
@@ -1499,7 +1499,7 @@ tcp_mss(tp, offer)
 	u_long bufsize;
 	struct inpcb *inp;
 	struct socket *so;
-	extern int tcp_mssdflt, tcp_rttdflt;
+	extern int tcp_mssdflt;
 
 	inp = tp->t_inpcb;
 	ro = &inp->inp_route;
