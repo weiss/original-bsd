@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* sccsid[] = "@(#)h00vars.h 1.5 03/07/81"; */
+/* sccsid[] = "@(#)h00vars.h 1.6 04/01/81"; */
 
 #include <stdio.h>
 #include "whoami.h"
@@ -43,9 +43,9 @@ struct display {
  * formal routine structure
  */
 struct formalrtn {
-	long		(*entryaddr)();
-	long		cbn;
-	struct display	disp[2*MAXLVL];
+	long		(*fentryaddr)();	/* formal entry point */
+	long		fbn;			/* block number of function */
+	struct display	fdisp[ MAXLVL ];	/* saved at first passing */
 };
 
 struct errentry {
