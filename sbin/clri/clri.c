@@ -1,15 +1,20 @@
-/* Copyright (c) 1981 Regents of the University of California */
-
-static char sccsid[] = "@(#)clri.c 1.3 01/12/82";
+static char sccsid[] = "@(#)clri.c 2.1 04/08/82";
 
 /* static char *sccsid = "@(#)clri.c	4.1 (Berkeley) 10/1/80"; */
+
 /*
  * clri filsys inumber ...
  */
 
+#ifndef SIMFS
+#include <sys/param.h>
+#include <sys/inode.h>
+#include <sys/fs.h>
+#else
 #include "../h/param.h"
 #include "../h/inode.h"
 #include "../h/fs.h"
+#endif
 
 #define ISIZE	(sizeof(struct dinode))
 #define	NI	(MAXBSIZE/ISIZE)
