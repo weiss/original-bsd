@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.50 (Berkeley) 04/29/95 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.51 (Berkeley) 04/29/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.50 (Berkeley) 04/29/95 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.51 (Berkeley) 04/29/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -807,9 +807,8 @@ smtpprobe(mci)
 **		mci -- the mailer connection info structure.
 **		e -- the current envelope.
 **		timeout -- the timeout for reads.
-**		pfunc -- processing function for second and subsequent
-**			lines of response -- if null, no special
-**			processing is done.
+**		pfunc -- processing function called on each line of response.
+**			If null, no special processing is done.
 **
 **	Returns:
 **		reply code it reads.
