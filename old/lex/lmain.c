@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lmain.c	4.2 (Berkeley) 01/09/85";
+static char sccsid[] = "@(#)lmain.c	4.3 (Berkeley) 02/21/85";
 #endif
 
 # include "ldefs.c"
@@ -56,7 +56,6 @@ main(argc,argv)
 	if (argc > 1){
 		fin = fopen(argv[++fptr], "r");		/* open argv[1] */
 		sargc--;
-		sargv++;
 		}
 	else fin = stdin;
 	if(fin == NULL)
@@ -227,5 +226,6 @@ segviol(){
 yyerror(s)
 char *s;
 {
-	fprintf(stderr, "%s\n", s);
+	fprintf(stderr, "\"%s\", line %d: %s\n",
+		fptr > 0 ? sargv[fptr] : "<stdin>", yyline, s);
 }
