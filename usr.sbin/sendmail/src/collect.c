@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	5.15 (Berkeley) 12/15/92";
+static char sccsid[] = "@(#)collect.c	5.16 (Berkeley) 12/15/92";
 #endif /* not lint */
 
 # include <errno.h>
@@ -40,9 +40,8 @@ collect(smtpmode, e)
 {
 	register FILE *tf;
 	bool ignrdot = smtpmode ? FALSE : IgnrDot;
-	char buf[MAXFIELD], buf2[MAXFIELD];
+	char buf[MAXLINE], buf2[MAXLINE];
 	register char *workbuf, *freebuf;
-	register int workbuflen;
 	extern char *hvalue();
 	extern bool isheader(), flusheol();
 
@@ -70,7 +69,7 @@ collect(smtpmode, e)
 	**  Try to read a UNIX-style From line
 	*/
 
-	if (sfgets(buf, MAXFIELD, InChannel) == NULL)
+	if (sfgets(buf, MAXLINE, InChannel) == NULL)
 		goto readerr;
 	fixcrlf(buf, FALSE);
 # ifndef NOTUNIX
@@ -79,7 +78,7 @@ collect(smtpmode, e)
 		if (!flusheol(buf, InChannel))
 			goto readerr;
 		eatfrom(buf, e);
-		if (sfgets(buf, MAXFIELD, InChannel) == NULL)
+		if (sfgets(buf, MAXLINE, InChannel) == NULL)
 			goto readerr;
 		fixcrlf(buf, FALSE);
 	}
@@ -96,6 +95,11 @@ collect(smtpmode, e)
 	freebuf = buf2;		/* `freebuf' can be used for read-ahead */
 	for (;;)
 	{
+		char *curbuf;
+		int curbuffree;
+		register int curbuflen;
+		char *p;
+
 		/* first, see if the header is over */
 		if (!isheader(workbuf))
 		{
@@ -110,12 +114,17 @@ collect(smtpmode, e)
 		/* it's okay to toss '\n' now (flusheol() needed it) */
 		fixcrlf(workbuf, TRUE);
 
-		workbuflen = strlen(workbuf);
+		curbuf = workbuf;
+		curbuflen = strlen(curbuf);
+		curbuffree = MAXLINE - curbuflen;
+		p = curbuf + curbuflen;
 
 		/* get the rest of this field */
 		for (;;)
 		{
-			if (sfgets(freebuf, MAXFIELD, InChannel) == NULL)
+			int clen;
+
+			if (sfgets(freebuf, MAXLINE, InChannel) == NULL)
 				goto readerr;
 
 			/* is this a continuation line? */
@@ -125,26 +134,32 @@ collect(smtpmode, e)
 			if (!flusheol(freebuf, InChannel))
 				goto readerr;
 
-			/* yes; append line to `workbuf' if there's room */
-			if (workbuflen < MAXFIELD-3)
+			fixcrlf(freebuf, TRUE);
+			clen = strlen(freebuf) + 1;
+
+			/* if insufficient room, dynamically allocate buffer */
+			if (clen >= curbuffree)
 			{
-				register char *p = workbuf + workbuflen;
-				register char *q = freebuf;
+				/* reallocate buffer */
+				int nbuflen = ((p - curbuf) + clen) * 2;
+				char *nbuf = xalloc(nbuflen);
 
-				/* we have room for more of this field */
-				fixcrlf(freebuf, TRUE);
-				*p++ = '\n';
-				workbuflen++;
-				while(*q != '\0' && workbuflen < MAXFIELD-1)
-				{
-					*p++ = *q++;
-					workbuflen++;
-				}
-				*p = '\0';
+				p = nbuf + curbuflen;
+				curbuffree = nbuflen - curbuflen;
+				bcopy(curbuf, nbuf, curbuflen);
+				if (curbuf != buf && curbuf != buf2)
+					free(curbuf);
+				curbuf = nbuf;
 			}
+			*p++ = '\n';
+			bcopy(freebuf, p, clen - 1);
+			p += clen - 1;
+			curbuffree -= clen;
+			curbuflen += clen;
 		}
+		*p++ = '\0';
 
-		e->e_msgsize += workbuflen;
+		e->e_msgsize += curbuflen;
 
 		/*
 		**  The working buffer now becomes the free buffer, since
@@ -168,8 +183,15 @@ collect(smtpmode, e)
 		**  Snarf header away.
 		*/
 
-		if (bitset(H_EOH, chompheader(freebuf, FALSE, e)))
+		if (bitset(H_EOH, chompheader(curbuf, FALSE, e)))
 			break;
+
+		/*
+		**  If the buffer was dynamically allocated, free it.
+		*/
+
+		if (curbuf != buf && curbuf != buf2)
+			free(curbuf);
 	}
 
 	if (tTd(30, 1))
@@ -178,7 +200,7 @@ collect(smtpmode, e)
 	if (*workbuf == '\0')
 	{
 		/* throw away a blank line */
-		if (sfgets(buf, MAXFIELD, InChannel) == NULL)
+		if (sfgets(buf, MAXLINE, InChannel) == NULL)
 			goto readerr;
 	}
 	else if (workbuf == buf2)	/* guarantee `buf' contains data */
@@ -212,7 +234,7 @@ collect(smtpmode, e)
 		fputs("\n", tf);
 		if (ferror(tf))
 			tferror(tf, e);
-	} while (sfgets(buf, MAXFIELD, InChannel) != NULL);
+	} while (sfgets(buf, MAXLINE, InChannel) != NULL);
 
 readerr:
 	if (fflush(tf) != 0)

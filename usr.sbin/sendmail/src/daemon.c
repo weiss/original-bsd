@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.53 (Berkeley) 11/15/92 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.54 (Berkeley) 12/15/92 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.53 (Berkeley) 11/15/92 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.54 (Berkeley) 12/15/92 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -208,6 +208,7 @@ getrequests()
 			extern struct hostent *gethostbyaddr();
 			register struct hostent *hp;
 			char buf[MAXNAME];
+			extern char *inet_ntoa();
 
 			/*
 			**  CHILD -- return to caller.
@@ -223,8 +224,6 @@ getrequests()
 				(void) strcpy(buf, hp->h_name);
 			else
 			{
-				extern char *inet_ntoa();
-
 				/* produce a dotted quad */
 				(void) sprintf(buf, "[%s]",
 					inet_ntoa(RealHostAddr.sin_addr));

@@ -30,12 +30,12 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.40 (Berkeley) 11/16/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.41 (Berkeley) 12/15/92 (with NEWDB)";
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	5.40 (Berkeley) 11/16/92 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	5.41 (Berkeley) 12/15/92 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.40 (Berkeley) 11/16/92 (without NDBM)";
+static char sccsid[] = "@(#)alias.c	5.41 (Berkeley) 12/15/92 (without NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -604,6 +604,13 @@ readaliases(aliasfile, init, e)
 			if (fgets(p, sizeof line - (p - line), af) == NULL)
 				break;
 			LineNumber++;
+
+			/* check for line overflow */
+			if (strchr(p, '\n') == NULL)
+			{
+				usrerr("alias too long");
+				break;
+			}
 		}
 		if (al.q_mailer != LocalMailer)
 		{
