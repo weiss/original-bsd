@@ -7,9 +7,9 @@
  * This code is derived from software contributed to Berkeley by
  * Don Ahn.
  *
- * %sccs.include.386.c%
+ * %sccs.include.redist.c%
  *
- *	@(#)fd.c	7.1 (Berkeley) 05/09/91
+ *	@(#)fd.c	7.2 (Berkeley) 05/09/91
  */
 
 /****************************************************************************/
