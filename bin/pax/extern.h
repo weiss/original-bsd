@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	1.1 (Berkeley) 12/17/92
+ *	@(#)extern.h	1.2 (Berkeley) 01/14/93
  */
 
 /*
@@ -182,9 +182,11 @@ extern int nflag;
 extern int tflag;
 extern int uflag;
 extern int vflag;
+extern int Dflag;
 extern int Hflag;
 extern int Lflag;
 extern int Xflag;
+extern int Yflag;
 extern int Zflag;
 extern int vfpart;
 extern int patime;
