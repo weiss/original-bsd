@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.53 (Berkeley) 02/28/95";
+static char sccsid[] = "@(#)util.c	8.39.1.5 (Berkeley) 03/05/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -243,16 +243,9 @@ xputs(s)
 	{
 		if (!isascii(c))
 		{
-			if (c == MATCHREPL)
+			if (c == MATCHREPL || c == MACROEXPAND)
 			{
 				putchar('$');
-				continue;
-			}
-			if (c == MACROEXPAND)
-			{
-				putchar('$');
-				if (bitset(0200, *s))
-					printf("{%s}", macname(*s++ & 0377));
 				continue;
 			}
 			for (mp = MetaMacros; mp->metaname != '\0'; mp++)
@@ -317,7 +310,6 @@ xputs(s)
 **		parse
 */
 
-void
 makelower(p)
 	register char *p;
 {
@@ -438,56 +430,48 @@ safefile(fn, uid, gid, uname, flags, mode)
 			fn, uid, gid, flags, mode);
 	errno = 0;
 
-	if (!bitset(SFF_NOPATHCHECK, flags) ||
-	    (uid == 0 && !bitset(SFF_ROOTOK, flags)))
+	for (p = fn; (p = strchr(++p, '/')) != NULL; *p = '/')
 	{
-		/* check the path to the file for acceptability */
-		for (p = fn; (p = strchr(++p, '/')) != NULL; *p = '/')
+		*p = '\0';
+		if (stat(fn, &stbuf) < 0)
+			break;
+		if (uid == 0 && !bitset(SFF_ROOTOK, flags))
 		{
-			*p = '\0';
-			if (stat(fn, &stbuf) < 0)
-				break;
-			if (uid == 0 && !bitset(SFF_ROOTOK, flags))
-			{
-				if (bitset(S_IXOTH, stbuf.st_mode))
-					continue;
-				break;
-			}
-			if (stbuf.st_uid == uid &&
-			    bitset(S_IXUSR, stbuf.st_mode))
+			if (bitset(S_IXOTH, stbuf.st_mode))
 				continue;
-			if (stbuf.st_gid == gid &&
-			    bitset(S_IXGRP, stbuf.st_mode))
-				continue;
+			break;
+		}
+		if (stbuf.st_uid == uid && bitset(S_IXUSR, stbuf.st_mode))
+			continue;
+		if (stbuf.st_gid == gid && bitset(S_IXGRP, stbuf.st_mode))
+			continue;
 #ifndef NO_GROUP_SET
-			if (uname != NULL &&
-			    ((gr != NULL && gr->gr_gid == stbuf.st_gid) ||
-			     (gr = getgrgid(stbuf.st_gid)) != NULL))
-			{
-				register char **gp;
-
-				for (gp = gr->gr_mem; gp != NULL && *gp != NULL; gp++)
-					if (strcmp(*gp, uname) == 0)
-						break;
-				if (gp != NULL && *gp != NULL &&
-				    bitset(S_IXGRP, stbuf.st_mode))
-					continue;
-			}
-#endif
-			if (!bitset(S_IXOTH, stbuf.st_mode))
-				break;
-		}
-		if (p != NULL)
+		if (uname != NULL &&
+		    ((gr != NULL && gr->gr_gid == stbuf.st_gid) ||
+		     (gr = getgrgid(stbuf.st_gid)) != NULL))
 		{
-			int ret = errno;
+			register char **gp;
 
-			if (ret == 0)
-				ret = EACCES;
-			if (tTd(54, 4))
-				printf("\t[dir %s] %s\n", fn, errstring(ret));
-			*p = '/';
-			return ret;
+			for (gp = gr->gr_mem; *gp != NULL; gp++)
+				if (strcmp(*gp, uname) == 0)
+					break;
+			if (*gp != NULL && bitset(S_IXGRP, stbuf.st_mode))
+				continue;
 		}
+#endif
+		if (!bitset(S_IXOTH, stbuf.st_mode))
+			break;
+	}
+	if (p != NULL)
+	{
+		int ret = errno;
+
+		if (ret == 0)
+			ret = EACCES;
+		if (tTd(54, 4))
+			printf("\t[dir %s] %s\n", fn, errstring(ret));
+		*p = '/';
+		return ret;
 	}
 
 #ifdef HASLSTAT
@@ -829,7 +813,10 @@ xfclose(fp, a, b)
 */
 
 static jmp_buf	CtxReadTimeout;
-static void	readtimeout();
+static int	readtimeout();
+static EVENT	*GlobalTimeout = NULL;
+static bool	EnableTimeout = FALSE;
+static int	ReadProgress;
 
 char *
 sfgets(buf, siz, fp, timeout, during)
@@ -867,7 +854,10 @@ sfgets(buf, siz, fp, timeout, during)
 #endif
 			return (NULL);
 		}
-		ev = setevent(timeout, readtimeout, 0);
+		if (GlobalTimeout == NULL)
+			ev = setevent(timeout, readtimeout, 0);
+		else
+			EnableTimeout = TRUE;
 	}
 
 	/* try to read */
@@ -882,7 +872,10 @@ sfgets(buf, siz, fp, timeout, during)
 	}
 
 	/* clear the event if it has not sprung */
-	clrevent(ev);
+	if (GlobalTimeout == NULL)
+		clrevent(ev);
+	else
+		EnableTimeout = FALSE;
 
 	/* clean up the books and exit */
 	LineNumber++;
@@ -895,30 +888,50 @@ sfgets(buf, siz, fp, timeout, during)
 	}
 	if (TrafficLogFile != NULL)
 		fprintf(TrafficLogFile, "%05d <<< %s", getpid(), buf);
-	if (SevenBitInput)
-	{
+	if (SevenBit)
 		for (p = buf; *p != '\0'; p++)
 			*p &= ~0200;
-	}
-	else if (!HasEightBits)
-	{
-		for (p = buf; *p != '\0'; p++)
-		{
-			if (bitset(0200, *p))
-			{
-				HasEightBits = TRUE;
-				break;
-			}
-		}
-	}
 	return (buf);
 }
 
-static void
+void
+sfgetset(timeout)
+	time_t timeout;
+{
+	/* cancel pending timer */
+	if (GlobalTimeout != NULL)
+	{
+		clrevent(GlobalTimeout);
+		GlobalTimeout = NULL;
+	}
+
+	/* schedule fresh one if so requested */
+	if (timeout != 0)
+	{
+		ReadProgress = LineNumber;
+		GlobalTimeout = setevent(timeout, readtimeout, timeout);
+	}
+}
+
+static
 readtimeout(timeout)
 	time_t timeout;
 {
-	longjmp(CtxReadTimeout, 1);
+	/* terminate if ordinary timeout */
+	if (GlobalTimeout == NULL)
+		longjmp(CtxReadTimeout, 1);
+
+	/* terminate if no progress was made -- reset state */
+	if (EnableTimeout && (LineNumber <= ReadProgress))
+	{
+		EnableTimeout = FALSE;
+		GlobalTimeout = NULL;
+		longjmp(CtxReadTimeout, 2);
+	}
+
+	/* schedule a new timeout */
+	GlobalTimeout = NULL;
+	sfgetset(timeout);
 }
 /*
 **  FGETFOLDED -- like fgets, but know about folded lines.
@@ -1307,8 +1320,7 @@ dumpfd(fd, printclosed, logit)
 			sprintf(p, "(badsock)");
 		else
 		{
-			hp = gethostbyaddr((char *) &sin.sin_addr,
-					   INADDRSZ, AF_INET);
+			hp = gethostbyaddr((char *) &sin.sin_addr, slen, AF_INET);
 			sprintf(p, "%s/%d", hp == NULL ? inet_ntoa(sin.sin_addr)
 						   : hp->h_name, ntohs(sin.sin_port));
 		}
@@ -1320,8 +1332,7 @@ dumpfd(fd, printclosed, logit)
 			sprintf(p, "(badsock)");
 		else
 		{
-			hp = gethostbyaddr((char *) &sin.sin_addr,
-					   INADDRSZ, AF_INET);
+			hp = gethostbyaddr((char *) &sin.sin_addr, slen, AF_INET);
 			sprintf(p, "%s/%d", hp == NULL ? inet_ntoa(sin.sin_addr)
 						   : hp->h_name, ntohs(sin.sin_port));
 		}
@@ -1429,79 +1440,6 @@ shortenstring(s, m)
 	return buf;
 }
 /*
-**  GET_COLUMN  -- look up a Column in a line buffer
-**
-**	Parameters:
-**		line -- the raw text line to search.
-**		col -- the column number to fetch.
-**		delim -- the delimiter between columns.  If null,
-**			use white space.
-**		buf -- the output buffer.
-**
-**	Returns:
-**		buf if successful.
-**		NULL otherwise.
-*/
-
-char *
-get_column(line, col, delim, buf)
-	char line[];
-	int col;
-	char delim;
-	char buf[];
-{
-	char *p;
-	char *begin, *end;
-	int i;
-	char delimbuf[3];
-	
-	if (delim == '\0')
-		strcpy(delimbuf, "\t ");
-	else
-	{
-		delimbuf[0] = delim;
-		delimbuf[1] = '\0';
-	}
-
-	p = line;
-	if (*p == '\0')
-		return NULL;			/* line empty */
-	if (*p == delim && col == 0)
-		return NULL;			/* first column empty */
-
-	begin = line;
-
-	if (col == 0 && delim == '\0')
-	{
-		while (*begin && isspace(*begin))
-			begin++;
-	}
-
-	for (i = 0; i < col; i++)
-	{
-		if ((begin = strpbrk(begin, delimbuf)) == NULL)
-			return NULL;		/* no such column */
-		begin++;
-		if (delim == '\0')
-		{
-			while (*begin && isspace(*begin))
-				begin++;
-		}
-	}
-	
-	end = strpbrk(begin, delimbuf);
-	if (end == NULL)
-	{
-		strcpy(buf, begin);
-	}
-	else
-	{
-		strncpy(buf, begin, end - begin);
-		buf[end - begin] = '\0';
-	}
-	return buf;
-}
-/*
 **  CLEANSTRCPY -- copy string keeping out bogus characters
 **
 **	Parameters:
@@ -1521,7 +1459,7 @@ cleanstrcpy(t, f, l)
 {
 #ifdef LOG
 	/* check for newlines and log if necessary */
-	(void) denlstring(f, TRUE);
+	(void) denlstring(f, TRUE, TRUE);
 #endif
 
 	l--;
@@ -1542,6 +1480,7 @@ cleanstrcpy(t, f, l)
 **
 **	Parameters:
 **		s -- the input string
+**		strict -- if set, don't permit continuation lines.
 **		logattacks -- if set, log attempted attacks.
 **
 **	Returns:
@@ -1550,8 +1489,9 @@ cleanstrcpy(t, f, l)
 */
 
 char *
-denlstring(s, logattacks)
+denlstring(s, strict, logattacks)
 	char *s;
+	int strict;
 	int logattacks;
 {
 	register char *p;
@@ -1559,7 +1499,11 @@ denlstring(s, logattacks)
 	static char *bp = NULL;
 	static int bl = 0;
 
-	if (strchr(s, '\n') == NULL)
+	p = s;
+	while ((p = strchr(p, '\n')) != NULL)
+		if (strict || (*++p != ' ' && *p != '\t'))
+			break;
+	if (p == NULL)
 		return s;
 
 	l = strlen(s) + 1;
@@ -1575,7 +1519,6 @@ denlstring(s, logattacks)
 	for (p = bp; (p = strchr(p, '\n')) != NULL; )
 		*p++ = ' ';
 
-/*
 #ifdef LOG
 	if (logattacks)
 	{
@@ -1584,7 +1527,6 @@ denlstring(s, logattacks)
 			shortenstring(bp, 80));
 	}
 #endif
-*/
 
 	return bp;
 }
