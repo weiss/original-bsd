@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)unix.c	5.12 (Berkeley) 05/27/92";
+static char sccsid[] = "@(#)unix.c	5.13 (Berkeley) 07/06/92";
 #endif /* not lint */
 
 /*
@@ -25,13 +25,17 @@ static char sccsid[] = "@(#)unix.c	5.12 (Berkeley) 05/27/92";
 struct uio;
 struct proc;
 #include <sys/file.h>
+
+#include <netinet/in.h>
+
+#include <stdio.h>
 #include <stdlib.h>
 #include "netstat.h"
 
-static void unixdomainpr __P((struct socket *, caddr_t));
+static	void unixdomainpr __P((struct socket *, caddr_t));
 
-struct file *file, *fileNFILE;
-int nfiles;
+struct	file *file, *fileNFILE;
+int	nfiles;
 extern	kvm_t *kvmd;
 
 void
@@ -96,7 +100,7 @@ unixdomainpr(so, soaddr)
 	    unp->unp_vnode, unp->unp_conn,
 	    unp->unp_refs, unp->unp_nextref);
 	if (m)
-		printf(" %.*s", m->m_len - sizeof(sa->sun_family),
+		printf(" %.*s", m->m_len - (int)sizeof(sa->sun_family),
 		    sa->sun_path);
 	putchar('\n');
 }

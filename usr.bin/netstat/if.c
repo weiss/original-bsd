@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)if.c	5.16 (Berkeley) 05/27/92";
+static char sccsid[] = "@(#)if.c	5.17 (Berkeley) 07/06/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -25,6 +25,7 @@ static char sccsid[] = "@(#)if.c	5.16 (Berkeley) 05/27/92";
 #include <stdio.h>
 #include <string.h>
 #include <signal.h>
+#include <unistd.h>
 #include "netstat.h"
 
 #define	YES	1
