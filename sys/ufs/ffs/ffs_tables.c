@@ -4,14 +4,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_tables.c	7.4 (Berkeley) 06/28/90
+ *	@(#)ffs_tables.c	7.5 (Berkeley) 11/01/91
  */
 
-#ifdef KERNEL
-#include "param.h"
-#else
 #include <sys/param.h>
-#endif
 
 /*
  * Bit patterns for identifying fragments in the block map
