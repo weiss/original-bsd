@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.3 (Berkeley) 07/13/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.4 (Berkeley) 07/16/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.3 (Berkeley) 07/13/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.4 (Berkeley) 07/16/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -141,7 +141,7 @@ smtp(e)
 		QuickAbort = FALSE;
 		HoldErrs = FALSE;
 		LogUsrErrs = FALSE;
-		e->e_flags &= ~EF_VRFYONLY;
+		e->e_flags &= ~(EF_VRFYONLY|EF_GLOBALERRS);
 
 		/* setup for the read */
 		e->e_to = NULL;
@@ -161,7 +161,7 @@ smtp(e)
 			message("421 %s Lost input channel from %s",
 				MyHostName, CurHostName);
 #ifdef LOG
-			if (LogLevel > 1)
+			if (LogLevel > (gotmail ? 1 : 19))
 				syslog(LOG_NOTICE, "lost input channel from %s",
 					CurHostName);
 #endif
@@ -271,6 +271,8 @@ smtp(e)
 			if (gotmail)
 			{
 				message("503 Sender already specified");
+				if (InChild)
+					finis();
 				break;
 			}
 			if (InChild)
@@ -492,8 +494,8 @@ smtp(e)
 
 			/* collect the text of the message */
 			SmtpPhase = "collect";
+			SuprErrs = TRUE;
 			collect(TRUE, doublequeue, e);
-			e->e_flags &= ~EF_FATALERRS;
 			if (Errors != 0)
 				goto abortmessage;
 
@@ -527,6 +529,7 @@ smtp(e)
 			/* send to all recipients */
 			sendall(e, doublequeue ? SM_QUEUE : SM_DEFAULT);
 			e->e_to = NULL;
+			SuprErrs = FALSE;
 
 			/* save statistics */
 			markstats(e, (ADDRESS *) NULL);
