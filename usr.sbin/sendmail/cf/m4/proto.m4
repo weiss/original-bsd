@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(@(#)proto.m4	2.22 (Berkeley) 12/20/91)
+VERSIONID(@(#)proto.m4	2.23 (Berkeley) 01/05/92)
 
 MAILER(local)dnl
 
@@ -66,7 +66,7 @@ C..
 OU`'ifdef(`USERDB_SPEC', `USERDB_SPEC')
 
 # set if we can guarantee no wildcard MX records matching our domain
-ifdef(`_NO_WILDCARD_MX_', `', `#')Ow
+Ow`'ifdef(`_NO_WILDCARD_MX_', `True', `False')
 
 ifdef(`_OLD_SENDMAIL_', `dnl',
 `# level 2 config file format
