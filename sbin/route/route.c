@@ -13,7 +13,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)route.c	8.5 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)route.c	8.6 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -891,9 +891,9 @@ ns_print(sns)
 		return (mybuf);
 	}
 
-	if (bcmp((char *)ns_bh, (char *)work.x_host.c_host, 6) == 0)
+	if (memcmp(ns_bh, work.x_host.c_host, 6) == 0)
 		host = "any";
-	else if (bcmp((char *)ns_nullh, (char *)work.x_host.c_host, 6) == 0)
+	else if (memcmp(ns_nullh, work.x_host.c_host, 6) == 0)
 		host = "*";
 	else {
 		q = work.x_host.c_host;
