@@ -1,6 +1,11 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char *sccsid = "@(#)shell.c	4.1 (Berkeley) 05/06/83";
-#endif
+static char sccsid[] = "@(#)shell.c	4.2 (Berkeley) 04/18/91";
+#endif /* not lint */
+
 /*
  * SORTS UP.
  * IF THERE ARE NO EXCHANGES (IEX=0) ON A SWEEP
