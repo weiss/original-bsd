@@ -1,9 +1,11 @@
-#	@(#)Makefile	5.8.1.1 (Berkeley) 10/21/90
+#	@(#)Makefile	5.9 (Berkeley) 01/31/91
 
-SUBDIR=	compact hostid lex make yacc
+SUBDIR=	compact crypt hostid lex make yacc
 
-.if ${MACHINE} == "vax"
-SUBDIR+=talk tp
+.if   (${MACHINE} == "tahoe")
+SUBDIR+=pcc
+.elif ${MACHINE} == "vax"
+SUBDIR+=pcc talk tp
 .endif
 
 .include <bsd.subdir.mk>
