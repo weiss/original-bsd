@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.8 (Berkeley) 11/14/91
+#	@(#)Makefile.inc	5.9 (Berkeley) 03/07/92
 
 # stdlib sources
 .PATH: ${.CURDIR}/${MACHINE}/stdlib ${.CURDIR}/stdlib
@@ -11,6 +11,8 @@ SRCS+=	abort.c atexit.c atoi.c atol.c bsearch.c calloc.c div.c exit.c \
 .if   (${MACHINE} == "hp300")
 SRCS+=	abs.s atof.c
 .elif (${MACHINE} == "i386")
+SRCS+=	abs.s atof.c
+.elif (${MACHINE} == "mips")
 SRCS+=	abs.s atof.c
 .elif (${MACHINE} == "tahoe")
 SRCS+=	abs.s atof.s
