@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.9 (Berkeley) 10/13/86";
+static char sccsid[] = "@(#)savecore.c	5.10 (Berkeley) 01/08/87";
 #endif not lint
 
 /*
@@ -91,6 +91,7 @@ int	panicstr;
 off_t	lseek();
 off_t	Lseek();
 int	Verbose;
+int	force;
 extern	int errno;
 
 main(argc, argv)
@@ -103,6 +104,10 @@ main(argc, argv)
 	while (argc > 0 && argv[0][0] == '-') {
 		for (cp = &argv[0][1]; *cp; cp++) switch (*cp) {
 
+		case 'f':
+			force++;
+			break;
+
 		case 'v':
 			Verbose++;
 			break;
@@ -110,7 +115,7 @@ main(argc, argv)
 		default:
 		usage:
 			fprintf(stderr,
-			    "usage: savecore [-v] dirname [ system ]\n");
+			    "usage: savecore [-f] [-v] dirname [ system ]\n");
 			exit(1);
 		}
 		argc--, argv++;
@@ -137,7 +142,7 @@ main(argc, argv)
 		syslog(LOG_CRIT, "reboot after panic: %s", panic_mesg);
 	else
 		syslog(LOG_CRIT, "reboot");
-	if (!get_crashtime() || !check_space())
+	if ((!get_crashtime() || !check_space()) && !force)
 		exit(1);
 	save_core();
 	clear_dump();
@@ -300,7 +305,7 @@ get_crashtime()
 	close(dumpfd);
 	if (dumptime == 0) {
 		if (Verbose)
-			printf("Dump time not found.\n");
+			printf("Dump time is zero.\n");
 		return (0);
 	}
 	printf("System went down at %s", ctime(&dumptime));
