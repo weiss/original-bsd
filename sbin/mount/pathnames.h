@@ -4,9 +4,8 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	6.4 (Berkeley) 06/01/90
+ *	@(#)pathnames.h	6.5 (Berkeley) 01/06/92
  */
 
 #define _PATH_EXECDIR	"/sbin"
-#define	_PATH_EXPORTS	"/etc/exports"
 #define	_PATH_MOUNTDPID	"/var/run/mountd.pid"
