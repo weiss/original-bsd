@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)contents.c	5.1 (Berkeley) 01/17/91";
+static char sccsid[] = "@(#)contents.c	5.2 (Berkeley) 01/21/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -29,8 +29,7 @@ extern char *archive;			/* archive name */
 /*
  * contents --
  *	Handles t[v] option - opens the archive and then reads headers,
- *	skipping member contents.  If verbose option set, calls verbose
- *	to do ls -l style display.
+ *	skipping member contents.
  */
 contents(argv)
 	register char **argv;
@@ -59,6 +58,7 @@ contents(argv)
 		}
 		SKIP(afd, chdr.size, archive);
 	} 
+	eval = 0;
 	ORPHANS;
 	close_archive(afd);
 	return(eval);
