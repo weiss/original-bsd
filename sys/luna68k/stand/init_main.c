@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.4 (Berkeley) 01/20/93
+ *	@(#)init_main.c	7.5 (Berkeley) 02/09/93
  */
 
 #include <sys/param.h>
@@ -23,7 +23,7 @@ extern int dipsw1, dipsw2;
 
 extern char default_file[];
 
-#define	VERS_LOCAL	"Phase-28"
+#define	VERS_LOCAL	"Phase-29"
 
 extern int howto;
 extern int devtype;
