@@ -1,4 +1,4 @@
-/*	vpsf.c	4.1	83/03/07	*/
+/*	vpsf.c	4.2	83/03/17	*/
 /*
  * Versatec printer filter
  * 	make wide listings by placing pages side by side
@@ -6,7 +6,6 @@
 
 #include <signal.h>
 #include <stdio.h>
-#include <sgtty.h>
 #include <sys/vcmd.h>
 
 #define	LINELN 440
@@ -31,11 +30,22 @@ char	*name;		/* user's login name */
 char	*host;		/* user's machine name */
 char	*acctfile;	/* accounting information file */
 
-main(argc, argv)
-int argc;
-char *argv[];
+onintr()
+{
+	signal(SIGTERM, SIG_IGN);
+	exit(1);
+}
+
+main(argc, argv) 
+	int argc;
+	char *argv[];
 {
 	register int i;
+
+	signal(SIGHUP, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, onintr);
 
 	while (--argc) {
 		if (*(*++argv) == '-') {
