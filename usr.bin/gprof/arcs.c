@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)arcs.c	1.10 (Berkeley) 06/20/82";
+    static	char *sccsid = "@(#)arcs.c	1.11 (Berkeley) 06/21/82";
 #endif lint
 
 #include "gprof.h"
@@ -343,8 +343,6 @@ cycletime()
     int			cycle;
     nltype		*cyclenlp;
     nltype		*childp;
-    arctype		*arcp;
-    nltype		*parentp;
 
     for ( cycle = 1 ; cycle <= ncycle ; cycle += 1 ) {
 	cyclenlp = &cyclenl[ cycle ];
