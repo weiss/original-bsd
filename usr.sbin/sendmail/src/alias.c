@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.35 (Berkeley) 12/28/94";
+static char sccsid[] = "@(#)alias.c	8.36 (Berkeley) 02/23/95";
 #endif /* not lint */
 
 
@@ -41,6 +41,7 @@ int	NAliasDBs;			/* number of alias databases */
 **			nothing.
 */
 
+void
 alias(a, sendq, aliaslevel, e)
 	register ADDRESS *a;
 	ADDRESS **sendq;
@@ -183,6 +184,7 @@ aliaslookup(name, e)
 **		none.
 */
 
+void
 setalias(spec)
 	char *spec;
 {
@@ -412,6 +414,7 @@ aliaswait(map, ext, isopen)
 **		DBM or DB version.
 */
 
+void
 rebuildaliases(map, automatic)
 	register MAP *map;
 	bool automatic;
@@ -532,6 +535,7 @@ rebuildaliases(map, automatic)
 **		Optionally, builds the .dir & .pag files.
 */
 
+void
 readaliases(map, af, announcestats, logstats)
 	register MAP *map;
 	FILE *af;
@@ -724,6 +728,7 @@ readaliases(map, af, announcestats, logstats)
 **		New names are added to send queues.
 */
 
+void
 forward(user, sendq, aliaslevel, e)
 	ADDRESS *user;
 	ADDRESS **sendq;
@@ -756,6 +761,7 @@ forward(user, sendq, aliaslevel, e)
 	{
 		int err;
 		char buf[MAXPATHLEN+1];
+		extern int include();
 
 		ep = strchr(pp, ':');
 		if (ep != NULL)

@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.54 (Berkeley) 02/10/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.55 (Berkeley) 02/23/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.54 (Berkeley) 02/10/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.55 (Berkeley) 02/23/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -113,7 +113,7 @@ smtp(e)
 	char *peerhostname;		/* name of SMTP peer or "localhost" */
 	auto char *delimptr;
 	char *id;
-	int nrcpts;			/* number of RCPT commands */
+	int nrcpts = 0;			/* number of RCPT commands */
 	bool doublequeue;
 	int badcommands = 0;		/* count of bad commands */
 	char inp[MAXLINE];
