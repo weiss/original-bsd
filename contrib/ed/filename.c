@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)filename.c	5.6 (Berkeley) 04/28/93";
+static char sccsid[] = "@(#)filename.c	5.7 (Berkeley) 05/11/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -79,7 +79,7 @@ filename(inputt, errnum)
 			l_fname[l_cnt] = '\0';
 			break;
 		} else
-			if ((ss == '!') && (l_esc == 0))
+			if ((ss == '!') && (l_esc == 0) && (l_cnt < 2))
 				l_bang_flag = 1;
 			else
 				if ((ss != ' ') || (l_bang_flag))
