@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)param.h	5.4 (Berkeley) 04/15/91
+ *	@(#)param.h	5.5 (Berkeley) 04/28/91
  */
 
 /*
@@ -36,6 +36,7 @@
 #define	CLSIZE		1
 #define	CLSIZELOG2	0
 
+/* NOTE: SSIZE, SINCR and UPAGES must be multiples of CLSIZE */
 #define	SSIZE	1		/* initial stack size/NBPG */
 #define	SINCR	1		/* increment of stack/NBPG */
 
