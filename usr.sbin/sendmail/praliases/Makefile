@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/11/90
+#	@(#)Makefile	6.1 (Berkeley) 12/21/92
 
 PROG=	praliases
 CFLAGS+=-I${.CURDIR}/../src
