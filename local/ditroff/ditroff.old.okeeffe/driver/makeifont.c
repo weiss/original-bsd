@@ -1,4 +1,4 @@
-/*	makeifont.c	(Berkeley)	1.7	85/02/26
+/*	makeifont.c	(Berkeley)	1.8	86/03/04
  *
  * Font description file producer for imagen fonts:  David Slattengren
  * Taken from vfontinfo by Andy Hertzfeld  4/79
@@ -57,7 +57,7 @@
 #include <ctype.h>
 #include "rst.h"
 
-char 	sccsid[] = "@(#)makeifont.c	1.7	(Berkeley)	02/26/85";
+char 	sccsid[] = "@(#)makeifont.c	1.8	(Berkeley)	03/04/86";
 
 #define PCNTUP		62	/* percent of maximum height for an ascender */
 #define PCNTDOWN	73	/* percent of maximum droop for a descender */
@@ -81,6 +81,7 @@ glyph_dir g[DIRSIZ];		/* directory of glyph definitions */
 preamble p;			/* set of variables for preamble */
 
 int	res = RES;		/* resolution of the device (units/inch) */
+double	fixpix = FIXPIX;	/* conversion factor "fix"es to pixels */
 int	pointsize = POINTSIZE;	/* point size being used for unitwidth */
 int	psize;			/* point size of font actually used */
 int	psizelist[] = { 40, 36, 28, 24, 22, 20, 18, 16,
@@ -268,6 +269,7 @@ char **argv;
 	  case 'r': res = atoi(operand(&argc, &argv));	/* resolution */
 		    if (res < MINRES || res > MAXRES)
 			error("illegal resolution: %d", res);
+		    fixpix = (FIXIN * res);		/* pixels per fix */
 		    break;
 
 	   default: error("bad option: %c", **argv);
@@ -363,12 +365,12 @@ char **argv;
     }
 
 
-    if ((fixtowdth = FIXPIX * p.p_mag / 1000.0) == 0.0)
-	fixtowdth = FIXPIX;
+    if ((fixtowdth = fixpix * p.p_mag / 1000.0) == 0.0)
+	fixtowdth = fixpix;
 
     printf("# Font %s\n# size %.2f, ", IName, p.p_desiz * FIX);
     printf("first %d, last %d, res %d, ", p.p_first, p.p_last, p.p_res);
-    printf("mag %.2f\n", fixtowdth / FIXPIX);
+    printf("mag %.2f\n", fixtowdth / fixpix);
 
     printf("name %s\n", fontname);
     if (ligsf)
