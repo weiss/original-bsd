@@ -4,10 +4,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)locc.c	7.3 (Berkeley) 06/21/92
+ *	@(#)locc.c	7.4 (Berkeley) 10/11/92
  */
 
-#include "libkern.h"
+#include <libkern/libkern.h>
 
 int
 locc(mask0, cp0, size)
