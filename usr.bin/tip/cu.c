@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cu.c	5.3 (Berkeley) 02/09/87";
+static char sccsid[] = "@(#)cu.c	5.4 (Berkeley) 09/14/87";
 #endif not lint
 
 #include "tip.h"
@@ -27,6 +27,7 @@ cumain(argc, argv)
 		exit(8);
 	}
 	CU = DV = NOSTR;
+	BR = DEFBR;
 	for (; argc > 1; argv++, argc--) {
 		if (argv[1][0] != '-')
 			PN = argv[1];
@@ -42,7 +43,7 @@ cumain(argc, argv)
 			break;
 
 		case 's':
-			if (speed(atoi(argv[2])) == 0) {
+			if (argc < 3 || speed(atoi(argv[2])) == 0) {
 				fprintf(stderr, "cu: unsupported speed %s\n",
 					argv[2]);
 				exit(3);
