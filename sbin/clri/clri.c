@@ -15,12 +15,12 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)clri.c	5.4 (Berkeley) 11/11/91";
+static char sccsid[] = "@(#)clri.c	5.5 (Berkeley) 05/28/92";
 #endif /* not lint */
 
 #include <sys/param.h>
-#include <ufs/ufs/quota.h>
-#include <ufs/ufs/inode.h>
+#include <sys/time.h>
+#include <ufs/ufs/dinode.h>
 #include <ufs/ffs/fs.h>
 #include <unistd.h>
 #include <stdio.h>
