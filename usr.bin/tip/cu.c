@@ -1,7 +1,8 @@
-/*	cu.c	4.3	81/12/16	*/
+/*	cu.c	4.4	83/06/15	*/
 
 #include "tip.h"
 
+static char *sccsid = "@(#)cu.c	4.4 06/15/83";
 int	cleanup();
 int	timeout();
 
