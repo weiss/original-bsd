@@ -9,10 +9,8 @@
  *
  * from: $Hdr: vt100.h,v 4.300 91/06/09 06:14:58 root Rel41 $ SONY
  *
- *	@(#)vt100.h	7.3 (Berkeley) 12/17/92
+ *	@(#)vt100.h	7.4 (Berkeley) 03/09/93
  */
-
-#include <machine/fix_machine_type.h>
 
 /*
  *  vt100 emulator header

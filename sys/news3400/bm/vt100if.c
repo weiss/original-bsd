@@ -9,10 +9,8 @@
  *
  * from: $Hdr: vt100if.c,v 4.300 91/06/09 06:15:02 root Rel41 $ SONY
  *
- *	@(#)vt100if.c	7.2 (Berkeley) 12/17/92
+ *	@(#)vt100if.c	7.3 (Berkeley) 03/09/93
  */
-
-#include <machine/fix_machine_type.h>
 
 #ifdef IPC_MRX
 #include "types.h"

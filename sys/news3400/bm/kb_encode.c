@@ -9,10 +9,8 @@
  *
  * from: $Hdr: kb_encode.c,v 4.300 91/06/09 06:14:51 root Rel41 $ SONY
  *
- *	@(#)kb_encode.c	7.4 (Berkeley) 12/17/92
+ *	@(#)kb_encode.c	7.5 (Berkeley) 03/09/93
  */
-
-#include <machine/fix_machine_type.h>
 
 #ifdef IPC_MRX
 #include <sys/param.h>

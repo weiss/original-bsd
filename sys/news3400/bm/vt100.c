@@ -9,10 +9,8 @@
  *
  * from: $Hdr: vt100.c,v 4.300 91/06/09 06:14:56 root Rel41 $ SONY
  *
- *	@(#)vt100.c	7.4 (Berkeley) 01/20/93
+ *	@(#)vt100.c	7.5 (Berkeley) 03/09/93
  */
-
-#include <machine/fix_machine_type.h>
 
 #include <sys/types.h>
 #include <sys/param.h>
