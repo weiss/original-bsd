@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)const.c	5.3 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)const.c	5.4 (Berkeley) 07/28/91";
 #endif /* not lint */
 
 /*
@@ -96,6 +96,7 @@ Char STRprompt[]        = { 'p', 'r', 'o', 'm', 'p', 't', '\0' };
 Char STRprompt2[]       = { 'p', 'r', 'o', 'm', 'p', 't', '2', '\0' };
 Char STRpushdsilent[]	= { 'p', 'u', 's', 'h', 'd', 's', 'i', 'l', 'e', 'n',
 			    't', '\0' };
+Char STRret[]		= { '\n', '\0' };
 Char STRsavehist[]      = { 's', 'a', 'v', 'e', 'h', 'i', 's', 't', '\0' };
 Char STRsemisp[]	= { ';', ' ', '\0' };
 Char STRshell[]         = { 's', 'h', 'e', 'l', 'l', '\0' };
