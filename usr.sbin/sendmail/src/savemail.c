@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	6.20 (Berkeley) 03/13/93";
+static char sccsid[] = "@(#)savemail.c	6.21 (Berkeley) 03/14/93";
 #endif /* not lint */
 
 # include <pwd.h>
@@ -445,7 +445,6 @@ returntosender(msg, returnq, sendbody, e)
 		returndepth--;
 		return (-1);
 	}
-	loweraddr(&ee->e_from);
 
 	/* push state into submessage */
 	CurEnv = ee;
