@@ -1,8 +1,16 @@
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)commands.y	5.1 (Berkeley) 05/31/85
+ */
+
 %{
 
 /* Copyright (c) 1982 Regents of the University of California */
 
-static	char sccsid[] = "@(#)commands.y	1.14 (Berkeley) 03/01/85";
+static	char sccsid[] = "@(#)commands.y	5.1 (Berkeley) 05/31/85";
 
 static char rcsid[] = "$Header: commands.y,v 1.5 84/12/26 10:38:41 linton Exp $";
 
