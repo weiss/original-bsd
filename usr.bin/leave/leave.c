@@ -1,5 +1,6 @@
-static char *sccsid = "@(#)leave.c	4.2 (Berkeley) 02/09/83";
+static char *sccsid = "@(#)leave.c	4.3 (Berkeley) 03/31/83";
 #include <stdio.h>
+#include <signal.h>
 /*
  * leave [hhmm]
  *
@@ -110,9 +111,10 @@ long nmins;
 	printf("Alarm set for %s\n",whenleave);
 	if (fork())
 		exit(0);
-	signal(2,1);
-	signal(3,1);
-	signal(15,1);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGTTOU, SIG_IGN);
 
 	if (slp1)
 		bother(slp1,msg1);
