@@ -16,7 +16,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)lang.l	5.5 (Berkeley) 06/18/88
+ *	@(#)lang.l	5.6 (Berkeley) 05/16/90
  */
 
 #include <ctype.h>
@@ -60,6 +60,9 @@ struct kt {
 	{ "priority",	PRIORITY },
 	{ "pseudo-device",PSEUDO_DEVICE },
 	{ "root",	ROOT },
+#if MACHINE_HP300
+	{ "scode",	NEXUS },
+#endif
 	{ "size",	SIZE },
 	{ "slave",	SLAVE },
 	{ "swap",	SWAP },
