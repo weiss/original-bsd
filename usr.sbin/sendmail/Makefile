@@ -1,4 +1,4 @@
-#       @(#)Makefile	4.17 (Berkeley) 12/18/92
+#       @(#)Makefile	6.1 (Berkeley) 12/21/92
 
 SUBDIR= mailstats praliases
 
