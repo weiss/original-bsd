@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwredraw.c	3.9 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)wwredraw.c	3.10 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include "ww.h"
@@ -27,6 +27,7 @@ wwredraw()
 	register i, j;
 	register union ww_char *os;
 
+	xxreset();
 	(*tt.tt_clear)();
 	for (i = 0; i < wwnrow; i++) {
 		wwtouched[i] = WWU_TOUCHED;
