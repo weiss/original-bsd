@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)print.c	5.11 (Berkeley) 06/05/92";
+static char sccsid[] = "@(#)print.c	5.12 (Berkeley) 07/06/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -148,7 +148,7 @@ state(k, ve)
 		if (flag & SSINTR)	/* interuptable (long) */
 			*cp = p->p_slptime >= MAXSLP ? 'I' : 'S';
 		else
-			*cp = (flag & SPAGE) ? 'P' : 'D';
+			*cp = 'D';
 		break;
 
 	case SRUN:
