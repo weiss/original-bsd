@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_syscalls.c	7.25 (Berkeley) 02/14/92
+ *	@(#)uipc_syscalls.c	7.26 (Berkeley) 05/20/92
  */
 
 #include "param.h"
@@ -1152,6 +1152,7 @@ sockargs(mp, buf, buflen, type)
 	caddr_t buf;
 	int buflen, type;
 {
+	register struct sockaddr *sa;
 	register struct mbuf *m;
 	int error;
 
@@ -1170,16 +1171,17 @@ sockargs(mp, buf, buflen, type)
 	error = copyin(buf, mtod(m, caddr_t), (u_int)buflen);
 	if (error)
 		(void) m_free(m);
-	else
+	else {
 		*mp = m;
-	if (type == MT_SONAME) {
-		register struct sockaddr *sa = mtod(m, struct sockaddr *);
+		if (type == MT_SONAME) {
+			sa = mtod(m, struct sockaddr *);
 
 #if defined(COMPAT_OLDSOCK) && BYTE_ORDER != BIG_ENDIAN
-		if (sa->sa_family == 0 && sa->sa_len < AF_MAX)
-			sa->sa_family = sa->sa_len;
+			if (sa->sa_family == 0 && sa->sa_len < AF_MAX)
+				sa->sa_family = sa->sa_len;
 #endif
-		sa->sa_len = buflen;
+			sa->sa_len = buflen;
+		}
 	}
 	return (error);
 }
