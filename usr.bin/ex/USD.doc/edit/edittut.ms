@@ -3,10 +3,10 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)edittut.ms	6.2 (Berkeley) 04/17/91
+.\"	@(#)edittut.ms	6.3 (Berkeley) 06/05/93
 .\"
-.EH 'USD:14-%''Edit:  A Tutorial'
-.OH 'Edit:  A Tutorial''USD:14-%'
+.EH 'USD:11-%''Edit:  A Tutorial'
+.OH 'Edit:  A Tutorial''USD:11-%'
 .LP
 .ds u \s-2UNIX\s0
 .ll 5i
