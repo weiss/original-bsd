@@ -2,7 +2,7 @@
 # include "sendmail.h"
 # include <ctype.h>
 
-static char SccsId[] = "@(#)readcf.c	3.2	03/28/81";
+static char SccsId[] = "@(#)readcf.c	3.3	03/28/81";
 
 /*
 **  READCF -- read control file.
@@ -91,7 +91,7 @@ readcf(cfname)
 			break;
 
 		  case 'H':		/* required header line */
-			chompheader(&buf[1], H_DEFAULT);
+			chompheader(&buf[1], TRUE);
 			break;
 
 		  default:
