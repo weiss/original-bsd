@@ -10,9 +10,9 @@
 
 #ifndef lint
 # ifdef DBM
-static char	SccsId[] = "@(#)alias.c	5.6 (Berkeley) 10/24/85	(with DBM)";
+static char	SccsId[] = "@(#)alias.c	5.7 (Berkeley) 11/22/85	(with DBM)";
 # else DBM
-static char	SccsId[] = "@(#)alias.c	5.6 (Berkeley) 10/24/85	(without DBM)";
+static char	SccsId[] = "@(#)alias.c	5.7 (Berkeley) 11/22/85	(without DBM)";
 # endif DBM
 #endif not lint
 
@@ -172,13 +172,16 @@ initaliases(aliasfile, init)
 {
 #ifdef DBM
 	int atcnt;
-	char buf[MAXNAME];
 	time_t modtime;
+	bool automatic = FALSE;
+	char buf[MAXNAME];
 #endif DBM
 	struct stat stb;
 
 	if (aliasfile == NULL || stat(aliasfile, &stb) < 0)
 	{
+		if (aliasfile != NULL && init)
+			syserr("Cannot open %s", aliasfile);
 		NoAlias = TRUE;
 		errno = 0;
 		return;
@@ -221,6 +224,7 @@ initaliases(aliasfile, init)
 		    ((stb.st_mode & 0777) == 0666 || stb.st_uid == geteuid()))
 		{
 			init = TRUE;
+			automatic = TRUE;
 			message(Arpa_Info, "rebuilding alias database");
 #ifdef LOG
 			if (LogLevel >= 7)
@@ -245,6 +249,15 @@ initaliases(aliasfile, init)
 
 	if (init)
 	{
+#ifdef LOG
+		if (LogLevel >= 6)
+		{
+			extern char *username();
+
+			syslog(LOG_NOTICE, "alias database %srebuilt by %s",
+				automatic ? "auto" : "", username());
+		}
+#endif LOG
 		readaliases(aliasfile, TRUE);
 	}
 # else DBM
