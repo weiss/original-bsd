@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)2.t	6.27 (Berkeley) 07/26/93
+.\"	@(#)2.t	6.28 (Berkeley) 07/26/93
 .\"
 .ds lq ``
 .ds rq ''
@@ -666,8 +666,13 @@ It is currently difficult (though not completely impossible) to
 run \*(4B diskless.  These instructions assume you will have a local
 boot, swap, and root filesystem.
 .IP 6)
-Only port ttya can be used as the system console.
-Attempts to use port ttyb will fail when the kernel tries
+When using a serial port rather than a graphics display as the console,
+only port
+.Pn ttya
+can be used.
+Attempts to use port
+.Pn ttyb
+will fail when the kernel tries
 to print the boot up messages to the console.
 .NH 3
 The Procedure
