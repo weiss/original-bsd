@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.48 (Berkeley) 11/22/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.49 (Berkeley) 11/22/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.48 (Berkeley) 11/22/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.49 (Berkeley) 11/22/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -583,7 +583,7 @@ smtp(e)
 
 			/* save in recipient list after ESMTP mods */
 			a->q_flags |= QPRIMARY;
-			a = recipient(a, &e->e_sendqueue, e);
+			a = recipient(a, &e->e_sendqueue, 0, e);
 
 			if (Errors != 0)
 				break;

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.41 (Berkeley) 11/21/94";
+static char sccsid[] = "@(#)parseaddr.c	8.42 (Berkeley) 11/22/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1784,14 +1784,17 @@ remotename(name, m, flags, pstat, e)
 **		a -- the address to map (but just the user name part).
 **		sendq -- the sendq in which to install any replacement
 **			addresses.
+**		aliaslevel -- the alias nesting depth.
+**		e -- the envelope.
 **
 **	Returns:
 **		none.
 */
 
-maplocaluser(a, sendq, e)
+maplocaluser(a, sendq, aliaslevel, e)
 	register ADDRESS *a;
 	ADDRESS **sendq;
+	int aliaslevel;
 	ENVELOPE *e;
 {
 	register char **pvp;
@@ -1826,7 +1829,7 @@ maplocaluser(a, sendq, e)
 	}
 	a1->q_alias = a;
 	allocaddr(a1, RF_COPYALL, NULL);
-	(void) recipient(a1, sendq, e);
+	(void) recipient(a1, sendq, aliaslevel, e);
 }
 /*
 **  DEQUOTE_INIT -- initialize dequote map

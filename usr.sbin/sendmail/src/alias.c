@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.31 (Berkeley) 11/22/94";
+static char sccsid[] = "@(#)alias.c	8.32 (Berkeley) 11/22/94";
 #endif /* not lint */
 
 
@@ -27,6 +27,7 @@ int	NAliasDBs;			/* number of alias databases */
 **		a -- address to alias.
 **		sendq -- a pointer to the head of the send queue
 **			to put the aliases in.
+**		aliaslevel -- the current alias nesting depth.
 **		e -- the current envelope.
 **
 **	Returns:
@@ -40,9 +41,10 @@ int	NAliasDBs;			/* number of alias databases */
 **			nothing.
 */
 
-alias(a, sendq, e)
+alias(a, sendq, aliaslevel, e)
 	register ADDRESS *a;
 	ADDRESS **sendq;
+	int aliaslevel;
 	register ENVELOPE *e;
 {
 	register char *p;
@@ -93,18 +95,15 @@ alias(a, sendq, e)
 			a->q_paddr, p);
 #endif
 	a->q_flags &= ~QSELFREF;
-	AliasLevel++;
-	naliases = sendtolist(p, a, sendq, e);
-	AliasLevel--;
-	if (!bitset(QSELFREF, a->q_flags))
+	if (tTd(27, 5))
 	{
-		if (tTd(27, 5))
-		{
-			printf("alias: QDONTSEND ");
-			printaddr(a, FALSE);
-		}
-		a->q_flags |= QDONTSEND;
+		printf("alias: QDONTSEND ");
+		printaddr(a, FALSE);
 	}
+	a->q_flags |= QDONTSEND;
+	naliases = sendtolist(p, a, sendq, aliaslevel + 1, e);
+	if (bitset(QSELFREF, a->q_flags))
+		a->q_flags &= ~QDONTSEND;
 
 	/*
 	**  Look for owner of alias
@@ -709,6 +708,8 @@ readaliases(map, af, announcestats, logstats)
 **			in.
 **		sendq -- a pointer to the head of the send queue to
 **			put this user's aliases in.
+**		aliaslevel -- the current alias nesting depth.
+**		e -- the current envelope.
 **
 **	Returns:
 **		none.
@@ -717,9 +718,10 @@ readaliases(map, af, announcestats, logstats)
 **		New names are added to send queues.
 */
 
-forward(user, sendq, e)
+forward(user, sendq, aliaslevel, e)
 	ADDRESS *user;
 	ADDRESS **sendq;
+	int aliaslevel;
 	register ENVELOPE *e;
 {
 	char *pp;
@@ -758,7 +760,7 @@ forward(user, sendq, e)
 		if (tTd(27, 3))
 			printf("forward: trying %s\n", buf);
 
-		err = include(buf, TRUE, user, sendq, e);
+		err = include(buf, TRUE, user, sendq, aliaslevel, e);
 		if (err == 0)
 			break;
 		else if (transienterror(err))
