@@ -12,14 +12,14 @@
 .\"*		1919 Addison Street Suite 105				*
 .\"*		Berkeley, California  94704				*
 .\"*									*
-.\"*	VERSION 2.25	First Release: 11 Sept 1978			*
+.\"*	VERSION 2.26	First Release: 11 Sept 1978			*
 .\"*	See file \*(||/revisions for revision history			*
 .\"*									*
 .\"*	Documentation is available.					*
 .\"*									*
 .\"**********************************************************************
 .\"
-.\"	@(#)tmac.orig_me	2.25	03/10/86
+.\"	@(#)tmac.orig_me	2.26	03/27/86
 .\"	%beginstrip%
 .\"
 .\"	Code on .de commands:
