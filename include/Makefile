@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.25 (Berkeley) 06/23/89
+#	@(#)Makefile	5.26 (Berkeley) 06/23/89
 #
 # Doing a make install builds /usr/include
 #
@@ -36,8 +36,7 @@ STD=	a.out.h ar.h assert.h ctype.h curses.h ndbm.h dirent.h disktab.h \
 	varargs.h vfont.h
 LINKS=	errno.h signal.h syslog.h termios.h
 
-SYSDIRS=	sys net netimp netinet netns ufs
-SYSDIRS=	sys net netimp netinet netns
+SYSDIRS=	sys net netimp netinet netns ufs nfs
 TAHOEDIRS=	tahoe tahoemath tahoevba tahoeif
 VAXDIRS=	vax vaxmba vaxuba vaxif
 SHARED=	symlinks
@@ -75,7 +74,6 @@ symlinks: ${MACHINE}.symlinks
 
 tahoe.symlinks:
 	-for i in ${SYSDIRS} ${TAHOEDIRS}; do \
-	-for i in ${SYSDIRS} ${TAHOEDIRS}; do \
 		rm -rf ${DESTDIR}/usr/include/$$i; \
 		if [ ! -s ${DESTDIR}/usr/include/$$i ]; \
 		then \
@@ -86,7 +84,6 @@ tahoe.symlinks:
 	done
 
 vax.symlinks:
-	-for i in ${SYSDIRS} ${VAXDIRS}; do \
 	-for i in ${SYSDIRS} ${VAXDIRS}; do \
 		rm -rf ${DESTDIR}/usr/include/$$i; \
 		if [ ! -s ${DESTDIR}/usr/include/$$i ]; \
@@ -101,14 +98,12 @@ copies: ${MACHINE}.copies
 
 tahoe.copies:
 	-for i in ${SYSDIRS} ${TAHOEDIRS}; do \
-	-for i in ${SYSDIRS} ${TAHOEDIRS}; do \
 		rm -rf ${DESTDIR}/usr/include/$$i; \
 		cd /sys; \
 		tar cf - $$i/*.h | (cd ${DESTDIR}/usr/include; tar xpfB -); \
 	done
 
 vax.copies:
-	-for i in ${SYSDIRS} ${VAXDIRS}; do \
 	-for i in ${SYSDIRS} ${VAXDIRS}; do \
 		rm -rf ${DESTDIR}/usr/include/$$i; \
 		cd /sys; \
