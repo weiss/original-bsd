@@ -1,6 +1,12 @@
-    /* Copyright (c) 1980 Regents of the University of California */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)pc3.h	5.1 (Berkeley) 06/05/85
+ */
 
-    /*	static	char sccsid[] = "@(#)pc3.h 1.6 07/26/83"; */
+    /*	static	char sccsid[] = "@(#)pc3.h 5.1 06/05/85"; */
 
     /*
      *	a symbol table entry.
