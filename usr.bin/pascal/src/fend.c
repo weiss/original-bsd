@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)fend.c 1.4 03/24/81";
+static char sccsid[] = "@(#)fend.c 1.5 03/25/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -134,7 +134,7 @@ funcend(fp, bundle, endline)
 	    ftnno = fp -> entloc;
 	    putprintf( "	.text" , 0 );
 	    putprintf( "	.align	1" , 0 );
-	    sextname( extname , fp -> symbol , cbn );
+	    sextname( extname , fp -> symbol , cbn - 1 );
 	    putprintf( "	.globl	%s" , 0 , extname );
 	    putprintf( "%s:" , 0 , extname );
 	    stabfunc( fp -> symbol , fp -> class , bundle[1] , cbn - 1 );
@@ -594,8 +594,8 @@ sextname( buffer , name , level )
 	sprintf( starthere , EXTFORMAT , enclosing[ i ] );
 	starthere += strlen( enclosing[ i ] ) + 1;
     }
-    sprintf( starthere , EXTFORMAT , p -> symbol );
-    starthere += strlen( p -> symbol ) + 1;
+    sprintf( starthere , EXTFORMAT , name );
+    starthere += strlen( name ) + 1;
     if ( starthere >= &buffer[ BUFSIZ ] ) {
 	panic( "sextname" );
     }
