@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_syscalls.c	7.28 (Berkeley) 10/11/92
+ *	@(#)uipc_syscalls.c	7.29 (Berkeley) 02/27/93
  */
 
 #include <sys/param.h>
@@ -760,7 +760,8 @@ recvit(p, s, mp, namelenp, retsize)
 #endif
 	len = auio.uio_resid;
 	if (error = soreceive((struct socket *)fp->f_data, &from, &auio,
-	    (struct mbuf **)0, &control, &mp->msg_flags)) {
+	    (struct mbuf **)0, mp->msg_control ? &control : (struct mbuf **)0,
+	    &mp->msg_flags)) {
 		if (auio.uio_resid != len && (error == ERESTART ||
 		    error == EINTR || error == EWOULDBLOCK))
 			error = 0;
