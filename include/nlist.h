@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)nlist.h	5.3 (Berkeley) 03/06/90
+ *	@(#)nlist.h	5.4 (Berkeley) 05/29/90
  */
 
 /*
@@ -45,7 +45,7 @@ struct	nlist {
  */
 #define	N_FORMAT	"%08x"
 
-#ifdef __STDC__
+#if __STDC__ || c_plusplus
 extern int nlist(const char *, struct nlist *);
 #else
 extern int nlist();

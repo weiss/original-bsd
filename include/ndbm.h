@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ndbm.h	5.2 (Berkeley) 03/06/90
+ *	@(#)ndbm.h	5.3 (Berkeley) 05/29/90
  */
 
 /*
@@ -52,7 +52,7 @@ typedef struct {
 #define DBM_INSERT	0
 #define DBM_REPLACE	1
 
-#ifdef __STDC__
+#if __STDC__ || c_plusplus
 extern DBM *dbm_open(const char *, int, int);
 extern void dbm_close(DBM *);
 extern datum dbm_fetch(DBM *, datum);
