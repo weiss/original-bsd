@@ -1,11 +1,11 @@
-#	@(#)Makefile.inc	5.5 (Berkeley) 02/22/91
+#	@(#)Makefile.inc	5.6 (Berkeley) 02/24/91
 
 # sys sources
 .PATH: ${.CURDIR}/${MACHINE}/sys ${.CURDIR}/sys
 
 # modules with non-default implementations on at least one architecture:
-SRCS+=	Ovfork.s _exit.s _getlogin.s brk.s cerror.s execl.s execle.s exect.s \
-	execv.s fork.s pipe.s ptrace.s reboot.s sbrk.s setlogin.s \
+SRCS+=	Ovfork.s _exit.s _getlogin.s brk.s cerror.s exect.s \
+	fork.s pipe.s ptrace.s reboot.s sbrk.s setlogin.s \
 	sigpending.s sigprocmask.s sigreturn.s sigsuspend.s syscall.s
 
 # modules with default implementations on all architectures:
