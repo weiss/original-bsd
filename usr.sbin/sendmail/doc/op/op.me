@@ -4,7 +4,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)op.me	8.24 (Berkeley) 09/29/93
+.\"	@(#)op.me	8.25 (Berkeley) 09/30/93
 .\"
 .\" eqn op.me | pic | troff -me
 .eh 'SMM:08-%''Sendmail Installation and Operation Guide'
@@ -43,7 +43,7 @@ University of California, Berkeley
 Mammoth Project
 eric@CS.Berkeley.EDU
 .sp
-Version 8.24
+Version 8.25
 .sp
 For Sendmail Version 8.6
 .)l
@@ -1150,6 +1150,27 @@ Others have interpretations built into
 .i sendmail
 that cannot be changed without changing the code.
 These builtins are described here.
+.sh 3 "Return-Receipt-To:"
+.pp
+If this header is sent,
+a message will be sent to any specified addresses
+when the final delivery is complete,
+that is,
+when successfully delivered to a mailer with the
+.b l
+flag (local delivery) set in the mailer descriptor\**.
+.(f
+\**Some sites disable this header,
+and other (non-\c
+.i sendmail )
+systems do not implement it.
+Do not assume that a failure to get a return receipt
+means that the mail did not arrive.
+Also, do not assume that getting a return receipt
+means that the mail has been read;
+it just means that the message has been delivered
+to the recipient's mailbox.
+.)f
 .sh 3 "Errors-To:"
 .pp
 If errors occur anywhere during processing,
@@ -6756,7 +6777,7 @@ A transcript of the current session.
 .\"Eric Allman
 .\"Britton-Lee, Inc.
 .\".sp
-.\"Version 8.24
+.\"Version 8.25
 .\".ce 0
 .bp 2
 .ce
