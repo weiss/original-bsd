@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)cico.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)cico.c	5.2 (Berkeley) 07/19/83";
 #endif
 
 #include "uucp.h"
@@ -482,6 +482,7 @@ register int inter;
 	signal(inter, SIG_IGN);
 	sprintf(str, "SIGNAL %d", inter);
 	logent(str, "CAUGHT");
+	systat(Rmtname, SS_FAIL, str);
 	cleanup(inter);
 }
 
@@ -555,6 +556,7 @@ register int tty;
 timeout()
 {
 	logent(Rmtname, "TIMEOUT");
+	systat(Rmtname, SS_FAIL, "TIMEOUT");
 	longjmp(Sjbuf, 1);
 }
 
