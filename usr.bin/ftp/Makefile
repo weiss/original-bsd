@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.2	01/15/83
+#	@(#)Makefile	4.3	03/01/83
 #
 ALL=	ftp ftpd
 DESTDIR=
@@ -6,8 +6,8 @@ CFLAGS=	-O
 
 all:	${ALL}
 
-ftp:	cmds.o cmdtab.o ftp.o main.o
-	${CC} cmds.o cmdtab.o ftp.o main.o -o ftp -ljobs
+ftp:	cmds.o cmdtab.o ftp.o glob.o main.o
+	${CC} cmds.o cmdtab.o ftp.o glob.o main.o -o ftp -ljobs
 
 ftp.o:	ftp.h ftp_var.h
 cmds.o:	ftp.h ftp_var.h
