@@ -1,16 +1,17 @@
 #ifndef lint
-static char *sccsid = "@(#)glue4.c	4.1 (Berkeley) 05/06/83";
+static char *sccsid = "@(#)glue4.c	4.2 (Berkeley) 04/24/88";
 #endif
 
 #include <stdio.h>
 #include <ctype.h>
+
+extern char gfile[];
 
 grepcall (in, out, arg)
 char *in, *out, *arg;
 {
 	char line[200], *s, argig[100], *cv[50];
 	char *inp, inb[500];
-	extern char gfile[];
 	FILE *qf, *gf;
 	int c, oldc = 0, alph = 0, nv = 0;
 	int sv0, sv1;
