@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ul.c	5.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)ul.c	5.2 (Berkeley) 12/09/86";
 #endif not lint
 
 #include <stdio.h>
@@ -211,7 +211,7 @@ FILE *f;
 		} else if (obuf[col].c_char == c)
 			obuf[col].c_mode |= BOLD|mode;
 		else {
-			obuf[col].c_mode = c;
+			obuf[col].c_char = c;
 			obuf[col].c_mode = mode;
 		}
 		col++;
