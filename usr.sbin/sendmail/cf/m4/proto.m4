@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.29 (Berkeley) 01/07/94')
+VERSIONID(`@(#)proto.m4	8.30 (Berkeley) 01/12/94')
 
 MAILER(local)dnl
 
@@ -153,7 +153,7 @@ Ob`'confMIN_FREE_BLOCKS
 # substitution for space (blank) characters
 OB`'confBLANK_SUB
 
-# connect to "expensive" mailers on initial submission?
+# avoid connecting to "expensive" mailers on initial submission?
 Oc`'confCON_EXPENSIVE
 
 # checkpoint queue runs after every N successful deliveries
