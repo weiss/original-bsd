@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)msgs.c	4.15 (Berkeley) 04/11/84";
+static char sccsid[] = "@(#)msgs.c	4.16 (Berkeley) 09/17/84";
 #endif lint
 /*
  * msgs - a user bulletin board program
@@ -119,10 +119,7 @@ int argc; char *argv[];
 	int blast = 0;
 	FILE *bounds, *msgsrc;
 
-#ifndef UNBUFFERED
-	char obuf[BUFSIZ];
-	setbuf(stdout, obuf);
-#else
+#ifdef UNBUFFERED
 	setbuf(stdout, NULL);
 #endif
 
