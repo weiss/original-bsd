@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)tests.ms	5.1 (Berkeley) 04/20/86
+.\"	@(#)tests.ms	6.1 (Berkeley) 04/20/86
 .\"
 .ds RH Tests
 .NH
