@@ -1,12 +1,12 @@
 #ifndef lint
-static char sccsid[] = "@(#)uucpdefs.c	5.4 (Berkeley) 06/23/85";
+static char sccsid[] = "@(#)uucpdefs.c	5.5 (Berkeley) 10/09/85";
 #endif
 
 #include "uucp.h"
 
 char Progname[64];
 int Ifn, Ofn;
-char RRmtname[64];
+char RRmtname[MAXFULLNAME];
 char *Rmtname = RRmtname;
 char User[128];
 char Loginuser[16];
