@@ -9,12 +9,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwchild.c	3.12 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)wwchild.c	3.13 (Berkeley) 08/12/90";
 #endif /* not lint */
 
 #include "ww.h"
 #include <sys/wait.h>
 
+void
 wwchild()
 {
 	extern errno;
