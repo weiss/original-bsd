@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)macro.c	3.15		08/22/82);
+SCCSID(@(#)macro.c	3.16		09/05/82);
 
 /*
 **  EXPAND -- macro expand a string using $x escapes.
@@ -54,6 +54,8 @@ expand2(s, buf, buflim, e)
 # endif DEBUG
 
 	skipping = FALSE;
+	if (s == NULL)
+		s = "";
 	for (; *s != '\0'; s++)
 	{
 		char c;
@@ -112,9 +114,9 @@ expand2(s, buf, buflim, e)
 # ifdef DEBUG
 	if (tTd(35, 4))
 	{
-		printf("expand ==> '");
+		printf("expand ==> ");
 		xputs(xbuf);
-		printf("'\n");
+		printf("\n");
 	}
 # endif DEBUG
 
