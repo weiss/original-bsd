@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)output.c	4.3 (Berkeley) 05/25/83";
+static char sccsid[] = "@(#)output.c	4.4 (Berkeley) 06/01/83";
 #endif
 
 /*
@@ -75,11 +75,8 @@ again:
 			n = msg->rip_nets;
 		}
 		n->rip_dst = rt->rt_dst;
-		n->rip_metric = min(rt->rt_metric + 1, HOPCNT_INFINITY);
-#ifdef notyet
 		n->rip_dst.sa_family = htons(n->rip_dst.sa_family);
-		n->rip_metric = htonl(n->rip_metric);
-#endif
+		n->rip_metric = htonl(min(rt->rt_metric + 1, HOPCNT_INFINITY));
 		n++;
 	}
 	if (doinghost) {
