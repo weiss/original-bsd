@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tm.c	6.7 (Berkeley) 09/20/85
+ *	@(#)tm.c	6.8 (Berkeley) 10/01/85
  */
 
 #include "te.h"
@@ -211,9 +211,10 @@ tmopen(dev, flag)
 	int s;
 
 	teunit = TEUNIT(dev);
-	if (teunit>=NTE || (sc = &te_softc[teunit])->sc_openf ||
-	    (ui = tedinfo[teunit]) == 0 || ui->ui_alive == 0)
+	if (teunit>=NTE || (ui = tedinfo[teunit]) == 0 || ui->ui_alive == 0)
 		return (ENXIO);
+	if ((sc = &te_softc[teunit])->sc_openf)
+		return (EBUSY);
 	olddens = sc->sc_dens;
 	dens = TM_IE | TM_GO | (ui->ui_slave << 8);
 #ifndef AVIV
