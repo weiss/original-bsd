@@ -1,8 +1,8 @@
 #ifndef lint
-static char *sccsid ="@(#)match.c	4.2 (Berkeley) 01/18/85";
+static char *sccsid ="@(#)match.c	4.3 (Berkeley) 03/19/85";
 #endif lint
 
-# include "mfile2"
+# include "pass2.h"
 
 # ifdef WCARD1
 # ifdef WCARD2
