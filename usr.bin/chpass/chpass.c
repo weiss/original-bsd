@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chpass.c	8.2 (Berkeley) 04/02/94";
+static char sccsid[] = "@(#)chpass.c	8.3 (Berkeley) 04/02/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -33,6 +33,7 @@ static char sccsid[] = "@(#)chpass.c	8.2 (Berkeley) 04/02/94";
 
 #include <pw_scan.h>
 #include <pw_util.h>
+#include "pw_copy.h"
 
 #include "chpass.h"
 #include "pathnames.h"
