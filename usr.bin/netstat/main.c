@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.25 (Berkeley) 08/20/91";
+static char sccsid[] = "@(#)main.c	5.26 (Berkeley) 01/27/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -61,10 +61,10 @@ struct nlist nl[] = {
 	{ "_ns_errstat"},
 #define	N_CLNPSTAT	15
 	{ "_clnp_stat"},
-#define	IN_TP		16
+#define	IN_NOTUSED	16
 	{ "_tp_inpcb" },
 #define	ISO_TP		17
-	{ "_tp_isopcb" },
+	{ "_tp_refinfo" },
 #define	N_TPSTAT	18
 	{ "_tp_stat" },
 #define	N_ESISSTAT	19
@@ -106,8 +106,6 @@ struct protox {
 	  tcp_stats,	"tcp" },
 	{ N_UDB,	N_UDPSTAT,	1,	protopr,
 	  udp_stats,	"udp" },
-	{ IN_TP,	N_TPSTAT,	1,	protopr,
-	  tp_stats,	"tpip" },
 	{ -1,		N_IPSTAT,	1,	0,
 	  ip_stats,	"ip" },
 	{ -1,		N_ICMPSTAT,	1,	0,
