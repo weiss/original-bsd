@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)pte.h	7.1 (Berkeley) 06/05/86
+ *	@(#)pte.h	7.2 (Berkeley) 06/20/87
  */
 
 /*
@@ -84,7 +84,7 @@ extern	struct pte Pushmap[];
 extern	struct pte Vfmap[];
 extern	struct pte mmap[];
 extern	struct pte msgbufmap[];
-extern	struct pte camap[];
+extern	struct pte kmempt[], ekmempt[];
 extern	struct pte Nexmap[][16];
 extern	struct pte Ioamap[][1];
 #ifdef VAX630
