@@ -1,18 +1,17 @@
 /*
- * Copyright (c) 1986 MICOM-Interlan, Inc., Foxborough Mass.
- *
- * This software is furnished under a license and may only be used
- * or copied in accordance with the terms of that license.
+ * Copyright (c) 1986 MICOM-Interlan, Inc., Boxborough Mass.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
  *
  */
 #ifndef lint
 char copyright[] =
-"@(#) Copyright (c) 1986 MICOM-Interlan, Inc., Foxborough Mass.\n\
+"@(#) Copyright (c) 1986 MICOM-Interlan, Inc., Boxborough Mass.\n\
  All rights reserved.\n";
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)npload.c	6.1 (Berkeley) 02/14/86";
+static char sccsid[] = "@(#)npload.c	6.2 (Berkeley) 02/20/86";
 #endif not lint
 
 #include <stdio.h>
