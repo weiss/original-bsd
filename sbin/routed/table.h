@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)table.h	5.6 (Berkeley) 06/18/88
+ *	@(#)table.h	5.7 (Berkeley) 08/21/89
  */
 
 /*
@@ -31,6 +31,9 @@ struct rthash {
 	struct	rt_entry *rt_forw;
 	struct	rt_entry *rt_back;
 };
+#ifdef RTM_ADD
+#define rtentry ortentry
+#endif
 
 struct rt_entry {
 	struct	rt_entry *rt_forw;
