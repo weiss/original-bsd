@@ -15,7 +15,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.16 (Berkeley) 04/19/90";
+static char sccsid[] = "@(#)util.c	5.17 (Berkeley) 04/19/90";
 #endif /* not lint */
 
 # include <stdio.h>
@@ -119,7 +119,8 @@ capitalize(s)
 			*p++ = *s++;
 		if (*s == '\0')
 			break;
-		*p++ = toupper(*s++);
+		*p++ = toupper(*s);
+		s++;
 		while (isalpha(*s))
 			*p++ = *s++;
 	}
