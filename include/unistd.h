@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)unistd.h	5.17 (Berkeley) 05/27/92
+ *	@(#)unistd.h	5.18 (Berkeley) 06/19/92
  */
 
 #ifndef _UNISTD_H_
@@ -60,7 +60,7 @@ uid_t	 getuid __P((void));
 int	 isatty __P((int));
 int	 link __P((const char *, const char *));
 #define	 lseek __lseek
-long	 lseek __P((int, off_t, int));
+off_t	 lseek __P((int, off_t, int));
 long	 pathconf __P((const char *, int));	/* not yet */
 int	 pause __P((void));
 int	 pipe __P((int *));
