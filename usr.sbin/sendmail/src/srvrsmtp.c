@@ -3,10 +3,10 @@
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.48		03/26/83	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.49		04/17/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.48		03/26/83);
+SCCSID(@(#)srvrsmtp.c	3.49		04/17/83);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -106,6 +106,7 @@ smtp()
 		(void) close(1);
 		(void) dup(fileno(OutChannel));
 	}
+	settime();
 	expand("$e", inp, &inp[sizeof inp], CurEnv);
 	message("220", inp);
 	(void) setjmp(TopFrame);
@@ -496,6 +497,7 @@ help(topic)
 	if (HelpFile == NULL || (hf = fopen(HelpFile, "r")) == NULL)
 	{
 		/* no help */
+		errno = 0;
 		message("502", "HELP not implemented");
 		return;
 	}
