@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.89 (Berkeley) 05/23/95";
+static char sccsid[] = "@(#)recipient.c	8.90 (Berkeley) 05/27/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -410,7 +410,7 @@ recipient(a, sendq, aliaslevel, e)
 	if (!bitset(QDONTSEND, a->q_flags) && bitnset(M_ALIASABLE, m->m_flags))
 		alias(a, sendq, aliaslevel, e);
 
-# ifdef USERDB
+# if USERDB
 	/* if not aliased, look it up in the user database */
 	if (!bitset(QDONTSEND|QNOTREMOTE|QVERIFIED, a->q_flags) &&
 	    bitnset(M_CHECKUDB, m->m_flags))
@@ -1090,7 +1090,7 @@ resetuid:
 		{
 			if (p[1] == '@' && p[2] == '#' &&
 			    isascii(p[-1]) && isspace(p[-1]) &&
-			    isascii(p[3]) && isspace(p[3]))
+			    (p[3] == '\0' || (isascii(p[3]) && isspace(p[3]))))
 			{
 				p[-1] = '\0';
 				break;
