@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	5.49 (Berkeley) 12/14/91";
+static char sccsid[] = "@(#)deliver.c	5.50 (Berkeley) 12/14/91";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -20,9 +20,6 @@ static char sccsid[] = "@(#)deliver.c	5.49 (Berkeley) 12/14/91";
 #include <sys/param.h>
 #include <arpa/nameser.h>
 #include <resolv.h>
-#endif
-#ifdef LOCKF
-#include <unistd.h>
 #endif
 
 /*
@@ -1354,6 +1351,9 @@ sendall(e, mode)
 	bool oldverbose;
 	int pid;
 	int nsent;
+# ifdef LOCKF
+	struct flock lfd;
+# endif
 
 	/* determine actual delivery mode */
 	if (mode == SM_DEFAULT)
@@ -1422,10 +1422,9 @@ sendall(e, mode)
 # ifdef LOCKF
 		/*
 		**  Since lockf has the interesting semantic that the
-		**  lock is lost when we close the file in the parent,
-		**  we'll risk losing the lock here by closing before
-		**  the fork, and then trying to get it back in the
-		**  child.
+		**  lock is lost when we fork, we have to risk losing
+		**  the lock here by closing before the fork, and then
+		**  trying to get it back in the child.
 		*/
 
 		if (e->e_lockfp != NULL)
@@ -1463,9 +1462,11 @@ sendall(e, mode)
 		**  Now try to get our lock back.
 		*/
 
+		lfd.l_type = F_WRLCK;
+		lfd.l_whence = lfd.l_start = lfd.l_len = 0;
 		e->e_lockfp = fopen(queuename(e, 'q'), "r+");
 		if (e->e_lockfp == NULL ||
-		    lockf(fileno(e->e_lockfp), F_TLOCK, 0) < 0)
+		    fcntl(fileno(e->e_lockfp), F_SETLK, &lfd) < 0)
 		{
 			/* oops....  lost it */
 # ifdef LOG
