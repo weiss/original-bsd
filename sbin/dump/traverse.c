@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)traverse.c	8.4 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)traverse.c	8.5 (Berkeley) 05/01/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -19,9 +19,9 @@ static char sccsid[] = "@(#)traverse.c	8.4 (Berkeley) 04/28/95";
 #include <ufs/fsdir.h>
 #include <ufs/inode.h>
 #else
-#include <ufs/ffs/fs.h>
 #include <ufs/ufs/dir.h>
 #include <ufs/ufs/dinode.h>
+#include <ufs/ffs/fs.h>
 #endif
 
 #include <protocols/dumprestore.h>
@@ -89,13 +89,8 @@ blockest(dp)
 }
 
 /* Auxiliary macro to pick up files changed since previous dump. */
-#ifdef FS_44INODEFMT
-#define	CHANGEDSINCE(dp, t) \
-	((dp)->di_mtime.ts_sec >= (t) || (dp)->di_ctime.ts_sec >= (t))
-#else
 #define	CHANGEDSINCE(dp, t) \
 	((dp)->di_mtime >= (t) || (dp)->di_ctime >= (t))
-#endif
 
 /* The WANTTODUMP macro decides whether a file should be dumped. */
 #ifdef UF_NODUMP
