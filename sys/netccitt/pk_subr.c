@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk_subr.c	7.18 (Berkeley) 11/18/91
+ *	@(#)pk_subr.c	7.19 (Berkeley) 12/17/91
  */
 
 #include "param.h"
@@ -650,7 +650,6 @@ register struct pklcd *lcp;
 		lcp -> lcd_facilities = 0;
 	}
 	if (so = lcp -> lcd_so) {
-		sbflush (&so -> so_rcv);
 		sbflush (&so -> so_snd);
 	} else 
 		sbflush (&lcp -> lcd_sb);
