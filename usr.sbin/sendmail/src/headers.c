@@ -17,9 +17,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	5.13 (Berkeley) 01/01/89";
+static char sccsid[] = "@(#)headers.c	5.14 (Berkeley) 04/18/90";
 #endif /* not lint */
 
+# include <sys/param.h>
 # include <errno.h>
 # include "sendmail.h"
 
@@ -621,11 +622,11 @@ putheader(fp, m, e)
 	register MAILER *m;
 	register ENVELOPE *e;
 {
-	char buf[BUFSIZ];
+	char buf[MAX(MAXFIELD,BUFSIZ)];
 	register HDR *h;
 	extern char *arpadate();
 	extern char *capitalize();
-	char obuf[MAXLINE];
+	char obuf[MAX(MAXFIELD,MAXLINE)];
 
 	for (h = e->e_header; h != NULL; h = h->h_link)
 	{
