@@ -1,10 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/03/91
+#	@(#)Makefile	5.2 (Berkeley) 05/09/91
 
 PROG=	mknod
-SRCS=	mknod.c
-CFLAGS+=-DLETS_GET_SMALL
+CFLAGS+=-s -N -I${.CURDIR}/../cat
 NOMAN=	noman
-LDFLAGS=-N
-.PATH:	${.CURDIR}/../../../../sbin/mknod
 
 .include <bsd.prog.mk>
