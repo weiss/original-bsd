@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)utime.h	5.2 (Berkeley) 02/05/91
+ *	@(#)utime.h	5.3 (Berkeley) 02/23/91
  */
 
 struct utimbuf {
@@ -15,5 +15,5 @@ struct utimbuf {
 #include <sys/cdefs.h>
 
 __BEGIN_DECLS
-int utime __P((char *, struct utimbuf *));
+int utime __P((const char *, const struct utimbuf *));
 __END_DECLS
