@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1983 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1983, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
@@ -8,7 +8,7 @@
 #include "SYS.h"
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	ASMSTR "@(#)setlogin.s	5.4 (Berkeley) 05/30/90"
+	ASMSTR "@(#)setlogin.s	8.1 (Berkeley) 06/04/93"
 #endif /* LIBC_SCCS and not lint */
 
 .globl	__logname_valid		/* in getlogin() */
