@@ -2,7 +2,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-static char SccsId[] = "@(#)recipient.c	3.30	11/21/81";
+SCCSID(@(#)recipient.c	3.31		12/06/81);
 
 /*
 **  SENDTO -- Designate a send list.
@@ -33,6 +33,7 @@ sendto(list, copyf, ctladdr, sendq)
 	char *list;
 	int copyf;
 	ADDRESS *ctladdr;
+	ADDRESS **sendq;
 {
 	register char *p;
 	bool more;		/* set if more addresses to send to */
