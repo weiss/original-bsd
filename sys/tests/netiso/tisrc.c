@@ -1,11 +1,18 @@
-/*
- * Copyright (c) 1989, 1990 Regents of the University of California.
+/*-
+ * Copyright (c) 1988, 1990 The Regents of the University of California.
  * All rights reserved.
  *
  * %sccs.include.redist.c%
  */
+
 #ifndef lint
-static char sccsid[] = "@(#)tisrc.c	7.4 (Berkeley) 05/04/91";
+char copyright[] =
+"@(#) Copyright (c) 1988, 1990 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@(#)tisrc.c	7.5 (Berkeley) 05/07/91";
 #endif /* not lint */
 
 /*
