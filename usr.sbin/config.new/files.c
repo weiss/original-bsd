@@ -13,9 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)files.c	5.1 (Berkeley) 01/12/93
- *
- * from: $Header: files.c,v 1.4 93/01/12 03:56:19 torek Exp $
+ *	@(#)files.c	5.2 (Berkeley) 04/18/93
  */
 
 #include <sys/param.h>

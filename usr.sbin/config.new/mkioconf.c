@@ -13,9 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mkioconf.c	5.2 (Berkeley) 01/15/93
- *
- * from: $Header: mkioconf.c,v 1.2 92/12/08 19:34:31 torek Exp $
+ *	@(#)mkioconf.c	5.3 (Berkeley) 04/18/93
  */
 
 #include <sys/param.h>
