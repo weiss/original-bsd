@@ -1,7 +1,7 @@
 #
 # Internet (IP) protocols
 #
-#	@(#)protocols	5.3 (Berkeley) 11/05/92
+#	@(#)protocols	8.1 (Berkeley) 06/09/93
 #
 ip	0	IP		# internet protocol, pseudo protocol number
 icmp	1	ICMP		# internet control message protocol
