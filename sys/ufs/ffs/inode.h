@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)inode.h	7.10 (Berkeley) 01/02/90
+ *	@(#)inode.h	7.11 (Berkeley) 03/05/90
  */
 
 #ifdef KERNEL
@@ -92,7 +92,7 @@ struct inode {
  */
 extern enum vtype	iftovt_tab[];
 extern int		vttoif_tab[];
-#define IFTOVT(mode)	(iftovt_tab[((mode) & IFMT) >> 13])
+#define IFTOVT(mode)	(iftovt_tab[((mode) & IFMT) >> 12])
 #define VTTOIF(indx)	(vttoif_tab[(int)(indx)])
 
 #define MAKEIMODE(indx, mode)	(int)(VTTOIF(indx) | (mode))
