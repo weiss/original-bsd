@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.171 (Berkeley) 05/19/95";
+static char sccsid[] = "@(#)conf.c	8.172 (Berkeley) 05/19/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -2979,6 +2979,8 @@ sm_getpwuid(uid)
 */
 
 #ifdef SIOCGIFCONF
+struct rtentry;
+struct mbuf;
 # include <arpa/inet.h>
 # include <sys/time.h>
 # include <net/if.h>
