@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.139 (Berkeley) 06/10/95
+ *	@(#)sendmail.h	8.140 (Berkeley) 06/10/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.139		06/10/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.140		06/10/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -1031,6 +1031,7 @@ EXTERN int	DeliveryNiceness;	/* how nice to be during delivery */
 EXTERN char	*PostMasterCopy;	/* address to get errs cc's */
 EXTERN int	CheckpointInterval;	/* queue file checkpoint interval */
 EXTERN bool	DontPruneRoutes;	/* don't prune source routes */
+EXTERN bool	DontExpandCnames;	/* do not $[...$] expand CNAMEs */
 EXTERN int	MaxMciCache;		/* maximum entries in MCI cache */
 EXTERN time_t	MciCacheTimeout;	/* maximum idle time on connections */
 EXTERN char	*QueueLimitRecipient;	/* limit queue runs to this recipient */
