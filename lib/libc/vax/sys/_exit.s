@@ -16,11 +16,11 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)_exit.s	5.5 (Berkeley) 06/27/88"
+	.asciz "@(#)_exit.s	5.6 (Berkeley) 05/12/90"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
 
 	.align	1
 PSEUDO(_exit,exit)
-			# _exit(status)
+			/* _exit(status) */
