@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.13 10/20/80"
+SCCSID = "@(#)Makefile 1.14 10/28/80"
 WHOAMI = pc
 INSTALLNAME = $(DESTDIR)/usr/lib/pc0
 VERSION = 2.0
@@ -6,7 +6,7 @@ VERSION = 2.0
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
 RM = -rm -f
-GET = sccs get
+GET = touch
 
 CFLAGS = -O -w
 LDFLAGS = -z
@@ -57,7 +57,7 @@ a.out: ${OBJS} version
 sources: ${SRCS} ${HDRS} ${OTHERS}
 	
 ${SRCS} ${HDRS} ${OTHERS}:
-	${GET} ${REL} $@
+	${GET} $@
 
 .c.o:
 	${RM} ${TMPDIR}/$*.c
@@ -87,7 +87,7 @@ clean:
 	${RM} ${ERRORSTRINGS}
 	${RM} version Version.c
 	${RM} a.out core *.list *.bak
-	${RM} opc.c opc pic tags
+	${RM} opc pic tags
 
 print:	sources
 	@pr makefile READ_ME
