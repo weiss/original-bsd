@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)termstat.c	5.6 (Berkeley) 06/28/90";
+static char sccsid[] = "@(#)termstat.c	5.7 (Berkeley) 09/14/90";
 #endif /* not lint */
 
 #include "telnetd.h"
@@ -168,10 +168,12 @@ localstat()
 	 * not send anything if it is unnecessary, so don't worry
 	 * about that here.
 	 */
-	if (tty_isecho() && uselinemode)
-		send_wont(TELOPT_ECHO, 1);
-	else
-		send_will(TELOPT_ECHO, 1);
+	if (uselinemode) {
+		if (tty_isecho())
+			send_wont(TELOPT_ECHO, 1);
+		else
+			send_will(TELOPT_ECHO, 1);
+	}
 
 	/*
 	 * If linemode is being turned off, send appropriate
@@ -248,7 +250,7 @@ localstat()
 		goto done;
 # endif	/* KLUDGELINEMODE */
 
-	if (linemode) {
+	if (linemode && his_state_is_will(TELOPT_LINEMODE)) {
 		/*
 		 * If edit mode changed, send edit mode.
 		 */
