@@ -2,11 +2,14 @@
  * Copyright (c) 1983 Regents of the University of California.
  * All rights reserved.
  *
+ * This code is derived from software contributed to Berkeley by
+ * David Barto at Celerity Computer Corp.
+ *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tttvi925.c	3.5 (Berkeley) 06/02/90";
+static char sccsid[] = "@(#)tttvi925.c	3.6 (Berkeley) 06/06/90";
 #endif /* not lint */
 
 #include "ww.h"
@@ -14,8 +17,6 @@ static char sccsid[] = "@(#)tttvi925.c	3.5 (Berkeley) 06/02/90";
 
 /*
  * Televideo 925 as emulated by Microterm.
- *
- * From David Barto <sdcsvax!celerity!barto>.
  */
 
 #define G (WWM_GRP << WWC_MSHIFT)
