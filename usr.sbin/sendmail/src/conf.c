@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.148 (Berkeley) 03/31/95";
+static char sccsid[] = "@(#)conf.c	8.149 (Berkeley) 04/05/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1491,6 +1491,11 @@ refuseconnections()
 #  ifndef PS_STRINGS	/* hmmmm....  apparently not available after all */
 #   undef SPT_TYPE
 #   define SPT_TYPE	SPT_REUSEARGV
+#  else
+#   ifndef NKPDE			/* FreeBSD 2.0 */
+#    define NKPDE 63
+typedef unsigned int	*pt_entry_t;
+#   endif
 #  endif
 # endif
 
