@@ -6,24 +6,24 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)announce.c	5.8 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)announce.c	5.9 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sgtty.h>
-#include <sys/ioctl.h>
 #include <sys/time.h>
-#include <stdio.h>
 #include <sys/wait.h>
+#include <sys/socket.h>
+#include <protocols/talkd.h>
+#include <sgtty.h>
 #include <errno.h>
 #include <syslog.h>
-
-#include <protocols/talkd.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 #include <paths.h>
 
-extern	int errno;
-extern	char hostname[];
+extern char hostname[];
 
 /*
  * Announce an invitation to talk.
