@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)encrypt.h	5.1 (Berkeley) 02/28/91
+ *	@(#)encrypt.h	5.2 (Berkeley) 03/22/91
  */
 
 /*
@@ -66,6 +66,7 @@ typedef struct {
 	int	(*is) P((unsigned char *, int));
 	int	(*reply) P((unsigned char *, int));
 	void	(*session) P((Session_Key *, int));
+	int	(*keyid) P((int, unsigned char *, int *));
 	void	(*printsub) P((unsigned char *, int, unsigned char *, int));
 } Encryptions;
 
