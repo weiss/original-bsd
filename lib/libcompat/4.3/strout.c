@@ -1,4 +1,7 @@
-/* @(#)strout.c	4.2 (Berkeley) 02/13/85 */
+#ifndef lint
+static char sccsid[] = "@(#)strout.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include	<stdio.h>
 
 _strout(count, string, adjust, file, fillch)
