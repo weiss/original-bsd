@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.47 (Berkeley) 11/21/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.48 (Berkeley) 11/22/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.47 (Berkeley) 11/21/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.48 (Berkeley) 11/22/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -541,8 +541,6 @@ smtp(e)
 			if (a == NULL)
 				break;
 			p = delimptr;
-			a->q_flags |= QPRIMARY;
-			a = recipient(a, &e->e_sendqueue, e);
 
 			/* now parse ESMTP arguments */
 			while (p != NULL && *p != '\0')
@@ -582,6 +580,11 @@ smtp(e)
 				rcpt_esmtp_args(a, kp, vp, e);
 
 			}
+
+			/* save in recipient list after ESMTP mods */
+			a->q_flags |= QPRIMARY;
+			a = recipient(a, &e->e_sendqueue, e);
+
 			if (Errors != 0)
 				break;
 
