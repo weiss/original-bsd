@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk.h	7.7 (Berkeley) 03/12/91
+ *	@(#)pk.h	7.8 (Berkeley) 04/30/91
  */
 
 /*
@@ -161,6 +161,6 @@ struct mbuf *pk_template ();
 #define RESTART         11 * MAXSTATES
 #define RESTART_CONF    12 * MAXSTATES
 #define REJECT          13 * MAXSTATES
-#define DIAGNOSTIC      14 * MAXSTATES
+#define DIAG_TYPE       14 * MAXSTATES
 #define INVALID_PACKET  15 * MAXSTATES
 #define DELETE_PACKET	INVALID_PACKET
