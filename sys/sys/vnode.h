@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vnode.h	7.25 (Berkeley) 03/27/90
+ *	@(#)vnode.h	7.26 (Berkeley) 04/10/90
  */
 
 #include <machine/endian.h>
@@ -262,7 +262,5 @@ extern void vgoneall();			/* recycle vnode and all its aliases */
  */
 extern	struct vnode *rootdir;		/* root (i.e. "/") vnode */
 
-extern	struct vnode *vnode;		/* The vnode table itself */
-extern	struct vnode *vnodeNVNODE;	/* The end of the vnode table */
-extern	int nvnode;			/* number of slots in the table */
+extern	int desiredvnodes;		/* number of vnodes desired */
 #endif
