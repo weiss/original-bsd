@@ -1,6 +1,7 @@
-.\"	@(#)network.ms	5.1 (Berkeley) 05/13/86
+.\"	@(#)network.ms	5.2 (Berkeley) 05/14/86
 .\"
-.RP
+.EH 'SMM:8-%''A Dial-Up Network of \s-2UNIX\s+2 Systems'
+.OH 'Dial-Up Network of \s-2UNIX\s+2 Systems''SMM:8-%'
 .if n .ls 2
 .ds RH Nowitz
 .ND "August 18, 1978"
