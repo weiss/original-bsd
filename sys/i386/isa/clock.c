@@ -7,19 +7,19 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clock.c	7.2 (Berkeley) 05/12/91
+ *	@(#)clock.c	7.3 (Berkeley) 10/11/92
  */
 
 /*
  * Primitive clock interrupt routines.
  */
-#include "param.h"
-#include "time.h"
-#include "kernel.h"
-#include "machine/segments.h"
-#include "i386/isa/icu.h"
-#include "i386/isa/isa.h"
-#include "i386/isa/rtc.h"
+#include <sys/param.h>
+#include <sys/time.h>
+#include <sys/kernel.h>
+#include <machine/segments.h>
+#include <i386/isa/icu.h>
+#include <i386/isa/isa.h>
+#include <i386/isa/rtc.h>
 
 #define DAYST 119
 #define DAYEN 303

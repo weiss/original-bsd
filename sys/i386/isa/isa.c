@@ -7,24 +7,25 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)isa.c	7.3 (Berkeley) 05/11/92
+ *	@(#)isa.c	7.4 (Berkeley) 10/11/92
  */
 
 /*
  * code to manage AT bus
  */
 
-#include "param.h"
-#include "systm.h"
-#include "conf.h"
-#include "file.h"
-#include "buf.h"
-#include "uio.h"
-#include "syslog.h"
-#include "machine/segments.h"
-#include "i386/isa/isa_device.h"
-#include "i386/isa/icu.h"
-#include "vm/vm.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/conf.h>
+#include <sys/file.h>
+#include <sys/buf.h>
+#include <sys/uio.h>
+#include <sys/syslog.h>
+
+#include <machine/segments.h>
+#include <i386/isa/isa_device.h>
+#include <i386/isa/icu.h>
+#include <vm/vm.h>
 
 /*
  * Configure all ISA devices

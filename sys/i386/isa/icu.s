@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)icu.s	7.6 (Berkeley) 05/11/92
+ *	@(#)icu.s	7.7 (Berkeley) 10/11/92
  */
 
 
@@ -29,7 +29,7 @@ _netmask:	.long	0
 _isa_intr:	.space	16*4
 
 	.text
-#include "../net/netisr.h"
+#include <net/netisr.h>
 
 #define DONET(s, c)	; \
 	.globl	c ;  \
