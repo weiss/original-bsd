@@ -1,15 +1,14 @@
-#!/bin/sh -
-#
-# Copyright (c) 1991 The Regents of the University of California.
-# All rights reserved.
-#
-# This code is derived from software contributed to Berkeley by
-# Ralph Campbell.
-#
-# %sccs.include.redist.sh%
-#
-#	@(#)crt0.s	5.1 (Berkeley) 03/09/92
-#
+/*
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Ralph Campbell.
+ *
+ * %sccs.include.redist.sh%
+ *
+ *	@(#)crt0.s	5.2 (Berkeley) 03/15/92
+ */
 
 #include <machine/regdef.h>
 #include "../libc/mips/DEFS.h"
