@@ -1,4 +1,4 @@
-/*	ts.c	4.18	81/07/09	*/
+/*	ts.c	4.19	81/07/09	*/
 
 #include "ts.h"
 #include "te.h"
@@ -810,7 +810,7 @@ tsreset(uban)
 			printf("<%d>", (um->um_ubinfo>>28)&0xf);
 			ubadone(um);
 		}
-		tsinit(ts11);
+		(void) tsinit(ts11);
 		tsstart(um);
 	}
 }
