@@ -1,4 +1,4 @@
-/*	kern_clock.c	6.4	84/02/23	*/
+/*	kern_clock.c	6.5	84/03/13	*/
 
 #include "../machine/reg.h"
 #include "../machine/psl.h"
@@ -61,6 +61,7 @@ hardclock(pc, ps)
 	register struct callout *p1;
 	register struct proc *p;
 	register int s, cpstate;
+	int needsoft = 0;
 
 	/*
 	 * Update real-time timeout queue.
@@ -76,6 +77,7 @@ hardclock(pc, ps)
 	while (p1) {
 		if (--p1->c_time > 0)
 			break;
+		needsoft = 1;
 		if (p1->c_time == 0)
 			break;
 		p1 = p1->c_next;
@@ -88,6 +90,8 @@ hardclock(pc, ps)
 	 * one tick.
 	 */
 	if (USERMODE(ps)) {
+		if (u.u_prof.pr_scale)
+			needsoft = 1;
 		/*
 		 * CPU was in user state.  Increment
 		 * user time counter, and process process-virtual time
@@ -207,7 +211,8 @@ hardclock(pc, ps)
 #else
 	bumptime(&time, tick);
 #endif
-	setsoftclock();
+	if (needsoft)
+		setsoftclock();
 }
 
 int	dk_ndrive = DK_NDRIVE;
