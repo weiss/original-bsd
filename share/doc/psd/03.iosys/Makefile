@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 DIR=	psd/03.iosys
 SRCS=	iosys
