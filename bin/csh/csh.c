@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)csh.c	5.5 (Berkeley) 01/20/88";
+static char *sccsid = "@(#)csh.c	5.6 (Berkeley) 05/19/88";
 #endif
 
 #include "sh.h"
@@ -931,7 +931,7 @@ printprompt()
 			else {
 				if (*cp == '\\' && cp[1] == HIST)
 					cp++;
-				putchar(*cp | QUOTE);
+				cshputchar(*cp | QUOTE);
 			}
 	} else
 		/* 

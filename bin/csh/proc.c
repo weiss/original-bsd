@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)proc.c	5.9 (Berkeley) 01/20/88";
+static char *sccsid = "@(#)proc.c	5.10 (Berkeley) 05/19/88";
 #endif
 
 #include "sh.h"
@@ -786,9 +786,9 @@ dokill(v)
 				if (name = mesg[signum].iname)
 					printf("%s ", name);
 				if (signum == 16)
-					putchar('\n');
+					cshputchar('\n');
 			}
-			putchar('\n');
+			cshputchar('\n');
 			return;
 		}
 		if (digit(v[0][1])) {
