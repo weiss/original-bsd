@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.11 (Berkeley) 02/28/91
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	snake
 SRCS=	snake.c move.c
