@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getcwd.c	8.2 (Berkeley) 01/31/95";
+static char sccsid[] = "@(#)getcwd.c	8.3 (Berkeley) 02/02/95";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -42,7 +42,7 @@ getcwd(pt, size)
 	char *ept, *eup, *pwd, *up;
 
 	/* Check $PWD -- if it's right, it's fast. */
-	if ((pwd = getenv("PWD")) != NULL && !stat(pwd, &s)) {
+	if ((pwd = getenv("PWD")) != NULL && pwd[0] == '/' && !stat(pwd, &s)) {
 		dev = s.st_dev;
 		ino = s.st_ino;
 		if (!stat(".", &s) && dev == s.st_dev && ino == s.st_ino) {
