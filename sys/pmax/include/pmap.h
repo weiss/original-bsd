@@ -1,14 +1,14 @@
 /* 
  * Copyright (c) 1987 Carnegie-Mellon University
- * Copyright (c) 1992 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Ralph Campbell.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pmap.h	7.8 (Berkeley) 06/02/93
+ *	@(#)pmap.h	8.1 (Berkeley) 06/10/93
  */
 
 #ifndef	_PMAP_MACHINE_

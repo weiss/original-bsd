@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)exec.h	7.3 (Berkeley) 02/04/93
+ *	@(#)exec.h	8.1 (Berkeley) 06/10/93
  */
 
 #include <machine/endian.h>

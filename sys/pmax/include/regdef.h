@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1992 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Ralph Campbell. This file is derived from the MIPS RISC
@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)regdef.h	7.1 (Berkeley) 01/07/92
+ *	@(#)regdef.h	8.1 (Berkeley) 06/10/93
  */
 
 #define zero	$0	/* always zero */
