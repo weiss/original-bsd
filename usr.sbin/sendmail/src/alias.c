@@ -3,7 +3,7 @@
 # include <pwd.h>
 # include "dlvrmail.h"
 
-static char SccsId[] = "@(#)alias.c	1.5	10/18/80";
+static char SccsId[] = "@(#)alias.c	1.6	10/21/80";
 
 /*
 **  ALIAS -- Compute aliases.
@@ -205,7 +205,6 @@ alias()
 		/* create a key for fetch */
 		lhs.dptr = q->q_user;
 		lhs.dsize = strlen(q->q_user) + 1;
-		lhs.dptr = line;
 		rhs = fetch(lhs);
 
 		/* find this alias? */
