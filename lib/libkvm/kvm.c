@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm.c	5.23 (Berkeley) 04/03/92";
+static char sccsid[] = "@(#)kvm.c	5.24 (Berkeley) 04/08/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -288,6 +288,8 @@ kvm_dbopen(kd, uf)
 
 	sprintf(dbname, "%skvm_%s", _PATH_VARRUN, uf);
 	kd->db = dbm_open(dbname, O_RDONLY, 0);
+	if (kd->db == 0)
+		return (-1);
 	/*
 	 * read version out of database
 	 */
