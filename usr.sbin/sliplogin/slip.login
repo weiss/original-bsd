@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)slip.login	5.1 (Berkeley) 07/01/90
+#	@(#)slip.login	8.1 (Berkeley) 06/06/93
 
 #
 # generic login file for a slip line.  sliplogin invokes this with

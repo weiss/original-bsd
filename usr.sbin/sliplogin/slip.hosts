@@ -1,4 +1,4 @@
-#	@(#)slip.hosts	5.2 (Berkeley) 07/21/92
+#	@(#)slip.hosts	8.1 (Berkeley) 06/06/93
 #
 # login		local-addr	remote-addr	mask		opt1	opt2
 #						(normal,compress,noicmp)
