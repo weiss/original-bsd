@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)ranlib.c 3.2 09/20/80";
+static	char sccsid[] = "@(#)ranlib.c 4.1 10/01/80";
 /*
  * ranlib - create table of contents for archive; string table version
  */
