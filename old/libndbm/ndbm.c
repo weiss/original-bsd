@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ndbm.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)ndbm.c	5.2 (Berkeley) 06/19/85";
 #endif not lint
 
 #include <sys/types.h>
@@ -16,6 +16,7 @@ static char sccsid[] = "@(#)ndbm.c	5.1 (Berkeley) 05/30/85";
 #include <ndbm.h>
 
 #define BYTESIZ 8
+#undef setbit
 
 static  datum makdatum();
 static  long hashinc();
