@@ -6,7 +6,7 @@
  * Use and redistribution is subject to the Berkeley Software License
  * Agreement and your Software Agreement with AT&T (Western Electric).
  *
- *	@(#)vfs_cluster.c	7.55 (Berkeley) 10/22/92
+ *	@(#)vfs_cluster.c	7.56 (Berkeley) 12/09/92
  */
 
 #include <sys/param.h>
@@ -653,6 +653,18 @@ biodone(bp)
 		bp->b_flags &= ~B_WANTED;
 		wakeup((caddr_t)bp);
 	}
+}
+
+int
+count_lock_queue()
+{
+	register struct buf *bp;
+	register int ret;
+
+	for (ret = 0, bp = (struct buf *)bufqueues[BQ_LOCKED].qe_next;
+	    bp; bp = (struct buf *)bp->b_freelist.qe_next)
+		++ret;
+	return(ret);
 }
 
 #ifdef DIAGNOSTIC
