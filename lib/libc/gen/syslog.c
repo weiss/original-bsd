@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)syslog.c	4.7 (Berkeley) 02/20/85";
-#endif
+static char sccsid[] = "@(#)syslog.c	5.1 (Berkeley) 05/30/85";
+#endif not lint
 
 /*
  * SYSLOG -- print message on log file
