@@ -1,4 +1,4 @@
-/* @(#)fopen.c	4.2 (Berkeley) 03/09/81 */
+/* @(#)fopen.c	4.3 (Berkeley) 09/12/83 */
 #include	<stdio.h>
 #include	<errno.h>
 
@@ -12,8 +12,8 @@ register char *mode;
 	register FILE *iop;
 	extern FILE *_lastbuf;
 
-	for (iop = _iob; iop->_flag&(_IOREAD|_IOWRT|_IORW); iop++)
-		if (iop >= _lastbuf)
+	for (iop = _iob; iop->_flag&(_IOREAD|_IOWRT|_IORW); )
+		if (++iop >= _lastbuf)
 			return(NULL);
 
 	rw = mode[1] == '+';
