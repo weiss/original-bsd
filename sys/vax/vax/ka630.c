@@ -3,19 +3,19 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ka630.c	7.6 (Berkeley) 11/08/88
+ *	@(#)ka630.c	7.7 (Berkeley) 12/16/90
  */
 
 #ifdef VAX630
-#include "param.h"
-#include "time.h"
-#include "kernel.h"
-#include "vmmac.h"
+#include "sys/param.h"
+#include "sys/time.h"
+#include "sys/kernel.h"
+#include "sys/vmmac.h"
 
-#include "mtpr.h"
-#include "cpu.h"
-#include "clock.h"
-#include "pte.h"
+#include "../include/mtpr.h"
+#include "../include/cpu.h"
+#include "../include/clock.h"
+#include "../include/pte.h"
 #include "ka630.h"
 
 /*

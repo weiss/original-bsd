@@ -4,16 +4,16 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)clock.c	7.5 (Berkeley) 03/13/90
+ *	@(#)clock.c	7.6 (Berkeley) 12/16/90
  */
 
-#include "param.h"
-#include "time.h"
-#include "kernel.h"
+#include "sys/param.h"
+#include "sys/time.h"
+#include "sys/kernel.h"
 
-#include "mtpr.h"
-#include "clock.h"
-#include "cpu.h"
+#include "../include/mtpr.h"
+#include "../include/clock.h"
+#include "../include/cpu.h"
 
 /*
  * Machine-dependent clock routines.
