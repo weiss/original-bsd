@@ -1,16 +1,15 @@
 /*
- * Copyright (c) 1982, 1986, 1989 Regents of the University of California.
+ * Copyright (c) 1982, 1986, 1989, 1991 Regents of the University of California.
  * All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_proc.c	7.14 (Berkeley) 03/17/91
+ *	@(#)kern_proc.c	7.15 (Berkeley) 04/20/91
  */
 
 #include "param.h"
 #include "systm.h"
 #include "map.h"
-#include "user.h"
 #include "kernel.h"
 #include "proc.h"
 #include "buf.h"
@@ -198,6 +197,8 @@ done:
 		FREE(pgrp->pg_session, M_SESSION);
 	FREE(pgrp, M_PGRP);
 }
+
+static orphanpg();
 
 /*
  * Adjust pgrp jobc counters when specified process changes process group.
