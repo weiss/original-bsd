@@ -1,10 +1,11 @@
-/*	tty_subr.c	4.3	12/16/80	*/
+/*	tty_subr.c	4.4	12/20/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
 #include "../h/conf.h"
 #include "../h/buf.h"
 #include "../h/tty.h"
+#include "tr.h"
 
 struct cblock {
 	struct	cblock *c_next;
