@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chown.c	5.16 (Berkeley) 10/26/90";
+static char sccsid[] = "@(#)chown.c	5.17 (Berkeley) 11/14/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -78,12 +78,12 @@ main(argc, argv)
 		setgid(*argv);
 
 	if (rflag) {
-		if (!(fts = ftsopen(++argv, FTS_NOSTAT|FTS_PHYSICAL, 0))) {
+		if (!(fts = fts_open(++argv, FTS_NOSTAT|FTS_PHYSICAL, 0))) {
 			(void)fprintf(stderr,
 			    "%s: %s.\n", myname, strerror(errno));
 			exit(1);
 		}
-		while (p = ftsread(fts)) {
+		while (p = fts_read(fts)) {
 			if (p->fts_info == FTS_D)
 				continue;
 			if (p->fts_info == FTS_ERR) {
