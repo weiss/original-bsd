@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.42.1.1 (Berkeley) 02/26/92 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.43 (Berkeley) 03/20/92 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.42.1.1 (Berkeley) 02/26/92 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.43 (Berkeley) 03/20/92 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -80,6 +80,7 @@ getrequests()
 	int t;
 	register struct servent *sp;
 	int on = 1;
+	bool refusingconnections = TRUE;
 	struct sockaddr_in srvraddr;
 	extern void reapchild();
 
@@ -131,12 +132,6 @@ getrequests()
 		(void) close(DaemonSocket);
 		goto severe;
 	}
-	if (listen(DaemonSocket, 10) < 0)
-	{
-		syserr("getrequests: cannot listen");
-		(void) close(DaemonSocket);
-		goto severe;
-	}
 
 	(void) signal(SIGCHLD, reapchild);
 
@@ -147,16 +142,38 @@ getrequests()
 	{
 		register int pid;
 		auto int lotherend;
+		extern bool refuseconnections();
 
 		/* see if we are rejecting connections */
-		while ((CurrentLA = getla()) > RefuseLA)
+		CurrentLA = getla();
+		if (refuseconnections())
 		{
-			setproctitle("rejecting connections: load average: %.2f", (double)CurrentLA);
+			if (!refusingconnections)
+			{
+				/* don't queue so peer will fail quickly */
+				(void) listen(DaemonSocket, 0);
+				refusingconnections = TRUE;
+			}
+			setproctitle("rejecting connections: load average: %.2f",
+				(double)CurrentLA);
 			sleep(5);
+			continue;
+		}
+
+		if (refusingconnections)
+		{
+			/* start listening again */
+			if (listen(DaemonSocket, 10) < 0)
+			{
+				syserr("getrequests: cannot listen");
+				(void) close(DaemonSocket);
+				goto severe;
+			}
+			setproctitle("accepting connections");
+			refusingconnections = FALSE;
 		}
 
 		/* wait for a connection */
-		setproctitle("accepting connections");
 		do
 		{
 			errno = 0;
@@ -260,8 +277,9 @@ clrdaemon()
 **	Parameters:
 **		host -- the name of the host.
 **		port -- the port number to connect to.
-**		mci -- a pointer to the mail connection information
-**			structure to be filled in.
+**		outfile -- a pointer to a place to put the outfile
+**			descriptor.
+**		infile -- ditto for infile.
 **		usesecureport -- if set, use a low numbered (reserved)
 **			port to provide some rudimentary authentication.
 **
@@ -273,10 +291,11 @@ clrdaemon()
 **		none.
 */
 
-makeconnection(host, port, mci, usesecureport)
+makeconnection(host, port, outfile, infile, usesecureport)
 	char *host;
 	u_short port;
-	register MCONINFO *mci;
+	FILE **outfile;
+	FILE **infile;
 	bool usesecureport;
 {
 	register int i, s;

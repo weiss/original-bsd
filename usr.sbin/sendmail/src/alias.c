@@ -23,12 +23,12 @@
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.31 (Berkeley) 12/14/91 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (with NEWDB)";
 #else
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.31 (Berkeley) 12/14/91 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.31 (Berkeley) 12/14/91 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (without DBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -683,9 +683,5 @@ forward(user, sendq)
 	/* good address -- look for .forward file in home */
 	define('z', user->q_home, CurEnv);
 	expand("\001z/.forward", buf, &buf[sizeof buf - 1], CurEnv);
-	if (!safefile(buf, user->q_uid, S_IREAD))
-		return;
-
-	/* we do have an address to forward to -- do it */
-	include(buf, "forwarding", user, sendq);
+	include(buf, TRUE, user, sendq);
 }
