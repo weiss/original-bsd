@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwmisc.c	3.9 04/24/85";
+static char sccsid[] = "@(#)wwmisc.c	3.10 01/03/88";
 #endif
 
 /*
@@ -33,5 +33,5 @@ register struct ww *w;
 
 wwbell()
 {
-	ttputc(ctrl(g));
+	ttputc(ctrl('g'));
 }

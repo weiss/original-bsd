@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)cmd1.c	3.30 07/27/87";
+static char sccsid[] = "@(#)cmd1.c	3.31 01/03/88";
 #endif
 
 /*
@@ -127,7 +127,7 @@ int maxrow, maxcol;
 		case 'K':
 			*row = minrow;
 			break;
-		case ctrl([):
+		case ctrl('['):
 			if (!terse)
 				wwputs("\nCancelled.  ", cmdwin);
 			return 3;

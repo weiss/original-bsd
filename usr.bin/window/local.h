@@ -1,5 +1,5 @@
 /*
- * @(#)local.h	3.4 04/24/85
+ * @(#)local.h	3.5 01/03/88
  */
 
 /*
@@ -13,6 +13,6 @@
  */
 
 #define RUNCOM		".windowrc"
-#define ESCAPEC		ctrl(p)
+#define ESCAPEC		ctrl('p')
 #define NLINE		48			/* default text buffer size */
 #define SHELL		"/bin/csh"		/* if no environment SHELL */
