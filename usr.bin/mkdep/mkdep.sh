@@ -5,10 +5,10 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)mkdep.sh	5.19 (Berkeley) 04/12/91
+#	@(#)mkdep.sh	5.20 (Berkeley) 11/14/91
 #
 
-PATH=/bin:/usr/bin:/usr/ucb
+PATH=/bin:/usr/bin:/usr/ucb:/usr/old/bin
 export PATH
 
 D=.depend			# default dependency file is .depend
