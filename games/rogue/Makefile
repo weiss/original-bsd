@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.5 (Berkeley) 10/19/88
+#	@(#)Makefile	5.6 (Berkeley) 07/30/89
 #
 CFLAGS=	-O -DUNIX -DUNIX_BSD4_2
 LIBC=	/lib/libc.a
@@ -29,7 +29,7 @@ MAN=	rogue.0
 all: rogue
 
 rogue: ${OBJS} ${LIBC}
-	${CC} ${OBJS} -o $@ -lcurses -ltermlib
+	${CC} ${OBJS} -o $@ -lcurses -ltermlib -lcompat
 
 clean:
 	rm -f ${OBJS} core rogue
