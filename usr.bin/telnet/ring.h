@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ring.h	1.9 (Berkeley) 06/01/90
+ *	@(#)ring.h	1.10 (Berkeley) 06/28/90
  */
 
 /*
@@ -39,8 +39,11 @@ extern int
 
 /* Data movement routines */
 extern void
-	ring_supply_data(Ring *ring, char *buffer, int count),
+	ring_supply_data(Ring *ring, char *buffer, int count);
+#ifdef notdef
+extern void
 	ring_consume_data(Ring *ring, char *buffer, int count);
+#endif
 
 /* Buffer state transition routines */
 extern void
@@ -59,8 +62,11 @@ extern int
 	ring_init();
 
 extern void
-    ring_supply_data(),
+    ring_supply_data();
+#ifdef notdef
+extern void
     ring_consume_data();
+#endif
 
 extern void
     ring_supplied(),
