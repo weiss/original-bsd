@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.28 (Berkeley) 02/16/94";
+static char sccsid[] = "@(#)headers.c	8.29 (Berkeley) 02/25/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -1017,9 +1017,9 @@ commaize(h, p, oldstyle, mci, e)
 	(void) sprintf(obp, "%s: ", h->h_field);
 	opos = strlen(h->h_field) + 2;
 	obp += opos;
-	omax = 78;
-	if (mci->mci_mailer->m_linelimit - 2 < omax)
-		omax = mci->mci_mailer->m_linelimit - 2;
+	omax = mci->mci_mailer->m_linelimit - 2;
+	if (omax < 0 || omax > 78)
+		omax = 78;
 
 	/*
 	**  Run through the list of values.
