@@ -8,8 +8,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernfs.h	7.2 (Berkeley) 07/19/92
+ *	@(#)kernfs.h	7.3 (Berkeley) 07/19/92
  */
+
+#define	_PATH_KERNFS	"/kern"		/* Default mountpoint */
 
 #ifdef KERNEL
 struct kernfs_mount {
