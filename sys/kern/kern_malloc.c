@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_malloc.c	7.1 (Berkeley) 06/06/87
+ *	@(#)kern_malloc.c	7.2 (Berkeley) 06/22/87
  */
 
 #include "param.h"
@@ -127,7 +127,6 @@ void free(addr, type)
 #ifdef KMEMSTATS
 		kup->ku_indx = 0;
 		kup->ku_pagecnt = 0;
-		kbp->kb_total -= kbp->kb_elmpercl;
 		kmemstats[type].ks_inuse--;
 #endif
 		splx(s);
