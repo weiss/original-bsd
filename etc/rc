@@ -1,4 +1,4 @@
-#	@(#)rc	5.24 (Berkeley) 02/12/91
+#	@(#)rc	5.25 (Berkeley) 04/08/91
 
 # System startup script run by init on autoboot
 # or after single-user.
@@ -84,7 +84,6 @@ echo '.'
 # /var/crash should be a directory or a symbolic link
 # to the crash directory if core dumps are to be saved.
 if [ -d /var/crash ]; then
-				echo 'checking for core dump... '
 	savecore /var/crash
 fi
 
