@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4 (Berkeley) 04/28/86
+#	@(#)Makefile	5.5 (Berkeley) 05/31/87
 #
 DESTDIR=
 CFLAGS=-O
@@ -17,3 +17,5 @@ install: tset
 
 clean:
 	rm -f *.o tset reset
+
+depend:
