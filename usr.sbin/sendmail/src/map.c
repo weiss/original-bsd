@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.51 (Berkeley) 03/31/95";
+static char sccsid[] = "@(#)map.c	8.52 (Berkeley) 04/07/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1090,8 +1090,10 @@ nis_map_open(map, mode)
 	}
 
 	if (!bitset(MF_OPTIONAL, map->map_mflags))
-		syserr("421 Cannot bind to domain %s: %s", map->map_domain,
-			yperr_string(yperr));
+	{
+		syserr("421 Cannot bind to map %s in domain %s: %s",
+			map->map_file, map->map_domain, yperr_string(yperr));
+	}
 
 	return FALSE;
 }
