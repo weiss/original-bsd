@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)pc.c 3.23 06/06/83";
+static	char sccsid[] = "@(#)pc.c 3.24 06/10/83";
 
 #include <stdio.h>
 #include <signal.h>
@@ -283,6 +283,8 @@ main(argc, argv)
 		pc0argx = savargx;
 		if (pflag)
 			pc0args[pc0argx++] = "-p";
+		if (Jflag)
+			pc0args[pc0argx++] = "-J";
 		pc0args[pc0argx++] = argp;
 		pc0args[pc0argx] = 0;
 		if (dosys(pc0, pc0args, 0, 0))
