@@ -5,10 +5,16 @@
  */
  
 /*
- * Sccs Id = "@(#)pathnames.h	2.2 07/26/82";
+ * Sccs Id = "@(#)pathnames.h	2.3 09/02/82";
  */
 
-#define	LOCAL		'j'		/* Local machine id */
+#define	GETHOST				/* System has gethostname syscall */
+#ifdef	GETHOST
+#define	LOCAL		EMPTYID		/* Dynamically determined local host */
+#else
+#define	LOCAL		'j'		/* Local host id */
+#endif	GETHOST
+
 #define	MAIL		"/bin/mail"	/* Name of mail sender */
 #define DELIVERMAIL	"/etc/delivermail"
 					/* Name of classy mail deliverer */
