@@ -1,4 +1,4 @@
-#	@(#)bsd.lib.mk	5.20 (Berkeley) 03/02/91
+#	@(#)bsd.lib.mk	5.21 (Berkeley) 03/05/91
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -132,12 +132,6 @@ lint:
 tags: ${SRCS}
 	-cd ${.CURDIR}; ctags -f /dev/stdout ${.ALLSRC:M*.c} | \
 	    sed "s;\${.CURDIR}/;;" > tags
-.if !empty(SRCS:M*.s)
-	-cd ${.CURDIR}; egrep -o "^ENTRY(.*)|^SYSCALL(.*)" ${.ALLSRC:M*.s} | \
-	    sed \
-	    "s;\([^:]*\):\([^(]*\)(\([^, )]*\)\(.*\);\3 \`pwd\`/\1 /^\2(\3\4$$/;" \
-	    >> tags; sort -o tags tags
-.endif
 .endif
 
 .include <bsd.man.mk>
