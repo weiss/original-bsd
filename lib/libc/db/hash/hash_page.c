@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)hash_page.c	5.16 (Berkeley) 09/08/91";
+static char sccsid[] = "@(#)hash_page.c	5.17 (Berkeley) 09/11/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -538,7 +538,7 @@ __put_page(p, bucket, is_bucket, is_bitmap)
 
 	size = hashp->BSIZE;
 	if ((hashp->fp == -1) && open_temp())
-		return (1);
+		return (-1);
 	fd = hashp->fp;
 
 	if (hashp->LORDER != BYTE_ORDER) {
