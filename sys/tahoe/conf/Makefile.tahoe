@@ -1,4 +1,4 @@
-#	@(#)Makefile.tahoe	1.22 (Berkeley) 12/11/90
+#	@(#)Makefile.tahoe	1.23 (Berkeley) 04/29/91
 #
 # Makefile for 4.4 BSD
 #
@@ -18,7 +18,8 @@
 # -DTRACE	compile in kernel tracing hooks
 # -DQUOTA	compile in file system quotas
 #
-C2=	/usr/libexec/c2
+CPP=	/usr/bin/cpp
+C2=	/usr/old/libexec/c2
 LD=	/usr/bin/ld
 
 S=	../..
