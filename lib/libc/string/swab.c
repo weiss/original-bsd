@@ -9,21 +9,22 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)swab.c	5.9 (Berkeley) 02/24/91";
+static char sccsid[] = "@(#)swab.c	5.10 (Berkeley) 03/06/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <string.h>
 
 void
-swab(from, to, n)
+swab(from, to, len)
 	const void *from;
 	void *to;
-	register size_t n;
+	size_t len;
 {
-	register char *fp, *tp;
 	register unsigned long temp;
+	register int n;
+	register char *fp, *tp;
 
-	n >>= 1; n++;
+	n = (len >> 1) + 1;
 	fp = (char *)from;
 	tp = (char *)to;
 #define	STEP	temp = *fp++,*tp++ = *fp++,*tp++ = temp
