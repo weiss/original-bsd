@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)2.t	6.32 (Berkeley) 07/27/93
+.\"	@(#)2.t	8.1 (Berkeley) 07/27/93
 .\"
 .ds lq ``
 .ds rq ''
