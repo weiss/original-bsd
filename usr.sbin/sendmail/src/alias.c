@@ -9,7 +9,11 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)alias.c	5.1 (Berkeley) 06/07/85";
+# ifdef DBM
+static char	SccsId[] = "@(#)alias.c	5.2 (Berkeley) 06/07/85	(with DBM)";
+# else DBM
+static char	SccsId[] = "@(#)alias.c	5.2 (Berkeley) 06/07/85	(without DBM)";
+# endif DBM
 #endif not lint
 
 # include <pwd.h>
@@ -22,11 +26,6 @@ static char	SccsId[] = "@(#)alias.c	5.1 (Berkeley) 06/07/85";
 # include <sys/file.h>
 # endif FLOCK
 
-# ifdef DBM
-SCCSID(@(#)alias.c	5.1		06/07/85	(with DBM));
-# else DBM
-SCCSID(@(#)alias.c	5.1		06/07/85	(without DBM));
-# endif DBM
 
 /*
 **  ALIAS -- Compute aliases.
