@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)spec_vnops.c	7.6 (Berkeley) 10/13/89
+ *	@(#)spec_vnops.c	7.7 (Berkeley) 10/19/89
  */
 
 #include "param.h"
@@ -317,11 +317,6 @@ blk_close(vp, flag, cred)
 		error = EINTR;
 	} else
 		error = (*cfunc)(dev, flag, mode);
-	/*
-	 * Most device close routines don't return errors,
-	 * and dup2() doesn't work right on error.
-	 */
-	error = 0;		/* XXX */
 	return (error);
 }
 
