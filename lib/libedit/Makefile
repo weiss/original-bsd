@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 07/15/92
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 LIB=	edit
 
