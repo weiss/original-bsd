@@ -8,13 +8,13 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)mail.eecs.mc	6.4 (Berkeley) 03/06/93')
+VERSIONID(`@(#)mail.eecs.mc	6.5 (Berkeley) 05/01/93')
 OSTYPE(ultrix4.1)dnl
 DOMAIN(eecs.hidden)dnl
 FEATURE(notsticky)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
-define(`USERDB_SPEC', `/usr/local/lib/users.cs.db,/usr/local/lib/users.eecs.db')dnl
+define(`confUSERDB_SPEC', `/usr/local/lib/users.cs.db,/usr/local/lib/users.eecs.db')dnl
 DDBerkeley.EDU
 
 # hosts for which we accept and forward mail (must be in .Berkeley.EDU)
