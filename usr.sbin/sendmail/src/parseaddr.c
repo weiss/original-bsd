@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.45 (Berkeley) 11/27/94";
+static char sccsid[] = "@(#)parseaddr.c	8.46 (Berkeley) 11/27/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -152,6 +152,7 @@ parseaddr(addr, a, flags, delim, delimptr, e)
 		if (e->e_message == NULL)
 			e->e_message = newstr(msg);
 		a->q_flags |= QQUEUEUP;
+		a->q_status = "466";
 	}
 
 	/*
