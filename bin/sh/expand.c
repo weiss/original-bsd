@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)expand.c	8.1 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)expand.c	8.2 (Berkeley) 10/22/93";
 #endif /* not lint */
 
 /*
@@ -459,10 +459,12 @@ again: /* jump here after setting a variable with ${var=text} */
 		} else {
 			char *startp;
 			int saveherefd = herefd;
+			struct nodelist *saveargbackq = argbackq;
 			herefd = -1;
 			argstr(p, 0);
 			STACKSTRNUL(expdest);
 			herefd = saveherefd;
+			argbackq = saveargbackq;
 			startp = stackblock() + startloc;
 			if (subtype == VSASSIGN) {
 				setvar(var, startp, 0);
