@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)process.c	5.4 (Berkeley) 08/27/92";
+static char sccsid[] = "@(#)process.c	5.5 (Berkeley) 08/27/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -106,8 +106,6 @@ redirect:
 					(void)printf("%s", cp->t);
 				break;
 			case 'd':
-				if (pd)
-					goto new;
 				pd = 1;
 				goto new;
 			case 'D':
