@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: ac.c 1.5 92/01/21$
  *
- *	@(#)ac.c	8.1 (Berkeley) 06/10/93
+ *	@(#)ac.c	8.2 (Berkeley) 01/12/94
  */
 
 /*
@@ -178,6 +178,7 @@ acopen(dev, flag, mode, p)
 	if (acgeteinfo(dev)) {
 		sc->sc_flags &= ~ACF_OPEN;
 		return(EIO);
+	}
 	return(0);
 }
 
