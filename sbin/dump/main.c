@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 05/23/86";
+static char sccsid[] = "@(#)main.c	5.4 (Berkeley) 05/28/86";
 #endif not lint
 
 #include "dump.h"
@@ -163,6 +163,7 @@ main(argc, argv)
 	  if (rmthost(host) == 0)
 		exit(X_ABORT);
 	}
+	setuid(getuid());	/* rmthost() is the only reason to be setuid */
 #endif
 	if (signal(SIGHUP, sighup) == SIG_IGN)
 		signal(SIGHUP, SIG_IGN);
