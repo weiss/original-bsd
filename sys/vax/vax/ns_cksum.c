@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ns_cksum.c	7.5 (Berkeley) 06/28/90
+ *	@(#)ns_cksum.c	7.6 (Berkeley) 12/16/90
  */
 
-#include "param.h"
-#include "mbuf.h"
+#include "sys/param.h"
+#include "sys/mbuf.h"
 
 
 /*
