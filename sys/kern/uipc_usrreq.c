@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_usrreq.c	7.12 (Berkeley) 07/03/89
+ *	@(#)uipc_usrreq.c	7.13 (Berkeley) 10/19/89
  */
 
 #include "param.h"
@@ -702,5 +702,5 @@ unp_discard(fp)
 
 	fp->f_msgcount--;
 	unp_rights--;
-	closef(fp);
+	(void) closef(fp);
 }
