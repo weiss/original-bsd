@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1985 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)cfgets.c	5.3 (Berkeley) 06/19/85";
-#endif
+static char sccsid[] = "@(#)cfgets.c	5.4 (Berkeley) 04/24/91";
+#endif /* not lint */
 
 /*
  * get nonblank, non-comment, (possibly continued) line. Alan S. Watt 
