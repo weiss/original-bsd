@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)commands.c	5.12 (Berkeley) 05/20/93";
+static char sccsid[] = "@(#)commands.c	5.13 (Berkeley) 06/01/93";
 #endif /* not lint */
 
 #if	defined(unix)
@@ -2316,7 +2316,7 @@ tn(argc, argv)
 	    }
 	} else {
 #if	!defined(htons)
-	    u_short htons();
+	    u_short htons P((unsigned short));
 #endif	/* !defined(htons) */
 	    sin.sin_port = htons(sin.sin_port);
 	}
