@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.28 (Berkeley) 12/19/88";
+static char sccsid[] = "@(#)syslogd.c	5.29 (Berkeley) 01/24/89";
 #endif /* not lint */
 
 /*
@@ -905,6 +905,7 @@ init()
 		  case F_FILE:
 		  case F_TTY:
 		  case F_CONSOLE:
+		  case F_FORW:
 			(void) close(f->f_file);
 			break;
 		}
