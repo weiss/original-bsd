@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm_proc.c	5.28 (Berkeley) 03/31/93";
+static char sccsid[] = "@(#)kvm_proc.c	5.29 (Berkeley) 05/03/93";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -36,7 +36,6 @@ static char sccsid[] = "@(#)kvm_proc.c	5.28 (Berkeley) 03/31/93";
 #include <vm/swap_pager.h>
 
 #include <sys/sysctl.h>
-#include <sys/kinfo_proc.h>
 
 #include <limits.h>
 #include <db.h>
