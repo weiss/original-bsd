@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.19 (Berkeley) 06/12/93
+#	@(#)Makefile	8.1 (Berkeley) 06/12/93
 
 PROG=	netstat
 SRCS=	if.c inet.c iso.c main.c mbuf.c mroute.c ns.c route.c \
