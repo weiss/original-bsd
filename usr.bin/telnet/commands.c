@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)commands.c	1.31 (Berkeley) 07/27/90";
+static char sccsid[] = "@(#)commands.c	1.32 (Berkeley) 07/28/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -1637,13 +1637,13 @@ char *var, *value;
 			free(ep->value);
 	} else {
 		ep = (struct env_lst *)malloc(sizeof(struct env_lst));
-		ep->export = 1;
 		ep->next = envlisthead.next;
 		envlisthead.next = ep;
 		ep->prev = &envlisthead;
 		if (ep->next)
 			ep->next->prev = ep;
 	}
+	ep->export = 1;
 	ep->var = savestr(var);
 	ep->value = savestr(value);
 	return(ep);
