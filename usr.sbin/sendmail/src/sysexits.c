@@ -1,6 +1,6 @@
 # include <sysexits.h>
 
-static char	SccsId[] = "@(#)sysexits.c	2.1	11/05/80";
+static char	SccsId[] = "@(#)sysexits.c	3.1	03/07/81";
 
 /*
 **  SYSEXITS.C -- error messages corresponding to sysexits.h
