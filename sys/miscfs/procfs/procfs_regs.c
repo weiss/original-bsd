@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)procfs_regs.c	8.3 (Berkeley) 01/27/94
+ *	@(#)procfs_regs.c	8.4 (Berkeley) 06/15/94
  *
  * From:
  *	$Id: procfs_regs.c,v 3.2 1993/12/15 09:40:17 jsp Exp $
@@ -58,4 +58,12 @@ procfs_doregs(curp, p, pfs, uio)
 
 	uio->uio_offset = 0;
 	return (error);
+}
+
+int
+procfs_validregs(p)
+	struct proc *p;
+{
+
+	return ((p->p_flag & P_SYSTEM) == 0);
 }
