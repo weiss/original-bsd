@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lfs.c	5.7 (Berkeley) 01/14/92";
+static char sccsid[] = "@(#)lfs.c	5.8 (Berkeley) 04/22/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -411,7 +411,7 @@ make_lfs(fd, lp, partp, minfree, block_size, seg_size)
 	 * is already counted.  Finally, we leave room for 1 inode block
 	 * address.
 	 */
-	sum_size = 3*sizeof(FINFO) + sizeof(SEGSUM) + sizeof(daddr_t);
+	sum_size = 3*sizeof(FINFO) + sizeof(SEGSUM) + sizeof(daddr_t) +
 	    (lfsp->lfs_cleansz + lfsp->lfs_segtabsz) * sizeof(u_long);
 #define	SUMERR \
 "Multiple summary blocks in segment 1 not yet implemented\nsummary is %d bytes."
