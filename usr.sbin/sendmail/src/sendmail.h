@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.133 (Berkeley) 05/15/95
+ *	@(#)sendmail.h	8.134 (Berkeley) 05/26/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.133		05/15/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.134		05/26/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -588,6 +588,7 @@ MAP
 # define MF_IMPL_NDBM	0x00002000	/* implicit: underlying NDBM database */
 # define MF_UNSAFEDB	0x00004000	/* this map is world writable */
 # define MF_APPEND	0x00008000	/* append new entry on rebuiled */
+# define MF_KEEPQUOTES	0x00010000	/* don't dequote key before lookup */
 
 /* indices for map_actions */
 # define MA_NOTFOUND	0		/* member map returned "not found" */
