@@ -1,8 +1,9 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)ERROR.c 1.9 02/02/82";
+static char sccsid[] = "@(#)ERROR.c 1.10 01/10/83";
 
 #include	<stdio.h>
+#include	<signal.h>
 
 /*
  * Routine ERROR is called from the runtime library when a runtime
@@ -18,6 +19,6 @@ ERROR(msg, d1, d2)
 	PFLUSH();
 	fputc('\n',stderr);
 	fprintf(stderr, msg, d1, d2);
-	SETRACE();
+	kill(getpid(), SIGTRAP);
 	return d1;
 }
