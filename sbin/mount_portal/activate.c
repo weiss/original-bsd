@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)activate.c	8.1 (Berkeley) 06/05/93
+ *	@(#)activate.c	8.2 (Berkeley) 03/27/94
  *
  * $Id: activate.c,v 1.2 1992/05/27 07:09:27 jsp Exp jsp $
  */
@@ -145,7 +145,6 @@ int so;
 {
 	struct portal_cred pcred;
 	char key[MAXPATHLEN+1];
-	int n;
 	int error;
 	char **v;
 	int fd = -1;
