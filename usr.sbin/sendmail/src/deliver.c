@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.151		04/30/83);
+SCCSID(@(#)deliver.c	3.152		05/04/83);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1001,6 +1001,7 @@ putfromline(fp, m)
 	register FILE *fp;
 	register MAILER *m;
 {
+	char *template = "$l\n";
 	char buf[MAXLINE];
 
 	if (bitnset(M_NHDR, m->m_flags))
@@ -1009,23 +1010,22 @@ putfromline(fp, m)
 # ifdef UGLYUUCP
 	if (bitnset(M_UGLYUUCP, m->m_flags))
 	{
-		extern char *macvalue();
-		char *sys = macvalue('g', CurEnv);
-		char *bang = index(sys, '!');
+		char *bang;
+		char xbuf[MAXLINE];
 
+		expand("$g", buf, &buf[sizeof buf - 1], CurEnv);
+		bang = index(buf, '!');
 		if (bang == NULL)
-			syserr("No ! in UUCP! (%s)", sys);
+			syserr("No ! in UUCP! (%s)", buf);
 		else
 		{
-			*bang = '\0';
-			expand("From $f  $d remote from $g\n", buf,
-					&buf[sizeof buf - 1], CurEnv);
-			*bang = '!';
+			*bang++ = '\0';
+			(void) sprintf(xbuf, "From %s  $d remote from %s\n", buf, bang);
+			template = xbuf;
 		}
 	}
-	else
 # endif UGLYUUCP
-		expand("$l\n", buf, &buf[sizeof buf - 1], CurEnv);
+	expand(template, buf, &buf[sizeof buf - 1], CurEnv);
 	putline(buf, fp, m);
 }
 /*
