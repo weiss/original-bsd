@@ -14,9 +14,13 @@
 %right	'^'
 
 %{
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)beauty.y	4.3	(Berkeley)	02/06/91";
-#endif not lint
+static char sccsid[] = "@(#)beauty.y	5.1 (Berkeley) 04/16/91";
+#endif /* not lint */
 
 #include "b.h"
 #include <stdio.h>
