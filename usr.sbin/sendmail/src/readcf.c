@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.7 (Berkeley) 08/07/93";
+static char sccsid[] = "@(#)readcf.c	8.8 (Berkeley) 08/07/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1218,7 +1218,8 @@ setoption(opt, val, safe, sticky, e)
 		break;
 
 	  case 'L':		/* log level */
-		LogLevel = atoi(val);
+		if (safe || LogLevel < atoi(val))
+			LogLevel = atoi(val);
 		break;
 
 	  case 'M':		/* define macro */
