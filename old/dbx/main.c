@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)main.c 1.5 05/17/83";
+static char sccsid[] = "@(#)main.c 1.6 08/16/83";
 
 /*
  * Debugger main routine.
@@ -69,6 +69,7 @@ String argv[];
     fflush(stdout);
     scanargs(argc, argv);
     language_init();
+    symbols_init();
     process_init();
     if (runfirst) {
 	if (setjmp(env) == FIRST_TIME) {
@@ -247,7 +248,7 @@ String argv[];
     sourcepath = list_alloc();
     list_append(list_item("."), nil, sourcepath);
     i = 1;
-    while (i < argc and (not foundfile or corefile == nil)) {
+    while (i < argc and (not foundfile or (corefile == nil and not runfirst))) {
 	if (argv[i][0] == '-') {
 	    if (streq(argv[i], "-I")) {
 		++i;
