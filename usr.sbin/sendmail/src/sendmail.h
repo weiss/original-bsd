@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.61 (Berkeley) 05/04/93
+ *	@(#)sendmail.h	6.62 (Berkeley) 05/04/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.61		05/04/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.62		05/04/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -266,7 +266,7 @@ ENVELOPE
 	short		e_errormode;	/* error return mode */
 	int		(*e_puthdr)__P((FILE *, MAILER *, ENVELOPE *));
 					/* function to put header of message */
-	int		(*e_putbody)__P((FILE *, MAILER *, ENVELOPE *));
+	int		(*e_putbody)__P((FILE *, MAILER *, ENVELOPE *, char *));
 					/* function to put body of message */
 	struct envelope	*e_parent;	/* the message this one encloses */
 	struct envelope *e_sibling;	/* the next envelope of interest */
