@@ -14,12 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ns_pcb.c	7.7 (Berkeley) 04/22/89
+ *	@(#)ns_pcb.c	7.8 (Berkeley) 05/05/89
  */
 
 #include "param.h"
 #include "systm.h"
-#include "dir.h"
 #include "user.h"
 #include "mbuf.h"
 #include "socket.h"
