@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.88 (Berkeley) 05/13/95";
+static char sccsid[] = "@(#)readcf.c	8.89 (Berkeley) 05/14/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -672,6 +672,8 @@ fileclass(class, filename, fmt, safe, optional)
 {
 	FILE *f;
 	int sff;
+	int pid;
+	register char *p;
 	char buf[MAXLINE];
 
 	if (tTd(37, 2))
@@ -679,14 +681,32 @@ fileclass(class, filename, fmt, safe, optional)
 
 	if (filename[0] == '|')
 	{
-		syserr("fileclass: pipes (F%c%s) not supported due to security problems",
-			class, filename);
-		return;
+		auto int fd;
+		int i;
+		char *argv[MAXPV + 1];
+
+		i = 0;
+		for (p = strtok(&filename[1], " \t"); p != NULL; p = strtok(NULL, " \t"))
+		{
+			if (i >= MAXPV)
+				break;
+			argv[i++] = p;
+		}
+		argv[i] = NULL;
+		pid = prog_open(argv, &fd, CurEnv);
+		if (pid < 0)
+			f = NULL;
+		else
+			f = fdopen(fd, "r");
 	}
-	sff = SFF_REGONLY;
-	if (safe)
-		sff |= SFF_OPENASROOT;
-	f = safefopen(filename, O_RDONLY, 0, sff);
+	else
+	{
+		pid = -1;
+		sff = SFF_REGONLY;
+		if (safe)
+			sff |= SFF_OPENASROOT;
+		f = safefopen(filename, O_RDONLY, 0, sff);
+	}
 	if (f == NULL)
 	{
 		if (!optional)
@@ -735,6 +755,8 @@ fileclass(class, filename, fmt, safe, optional)
 	}
 
 	(void) fclose(f);
+	if (pid > 0)
+		(void) waitfor(pid);
 }
 /*
 **  MAKEMAILER -- define a new mailer.
