@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.51		02/26/83);
+SCCSID(@(#)headers.c	3.52		02/26/83);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -276,7 +276,8 @@ eatheader(e)
 		if (bitset(H_TRACE, h->h_flags))
 			hopcnt++;
 #ifdef LOG
-		if (strcmp(h->h_field, "message-id") == 0 && LogLevel > 8)
+		if (!QueueRun && LogLevel > 8 &&
+		    strcmp(h->h_field, "message-id") == 0)
 		{
 			char buf[MAXNAME];
 
@@ -352,7 +353,7 @@ eatheader(e)
 	*/
 
 # ifdef LOG
-	if (LogLevel > 1)
+	if (!QueueRun && LogLevel > 1)
 	{
 		syslog(LOG_INFO, "%s: from=%s, size=%ld, class=%d\n",
 		       CurEnv->e_id, CurEnv->e_from.q_paddr, CurEnv->e_msgsize,
