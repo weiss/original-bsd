@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)machdep.c	5.2 (Berkeley) 01/17/89";
+static char sccsid[] = "@(#)machdep.c	5.3 (Berkeley) 09/26/89";
 #endif
 
 /*
@@ -343,7 +343,7 @@ printstack(locals, nback)
 		adbprintf("%s(", s);
 		if ((a = cur.a_ap) != UNKNOWN) {
 			GET(narg, a);
-			for (i = narg; i;)
+			for (i = narg > 20 ? 20 : narg; i;)
 				prfrom(a += 4, --i ? ',' : 0);
 		}
 		printc(')');
