@@ -1,28 +1,24 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Chris Torek.
+ *
+ * %sccs.include.redist.c%
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)setbuf.c	5.2 (Berkeley) 03/09/86";
-#endif LIBC_SCCS and not lint
+static char sccsid[] = "@(#)setbuf.c	5.3 (Berkeley) 01/20/91";
+#endif /* LIBC_SCCS and not lint */
 
-#include	<stdio.h>
+#include <stdio.h>
+#include "local.h"
 
-setbuf(iop, buf)
-register FILE *iop;
-char *buf;
+void
+setbuf(fp, buf)
+	FILE *fp;
+	char *buf;
 {
-	if (iop->_base != NULL && iop->_flag&_IOMYBUF)
-		free(iop->_base);
-	iop->_flag &= ~(_IOMYBUF|_IONBF|_IOLBF);
-	if ((iop->_base = buf) == NULL) {
-		iop->_flag |= _IONBF;
-		iop->_bufsiz = NULL;
-	} else {
-		iop->_ptr = iop->_base;
-		iop->_bufsiz = BUFSIZ;
-	}
-	iop->_cnt = 0;
+	(void) setvbuf(fp, buf, buf ? _IOFBF : _IONBF, BUFSIZ);
 }
