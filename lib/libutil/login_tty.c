@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)login_tty.c	1.1 (Berkeley) 06/15/90";
+static char sccsid[] = "@(#)login_tty.c	1.2 (Berkeley) 06/21/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -16,12 +16,12 @@ login_tty(fd)
 	int fd;
 {
 	(void) setsid();
-	(void) ioctl(fd, TIOCSCTTY, (char *)NULL);
-	(void) close(0); 
-	(void) close(1); 
-	(void) close(2);
+	if (ioctl(fd, TIOCSCTTY, (char *)NULL) == -1)
+		return (-1);
 	(void) dup2(fd, 0);
 	(void) dup2(fd, 1);
 	(void) dup2(fd, 2);
-	(void) close(fd);
+	if (fd > 2)
+		(void) close(fd);
+	return (0);
 }
