@@ -4,10 +4,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.13		07/05/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.14		07/05/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.13		07/05/82);
+SCCSID(@(#)usersmtp.c	3.14		07/05/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
@@ -234,6 +234,7 @@ reply()
 		register char *p;
 
 		/* arrange to time out the read */
+		fflush(Xscript);			/* for debugging */
 		if (setjmp(TickFrame) != 0)
 			return (-1);
 		(void) alarm(ReadTimeout);
