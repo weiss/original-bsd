@@ -1,4 +1,4 @@
-/*	kern_synch.c	3.1	10/14/12	*/
+/*	kern_synch.c	3.2	10/14/12	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -328,7 +328,7 @@ retry:
 	rpp->p_stat = SRUN;
 	setrq(rpp);
 	spl0();
-	/* THE SSWAP BIT IS REPLACED BY u.u_pcb.pcb_sswap SEE procdup */
+	/* SSWAP NOT NEEDED IN THIS CASE AS u.u_pcb.pcb_sswap SUFFICES */
 	/* rpp->p_flag |= SSWAP; */
 	rip->p_flag &= ~SKEEP;
 	if (isvfork) {
