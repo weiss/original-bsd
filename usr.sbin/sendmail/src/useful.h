@@ -1,7 +1,7 @@
 /*
 **  USEFUL.H -- Some useful stuff.
 **
-**	@(#)useful.h	3.4	09/24/81
+**	@(#)useful.h	3.5	11/08/81
 */
 
 # ifndef makedev
@@ -27,7 +27,7 @@ extern char	*malloc();
 extern char	*index(), *rindex();
 extern int	errno;
 extern char	*sprintf();
-extern long	time();
+extern time_t	time();
 extern char	*ctime();
 # ifndef V6
 extern char	*getenv();
