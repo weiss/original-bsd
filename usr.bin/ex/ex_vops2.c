@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-static char *sccsid = "@(#)ex_vops2.c	6.1 10/19/80";
+static char *sccsid = "@(#)ex_vops2.c	6.2 10/23/80";
 #include "ex.h"
 #include "ex_tty.h"
 #include "ex_vis.h"
@@ -285,7 +285,12 @@ vappend(ch, cnt, indent)
 				doomed = 0;
 			}
 			i = vreopen(LINE(vcline), lineDOT(), vcline);
-			doomed = savedoomed;
+#ifdef TRACE
+			if (trace)
+				fprintf(trace, "restoring doomed from %d to %d\n", doomed, savedoomed);
+#endif
+			if (ch == 'R')
+				doomed = savedoomed;
 		}
 
 		/*
