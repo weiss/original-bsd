@@ -1,4 +1,4 @@
-#       @(#)Makefile.inc	5.2 (Berkeley) 09/04/91
+#       @(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 .PATH: ${.CURDIR}/db/hash
 
