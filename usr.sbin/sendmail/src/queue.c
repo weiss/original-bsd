@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.5 (Berkeley) 07/17/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.6 (Berkeley) 07/19/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.5 (Berkeley) 07/17/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.6 (Berkeley) 07/19/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1093,7 +1093,7 @@ printqueue()
 		struct stat st;
 # ifdef NGROUPS
 		int n;
-		int gidset[NGROUPS];
+		GIDSET_T gidset[NGROUPS];
 # endif
 
 		if (stat(QueueDir, &st) < 0)
