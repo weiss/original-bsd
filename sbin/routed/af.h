@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)af.h	5.7 (Berkeley) 06/01/90
+ *	@(#)af.h	5.8 (Berkeley) 11/16/91
  */
 
 /*
@@ -35,5 +35,5 @@ struct afhash {
 	u_int	afh_nethash;		/* network based hash */
 };
 
-struct	afswitch afswitch[];		/* table proper */
-int	af_max;				/* number of entries in table */
+extern struct	afswitch afswitch[];	/* table proper */
+extern int	af_max;			/* number of entries in table */
