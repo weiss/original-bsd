@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)nfsstat.c	5.12 (Berkeley) 01/10/92";
+static char sccsid[] = "@(#)nfsstat.c	5.13 (Berkeley) 01/27/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -47,9 +47,6 @@ struct nlist nl[] = {
 	"",
 };
 
-char *kernel = NULL;
-char *kmemf = NULL;
-
 void intpr(), printhdr(), sidewaysintpr(), usage();
 
 main(argc, argv)
@@ -60,15 +57,17 @@ main(argc, argv)
 	extern char *optarg;
 	u_int interval;
 	int ch;
+	char *memf, *nlistf;
 
 	interval = 0;
+	memf = nlistf = NULL;
 	while ((ch = getopt(argc, argv, "M:N:w:")) != EOF)
 		switch(ch) {
 		case 'M':
-			kmemf = optarg;
+			memf = optarg;
 			break;
 		case 'N':
-			kernel = optarg;
+			nlistf = optarg;
 			break;
 		case 'w':
 			interval = atoi(optarg);
@@ -85,13 +84,20 @@ main(argc, argv)
 	if (*argv) {
 		interval = atoi(*argv);
 		if (*++argv) {
-			kernel = *argv;
+			nlistf = *argv;
 			if (*++argv)
-				kmemf = *argv;
+				memf = *argv;
 		}
 	}
 #endif
-	if (kvm_openfiles(kernel, kmemf, NULL) == -1) {
+	/*
+	 * Discard setgid privileges if not the running kernel so that bad
+	 * guys can't print interesting stuff from kernel memory.
+	 */
+	if (nlistf != NULL || memf != NULL)
+		setgid(getgid());
+
+	if (kvm_openfiles(nlistf, memf, NULL) == -1) {
 		fprintf(stderr, "nfsstate: kvm_openfiles: %s\n", kvm_geterr());
 		exit(1);
 	}
