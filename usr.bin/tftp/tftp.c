@@ -1,4 +1,6 @@
-/*	tftp.c	4.6	83/06/12	*/
+#ifndef lint
+static char sccsid[] = "@(#)tftp.c	4.7 (Berkeley) 08/11/83";
+#endif
 
 /*
  * TFTP User Program -- Protocol Machines
