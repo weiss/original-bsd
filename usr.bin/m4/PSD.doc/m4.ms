@@ -1,9 +1,9 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)m4.ms	6.2 (Berkeley) 04/17/91
+.\"	@(#)m4.ms	6.3 (Berkeley) 06/05/93
 .\"
-.EH 'PS1:17-%''The M4 Macro Processor'
-.OH 'The M4 Macro Processor''PS1:17-%'
+.EH 'PSD:17-%''The M4 Macro Processor'
+.OH 'The M4 Macro Processor''PSD:17-%'
 .if n .ls 2
 .tr _\(em
 .tr *\(**
