@@ -4,12 +4,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_astring.c	7.4 (Berkeley) 05/06/91
+ *	@(#)tp_astring.c	7.5 (Berkeley) 06/29/92
  */
 
-#ifndef _NFILE
-#include <stdio.h>
-#endif _NFILE
 char *tp_sstring[] = {
 "ST_ERROR(0x0)",
 "TP_CLOSED(0x1)",
