@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mount.c	5.24 (Berkeley) 02/16/90";
+static char sccsid[] = "@(#)mount.c	5.25 (Berkeley) 03/05/90";
 #endif /* not lint */
 
 #include "pathnames.h"
@@ -586,6 +586,7 @@ char *
 getnfsargs(spec)
 	char *spec;
 {
+	extern int errno;
 	register CLIENT *clp;
 	struct hostent *hp;
 	static struct sockaddr_in saddr;
