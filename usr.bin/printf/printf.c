@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)printf.c	5.5 (Berkeley) 02/23/89";
+static char sccsid[] = "@(#)printf.c	5.6 (Berkeley) 07/20/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -91,8 +91,13 @@ next:		for (start = fmt;; ++fmt) {
 				goto next;
 			}
 			/* %% prints a % */
-			if (*fmt == '%' && *++fmt != '%')
-				break;
+			if (*fmt == '%') {
+				if (*++fmt != '%')
+					break;
+				*fmt++ = '\0';
+				(void)printf("%s", start);
+				goto next;
+			}
 		}
 
 		/* skip to field width */
