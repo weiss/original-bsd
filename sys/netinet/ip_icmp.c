@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ip_icmp.c	6.19 (Berkeley) 05/21/86
+ *	@(#)ip_icmp.c	6.20 (Berkeley) 05/31/86
  */
 
 #include "param.h"
@@ -334,7 +334,7 @@ icmp_reflect(ip, ifp)
 {
 	register struct in_ifaddr *ia;
 	struct in_addr t;
-	struct mbuf *m, *opts = 0, *ip_srcroute();
+	struct mbuf *opts = 0, *ip_srcroute();
 	int optlen = (ip->ip_hl << 2) - sizeof(struct ip);
 
 	t = ip->ip_dst;
