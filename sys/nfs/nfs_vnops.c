@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vnops.c	7.68 (Berkeley) 02/06/92
+ *	@(#)nfs_vnops.c	7.69 (Berkeley) 03/03/92
  */
 
 /*
@@ -504,6 +504,9 @@ nfs_lookup(dvp, vpp, cnp)
 	nfsm_request(dvp, NFSPROC_LOOKUP, cnp->cn_proc, cnp->cn_cred);
 nfsmout:
 	if (error) {
+		if ((cnp->cn_nameiop == CREATE || cnp->cn_nameiop == RENAME) &&
+		    (cnp->cn_flags & ISLASTCN) && error == ENOENT)
+			error = EJUSTRETURN;
 		if (cnp->cn_nameiop != LOOKUP && (cnp->cn_flags&ISLASTCN))
 			cnp->cn_flags |= SAVENAME;
 		return (error);
@@ -1037,9 +1040,9 @@ nfs_renameit(sdvp, scnp, sp)
  * nfs hard link create call
  */
 int
-nfs_link(vp, tdvp, cnp)
-	register struct vnode *vp;   /* source vnode */
+nfs_link(tdvp, vp, cnp)
 	struct vnode *tdvp;
+	register struct vnode *vp;   /* source vnode */
 	struct componentname *cnp;
 {
 	register u_long *tl;
