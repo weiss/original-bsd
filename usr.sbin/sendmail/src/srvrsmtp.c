@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.11 (Berkeley) 09/20/85	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.12 (Berkeley) 09/21/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.11 (Berkeley) 09/20/85";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.12 (Berkeley) 09/21/85";
 # endif not lint
 
 /*
@@ -105,8 +105,8 @@ smtp()
 	bool hasmail;			/* mail command received */
 	auto ADDRESS *vrfyqueue;
 	ADDRESS *a;
-	char state[100];
 	char inp[MAXLINE];
+	char cmdbuf[100];
 	extern char Version[];
 	extern tick();
 	extern bool iswiz();
@@ -125,12 +125,7 @@ smtp()
 	}
 	settime();
 	if (RealHostName != NULL)
-	{
-		static char status[100];
-
-		(void) sprintf(status, "talking to %s", RealHostName);
-		setproctitle(status);
-	}
+		setproctitle("talking to %s", RealHostName);
 	expand("\001e", inp, &inp[sizeof inp], CurEnv);
 	message("220", inp);
 	SmtpPhase = "startup";
@@ -169,10 +164,9 @@ smtp()
 		for (p = inp; isspace(*p); p++)
 			continue;
 		cmd = p;
-		while (*++p != '\0' && !isspace(*p))
-			continue;
-		if (*p != '\0')
-			*p++ = '\0';
+		for (cmd = cmdbuf; *p != '\0' && !isspace(*p); )
+			*cmd++ = *p++;
+		*cmd = '\0';
 
 		/* decode command */
 		for (c = CmdTab; c->cmdname != NULL; c++)
@@ -186,6 +180,7 @@ smtp()
 		{
 		  case CMDHELO:		/* hello -- introduce yourself */
 			SmtpPhase = "HELO";
+			setproctitle("talking to %s (%s)", RealHostName, inp);
 			if (sameword(p, HostName))
 			{
 				/* connected to an echo server */
@@ -195,10 +190,10 @@ smtp()
 			}
 			if (RealHostName != NULL && !sameword(p, RealHostName))
 			{
-				char buf[MAXNAME];
+				char hostbuf[MAXNAME];
 
-				(void) sprintf(buf, "%s (%s)", p, RealHostName);
-				define('s', newstr(buf), CurEnv);
+				(void) sprintf(hostbuf, "%s (%s)", p, RealHostName);
+				define('s', newstr(hostbuf), CurEnv);
 			}
 			else
 				define('s', newstr(p), CurEnv);
@@ -229,8 +224,8 @@ smtp()
 			if (runinchild("SMTP-MAIL") > 0)
 				break;
 			initsys();
-			(void) sprintf(state, "srvrsmtp %s", CurEnv->e_id);
-			setproctitle(state);
+			setproctitle("talking to %s (%s - %s)", RealHostName,
+				CurEnv->e_id, inp);
 
 			/* child -- go do the processing */
 			p = skipword(p, "from");
@@ -248,6 +243,8 @@ smtp()
 
 		  case CMDRCPT:		/* rcpt -- designate recipient */
 			SmtpPhase = "RCPT";
+			setproctitle("talking to %s (%s - %s)", RealHostName,
+				CurEnv->e_id, inp);
 			if (setjmp(TopFrame) > 0)
 			{
 				CurEnv->e_flags &= ~EF_FATALERRS;
@@ -292,6 +289,8 @@ smtp()
 
 			/* collect the text of the message */
 			SmtpPhase = "collect";
+			setproctitle("talking to %s (%s - %s)", RealHostName,
+				CurEnv->e_id, inp);
 			collect(TRUE);
 			if (Errors != 0)
 				break;
@@ -356,7 +355,7 @@ smtp()
 		  case CMDVRFY:		/* vrfy -- verify address */
 			if (runinchild("SMTP-VRFY") > 0)
 				break;
-			setproctitle("SMTP-VRFY");
+			setproctitle("talking to %s (%s)", RealHostName, inp);
 			vrfyqueue = NULL;
 			QuickAbort = TRUE;
 			sendtolist(p, (ADDRESS *) NULL, &vrfyqueue);

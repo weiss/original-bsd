@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)headers.c	5.5 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)headers.c	5.6 (Berkeley) 09/21/85";
 #endif not lint
 
 # include <errno.h>
@@ -337,8 +337,8 @@ eatheader(e)
 		e->e_class = priencode(p);
 	if (!QueueRun)
 		e->e_msgpriority = e->e_msgsize + e->e_ctime
-				 - e->e_class * WKPRIFACT
-				 + e->e_nrcpts * WKRECIPFACT;
+				 - e->e_class * WkClassFact
+				 + e->e_nrcpts * WkRecipFact;
 
 	/* return receipt to */
 	p = hvalue("return-receipt-to");
