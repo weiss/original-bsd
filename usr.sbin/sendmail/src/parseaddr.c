@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.10 (Berkeley) 01/26/93";
+static char sccsid[] = "@(#)parseaddr.c	6.11 (Berkeley) 02/15/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1040,6 +1040,8 @@ buildaddr(tv, a)
 {
 	struct mailer **mp;
 	register struct mailer *m;
+	char *bp;
+	int spaceleft;
 	static char buf[MAXNAME];
 
 	if (a == NULL)
@@ -1074,12 +1076,31 @@ buildaddr(tv, a)
 		}
 		if (**tv != CANONUSER)
 			syserr("buildaddr: error: no user");
-		buf[0] = '\0';
+		bp = buf;
+		spaceleft = sizeof buf - 2;
 		while (*++tv != NULL)
 		{
-			if (buf[0] != '\0')
-				(void) strcat(buf, " ");
-			(void) strcat(buf, *tv);
+			int i = strlen(*tv);
+
+			if (i > spaceleft)
+			{
+				/* out of space for this address */
+				if (spaceleft >= 0)
+					syserr("buildaddr: error message too long (%.40s...)",
+						buf);
+				i = spaceleft;
+				spaceleft = 0;
+			}
+			if (i <= 0)
+				continue;
+			if (bp != buf)
+			{
+				*bp++ = ' ';
+				spaceleft--;
+			}
+			bcopy(*tv, bp, i);
+			bp += i;
+			spaceleft -= i;
 		}
 		usrerr(buf);
 		return (NULL);
@@ -1101,14 +1122,32 @@ buildaddr(tv, a)
 	tv++;
 	if (!bitnset(M_LOCAL, m->m_flags))
 	{
-		if (**tv++ != CANONHOST)
+		if (**tv != CANONHOST)
 		{
 			syserr("buildaddr: no host");
 			return (NULL);
 		}
-		buf[0] = '\0';
-		while (*tv != NULL && **tv != CANONUSER)
-			(void) strcat(buf, *tv++);
+		bp = buf;
+		spaceleft = sizeof buf - 1;
+		while (*++tv != NULL && **tv != CANONUSER)
+		{
+			int i = strlen(*tv);
+
+			if (i > spaceleft)
+			{
+				/* out of space for this address */
+				if (spaceleft >= 0)
+					syserr("buildaddr: host too long (%.40s...)",
+						buf);
+				i = spaceleft;
+				spaceleft = 0;
+			}
+			if (i <= 0)
+				continue;
+			bcopy(*tv, bp, i);
+			bp += i;
+			spaceleft -= i;
+		}
 		a->q_host = newstr(buf);
 	}
 	else
@@ -1119,12 +1158,6 @@ buildaddr(tv, a)
 	{
 		syserr("buildaddr: no user");
 		return (NULL);
-	}
-
-	if (m == LocalMailer && tv[1] != NULL && strcmp(tv[1], "@") == 0)
-	{
-		tv++;
-		a->q_flags |= QNOTREMOTE;
 	}
 	tv++;
 
@@ -1143,13 +1176,21 @@ buildaddr(tv, a)
 		{
 			/* may be :include: */
 			cataddr(tv, buf, sizeof buf);
-			p = buf;
-			if (*p == '"')
-				p++;
-			p[9] = '\0';
-			if (strcasecmp(p, ":include:") == 0)
+			stripquotes(buf);
+			if (strncasecmp(buf, ":include:", 9) == 0)
+			{
+				/* if :include:, don't need further rewriting */
 				a->q_mailer = m = InclMailer;
+				a->q_user = &buf[9];
+				return (a);
+			}
 		}
+	}
+
+	if (m == LocalMailer && *tv != NULL && strcmp(*tv, "@") == 0)
+	{
+		tv++;
+		a->q_flags |= QNOTREMOTE;
 	}
 
 	/* rewrite according recipient mailer rewriting rules */
