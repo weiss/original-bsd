@@ -1,7 +1,7 @@
 /*-
  * %sccs.include.proprietary.c%
  *
- *	@(#)r.y	1.2 (Berkeley) 04/16/91
+ *	@(#)r.y	8.1 (Berkeley) 06/06/93
  */
 
 %{
