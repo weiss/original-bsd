@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)boot.c	7.8 (Berkeley) 02/05/88
+ *	@(#)boot.c	7.9 (Berkeley) 02/22/88
  */
 
 #include "param.h"
@@ -24,13 +24,12 @@
 #define	UNIX	"/vmunix"
 char line[100];
 
-int	retry = 0;
 extern	unsigned opendev;
 
 main()
 {
 	register unsigned howto, devtype;	/* howto=r11, devtype=r10 */
-	int io, type;
+	int io, retry, type;
 
 #ifdef lint
 	howto = 0; devtype = 0;
@@ -47,7 +46,7 @@ main()
 			howto |= RB_SINGLE|RB_ASKNAME;
 	}
 #endif
-	for (;;) {
+	for (retry = 0;;) {
 		if (howto & RB_ASKNAME) {
 			printf(": ");
 			gets(line);
