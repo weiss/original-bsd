@@ -16,9 +16,9 @@
 
 #ifndef lint
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.14 (Berkeley) 03/13/88 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.15 (Berkeley) 04/01/88 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.14 (Berkeley) 03/13/88 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.15 (Berkeley) 04/01/88 (without DBM)";
 #endif
 #endif /* not lint */
 
@@ -28,9 +28,7 @@ static char sccsid[] = "@(#)alias.c	5.14 (Berkeley) 03/13/88 (without DBM)";
 # include <signal.h>
 # include <errno.h>
 # include "sendmail.h"
-# ifdef FLOCK
 # include <sys/file.h>
-# endif FLOCK
 
 /*
 **  ALIAS -- Compute aliases.
@@ -335,7 +333,6 @@ readaliases(aliasfile, init)
 	}
 
 # ifdef DBM
-# ifdef FLOCK
 	/* see if someone else is rebuilding the alias file already */
 	if (flock(fileno(af), LOCK_EX | LOCK_NB) < 0 && errno == EWOULDBLOCK)
 	{
@@ -350,7 +347,6 @@ readaliases(aliasfile, init)
 		errno = 0;
 		return;
 	}
-# endif FLOCK
 # endif DBM
 
 	/*
