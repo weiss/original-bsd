@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.46 (Berkeley) 07/11/92 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.47 (Berkeley) 07/12/92 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.46 (Berkeley) 07/11/92 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.47 (Berkeley) 07/12/92 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -51,7 +51,7 @@ static char sccsid[] = "@(#)daemon.c	5.46 (Berkeley) 07/11/92 (without daemon mo
 **		appropriate for communication.  Returns zero on
 **		success, else an exit status describing the
 **		error.
-**	maphostname(hbuf, hbufsize)
+**	maphostname(hbuf, hbufsize, avp)
 **		Convert the entry in hbuf into a canonical form.  It
 **		may not be larger than hbufsize.
 */
@@ -513,6 +513,8 @@ myhostname(hostbuf, size)
 **	Parameters:
 **		hbuf -- a buffer containing a hostname.
 **		hbsize -- the size of hbuf.
+**		avp -- unused -- for compatibility with other mapping
+**			functions.
 **
 **	Returns:
 **		The mapping, if found.
@@ -548,6 +550,8 @@ maphostname(hbuf, hbsize, avp)
 
 	if (*hbuf != '[')
 	{
+		extern bool getcanonname();
+
 		if (getcanonname(hbuf, hbsize))
 		{
 			/* found a match -- add the trailing dot */
