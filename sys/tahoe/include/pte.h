@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)pte.h	7.1 (Berkeley) 05/21/88
+ *	@(#)pte.h	7.2 (Berkeley) 05/09/89
  */
 
 /*
@@ -93,5 +93,8 @@ extern	struct pte Vfmap[];
 extern	struct pte mmap[];
 extern	struct pte msgbufmap[];
 extern	struct pte kmempt[], ekmempt[];
+#ifdef NFS
+extern	struct pte Nfsiomap[];
+#endif
 #endif
 #endif
