@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)passwd.c	4.1 (Berkeley) 01/01/83";
+static char sccsid[] = "@(#)passwd.c	4.2 (Berkeley) 02/09/83";
 #endif
 
 /*
@@ -99,7 +99,6 @@ tryagain:
 	if ((flags == 3 || flags == 5 || flags == 6) && pwlen >= 5)
 		ok = 1;
 	if (!ok && insist < 2) {
-		if (flags == 1)
 		printf("Please use %s.\n", flags == 1 ?
 			"at least one non-numeric character" :
 			"a longer password");
