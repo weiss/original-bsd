@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dounit.c	4.4 (Berkeley) 04/17/91";
+static char sccsid[] = "@(#)dounit.c	4.5 (Berkeley) 06/03/93";
 #endif /* not lint */
 
 #include "stdio.h"
@@ -24,7 +24,7 @@ dounit()
 	wrong = 0;
 retry:
 	if (!noclobber)
-		start(todo);		/* clean up play directory */
+		lstart(todo);		/* clean up play directory */
 	sprintf(tbuff, "%s/%s/L%s", direct, sname, todo); /* script = lesson */
 	scrin = fopen(tbuff, "r");
 	if (scrin == NULL) {
