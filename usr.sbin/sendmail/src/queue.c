@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.71		02/02/83	(no queueing));
+SCCSID(@(#)queue.c	3.72		03/12/83	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.71		02/02/83);
+SCCSID(@(#)queue.c	3.72		03/12/83);
 
 /*
 **  Work queue.
@@ -491,7 +491,6 @@ dowork(w)
 
 		/* don't use the headers from sendmail.cf... */
 		CurEnv->e_header = NULL;
-		(void) chompheader("from: $q", TRUE);
 
 		/* create the link to the control file during processing */
 		if (link(w->w_name, queuename(CurEnv, 'l')) < 0)
