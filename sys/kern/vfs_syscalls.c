@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_syscalls.c	7.76 (Berkeley) 01/22/92
+ *	@(#)vfs_syscalls.c	7.77 (Berkeley) 02/03/92
  */
 
 #include "param.h"
@@ -250,6 +250,8 @@ dounmount(mp, flags, p)
 	} else {
 		vrele(coveredvp);
 		vfs_remove(mp);
+		if (mp->mnt_mounth != NULL)
+			panic("unmount: dangling vnode");
 		free((caddr_t)mp, M_MOUNT);
 	}
 	return (error);
