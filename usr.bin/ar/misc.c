@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	8.3 (Berkeley) 04/02/94";
+static char sccsid[] = "@(#)misc.c	8.4 (Berkeley) 04/27/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -110,7 +110,8 @@ void
 badfmt()
 {
 
-	errx(1, "%s: %s", archive, strerror(EFTYPE));
+	errno = EFTYPE;
+	err(1, "%s", archive);
 }
 
 void
@@ -118,5 +119,5 @@ error(name)
 	char *name;
 {
 
-	errx(1, "%s", name);
+	err(1, "%s", name);
 }
