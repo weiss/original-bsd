@@ -1,5 +1,6 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/11/90
+#	@(#)Makefile	5.2 (Berkeley) 04/20/91
 
 PROG=	rmail
+MAN8=	rmail.0
 
 .include <bsd.prog.mk>
