@@ -1,8 +1,7 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/11/90
+#	@(#)Makefile	5.3 (Berkeley) 07/01/90
 
 SUBDIR=	cno phx
-
-all: ching.0
+MAN6=	ching.0
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
