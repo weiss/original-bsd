@@ -4,10 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	7.31 (Berkeley) 03/13/92
+ *	@(#)uipc_usrreq.c	7.32 (Berkeley) 03/15/92
  */
 
 #include "param.h"
+#include "systm.h"
 #include "proc.h"
 #include "filedesc.h"
 #include "domain.h"
