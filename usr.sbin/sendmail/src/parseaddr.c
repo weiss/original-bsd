@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.49		08/27/82);
+SCCSID(@(#)parseaddr.c	3.50		09/01/82);
 
 /*
 **  PARSE -- Parse an address
@@ -602,7 +602,7 @@ rewrite(pvp, ruleset)
 				printf("'\n");
 			}
 # endif DEBUG
-			if (pvp[0][0] == CANONNET)
+			if (**pvp == CANONNET || **pvp == CANONUSER)
 				break;
 		}
 		else
@@ -733,6 +733,8 @@ cataddr(pvp, buf, sz)
 
 	p = buf;
 	sz--;
+	if (*pvp != NULL && **pvp == CANONUSER)
+		pvp++;
 	while (*pvp != NULL && (i = strlen(*pvp)) < sz)
 	{
 		natomtok = (toktype(**pvp) == ATOM);
