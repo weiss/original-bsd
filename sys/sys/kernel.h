@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kernel.h	7.1 (Berkeley) 06/04/86
+ *	@(#)kernel.h	7.2 (Berkeley) 05/29/89
  */
 
 /*
@@ -27,7 +27,10 @@ int	tick;
 int	lbolt;				/* awoken once a second */
 int	realitexpire();
 
+fixpt_t	averunnable[3];
+#ifdef COMPAT_43
 double	avenrun[3];
+#endif /* COMPAT_43 */
 
 #ifdef GPROF
 extern	int profiling;
