@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dh.c	7.15 (Berkeley) 12/16/90
+ *	@(#)dh.c	7.16 (Berkeley) 05/09/91
  */
 
 #include "dh.h"
@@ -31,7 +31,6 @@
 #include "dhreg.h"
 #include "dmreg.h"
 
-#include "sys/bkmac.h"
 #include "sys/clist.h"
 #include "sys/file.h"
 #include "sys/uio.h"

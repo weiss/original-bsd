@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dhu.c	7.14 (Berkeley) 02/12/91
+ *	@(#)dhu.c	7.15 (Berkeley) 05/09/91
  */
 
 /*
@@ -39,7 +39,6 @@
 #include "ubavar.h"
 #include "dhureg.h"
 
-#include "sys/bkmac.h"
 #include "sys/clist.h"
 #include "sys/file.h"
 #include "sys/uio.h"
