@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)locale.h	5.1 (Berkeley) 02/18/91
+ *	@(#)locale.h	5.2 (Berkeley) 02/24/91
  */
 
 #ifndef _LOCALE_H_
@@ -44,12 +44,11 @@ struct lconv {
 
 #define	_LC_LAST	6		/* marks end */
 
-#if __STDC__ || c_plusplus
-char	*setlocale(int _category, const char *_locale);
-struct	lconv *localeconv(void);
-#else
-char	*setlocale();
-struct	lconv *localeconv();
-#endif
+#include <sys/cdefs.h>
+
+__BEGIN_DECLS
+struct lconv	*localeconv __P((void));
+char		*setlocale __P((int, const char *));
+__END_DECLS
 
 #endif /* _LOCALE_H_ */
