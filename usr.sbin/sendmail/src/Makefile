@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.23 (Berkeley) 12/15/91
+#	@(#)Makefile	5.24 (Berkeley) 01/05/92
 
 PROG=	sendmail
 
-CFLAGS+=-I${.CURDIR} -DVMUNIX
+CFLAGS+=-I${.CURDIR}
 
 SRCS=	alias.c arpadate.c clock.c collect.c conf.c convtime.c daemon.c \
 	deliver.c domain.c envelope.c err.c headers.c macro.c main.c \

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	5.33 (Berkeley) 01/04/92";
+static char sccsid[] = "@(#)conf.c	5.34 (Berkeley) 01/05/92";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -20,9 +20,6 @@ static char sccsid[] = "@(#)conf.c	5.33 (Berkeley) 01/04/92";
 **  CONF.C -- Sendmail Configuration Tables.
 **
 **	Defines the configuration of this installation.
-**
-**	Compilation Flags:
-**		VMUNIX -- running on a Berkeley UNIX system.
 **
 **	Configuration Variables:
 **		HdrInfo -- a table describing well-known header fields.
@@ -601,9 +598,7 @@ setproctitle(fmt, a, b, c)
 **		Picks up extant zombies.
 */
 
-# ifdef VMUNIX
 # include <sys/wait.h>
-# endif VMUNIX
 
 void
 reapchild()
