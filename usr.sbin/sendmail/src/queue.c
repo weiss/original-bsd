@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.52 (Berkeley) 11/11/94 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.53 (Berkeley) 11/19/94 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.52 (Berkeley) 11/11/94 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.53 (Berkeley) 11/19/94 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -177,7 +177,7 @@ queueup(e, queueall, announce)
 		bzero(&mcibuf, sizeof mcibuf);
 		mcibuf.mci_out = dfp;
 		mcibuf.mci_mailer = FileMailer;
-		(*e->e_putbody)(&mcibuf, e, NULL);
+		(*e->e_putbody)(&mcibuf, e, NULL, 0);
 		(void) xfclose(dfp, "queueup dfp", e->e_id);
 		e->e_putbody = putbody;
 	}
