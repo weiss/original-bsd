@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)f77.ms	5.6 (Berkeley) 06/05/93
+.\"	@(#)f77.ms	5.7 (Berkeley) 08/09/93
 .\"
 .rm CM
 .hw name-list
@@ -2055,13 +2055,14 @@ delim off
 .	\" macros here
 .de HP
 .RT
-.if !\\(IP .nr IP +1
+.if !\\n(IP .nr IP +1
 .sp \\n(PDu
 .ne 3v
 .in +\\n(PIu
 .ti -\\n(PIu
 \fB\\$1\fR\ \c
 ..
+.nr I0 \n(PIu
 .de P1
 .KS
 .nf
