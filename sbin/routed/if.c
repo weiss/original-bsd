@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)if.c	5.1 (Berkeley) 06/04/85";
+static char sccsid[] = "@(#)if.c	5.2 (Berkeley) 02/23/86";
 #endif not lint
 
 /*
@@ -70,7 +70,7 @@ if_ifwithnet(addr)
 	register int af = addr->sa_family;
 	register int (*netmatch)();
 
-	if (af >= AF_MAX)
+	if (af >= af_max)
 		return (0);
 	netmatch = afswitch[af].af_netmatch;
 	for (ifp = ifnet; ifp; ifp = ifp->int_next) {
@@ -97,7 +97,7 @@ if_iflookup(addr)
 	register int af = addr->sa_family;
 	register int (*netmatch)();
 
-	if (af >= AF_MAX)
+	if (af >= af_max)
 		return (0);
 	maybe = 0;
 	netmatch = afswitch[af].af_netmatch;
