@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 07/11/92
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 FILES=	3101 9837 aa aed512 beehive diablo dtc382 hp700-wy ibm3101 std \
 	stdcrt tandem653 teleray vt100 vt100-w wyse-adds xerox1720 xerox1730 \
