@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	5.38 (Berkeley) 12/15/92";
+static char sccsid[] = "@(#)recipient.c	5.39 (Berkeley) 12/15/92";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -656,6 +656,8 @@ include(fname, forwarding, ctladdr, sendq, e)
 		LineNumber++;
 		if (p != NULL)
 			*p = '\0';
+		if (*p == '#' || *p == '\0')
+			continue;
 		e->e_to = oldto;
 		message(Arpa_Info, "%s to %s",
 			forwarding ? "forwarding" : "sending", buf);
