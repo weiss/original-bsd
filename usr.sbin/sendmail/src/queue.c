@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.37 (Berkeley) 03/19/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.38 (Berkeley) 03/19/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.37 (Berkeley) 03/19/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.38 (Berkeley) 03/19/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1215,9 +1215,9 @@ queuename(e, type)
 	char type;
 {
 	static int pid = -1;
-	char c0;
-	static char c1 = 'A';
-	static char c2 = 'A';
+	static char c0;
+	static char c1;
+	static char c2;
 	time_t now;
 	struct tm *tm;
 	static char buf[MAXNAME];
