@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: vn.c 1.8 92/12/20$
  *
- *	@(#)vn.c	8.3 (Berkeley) 11/16/93
+ *	@(#)vn.c	8.4 (Berkeley) 12/30/93
  */
 
 /*
@@ -417,7 +417,7 @@ vnioctl(dev, cmd, data, flag, p)
  */
 vnsetcred(vn, cred)
 	register struct vn_softc *vn;
-	struct ucred cred;
+	struct ucred *cred;
 {
 	struct uio auio;
 	struct iovec aiov;
