@@ -1,12 +1,13 @@
 #ifndef lint
-static char sccsid[] = "@(#)start.c	4.3	(Berkeley)	10/20/84";
+static char sccsid[] = "@(#)start.c	4.4	(Berkeley)	04/02/85";
 #endif not lint
 
 #include "stdio.h"
 #include "lrnref.h"
 #include <sys/types.h>
-#include <whoami.h>
 #include <sys/dir.h>
+
+#define BSD4_2	1
 
 start(lesson)
 char *lesson;
