@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.1 (Berkeley) 08/06/92
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 # regex sources
 .PATH: ${.CURDIR}/regex
