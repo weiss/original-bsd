@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.c	8.3 (Berkeley) 11/07/94
+ *	@(#)in.c	8.4 (Berkeley) 01/09/95
  */
 
 #include <sys/param.h>
@@ -132,7 +132,7 @@ extern	struct ifnet loif;
 /* ARGSUSED */
 in_control(so, cmd, data, ifp)
 	struct socket *so;
-	int cmd;
+	u_long cmd;
 	caddr_t data;
 	register struct ifnet *ifp;
 {
