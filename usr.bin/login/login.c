@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.63 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)login.c	5.64 (Berkeley) 10/29/90";
 #endif /* not lint */
 
 /*
@@ -472,12 +472,19 @@ badlogin(name)
 {
 	if (failures == 0)
 		return;
-	if (hostname)
-		syslog(LOG_NOTICE, "%d LOGIN FAILURE%s FROM %s, %s",
+	if (hostname) {
+		syslog(LOG_NOTICE, "%d LOGIN FAILURE%s FROM %s",
+		    failures, failures > 1 ? "S" : "", hostname);
+		syslog(LOG_AUTHPRIV|LOG_NOTICE,
+		    "%d LOGIN FAILURE%s FROM %s, %s",
 		    failures, failures > 1 ? "S" : "", hostname, name);
-	else
-		syslog(LOG_NOTICE, "%d LOGIN FAILURE%s ON %s, %s",
+	} else {
+		syslog(LOG_NOTICE, "%d LOGIN FAILURE%s ON %s",
+		    failures, failures > 1 ? "S" : "", tty);
+		syslog(LOG_AUTHPRIV|LOG_NOTICE,
+		    "%d LOGIN FAILURE%s ON %s, %s",
 		    failures, failures > 1 ? "S" : "", tty, name);
+	}
 }
 
 #undef	UNKNOWN
