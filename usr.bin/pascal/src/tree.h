@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)tree.h 1.4 02/08/84"; */
+/* static	char sccsid[] = "@(#)tree.h 2.1 02/08/84"; */
 
 #define T_MINUS 1
 #define T_MOD 2
