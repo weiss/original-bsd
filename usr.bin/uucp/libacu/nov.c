@@ -1,8 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)nov.c	4.2 (Berkeley) 02/24/88";
+static char sccsid[] = "@(#)nov.c	4.3 (Berkeley) 03/02/91";
 #endif
 
-#include "../condevs.h"
+#include "condevs.h"
 
 /***
  *	novopn(telno, flds, dev) connect to novation Smart-Cat
