@@ -1,10 +1,9 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)CTTOT.c 1.3 06/08/81";
+static char sccsid[] = "@(#)CTTOT.c 1.4 06/10/81";
 
 #include "whoami.h"
 #include "h00vars.h"
-#include "h01errs.h"
 
 long	_mask[] = {	
 #		ifdef DEC11

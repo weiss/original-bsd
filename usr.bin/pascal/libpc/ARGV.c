@@ -1,9 +1,8 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)ARGV.c 1.2 03/07/81";
+static char sccsid[] = "@(#)ARGV.c 1.3 06/10/81";
 
 #include "h00vars.h"
-#include "h01errs.h"
 
 ARGV(subscript, var, siz)
 
@@ -15,7 +14,7 @@ ARGV(subscript, var, siz)
 	register int	size = siz;
 
 	if (subscript >= _argc) {
-		ERROR(EARGV, subscript);
+		ERROR("Argument to argv of %D is out of range\n", subscript);
 		return;
 	}
 	cp = _argv[subscript];
