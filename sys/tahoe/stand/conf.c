@@ -14,12 +14,14 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)conf.c	1.7 (Berkeley) 06/29/88
+ *	@(#)conf.c	1.8 (Berkeley) 06/22/90
  */
 
-#include "param.h"
-#include "inode.h"
-#include "fs.h"
+#include "sys/param.h"
+#include "sys/time.h"
+#include "sys/vnode.h"
+#include "ufs/inode.h"
+#include "ufs/fs.h"
 #include "saio.h"
 
 extern int	nullsys(), nodev(), noioctl();
