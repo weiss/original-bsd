@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)local2.c	1.18 (Berkeley) 12/10/87";
+static char sccsid[] = "@(#)local2.c	1.19 (Berkeley) 12/10/87";
 #endif
 
 # include "pass2.h"
@@ -737,7 +737,13 @@ sconv(p, forcc)
 		srctype = src->in.type;
 	}
 
-	if (src->in.op == ICON) {
+	if (src->in.op == ICON &&
+#ifdef FLEXNAMES
+	    (src->tn.name == NULL || *src->tn.name == '\0')
+#else
+	    src->tn.name[0] == '\0'
+#endif
+	) {
 		if (src->tn.lval == 0) {
 			putstr("clr");
 			prtype(dst);
