@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_alloc.c	8.8 (Berkeley) 02/21/94
+ *	@(#)ffs_alloc.c	8.9 (Berkeley) 06/15/94
  */
 
 #include <sys/param.h>
@@ -278,7 +278,10 @@ nospace:
  */
 #include <sys/sysctl.h>
 int doasyncfree = 1;
+#ifdef DEBUG
 struct ctldebug debug14 = { "doasyncfree", &doasyncfree };
+#endif
+
 int
 ffs_reallocblks(ap)
 	struct vop_reallocblks_args /* {
