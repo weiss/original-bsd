@@ -5,9 +5,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-SCCSID(@(#)alias.c	4.7		12/05/84	(with DBM));
+SCCSID(@(#)alias.c	4.8		02/15/85	(with DBM));
 # else DBM
-SCCSID(@(#)alias.c	4.7		12/05/84	(without DBM));
+SCCSID(@(#)alias.c	4.8		02/15/85	(without DBM));
 # endif DBM
 
 /*
@@ -160,7 +160,7 @@ initaliases(aliasfile, init)
 #endif DBM
 	struct stat stb;
 
-	if (stat(aliasfile, &stb) < 0)
+	if (aliasfile == NULL || stat(aliasfile, &stb) < 0)
 	{
 		NoAlias = TRUE;
 		errno = 0;
