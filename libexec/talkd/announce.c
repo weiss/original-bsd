@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)announce.c	5.6 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)announce.c	5.7 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -30,6 +30,7 @@ static char sccsid[] = "@(#)announce.c	5.6 (Berkeley) 06/18/88";
 #include <syslog.h>
 
 #include <protocols/talkd.h>
+#include <paths.h>
 
 extern	int errno;
 extern	char hostname[];
@@ -83,7 +84,7 @@ announce_proc(request, remote_machine)
 	FILE *tf;
 	struct stat stbuf;
 
-	(void)sprintf(full_tty, "/dev/%s", request->r_tty);
+	(void)sprintf(full_tty, "%s/%s", _PATH_DEV, request->r_tty);
 	if (access(full_tty, 0) != 0)
 		return (FAILED);
 	if ((tf = fopen(full_tty, "w")) == NULL)
