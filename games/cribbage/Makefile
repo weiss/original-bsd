@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4	(Berkeley)	06/03/87
+#	@(#)Makefile	5.5	(Berkeley)	09/21/87
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -31,8 +31,9 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	install -s -o bin -g bin -m 755 cribbage ${DESTDIR}/usr/games/cribbage
-	install -o bin -g bin -m 644 crib.instr ${DESTDIR}/usr/games/lib/crib.instr
+	install -o games -g bin -m 400 crib.instr ${DESTDIR}/usr/games/lib/crib.instr
+	install -s -o games -g bin -m 4700 cribbage ${DESTDIR}/usr/games/hide
+	(cd ${DESTDIR}/usr/games; rm -f cribbage; ln -s dm cribbage; chown games.bin cribbage)
 
 lint: FRC
 	lint ${CFLAGS} ${SRCS}
