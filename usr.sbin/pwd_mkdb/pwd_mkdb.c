@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)pwd_mkdb.c	5.3 (Berkeley) 03/08/91";
+static char sccsid[] = "@(#)pwd_mkdb.c	5.4 (Berkeley) 03/08/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -214,7 +214,7 @@ main(argc, argv)
 	}
 
 	/* Set master.passwd permissions, in case caller forgot. */
-	(void)fchmod(fp, S_IRUSR|S_IWUSR);
+	(void)fchmod(fileno(fp), S_IRUSR|S_IWUSR);
 	(void)fclose(fp);
 
 	/* Install as the real password files. */
