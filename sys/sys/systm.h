@@ -1,4 +1,4 @@
-/*	systm.h	4.5	02/07/81	*/
+/*	systm.h	4.6	02/08/81	*/
 
 /*
  * Random set of variables
@@ -73,8 +73,7 @@ swblk_t	vtod();
  */
 extern struct sysent
 {
-	char	sy_narg;		/* total number of arguments */
-	char	sy_nrarg;		/* number of args in registers */
+	int	sy_narg;		/* total number of arguments */
 	int	(*sy_call)();		/* handler */
 } sysent[];
 
