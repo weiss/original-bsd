@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.32 (Berkeley) 03/29/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.33 (Berkeley) 03/30/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.32 (Berkeley) 03/29/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.33 (Berkeley) 03/30/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -372,6 +372,11 @@ smtp(e)
 			}
 			message("250 Sender ok");
 			gotmail = TRUE;
+
+			/* optimize: non-interactive, don't expand aliases */
+			if (e->e_sendmode != SM_INTERACTIVE)
+				e->e_flags |= EF_VRFYONLY;
+
 			break;
 
 		  case CMDRCPT:		/* rcpt -- designate recipient */
@@ -389,10 +394,6 @@ smtp(e)
 			}
 			QuickAbort = TRUE;
 			LogUsrErrs = TRUE;
-
-			/* optimization -- if queueing, don't expand aliases */
-			if (e->e_sendmode == SM_QUEUE)
-				e->e_flags |= EF_VRFYONLY;
 
 			p = skipword(p, "to");
 			if (p == NULL)
