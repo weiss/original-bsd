@@ -1,7 +1,7 @@
-#	Makefile	1.1	06/28/80
+#	Makefile	1.2	07/21/80
 
 CFLAGS = -O -DSTANDALONE
-RELOC=	50000
+RELOC=	70000
 DRIVERS=hp.o ht.o mba.o up.o uba.o
 
 all:	/usr/lib/libsa.a srt0.o boot cat ls mkfs restor tpmkfs tprestor
