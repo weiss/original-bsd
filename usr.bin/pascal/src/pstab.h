@@ -1,4 +1,10 @@
-    /*	static	char sccsid[] = "@(#)pstab.h 2.1 02/08/84"; */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)pstab.h	5.1 (Berkeley) 06/05/85
+ */
 
     /*
      *	subtypes within the stab type N_PC
