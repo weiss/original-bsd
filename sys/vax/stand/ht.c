@@ -3,13 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ht.c	7.3 (Berkeley) 02/22/88
+ *	@(#)ht.c	7.4 (Berkeley) 04/25/89
  */
 
 /*
  * TM03/TU?? tape driver
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "inode.h"

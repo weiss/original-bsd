@@ -14,13 +14,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kdb.c	7.4 (Berkeley) 07/08/88
+ *	@(#)kdb.c	7.5 (Berkeley) 04/25/89
  */
 
 /*
  * KDB50/RAxx disk device driver
  */
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "inode.h"
