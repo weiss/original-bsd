@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.25 (Berkeley) 10/17/94";
+static char sccsid[] = "@(#)collect.c	8.26 (Berkeley) 11/05/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -494,20 +494,7 @@ readerr:
 	if (HasEightBits)
 	{
 		e->e_flags |= EF_HAS8BIT;
-		if (bitset(MM_MIME8BIT, MimeMode))
-		{
-			/* convert it to MIME */
-			if (hvalue("MIME-Version", e->e_header) == NULL)
-			{
-				char mimebuf[20];
-
-				strcpy(mimebuf, "MIME-Version: 1.0");
-				chompheader(mimebuf, FALSE, e);
-			}
-			if (e->e_bodytype == NULL)
-				e->e_bodytype = "8BITMIME";
-		}
-		else if (!bitset(MM_PASS8BIT, MimeMode))
+		if (!bitset(MM_PASS8BIT|MM_MIME8BIT, MimeMode))
 			usrerr("554 Eight bit data not allowed");
 	}
 
