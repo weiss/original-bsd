@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)uipc_syscalls.c	7.3 (Berkeley) 01/07/88
+ *	@(#)uipc_syscalls.c	7.4 (Berkeley) 01/20/88
  */
 
 #include "param.h"
@@ -805,7 +805,7 @@ sockargs(aname, name, namelen, type)
 	register struct mbuf *m;
 	int error;
 
-	if (namelen > MLEN)
+	if ((u_int)namelen > MLEN)
 		return (EINVAL);
 	m = m_get(M_WAIT, type);
 	if (m == NULL)
