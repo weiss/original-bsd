@@ -32,7 +32,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.59		09/26/82);
+SCCSID(@(#)conf.c	3.60		10/27/82);
 
 
 
@@ -67,8 +67,8 @@ struct hdrinfo	HdrInfo[] =
 	"resent-to",		H_RCPT,			0,
 	"cc",			H_RCPT,			0,
 	"resent-cc",		H_RCPT,			0,
-	"bcc",			H_RCPT,			0,
-	"resent-bcc",		H_RCPT,			0,
+	"bcc",			H_RCPT|H_ACHECK,	0,
+	"resent-bcc",		H_RCPT|H_ACHECK,	0,
 		/* message identification and control */
 	"message-id",		0,			0,
 	"resent-message-id",	0,			0,
