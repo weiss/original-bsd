@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.20 (Berkeley) 10/31/93')
+VERSIONID(`@(#)proto.m4	8.21 (Berkeley) 11/23/93')
 
 MAILER(local)dnl
 
@@ -574,7 +574,7 @@ ifdef(`_MAILER_fax_',
 
 ifdef(`UUCP_RELAY',
 `# forward non-local UUCP traffic to our UUCP relay
-R$*<@$*.UUCP>$*		$: $>_SET_95_ < $Y > $1 @ <$2.UUCP> $3	uucp mail',
+R$*<@$*.UUCP>$*		$: $>_SET_95_ < $Y > $1 <@$2.UUCP> $3	uucp mail',
 `ifdef(`_MAILER_uucp_',
 `# forward other UUCP traffic straight to UUCP
 R< @ $+ .UUCP > : $+	$#uucp $@ $1 $: $2		@host.UUCP:...
