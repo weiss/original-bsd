@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)route.c	8.1 (Berkeley) 06/11/93
+ *	@(#)route.c	8.2 (Berkeley) 11/15/93
  */
 
 #include <sys/param.h>
@@ -18,7 +18,6 @@
 #include <sys/ioctl.h>
 
 #include <net/if.h>
-#include <net/af.h>
 #include <net/route.h>
 #include <net/raw_cb.h>
 
