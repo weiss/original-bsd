@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)raw_usrreq.c	6.8 (Berkeley) 06/08/85
+ *	@(#)raw_usrreq.c	6.9 (Berkeley) 10/17/85
  */
 
 #include "param.h"
@@ -300,6 +300,7 @@ raw_usrreq(so, req, m, nam, rights)
 	case PRU_RCVD:
 		return(EOPNOTSUPP);
 
+	case PRU_LISTEN:
 	case PRU_ACCEPT:
 	case PRU_SENDOOB:
 		error = EOPNOTSUPP;
