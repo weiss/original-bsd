@@ -1,7 +1,7 @@
 /*
  * Definitions of translate tables used for ascii<->ebcdic translation.
  *
- * @(#)asc_ebc.h	1.2 (Berkeley) 07/17/87
+ * @(#)asc_ebc.h	3.1 (Berkeley) 08/11/87
  */
 
 #define	INCLUDED_ASCEBC
