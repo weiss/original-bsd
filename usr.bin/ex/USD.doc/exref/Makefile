@@ -1,11 +1,11 @@
-#	@(#)Makefile	6.4 (Berkeley) 06/05/93
+#	@(#)Makefile	6.5 (Berkeley) 06/07/93
 
 DIR=	usd/13.ex
 SRCS=	ex.rm
 MACROS=	-msU
 CLEANFILES=summary.*
 
-paper.ps ${SRCS} summary.ps
+paper.ps: ${SRCS} summary.ps
 	${ROFF} ${SRCS} > ${.TARGET}
 
 summary.ps: ex.summary
