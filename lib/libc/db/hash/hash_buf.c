@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)hash_buf.c	5.8 (Berkeley) 09/04/91";
+static char sccsid[] = "@(#)hash_buf.c	5.9 (Berkeley) 09/08/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -78,8 +78,8 @@ __get_buf(addr, prev_bp, newpage)
 	int newpage;	/* If prev_bp set, indicates a new overflow page. */
 {
 	register BUFHEAD *bp;
-	register u_int is_disk, is_disk_mask;
-	register int segment_ndx;
+	register u_int is_disk_mask;
+	register int is_disk, segment_ndx;
 	SEGMENT segp;
 
 	is_disk = 0;
