@@ -1,4 +1,4 @@
-/*	@(#)tp.h	4.1	12/18/82	*/
+/*	@(#)tp.h	4.2	06/28/84	*/
 
 /*	c-version of tp?.s
  *
@@ -72,10 +72,6 @@ char	*sbrk();
 char	*strcpy();
 long	lseek();
 int	(*command)();
-
-char	*nameblk;
-char	*top;
-char	*nptr;
 
 extern	int	flags;
 #define	flc	0001
