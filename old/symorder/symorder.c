@@ -1,9 +1,10 @@
-static char *sccsid = "@(#)symorder.c	4.2 (Berkeley) 10/02/80";
+#ifndef lint
+static char *sccsid = "@(#)symorder.c	4.3 (Berkeley) 05/22/83";
+#endif
 /*
  * symorder - reorder symbol table
  */
 #include <stdio.h>
-#include <pagsiz.h>
 #include <sys/types.h>
 #include <stat.h>
 #include <a.out.h>
