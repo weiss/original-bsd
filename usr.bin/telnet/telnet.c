@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)telnet.c	4.25 (Berkeley) 12/06/84";
+static char sccsid[] = "@(#)telnet.c	4.26 (Berkeley) 12/23/84";
 #endif
 
 /*
@@ -448,6 +448,8 @@ telnet(s)
 			if (c == IAC)
 				*nfrontp++ = c;
 			*nfrontp++ = c;
+			if (c == '\r')
+				*nfrontp++ = '\n';
 		}
 		if ((obits & (1 << s)) && (nfrontp - nbackp) > 0)
 			netflush(s);
