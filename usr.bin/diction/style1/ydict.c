@@ -1,10 +1,8 @@
 /*-
  * %sccs.include.proprietary.c%
+ *
+ *	@(#)ydict.c	4.4 (Berkeley) 04/27/91
  */
-
-#ifndef lint
-static char sccsid[] = "@(#)ydict.c	4.3 (Berkeley) 04/17/91";
-#endif /* not lint */
 
 struct dict ary_d[] = {
 "auxili",'Y',
