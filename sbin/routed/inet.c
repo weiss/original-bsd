@@ -1,6 +1,13 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char *sccsid[] = "@(#)inet.c	4.3 (Berkeley) 06/03/85";
-#endif
+static char sccsid[] = "@(#)inet.c	5.1 (Berkeley) 06/04/85";
+#endif not lint
+
 /*
  * Temporarily, copy these routines from the kernel,
  * as we need to know about subnets.
