@@ -4,15 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_time.c	7.14 (Berkeley) 08/24/90
+ *	@(#)kern_time.c	7.15 (Berkeley) 03/17/91
  */
 
 #include "param.h"
-#include "user.h"
+#include "resourcevar.h"
 #include "kernel.h"
 #include "proc.h"
 
-#include "machine/reg.h"
 #include "machine/cpu.h"
 
 /* 
@@ -62,7 +61,7 @@ settimeofday(p, uap, retval)
 	struct timezone atz;
 	int error, s;
 
-	if (error = suser(u.u_cred, &u.u_acflag))
+	if (error = suser(p->p_ucred, &p->p_acflag))
 		return (error);
 	if (uap->tv) {
 		if (error = copyin((caddr_t)uap->tv, (caddr_t)&atv,
@@ -97,7 +96,7 @@ adjtime(p, uap, retval)
 	register long ndelta;
 	int s, error;
 
-	if (error = suser(u.u_cred, &u.u_acflag))
+	if (error = suser(p->p_ucred, &p->p_acflag))
 		return (error);
 	if (error =
 	    copyin((caddr_t)uap->delta, (caddr_t)&atv, sizeof (struct timeval)))
@@ -127,7 +126,7 @@ adjtime(p, uap, retval)
 
 /*
  * Get value of an interval timer.  The process virtual and
- * profiling virtual time timers are kept in the u. area, since
+ * profiling virtual time timers are kept in the p_stats area, since
  * they can be swapped out.  These are kept internally in the
  * way they are specified externally: in time until they expire.
  *
@@ -175,7 +174,7 @@ getitimer(p, uap, retval)
 			else
 				timevalsub(&aitv.it_value, &time);
 	} else
-		aitv = u.u_timer[uap->which];
+		aitv = p->p_stats->p_timer[uap->which];
 	splx(s);
 	return (copyout((caddr_t)&aitv, (caddr_t)uap->itv,
 	    sizeof (struct itimerval)));
@@ -215,7 +214,7 @@ setitimer(p, uap, retval)
 		}
 		p->p_realtimer = aitv;
 	} else
-		u.u_timer[uap->which] = aitv;
+		p->p_stats->p_timer[uap->which] = aitv;
 	splx(s);
 	return (0);
 }

@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_xxx.c	7.15 (Berkeley) 08/24/90
+ *	@(#)kern_xxx.c	7.16 (Berkeley) 03/17/91
  */
 
 #include "param.h"
@@ -35,7 +35,7 @@ sethostid(p, uap, retval)
 {
 	int error;
 
-	if (error = suser(u.u_cred, &u.u_acflag))
+	if (error = suser(p->p_ucred, &p->p_acflag))
 		return (error);
 	hostid = uap->hostid;
 	return (0);
@@ -67,7 +67,7 @@ sethostname(p, uap, retval)
 {
 	int error;
 
-	if (error = suser(u.u_cred, &u.u_acflag))
+	if (error = suser(p->p_ucred, &p->p_acflag))
 		return (error);
 	if (uap->len > sizeof (hostname) - 1)
 		return (EINVAL);
@@ -87,7 +87,7 @@ reboot(p, uap, retval)
 {
 	int error;
 
-	if (error = suser(u.u_cred, &u.u_acflag))
+	if (error = suser(p->p_ucred, &p->p_acflag))
 		return (error);
 	boot(uap->opt);
 	return (0);

@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_syscalls.c	7.21 (Berkeley) 01/10/91
+ *	@(#)uipc_syscalls.c	7.22 (Berkeley) 03/17/91
  */
 
 #include "param.h"
@@ -1190,7 +1190,7 @@ getsock(fdp, fdes, fpp)
 {
 	register struct file *fp;
 
-	if ((unsigned)fdes >= fdp->fd_maxfiles ||
+	if ((unsigned)fdes >= fdp->fd_nfiles ||
 	    (fp = OFILE(fdp, fdes)) == NULL)
 		return (EBADF);
 	if (fp->f_type != DTYPE_SOCKET)
