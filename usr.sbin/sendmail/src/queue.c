@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.47 (Berkeley) 04/15/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.48 (Berkeley) 04/15/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.47 (Berkeley) 04/15/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.48 (Berkeley) 04/15/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -925,6 +925,14 @@ readqf(e)
 			syslog(LOG_DEBUG, "%s: locked", e->e_id);
 # endif /* LOG */
 		(void) fclose(qfp);
+		return FALSE;
+	}
+
+	if (st.st_size == 0)
+	{
+		/* must be a bogus file -- just remove it */
+		(void) unlink(qf);
+		fclose(qfp);
 		return FALSE;
 	}
 
