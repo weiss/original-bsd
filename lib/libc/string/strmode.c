@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strmode.c	5.2 (Berkeley) 05/17/90";
+static char sccsid[] = "@(#)strmode.c	5.3 (Berkeley) 05/18/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -45,7 +45,6 @@ strmode(mode, p)
 #endif
 	default:			/* unknown */
 		*p++ = '?';
-		(void)putchar('?');
 		break;
 	}
 	/* usr */
