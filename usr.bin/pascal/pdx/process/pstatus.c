@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pstatus.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)pstatus.c	5.2 (Berkeley) 04/07/87";
 #endif not lint
 /*
  * process status routines
@@ -70,11 +70,7 @@ char *filename;
 	    printf(" in file %s", filename);
 	}
     } else {
-#	if (isvaxpx)
 	    printf("location %d\n", pc);
-#	else
-	    printf("location 0x%x\n", pc);
-#	endif
     }
 }
 

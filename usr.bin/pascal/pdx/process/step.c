@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)step.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)step.c	5.2 (Berkeley) 04/07/87";
 #endif not lint
 /*
  * Continue execution up to the next source line.
@@ -26,12 +26,6 @@ static char sccsid[] = "@(#)step.c	5.1 (Berkeley) 06/06/85";
 #include "source.h"
 #include "mappings.h"
 #include "process.rep"
-
-#   if (isvax)
-#       include "machine/vaxops.h"
-
-	LOCAL ADDRESS getcall();
-#   endif
 
 /*
  * Stepc is what is called when the step command is given.
@@ -85,52 +79,12 @@ BOOLEAN isnext;
 {
     register ADDRESS addr;
     register LINENO line;
-    char *filename;
 
     addr = pc;
     do {
-#       if (isvaxpx)
-	    addr = nextaddr(addr, isnext);
-#       else
-	    if (isnext && (addr = getcall(addr)) != 0) {
-		stepto(addr);
-	    } else {
-		pstep(process);
-		addr = process->pc;
-		pc = process->pc;
-		errnum = process->signo;
-		if (!isbperr()) {
-		    printstatus();
-		}
-	    }
-#       endif
+	addr = nextaddr(addr, isnext);
 	line = linelookup(addr);
     } while (line == 0 && !ss_instructions);
     stepto(addr);
     curline = line;
 }
-
-# if (isvax)
-
-/*
- * If the current address contains a call instruction, return the
- * address of the instruction where control will return.
- *
- * This function is intentionally dependent on a particular type
- * of calling sequence.
- */
-
-LOCAL ADDRESS getcall(addr)
-ADDRESS addr;
-{
-    VAXOP op;
-
-    iread(&op, addr, sizeof(addr));
-    if (op == O_CALLS) {
-	return(addr + 7);
-    } else {
-	return(0);
-    }
-}
-
-# endif
