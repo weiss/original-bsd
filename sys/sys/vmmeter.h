@@ -1,4 +1,4 @@
-/*	vmmeter.h	4.7	05/30/83	*/
+/*	vmmeter.h	6.1	07/29/83	*/
 
 /*
  * Virtual memory related instrumentation
