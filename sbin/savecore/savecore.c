@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.16 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)savecore.c	5.17 (Berkeley) 07/07/89";
 #endif /* not lint */
 
 /*
@@ -394,7 +394,7 @@ read_number(fn)
 	return (atoi(lin));
 }
 
-#define	BUFPAGES	(256*1024/NBPG)		/* 1/4 Mb */
+#define	BUFSIZE	(256*1024)		/* 1/4 Mb */
 
 save_core()
 {
@@ -403,7 +403,7 @@ save_core()
 	register int ifd, ofd, bounds;
 	register FILE *fp;
 
-	cp = malloc(BUFPAGES*NBPG);
+	cp = malloc(BUFSIZE);
 	if (cp == 0) {
 		fprintf(stderr, "savecore: Can't allocate i/o buffer.\n");
 		return;
@@ -412,7 +412,7 @@ save_core()
 	ifd = Open(system ? system : _PATH_UNIX, O_RDONLY);
 	(void)sprintf(cp, "vmunix.%d", bounds);
 	ofd = Create(path(cp), 0644);
-	while((n = Read(ifd, cp, BUFSIZ)) > 0)
+	while((n = Read(ifd, cp, BUFSIZE)) > 0)
 		Write(ofd, cp, n);
 	close(ifd);
 	close(ofd);
