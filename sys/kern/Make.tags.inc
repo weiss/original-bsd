@@ -1,4 +1,4 @@
-#	@(#)Make.tags.inc	7.4 (Berkeley) 06/11/93
+#	@(#)Make.tags.inc	8.1 (Berkeley) 06/11/93
 
 # Common files for "make tags".
 # Included by the Makefile for each architecture.
