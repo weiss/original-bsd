@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)res_send.c	6.14 (Berkeley) 07/02/86";
+static char sccsid[] = "@(#)res_send.c	6.15 (Berkeley) 11/18/86";
 #endif LIBC_SCCS and not lint
 
 /*
@@ -26,6 +26,16 @@ static char sccsid[] = "@(#)res_send.c	6.14 (Berkeley) 07/02/86";
 extern int errno;
 
 static int s = -1;	/* socket used for communications */
+  
+
+#ifndef FD_SET
+#define	NFDBITS		32
+#define	FD_SETSIZE	32
+#define	FD_SET(n, p)	((p)->fds_bits[(n)/NFDBITS] |= (1 << ((n) % NFDBITS)))
+#define	FD_CLR(n, p)	((p)->fds_bits[(n)/NFDBITS] &= ~(1 << ((n) % NFDBITS)))
+#define	FD_ISSET(n, p)	((p)->fds_bits[(n)/NFDBITS] & (1 << ((n) % NFDBITS)))
+#define FD_ZERO(p)	bzero((char *)(p), sizeof(*(p)))
+#endif
 
 #define KEEPOPEN (RES_USEVC|RES_STAYOPEN)
 
