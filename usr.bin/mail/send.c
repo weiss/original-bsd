@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)send.c	5.15 (Berkeley) 07/08/88";
+static char sccsid[] = "@(#)send.c	5.16 (Berkeley) 07/12/88";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -344,7 +344,7 @@ mail1(hp, printheaders)
 			cp = SENDMAIL;
 		execv(cp, namelist);
 		perror(cp);
-		exit(1);
+		_exit(1);
 	}
 	if (value("verbose") != NOSTR)
 		(void) wait_child(pid);
