@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)gcore.c	5.7 (Berkeley) 02/06/91";
+static char sccsid[] = "@(#)gcore.c	5.8 (Berkeley) 03/29/91";
 #endif /* not lint */
 
 /*
@@ -169,6 +169,7 @@ main(argc, argv)
 		close(cor);
 		printf("%s dumped\n", coref);
 	}
+	exit(0);
 }
 
 getword(loc)
