@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)trap.c	7.7 (Berkeley) 04/03/90
+ *	@(#)trap.c	7.8 (Berkeley) 05/29/90
  */
 
 #include "param.h"
@@ -266,7 +266,7 @@ syscall(sp, type, hfs, accmst, acclst, dbl, code, pc, psl)
 #endif
 	u.u_r.r_val1 = 0;
 	u.u_r.r_val2 = locr0[R1];
-	error = (*callp->sy_call)(&u);
+	error = (*callp->sy_call)(u.u_procp, u.u_ap, &u.u_r.r_val1);
 	error = u.u_error;		/* XXX */
 	if (error == ERESTART)
 		pc = opc;
