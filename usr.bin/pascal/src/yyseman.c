@@ -1,9 +1,12 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)yyseman.c 1.1 08/27/80";
+#ifndef lint
+static	char sccsid[] = "@(#)yyseman.c 1.2 08/19/83";
+#endif
 
 #include "whoami.h"
 #include "0.h"
+#include "tree_ty.h"	/* must be included for yy.h */
 #include "yy.h"
 
 /*
