@@ -1,6 +1,6 @@
     /* Copyright (c) 1980 Regents of the University of California */
 
-    /*	static	char sccsid[] = "@(#)pc3.h 1.3 09/04/80"; */
+    /*	static	char sccsid[] = "@(#)pc3.h 1.4 07/29/82"; */
 
     /*
      *	a symbol table entry.
@@ -95,8 +95,10 @@ struct stringtableinfo {
     /*
      *	an enumeration for error types
      */
-#define	FATAL	0
+#define	NONE	0
 #define	WARNING	1
+#define ERROR	2
+#define	FATAL	3
 
     /*
      *	an enumeration for lookups
