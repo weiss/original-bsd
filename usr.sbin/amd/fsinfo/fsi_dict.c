@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fsi_dict.c	5.3 (Berkeley) 05/12/91
+ *	@(#)fsi_dict.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: fsi_dict.c,v 5.2.1.1 91/05/07 22:19:08 jsp Alpha $
+ * $Id: fsi_dict.c,v 5.2.2.1 1992/02/09 15:09:43 jsp beta $
  *
  */
 
