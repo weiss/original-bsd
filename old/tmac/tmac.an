@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)tmac.an	6.10 (Berkeley) 08/05/91
+.\"	@(#)tmac.an	6.11 (Berkeley) 10/07/91
 .\"
 
 '	DT, PD, SM, and B macros invoked internally.

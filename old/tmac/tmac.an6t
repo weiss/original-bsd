@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)tmac.an6t	6.1 (Berkeley) 05/28/85
+.\"	@(#)tmac.an6t	6.2 (Berkeley) 10/07/91
 .\"
 .nr in .5i
 .de CM
