@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lpq.c	4.5 (Berkeley) 07/17/83";
+static char sccsid[] = "@(#)lpq.c	4.6 (Berkeley) 02/29/84";
 #endif
 
 /*
@@ -118,6 +118,7 @@ main(argc, argv)
 #endif
 	} else
 		displayq(lflag);
+	exit(0);
 }
 
 static
