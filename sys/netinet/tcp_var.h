@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_var.h	8.1 (Berkeley) 06/10/93
+ *	@(#)tcp_var.h	8.2 (Berkeley) 01/11/94
  */
 
 /*
@@ -223,7 +223,7 @@ void	 tcp_drain __P((void));
 void	 tcp_fasttimo __P((void));
 void	 tcp_init __P((void));
 void	 tcp_input __P((struct mbuf *, int));
-int	 tcp_mass __P((struct tcpcb *, u_int));
+int	 tcp_mss __P((struct tcpcb *, u_int));
 struct tcpcb *
 	 tcp_newtcpcb __P((struct inpcb *));
 void	 tcp_notify __P((struct inpcb *, int));
