@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	5.1 (Berkeley) 01/19/91";
+static char sccsid[] = "@(#)mail.local.c	5.2 (Berkeley) 02/22/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -201,8 +201,8 @@ trunc:		(void)ftruncate(mbfd, curoff);
 bad:	if (created) 
 		(void)fchown(mbfd, pw->pw_uid, pw->pw_gid);
 
-	/* Implicit unlock. */
-	(void)close(mbfd);
+	(void)fsync(mbfd);		/* Don't wait for update. */
+	(void)close(mbfd);		/* Implicit unlock. */
 
 	if (!rval)
 		notifybiff(biffmsg);
