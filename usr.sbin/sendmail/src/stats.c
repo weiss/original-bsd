@@ -9,12 +9,10 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)stats.c	5.1 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)stats.c	5.2 (Berkeley) 06/07/85";
 #endif not lint
 
 # include "sendmail.h"
-
-SCCSID(@(#)stats.c	5.1		06/07/85);
 
 /*
 **  Statistics structure.
