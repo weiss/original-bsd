@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1982 Regents of the University of California.
+ * Copyright (c) 1982, 1986 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)syslog.h	4.12 (Berkeley) 03/28/86
+ *	@(#)syslog.h	7.1 (Berkeley) 06/04/86
  */
 
 /*
