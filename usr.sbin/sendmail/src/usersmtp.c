@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.19		08/29/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.20		08/31/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.19		08/29/82);
+SCCSID(@(#)usersmtp.c	3.20		08/31/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
@@ -67,7 +67,7 @@ smtpinit(m, pvp, ctladdr)
 	*/
 
 	r = reply();
-	if (REPLYTYPE(r) != 2)
+	if (r < 0 || REPLYTYPE(r) != 2)
 		return (EX_TEMPFAIL);
 
 	/*
@@ -77,7 +77,9 @@ smtpinit(m, pvp, ctladdr)
 
 	smtpmessage("HELO %s", HostName);
 	r = reply();
-	if (REPLYTYPE(r) == 5)
+	if (r < 0)
+		return (EX_TEMPFAIL);
+	else if (REPLYTYPE(r) == 5)
 		return (EX_UNAVAILABLE);
 	else if (REPLYTYPE(r) != 2)
 		return (EX_TEMPFAIL);
@@ -90,7 +92,7 @@ smtpinit(m, pvp, ctladdr)
 	expand("$g", buf, &buf[sizeof buf - 1], CurEnv);
 	smtpmessage("MAIL From: %s", canonname(buf));
 	r = reply();
-	if (REPLYTYPE(r) == 4)
+	if (r < 0 || REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
 	else if (r == 250)
 		return (EX_OK);
@@ -123,7 +125,7 @@ smtprcpt(to)
 	smtpmessage("RCPT To: %s", canonname(to->q_user));
 
 	r = reply();
-	if (REPLYTYPE(r) == 4)
+	if (r < 0 || REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
 	else if (REPLYTYPE(r) == 2)
 		return (EX_OK);
@@ -163,7 +165,7 @@ smtpfinish(m, e)
 
 	smtpmessage("DATA");
 	r = reply();
-	if (REPLYTYPE(r) == 4)
+	if (r < 0 || REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
 	else if (r == 554)
 		return (EX_UNAVAILABLE);
@@ -174,7 +176,7 @@ smtpfinish(m, e)
 	(*e->e_putbody)(SmtpOut, m, TRUE);
 	smtpmessage(".");
 	r = reply();
-	if (REPLYTYPE(r) == 4)
+	if (r < 0 || REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
 	else if (r == 250)
 		return (EX_OK);
