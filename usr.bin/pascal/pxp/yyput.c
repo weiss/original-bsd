@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)yyput.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)yyput.c	5.2 (Berkeley) 03/17/87";
 #endif not lint
 
 /*
@@ -260,7 +260,7 @@ yysetfile(file)
 	if (lastname == file)
 		return;
 	if (file == filename && opt('n') && (printed & 02) == 0) {
-		printed =| 02;
+		printed |= 02;
 		header();
 	} else
 		yyputfn(file);
