@@ -1,8 +1,10 @@
-#	@(#)Makefile	5.7.1.1 (Berkeley) 08/20/91
+#	@(#)Makefile	5.8 (Berkeley) 07/23/92
 
-SUBDIR=	bugfiler comsat fingerd ftpd getNAME getty mail.local \
+SUBDIR=	bugfiler comsat fingerd ftpd getNAME getty kpasswdd mail.local \
 	makekey rexecd rlogind rshd talkd telnetd tftpd uucpd
 
-#KERBEROS=kpasswdd 
+.if	${MACHINE} == "hp300"
+SUBDIR+=rbootd
+.endif
 
 .include <bsd.subdir.mk>
