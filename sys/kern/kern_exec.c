@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)kern_exec.c	8.3 (Berkeley) 09/23/93
+ *	@(#)kern_exec.c	8.4 (Berkeley) 12/13/93
  */
 
 #include <sys/param.h>
@@ -394,6 +394,13 @@ execve(p, uap, retval)
 	error = getxfile(p, vp, &exdata.ex_exec, paged, ssize, uid, gid);
 	if (error)
 		goto bad;
+
+	/* take a reference to the new text vnode (for procfs) */
+	if (p->p_textvp)
+		vrele(p->p_textvp);
+	VREF(vp);
+	p->p_textvp = vp;
+
 	vput(vp);
 	vp = NULL;
 
