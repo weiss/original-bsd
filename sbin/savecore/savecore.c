@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.24 (Berkeley) 02/27/91";
+static char sccsid[] = "@(#)savecore.c	5.25 (Berkeley) 04/07/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -93,7 +93,7 @@ char	panic_mesg[80];
 int	panicstr;
 off_t	lseek();
 off_t	Lseek();
-int	Verbose;
+int	verbose;
 int	force;
 int	clear;
 extern	int errno;
@@ -102,47 +102,45 @@ main(argc, argv)
 	char **argv;
 	int argc;
 {
+	extern char *optarg;
+	extern int optind;
+	int ch;
 	char *cp;
 
-	argc--, argv++;
-	while (argc > 0 && argv[0][0] == '-') {
-		for (cp = &argv[0][1]; *cp; cp++) switch (*cp) {
-
-		case 'f':
-			force++;
-			break;
-
-		case 'v':
-		case 'd':
-			Verbose++;
-			break;
-
+	while ((ch = getopt(argc, argv, "cdfv")) != EOF)
+		switch(ch) {
 		case 'c':
-			clear++;
+			clear = 1;
 			break;
-
+		case 'd':		/* not documented */
+		case 'v':
+			verbose = 1;
+			break;
+		case 'f':
+			force = 1;
+			break;
+		case '?':
 		default:
-		usage:
-			fprintf(stderr,
-			    "usage: savecore [-f] [-v] [-c] dirname [ system ]\n");
-			exit(1);
+			usage();
 		}
-		argc--, argv++;
+	argc -= optind;
+	argv += optind;
+
+	/* This is wrong, but I want "savecore -c" to work. */
+	if (!clear) {
+		if (argc != 1 && argc != 2)
+			usage();
+		dirname = argv[0];
 	}
-	if (argc != 1 && argc != 2)
-		goto usage;
-	dirname = argv[0];
 	if (argc == 2)
 		system = argv[1];
+
 	openlog("savecore", LOG_ODELAY, LOG_AUTH);
-	if (access(dirname, W_OK) < 0) {
-		Perror(LOG_ERR, "%s: %m\n", dirname);
-		exit(1);
-	}
+
 	read_kmem();
 	if (!dump_exists()) {
-		if (Verbose)
-			fprintf(stderr, "savecore: No dump exists.\n");
+		if (!verbose)
+			(void)fprintf(stderr, "savecore: no dump exists\n");
 		if (!force)
 			exit(0);
 	}
@@ -156,6 +154,11 @@ main(argc, argv)
 		log(LOG_CRIT, "reboot after panic: %s\n", panic_mesg);
 	else
 		syslog(LOG_CRIT, "reboot\n");
+
+	if (access(dirname, W_OK) < 0) {
+		Perror(LOG_ERR, "%s: %m\n", dirname);
+		exit(1);
+	}
 	if ((!get_crashtime() || !check_space()) && !force)
 		exit(1);
 	save_core();
@@ -169,7 +172,7 @@ dump_exists()
 
 	Lseek(dumpfd, (off_t)(dumplo + ok(dump_nl[X_DUMPMAG].n_value)), L_SET);
 	Read(dumpfd, (char *)&word, sizeof (word));
-	if (Verbose && word != dumpmag)
+	if (verbose && word != dumpmag)
 		printf("magic number mismatch: %x != %x\n", word, dumpmag);
 	return (word == dumpmag);
 }
@@ -269,7 +272,7 @@ read_kmem()
 	Read(kmem, (char *)&dumpdev, sizeof (dumpdev));
 	Lseek(kmem, (long)current_nl[X_DUMPLO].n_value, L_SET);
 	Read(kmem, (char *)&dumplo, sizeof (dumplo));
-	if (Verbose)
+	if (verbose)
 		printf("dumplo = %d (%d * %d)\n", dumplo, dumplo/DEV_BSIZE,
 		    DEV_BSIZE);
 	Lseek(kmem, (long)current_nl[X_DUMPMAG].n_value, L_SET);
@@ -325,7 +328,7 @@ get_crashtime()
 	Lseek(dumpfd, (off_t)(dumplo + ok(dump_nl[X_TIME].n_value)), L_SET);
 	Read(dumpfd, (char *)&dumptime, sizeof dumptime);
 	if (dumptime == 0) {
-		if (Verbose)
+		if (verbose)
 			printf("Dump time is zero.\n");
 		return (0);
 	}
@@ -554,4 +557,10 @@ Perror(level, msg, s)
 	perror(s);
 	errno = oerrno;
 	syslog(level, msg, s);
+}
+
+usage()
+{
+	(void)fprintf(stderr, "usage: savecore [-cfv] dirname [system]\n");
+	exit(1);
 }
