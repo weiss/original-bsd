@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)cico.c	5.2 (Berkeley) 07/19/83";
+static char sccsid[] = "@(#)cico.c	5.3 (Berkeley) 10/03/83";
 #endif
 
 #include "uucp.h"
@@ -490,6 +490,10 @@ register int inter;
 intrEXIT(signo)
 int signo;
 {
+#ifdef	SIGIO
+	/* if using 4.2 signal mechanism, must unblock all signal handlers */
+	sigsetmask(0);
+#endif
 	signal(signo, SIG_DFL);
 	setgid(getgid());
 	setuid(getuid());
