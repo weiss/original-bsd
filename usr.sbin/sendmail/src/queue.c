@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.27 (Berkeley) 10/29/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.28 (Berkeley) 11/13/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.27 (Berkeley) 10/29/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.28 (Berkeley) 11/13/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -823,6 +823,11 @@ dowork(id, forkflag, requeueflag, e)
 		{
 			syserr("dowork: cannot fork");
 			return 0;
+		}
+		else if (pid > 0)
+		{
+			/* parent -- clean out connection cache */
+			mci_flush(FALSE, NULL);
 		}
 	}
 	else
