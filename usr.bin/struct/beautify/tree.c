@@ -1,12 +1,10 @@
 #ifndef lint
-static char sccsid[] = "@(#)tree.c	4.3	(Berkeley)	07/22/88";
+static char sccsid[] = "@(#)tree.c	4.4	(Berkeley)	02/05/91";
 #endif not lint
 
 # include "y.tab.h"
 #include "b.h"
 #include <stdio.h>
-
-extern char *malloc();
 
 struct node *
 addroot(string,type,n1,n2)
