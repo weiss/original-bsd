@@ -1,4 +1,4 @@
-/*	kern_clock.c	6.10	84/11/14	*/
+/*	kern_clock.c	6.11	85/03/08	*/
 
 #include "../machine/reg.h"
 #include "../machine/psl.h"
@@ -361,7 +361,7 @@ timeout(fun, arg, t)
 	register struct callout *p1, *p2, *pnew;
 	register int s = spl7();
 
-	if (t == 0)
+	if (t <= 0)
 		t = 1;
 	pnew = callfree;
 	if (pnew == NULL)
