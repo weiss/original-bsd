@@ -1,4 +1,6 @@
-/*	diacrit.c	4.2	83/02/12	*/
+#ifndef lint
+static char sccsid[] = "@(#)diacrit.c	4.3 08/11/83";
+#endif
 
 # include "e.h"
 # include "e.def"
