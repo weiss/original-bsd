@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_init.c	7.5 (Berkeley) 08/29/91
+ *	@(#)vm_init.c	7.6 (Berkeley) 01/14/92
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -69,7 +69,7 @@ void vm_mem_init()
 	/*
 	 * Initialize other VM packages
 	 */
-	vm_object_init();
+	vm_object_init(virtual_end - VM_MIN_KERNEL_ADDRESS);
 	vm_map_startup();
 	kmem_init(virtual_avail, virtual_end);
 	pmap_init(avail_start, avail_end);
