@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	5.25 (Berkeley) 09/20/92";
+static char sccsid[] = "@(#)lex.c	5.26 (Berkeley) 01/22/93";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -416,7 +416,7 @@ setmsize(sz)
 {
 
 	if (msgvec != 0)
-		cfree((char *) msgvec);
+		free((char *) msgvec);
 	msgvec = (int *) calloc((unsigned) (sz + 1), sizeof *msgvec);
 }
 
