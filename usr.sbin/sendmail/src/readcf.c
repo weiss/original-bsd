@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.16 (Berkeley) 03/01/93";
+static char sccsid[] = "@(#)readcf.c	6.17 (Berkeley) 03/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1424,6 +1424,7 @@ settimeouts(val)
 	register char *val;
 {
 	register char *p;
+	extern time_t convtime();
 
 	if (val == NULL)
 	{
