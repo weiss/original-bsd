@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)pstat.c	8.5 (Berkeley) 01/04/94";
+static char sccsid[] = "@(#)pstat.c	8.6 (Berkeley) 01/23/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -273,7 +273,7 @@ vnodemode()
 				nfs_header();
 				break;
 			case MOUNT_NONE:
-			case MOUNT_PC:
+			case MOUNT_MSDOS:
 			default:
 				break;
 			}
@@ -289,7 +289,7 @@ vnodemode()
 			nfs_print(vp);
 			break;
 		case MOUNT_NONE:
-		case MOUNT_PC:
+		case MOUNT_MSDOS:
 		default:
 			break;
 		}
