@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.48 (Berkeley) 03/12/95";
+static char sccsid[] = "@(#)headers.c	8.49 (Berkeley) 03/14/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -44,7 +44,7 @@ chompheader(line, def, e)
 	struct hdrinfo *hi;
 	bool cond = FALSE;
 	BITMAP mopts;
-	char buf[MAXNAME];
+	char buf[MAXNAME + 1];
 
 	if (tTd(31, 6))
 		printf("chompheader: %s\n", line);
@@ -528,9 +528,9 @@ logsender(e, msgid)
 	register char *sbp;
 	register char *p;
 	int l;
-	char hbuf[MAXNAME];
-	char sbuf[MAXLINE];
-	char mbuf[MAXNAME];
+	char hbuf[MAXNAME + 1];
+	char sbuf[MAXLINE + 1];
+	char mbuf[MAXNAME + 1];
 
 	/* don't allow newlines in the message-id */
 	if (msgid != NULL)
@@ -689,7 +689,7 @@ crackaddr(addr)
 	bool gotangle = FALSE;
 	register char *bp;
 	char *buflim;
-	static char buf[MAXNAME];
+	static char buf[MAXNAME + 1];
 
 	if (tTd(33, 1))
 		printf("crackaddr(%s)\n", addr);

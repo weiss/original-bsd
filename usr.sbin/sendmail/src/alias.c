@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.37 (Berkeley) 02/23/95";
+static char sccsid[] = "@(#)alias.c	8.38 (Berkeley) 03/14/95";
 #endif /* not lint */
 
 
@@ -308,7 +308,7 @@ aliaswait(map, ext, isopen)
 	bool attimeout = FALSE;
 	time_t mtime;
 	struct stat stb;
-	char buf[MAXNAME];
+	char buf[MAXNAME + 1];
 
 	if (tTd(27, 3))
 		printf("aliaswait(%s:%s)\n",
