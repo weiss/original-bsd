@@ -1,11 +1,12 @@
 # include	"../hdr/defines.h"
 # include	"../hdr/had.h"
+# include	"pathnames.h"
 
-static char Sccsid[] = "@(#)delta.c	4.10	02/02/88";
+static char Sccsid[] = "@(#)delta.c	4.11	07/02/90";
 USXALLOC();
 
 # ifdef LOGDELTA
-char	LogFile[] = "/usr/adm/sccs-log";
+char	*LogFile = _PATH_SCCSLOG;
 FILE	*Logf;
 # endif
 
