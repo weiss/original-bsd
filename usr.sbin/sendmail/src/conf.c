@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.36 (Berkeley) 03/17/93";
+static char sccsid[] = "@(#)conf.c	6.37 (Berkeley) 03/17/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -1269,7 +1269,7 @@ lockfile(fd, filename, type)
 	int action;
 	struct flock lfd;
 
-	if (bitset(LOCK_EX, type)
+	if (bitset(LOCK_EX, type))
 		lfd.l_type = F_WRLCK;
 	else
 		lfd.l_type = F_RDLCK;
