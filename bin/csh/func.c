@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)func.c 4.3 04/13/81";
+static	char *sccsid = "@(#)func.c 4.4 05/18/81";
 
 #include "sh.h"
 #include <sys/ioctl.h>
@@ -585,6 +585,10 @@ getword(wp)
 	do {
 		while (c == ' ' || c == '\t')
 			c = readc(1);
+		if (c == '#')
+			do
+				c = readc(1);
+			while (c >= 0 && c != '\n');
 		if (c < 0)
 			goto past;
 		if (c == '\n') {
