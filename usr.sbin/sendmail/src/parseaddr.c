@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] =	"@(#)parseaddr.c	3.35	11/21/81";
+static char	SccsId[] =	"@(#)parseaddr.c	3.36	11/22/81";
 
 /*
 **  PARSE -- Parse an address
@@ -908,8 +908,8 @@ printaddr(a, follow)
 		(void) fflush(stdout);
 		printf("%s: mailer %d (%s), host `%s', user `%s'\n", a->q_paddr,
 		       a->q_mailer->m_mno, a->q_mailer->m_name, a->q_host, a->q_user);
-		printf("\tnext=%x, flags=%o, rmailer %d\n", a->q_next,
-		       a->q_flags, a->q_rmailer);
+		printf("\tnext=%x, flags=%o, rmailer %d, alias %x\n", a->q_next,
+		       a->q_flags, a->q_rmailer, a->q_alias);
 		printf("\thome=\"%s\", fullname=\"%s\"\n", a->q_home, a->q_fullname);
 
 		if (!follow)
