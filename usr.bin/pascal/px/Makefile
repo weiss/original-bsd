@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.17 02/03/83"
+SCCSID = "@(#)Makefile 2.1 02/08/84"
 
 DESTDIR =
 BINDIR = /usr/ucb
