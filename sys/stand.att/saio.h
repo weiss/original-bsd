@@ -1,4 +1,4 @@
-/*	saio.h	4.3	12/26/80	*/
+/*	saio.h	4.4	03/15/81	*/
 
 /*
  * header file for standalone package
@@ -52,12 +52,3 @@ daddr_t	blknos[NBUFS];
 
 #define NFILES	4
 struct	iob iob[NFILES];
-
-int	mbaact;
-
-#if VAX==780
-struct mba_info
-{
-	struct	mba_regs *mi_phys;	/* physical address of mba */
-};
-#endif
