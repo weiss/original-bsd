@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/03/91
+#	@(#)Makefile	8.1 (Berkeley) 06/11/93
 
 PROG=	sync
 SRCS=	sync.c
