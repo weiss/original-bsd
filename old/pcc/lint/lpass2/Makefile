@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/05/90
+#	@(#)Makefile	5.2 (Berkeley) 06/17/90
 
-MIP=	${.CURDIR}/../../../libexec/mip
-PCC=	${.CURDIR}/../../../libexec/pcc
+MIP=	${.CURDIR}/../../../libexec/pcc/mip
+CCOM=	${.CURDIR}/../../../libexec/pcc/ccom.vax
 
 PROG=	lintpass2
 SRCS=	hash.c lpass2.c
@@ -12,8 +12,8 @@ NOMAN=	noman
 
 .include <bsd.prog.mk>
 
-pcclocal.h: ${PCC}/localdefs.h /usr/include/pcc.h
-	cat /usr/include/pcc.h ${PCC}/localdefs.h | \
+pcclocal.h: ${CCOM}/localdefs.h /usr/include/pcc.h
+	cat ${.ALLSRC} | \
 	   egrep '^#[ 	]*(define[ 	][ 	]*PCC(F|T|TM|OM)?_|ifdef|ifndef|endif)' | \
 	   sed -e 's/PCC[A-Z]*_//' > ${.TARGET}
 
