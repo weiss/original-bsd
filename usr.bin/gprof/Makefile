@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/04/85
+#	@(#)Makefile	5.2 (Berkeley) 06/18/85
 #
-SCCSID = @(#)Makefile	5.1 (Berkeley) 06/04/85
+SCCSID = @(#)Makefile	5.2 (Berkeley) 06/18/85
 
 DFLAGS = 
 CFLAGS = -O ${DFLAGS}
@@ -25,7 +25,7 @@ gprof: ${GPROFOBJS}
 	cc -o gprof ${CFLAGS} ${GPROFOBJS}
 
 install: gprof gprof.flat gprof.callg
-	install -s gprof ${DESTDIR}/usr/ucb/gprof
+	install -s -g kmem -m 2755 gprof ${DESTDIR}/usr/ucb/gprof
 	install -c -m 644 gprof.flat ${DESTDIR}/usr/lib
 	install -c -m 644 gprof.callg ${DESTDIR}/usr/lib
 
