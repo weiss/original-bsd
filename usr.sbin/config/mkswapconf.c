@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mkswapconf.c	4.1 (Berkeley) 08/13/83";
+static char sccsid[] = "@(#)mkswapconf.c	4.2 (Berkeley) 12/04/84";
 #endif
 
 /*
@@ -112,7 +112,7 @@ nametodev(name, defunit, defpartition)
 	while (*cp && !isdigit(*cp))
 		cp++;
 	unit = *cp ? atoi(cp) : defunit;
-	if (unit < 0 || unit > 7) {
+	if (unit < 0 || unit > 31) {
 		fprintf(stderr,
 "config: %s: invalid device specification, unit out of range\n", name);
 		unit = defunit;			/* carry on more checking */
