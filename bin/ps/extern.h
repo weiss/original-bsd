@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.4 (Berkeley) 04/29/93
+ *	@(#)extern.h	5.5 (Berkeley) 06/02/93
  */
 
 struct kinfo;
@@ -18,7 +18,6 @@ extern VARENT *vhead;
 __BEGIN_DECLS
 void	 command __P((KINFO *, VARENT *));
 void	 cputime __P((KINFO *, VARENT *));
-char	*devname __P((dev_t, mode_t));
 int	 donlist __P((void));
 void	 evar __P((KINFO *, VARENT *));
 char	*fmt_argv __P((char **, char *, int));
