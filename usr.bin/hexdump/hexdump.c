@@ -22,14 +22,14 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)hexdump.c	5.2 (Berkeley) 05/01/90";
+static char sccsid[] = "@(#)hexdump.c	5.3 (Berkeley) 05/07/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <stdio.h>
 #include "hexdump.h"
 
-enum _vflag vflag = WAIT;		/* display duplicate lines */
+enum _vflag vflag = FIRST;		/* display duplicate lines */
 FS *fshead;				/* head of format strings */
 off_t skip;				/* bytes to skip */
 int blocksize;				/* data block size */
@@ -140,6 +140,6 @@ main(argc, argv)
 usage()
 {
 	(void)fprintf(stderr,
-"hexdump: [bcdov] [-e format] [-f file] [-n length] [-s skip] [file ...]\n");
+"hexdump: [-bcdovx] [-e format] [-f file] [-n length] [-s skip] [file ...]\n");
 	exit(1);
 }

@@ -16,12 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)display.c	5.4 (Berkeley) 09/07/89";
+static char sccsid[] = "@(#)display.c	5.5 (Berkeley) 05/07/90";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <errno.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <strings.h>
@@ -230,8 +231,9 @@ get()
 		if (length != -1)
 			length -= n;
 		if (!(need -= n)) {
-			if (vflag == ALL || bcmp(curp, savp, blocksize)) {
-				if (vflag == DUP)
+			if (vflag == ALL || vflag == FIRST ||
+			    bcmp(curp, savp, blocksize)) {
+				if (vflag == DUP || vflag == FIRST)
 					vflag = WAIT;
 				return(curp);
 			}
@@ -328,6 +330,8 @@ emalloc(size)
 
 nomem()
 {
-	(void)fprintf(stderr, "hexdump: out of memory.\n");
+	extern int errno;
+
+	(void)fprintf(stderr, "hexdump: %s.\n", strerror(errno));
 	exit(1);
 }
