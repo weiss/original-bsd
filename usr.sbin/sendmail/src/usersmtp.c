@@ -20,9 +20,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	5.13 (Berkeley) 01/19/89 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	5.14 (Berkeley) 04/19/90 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	5.13 (Berkeley) 01/19/89 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	5.14 (Berkeley) 04/19/90 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -498,7 +498,8 @@ smtpmessage(f, m, a, b, c)
 	if (tTd(18, 1) || (Verbose && !HoldErrs))
 		nmessage(Arpa_Info, ">>> %s", SmtpMsgBuffer);
 	if (SmtpOut != NULL)
-		fprintf(SmtpOut, "%s%s", SmtpMsgBuffer, m->m_eol);
+		fprintf(SmtpOut, "%s%s", SmtpMsgBuffer,
+			m == 0 ? "\r\n" : m->m_eol);
 }
 
 # endif SMTP
