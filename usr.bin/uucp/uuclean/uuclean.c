@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuclean.c	5.5 (Berkeley) 06/23/85";
+static char sccsid[] = "@(#)uuclean.c	5.6 (Berkeley) 10/09/85";
 #endif
 
 #include <signal.h>
@@ -34,6 +34,7 @@ static char sccsid[] = "@(#)uuclean.c	5.5 (Berkeley) 06/23/85";
 #define NOMTIME 72	/* hours to age files before deletion */
 
 int checkprefix = 0;
+struct timeb Now;
 
 main(argc, argv)
 char *argv[];
