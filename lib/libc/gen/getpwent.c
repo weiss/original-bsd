@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getpwent.c	5.3 (Berkeley) 11/14/88";
+static char sccsid[] = "@(#)getpwent.c	5.4 (Berkeley) 12/21/88";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -31,18 +31,26 @@ static struct passwd _pw_passwd;
 static int _pw_set;
 static char *_pw_file = "/etc/passwd";
 
-#define	MAXLINELENGTH	200
+#define	MAXLINELENGTH	1024
 static char line[MAXLINELENGTH];
 
 static
 pwscan()
 {
 	register char *cp;
-	char *fgets(), *strsep();
+	char *fgets(), *strsep(), *index();
 
 	for (;;) {
 		if (!(cp = fgets(line, sizeof(line), _pw_fp)))
 			return(0);
+		/* skip lines that are too big */
+		if (!index(cp, '\n')) {
+			int ch;
+
+			while ((ch = getc(_pw_fp)) != '\n' && ch != EOF)
+				;
+			continue;
+		}
 		_pw_passwd.pw_name = strsep(cp, ":\n");
 		_pw_passwd.pw_passwd = strsep((char *)NULL, ":\n");
 		if (!(cp = strsep((char *)NULL, ":\n")))
