@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.29 (Berkeley) 11/16/92
+#	@(#)Makefile	5.30 (Berkeley) 12/19/92
 
 PROG=	sendmail
 
@@ -10,7 +10,7 @@ PROG=	sendmail
 # databases are read, but the new format will be used on any rebuilds.  On
 # really gnarly systems, you can set this to null; it will crawl like a high
 # spiral snail, but it will work.
-DBMDEF=	-DNEWDB
+DBMDEF=	-DNEWDB -DNDBM
 
 CFLAGS+=-I${.CURDIR} ${DBMDEF}
 
