@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)func.c	5.9 (Berkeley) 09/24/89";
+static char *sccsid = "@(#)func.c	5.10 (Berkeley) 11/20/89";
 #endif
 
 #include "sh.h"
@@ -1083,8 +1083,8 @@ retry:
 			(void) signal(SIGTTIN, old);
 			goto retry;
 		}
-		(void) ioctl(FSHTTY, TIOCSPGRP, (char *)&shpgrp);
 		(void) setpgrp(0, shpgrp);
+		(void) ioctl(FSHTTY, TIOCSPGRP, (char *)&shpgrp);
 	}
 }
 
