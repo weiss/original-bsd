@@ -3,10 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.13 (Berkeley) 10/18/88
+ *	@(#)tty.c	7.14 (Berkeley) 04/25/89
  */
-
-#include "../machine/reg.h"
 
 #include "param.h"
 #include "systm.h"
@@ -25,6 +23,8 @@
 #include "uio.h"
 #include "kernel.h"
 #include "syslog.h"
+
+#include "machine/reg.h"
 
 /*
  * Table giving parity for characters and indicating
