@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	1.15 (Berkeley) 09/01/89";
+static char sccsid[] = "@(#)utilities.c	1.16 (Berkeley) 11/14/89";
 #endif /* not lint */
 
 #define	TELOPTS
@@ -90,7 +90,7 @@ int
  * The following are routines used to print out debugging information.
  */
 
-char NetTraceFile[256] = "(standard output)";
+unsigned char NetTraceFile[256] = "(standard output)";
 
 void
 SetNetTrace(file)
@@ -645,15 +645,3 @@ int returnCode;
     fwrite(string, 1, strlen(string), stderr);
     exit(returnCode);
 }
-
-#if defined(MSDOS)
-void
-ExitPerror(string, returnCode)
-char *string;
-int returnCode;
-{
-    SetForExit();
-    perror(string);
-    exit(returnCode);
-}
-#endif /* defined(MSDOS) */
