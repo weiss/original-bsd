@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfsnode.h	7.33 (Berkeley) 03/19/93
+ *	@(#)nfsnode.h	7.34 (Berkeley) 05/25/93
  */
 
 /*
@@ -121,6 +121,7 @@ int	nfs_bmap __P((struct vop_bmap_args *));
 int	nfs_strategy __P((struct vop_strategy_args *));
 int	nfs_print __P((struct vop_print_args *));
 int	nfs_islocked __P((struct vop_islocked_args *));
+int	nfs_pathconf __P((struct vop_pathconf_args *));
 int	nfs_advlock __P((struct vop_advlock_args *));
 int	nfs_blkatoff __P((struct vop_blkatoff_args *));
 int	nfs_vget __P((struct mount *, ino_t, struct vnode **));
