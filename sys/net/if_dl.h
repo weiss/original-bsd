@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_dl.h	7.1 (Berkeley) 07/01/90
+ *	@(#)if_dl.h	7.2 (Berkeley) 02/22/91
  */
 
 /* 
@@ -42,3 +42,13 @@ struct sockaddr_dl {
 
 #define LLADDR(s) ((caddr_t)((s)->sdl_data + (s)->sdl_nlen))
 
+#ifndef KERNEL
+
+#include <sys/cdefs.h>
+
+__BEGIN_DECLS
+void	link_addr __P((const char *, struct sockaddr_dl *));
+char	*link_ntoa __P((const struct sockaddr_dl *));
+__END_DECLS
+
+#endif /* !KERNEL */
