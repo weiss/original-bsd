@@ -1,5 +1,6 @@
-/*	mba.c	4.2	11/09/80	*/
+/*	mba.c	4.3	12/17/80	*/
 
+#if VAX==780
 #include "../h/param.h"
 #include "../h/buf.h"
 #include "../h/conf.h"
@@ -94,3 +95,4 @@ mbainit(mbano)
 	mbap->mba_cr = MBAIE;
 	mbaact |= (1<<mbano);
 }
+#endif
