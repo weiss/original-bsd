@@ -1,4 +1,6 @@
-/*	mkheaders.c	1.13	82/12/09	*/
+#ifndef lint
+static char sccsid[] = "@(#)mkheaders.c	1.14 (Berkeley) 08/11/83";
+#endif
 
 /*
  * Make all the .h files for the optional entries
