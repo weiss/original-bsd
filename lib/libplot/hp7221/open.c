@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 05/07/85";
+static char sccsid[] = "@(#)open.c	5.2 (Berkeley) 02/24/91";
 #endif not lint
 
 /*
@@ -27,7 +27,7 @@ double scale = 1.0;
 
 openpl()
 {
-	int closepl();
+	void closepl();
 
 	/* catch interupts */
 	signal(SIGINT, closepl);
