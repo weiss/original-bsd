@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)more.c	4.16 (Berkeley) 83/08/26";
+static	char *sccsid = "@(#)more.c	4.17 (Berkeley) 84/01/06";
 #endif
 
 /*
@@ -111,6 +111,9 @@ char *argv[];
     nfiles = argc;
     fnames = argv;
     initterm ();
+    nscroll = Lpp/2 - 1;
+    if (nscroll <= 0)
+	nscroll = 1;
     if(s = getenv("MORE")) argscan(s);
     while (--nfiles > 0) {
 	if ((ch = (*++fnames)[0]) == '-') {
