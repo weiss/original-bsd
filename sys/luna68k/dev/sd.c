@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sd.c	7.5 (Berkeley) 12/31/92
+ *	@(#)sd.c	7.6 (Berkeley) 03/17/93
  */
 
 /*
@@ -246,6 +246,18 @@ sdopen(dev, flags, mode, p)
 	return(0);
 }
 
+
+/*
+ * Close
+ */
+
+int
+sdclose(dev, flag, mode, p)
+	dev_t dev;
+	int flag, mode;
+	struct proc *p;
+{
+}
 
 /*
  * Strategy
