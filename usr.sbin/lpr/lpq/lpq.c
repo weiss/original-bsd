@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)lpq.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)lpq.c	5.2 (Berkeley) 11/17/85";
 #endif not lint
 
 /*
@@ -63,6 +63,7 @@ main(argc, argv)
 
 	name = argv[0];
 	gethostname(host, sizeof(host));
+	openlog("lpd", 0, LOG_LPR);
 
 	while (--argc) {
 		if ((arg = *++argv)[0] == '+') {

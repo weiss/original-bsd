@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)lpr.c	5.2 (Berkeley) 11/17/85";
 #endif not lint
 
 /*
@@ -29,6 +29,7 @@ static char sccsid[] = "@(#)lpr.c	5.1 (Berkeley) 06/06/85";
 #include <grp.h>
 #include <signal.h>
 #include <ctype.h>
+#include <syslog.h>
 #include "lp.local.h"
 
 char    *tfname;		/* tmp copy of cf before linking */
@@ -97,6 +98,7 @@ main(argc, argv)
 
 	name = argv[0];
 	gethostname(host, sizeof (host));
+	openlog("lpd", 0, LOG_LPR);
 
 	while (argc > 1 && argv[1][0] == '-') {
 		argc--;
