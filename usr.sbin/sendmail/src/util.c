@@ -5,7 +5,7 @@
 # include "useful.h"
 # include <ctype.h>
 
-static char	SccsId[] = "@(#)util.c	3.11	10/20/81";
+static char	SccsId[] = "@(#)util.c	3.12	11/07/81";
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -439,7 +439,7 @@ fixcrlf(line, stripnl)
 	p = index(line, '\n');
 	if (p == NULL)
 		return;
-	if (*p == '\r')
+	if (p[-1] == '\r')
 		p--;
 	if (!stripnl)
 		*p++ = '\n';
