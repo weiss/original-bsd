@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stdlib.h	5.5 (Berkeley) 02/05/91
+ *	@(#)stdlib.h	5.6 (Berkeley) 02/13/91
  */
 
 #ifndef _STDLIB_H_
@@ -42,7 +42,7 @@ typedef struct {
 __BEGIN_DECLS
 void	 abort __P((void));
 int	 abs __P((int));
-int	 atexit __P((void (*_func)(void)));
+int	 atexit __P((void (*)(void)));
 double	 atof __P((const char *_nptr));
 int	 atoi __P((const char *_nptr));
 long	 atol __P((const char *_nptr));
