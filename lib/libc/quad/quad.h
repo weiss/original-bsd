@@ -4,14 +4,16 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)quad.h	5.1 (Berkeley) 05/12/92
+ *	@(#)quad.h	5.2 (Berkeley) 05/12/92
  */
 
 /* More subroutines needed by GCC output code on some machines.  */
 /* Compile this one with gcc.  */
+#include <sys/param.h>
 
-#include "config.h"
 #include <stddef.h>
+
+#define	BITS_PER_WORD	(NBBY * sizeof(long))
 
 #ifndef SItype
 #define SItype long int
