@@ -1,12 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/03/91
+#	@(#)Makefile	5.2 (Berkeley) 05/09/91
 
 PROG=	rm
-SRCS=	rm.c
-CFLAGS+=-DLETS_GET_SMALL
-LDADD=	-lutil
-DPADD=	${LIBUTIL}
+CFLAGS+=-s -N -I${.CURDIR}/../cat
 NOMAN=	noman
-LDFLAGS=-N
-.PATH:	${.CURDIR}/../../../../bin/rm
 
 .include <bsd.prog.mk>
