@@ -1,4 +1,7 @@
-SCCSID = "@(#)Makefile 1.10 10/06/80"
+SCCSID = "@(#)Makefile 1.11 10/19/80"
+WHOAMI = pc
+INSTALLNAME = pc0
+VERSION = 2.0
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
@@ -12,7 +15,7 @@ INSTALLDIR = /usr/lib
 LIBDIR = /usr/lib
 TMPDIR = tmp
 
-ERRORSTRINGS = pc2.0strings
+ERRORSTRINGS = ${WHOAMI}${VERSION}strings
 
 SRCS =	ato.c \
 	call.c case.c clas.c const.c conv.c cset.c \
@@ -103,8 +106,8 @@ print:	sources
 install: a.out
 	sccs check
 	cp ${ERRORSTRINGS} ${LIBDIR}/${ERRORSTRINGS}
-	cp ${INSTALLDIR}/pc0 ${INSTALLDIR}/pc0.bak
-	cp a.out ${INSTALLDIR}/pc0
+	cp ${INSTALLDIR}/${INSTALLNAME} ${INSTALLDIR}/${INSTALLNAME}.bak
+	cp a.out ${INSTALLDIR}/${INSTALLNAME}
 
 depend:	sources
 	/bin/grep '^#[ 	]*include' *.h \
