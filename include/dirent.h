@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dirent.h	5.19 (Berkeley) 02/06/92
+ *	@(#)dirent.h	5.20 (Berkeley) 06/08/93
  */
 
 #ifndef _DIRENT_H_
@@ -33,6 +33,7 @@ typedef struct _dirdesc {
 	char	*dd_buf;	/* data buffer */
 	int	dd_len;		/* size of data buffer */
 	long	dd_seek;	/* magic cookie returned by getdirentries */
+	long	dd_rewind;	/* magic cookie for rewinding */
 } DIR;
 
 #define	dirfd(dirp)	((dirp)->dd_fd)
