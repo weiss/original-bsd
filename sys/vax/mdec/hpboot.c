@@ -4,7 +4,7 @@
  * specifies the terms and conditions for redistribution.
  */
 
-/* "@(#)hpboot.c	6.4 (Berkeley) 03/13/86" */
+/* "@(#)hpboot.c	7.1 (Berkeley) 06/05/86" */
 
 
 #define PARTITION		/* Partition is in bits 12 to 15 of R5
