@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ps.c	7.5 (Berkeley) 04/03/90
+ *	@(#)ps.c	7.6 (Berkeley) 12/16/90
  */
 
 /*
@@ -20,16 +20,16 @@
 
 #define EXTERNAL_SYNC
 
-#include "machine/pte.h"
+#include "../include/pte.h"
 
-#include "param.h"
-#include "systm.h"
-#include "ioctl.h"
-#include "map.h"
-#include "buf.h"
-#include "conf.h"
-#include "user.h"
-#include "uio.h"
+#include "sys/param.h"
+#include "sys/systm.h"
+#include "sys/ioctl.h"
+#include "sys/map.h"
+#include "sys/buf.h"
+#include "sys/conf.h"
+#include "sys/user.h"
+#include "sys/uio.h"
 
 #include "ubareg.h"
 #include "ubavar.h"

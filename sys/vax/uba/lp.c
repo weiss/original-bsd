@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)lp.c	7.7 (Berkeley) 04/12/90
+ *	@(#)lp.c	7.8 (Berkeley) 12/16/90
  */
 
 #include "lp.h"
@@ -14,18 +14,18 @@
  * This driver has been modified to work on printers where
  * leaving IENABLE set would cause continuous interrupts.
  */
-#include "machine/pte.h"
+#include "../include/pte.h"
 
-#include "param.h"
-#include "user.h"
-#include "buf.h"
-#include "conf.h"
-#include "systm.h"
-#include "map.h"
-#include "uio.h"
-#include "ioctl.h"
-#include "tty.h"
-#include "kernel.h"
+#include "sys/param.h"
+#include "sys/user.h"
+#include "sys/buf.h"
+#include "sys/conf.h"
+#include "sys/systm.h"
+#include "sys/map.h"
+#include "sys/uio.h"
+#include "sys/ioctl.h"
+#include "sys/tty.h"
+#include "sys/kernel.h"
 
 #include "ubavar.h"
 
