@@ -1,4 +1,4 @@
-/*	signal.h	6.3	84/12/31	*/
+/*	signal.h	6.4	85/03/07	*/
 
 #ifndef	NSIG
 #define NSIG	32
@@ -78,6 +78,8 @@ struct	sigcontext {
 	int	sc_onstack;		/* sigstack state to restore */
 	int	sc_mask;		/* signal mask to restore */
 	int	sc_sp;			/* sp to restore */
+	int	sc_fp;			/* fp to retore */
+	int	sc_ap;			/* ap to retore */
 	int	sc_pc;			/* pc to retore */
 	int	sc_ps;			/* psl to restore */
 };
