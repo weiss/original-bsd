@@ -10,11 +10,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm_hp300.c	5.29 (Berkeley) 07/10/92";
+static char sccsid[] = "@(#)kvm_hp300.c	5.30 (Berkeley) 04/27/93";
 #endif /* LIBC_SCCS and not lint */
 
 /*
- * Hp300 machine depedent routines for kvm.  Hopefully, the forthcoming 
+ * Hp300 machine dependent routines for kvm.  Hopefully, the forthcoming 
  * vm code will one day obsolete this module.
  */
 
