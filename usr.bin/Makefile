@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.25 (Berkeley) 05/26/93
+#	@(#)Makefile	5.26 (Berkeley) 05/28/93
 
 SUBDIR=	apply ar at banner basename bc bdes biff cal calendar cap_mkdb \
 	checknr chflags chpass cksum col colcrt colrm column comm compress \
@@ -24,6 +24,8 @@ SUBDIR+=cmp ktrace ld look systat tail vmstat
 SUBDIR+=cmp ktrace ld look systat tail vmstat
 .elif	${MACHINE} == "luna68k"
 SUBDIR+=cmp ktrace ld look systat tail vmstat
+.elif	${MACHINE} == "mips"
+SUBDIR+=cmp ktrace look systat tail vmstat
 .elif	${MACHINE} == "sparc"
 SUBDIR+=cmp ktrace ld look tail vmstat.sparc
 .elif	${MACHINE} == "tahoe"
