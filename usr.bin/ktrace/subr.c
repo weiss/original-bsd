@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 01/17/91";
+static char sccsid[] = "@(#)subr.c	5.2 (Berkeley) 04/15/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -36,6 +36,12 @@ getpoints(s)
 			break;
 		case 's':
 			facs |= KTRFAC_PSIG;
+			break;
+		case 'w':
+			facs |= KTRFAC_CSW;
+			break;
+		case '+':
+			facs |= DEF_POINTS;
 			break;
 		default:
 			return (-1);
