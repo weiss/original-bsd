@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)cset.c 1.5 03/10/81";
+static char sccsid[] = "@(#)cset.c 1.6 03/20/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -395,7 +395,7 @@ postcset( r , csetp )
 		    cp[temp >> LG2BITSBYTE] |= (1 << (temp & MSKBITSBYTE));
 		}
 	    }
-	    if ( cgenflg )
+	    if ( !CGENNING )
 		return;
 #	    ifdef PC
 		putprintf( "	.data" , 0 );
