@@ -3,7 +3,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlex.c	1.3 (Berkeley) 04/16/91";
+static char sccsid[] = "@(#)rlex.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 # include "r.h"
