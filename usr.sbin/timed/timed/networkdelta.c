@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)networkdelta.c	2.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)networkdelta.c	2.5 (Berkeley) 07/15/91";
 #endif /* not lint */
 
 #include "globals.h"
@@ -59,7 +59,7 @@ long networkdelta()
 				maxind=j;
 			}	
 			i++;
-			if(i = j)
+			if(i == j)
 				j++;
 		}
 	} while (j < machup);
