@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.20.1.1 (Berkeley) 12/02/93";
+static char sccsid[] = "@(#)savemail.c	8.21 (Berkeley) 12/10/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -478,16 +478,12 @@ returntosender(msg, returnq, sendbody, e)
 
 # ifdef LOG
 	if (LogLevel > 5)
-		syslog(LOG_INFO, "%s: %s: returntosender: %s",
+		syslog(LOG_INFO, "%s: %s: return to sender: %s",
 			e->e_id, ee->e_id, msg);
 # endif
 
-	if (strncasecmp(msg, "warning:", 8) != 0)
-	{
-		(void) sprintf(buf, "Returned mail: %s", msg);
-		msg = buf;
-	}
-	addheader("Subject", msg, ee);
+	(void) sprintf(buf, "Returned mail: %s", msg);
+	addheader("Subject", buf, ee);
 	if (SendMIMEErrors)
 	{
 		addheader("MIME-Version", "1.0", ee);
@@ -586,7 +582,8 @@ errbody(fp, m, e)
 	for (q = e->e_parent->e_sendqueue; q != NULL; q = q->q_next)
 		if (bitset(QBADADDR, q->q_flags))
 			break;
-	if (q == NULL && !bitset(EF_FATALERRS, e->e_parent->e_flags))
+	if (q == NULL &&
+	    !bitset(EF_FATALERRS|EF_SENDRECEIPT, e->e_parent->e_flags))
 	{
 		putline("    **********************************************",
 			fp, m);
