@@ -2,7 +2,7 @@
 #
 # %sccs.include.proprietary.sh%
 #
-#	@(#)style.sh	4.9 (Berkeley) 07/31/91
+#	@(#)style.sh	8.1 (Berkeley) 06/06/93
 #
 
 L=/usr/libexec
