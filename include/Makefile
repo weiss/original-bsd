@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.52 (Berkeley) 07/15/92
+#	@(#)Makefile	5.53 (Berkeley) 07/16/92
 #
 # Doing a make install builds /usr/include
 #
@@ -72,8 +72,12 @@ copies:
 	done
 	rm -f ${DESTDIR}/usr/include/machine
 	mkdir ${DESTDIR}/usr/include/machine
-	cd /sys/${MACHINE}/include; \
-	tar cf - *.h | (cd ${DESTDIR}/usr/include/machine; tar xpfB -); \
+	cd /sys/${MACHINE}/include && \
+	    tar cf - *.h | (cd ${DESTDIR}/usr/include/machine; tar xpfB -);
+	rm -f ${DESTDIR}/usr/include/X11
+	mkdir ${DESTDIR}/usr/include/X11
+	cd /usr/X11R4/include/X11 && \
+	    tar cf - *.h | (cd ${DESTDIR}/usr/include/X11; tar xpfB -);
 
 symlinks:
 	@echo symlinks: ${LDIRS}
@@ -83,7 +87,8 @@ symlinks:
 		chown ${BINOWN}.${BINGRP} ${DESTDIR}/usr/include/$$i; \
 	done
 	rm -f ${DESTDIR}/usr/include/machine
-	ln -s /sys/${MACHINE}/include ${DESTDIR}/usr/include/machine
-	chown ${BINOWN}.${BINGRP} ${DESTDIR}/usr/include/machine
+	ln -s ${DESTDIR}/sys/${MACHINE}/include ${DESTDIR}/usr/include/machine
+	rm -f ${DESTDIR}/usr/include/X11
+	ln -s ${DESTDIR}/usr/X11R4/include/X11 ${DESTDIR}/usr/include/X11
 
 .include <bsd.prog.mk>
