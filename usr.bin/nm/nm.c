@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)nm.c 4.2 05/22/83";
+static	char sccsid[] = "@(#)nm.c 4.3 06/30/83";
 #endif
 /*
  * nm - print name list; VAX string table version
@@ -10,7 +10,7 @@ static	char sccsid[] = "@(#)nm.c 4.2 05/22/83";
 #include <ctype.h>
 #include <a.out.h>
 #include <stab.h>
-#include <stat.h>
+#include <sys/stat.h>
 
 #define	SELECT	archive ? archdr.ar_name : *xargv
 
