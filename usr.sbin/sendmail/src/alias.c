@@ -1,12 +1,10 @@
-# include <stdio.h>
-# include <ctype.h>
 # include <pwd.h>
 # include "sendmail.h"
 
 # ifdef DBM
-static char SccsId[] = "@(#)alias.c	3.15	08/20/81	(with DBM)";
+static char SccsId[] = "@(#)alias.c	3.16	08/20/81	(with DBM)";
 # else DBM
-static char SccsId[] = "@(#)alias.c	3.15	08/20/81	(without DBM)";
+static char SccsId[] = "@(#)alias.c	3.16	08/20/81	(without DBM)";
 # endif DBM
 
 /*
