@@ -1,9 +1,9 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)security.ms	5.3 (Berkeley) 04/17/91
+.\"	@(#)security.ms	5.4 (Berkeley) 06/05/93
 .\"
-.EH 'SMM:17-%''On the Security of \s-2UNIX\s+2'
-.OH 'On the Security of \s-2UNIX\s+2''SMM:17-%'
+.EH 'SMM:16-%''On the Security of \s-2UNIX\s+2'
+.OH 'On the Security of \s-2UNIX\s+2''SMM:16-%'
 .ND June 10, 1977
 .TL
 On the Security of UNIX
