@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)destruct.c	5.2 (Berkeley) 05/05/88";
+static char sccsid[] = "@(#)destruct.c	5.3 (Berkeley) 06/12/88";
 #endif /* not lint */
 
 # include	"trek.h"
@@ -44,7 +44,7 @@ destruct()
 
 	if (damaged(COMPUTER))
 		return (out(COMPUTER));
-	printf("\n --- WORKING ---\n");
+	printf("\n\07 --- WORKING ---\07\n");
 	sleep(3);
 	/* output the count 10 9 8 7 6 */
 	for (i = 10; i > 5; i--)
