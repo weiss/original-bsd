@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_extern.h	7.20 (Berkeley) 08/21/92
+ *	@(#)lfs_extern.h	7.21 (Berkeley) 08/26/92
  */
 
 struct fid;
@@ -26,6 +26,7 @@ int	 lfs_bmaparray
 	    __P((struct vnode *, daddr_t, daddr_t *, INDIR *, int *));
 int	 lfs_bwrite __P((struct vop_bwrite_args *));
 int	 lfs_check __P((struct vnode *, daddr_t));
+int	 lfs_close __P((struct vop_close_args *));
 int	 lfs_create __P((struct vop_create_args *));
 int	 lfs_fhtovp __P((struct mount *, struct fid *, struct mbuf *,
 	    struct vnode **, int *, struct ucred **));
