@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)udp_usrreq.c	6.19 (Berkeley) 02/08/86
+ *	@(#)udp_usrreq.c	6.20 (Berkeley) 02/24/86
  */
 
 #include "param.h"
@@ -262,10 +262,6 @@ udp_usrreq(so, req, m, nam, rights)
 		break;
 
 	case PRU_DETACH:
-		if (inp == NULL) {
-			error = ENOTCONN;
-			break;
-		}
 		in_pcbdetach(inp);
 		break;
 
@@ -301,7 +297,7 @@ udp_usrreq(so, req, m, nam, rights)
 			break;
 		}
 		in_pcbdisconnect(inp);
-		soisdisconnected(so);
+		so->so_state &= ~SS_ISCONNECTED;		/* XXX */
 		break;
 
 	case PRU_SHUTDOWN:
