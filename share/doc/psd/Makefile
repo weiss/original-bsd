@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/08/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 # The following modules do not build/install:
 # 10.gdb, 13.rcs
