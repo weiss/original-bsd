@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setterm.c	8.2 (Berkeley) 01/02/94";
+static char sccsid[] = "@(#)setterm.c	8.3 (Berkeley) 01/02/94";
 #endif /* not lint */
 
 #include <sys/ioctl.h>
@@ -88,7 +88,7 @@ setterm(type)
 	}
 
 	/* POSIX 1003.2 requires that the environment override. */
-	if ((p = getenv("ROWS")) != NULL)
+	if ((p = getenv("LINES")) != NULL)
 		LINES = strtol(p, NULL, 10);
 	if ((p = getenv("COLUMNS")) != NULL)
 		COLS = strtol(p, NULL, 10);
