@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)spec_vnops.c	7.32 (Berkeley) 03/24/91
+ *	@(#)spec_vnops.c	7.33 (Berkeley) 04/02/91
  */
 
 #include "param.h"
@@ -403,7 +403,7 @@ spec_close(vp, flag, cred)
 {
 	struct proc *p = curproc;		/* XXX */
 	dev_t dev = vp->v_rdev;
-	int (*cfunc)();
+	int (*cfunc) __P((dev_t, int, int, struct proc *));
 	int mode;
 
 	switch (vp->v_type) {
