@@ -3,11 +3,11 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Ozan Yigit.
+ * Ozan Yigit at York University.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.2 (Berkeley) 10/02/91
+ *	@(#)extern.h	5.3 (Berkeley) 11/20/91
  */
 
 char	*basename __P((char *));

@@ -3,20 +3,14 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Ozan Yigit.
+ * Ozan Yigit at York University.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.7 (Berkeley) 09/03/91";
+static char sccsid[] = "@(#)misc.c	5.8 (Berkeley) 11/20/91";
 #endif /* not lint */
-
-/*
- * misc.c
- * Facility: m4 macro processor
- * by: oz
- */
 
 #include <sys/types.h>
 #include <errno.h>

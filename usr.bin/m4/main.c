@@ -3,13 +3,13 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Ozan Yigit.
+ * Ozan Yigit at York University.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.8 (Berkeley) 10/02/91";
+static char sccsid[] = "@(#)main.c	5.9 (Berkeley) 11/20/91";
 #endif /* not lint */
 
 /*

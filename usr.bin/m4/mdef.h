@@ -3,29 +3,13 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Ozan Yigit.
+ * Ozan Yigit at York University.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mdef.h	5.8 (Berkeley) 10/02/91
+ *	@(#)mdef.h	5.9 (Berkeley) 11/20/91
  */
 
-/*
- * mdef.h
- * Facility: m4 macro processor
- * by: oz
- */
-
-#ifdef vms
-#include stdio
-#include ctype
-#include signal
-#endif
-
-/*
- * m4 constants..
- */
- 
 #define MACRTYPE        1
 #define DEFITYPE        2
 #define EXPRTYPE        3
