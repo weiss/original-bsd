@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	8.1 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)newfs.c	8.2 (Berkeley) 01/13/94";
 #endif /* not lint */
 
 /*
@@ -402,7 +402,7 @@ usage()
 		    "usage: mfs [ -fsoptions ] special-device mount-point\n");
 	} else
 		fprintf(stderr,
-		    "usage: newfs [ -fsoptions ] special-device%s\n",
+		    "usage: newlfs [ -fsoptions ] special-device%s\n",
 #ifdef COMPAT
 		    " [device-type]");
 #else
