@@ -1,4 +1,4 @@
-/* dir.h 4.1 10/09/80 */
+/* @(#)dir.h	4.2 (Berkeley) 12/13/84 */
 
 /*
  * Structure for entries in directory stack.
