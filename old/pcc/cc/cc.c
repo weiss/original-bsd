@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)cc.c 4.20 04/04/90";
+static	char sccsid[] = "@(#)cc.c 4.21 06/30/90";
 /*
  * cc - front end for C compiler
  */
@@ -293,7 +293,7 @@ nocom:
 		av[na++] = 0;
 		eflag |= callsys(ld, av);
 		if (nc==1 && nxo==1 && eflag==0)
-			unlink((char *)genbuildname(setsuf(clist[0], 'o')));
+			unlink(setsuf(clist[0], 'o'));
 	}
 	dexit();
 }
