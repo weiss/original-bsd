@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.12 (Berkeley) 01/16/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	config
 CFLAGS+=-I. -I${.CURDIR}
