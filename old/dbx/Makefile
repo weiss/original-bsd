@@ -1,4 +1,4 @@
-# The file "defs.h" is included by all.
+#	@(#)Makefile	5.21 (Berkeley) 01/17/91
 
 PROG=	dbx
 CFLAGS+=-I. -I${.CURDIR} -I/sys
