@@ -13,7 +13,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)route.c	8.2 (Berkeley) 01/02/94";
+static char sccsid[] = "@(#)route.c	8.3 (Berkeley) 03/19/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -530,6 +530,9 @@ newroute(argc, argv)
 				break;
 			case K_REJECT:
 				flags |= RTF_REJECT;
+				break;
+			case K_BLACKHOLE:
+				flags |= RTF_BLACKHOLE;
 				break;
 			case K_PROTO1:
 				flags |= RTF_PROTO1;
