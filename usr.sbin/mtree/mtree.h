@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mtree.h	5.8 (Berkeley) 12/11/91
+ *	@(#)mtree.h	5.9 (Berkeley) 02/19/92
  */
 
 #include <string.h>
@@ -57,4 +57,6 @@ typedef struct _node {
 	char	name[1];			/* file name (must be last) */
 } NODE;
 
-#define	RP(p)	(p->fts_path + 2)
+#define	RP(p)	\
+	((p)->fts_path[0] == '.' && (p)->fts_path[1] == '/' ? \
+	    (p)->fts_path + 2 : (p)->fts_path)
