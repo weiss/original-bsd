@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.16 (Berkeley) 07/15/92
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 #	dump.h			header file
 #	itime.c			reads /etc/dumpdates
