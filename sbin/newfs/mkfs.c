@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)mkfs.c	1.20 (Berkeley) 03/25/82";
+static	char *sccsid = "@(#)mkfs.c	2.1 (Berkeley) 04/08/82";
 
 /*
  * make file system for cylinder-group style file systems
@@ -11,9 +11,15 @@ static	char *sccsid = "@(#)mkfs.c	1.20 (Berkeley) 03/25/82";
 #include <a.out.h>
 #endif
 
+#ifndef SIMFS
+#include <sys/param.h>
+#include <sys/inode.h>
+#include <sys/fs.h>
+#else
 #include "../h/param.h"
 #include "../h/inode.h"
 #include "../h/fs.h"
+#endif
 #include <ndir.h>
 
 #define UMASK		0755
