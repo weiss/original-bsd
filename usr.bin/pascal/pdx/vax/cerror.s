@@ -1,6 +1,9 @@
-# Copyright (c) 1982 Regents of the University of California
 #
-# static char sccsid[] = "@(#)cerror.s 1.3 09/02/82";
+# Copyright (c) 1982 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)cerror.s	5.1 (Berkeley) 06/07/85
 #
 # modified version of cerror
 #
