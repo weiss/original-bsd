@@ -1,10 +1,10 @@
 /*
 **  USEFUL.H -- Some useful stuff.
 **
-**	@(#)useful.h	1.2	07/25/80
+**	@(#)useful.h	1.3	10/11/80
 */
 
-# define bool	int
+# define bool	char
 # define TRUE	1
 # define FALSE	0
 
