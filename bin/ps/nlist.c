@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)nlist.c	8.2 (Berkeley) 09/23/93";
+static char sccsid[] = "@(#)nlist.c	8.3 (Berkeley) 04/02/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -57,7 +57,6 @@ extern kvm_t *kd;
 int
 donlist()
 {
-	extern int eval;
 	int rval;
 #ifdef NEWVM
 	int tmp;
