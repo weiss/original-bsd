@@ -11,7 +11,7 @@
  *
  * from Utah: $Hdr: dcm.c 1.29 92/01/21$
  *
- *	@(#)dcm.c	8.3 (Berkeley) 01/12/94
+ *	@(#)dcm.c	8.4 (Berkeley) 01/12/94
  */
 
 /*
@@ -976,6 +976,7 @@ out:
  */
 dcmstop(tp, flag)
 	register struct tty *tp;
+	int flag;
 {
 	int s;
 
