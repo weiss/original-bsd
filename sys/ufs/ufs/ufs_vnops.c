@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_vnops.c	8.22 (Berkeley) 03/29/95
+ *	@(#)ufs_vnops.c	8.23 (Berkeley) 04/03/95
  */
 
 #include <sys/param.h>
@@ -1611,7 +1611,7 @@ ufs_readdir(ap)
 #	endif
 	if (!error && ap->a_ncookies) {
 		struct dirent *dp, *dpstart;
-		off_t off, offstart;
+		off_t offstart;
 		u_long *cookies;
 		int ncookies;
 
