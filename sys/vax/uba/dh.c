@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dh.c	7.5 (Berkeley) 03/12/87
+ *	@(#)dh.c	7.6 (Berkeley) 01/24/89
  */
 
 #include "dh.h"
@@ -137,7 +137,7 @@ dhattach(ui)
 
 	dhsoftCAR[ui->ui_unit] = ui->ui_flags;
 	cbase[ui->ui_ubanum] = -1;
-	dh_uballoc[ui->ui_unit] = -1;
+	dh_uballoc[ui->ui_ubanum] = -1;
 }
 
 /*

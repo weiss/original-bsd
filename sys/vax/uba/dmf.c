@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dmf.c	7.4 (Berkeley) 02/19/87
+ *	@(#)dmf.c	7.5 (Berkeley) 01/24/89
  */
 
 /*
@@ -169,7 +169,7 @@ dmfattach(ui)
 	    (struct dmx_octet *)&((struct dmfdevice *)ui->ui_addr)->dmfa;
 
 	cbase[ui->ui_ubanum] = -1;
-	dmf_uballoc[ui->ui_unit] = -1;
+	dmf_uballoc[ui->ui_ubanum] = -1;
 #if NDMF_LP > 0
 	dmflattach(ui);
 #endif NDMF_LP

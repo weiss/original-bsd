@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dhu.c	7.3 (Berkeley) 08/27/88
+ *	@(#)dhu.c	7.4 (Berkeley) 01/24/89
  */
 
 /*
@@ -165,7 +165,7 @@ dhuattach(ui)
 
 	dhusoftCAR[ui->ui_unit] = ui->ui_flags;
 	cbase[ui->ui_ubanum] = -1;
-	dhu_uballoc[ui->ui_unit] = -1;
+	dhu_uballoc[ui->ui_ubanum] = -1;
 }
 
 /*
