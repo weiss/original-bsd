@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)trace.c	5.10 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)trace.c	5.11 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 /*
@@ -14,9 +14,10 @@ static char sccsid[] = "@(#)trace.c	5.10 (Berkeley) 06/01/90";
  */
 #define	RIPCMDS
 #include "defs.h"
-#include <sys/file.h>
 #include <sys/stat.h>
 #include <sys/signal.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include "pathnames.h"
 
 #define	NRECORDS	50		/* size of circular trace buffer */
@@ -30,6 +31,7 @@ static	char *savetracename;
 traceinit(ifp)
 	register struct interface *ifp;
 {
+	static int iftraceinit();
 
 	if (iftraceinit(ifp, &ifp->int_input) &&
 	    iftraceinit(ifp, &ifp->int_output))
@@ -101,6 +103,7 @@ traceoff()
 	tracecontents = 0;
 }
 
+void
 sigtrace(s)
 	int s;
 {

@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)startup.c	5.18 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)startup.c	5.19 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 /*
@@ -16,6 +16,7 @@ static char sccsid[] = "@(#)startup.c	5.18 (Berkeley) 06/01/90";
 #include <sys/ioctl.h>
 #include <net/if.h>
 #include <syslog.h>
+#include <stdlib.h>
 #include "pathnames.h"
 
 struct	interface *ifnet;

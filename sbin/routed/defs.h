@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)defs.h	5.9 (Berkeley) 06/01/90
+ *	@(#)defs.h	5.10 (Berkeley) 02/28/91
  */
 
 /*
@@ -60,14 +60,8 @@ struct	rip *msg;
 char	**argv0;
 struct	servent *sp;
 
-extern	int errno;
-
 struct	in_addr inet_makeaddr();
 int	inet_addr();
-char	*malloc();
-char	*ctime();
-int	exit();
-int	sendmsg();
+int	sndmsg();
 int	supply();
-int	timer();
 int	cleanup();
