@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)scan.c	2.3 (Berkeley) 04/22/87";
+static char *sccsid ="@(#)scan.c	2.4 (Berkeley) 04/22/87";
 #endif lint
 
 # include "pass1.h"
@@ -930,6 +930,12 @@ lxres() {
 				return( TYPE );
 
 			case AR_RW:
+				{
+					extern int	nsizeof;
+
+					if (p->lxrval == SIZEOF)
+						++nsizeof;
+				}
 				/* ordinary reserved word */
 				return( yylval.intval = p->lxrval );
 
