@@ -1,10 +1,9 @@
-
 #
 # Copyright (c) 1980 Regents of the University of California.
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.16 (Berkeley) 09/15/85
+#	@(#)Makefile	4.17 (Berkeley) 01/29/86
 #
 #
 # The system has two monitoring schemes, utilizing either ``prof''
@@ -34,8 +33,8 @@
 #	defining HOSTLOOKUP to be "hosttable", compiles
 #	the host lookup routines that use /etc/hosts.
 #
-HOSTLOOKUP=	hosttable
-#HOSTLOOKUP=	named
+#HOSTLOOKUP=	hosttable
+HOSTLOOKUP=	named
 #							
 DESTDIR=
 INSTALL=install -m 644
@@ -43,7 +42,7 @@ DFLMON=	mon.o
 MACHINE=vax
 DEFS=
 COMPAT=	compat-4.1 compat-sys5
-ALL=	gen inet net stdio ${MACHINE} ${COMPAT}
+ALL=	gen inet net ns stdio ${MACHINE} ${COMPAT}
 TAGSFILE=tags
 
 libc.a libc_p.a: ${MACHINE}/csu ${ALL} net/${HOSTLOOKUP}
@@ -79,9 +78,9 @@ install:
 tags:
 	for i in ${ALL}; do \
 		(cd $$i; make ${MFLAGS} TAGSFILE=../${TAGSFILE} tags); \
+	done
 	cd net/${HOSTLOOKUP}; \
 		make ${MFLAGS} TAGSFILE=../../${TAGSFILE} tags
-	done
 
 clean:
 	for i in ${MACHINE}/csu ${ALL} net/hosttable net/named; \
