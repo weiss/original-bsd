@@ -12,9 +12,9 @@
  * from this software without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
- * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)syslog.h	7.13 (Berkeley) 02/15/89
+ *	@(#)syslog.h	7.14 (Berkeley) 08/22/89
  */
 
 /*
@@ -78,5 +78,5 @@
 #define	LOG_CONS	0x02	/* log on the console if errors in sending */
 #define	LOG_ODELAY	0x04	/* delay open until first syslog() (default) */
 #define LOG_NDELAY	0x08	/* don't delay open */
-#define LOG_NOWAIT	0x10	/* if forking to log on console, don't wait() */
+#define LOG_NOWAIT	0x10	/* don't wait for console forks: DEPRECATED */
 #define	LOG_PERROR	0x20	/* log to stderr as well */
