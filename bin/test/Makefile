@@ -1,4 +1,4 @@
-#        @(#)Makefile	5.2 (Berkeley) 04/30/93
+#        @(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	test
 SRCS=   test.c operators.c
