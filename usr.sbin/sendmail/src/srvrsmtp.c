@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.17 (Berkeley) 10/15/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.18 (Berkeley) 10/28/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.17 (Berkeley) 10/15/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.18 (Berkeley) 10/28/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -505,8 +505,10 @@ smtp(e)
 
 			/* collect the text of the message */
 			SmtpPhase = "collect";
-			HoldErrs = TRUE;
 			collect(TRUE, doublequeue, e);
+			if (Errors != 0)
+				goto abortmessage;
+			HoldErrs = TRUE;
 
 			/*
 			**  Arrange to send to everyone.
