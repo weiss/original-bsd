@@ -14,10 +14,8 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)machdep.h	5.3 (Berkeley) 06/18/88
+ *	@(#)machdep.h	5.4 (Berkeley) 05/03/90
  */
-
-#define LOGFILE "/usr/games/lib/saillog"	/* has to match the makefile */
 
 #define TIMEOUT 300				/* Sync() timeout in seconds */
 
