@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.9 (Berkeley) 10/12/85";
+static char sccsid[] = "@(#)syslogd.c	5.10 (Berkeley) 11/17/85";
 #endif not lint
 
 #define COMPAT		/* include 4.3 Alpha compatibility */
@@ -970,6 +970,7 @@ struct code	FacNames[] = {
 	"security",	LOG_AUTH,
 	"mark",		LOG_SYSLOG,
 	"syslog",	LOG_SYSLOG,
+	"lpr",		LOG_LPR,
 	"local0",	LOG_LOCAL0,
 	"local1",	LOG_LOCAL1,
 	"local2",	LOG_LOCAL2,
