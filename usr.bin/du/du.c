@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)du.c	5.21 (Berkeley) 04/28/93";
+static char sccsid[] = "@(#)du.c	5.22 (Berkeley) 06/02/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -29,7 +29,6 @@ static char sccsid[] = "@(#)du.c	5.21 (Berkeley) 04/28/93";
 #include <stdlib.h>
 #include <string.h>
 
-char	*getbsize __P((int *, long *));
 int	 linkchk __P((FTSENT *));
 void	 usage __P((void));
 
