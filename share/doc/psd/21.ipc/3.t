@@ -3,14 +3,13 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)3.t	8.1 (Berkeley) 06/08/93
+.\"	@(#)3.t	8.2 (Berkeley) 06/01/94
 .\"
 .\".ds RH "Network Library Routines
-.bp
 .nr H1 3
 .nr H2 0
-.bp
 .LG
+.sp 2
 .B
 .ce
 3. NETWORK LIBRARY ROUTINES
