@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)old.bin.grep.c	4.7 (Berkeley) 10/07/87";
+static char sccsid[] = "@(#)old.bin.grep.c	4.8 (Berkeley) 01/21/88";
 #endif
 
 /*
@@ -66,61 +66,58 @@ char	bittab[] = {
 };
 
 main(argc, argv)
-char **argv;
+	int argc;
+	char **argv;
 {
-	while (--argc > 0 && (++argv)[0][0]=='-')
-		switch (argv[0][1]) {
+	extern char *optarg;
+	extern int optind;
+	int ch;
 
+	while ((ch = getopt(argc, argv, "iywohsvblcne")) != EOF)
+		switch((char)ch) {
 		case 'i':
 		case 'y':
 			yflag++;
-			continue;
-
+			break;
 		case 'w':
 			wflag++;
-			continue;
-
+			break;
 		case 'o':
 			oflag++;
-			continue;
-
+			break;
 		case 'h':
 			hflag = 0;
-			continue;
-
+			break;
 		case 's':
 			sflag++;
-			continue;
-
+			break;
 		case 'v':
 			vflag++;
-			continue;
-
+			break;
 		case 'b':
 			bflag++;
-			continue;
-
+			break;
 		case 'l':
 			lflag++;
-			continue;
-
+			break;
 		case 'c':
 			cflag++;
-			continue;
-
+			break;
 		case 'n':
 			nflag++;
-			continue;
-
+			break;
 		case 'e':
-			--argc;
-			++argv;
+			argv += optind;
+			argc -= optind;
+			*argv = optarg;
 			goto out;
-
+		case '?':
 		default:
 			errexit("grep: unknown flag\n", (char *)NULL);
-			continue;
 		}
+	argv += optind;
+	argc -= optind;
+
 out:
 	if (argc<=0)
 		exit(2);
