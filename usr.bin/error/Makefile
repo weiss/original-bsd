@@ -1,5 +1,5 @@
 #
-#	@(#)Makefile	1.1 (Berkeley) 10/18/80
+#	@(#)Makefile	1.2 (Berkeley) 10/19/80
 #
 #	error.h			error header file
 #	errorinput.c		does all of the input, and canonicalizes errors
@@ -40,6 +40,3 @@ psrcs:
 
 print:
 	print $(PHDRS) $(PSRCS)
-
-clean:
-	rm $(OBJS) error
