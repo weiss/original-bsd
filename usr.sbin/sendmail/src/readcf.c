@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.19 (Berkeley) 03/19/93";
+static char sccsid[] = "@(#)readcf.c	6.20 (Berkeley) 03/23/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1240,6 +1240,8 @@ setoption(opt, val, safe, sticky, e)
 			QueueDir = "mqueue";
 		else
 			QueueDir = newstr(val);
+		if (RealUid != 0 && !safe)
+			auth_warning(e, "Processed from queue %s", QueueDir);
 		break;
 
 	  case 'R':		/* don't prune routes */
