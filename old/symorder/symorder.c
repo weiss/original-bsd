@@ -1,12 +1,12 @@
 #ifndef lint
-static char *sccsid = "@(#)symorder.c	4.3 (Berkeley) 05/22/83";
+static char *sccsid = "@(#)symorder.c	4.4 (Berkeley) 07/02/83";
 #endif
 /*
  * symorder - reorder symbol table
  */
 #include <stdio.h>
 #include <sys/types.h>
-#include <stat.h>
+#include <sys/stat.h>
 #include <a.out.h>
 
 #define SPACE 100
