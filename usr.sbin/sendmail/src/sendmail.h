@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.103		12/05/82";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.104		12/09/82";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -242,6 +242,7 @@ EXTERN struct rewrite	*RewriteRules[MAXRWSETS];
 # define MATCHANY	'\021'	/* match one or more tokens */
 # define MATCHONE	'\022'	/* match exactly one token */
 # define MATCHCLASS	'\023'	/* match one token in a class */
+# define MATCHNCLASS	'\034'	/* match anything not in class */
 # define MATCHREPL	'\024'	/* replacement on RHS for above */
 
 /* right hand side items */
