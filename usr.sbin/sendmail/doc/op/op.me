@@ -4,7 +4,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)op.me	8.23 (Berkeley) 09/27/93
+.\"	@(#)op.me	8.24 (Berkeley) 09/29/93
 .\"
 .\" eqn op.me | pic | troff -me
 .eh 'SMM:08-%''Sendmail Installation and Operation Guide'
@@ -43,7 +43,7 @@ University of California, Berkeley
 Mammoth Project
 eric@CS.Berkeley.EDU
 .sp
-Version 8.23
+Version 8.24
 .sp
 For Sendmail Version 8.6
 .)l
@@ -1751,6 +1751,9 @@ if you have a mailer that takes a long time to deliver a message.
 If you run in mode
 .q q
 (queue only)
+or
+.q b
+(deliver in background)
 .i sendmail
 will not expand aliases and follow .forward files
 upon initial receipt of the mail.
@@ -6243,7 +6246,7 @@ VRFY doesn't expand aliases or follow .forward files.
 EXPN still does.
 .pp
 As an optimization, if you run with your default delivery mode being
-queue-only,
+queue-only or deliver-in-background,
 the RCPT command will also not chase aliases and .forward files.
 It will chase them when it processes the queue.
 .sh 2 "[IPC] Mailers Allow Multiple Hosts"
@@ -6753,7 +6756,7 @@ A transcript of the current session.
 .\"Eric Allman
 .\"Britton-Lee, Inc.
 .\".sp
-.\"Version 8.23
+.\"Version 8.24
 .\".ce 0
 .bp 2
 .ce
