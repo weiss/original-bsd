@@ -1,8 +1,8 @@
-#	@(#)Makefile	1.3 (Berkeley) 06/22/90
+#	@(#)Makefile	5.1 (Berkeley) 01/15/91
 
 PROG=	kpasswdd
 SRCS=	kpasswdd.c des_rw.c
-CFLAGS+=-DKERBEROS -I${.CURDIR}/../../usr.bin/passwd
+CFLAGS+=-DCRYPT -DKERBEROS -I${.CURDIR}/../../usr.bin/passwd
 DPADD=	${LIBKDB} ${LIBKRB} ${LIBDES}
 LDADD=	-lkdb -lkrb -ldes
 .PATH:	${.CURDIR}/../../usr.bin/rlogin
