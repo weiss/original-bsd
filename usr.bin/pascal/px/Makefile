@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.13 08/29/82"
+SCCSID = "@(#)Makefile 1.14 09/09/82"
 
 CFLAGS = -O
 DESTDIR =
@@ -21,12 +21,6 @@ PXSRC =	int.c interp.c utilities.c
 PXOBJ =	int.o interp.o utilities.o
 
 PXUTL =	interp.sed clean.sed version.c
-
-sources: ${PXHDR} ${PXSRC} ${PXUTL}
-${PSHDR}:
-	cp ${PASCALDIR}/$@ $@
-${PCHDR}:
-	cp ${LIBPCDIR}/$@ $@
 
 .c.o:
 	${CC} ${CFLAGS} -c $*.c
@@ -51,6 +45,12 @@ h02opcs.h: OPnames.h opc.c
 
 install: px
 	cp px ${DESTDIR}/usr/ucb/px
+
+sources: ${PXHDR} ${PXSRC} ${PXUTL}
+${PSHDR}:
+	cp ${PASCALDIR}/$@ $@
+${PCHDR}:
+	cp ${LIBPCDIR}/$@ $@
 
 clean:
 	${RM} *.o *.s px version opc* pic*
