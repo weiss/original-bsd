@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)res_init.c	5.4 (Berkeley) 07/31/85";
+static char sccsid[] = "@(#)res_init.c	5.5 (Berkeley) 08/05/85";
 #endif not lint
 
 #include <sys/types.h>
@@ -31,8 +31,8 @@ char	*conffile = "/usr/local/lib/resolv.conf";
  * Resolver state default settings
  */
 struct state _res = {
-	90,
-	2,
+	10,
+	4,
 	RES_RECURSE|RES_DEFNAMES,
 };
 
