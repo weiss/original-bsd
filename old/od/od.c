@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)od.c	5.10 (Berkeley) 02/16/83";
+static char *sccsid = "@(#)od.c	5.11 (Berkeley) 04/29/83";
 /*
  * od -- octal, hex, decimal, character dump of data in a file.
  *
@@ -294,7 +294,7 @@ char	**argv;
 	{
 		if (freopen(*argv, "r", stdin) == NULL)
 		{
-			printf("od: cannot open %s\n", *argv);
+			perror(*argv);
 			exit(1);
 		}
 		argv++;
