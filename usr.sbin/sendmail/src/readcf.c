@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.71 (Berkeley) 03/05/95";
+static char sccsid[] = "@(#)readcf.c	8.72 (Berkeley) 03/05/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1324,6 +1324,8 @@ struct optioninfo
 	"DialDelay",		O_DIALDELAY,	TRUE,
 #define O_NORCPTACTION	0x88
 	"NoRecipientAction",	O_NORCPTACTION,	TRUE,
+#define O_SAFEFILEENV	0x89
+	"SafeFileEnvironment",	O_SAFEFILEENV,	FALSE,
 
 	NULL,			'\0',		FALSE,
 };
@@ -1949,6 +1951,10 @@ setoption(opt, val, safe, sticky, e)
 			NoRecipientAction = NRA_ADD_TO_UNDISCLOSED;
 		else
 			syserr("Invalid NoRecipientAction: %s", val);
+
+	  case O_SAFEFILEENV:	/* chroot() environ for writing to files */
+		SafeFileEnv = newstr(val);
+		break;
 
 	  default:
 		if (tTd(37, 1))
