@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/05/85
+#	@(#)Makefile	5.2 (Berkeley) 09/07/85
 #
-SCCSID = "@(#)Makefile 5.1 06/05/85"
+SCCSID = "@(#)Makefile 5.2 09/07/85"
 
 DESTDIR =
 BINDIR = /usr/ucb
@@ -50,7 +50,7 @@ h02opcs.h: ${SRCDIR}/OPnames.h opc.c
 	${RM} opc
 
 install: px
-	install px ${DESTDIR}/usr/ucb/px
+	install -s px ${DESTDIR}/usr/ucb/px
 
 sources: ${PXHDR} ${PXSRC} ${PXUTL}
 ${PSHDR}:
