@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	5.25 (Berkeley) 12/20/91";
+static char sccsid[] = "@(#)recipient.c	5.26 (Berkeley) 12/20/91";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -249,6 +249,8 @@ recipient(a, sendq)
 		{
 			/* try to open the log file */
 			RcptLogFd = open(RcptLogFile, O_WRONLY|O_APPEND|O_CREAT, 0666);
+			if (RcptLogFd >= 0)
+				(void) fcntl(RcptLogFd, F_SETFD, 1);
 		}
 		if (RcptLogFd >= 0)
 		{
