@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 04/20/91
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	rmail
 MAN8=	rmail.0
