@@ -1,4 +1,4 @@
-/*	ubareg.h	4.2	12/17/80	*/
+/*	ubareg.h	4.3	12/26/80	*/
 
 /*
  * Unibus adapter
@@ -7,6 +7,14 @@
 #define	UBA0		0x80060000	/* sys virt i/o for UBA 0 */
 #define	UBA0_DEV (UBA0+0x2000-0160000)	/* sys virt of device regs */
 #define	UNIBASE 0760000	 		/* UNIBUS phys base of i/o reg's */
+
+#if VAX==780
+#define	PHYSUBA0	0x20006000
+#define	PHYSUMEM	0x2013e000
+#else
+#define	PHYSUBA0	0xf30000
+#define	PHYSUMEM	(0xfc0000+UNIBASE)
+#endif
 
 #if VAX==780
 /* UBA Configuration Register, CNFGR */
