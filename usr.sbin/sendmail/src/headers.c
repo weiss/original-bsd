@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	5.11 (Berkeley) 11/17/88";
+static char sccsid[] = "@(#)headers.c	5.12 (Berkeley) 11/17/88";
 #endif /* not lint */
 
 # include <errno.h>
@@ -75,7 +75,7 @@ chompheader(line, def)
 			p = q;
 		}
 		else
-			syserr("chompheader: syntax error, line \"%s\"", line);
+			usrerr("chompheader: syntax error, line \"%s\"", line);
 		cond = TRUE;
 	}
 
