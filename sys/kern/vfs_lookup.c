@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_lookup.c	7.45 (Berkeley) 10/11/92
+ *	@(#)vfs_lookup.c	7.46 (Berkeley) 01/22/93
  */
 
 #include <sys/param.h>
@@ -256,7 +256,7 @@ dirloop:
 	for (cp = cnp->cn_nameptr; *cp != 0 && *cp != '/'; cp++)
 		cnp->cn_hash += (unsigned char)*cp;
 	cnp->cn_namelen = cp - cnp->cn_nameptr;
-	if (cnp->cn_namelen >= NAME_MAX) {
+	if (cnp->cn_namelen > NAME_MAX) {
 		error = ENAMETOOLONG;
 		goto bad;
 	}
