@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setup.c	5.11 (Berkeley) 03/09/87";
+static char sccsid[] = "@(#)setup.c	5.12 (Berkeley) 03/11/87";
 #endif not lint
 
 #define DKTYPENAMES
@@ -119,8 +119,12 @@ setup(dev)
 	}
 	if (sblock.fs_interleave < 1) {
 		pwarn("IMPOSSIBLE INTERLEAVE=%d IN SUPERBLOCK",
+		pwarn("IMPOSSIBLE INTERLEAVE=%d IN SUPERBLOCK",
 			sblock.fs_interleave);
 		sblock.fs_interleave = 1;
+		if (preen)
+			printf(" (FIXED)\n");
+		if (preen || reply("SET TO DEFAULT") == 1)
 		if (preen)
 			printf(" (FIXED)\n");
 		if (preen || reply("SET TO DEFAULT") == 1)
@@ -128,8 +132,12 @@ setup(dev)
 	}
 	if (sblock.fs_npsect < sblock.fs_nsect) {
 		pwarn("IMPOSSIBLE NPSECT=%d IN SUPERBLOCK",
+		pwarn("IMPOSSIBLE NPSECT=%d IN SUPERBLOCK",
 			sblock.fs_npsect);
 		sblock.fs_npsect = sblock.fs_nsect;
+		if (preen)
+			printf(" (FIXED)\n");
+		if (preen || reply("SET TO DEFAULT") == 1)
 		if (preen)
 			printf(" (FIXED)\n");
 		if (preen || reply("SET TO DEFAULT") == 1)
@@ -182,6 +190,7 @@ readsb(listerr)
 	int listerr;
 {
 	BUFAREA asblk;
+	struct disklabel *getdisklabel(), *lp;
 #	define altsblock asblk.b_un.b_fs
 	daddr_t super = bflag ? bflag * DEV_BSIZE : SBOFF;
 
@@ -211,6 +220,10 @@ readsb(listerr)
 	 * When an alternate super-block is specified this check is skipped.
 	 */
 	dev_bsize = sblock.fs_fsize / fsbtodb(&sblock, 1);
+	if (lp = getdisklabel((char *)NULL, dfile.rfdes))
+		secsize = lp->d_secsize;
+	else
+		secsize = dev_bsize;
 	sblk.b_bno = sblk.b_bno / dev_bsize;
 	if (bflag)
 		return (1);
@@ -275,7 +288,6 @@ calcsb(dev, devfd, fs)
 	register struct disklabel *lp;
 	register struct partition *pp;
 	register char *cp;
-	struct disklabel *getdisklabel();
 	int i;
 
 	cp = index(dev, '\0') - 1;
@@ -328,6 +340,8 @@ getdisklabel(s, fd)
 	static struct disklabel lab;
 
 	if (ioctl(fd, DIOCGDINFO, (char *)&lab) < 0) {
+		if (s == NULL)
+			return ((struct disklabel *)NULL);
 		pwarn("");
 		perror("ioctl (GDINFO)");
 		errexit("%s: can't read disk label", s);
