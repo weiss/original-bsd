@@ -1,4 +1,4 @@
-@(#)	sendmail.hf	3.4	07/17/83
+@(#)	sendmail.hf	4.1	07/25/83
 smtp	Commands:
 smtp		HELO	MAIL	RCPT	DATA	RSET
 smtp		NOOP	QUIT	HELP	VRFY	EXPN
