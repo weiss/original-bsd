@@ -15,11 +15,11 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)newvers.sh	5.3 (Berkeley) 10/31/88
+#	@(#)newvers.sh	5.4 (Berkeley) 12/07/88
 #
 if [ ! -r version ]; then echo 0 > version; fi
 touch version
 awk '	{	version = $1 + 1; }\
-END	{	printf "char version[] = \"Version 4.%d ", version > "vers.c";\
+END	{	printf "char version[] = \"Version 5.%d ", version > "vers.c";\
 		printf "%d\n", version > "version"; }' < version
 echo `date`'";' >> vers.c
