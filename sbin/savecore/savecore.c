@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)savecore.c	4.7.1.2 (Berkeley) 82/10/24";
+static	char *sccsid = "@(#)savecore.c	4.9 (Berkeley) 82/10/24";
 /*
  * savecore
  */
@@ -34,8 +34,25 @@ struct nlist nl[] = {
 	{ "_panicstr" },
 #define X_DOADUMP	6
 	{ "_doadump" },
+#define X_DOADUMP	6
+	{ "_doadump" },
 	{ 0 },
 };
+
+/*
+ *	this magic number is found in the kernel at label "doadump"
+ *
+ *	It is derived as follows:
+ *
+ *		doadump:	nop			01
+ *				nop			01
+ *				bicl2 $...		ca
+ *							8f
+ *
+ *	Thus, it is likely to be moderately stable, even across
+ *	operating system releases.
+ */
+#define DUMPMAG 0x8fca0101
 
 /*
  *	this magic number is found in the kernel at label "doadump"
@@ -87,7 +104,6 @@ main(argc, argv)
 		perror(dirname);
 		exit(1);
 	}
-
 	read_kmem();
 	if (dump_exists()) {
 		(void) time(&now);
@@ -112,7 +128,6 @@ dump_exists()
 	Lseek(dumpfd, (off_t)(dumplo + ok(nl[X_DOADUMP].n_value)), 0);
 	Read(dumpfd, (char *)&word, sizeof word);
 	close(dumpfd);
-	
 	return (word == DUMPMAG);
 }
 
@@ -189,6 +204,10 @@ read_kmem()
 	}
 	if (nl[X_PANICSTR].n_value == 0) {
 		fprintf(stderr, "/vmunix: panicstr not in namelist\n");
+		exit(1);
+	}
+	if (nl[X_DOADUMP].n_value == 0) {
+		fprintf(stderr, "/vmunix: doadump not in namelist\n");
 		exit(1);
 	}
 	if (nl[X_DOADUMP].n_value == 0) {
@@ -283,8 +302,8 @@ check_space()
 {
 	struct stat dsb;
 	register char *ddev;
-	register int dfd;
-	struct fs sblk;
+	int dfd, freespace;
+	struct fs fs;
 
 	if (stat(dirname, &dsb) < 0) {
 		perror(dirname);
@@ -292,13 +311,18 @@ check_space()
 	}
 	ddev = find_dev(dsb.st_dev, S_IFBLK);
 	dfd = Open(ddev, 0);
-	Lseek(dfd, SBLOCK*MAXBSIZE, 0);
-	Read(dfd, (char *)&sblk, sizeof sblk);
+	Lseek(dfd, (long)(SBLOCK * DEV_BSIZE), 0);
+	Read(dfd, (char *)&fs, sizeof fs);
 	close(dfd);
-	if (read_number("minfree") > sblk.fs_cstotal.cs_nbfree) {
+	freespace = fs.fs_cstotal.cs_nbfree * fs.fs_bsize / 1024;
+	if (read_number("minfree") > freespace) {
 		fprintf(stderr, "Dump omitted, not enough space on device\n");
 		return (0);
 	}
+	if (fs.fs_cstotal.cs_nbfree * fs.fs_frag + fs.fs_cstotal.cs_nffree <
+	    fs.fs_dsize * fs.fs_minfree / 100)
+		fprintf(stderr,
+			"Dump performed, but free space threshold crossed\n");
 	return (1);
 }
 
@@ -448,5 +472,7 @@ Write(fd, buf, size)
 		exit(1);
 	}
 }
+
+
 
 
