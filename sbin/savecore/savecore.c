@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 1980, 1986, 1989 The Regents of the University of California.
+/*-
+ * Copyright (c) 1986, 1992 The Regents of the University of California.
  * All rights reserved.
  *
  * %sccs.include.redist.c%
@@ -7,30 +7,34 @@
 
 #ifndef lint
 char copyright[] =
-"@(#) Copyright (c) 1980, 1986, 1989 The Regents of the University of California.\n\
+"@(#) Copyright (c) 1986, 1992 The Regents of the University of California.\n\
  All rights reserved.\n";
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.29 (Berkeley) 06/03/92";
+static char sccsid[] = "@(#)savecore.c	5.30 (Berkeley) 06/19/92";
 #endif /* not lint */
 
 #include <sys/param.h>
+#include <sys/file.h>
 #include <sys/mount.h>
 #include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/file.h>
 #include <sys/syslog.h>
+#include <sys/time.h>
+
+#include <errno.h>
 #include <dirent.h>
-#include <stdio.h>
 #include <nlist.h>
-#include <unistd.h>
 #include <paths.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 #define	DAY	(60L*60L*24L)
 #define	LEEWAY	(3*DAY)
 
-#define eq(a,b) (!strcmp(a,b))
 #define ok(number) ((number) - KERNBASE)
 
 struct nlist current_nl[] = {	/* namelist for currently running system */
@@ -62,38 +66,50 @@ struct nlist dump_nl[] = {	/* name list for dumped system */
 	{ "" },
 };
 
-char	*system;
+char	*vmunix;
 char	*dirname;			/* directory to save dumps in */
 char	*ddname;			/* name of dump device */
 int	dumpfd;				/* read/write descriptor on block dev */
-char	*find_dev();
 dev_t	dumpdev;			/* dump device */
 time_t	dumptime;			/* time the dump was taken */
 int	dumplo;				/* where dump starts on dumpdev */
 int	dumpsize;			/* amount of memory dumped */
 int	dumpmag;			/* magic number in dump */
 time_t	now;				/* current date */
-char	*path();
-char	*malloc();
-char	*ctime();
 char	vers[80];
 char	core_vers[80];
 char	panic_mesg[80];
 int	panicstr;
-void	Lseek __P((int fd, off_t off, int flag));
 int	verbose;
 int	force;
 int	clear;
-extern	int errno;
 
+int	dump_exists __P(());
+void	clear_dump __P(());
+char	*find_dev __P((int, int));
+char	*rawname __P((char *s));
+void	read_kmem __P(());
+void	check_kmem __P(());
+int	get_crashtime __P(());
+char	*path __P((char *));
+int	check_space __P(());
+int	read_number __P((char *));
+int	save_core __P(());
+int	Open __P((char *, int rw));
+int	Read __P((int, char *, int));
+void	Lseek __P((int, off_t, int));
+int	Create __P((char *, int));
+void	Write __P((int, char *, int));
+void	log __P((int, char *, ...));
+void	Perror __P((int, char *, char *));
+void	usage __P(());
+
+int
 main(argc, argv)
-	char **argv;
 	int argc;
+	char *argv[];
 {
-	extern char *optarg;
-	extern int optind;
 	int ch;
-	char *cp;
 
 	while ((ch = getopt(argc, argv, "cdfv")) != EOF)
 		switch(ch) {
@@ -121,7 +137,7 @@ main(argc, argv)
 		dirname = argv[0];
 	}
 	if (argc == 2)
-		system = argv[1];
+		vmunix = argv[1];
 
 	openlog("savecore", LOG_ODELAY, LOG_AUTH);
 
@@ -148,11 +164,13 @@ main(argc, argv)
 	}
 	if ((!get_crashtime() || !check_space()) && !force)
 		exit(1);
-	save_core();
+	if (!save_core())
+		exit(1);
 	clear_dump();
 	exit(0);
 }
 
+int
 dump_exists()
 {
 	int word;
@@ -164,28 +182,30 @@ dump_exists()
 	return (word == dumpmag);
 }
 
+void
 clear_dump()
 {
-	int zero = 0;
+	int zero;
 
+	zero = 0;
 	Lseek(dumpfd, (off_t)(dumplo + ok(dump_nl[X_DUMPMAG].n_value)), L_SET);
 	Write(dumpfd, (char *)&zero, sizeof (zero));
 }
 
 char *
 find_dev(dev, type)
-	register dev_t dev;
-	register int type;
+	register int dev, type;
 {
-	register DIR *dfd = opendir(_PATH_DEV);
+	static char devname[MAXPATHLEN + 1];
+	register DIR *dfd;
 	struct dirent *dir;
 	struct stat statb;
-	static char devname[MAXPATHLEN + 1];
 	char *dp;
 
+	dfd = opendir(_PATH_DEV);
 	strcpy(devname, _PATH_DEV);
 	while ((dir = readdir(dfd))) {
-		strcpy(devname + sizeof(_PATH_DEV) - 1, dir->d_name);
+		(void)strcpy(devname + sizeof(_PATH_DEV) - 1, dir->d_name);
 		if (stat(devname, &statb)) {
 			perror(devname);
 			continue;
@@ -210,13 +230,13 @@ rawname(s)
 	char *s;
 {
 	static char name[MAXPATHLEN];
-	char *sl, *rindex();
+	char *sl;
 
 	if ((sl = rindex(s, '/')) == NULL || sl[1] == '0') {
 		log(LOG_ERR, "can't make raw dump device name from %s?\n", s);
 		return (s);
 	}
-	sprintf(name, "%.*s/r%s", sl - s, s, sl + 1);
+	(void)snprintf(name, sizeof(name), "%.*s/r%s", sl - s, s, sl + 1);
 	return (name);
 }
 
@@ -224,14 +244,15 @@ int	cursyms[] =
     { X_DUMPDEV, X_DUMPLO, X_VERSION, X_DUMPMAG, -1 };
 int	dumpsyms[] =
     { X_TIME, X_DUMPSIZE, X_VERSION, X_PANICSTR, X_DUMPMAG, -1 };
+
+void
 read_kmem()
 {
-	register char *cp;
 	FILE *fp;
-	char *dump_sys;
 	int kmem, i;
+	char *dump_sys;
 	
-	dump_sys = system ? system : _PATH_UNIX;
+	dump_sys = vmunix ? vmunix : _PATH_UNIX;
 	nlist(_PATH_UNIX, current_nl);
 	nlist(dump_sys, dump_nl);
 	/*
@@ -272,13 +293,14 @@ read_kmem()
 		log(LOG_ERR, "Couldn't fdopen kmem\n");
 		exit(1);
 	}
-	if (system)
+	if (vmunix)
 		return;
-	fseek(fp, (long)current_nl[X_VERSION].n_value, L_SET);
+	fseek(fp, (off_t)current_nl[X_VERSION].n_value, L_SET);
 	fgets(vers, sizeof (vers), fp);
 	(void)fclose(fp);
 }
 
+void
 check_kmem()
 {
 	FILE *fp;
@@ -291,7 +313,7 @@ check_kmem()
 	}
 	fseek(fp, (off_t)(dumplo+ok(dump_nl[X_VERSION].n_value)), L_SET);
 	fgets(core_vers, sizeof (core_vers), fp);
-	if (!eq(vers, core_vers) && system == 0) {
+	if (strcmp(vers, core_vers) && vmunix == 0) {
 		log(LOG_WARNING, "Warning: %s version mismatch:\n", _PATH_UNIX);
 		log(LOG_WARNING, "\t%s\n", vers);
 		log(LOG_WARNING, "and\t%s\n", core_vers);
@@ -308,9 +330,9 @@ check_kmem()
 	/* don't fclose(fp); we want the file descriptor */
 }
 
+int
 get_crashtime()
 {
-	time_t clobber = (time_t)0;
 
 	Lseek(dumpfd, (off_t)(dumplo + ok(dump_nl[X_TIME].n_value)), L_SET);
 	Read(dumpfd, (char *)&dumptime, sizeof dumptime);
@@ -339,6 +361,7 @@ path(file)
 	return (cp);
 }
 
+int
 check_space()
 {
 	long minfree, spacefree;
@@ -360,6 +383,7 @@ check_space()
 	return (1);
 }
 
+int
 read_number(fn)
 	char *fn;
 {
@@ -379,22 +403,22 @@ read_number(fn)
 
 #define	BUFSIZE		(256*1024)		/* 1/4 Mb */
 
+int
 save_core()
 {
 	register int n;
 	register char *cp;
-	register int ifd, ofd, bounds;
-	int ret;
+	register int ifd, ofd, bounds, ret, stat;
 	char *bfile;
 	register FILE *fp;
 
 	cp = malloc(BUFSIZE);
 	if (cp == 0) {
 		log(LOG_ERR, "savecore: Can't allocate i/o buffer.\n");
-		return;
+		return (0);
 	}
 	bounds = read_number("bounds");
-	ifd = Open(system ? system : _PATH_UNIX, O_RDONLY);
+	ifd = Open(vmunix ? vmunix : _PATH_UNIX, O_RDONLY);
 	(void)sprintf(cp, "vmunix.%d", bounds);
 	ofd = Create(path(cp), 0644);
 	while((n = Read(ifd, cp, BUFSIZE)) > 0)
@@ -414,9 +438,9 @@ save_core()
 	dumpsize *= NBPG;
 	log(LOG_NOTICE, "Saving %d bytes of image in vmcore.%d\n",
 	    dumpsize, bounds);
+	stat = 1;
 	while (dumpsize > 0) {
-		n = read(ifd, cp,
-		    dumpsize > BUFSIZE ? BUFSIZE : dumpsize);
+		n = read(ifd, cp, dumpsize > BUFSIZE ? BUFSIZE : dumpsize);
 		if (n <= 0) {
 			if (n == 0)
 				log(LOG_WARNING,
@@ -425,6 +449,7 @@ save_core()
 			else
 				Perror(LOG_ERR, "read from dumpdev: %m",
 				    "read");
+			stat = 0;
 			break;
 		}
 		if ((ret = write(ofd, cp, n)) < n) {
@@ -434,10 +459,13 @@ save_core()
 				log(LOG_ERR, "short write: wrote %d of %d\n",
 				    ret, n);
 			log(LOG_WARNING, "WARNING: vmcore may be incomplete\n");
+			stat = 0;
 			break;
 		}
 		dumpsize -= n;
+		(void)fprintf(stderr, "%6dK\r", dumpsize / 1024);
 	}
+	fputc('\n', stderr);
 	close(ifd);
 	close(ofd);
 	bfile = path("bounds");
@@ -448,11 +476,13 @@ save_core()
 	} else
 		Perror(LOG_ERR, "Can't create bounds file %s: %m", bfile);
 	free(cp);
+	return (stat);
 }
 
 /*
  * Versions of std routines that exit on error.
  */
+int
 Open(name, rw)
 	char *name;
 	int rw;
@@ -467,9 +497,11 @@ Open(name, rw)
 	return (fd);
 }
 
+int
 Read(fd, buff, size)
-	int fd, size;
+	int fd;
 	char *buff;
+	int size;
 {
 	int ret;
 
@@ -483,18 +515,20 @@ Read(fd, buff, size)
 
 void
 Lseek(fd, off, flag)
-	int fd, flag;
+	int fd;
 	off_t off;
+	int flag;
 {
 	long ret;
 
-	ret = lseek(fd, off, flag);
+	ret = lseek(fd, (off_t)off, flag);
 	if (ret == -1) {
 		Perror(LOG_ERR, "lseek: %m", "lseek");
 		exit(1);
 	}
 }
 
+int
 Create(file, mode)
 	char *file;
 	int mode;
@@ -509,9 +543,11 @@ Create(file, mode)
 	return (fd);
 }
 
+void
 Write(fd, buf, size)
-	int fd, size;
+	int fd;
 	char *buf;
+	int size;
 {
 	int n;
 
@@ -525,15 +561,30 @@ Write(fd, buf, size)
 }
 
 /* VARARGS2 */
-log(level, msg, a1, a2)
+void
+#if __STDC__
+log(int level, char *fmt, ...)
+#else
+log(level, fmt, va_alist)
 	int level;
-	char *msg;
+	char *fmt;
+	va_dcl
+#endif
 {
+	va_list ap;
 
-	(void)fprintf(stderr, msg, a1, a2);
-	syslog(level, msg, a1, a2);
+#if __STDC__
+	va_start(ap, fmt);
+#else
+	va_start(ap);
+#endif
+
+	(void)vfprintf(stderr, fmt, ap);
+	vsyslog(level, fmt, ap);
+	va_end(ap);
 }
 
+void
 Perror(level, msg, s)
 	int level;
 	char *msg, *s;
@@ -545,6 +596,7 @@ Perror(level, msg, s)
 	syslog(level, msg, s);
 }
 
+void
 usage()
 {
 	(void)fprintf(stderr, "usage: savecore [-cfv] dirname [system]\n");
