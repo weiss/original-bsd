@@ -4,15 +4,15 @@
  *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Henry Spencer of the University of Toronto.
+ * Henry Spencer.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)regexec.c	8.2 (Berkeley) 03/16/94
+ *	@(#)regexec.c	8.3 (Berkeley) 03/20/94
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)regexec.c	8.2 (Berkeley) 03/16/94";
+static char sccsid[] = "@(#)regexec.c	8.3 (Berkeley) 03/20/94";
 #endif /* LIBC_SCCS and not lint */
 
 /*
