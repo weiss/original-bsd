@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)touch.c	4.3 (Berkeley) 08/11/83";
+static	char sccsid[] = "@(#)touch.c	4.4 (Berkeley) 04/06/87";
 #endif
 
 /*
@@ -11,6 +11,7 @@ static	char sccsid[] = "@(#)touch.c	4.3 (Berkeley) 08/11/83";
 
 #include <stdio.h>
 #include <sys/types.h>
+#include <sys/file.h>
 #include <sys/stat.h>
 
 int	dontcreate;	/* set if -c option */
@@ -66,7 +67,7 @@ touch(filename)
 			whoami, filename);
 		return;
 	}
-	if (!access(filename,4|2)) {
+	if (!access(filename,R_OK | W_OK)) {
 		readwrite(filename,statbuffer.st_size);
 		return;
 	}
