@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)interp.c 1.2 01/10/81";
+static char sccsid[] = "@(#)interp.c 1.3 01/13/81";
 
 #include <math.h>
 #include "vars.h"
@@ -998,9 +998,8 @@ interpreter(base)
 			continue;
 		case O_STLIM:
 			pc.cp++;
-			_stlim = pop4();
-			_stcnt--;
-			LINO();
+			STLIM();
+			popargs(1);
 			continue;
 		case O_LLIMIT:
 			pc.cp++;
