@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)samachdep.h	7.3 (Berkeley) 06/18/92
+ *	@(#)samachdep.h	7.4 (Berkeley) 12/26/92
  */
 
 #define	NHPIB		4
@@ -30,6 +30,7 @@
 #define HP_340		5	/* 16Mhz 68030 */
 #define HP_375		6	/* 50Mhz 68030+32K external cache */
 #define HP_380		7	/* 25Mhz 68040 */
+#define HP_433		8	/* 33Mhz 68040 */
 
 #define MHZ_8		1
 #define MHZ_16		2
