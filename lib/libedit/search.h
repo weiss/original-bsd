@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)search.h	5.1 (Berkeley) 06/22/92
+ *	@(#)search.h	5.2 (Berkeley) 06/22/92
  */
 
 /*
@@ -16,7 +16,7 @@
 #ifndef _h_el_search 
 #define _h_el_search 
 
-#include "editline.h"
+#include "histedit.h"
 
 typedef struct el_search_t {
     char *patbuf;		/* The pattern buffer		*/

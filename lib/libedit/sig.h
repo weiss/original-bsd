@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sig.h	5.1 (Berkeley) 06/22/92
+ *	@(#)sig.h	5.2 (Berkeley) 06/22/92
  */
 
 /*
@@ -18,7 +18,7 @@
 
 #include <signal.h>
 
-#include "editline.h"
+#include "histedit.h"
 
 /*
  * Define here all the signals we are going to handle
