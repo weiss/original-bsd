@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ts.c	7.12 (Berkeley) 06/28/90
+ *	@(#)ts.c	7.13 (Berkeley) 07/01/90
  */
 
 #include "ts.h"
@@ -21,6 +21,7 @@
 #include "systm.h"
 #include "buf.h"
 #include "conf.h"
+#include "errno.h"
 #include "file.h"
 #include "map.h"
 #include "vm.h"
