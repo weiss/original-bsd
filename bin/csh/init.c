@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)init.c 4.1 10/09/80";
+static	char *sccsid = "@(#)init.c 4.2 08/20/81";
 
 #include "sh.local.h"
 
@@ -129,7 +129,7 @@ struct	biltins {
 	"set",		doset,		0,	INF,
 	"setenv",	dosetenv,	2,	2,
 	"shift",	shift,		0,	1,
-	"source",	dosource,	1,	1,
+	"source",	dosource,	1,	2,
 	"stop",		dostop,		1,	INF,
 	"suspend",	dosuspend,	0,	0,
 	"switch",	doswitch,	1,	INF,
