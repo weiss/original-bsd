@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass4.c	5.2 (Berkeley) 03/05/86";
+static char sccsid[] = "@(#)pass4.c	5.3 (Berkeley) 03/05/86";
 #endif not lint
 
 #include <sys/param.h>
@@ -55,6 +55,13 @@ pass4()
 		case FCLEAR:
 			clri(&idesc, "BAD/DUP", 1);
 			break;
+
+		case USTATE:
+			break;
+
+		default:
+			errexit("BAD STATE %d FOR INODE I=%d",
+			    statemap[inumber], inumber);
 		}
 	}
 }

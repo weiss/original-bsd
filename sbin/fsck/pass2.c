@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass2.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)pass2.c	5.2 (Berkeley) 03/05/86";
 #endif not lint
 
 #include <sys/param.h>
@@ -251,6 +251,10 @@ again:
 				errexit("BAD RETURN STATE %d FROM DESCEND",
 				    statemap[dirp->d_ino]);
 			break;
+
+		default:
+			errexit("BAD STATE %d FOR INODE I=%d",
+			    statemap[dirp->d_ino], dirp->d_ino);
 		}
 	}
 	pathp = curpathloc;
