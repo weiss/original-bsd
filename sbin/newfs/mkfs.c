@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)mkfs.c	2.18 (Berkeley) 03/24/85";
+static	char *sccsid = "@(#)mkfs.c	2.19 (Berkeley) 04/02/85";
 #endif
 
 /*
@@ -328,7 +328,7 @@ main(argc, argv)
 		    "Warning: insufficient space in super block for\n",
 		    "rotational layout tables with nsect", sblock.fs_nsect,
 		    "and ntrak", sblock.fs_ntrak,
-		    "\nFile system performance may be impared.\n");
+		    "\nFile system performance may be impaired.\n");
 		sblock.fs_cpc = 0;
 		goto next;
 	}
