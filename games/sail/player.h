@@ -1,5 +1,5 @@
 /*
- * sccsid = "@(#)player.h	2.5 12/17/83";
+ * sccsid = "@(#)player.h	2.6 01/27/84";
  */
 #include <curses.h>
 #include "externs.h"
@@ -81,6 +81,3 @@ struct shipspecs *mc;		/* ms->specs */
 #define LEAVE_HURRICAN	2
 #define LEAVE_DRIVER	3
 #define LEAVE_FORK	4
-
-#define blockalarm()	((void) sigblock(1 << SIGALRM-1))
-#define unblockalarm()	((void) sigsetmask(sigblock(0) & ~(1 << SIGALRM-1)))
