@@ -1,4 +1,4 @@
-/*	tty.c	3.11	07/19/80	*/
+/*	tty.c	3.12	08/24/80	*/
 
 /*
  * general TTY subroutines
@@ -805,8 +805,9 @@ register struct tty *tp;
 			c = 10;
 		} else if(ctype == 3) { /* concept 100 */
 			int i;
-			for (i= *colp; i<9; i++)
-				(void) putc(0177, &tp->t_outq);
+			if ((i = *colp) >= 0)
+				for (; i<9; i++)
+					(void) putc(0177, &tp->t_outq);
 		}
 		*colp = 0;
 	}
