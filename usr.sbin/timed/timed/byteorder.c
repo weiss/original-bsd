@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)byteorder.c	2.3 (Berkeley) 05/16/86";
+static char sccsid[] = "@(#)byteorder.c	2.4 (Berkeley) 05/20/86";
 #endif not lint
 
 #include "globals.h"
@@ -22,6 +22,7 @@ struct tsp *ptr;
 	ptr->tsp_seq = htons((u_short)ptr->tsp_seq);
 	switch (ptr->tsp_type) {
 
+	case TSP_SETTIME:
 	case TSP_ADJTIME:
 	case TSP_SETDATE:
 	case TSP_SETDATEREQ:
@@ -40,6 +41,7 @@ struct tsp *ptr;
 	ptr->tsp_seq = ntohs((u_short)ptr->tsp_seq);
 	switch (ptr->tsp_type) {
 
+	case TSP_SETTIME:
 	case TSP_ADJTIME:
 	case TSP_SETDATE:
 	case TSP_SETDATEREQ:
