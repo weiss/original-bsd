@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)terminal.c	1.13 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)terminal.c	1.14 (Berkeley) 03/21/89";
 #endif /* not lint */
 
 #include <arpa/telnet.h>
@@ -114,10 +114,10 @@ getconnmode()
     if (dontlecho && (clocks.echotoggle > clocks.modenegotiated)) {
 	modeindex += 1;
     }
-    if (hisopts[TELOPT_ECHO]) {
+    if (should_he(TELOPT_ECHO)) {
 	modeindex += 2;
     }
-    if (hisopts[TELOPT_SGA]) {
+    if (should_he(TELOPT_SGA)) {
 	modeindex += 4;
     }
     if (In3270) {
