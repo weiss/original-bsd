@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)union_vfsops.c	1.3 (Berkeley) 02/01/94
+ *	@(#)union_vfsops.c	1.4 (Berkeley) 02/03/94
  */
 
 /*
@@ -214,7 +214,9 @@ union_root(mp, vpp)
 	 */
 	VREF(um->um_uppervp);
 	VREF(um->um_lowervp);
-	error = union_allocvp(vpp, mp, (struct vnode *) 0,
+	error = union_allocvp(vpp, mp,
+			      (struct vnode *) 0,
+			      (struct vnode *) 0,
 			      (struct componentname *) 0,
 			      um->um_uppervp,
 			      um->um_lowervp);
