@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/05/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	retest
 SRCS=	regexp.c retest.c
