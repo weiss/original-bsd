@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_vnops.c	7.36 (Berkeley) 02/03/92
+ *	@(#)vfs_vnops.c	7.37 (Berkeley) 02/04/92
  */
 
 #include "param.h"
@@ -33,7 +33,7 @@ vn_open(ndp, fmode, cmode)
 {
 	register struct vnode *vp;
 	register struct proc *p = ndp->ni_cnd.cn_proc;
-	register struct ucred *cred = ndp->ni_cnd.cn_cred;
+	register struct ucred *cred = p->p_ucred;
 	struct vattr vat;
 	struct vattr *vap = &vat;
 	int error;
