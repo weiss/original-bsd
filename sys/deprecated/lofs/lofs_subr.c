@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lofs_subr.c	7.1 (Berkeley) 07/12/92
+ *	@(#)lofs_subr.c	7.2 (Berkeley) 05/05/93
  *
  * $Id: lofs_subr.c,v 1.11 1992/05/30 10:05:43 jsp Exp jsp $
  */
@@ -184,7 +184,7 @@ lofs_alias(mp, targetvp, newvpp)
 
 	if (targetvp->v_type != VDIR || targetvp->v_op == lofs_vnodeop_p) {
 		*newvpp = targetvp;
-		return;
+		return (0);
 	}
 
 	ap = lofs_find(mp, targetvp);
