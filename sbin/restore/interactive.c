@@ -5,11 +5,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)interactive.c	5.1 (Berkeley) 05/28/85";
+static char sccsid[] = "@(#)interactive.c	5.2 (Berkeley) 06/18/85";
 #endif not lint
 
 #include "restore.h"
-#include <dumprestor.h>
+#include <protocols/dumprestore.h>
 #include <setjmp.h>
 
 #define round(a, b) (((a) + (b) - 1) / (b) * (b))
