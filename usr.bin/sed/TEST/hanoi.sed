@@ -1,6 +1,6 @@
 # Towers of Hanoi in sed.
 #
-#	@(#)hanoi.sed	5.1 (Berkeley) 10/10/90
+#	@(#)hanoi.sed	8.1 (Berkeley) 06/06/93
 #
 #
 # Ex:
