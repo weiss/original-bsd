@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mt.c	7.4 (Berkeley) 01/14/89
+ *	@(#)mt.c	7.5 (Berkeley) 02/17/90
  */
 
 #include "mu.h"
@@ -27,14 +27,12 @@
 #include "systm.h"
 #include "buf.h"
 #include "conf.h"
-#include "dir.h"
 #include "file.h"
 #include "user.h"
 #include "map.h"
 #include "ioctl.h"
 #include "mtio.h"
 #include "cmap.h"
-#include "uio.h"
 #include "tty.h"
 #include "syslog.h"
 
