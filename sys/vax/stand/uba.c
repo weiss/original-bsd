@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uba.c	6.2 (Berkeley) 06/08/85
+ *	@(#)uba.c	6.3 (Berkeley) 08/02/85
  */
 
 #include "../machine/pte.h"
@@ -66,6 +66,7 @@ ubafree(io, mr)
 		return;
 	switch (cpu) {
 
+	case VAX_8600:
 	case VAX_780:
 		ubauba(io->i_unit)->uba_dpr[bdp] |= UBADPR_BNE;
 		break;
