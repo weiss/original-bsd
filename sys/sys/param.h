@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)param.h	7.1 (Berkeley) 06/04/86
+ *	@(#)param.h	7.2 (Berkeley) 11/03/86
  */
 
 #define	BSD	43		/* 4.3 * 10, as cpp doesn't do floats */
@@ -125,9 +125,16 @@
  * speed of ``fsck''.
  */
 #define	MAXBSIZE	8192
+#if defined(vax) || defined(sun)
 #define	DEV_BSIZE	512
 #define	DEV_BSHIFT	9		/* log2(DEV_BSIZE) */
 #define BLKDEV_IOSIZE	2048
+#endif
+#if defined(tahoe)
+#define	DEV_BSIZE	1024
+#define	DEV_BSHIFT	10		/* log2(DEV_BSIZE) */
+#define BLKDEV_IOSIZE	1024		/* NBPG for physical controllers */
+#endif
 #define MAXFRAG 	8
 
 #define	btodb(bytes)	 		/* calculates (bytes / DEV_BSIZE) */ \
