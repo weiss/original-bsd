@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.33 (Berkeley) 12/03/92";
+static char sccsid[] = "@(#)savecore.c	5.34 (Berkeley) 12/03/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -108,7 +108,7 @@ main(argc, argv)
 
 	openlog("savecore", LOG_PERROR, LOG_DAEMON);
 
-	while ((ch = getopt(argc, argv, "cdfvz")) != EOF)
+	while ((ch = getopt(argc, argv, "cdfNvz")) != EOF)
 		switch(ch) {
 		case 'c':
 			clear = 1;
@@ -119,6 +119,9 @@ main(argc, argv)
 			break;
 		case 'f':
 			force = 1;
+			break;
+		case 'N':
+			vmunix = optarg;
 			break;
 		case 'z':
 			compress = 1;
@@ -314,7 +317,6 @@ err1:			syslog(LOG_WARNING, "%s: %s", path, strerror(errno));
 	}
 	(void)fclose(fp);
 
-goto XXX;
 	/* Create the core file. */
 	(void)snprintf(path, sizeof(path), "%s/vmcore.%d%s",
 	    dirname, bounds, compress ? ".Z" : "");
@@ -377,7 +379,7 @@ err2:			syslog(LOG_WARNING,
 		(void)close(ofd);
 
 	/* Copy the kernel. */
-XXX:	ifd = Open(vmunix ? vmunix : _PATH_UNIX, O_RDONLY);
+	ifd = Open(vmunix ? vmunix : _PATH_UNIX, O_RDONLY);
 	(void)snprintf(path, sizeof(path), "%s/vmunix.%d%s",
 	    dirname, bounds, compress ? ".Z" : "");
 	if (compress) {
@@ -504,7 +506,7 @@ check_space()
 		syslog(LOG_ERR, "%s: %m", dirname);
 		exit(1);
 	}
- 	spacefree = fsbuf.f_bavail * fsbuf.f_bsize / 1024;
+ 	spacefree = (fsbuf.f_bavail * fsbuf.f_bsize) / 1024;
 
 	(void)snprintf(path, sizeof(path), "%s/minfree", dirname);
 	if ((fp = fopen(path, "r")) == NULL)
@@ -602,6 +604,6 @@ Write(fd, bp, size)
 void
 usage()
 {
-	(void)syslog(LOG_ERR, "usage: savecore [-cfv] dirname [system]");
+	(void)syslog(LOG_ERR, "usage: savecore [-cfvz] [-N system] directory");
 	exit(1);
 }
