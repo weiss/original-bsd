@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)e.mac	6.3 (Berkeley) 08/10/93
+.\"	@(#)e.mac	8.1 (Berkeley) 08/14/93
 .\"
 .ds . \&\s+2.\s0\&
 .de UC
