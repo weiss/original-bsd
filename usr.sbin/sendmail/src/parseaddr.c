@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] = "@(#)parseaddr.c	3.24	09/12/81";
+static char	SccsId[] = "@(#)parseaddr.c	3.25	09/14/81";
 
 /*
 **  PARSE -- Parse an address
@@ -356,6 +356,11 @@ prescan(addr, delim)
 		else if (cmntcnt > 0)
 			continue;
 
+		if (avp >= &av[MAXATOM])
+		{
+			syserr("prescan: too many tokens");
+			return (NULL);
+		}
 		*avp++ = tok;
 
 		/* we prefer <> specs */
@@ -604,12 +609,24 @@ rewrite(pvp, ruleset)
 						pp = m->firsttok;
 						do
 						{
+							if (avp >= &npvp[MAXATOM])
+							{
+								syserr("rewrite: expansion too long");
+								return;
+							}
 							*avp++ = *pp;
 						} while (pp++ != m->lasttok);
 					}
 				}
 				else
+				{
+					if (avp >= &npvp[MAXATOM])
+					{
+						syserr("rewrite: expansion too long");
+						return;
+					}
 					*avp++ = rp;
+				}
 			}
 			*avp++ = NULL;
 			bmove((char *) npvp, (char *) pvp, (avp - npvp) * sizeof *avp);
