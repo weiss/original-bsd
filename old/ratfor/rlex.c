@@ -1,4 +1,7 @@
-/* @(#)rlex.c	1.1 (Berkeley) 12/15/82 */
+#ifndef lint
+static char sccsid[] = "@(#)rlex.c	1.2 (Berkeley) 08/11/83";
+#endif
+
 # include "r.h"
 
 char *keyword [] = {
