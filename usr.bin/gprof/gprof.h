@@ -1,10 +1,9 @@
-    /* sccsid:  @(#)gprof.h	1.17 (Berkeley) 03/30/83 */
+    /* sccsid:  @(#)gprof.h	1.18 (Berkeley) 06/10/83 */
 
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <a.out.h>
-#include <pagsiz.h>
 #include "gcrt0.h"
 
 #if vax
