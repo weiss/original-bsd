@@ -1,10 +1,10 @@
-SCCSID = "@(#)Makefile 1.36 11/12/82"
+SCCSID = "@(#)Makefile 1.37 01/17/83"
 
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
 WHOAMI = pc
 VERSION = 2.10
-DATE = 11/12/82
+DATE = 01/17/83
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
@@ -34,7 +34,7 @@ SRCS =	ato.c \
 	treen.c yycopy.c \
 	yycosts.c yyerror.c yyget.c yyid.c yylex.c yymain.c yyoptions.c \
 	yypanic.c yyparse.c yyprint.c yyput.c yyrecover.c yyseman.c yytree.c \
-	p2put.c stab.c pcproc.c pcfunc.c pccaseop.c pclval.c
+	p2put.c stab.c pcproc.c pcfunc.c pccaseop.c pclval.c sconv.c
 
 HDRS =	0.h OPnames.h align.h iorec.h objfmt.h pstab.h pc.h pcops.h \
 	send.h tree.h whoami.h yy.h config.h
@@ -55,7 +55,7 @@ OBJS =	ato.o \
 	y.tab.o \
 	yycosts.o yyerror.o yyget.o yyid.o yylex.o yymain.o yyoptions.o \
 	yypanic.o yyparse.o yyprint.o yyput.o yyrecover.o yyseman.o yytree.o \
-	p2put.o stab.o pcproc.o pcfunc.o pccaseop.o pclval.o
+	p2put.o stab.o pcproc.o pcfunc.o pccaseop.o pclval.o sconv.o
 
 a.out: ${OBJS} config.c
 	${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} config.c
