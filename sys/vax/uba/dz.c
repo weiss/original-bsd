@@ -1,4 +1,4 @@
-/*	dz.c	3.12	06/23/80	*/
+/*	dz.c	3.13	09/14/80	*/
 
 /*
  *  DZ-11 Driver
@@ -14,6 +14,7 @@
 #include "../h/conf.h"
 #include "../h/pdma.h"
 #include "../h/bk.h"
+#include "../h/file.h"
 
 /*
  * When running dz's using only SAE (silo alarm) on input
@@ -409,7 +410,7 @@ dzscan()
 					gsignal(tp->t_pgrp, SIGHUP);
 					gsignal(tp->t_pgrp, SIGCONT);
 					dzaddr->dzdtr &= ~bit;
-					flushtty(tp);
+					flushtty(tp, FREAD|FWRITE);
 				}
 				tp->t_state &= ~CARR_ON;
 			}
