@@ -2,7 +2,7 @@
 # include <ctype.h>
 # include "dlvrmail.h"
 
-static char	SccsId[] = "@(#)parseaddr.c	2.4	01/08/81";
+static char	SccsId[] = "@(#)parseaddr.c	2.5	01/08/81";
 
 /*
 **  PARSE -- Parse an address
@@ -46,7 +46,7 @@ static char	SccsId[] = "@(#)parseaddr.c	2.4	01/08/81";
 **		savemail
 */
 
-# define DELIMCHARS	"()<>@!.,;:\\\""	/* word delimiters */
+# define DELIMCHARS	"()<>@!.,;:\\\" \t\r\n"	/* word delimiters */
 # define SPACESUB	('.'|0200)		/* substitution for <lwsp> */
 
 addrq *
