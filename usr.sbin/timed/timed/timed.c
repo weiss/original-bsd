@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)timed.c	2.9 (Berkeley) 05/28/86";
+static char sccsid[] = "@(#)timed.c	2.10 (Berkeley) 06/02/86";
 #endif not lint
 
 #include "globals.h"
@@ -149,6 +149,23 @@ char **argv;
 			}
 		} while (*++(*argv));
 	}
+
+#ifndef DEBUG
+	if (fork())
+		exit(0);
+	{ int s;
+	  for (s = getdtablesize(); s >= 0; --s)
+		(void) close(s);
+	  (void) open("/dev/null", 0);
+	  (void) dup2(0, 1);
+	  (void) dup2(0, 2);
+	  s = open("/dev/tty", 2);
+	  if (s >= 0) {
+		(void) ioctl(s, TIOCNOTTY, (char *)0);
+		(void) close(s);
+	  }
+	}
+#endif
 
 	if (trace == ON) {
 		fd = fopen(tracefile, "w");
@@ -314,23 +331,6 @@ char **argv;
 
 	/* election timer delay in secs. */
 	delay2 = casual((long)MINTOUT, (long)MAXTOUT);
-#ifndef DEBUG
-	if (fork())
-		exit(0);
-	{ int s;
-	  for (s = getdtablesize(); s >= 0; --s)
-		(void) close(s);
-	  (void) open("/dev/null", 0);
-	  (void) dup2(0, 1);
-	  (void) dup2(0, 2);
-	  s = open("/dev/tty", 2);
-	  if (s >= 0) {
-		(void) ioctl(s, TIOCNOTTY, (char *)0);
-		(void) close(s);
-	  }
-	}
-#endif
-
 
 	if (Mflag) {
 		/* open raw socket used to measure time differences */
