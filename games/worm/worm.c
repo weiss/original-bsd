@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)worm.c	5.1 (Berkeley) 05/29/85";
+static char sccsid[] = "@(#)worm.c	5.2 (Berkeley) 06/25/85";
 #endif not lint
 
 /*
@@ -31,7 +31,7 @@ static char sccsid[] = "@(#)worm.c	5.1 (Berkeley) 05/29/85";
 #define when break;case
 #define otherwise break;default
 #define CNTRL(p) ('p'-'A'+1)
-#ifndef attron
+#ifndef baudrate
 # define	baudrate()	_tty.sg_ospeed
 #endif
 
