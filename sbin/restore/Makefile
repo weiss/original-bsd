@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 06/18/85
+#	@(#)Makefile	5.3 (Berkeley) 09/07/85
 #
 DESTDIR=
 CFLAGS= -O
@@ -27,8 +27,8 @@ dumprmt.o: ../dump/dumprmt.c
 	cc ${CFLAGS} -c ../dump/dumprmt.c
 
 install: rrestore restore
-	install restore ${DESTDIR}/etc/restore
-	install -m 4755 rrestore ${DESTDIR}/etc/rrestore
+	install -s restore ${DESTDIR}/etc/restore
+	install -s -m 4755 rrestore ${DESTDIR}/etc/rrestore
 
 clean:
 	rm -f restore rrestore *.o errs a.out core
