@@ -6,14 +6,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)curses.c	5.9 (Berkeley) 09/21/92";
+static char sccsid[] = "@(#)curses.c	5.10 (Berkeley) 12/22/92";
 #endif /* not lint */
 
 #include <curses.h>
 
 /* Private. */
 int	__echoit = 1;			/* If stty indicates ECHO. */
-int	__endwin = 0;			/* If endwin has been called. */
 int	__pfast;
 int	__rawmode = 0;			/* If stty indicates RAW mode. */
 int	__noqch = 0;			/* 
