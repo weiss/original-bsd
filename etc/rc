@@ -1,5 +1,5 @@
 #
-#	@(#)rc	5.8 (Berkeley) 10/26/89
+#	@(#)rc	5.9 (Berkeley) 01/23/90
 #
 
 HOME=/; export HOME
@@ -87,7 +87,7 @@ then
 fi
 
 echo preserving editor files  >/dev/console
-(cd /tmp; /usr/libexec/ex3.7preserve -a)
+(cd /var/tmp; /usr/libexec/ex3.7preserve -a)
 echo clearing /tmp 	>/dev/console
 (cd /tmp; rm -rf [a-km-pr-zA-Z]* )
 (cd /tmp; find . ! -name . ! -name lost+found ! -name quotas -exec rm -r {} \; )
