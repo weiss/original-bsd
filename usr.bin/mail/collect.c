@@ -7,7 +7,7 @@
  * ~ escapes.
  */
 
-static char *SccsId = "@(#)collect.c	2.10 07/28/82";
+static char *SccsId = "@(#)collect.c	2.11 10/21/82";
 
 #include "rcv.h"
 #include <sys/stat.h>
@@ -175,6 +175,7 @@ collect(hp)
 			 */
 
 			execute(&linebuf[2], 1);
+			printf("(continue)\n");
 			break;
 
 		case '.':
