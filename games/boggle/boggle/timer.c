@@ -9,15 +9,15 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)timer.c	8.1 (Berkeley) 06/11/93";
+static char sccsid[] = "@(#)timer.c	8.2 (Berkeley) 02/22/94";
 #endif /* not lint */
 
 #include <sys/param.h>
+#include <sys/time.h>
 
 #include <curses.h>
 #include <setjmp.h>
 #include <stdio.h>
-#include <time.h>
 #include <unistd.h>
 
 #include "bog.h"
