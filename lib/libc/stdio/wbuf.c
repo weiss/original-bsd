@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)wbuf.c	5.3 (Berkeley) 09/22/88";
+static char sccsid[] = "@(#)wbuf.c	5.4 (Berkeley) 12/19/88";
 #endif LIBC_SCCS and not lint
 
 #include	<stdio.h>
@@ -78,6 +78,14 @@ tryagain:
 		return(EOF);
 	}
 	return(c);
+}
+
+fpurge(iop)
+register FILE *iop;
+{
+	iop->_ptr = iop->_base;
+	iop->_cnt = iop->_flag&(_IOLBF|_IONBF|_IOREAD) ? 0 : iop->_bufsiz;
+	return(0);
 }
 
 fflush(iop)
