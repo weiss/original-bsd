@@ -1,4 +1,4 @@
-/*	mem.c	3.4	06/07/80	*/
+/*	mem.c	4.1	11/09/80	*/
 
 /*
  * Memory special file

@@ -1,4 +1,4 @@
-/*	vp.c	3.5	10/19/80	*/
+/*	vp.c	4.1	11/09/80	*/
 
 #include "../conf/vp.h"
 #if NVP > 0
