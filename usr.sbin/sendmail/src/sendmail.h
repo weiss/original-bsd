@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.17 (Berkeley) 03/12/91
+ *	@(#)sendmail.h	5.18 (Berkeley) 07/25/91
  */
 
 /*
@@ -15,12 +15,13 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.17		03/12/91";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.18		07/25/91";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
 # endif _DEFINE
 
+# include <sys/types.h>
 # include <stdio.h>
 # include <ctype.h>
 # include <setjmp.h>
@@ -381,6 +382,7 @@ typedef struct symtab	STAB;
 # define s_address	s_value.sv_addr
 # define s_mailer	s_value.sv_mailer
 # define s_alias	s_value.sv_alias
+# undef s_host
 # define s_host		s_value.sv_host
 
 extern STAB	*stab();
@@ -533,6 +535,7 @@ EXTERN char	*MxHosts[MAXMXHOSTS+1];	/* for MX RRs */
 EXTERN char	*TrustedUsers[MAXTRUST+1];	/* list of trusted users */
 EXTERN char	*UserEnviron[MAXUSERENVIRON+1];	/* saved user environment */
 EXTERN int	CheckpointInterval;	/* queue file checkpoint interval */
+EXTERN bool	WildcardMX;	/* we have wildcard MX records */
 /*
 **  Trace information
 */
