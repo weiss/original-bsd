@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)runtime.c	5.2 (Berkeley) 01/10/86";
+static char sccsid[] = "@(#)runtime.c	5.3 (Berkeley) 04/06/87";
 #endif not lint
 
 static char rcsid[] = "$Header: runtime.c,v 1.5 84/12/26 10:41:52 linton Exp $";
@@ -1005,7 +1005,7 @@ Symbol f;
     } else {
 	putchar('\n');
 	printname(stdout, f);
-	printf(" returns successfully\n", symname(f));
+	printf("%s returns successfully\n", symname(f));
     }
     erecover();
 }
