@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkfs.c	6.15 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)mkfs.c	6.16 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 #ifndef STANDALONE
@@ -116,7 +116,8 @@ mkfs(pp, fsys, fi, fo)
 	long used, mincpgcnt, bpcg;
 	long mapcramped, inodecramped;
 	long postblsize, rotblsize, totalsbsize;
-	int ppid, status, started();
+	int ppid, status;
+	void started();
 
 #ifndef STANDALONE
 	time(&utime);
