@@ -1,4 +1,4 @@
-.\"	@(#)goodbye	5.2 (Berkeley) 06/17/92
+.\"	@(#)goodbye	5.3 (Berkeley) 06/17/92
 .\"
 .\" use -ms
 .PP
@@ -49,4 +49,5 @@ what it is today!
 .in 1i
 .sp 2
 Kirk McKusick
+.br
 Keith Bostic
