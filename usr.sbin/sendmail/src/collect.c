@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.20 (Berkeley) 08/07/94";
+static char sccsid[] = "@(#)collect.c	8.21 (Berkeley) 08/15/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -81,7 +81,6 @@ collect(fp, smtpmode, requeueflag, hdrp, e)
 	char *pbp;
 	char peekbuf[8];
 	char bufbuf[MAXLINE];
-	extern char *hvalue();
 	extern bool isheader();
 
 	CollectErrorMessage = NULL;
