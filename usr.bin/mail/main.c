@@ -9,7 +9,7 @@
  * Startup -- interface with user.
  */
 
-static char *SccsId = "@(#)main.c	2.5 02/13/82";
+static char *SccsId = "@(#)main.c	2.6 02/26/82";
 
 jmp_buf	hdrjmp;
 
@@ -29,7 +29,7 @@ main(argc, argv)
 {
 	register char *ef;
 	register int i, argp;
-	int mustsend, uflag, hdrstop(), (*prevint)();
+	int mustsend, uflag, hdrstop(), (*prevint)(), f;
 	FILE *ibuf, *ftat;
 	extern char _sobuf[];
 	struct sgttyb tbuf;
@@ -109,6 +109,11 @@ main(argc, argv)
 				exit(1);
 			}
 			Tflag = argv[i+1];
+			if ((f = creat(Tflag, 0600)) < 0) {
+				perror(Tflag);
+				exit(1);
+			}
+			close(f);
 			i++;
 			break;
 
