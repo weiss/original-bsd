@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)df.c	5.17 (Berkeley) 03/13/90";
+static char sccsid[] = "@(#)df.c	5.18 (Berkeley) 05/04/90";
 #endif /* not lint */
 
 /*
@@ -111,7 +111,7 @@ main(argc, argv)
 				mntpt = mktemp("/tmp/df.XXXXXX");
 				mdev.fspec = *argv;
 				if (!mkdir(mntpt) &&
-				    !mount(MOUNT_UFS, mntpt, M_RDONLY, &mdev) &&
+				    !mount(MOUNT_UFS, mntpt, MNT_RDONLY, &mdev) &&
 				    !statfs(mntpt, &statfsbuf)) {
 					statfsbuf.f_mntonname[0] = '\0';
 					prtstat(&statfsbuf, maxwidth);
