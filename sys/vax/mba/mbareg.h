@@ -1,4 +1,4 @@
-/*	mbareg.h	4.4	02/08/81	*/
+/*	mbareg.h	4.5	02/15/81	*/
 
 /*
  * VAX Massbus adapter registers
@@ -151,6 +151,7 @@ struct	mba_hd {
 } mba_hd[4];
 #ifdef KERNEL
 extern	struct	mba_info mbinit[];	/* blanks for filling mba_info */
+int	nummba;
 #endif
 /*
  * Values for flags; normally MH_NOSEEK will be set when there is
