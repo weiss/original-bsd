@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	6.16 (Berkeley) 05/01/88";
+static char sccsid[] = "@(#)newfs.c	6.17 (Berkeley) 05/11/89";
 #endif not lint
 
 /*
@@ -27,6 +27,7 @@ static char sccsid[] = "@(#)newfs.c	6.16 (Berkeley) 05/01/88";
 
 #include <stdio.h>
 #include <ctype.h>
+#include <paths.h>
 
 #define COMPAT			/* allow non-labeled disks */
 
@@ -395,7 +396,7 @@ next:
 		special = cp + 1;
 	if (*special == 'r' && special[1] != 'a' && special[1] != 'b')
 		special++;
-	(void)sprintf(device, "/dev/r%s", special);
+	(void)sprintf(device, "%s/r%s", _PATH_DEV, special);
 	special = device;
 	if (!Nflag) {
 		fso = open(special, O_WRONLY);
