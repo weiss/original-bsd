@@ -1,4 +1,4 @@
-/*	vlimit.h	4.1	11/09/80	*/
+/*	vlimit.h	4.2	81/02/19	*/
 
 /*
  * Limits for u.u_limit[i], per process, inherited.
