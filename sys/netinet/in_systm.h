@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in_systm.h	7.4 (Berkeley) 06/28/90
+ *	@(#)in_systm.h	7.5 (Berkeley) 06/04/93
  */
 
 /*
@@ -26,5 +26,5 @@ typedef u_long	n_long;			/* long as received from the net */
 typedef	u_long	n_time;			/* ms since 00:00 GMT, byte rev */
 
 #ifdef KERNEL
-n_time	iptime();
+n_time	 iptime __P((void));
 #endif
