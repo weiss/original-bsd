@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.41 (Berkeley) 04/13/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.42 (Berkeley) 04/15/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.41 (Berkeley) 04/13/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.42 (Berkeley) 04/15/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -87,6 +87,9 @@ getrequests()
 	bool refusingconnections = TRUE;
 	FILE *pidf;
 	int socksize;
+#ifdef XDEBUG
+	bool j_has_dot;
+#endif
 	extern void reapchild();
 
 	/*
@@ -193,6 +196,13 @@ getrequests()
 		fclose(pidf);
 	}
 
+#ifdef XDEBUG
+	{
+		char *j = macvalue('j', CurEnv);
+
+		j_has_dot = j != NULL && strchr(j, '.') != NULL;
+	}
+#endif
 
 	if (tTd(15, 1))
 		printf("getrequests: %d\n", DaemonSocket);
@@ -231,6 +241,29 @@ getrequests()
 			setproctitle("accepting connections");
 			refusingconnections = FALSE;
 		}
+
+#ifdef XDEBUG
+		/* check for disaster */
+		{
+			register STAB *s;
+			char *j = macvalue('j', CurEnv);
+
+			if (j == NULL ||
+			    (s = stab(j, ST_CLASS, ST_FIND)) == NULL ||
+			    !bitnset('w', s->s_class))
+			{
+				dumpstate("daemon lost $j");
+				syslog(LOG_ALERT, "daemon process doesn't have $j in $=w; see syslog");
+				abort();
+			}
+			else if (j_has_dot && strchr(j, '.') == NULL)
+			{
+				dumpstate("daemon $j lost dot");
+				syslog(LOG_ALERT, "daemon process $j lost dot; see syslog");
+				abort();
+			}
+		}
+#endif
 
 		/* wait for a connection */
 		do
