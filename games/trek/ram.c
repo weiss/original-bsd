@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ram.c	5.2 (Berkeley) 05/05/88";
+static char sccsid[] = "@(#)ram.c	5.3 (Berkeley) 06/12/88";
 #endif /* not lint */
 
 # include	"trek.h"
@@ -33,7 +33,7 @@ int	ix, iy;
 	register int		i;
 	register char		c;
 
-	printf("RED ALERT: collision imminent\n");
+	printf("\07RED ALERT\07: collision imminent\n");
 	c = Sect[ix][iy];
 	switch (c)
 	{
