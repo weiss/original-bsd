@@ -13,7 +13,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)sys_process.c	8.1 (Berkeley) 06/11/93
+ *	@(#)sys_process.c	8.2 (Berkeley) 09/21/93
  */
 
 #include <sys/param.h>
@@ -128,7 +128,7 @@ ptrace(curp, uap, retval)
 		p->p_oppid = p->p_pptr->p_pid;
 		proc_reparent(p, curp);
 		if (p->p_stat == SSTOP)
-			setrun(p);		/* long enough to stop */
+			setrunnable(p);		/* long enough to stop */
 		psignal(p, SIGSTOP);
 		return (0);
 
@@ -183,7 +183,7 @@ ptrace(curp, uap, retval)
 	p->p_flag &= ~SWTED;
 	do {
 		if (p->p_stat == SSTOP)
-			setrun(p);
+			setrunnable(p);
 		sleep((caddr_t)&ipc, IPCPRI);
 	} while (ipc.ip_req > 0);
 	if ((error = ipc.ip_error) == 0) {
