@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	5.26 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)utilities.c	5.27 (Berkeley) 06/06/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -32,6 +32,7 @@ ftypeok(dp)
 	case IFCHR:
 	case IFLNK:
 	case IFSOCK:
+	case IFIFO:
 		return (1);
 
 	default:
