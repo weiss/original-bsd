@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	7.8 (Berkeley) 10/18/89
+#	@(#)Makefile	7.9 (Berkeley) 10/18/89
 #
 CFLAGS=	-O -DMFS
 LIBC=	/lib/libc.a
@@ -41,6 +41,8 @@ install: ${MAN}
 	rm -f ${DESTDIR}/sbin/mfs
 	ln ${DESTDIR}/sbin/newfs ${DESTDIR}/sbin/mfs
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat8
+	rm -f ${DESTDIR}/usr/man/cat8/mfs.0
+	ln ${DESTDIR}/usr/man/cat8/${MAN} ${DESTDIR}/usr/man/cat8/mfs.0
 
 lint: ${SRCS}
 	lint ${CFLAGS} ${SRCS}
