@@ -1,9 +1,10 @@
-SCCSID = @(#)Makefile	1.11 (Berkeley) 11/29/81
+SCCSID = @(#)Makefile	1.12 (Berkeley) 12/03/81
 
 DFLAGS = 
 CFLAGS = -O ${DFLAGS}
 LINTFLAGS = -x -a -n
 
+RM=	/bin/rm -f
 INSTALL=cp
 
 GPROFHDRS =	gprof.h
@@ -17,6 +18,9 @@ install: gprof flat.blurb callg.blurb
 	${INSTALL} gprof ${DESTDIR}/usr/bin/gprof
 	cp flat.blurb ${DESTDIR}/usr/lib/flat.blurb
 	cp callg.blurb ${DESTDIR}/usr/lib/callg.blurb
+
+clean:
+	${RM} ${GPROFOBJS} errs gprof
 
 gcrt0.h:
 	cp /usr/src/libc/csu/gcrt0.h gcrt0.h
