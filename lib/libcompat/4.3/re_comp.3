@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)re_comp.3	6.3 (Berkeley) 04/19/91
+.\"     @(#)re_comp.3	6.4 (Berkeley) 03/29/92
 .\"
 .Dd 
 .Dt REGEX 3
@@ -18,6 +18,11 @@
 .Fn re_comp "const char *s"
 .Ft int
 .Fn re_exec "const char *s"
+.Bf -symbolic
+This interface is made obsolete by:
+.Ef
+.Xr regexp 3 .
+.Pp
 .Sh DESCRIPTION
 The
 .Fn re_comp
