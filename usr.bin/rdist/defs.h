@@ -14,19 +14,19 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)defs.h	5.4 (Berkeley) 06/29/88
+ *	@(#)defs.h	5.5 (Berkeley) 03/06/89
  */
 
-#include <stdio.h>
-#include <ctype.h>
-#include <errno.h>
-#include <pwd.h>
-#include <grp.h>
 #include <sys/param.h>
 #include <sys/dir.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <netinet/in.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <errno.h>
+#include <pwd.h>
+#include <grp.h>
 
 /*
  * The version number should be changed whenever the protocol changes.
