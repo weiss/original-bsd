@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mscpvar.h	1.2 (Berkeley) 05/27/88
+ *	@(#)mscpvar.h	7.1 (Berkeley) 05/27/88
  */
 
 /*
