@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/05/85
+#	@(#)Makefile	5.2 (Berkeley) 03/18/86
 #
 DESTDIR=
 CFLAGS=	-O
@@ -40,7 +40,7 @@ ${LOCOBJS}:
 	cc ${CFLAGS} ${INCPATH} -c $*.c
 
 install: ${PROG}
-	install ${PROG} ${DESTDIR}/usr/lib/${PROG}
+	install -s ${PROG} ${DESTDIR}/usr/lib/${PROG}
 
 clean:
 	rm -f a.out core ${RMTOBJS} ${LOCOBJS} ${PROG}
