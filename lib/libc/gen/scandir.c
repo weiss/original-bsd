@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)scandir.c	4.2 (Berkeley) 07/01/83";
+static char sccsid[] = "@(#)scandir.c	4.3 (Berkeley) 12/05/83";
 #endif
 
 /*
@@ -58,8 +58,11 @@ scandir(dirname, namelist, select, dcomp)
 		 * realloc the maximum size.
 		 */
 		if (++nitems >= arraysz) {
+			if (fstat(dirp->dd_fd, &stb) < 0)
+				return(-1);	/* just might have grown */
+			arraysz = stb.st_size / 12;
 			names = (struct direct **)realloc((char *)names,
-				(stb.st_size/12) * sizeof(struct direct *));
+				arraysz * sizeof(struct direct *));
 			if (names == NULL)
 				return(-1);
 		}
