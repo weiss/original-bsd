@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 07/19/93
+#	@(#)Makefile	8.1 (Berkeley) 07/19/93
 
 PROG=	rlogin
 SRCS=	rlogin.c krcmd.c kcmd.c des_rw.c
