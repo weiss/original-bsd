@@ -3,13 +3,13 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/06/85
+#	@(#)Makefile	5.2 (Berkeley) 08/05/85
 #
 DESTDIR=
 CFLAGS=-O
 tset:	tset.c
 	${CC} ${CFLAGS} tset.c -o tset -ltermlib
-install:
+install: tset
 	install -s tset ${DESTDIR}/usr/ucb
 clean:
 	rm -f *.o tset
