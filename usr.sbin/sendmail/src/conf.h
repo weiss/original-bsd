@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.184 (Berkeley) 06/10/95
+ *	@(#)conf.h	8.185 (Berkeley) 06/10/95
  */
 
 /*
@@ -629,6 +629,8 @@ extern int		errno;
 
 #ifdef ISC_UNIX
 # include <net/errno.h>
+# include <sys/stream.h>	/* needed for IP_SRCROUTE */
+# include <sys/bsdtypes.h>
 # define SYSTEM5	1	/* include all the System V defines */
 # define SYS5SIGNALS	1	/* SysV signal semantics -- reset on each sig */
 # define HASGETUSERSHELL 0	/* does not have getusershell(3) call */
