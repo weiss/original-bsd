@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)collect.c	5.3 (Berkeley) 05/18/87";
+static char *sccsid = "@(#)collect.c	5.4 (Berkeley) 01/02/88";
 #endif not lint
 
 /*
@@ -464,7 +464,7 @@ mesedit(fp, c)
 	register int t;
 	int (*sigint)(), (*sigcont)();
 	struct stat sbuf;
-	extern char tempMail[], tempEdit[];
+	extern char tempEdit[];
 	register char *edit;
 
 	sigint = signal(SIGINT, SIG_IGN);
@@ -544,6 +544,7 @@ mespipe(fp, cmd)
 	FILE *fp;
 	char cmd[];
 {
+	extern char tempEdit[];
 	register FILE *nf;
 	int pid;
 	union wait s;
