@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.42 (Berkeley) 05/09/91
+ *	@(#)tty.c	7.43 (Berkeley) 05/16/91
  */
 
 #include "param.h"
@@ -313,7 +313,7 @@ ttioctl(tp, com, data, flag)
 			return (ENXIO);
 		if (t != tp->t_line) {
 			s = spltty();
-			(*linesw[tp->t_line].l_close)(tp);
+			(*linesw[tp->t_line].l_close)(tp, flag);
 			error = (*linesw[t].l_open)(dev, tp);
 			if (error) {
 				(void)(*linesw[tp->t_line].l_open)(dev, tp);
@@ -619,11 +619,15 @@ ttyopen(dev, tp)
 /*
  * "close" a line discipline
  */
-ttylclose(tp)
-	register struct tty *tp;
+ttylclose(tp, flag)
+	struct tty *tp;
+	int flag;
 {
 
-	ttywflush(tp);
+	if (flag&IO_NDELAY)
+		ttyflush(tp, FREAD|FWRITE);
+	else
+		ttywflush(tp);
 }
 
 /*
