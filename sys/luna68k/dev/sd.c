@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sd.c	7.2 (Berkeley) 07/13/92
+ *	@(#)sd.c	7.3 (Berkeley) 09/01/92
  */
 
 /*
@@ -23,6 +23,7 @@
 #if NSD > 0
 
 #include "sys/param.h"
+#include "sys/systm.h"
 #include "sys/buf.h"
 #include "sys/dkstat.h"
 #include "sys/proc.h"
