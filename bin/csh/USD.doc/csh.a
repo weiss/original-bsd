@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)csh.a	8.1 (Berkeley) 06/08/93
+.\"	@(#)csh.a	8.2 (Berkeley) 05/16/94
 .\"
 .SH
 Appendix \- Special characters
@@ -66,4 +66,3 @@ Other metacharacters
 \-	1.2	prefixes option (flag) arguments to commands
 %	2.6	prefixes job name specifications
 .DE
-.bp
