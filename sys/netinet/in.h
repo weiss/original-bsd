@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.h	7.10 (Berkeley) 06/28/90
+ *	@(#)in.h	7.11 (Berkeley) 04/20/91
  */
 
 /*
@@ -120,8 +120,6 @@ struct ip_opts {
 #define	IP_RETOPTS	8	/* ip_opts; set/get IP per-packet options */
 
 #ifdef KERNEL
-extern	struct domain inetdomain;
-extern	struct protosw inetsw[];
 struct	in_addr in_makeaddr();
 u_long	in_netof(), in_lnaof();
 #endif
