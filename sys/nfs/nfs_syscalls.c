@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_syscalls.c	8.2 (Berkeley) 12/30/93
+ *	@(#)nfs_syscalls.c	8.3 (Berkeley) 01/04/94
  */
 
 #include <sys/param.h>
@@ -353,7 +353,6 @@ nfssvc_nfsd(nsd, argp, p)
 	register struct nfssvc_sock *slp;
 	register struct socket *so;
 	register int *solockp;
-	struct nfssvc_sock *oslp;
 	struct nfsd *nd = nsd->nsd_nfsd;
 	struct mbuf *mreq, *nam;
 	struct timeval starttime;
@@ -609,7 +608,7 @@ done:
 nfssvc_iod(p)
 	struct proc *p;
 {
-	register struct buf *bp, *dp;
+	register struct buf *bp;
 	register int i, myiod;
 	int error = 0;
 
