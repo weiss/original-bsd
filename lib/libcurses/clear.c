@@ -6,19 +6,22 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)clear.c	5.4 (Berkeley) 06/01/90";
-#endif /* not lint */
+static char sccsid[] = "@(#)clear.c	5.5 (Berkeley) 08/23/92";
+#endif	/* not lint */
 
-# include	"curses.ext"
+#include <curses.h>
 
 /*
- *	This routine clears the window.
- *
+ * wclear --
+ *	Clear the window.
  */
+int
 wclear(win)
-reg WINDOW	*win; {
-
-	werase(win);
-	win->_clear = TRUE;
-	return OK;
+	register WINDOW *win;
+{
+	if (werase(win) == OK) {
+		win->_clear = 1;
+		return (OK);
+	}
+	return (ERR);
 }
