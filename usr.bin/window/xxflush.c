@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)xxflush.c	3.6 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)xxflush.c	3.7 (Berkeley) 11/10/92";
 #endif /* not lint */
 
 #include "ww.h"
@@ -67,7 +67,7 @@ xxflush(intr)
 		xx_tail = 0;
 		xxbufp = xxbuf;
 	}
-	(*tt.tt_flush)();
+	ttflush();
 }
 
 xxflush_scroll(xp)
