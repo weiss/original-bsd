@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.5 (Berkeley) 02/26/91";
+static char sccsid[] = "@(#)main.c	5.6 (Berkeley) 03/06/91";
 #endif /* not lint */
 
 /*
@@ -222,7 +222,7 @@ main(argc,argv)
 
 	infile[0] = stdin;		/* default input (naturally) */
 	active = stdout;		/* default active output     */
-	m4temp = mktemp(DIVNAM);	/* filename for diversions   */
+	m4temp = mktemp(strdup(DIVNAM));/* filename for diversions   */
 
 	sp = -1;			/* stack pointer initialized */
 	fp = 0; 			/* frame pointer initialized */
