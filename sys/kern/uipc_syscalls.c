@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_syscalls.c	7.16 (Berkeley) 06/05/90
+ *	@(#)uipc_syscalls.c	7.17 (Berkeley) 06/22/90
  */
 
 #include "param.h"
@@ -562,7 +562,7 @@ sendit(s, mp, flags, retsize)
 	if (ktriov != NULL) {
 		if (error == 0)
 			ktrgenio(u.u_procp->p_tracep, s, UIO_WRITE,
-				ktriov, *retsize);
+				ktriov, *retsize, error);
 		FREE(ktriov, M_TEMP);
 	}
 #endif
@@ -792,7 +792,7 @@ recvit(s, mp, namelenp, retsize)
 	if (ktriov != NULL) {
 		if (error == 0)
 			ktrgenio(u.u_procp->p_tracep, s, UIO_READ,
-				ktriov, len - auio.uio_resid);
+				ktriov, len - auio.uio_resid, error);
 		FREE(ktriov, M_TEMP);
 	}
 #endif
