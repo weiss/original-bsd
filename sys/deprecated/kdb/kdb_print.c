@@ -3,11 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kdb_print.c	7.19 (Berkeley) 06/22/90
+ *	@(#)kdb_print.c	7.20 (Berkeley) 12/16/90
  */
 
 #include "machine/mtpr.h"
 #undef ISP
+#undef TB
 #include "../kdb/defs.h"
 #undef CTRL
 #include "ioctl.h"
