@@ -2,7 +2,7 @@
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	3.50		02/24/83	(w/o daemon mode));
+SCCSID(@(#)daemon.c	3.51		02/26/83	(w/o daemon mode));
 #else
 
 #include <sys/socket.h>
@@ -10,7 +10,7 @@ SCCSID(@(#)daemon.c	3.50		02/24/83	(w/o daemon mode));
 #include <netdb.h>
 #include <wait.h>
 
-SCCSID(@(#)daemon.c	3.50		02/24/83	(with daemon mode));
+SCCSID(@(#)daemon.c	3.51		02/26/83	(with daemon mode));
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -403,9 +403,13 @@ myhostname(hostbuf)
 	extern struct hostent *gethostbyname();
 	struct hostent *hp;
 	auto int i = 30;
+	register char *p;
 
 	gethostname(hostbuf, &i);
 	hp = gethostbyname(hostbuf);
+	for (p = hostbuf; *p != '\0'; p++)
+		if (islower(*p))
+			*p -= 'a' - 'A';
 	if (hp != NULL)
 		return (hp->h_aliases);
 	else
@@ -416,6 +420,8 @@ myhostname(hostbuf)
 
 /*
 **  MYHOSTNAME -- stub version for case of no daemon code.
+**
+**	Can't convert to upper case here because might be a UUCP name.
 */
 
 char **
