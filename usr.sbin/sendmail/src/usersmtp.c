@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.27		11/24/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.28		11/28/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.27		11/24/82);
+SCCSID(@(#)usersmtp.c	3.28		11/28/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
@@ -41,7 +41,6 @@ smtpinit(m, pvp, ctladdr)
 {
 	register int r;
 	char buf[MAXNAME];
-	extern tick();
 	extern char *canonname();
 
 	/*
@@ -241,7 +240,7 @@ smtpquit(name, showresp)
 	(void) fclose(SmtpOut);
 	i = endmailer(SmtpPid, name);
 	if (showresp)
-		giveresponse(i, TRUE, LocalMailer);
+		giveresponse(i, LocalMailer);
 }
 /*
 **  REPLY -- read arpanet reply
