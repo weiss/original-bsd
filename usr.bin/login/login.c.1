@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c.1	5.1 (Berkeley) 04/30/85";
+static char sccsid[] = "@(#)login.c.1	5.2 (Berkeley) 05/24/85";
 #endif not lint
 
 /*
@@ -248,7 +248,7 @@ main(argc, argv)
 /* committed to login turn off timeout */
 	alarm(0);
 
-	if (quota(Q_SETUID, pwd->pw_uid, 0, 0) < 0) {
+	if (quota(Q_SETUID, pwd->pw_uid, 0, 0) < 0 && errno != EINVAL) {
 		if (errno == EUSERS)
 			printf("%s.\n%s.\n",
 			   "Too many users logged on already",
