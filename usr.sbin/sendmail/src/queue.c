@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.18 (Berkeley) 02/24/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.19 (Berkeley) 02/26/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.18 (Berkeley) 02/24/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.19 (Berkeley) 02/26/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -218,8 +218,8 @@ queueup(e, queueall, announce)
 	/* output list of recipient addresses */
 	for (q = e->e_sendqueue; q != NULL; q = q->q_next)
 	{
-		if (queueall ? !bitset(QDONTSEND|QSENT, q->q_flags) :
-			       bitset(QQUEUEUP, q->q_flags))
+		if (bitset(QQUEUEUP, q->q_flags) ||
+		    (queueall && !bitset(QDONTSEND|QSENT, q->q_flags)))
 		{
 			ADDRESS *ctladdr;
 
@@ -995,6 +995,27 @@ printqueue()
 	FILE *f;
 	int nrequests;
 	char buf[MAXLINE];
+
+	/*
+	**  Check for permission to print the queue
+	*/
+
+	if (bitset(PRIV_RESTRMAILQ, PrivacyFlags))
+	{
+		struct stat st;
+
+		if (stat(QueueDir, &st) <= 0)
+		{
+			syserr("Cannot stat %s", QueueDir);
+			return;
+		}
+		if (getgid() != st.st_gid)
+		{
+			usrerr("510 You are not permitted to see the queue");
+			setstat(EX_NOPERM);
+			return;
+		}
+	}
 
 	/*
 	**  Read and order the queue.
