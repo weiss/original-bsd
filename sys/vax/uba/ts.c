@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ts.c	6.5 (Berkeley) 06/08/85
+ *	@(#)ts.c	6.6 (Berkeley) 08/12/85
  */
 
 #include "ts.h"
@@ -189,7 +189,7 @@ tsopen(dev, flag)
 		uprintf("ts%d: not online\n", tsunit);
 		return (EIO);
 	}
-	if ((flag&(FREAD|FWRITE)) == FWRITE && (sc->sc_sts.s_xs0&TS_WLK)) {
+	if ((flag&FWRITE) && (sc->sc_sts.s_xs0&TS_WLK)) {
 		uprintf("ts%d: no write ring\n", tsunit);
 		return (EIO);
 	}
