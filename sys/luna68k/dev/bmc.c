@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)bmc.c	7.5 (Berkeley) 12/25/92
+ *	@(#)bmc.c	7.6 (Berkeley) 02/04/93
  */
 
 #define	BMC_NOCONSOLE
@@ -567,6 +567,10 @@ bmcintr(unit)
 		code = (c & KC_CHAR);
 		if ((tp->t_state & TS_ISOPEN) != 0)
 			(*linesw[tp->t_line].l_rint)(code, tp);
+	}
+
+	if (rr & RR_TXRDY) {
+		sio->sio_cmd = WR0_RSTPEND;
 	}
 }
 
