@@ -2,7 +2,7 @@
  * Copyright (c) 1991 The Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.redist.c%
+ * %sccs.include.proprietary.c%
  */
 
 /* Yacc productions for "expr" command: */
@@ -66,7 +66,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)expr.y	5.2 (Berkeley) 05/16/92";
+static char sccsid[] = "@(#)expr.y	5.3 (Berkeley) 06/02/92";
 #endif /* not lint */
 
 #include <stdio.h>
