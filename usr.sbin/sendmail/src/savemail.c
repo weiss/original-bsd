@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	4.1		07/25/83);
+SCCSID(@(#)savemail.c	4.2		08/28/83);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -279,7 +279,7 @@ returntosender(msg, returnto, sendbody)
 	eatheader(ee);
 
 	/* actually deliver the error message */
-	sendall(ee, SendMode);
+	sendall(ee, SM_DEFAULT);
 
 	/* restore state */
 	dropenvelope(ee);
