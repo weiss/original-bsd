@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)init_main.c	7.17 (Berkeley) 09/03/89
+ *	@(#)init_main.c	7.18 (Berkeley) 10/24/89
  */
 
 #include "param.h"
@@ -123,6 +123,7 @@ main(firstaddr)
 	/*
 	 * Get vnodes for swapdev, argdev, and rootdev.
 	 */
+	vhinit();
 	ihinit();
 	nchinit();
 	if (bdevvp(swapdev, &swapdev_vp) ||
