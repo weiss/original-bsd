@@ -16,12 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)subr.c	5.5 (Berkeley) 02/27/89";
+static char sccsid[] = "@(#)subr.c	5.6 (Berkeley) 06/01/90";
 #endif /* not lint */
 
 /*
  * Melbourne getty.
  */
+#define USE_OLD_TTY
 #include <sgtty.h>
 #include "gettytab.h"
 
