@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)init_main.c	7.32 (Berkeley) 01/10/91
+ *	@(#)init_main.c	7.33 (Berkeley) 01/18/91
  */
 
 #include "param.h"
@@ -33,9 +33,7 @@
 int	cmask = CMASK;
 extern	caddr_t proc0paddr;
 extern	int (*mountroot)();
-#if defined(i386)
 extern	char	initflags[];
-#endif
 
 /*
  * Initialization code.
@@ -58,21 +56,21 @@ main(firstaddr)
 	register struct proc *p;
 	register struct pgrp *pg;
 	register struct filedesc *fdp;
+	char *ip = initflags;
 	int s;
 
 	rqinit();
-#if defined(i386)
+
 	/*
 	 * set boot flags
 	 */
+	*ip++ = '-';
 	if (boothowto&RB_SINGLE)
-		bcopy("-s", initflags, 3);
-	else
-		if (boothowto&RB_ASKNAME)
-			bcopy("-a", initflags, 3);
-	else
-		bcopy("-", initflags, 2);
-#endif
+		*ip++ = 's';
+	/* if (boothowto&RB_FASTBOOT)
+		*ip++ = 'f'; */
+	*ip++ = '\0';
+
 #if defined(hp300) && defined(DEBUG)
 	/*
 	 * Assumes mapping is really on
