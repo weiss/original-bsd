@@ -4,18 +4,18 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_exit.c	7.42 (Berkeley) 02/14/92
+ *	@(#)kern_exit.c	7.43 (Berkeley) 02/15/92
  */
 
 #include "param.h"
 #include "systm.h"
 #include "map.h"
 #include "ioctl.h"
+#include "proc.h"
 #include "tty.h"
 #include "time.h"
 #include "resource.h"
 #include "kernel.h"
-#include "proc.h"
 #include "buf.h"
 #include "wait.h"
 #include "file.h"

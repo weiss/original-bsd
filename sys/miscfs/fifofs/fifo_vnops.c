@@ -4,10 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fifo_vnops.c	7.9 (Berkeley) 02/03/92
+ *	@(#)fifo_vnops.c	7.10 (Berkeley) 02/15/92
  */
 
 #include "param.h"
+#include "proc.h"
 #include "time.h"
 #include "namei.h"
 #include "vnode.h"
