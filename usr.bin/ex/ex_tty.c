@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_tty.c	7.6	06/10/83";
+static char *sccsid = "@(#)ex_tty.c	7.7	12/11/84";
 #include "ex.h"
 #include "ex_tty.h"
 
@@ -93,7 +93,10 @@ setterm(type)
 	/*
 	 * Handle funny termcap capabilities
 	 */
-	if (CS && SC && RC) AL=DL="";
+	if (CS && SC && RC) {
+		if (AL==NULL) AL="";
+		if (DL==NULL) DL="";
+	}
 	if (AL_PARM && AL==NULL) AL="";
 	if (DL_PARM && DL==NULL) DL="";
 	if (IC && IM==NULL) IM="";
