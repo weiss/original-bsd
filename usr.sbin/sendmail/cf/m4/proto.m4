@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.10 (Berkeley) 07/26/93')
+VERSIONID(`@(#)proto.m4	8.11 (Berkeley) 08/07/93')
 
 MAILER(local)dnl
 
@@ -335,7 +335,7 @@ Tuucp
 #########################
 
 H?P?Return-Path: $g
-HReceived: $?sfrom $s $.$?_($_) $.by $j ($v/$Z)$?r with $r$. id $i; $b
+HReceived: $?sfrom $s $.$?_($_) $.by $j ($v/$Z)$?r with $r$. id $i$?u for $u$.; $b
 H?D?Resent-Date: $a
 H?D?Date: $a
 H?F?Resent-From: $q
