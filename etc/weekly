@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)weekly	5.3 (Berkeley) 04/17/89
+#	@(#)weekly	5.4 (Berkeley) 05/10/89
 #
 
 PATH=/bin:/sbin:/usr/sbin:/usr/bin
@@ -48,6 +48,4 @@ cd /
 
 echo ""
 echo "Rebuilding find database:"
-su nobody << EOF
-	/usr/libexec/updatedb
-EOF
+echo /usr/libexec/updatedb | su -m nobody
