@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: trap.c 1.32 91/04/06$
  *
- *	@(#)trap.c	7.14 (Berkeley) 05/09/91
+ *	@(#)trap.c	7.14.1.1 (Berkeley) 05/19/91
  */
 
 #include "param.h"
@@ -493,6 +493,12 @@ syscall(code, frame)
 	else
 #endif
 	error = (*callp->sy_call)(p, &args, rval);
+#ifdef DIAGNOSTIC
+	if (curproc->p_spare[0])
+		panic("syscall: M_NAMEI");
+	if (curproc->p_spare[1])
+		panic("syscall: STARTSAVE");
+#endif
 	if (error == ERESTART)
 		frame.f_pc = opc;
 	else if (error != EJUSTRETURN) {
