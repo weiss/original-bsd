@@ -1,0 +1,4 @@
+#	@(#)Makefile.inc	5.1 (Berkeley) 05/11/93
+
+KBD=	unix.kbd
+CFLAGS+=-DTERMCAP -DSRCRT -DKLUDGELINEMODE -DUSE_TERMIO -DTN3270
