@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)tar.c	4.17 (Berkeley) 06/30/83";
+static	char *sccsid = "@(#)tar.c	4.18 (Berkeley) 09/12/83";
 #endif
 
 /*
@@ -828,7 +828,7 @@ checkdir(name)
 				return (0);
 			}
 			chown(name, stbuf.st_uid, stbuf.st_gid);
-			if (pflag)
+			if (pflag && cp[1] == '\0')
 				chmod(name, stbuf.st_mode & 0777);
 		}
 		*cp = '/';
