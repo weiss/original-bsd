@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)defs.h	5.9 (Berkeley) 02/26/91
+ *	@(#)defs.h	5.10 (Berkeley) 02/20/92
  */
 
 #include <sys/types.h>
@@ -51,6 +51,8 @@ int	performnlist;		/* if 1 check if /vmunix has changed */
 int	externalinterfaces;	/* # of remote and local interfaces */
 int	timeval;		/* local idea of time */
 int	noteremoterequests;	/* squawk on requests from non-local nets */
+int	r;			/* Routing socket to install updates with */
+struct	sockaddr_ns ns_netmask;	/* Used in installing routes */
 
 char	packet[MAXPACKETSIZE+sizeof(struct idp)+1];
 struct	rip *msg;
@@ -60,3 +62,7 @@ char	**argv0;
 int	sndmsg();
 int	supply();
 int	cleanup();
+int	rtioctl();
+#define	ADD	1
+#define	DELETE	2
+#define CHANGE	3
