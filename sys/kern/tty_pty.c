@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty_pty.c	8.3 (Berkeley) 01/09/95
+ *	@(#)tty_pty.c	8.4 (Berkeley) 02/20/95
  */
 
 /*
@@ -537,7 +537,7 @@ ptyioctl(dev, cmd, data, flag, p)
 			}
 			tp->t_lflag |= EXTPROC;
 		} else {
-			if ((tp->t_state & EXTPROC) &&
+			if ((tp->t_lflag & EXTPROC) &&
 			    (pti->pt_flags & PF_PKT)) {
 				pti->pt_send |= TIOCPKT_IOCTL;
 				ptcwakeup(tp, FREAD);
