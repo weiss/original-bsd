@@ -4,14 +4,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sigsetops.c	5.3 (Berkeley) 02/23/91
+ *	@(#)sigsetops.c	5.4 (Berkeley) 11/12/91
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)sigsetops.c	5.3 (Berkeley) 02/23/91";
+static char sccsid[] = "@(#)sigsetops.c	5.4 (Berkeley) 11/12/91";
 #endif /* LIBC_SCCS and not lint */
 
-#include <sys/signal.h>
+#include <signal.h>
 
 #undef sigemptyset
 #undef sigfillset
