@@ -1,6 +1,6 @@
-/*	dh.c	4.4	12/17/80	*/
+/*	dh.c	4.5	12/19/80	*/
 
-#include "../conf/dh.h"
+#include "dh.h"
 #if NDH11 > 0
 /*
  * DH-11 driver
