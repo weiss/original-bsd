@@ -15,7 +15,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	5.13 (Berkeley) 03/13/88";
+static char sccsid[] = "@(#)envelope.c	5.14 (Berkeley) 04/01/88";
 #endif /* not lint */
 
 #include <pwd.h>
@@ -526,10 +526,8 @@ setsender(from)
 	}
 	else
 	{
-#ifndef V6
 		if (CurEnv->e_from.q_home == NULL)
 			CurEnv->e_from.q_home = getenv("HOME");
-#endif V6
 		CurEnv->e_from.q_uid = getuid();
 		CurEnv->e_from.q_gid = getgid();
 	}
