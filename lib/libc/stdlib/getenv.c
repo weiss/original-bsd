@@ -16,10 +16,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getenv.c	5.5 (Berkeley) 06/27/88";
+static char sccsid[] = "@(#)getenv.c	5.6 (Berkeley) 05/16/90";
 #endif /* LIBC_SCCS and not lint */
 
-#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
 
 /*
  * getenv --
