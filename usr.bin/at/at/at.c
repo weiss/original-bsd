@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)at.c	5.2 (Berkeley) 07/29/85";
+static char sccsid[] = "@(#)at.c	5.3 (Berkeley) 08/05/85";
 #endif not lint
 
 /*
@@ -471,6 +471,12 @@ FILE **spoolfile;
 	char *tmp;			/* scratch pointer */
 	char **environptr = environ;	/* pointer to an environment setting */
 
+	if (shell == CSHELL) {
+		fprintf(*spoolfile, "if ($?histchars) then\n");
+		fprintf(*spoolfile, "set xxhist=$histchars\nendif\n");
+		fprintf(*spoolfile, "set histchars=''\n");
+		fprintf(*spoolfile, "set noglob\n");
+	}
 	while(*environptr) {
 		tmp = *environptr;
 
@@ -522,6 +528,12 @@ FILE **spoolfile;
 		}
 		fputc('\n',*spoolfile);
 		++environptr;
+	}
+	if (shell == CSHELL) {
+		fprintf(*spoolfile, "unset noglob\n");
+		fprintf(*spoolfile, "if ($?xxhist) then\n");
+		fprintf(*spoolfile, "set histchars=$xxhist\nelse\n");
+		fprintf(*spoolfile, "unset histchars\nendif\n");
 	}
 	/*
 	 * My god, it worked! (I hope)
