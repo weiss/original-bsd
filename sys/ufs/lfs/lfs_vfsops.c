@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_vfsops.c	8.7 (Berkeley) 04/16/94
+ *	@(#)lfs_vfsops.c	8.8 (Berkeley) 06/15/94
  */
 
 #include <sys/param.h>
@@ -247,6 +247,7 @@ lfs_mountfs(devvp, mp, p)
 	mp->mnt_data = (qaddr_t)ump;
 	mp->mnt_stat.f_fsid.val[0] = (long)dev;
 	mp->mnt_stat.f_fsid.val[1] = MOUNT_LFS;
+	mp->mnt_maxsymlinklen = fs->lfs_maxsymlinklen;
 	mp->mnt_flag |= MNT_LOCAL;
 	ump->um_mountp = mp;
 	ump->um_dev = dev;
