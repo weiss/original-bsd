@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	5.22 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)envelope.c	5.23 (Berkeley) 12/14/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -138,10 +138,7 @@ dropenvelope(e)
 	else if (queueit || !bitset(EF_INQUEUE, e->e_flags))
 	{
 #ifdef QUEUE
-		FILE *lockfp, *queueup();
-		lockfp = queueup(e, FALSE, FALSE);
-		if (lockfp != NULL)
-			(void) fclose(lockfp);
+		queueup(e, FALSE, FALSE);
 #else QUEUE
 		syserr("dropenvelope: queueup");
 #endif QUEUE
