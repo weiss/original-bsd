@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)t.mac	6.3 (Berkeley) 08/09/93
+.\"	@(#)t.mac	8.1 (Berkeley) 08/14/93
 .\"
 .ds ZZ \fB.\|.\|.\fP
 .ds ST \v'.3m'\s+2*\s0\v'-.3m'
