@@ -9,9 +9,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lcmd2.c	3.24 (Berkeley) 06/24/92";
+static char sccsid[] = "@(#)lcmd2.c	3.25 (Berkeley) 06/25/92";
 #endif /* not lint */
 
+#include <sys/types.h>
 #include "defs.h"
 #include "string.h"
 #include "value.h"
