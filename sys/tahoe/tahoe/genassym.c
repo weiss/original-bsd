@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)genassym.c	1.6 (Berkeley) 06/30/87";
+static char sccsid[] = "@(#)genassym.c	1.7 (Berkeley) 10/28/87";
 #endif
 
 #include "../tahoe/pte.h"
@@ -103,4 +103,5 @@ main()
 #define	SCB_DEVBASE	(((int)((struct scb *)0)->scb_devint)/sizeof (int))
 	printf("#define\tSCB_DEVBASE %d\n", SCB_DEVBASE);
 	printf("#endif\n");
+	exit(0);
 }
