@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)input.c	5.2 (Berkeley) 03/13/91";
+static char sccsid[] = "@(#)input.c	5.3 (Berkeley) 04/12/91";
 #endif /* not lint */
 
 /*
@@ -163,8 +163,7 @@ retry:
                                 if (flags >= 0 && flags & FNDELAY) {
                                         flags &=~ FNDELAY;
                                         if (fcntl(0, F_SETFL, flags) >= 0) {
-                                                out2str("sh: turning off NDELAY
- mode\n");
+						out2str("sh: turning off NDELAY mode\n");
                                                 goto retry;
                                         }
                                 }
