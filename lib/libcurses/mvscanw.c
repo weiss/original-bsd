@@ -4,7 +4,7 @@
  * implement the mvscanw commands.  Due to the variable number of
  * arguments, they cannot be macros.  Another sigh....
  *
- * 01/26/81 (Berkeley) @(#)mvscanw.c	1.1
+ * 05/17/83 (Berkeley) @(#)mvscanw.c	1.2
  */
 
 mvscanw(y, x, fmt, args)
@@ -12,7 +12,7 @@ reg int		y, x;
 char		*fmt;
 int		args; {
 
-	return move(y, x) == OK ? _sscanw(stdscr, fmt, &args) : ERR;
+	return move(y, x) == OK ? _sscans(stdscr, fmt, &args) : ERR;
 }
 
 mvwscanw(win, y, x, fmt, args)
@@ -21,5 +21,5 @@ reg int		y, x;
 char		*fmt;
 int		args; {
 
-	return wmove(win, y, x) == OK ? _sscanw(win, fmt, &args) : ERR;
+	return wmove(win, y, x) == OK ? _sscans(win, fmt, &args) : ERR;
 }
