@@ -12,13 +12,14 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)timed.c	2.20 (Berkeley) 06/29/90";
+static char sccsid[] = "@(#)timed.c	2.21 (Berkeley) 03/02/91";
 #endif /* not lint */
 
 #include "globals.h"
 #define TSPTYPES
 #include <protocols/timed.h>
 #include <net/if.h>
+#include <arpa/inet.h>
 #include <sys/file.h>
 #include <sys/ioctl.h>
 #include <setjmp.h>
@@ -181,7 +182,7 @@ char **argv;
 		syslog(LOG_ERR, "setsockopt: %m");
 		exit(1);
 	}
-	if (bind(sock, &server, sizeof(server))) {
+	if (bind(sock, (struct sockaddr *)&server, sizeof(server))) {
 		if (errno == EADDRINUSE)
 		        syslog(LOG_ERR, "server already running");
 		else
@@ -523,7 +524,8 @@ setstatus()
 			break;
 		}
 		if (trace) {
-			fprintf(fd, "\t%-16s", inet_ntoa(ntp->net));
+			fprintf(fd, "\t%-16s",
+			    inet_ntoa(inet_makeaddr(ntp->net, 0)));
 			switch ((int)ntp->status) {
 			  case MASTER:
 				fprintf(fd, "MASTER\n");
