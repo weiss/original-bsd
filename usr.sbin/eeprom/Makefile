@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 04/27/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	eeprom
 MAN8=	eeprom.0
