@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.33 (Berkeley) 02/05/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.34 (Berkeley) 02/06/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.33 (Berkeley) 02/05/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.34 (Berkeley) 02/06/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -908,10 +908,7 @@ getauthinfo(fd)
 	if (bind(s, &la.sa, sizeof la.sin) < 0 ||
 	    connect(s, &fa.sa, sizeof fa.sin) < 0)
 	{
-closeident:
-		(void) close(s);
-		clrevent(ev);
-		goto noident;
+		goto closeident;
 	}
 
 	if (tTd(9, 10))
@@ -973,6 +970,10 @@ closeident:
 	(void) sprintf(hbuf, "%s@%s",
 		p, RealHostName == NULL ? "localhost" : RealHostName);
 	goto finish;
+
+closeident:
+	(void) close(s);
+	clrevent(ev);
 
 #endif /* IDENTPROTO */
 
