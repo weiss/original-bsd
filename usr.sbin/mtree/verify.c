@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)verify.c	5.5 (Berkeley) 06/25/90";
+static char sccsid[] = "@(#)verify.c	5.6 (Berkeley) 06/25/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -109,6 +109,7 @@ vwalk()
 		}
 		(void)ftsset(t, p, FTS_SKIP);
 	}
+	(void)ftsclose(t);
 }
 
 miss(p, tail)
