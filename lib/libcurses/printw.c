@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)printw.c	5.14 (Berkeley) 01/11/93";
+static char sccsid[] = "@(#)printw.c	5.15 (Berkeley) 02/02/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -159,7 +159,7 @@ __winwrite(cookie, buf, n)
  * vwprintw --
  *	This routine actually executes the printf and adds it to the window.
  */
-static int
+int
 vwprintw(win, fmt, ap)
 	WINDOW *win;
 	const char *fmt;
