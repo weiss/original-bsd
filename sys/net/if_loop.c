@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_loop.c	7.7 (Berkeley) 04/25/89
+ *	@(#)if_loop.c	7.8 (Berkeley) 09/04/89
  */
 
 /*
@@ -29,7 +29,7 @@
 #include "ioctl.h"
 
 #include "../net/if.h"
-#include "../net/iftypes.h"
+#include "../net/if_types.h"
 #include "../net/netisr.h"
 #include "../net/route.h"
 
