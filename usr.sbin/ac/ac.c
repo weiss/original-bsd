@@ -1,18 +1,18 @@
 /*-
- * Copyright (c) 1982 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.proprietary.c%
  */
 
 #ifndef lint
-char copyright[] =
-"@(#) Copyright (c) 1982 The Regents of the University of California.\n\
- All rights reserved.\n";
+static char copyright[] =
+"@(#) Copyright (c) 1982, 1993\n\
+	The Regents of the University of California.  All rights reserved.\n";
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ac.c	4.10 (Berkeley) 04/18/91";
+static char sccsid[] = "@(#)ac.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 /*
