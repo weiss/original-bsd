@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	5.19 (Berkeley) 07/12/92";
+static char sccsid[] = "@(#)parseaddr.c	5.20 (Berkeley) 07/12/92";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -40,6 +40,7 @@ static char sccsid[] = "@(#)parseaddr.c	5.19 (Berkeley) 07/12/92";
 **			+1 -- copy everything.
 **		delim -- the character to terminate the address, passed
 **			to prescan.
+**		e -- the envelope that will contain this address.
 **
 **	Returns:
 **		A pointer to the address descriptor header (`a' if
@@ -54,11 +55,12 @@ static char sccsid[] = "@(#)parseaddr.c	5.19 (Berkeley) 07/12/92";
 # define DELIMCHARS	"\001()<>,;\\\"\r\n"	/* word delimiters */
 
 ADDRESS *
-parseaddr(addr, a, copyf, delim)
+parseaddr(addr, a, copyf, delim, e)
 	char *addr;
 	register ADDRESS *a;
 	int copyf;
 	char delim;
+	register ENVELOPE *e;
 {
 	register char **pvp;
 	register struct mailer *m;
@@ -70,7 +72,7 @@ parseaddr(addr, a, copyf, delim)
 	**  Initialize and prescan address.
 	*/
 
-	CurEnv->e_to = addr;
+	e->e_to = addr;
 	if (tTd(20, 1))
 		printf("\n--parseaddr(%s)\n", addr);
 
@@ -1150,16 +1152,17 @@ printaddr(a, follow)
 */
 
 char *
-remotename(name, m, senderaddress, canonical)
+remotename(name, m, senderaddress, canonical, e)
 	char *name;
 	struct mailer *m;
 	bool senderaddress;
 	bool canonical;
+	register ENVELOPE *e;
 {
 	register char **pvp;
 	char *fancy;
 	extern char *macvalue();
-	char *oldg = macvalue('g', CurEnv);
+	char *oldg = macvalue('g', e);
 	static char buf[MAXNAME];
 	char lbuf[MAXNAME];
 	char pvpbuf[PSBUFSIZE];
@@ -1195,7 +1198,7 @@ remotename(name, m, senderaddress, canonical)
 	if (pvp == NULL)
 		return (name);
 	rewrite(pvp, 3);
-	if (CurEnv->e_fromdomain != NULL)
+	if (e->e_fromdomain != NULL)
 	{
 		/* append from domain to this address */
 		register char **pxp = pvp;
@@ -1206,7 +1209,7 @@ remotename(name, m, senderaddress, canonical)
 		if (*pxp == NULL)
 		{
 			/* no.... append the "@domain" from the sender */
-			register char **qxq = CurEnv->e_fromdomain;
+			register char **qxq = e->e_fromdomain;
 
 			while ((*pxp++ = *qxq++) != NULL)
 				continue;
@@ -1248,9 +1251,9 @@ remotename(name, m, senderaddress, canonical)
 	*/
 
 	cataddr(pvp, lbuf, sizeof lbuf);
-	define('g', lbuf, CurEnv);
-	expand(fancy, buf, &buf[sizeof buf - 1], CurEnv);
-	define('g', oldg, CurEnv);
+	define('g', lbuf, e);
+	expand(fancy, buf, &buf[sizeof buf - 1], e);
+	define('g', oldg, e);
 
 	if (tTd(12, 1))
 		printf("remotename => `%s'\n", buf);
@@ -1268,9 +1271,10 @@ remotename(name, m, senderaddress, canonical)
 **		none.
 */
 
-maplocaluser(a, sendq)
+maplocaluser(a, sendq, e)
 	register ADDRESS *a;
 	ADDRESS **sendq;
+	ENVELOPE *e;
 {
 	register char **pvp;
 	register ADDRESS *a1 = NULL;
@@ -1298,5 +1302,5 @@ maplocaluser(a, sendq)
 	a->q_flags |= QDONTSEND;
 	a1->q_alias = a;
 	allocaddr(a1, 1, NULL);
-	(void) recipient(a1, sendq);
+	(void) recipient(a1, sendq, e);
 }
