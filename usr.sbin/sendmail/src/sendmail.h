@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.2 (Berkeley) 12/30/92
+ *	@(#)sendmail.h	6.3 (Berkeley) 01/02/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.2		12/30/92";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.3		01/02/93";
 # endif lint
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -159,6 +159,8 @@ EXTERN MAILER	*Mailer[MAXMAILERS+1];
 
 EXTERN MAILER	*LocalMailer;		/* ptr to local mailer */
 EXTERN MAILER	*ProgMailer;		/* ptr to program mailer */
+EXTERN MAILER	*FileMailer;		/* ptr to *file* mailer */
+EXTERN MAILER	*InclMailer;		/* ptr to *include* mailer */
 /*
 **  Header structure.
 **	This structure is used internally to store header items.
