@@ -3,7 +3,7 @@
 **
 **	Most of these are actually allocated in globals.c
 **
-**	@(#)sendmail.h	1.6	10/18/80
+**	@(#)sendmail.h	2.1	11/05/80
 */
 
 
