@@ -6,11 +6,11 @@ divert(-1)
 #
 # %sccs.include.redist.sh%
 #
-VERSIONID(@(#)version.m4	2.3 (Berkeley) 12/12/91)
+VERSIONID(@(#)version.m4	2.4 (Berkeley) 12/15/91)
 #
 divert(0)
 ######################
 #   Version Number   #
 ######################
 
-DZ2.3
+DZ2.4
