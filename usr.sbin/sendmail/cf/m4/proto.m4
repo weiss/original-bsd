@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.40 (Berkeley) 02/14/94')
+VERSIONID(`@(#)proto.m4	8.41 (Berkeley) 02/14/94')
 
 MAILER(local)dnl
 
@@ -634,7 +634,7 @@ ifdef(`MAILER_TABLE',
 ###################################################################
 
 S90
-R$* <$- . $+ > $*	$: $1$2 < $(mailertable .$3 $@ $1$2 $) > $4	lookup
+R$* <$- . $+ > $*	$: $1$2 < $(mailertable .$3 $@ $1$2 $@ $2 $) > $4
 R$* <$- : $+ > $*	$# $2 $@ $3 $: $4		check -- resolved?
 R$* < . $+ > $*		$@ $>90 $1 . <$2> $3		no -- strip & try again
 R$* < . > $*		$: < $(mailertable . $@ $1 $) > $2	try "."
