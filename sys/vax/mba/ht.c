@@ -1,4 +1,4 @@
-/*	ht.c	4.1	11/09/80	*/
+/*	ht.c	4.2	11/11/80	*/
 
 #include "../conf/ht.h"
 #if NHT > 0
@@ -35,7 +35,6 @@ struct	buf	httab;
 struct	buf	rhtbuf;
 struct	buf	chtbuf;
 
-#define	NHT	1
 #define	INF	1000000
 
 char	h_openf[NHT];
