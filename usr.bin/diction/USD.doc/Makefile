@@ -1,10 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/30/90
+#	@(#)Makefile	5.2 (Berkeley) 06/05/93
 
-DIR=	usd/32.diction
+DIR=	usd/29.diction
 SRCS=	rm0 rm1 rm2 ap1 ap2
 MACROS=	-msU
-
-paper.${PRINTER}: ${SRCS}
-	${ROFF} ${SRCS} > ${.TARGET}
 
 .include <bsd.doc.mk>
