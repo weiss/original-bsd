@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.11	(Berkeley)	03/15/86
+#	@(#)Makefile	4.12	(Berkeley)	03/17/86
 #
 # This makefile is designed to be run as:
 #	make build
@@ -93,7 +93,7 @@ FRC:
 
 install:
 	-for i in ${LIBDIR} ${SRCDIR}; do \
-		(cd $$i; 
+		(cd $$i; \
 		make ${MFLAGS} ${SRC_MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
 
