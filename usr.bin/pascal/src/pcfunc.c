@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pcfunc.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)pcfunc.c 1.2 10/03/80";
 
 #include "whoami.h"
 #ifdef PC
@@ -45,7 +45,7 @@ pcfunccod( r )
 		rvlist(r[3]);
 		return (NIL);
 	}
-	if (p->class != FUNC) {
+	if (p->class != FUNC && p->class != FFUNC) {
 		error("%s is not a function", p->symbol);
 		rvlist(r[3]);
 		return (NIL);
