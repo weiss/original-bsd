@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tstp.c	5.3 (Berkeley) 06/30/88";
+static char sccsid[] = "@(#)tstp.c	5.4 (Berkeley) 06/29/89";
 #endif /* not lint */
 
 # include	<signal.h>
@@ -26,7 +26,7 @@ static char sccsid[] = "@(#)tstp.c	5.3 (Berkeley) 06/30/88";
 /*
  * handle stop and start signals
  *
- * @(#)tstp.c	5.3 (Berkeley) 06/30/88
+ * @(#)tstp.c	5.4 (Berkeley) 06/29/89
  */
 tstp() {
 
@@ -50,7 +50,7 @@ tstp() {
 	sigblock(mask(SIGTSTP));
 	signal(SIGTSTP, tstp);
 	_tty = tty;
-	stty(_tty_ch, &_tty);
+	ioctl(_tty_ch, TIOCSETP, &_tty);
 	wrefresh(curscr);
 # endif	SIGTSTP
 }
