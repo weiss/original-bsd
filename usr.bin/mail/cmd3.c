@@ -9,7 +9,7 @@
  * Still more user commands.
  */
 
-static char *SccsId = "@(#)cmd3.c	2.5 02/13/82";
+static char *SccsId = "@(#)cmd3.c	2.6 02/20/82";
 
 /*
  * Process a shell escape by saving signals, ignoring signals,
@@ -530,6 +530,7 @@ file(argv)
 {
 	register char *cp;
 	char fname[BUFSIZ];
+	int edit;
 
 	if (argv[0] == NOSTR) {
 		newfileinfo();
@@ -546,10 +547,10 @@ file(argv)
 	 *	string -- reads the given file
 	 */
 
-	cp = getfilename(argv[0]);
+	cp = getfilename(argv[0], &edit);
 	if (cp == NOSTR)
 		return(-1);
-	if (setfile(cp, 1))
+	if (setfile(cp, edit))
 		return(-1);
 	newfileinfo();
 }
@@ -568,15 +569,22 @@ file(argv)
 char	prevfile[PATHSIZE];
 
 char *
-getfilename(name)
+getfilename(name, aedit)
 	char *name;
+	int *aedit;
 {
 	register char *cp;
 	char savename[BUFSIZ];
 	char oldmailname[BUFSIZ];
 
+	/*
+	 * Assume we will be in "edit file" mode, until
+	 * proven wrong.
+	 */
+	*aedit = 1;
 	switch (*name) {
 	case '%':
+		*aedit = 0;
 		strcpy(prevfile, mailname);
 		if (name[1] != 0) {
 			strcpy(savename, myname);
