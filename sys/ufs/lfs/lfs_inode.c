@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_inode.c	7.74 (Berkeley) 07/22/92
+ *	@(#)lfs_inode.c	7.75 (Berkeley) 07/23/92
  */
 
 #include <sys/param.h>
@@ -283,6 +283,7 @@ lfs_truncate(ap)
 	}
 	UPDATE_SEGUSE;
 	ip->i_blocks -= btodb(blocksreleased << fs->lfs_bshift);
+	fs->lfs_bfree +=  btodb(blocksreleased << fs->lfs_bshift);
 #ifdef DIAGNOSTIC
 	if (ip->i_blocks < 0)
 		panic("lfs_truncate: block count < 0");
