@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.1 (Berkeley) 08/23/92";
+static char sccsid[] = "@(#)misc.c	5.2 (Berkeley) 08/24/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -108,14 +108,8 @@ err(severity, fmt, va_alist)
 	(void)vfprintf(stderr, fmt, ap);
 	va_end(ap);
 	(void)fprintf(stderr, "\n");
-	switch (severity) {
-	case COMPILE:
-		compile_errors++;
-#define	MAX_COMPILE_ERRS	20
-		if (compile_errors > MAX_COMPILE_ERRS)
-			err(FATAL, "too many compilation errors; exiting");
-	case FATAL:
-		exit(1);
-	}
+	if (severity == WARNING)
+		return;
+	exit(1);
 	/* NOTREACHED */
 }
