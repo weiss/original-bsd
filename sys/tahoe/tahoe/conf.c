@@ -4,15 +4,15 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.c	7.6 (Berkeley) 06/28/90
+ *	@(#)conf.c	7.7 (Berkeley) 12/16/90
  */
 
-#include "param.h"
-#include "systm.h"
-#include "buf.h"
-#include "ioctl.h"
-#include "tty.h"
-#include "conf.h"
+#include "sys/param.h"
+#include "sys/systm.h"
+#include "sys/buf.h"
+#include "sys/ioctl.h"
+#include "sys/tty.h"
+#include "sys/conf.h"
 
 int nulldev(), nodev(), rawread(), rawwrite(), swstrategy();
 
