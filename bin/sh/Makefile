@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 10/15/92
+#	@(#)Makefile	5.5 (Berkeley) 06/01/93
 
 PROG=	sh
 SRCS=	alias.c builtins.c cd.c echo.c error.c eval.c exec.c expand.c \
@@ -8,7 +8,7 @@ SRCS=	alias.c builtins.c cd.c echo.c error.c eval.c exec.c expand.c \
 OBJS+=	init.o arith.o arith_lex.o
 LDADD=	-ll -ledit -ltermcap -lcompat
 LFLAGS= -8	# 8-bit lex scanner for arithmetic
-CFLAGS+=-DSHELL -I. -I${.CURDIR} -g
+CFLAGS+=-DSHELL -I. -I${.CURDIR}
 .PATH:	${.CURDIR}/bltin ${.CURDIR}/../../usr.bin/printf
 CLEANFILES+=\
 	builtins.c builtins.h init.c mkinit mknodes mksignames mksyntax \
