@@ -4,17 +4,19 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)skpc.c	7.1 (Berkeley) 06/20/92
+ *	@(#)skpc.c	7.2 (Berkeley) 06/21/92
  */
 
 int
-skpc(mask, size, cp)
-	register unsigned char mask;
-	unsigned int size;
-	register unsigned char *cp;
+skpc(mask0, size, cp0)
+	int mask0;
+	int size;
+	char *cp0;
 {
-	register unsigned char *end;
+	register unsigned char *cp, *end, mask;
 
+	mask = mask0;
+	cp = (unsigned char *)cp0;
 	for (end = &cp[size]; cp < end && *cp == mask; ++cp);
 	return (end - cp);
 }
