@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)mx.doc	5.1 (Berkeley) 06/02/86
+.\"	@(#)mx.doc	6.1 (Berkeley) 06/02/86
 .\"
 .nr LL 6.5i
 .nr FL 6.0i
