@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)mfs_vnops.c	7.4 (Berkeley) 10/24/89
+ *	@(#)mfs_vnops.c	7.5 (Berkeley) 10/26/89
  */
 
 #include "param.h"
@@ -261,7 +261,6 @@ mfs_inactive(vp)
 
 	if (VTOMFS(vp)->mfs_buflist != (struct buf *)(-1))
 		panic("mfs_inactive: not inactive");
-	vp->v_type = VNON;
 	return (0);
 }
 
