@@ -1,8 +1,9 @@
 # include <stdio.h>
 # include <ctype.h>
+# include <errno.h>
 # include "dlvrmail.h"
 
-static char	SccsId[] = "@(#)collect.c	1.3	10/11/80";
+static char	SccsId[] = "@(#)collect.c	1.4	10/15/80";
 
 /*
 **  MAKETEMP -- read & parse message header & make temp file.
@@ -50,6 +51,7 @@ maketemp()
 	register bool inheader;
 	bool firstline;
 	char c;
+	extern int errno;
 
 	/*
 	**  Create the temp file name and create the file.
@@ -160,9 +162,15 @@ maketemp()
 		firstline = FALSE;
 		if (ferror(tf))
 		{
-			syserr("Cannot write %s", InFileName);
-			clearerr(tf);
-			break;
+			if (errno == ENOSPC)
+			{
+				freopen(InFileName, "w", tf);
+				fputs("\nMAIL DELETED BECAUSE OF LACK OF DISK SPACE\n\n", tf);
+				syserr("Out of disk space for temp file");
+			}
+			else
+				syserr("Cannot write %s", InFileName);
+			freopen("/dev/null", "w", tf);
 		}
 	}
 	fclose(tf);
