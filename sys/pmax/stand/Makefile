@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 05/09/93
+#	@(#)Makefile	5.7 (Berkeley) 06/29/93
 
 DESTDIR=
 STAND=	../../stand
@@ -9,8 +9,8 @@ VPATH=	${STAND}
 RELOC=	80200000
 
 DEFS= -DSTANDALONE -DSMALL
-CFLAGS=	-O ${INCPATH} ${DEFS}
-AFLAGS=	-O ${INCPATH} ${DEFS} -DLOCORE
+CFLAGS=	-O2 ${INCPATH} ${DEFS}
+AFLAGS=	-O2 ${INCPATH} ${DEFS} -DLOCORE
 
 DRIVERS= rz.c
 SRCS=	${DRIVERS}
