@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	5.10 (Berkeley) 12/04/91 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	5.11 (Berkeley) 12/04/91 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	5.10 (Berkeley) 12/04/91 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	5.11 (Berkeley) 12/04/91 (without USERDB)";
 #endif
 #endif
 
@@ -338,6 +338,7 @@ _udbx_init()
 			break;
 
 		  case '/':	/* look up remote name */
+			up->udb_dbname = spec;
 			up->udb_dbp = dbopen(spec, O_RDONLY, 0644, DB_BTREE, NULL);
 			if (up->udb_dbp == NULL)
 				break;
