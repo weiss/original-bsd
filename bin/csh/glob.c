@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)glob.c	5.38 (Berkeley) 06/16/92";
+static char sccsid[] = "@(#)glob.c	5.39 (Berkeley) 02/11/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -893,7 +893,7 @@ sortscmp(a, b)
     char    buf[2048];
 #endif
 
-    if (a)			/* check for NULL */
+    if (!a)			/* check for NULL */
 	return (b ? 1 : 0);
     if (!b)
 	return (-1);
