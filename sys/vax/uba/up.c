@@ -1,7 +1,10 @@
-/*	up.c	4.4	11/22/80	*/
+/*	up.c	4.5	12/17/80	*/
 
 #include "../conf/up.h"
 #if NUP > 0
+#ifdef SC11
+#include "up.c.SC11"
+#else
 /*
  * UNIBUS disk driver with overlapped seeks and ECC recovery.
  */
@@ -774,4 +777,5 @@ active:
 		printf("\n");
 	}
 }
+#endif
 #endif
