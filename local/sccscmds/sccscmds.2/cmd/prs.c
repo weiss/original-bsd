@@ -23,7 +23,7 @@
 # include "../hdr/defines.h"
 # include "../hdr/had.h"
 
-static char Sccsid[] = "@(#)prs.c	4.2	02/15/87";
+static char Sccsid[] = "@(#)prs.c	4.3	02/02/88";
 
 char	had[26];
 char	Getpgm[] = "/usr/local/get";
@@ -721,7 +721,8 @@ struct packet *pkt;
 		to standard output
 		*/
 		execl(Getpgm,Getpgm,"-s","-p","-r",rarg,filearg,0);
-		fatal(sprintf(Error,"cannot execute '%s'",Getpgm));
+		sprintf(Error,"cannot execute '%s'",Getpgm);
+		fatal(Error);
 	}
 	else {
 		wait(&status);
