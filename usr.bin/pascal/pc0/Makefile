@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.47 07/26/83"
+SCCSID = "@(#)Makefile 1.48 02/04/84"
 
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
@@ -6,7 +6,7 @@ BINDIR = ../pc0
 SRCDIR = ../src
 WHOAMI = pc
 VERSION = 3.0
-DATE = 07/26/83
+DATE = 02/04/84
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
@@ -66,6 +66,9 @@ ${OBJS}:
 	cd ${SRCDIR}; ${MKSTR} - ${BINDIR}/${ERRORSTRINGS} ${BINDIR}/ $*.c
 	${CC} ${CFLAGS} -I. -I${SRCDIR} -c $*.c
 	${RM} $*.c
+
+lint:
+	cd ${SRCDIR}; lint -I. -I${BINDIR} ${SRCS}  ${BINDIR}/*.c
 
 y.tab.h: ${SRCDIR}/pas.y ${SRCDIR}/gram
 	${RM} y.tab.h y.tab.c
