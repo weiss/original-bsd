@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.44 (Berkeley) 11/22/94";
+static char sccsid[] = "@(#)headers.c	8.45 (Berkeley) 12/05/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -503,7 +503,7 @@ eatheader(e, full)
 	*/
 
 # ifdef LOG
-	if (full && LogLevel > 4)
+	if (bitset(EF_LOGSENDER, e->e_flags) && LogLevel > 4)
 		logsender(e, msgid);
 # endif /* LOG */
 	e->e_flags &= ~EF_LOGSENDER;
