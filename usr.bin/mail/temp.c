@@ -6,11 +6,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)temp.c	5.16 (Berkeley) 03/11/92";
+static char sccsid[] = "@(#)temp.c	5.17 (Berkeley) 06/26/92";
 #endif /* not lint */
 
-#include <errno.h>
 #include "rcv.h"
+#include <errno.h>
+#include "extern.h"
 
 /*
  * Mail -- a mail program
@@ -25,6 +26,7 @@ char	tempResid[24];
 char	tempMesg[24];
 char	*tmpdir;
 
+void
 tinit()
 {
 	register char *cp;

@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)glob.h	5.20 (Berkeley) 06/25/90
+ *	@(#)glob.h	5.21 (Berkeley) 06/26/92
  */
 
 /*

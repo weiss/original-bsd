@@ -6,11 +6,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)version.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)version.c	5.6 (Berkeley) 06/26/92";
 #endif /* not lint */
 
 /*
  * Just keep track of the date/sid of this version of Mail.
  * Load this file first to get a "total" Mail version.
  */
-char	*version = "5.5 06/01/90";
+char	*version = "5.6 06/26/92";

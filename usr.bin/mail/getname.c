@@ -6,19 +6,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)getname.c	5.8 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)getname.c	5.9 (Berkeley) 06/26/92";
 #endif /* not lint */
 
-#include <sys/types.h>
-#include <pwd.h>
-
-/*
- * Getname / getuserid for those with
- * hashed passwd data base).
- *
- */
-
 #include "rcv.h"
+#include <pwd.h>
+#include "extern.h"
+
+/* Getname / getuserid for those with hashed passwd data base). */
 
 /*
  * Search the passwd file for a uid.  Return name through ref parameter
@@ -26,6 +21,7 @@ static char sccsid[] = "@(#)getname.c	5.8 (Berkeley) 06/01/90";
  */
 char *
 getname(uid)
+	int uid;
 {
 	struct passwd *pw;
 
@@ -38,6 +34,7 @@ getname(uid)
  * Convert the passed name to a user id and return it.  Return -1
  * on error.
  */
+int
 getuserid(name)
 	char name[];
 {
