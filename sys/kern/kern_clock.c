@@ -1,4 +1,4 @@
-/*	10/14/12	3.14	kern_clock.c	*/
+/*	10/14/12	3.15	kern_clock.c	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -13,6 +13,7 @@
 #include "../h/vm.h"
 #include "../h/buf.h"
 #include "../h/text.h"
+#include "../h/limit.h"
 
 #define	SCHMAG	9/10
 
