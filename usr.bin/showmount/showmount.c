@@ -25,7 +25,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)showmount.c	6.1 (Berkeley) 11/30/89";
+static char sccsid[] = "@(#)showmount.c	6.2 (Berkeley) 03/05/90";
 #endif not lint
 
 #include <stdio.h>
@@ -316,6 +316,8 @@ print_dump(mp)
 	struct mountlist *mp;
 {
 
+	if (mp == NULL)
+		return;
 	if (mp->ml_left)
 		print_dump(mp->ml_left);
 	switch (type) {
