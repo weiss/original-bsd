@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwchild.c	3.5 04/24/85";
+static char sccsid[] = "@(#)wwchild.c	3.6 05/08/87";
 #endif
 
 /*
@@ -9,6 +9,7 @@ static char sccsid[] = "@(#)wwchild.c	3.5 04/24/85";
  */
 
 #include "ww.h"
+#include <sys/types.h>
 #include <sys/wait.h>
 
 wwchild()
