@@ -11,7 +11,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.3 (Berkeley) 07/13/93";
+static char sccsid[] = "@(#)alias.c	8.4 (Berkeley) 07/17/93";
 #endif /* not lint */
 
 
@@ -709,7 +709,7 @@ forward(user, sendq, e)
 					e->e_id, buf, errstring(err));
 #endif
 			message("%s: %s: message queued", buf, errstring(err));
-			user->q_flags |= QQUEUEUP|QDONTSEND;
+			user->q_flags |= QQUEUEUP;
 			return;
 		}
 	}
