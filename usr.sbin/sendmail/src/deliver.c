@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.41 (Berkeley) 03/13/93";
+static char sccsid[] = "@(#)deliver.c	6.42 (Berkeley) 03/14/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1890,10 +1890,6 @@ hostsignature(m, host, e)
 	auto int rcode;
 	char *mxhosts[MAXMXHOSTS + 1];
 	static char myhostbuf[MAXNAME];
-#ifdef SETPROCTITLE
-	char ptbuf[MAXNAME];
-	extern char ProcTitleBuf[MAXNAME];
-#endif
 #endif
 
 	/*
@@ -1930,16 +1926,7 @@ hostsignature(m, host, e)
 	if (myhostbuf[0] == '\0')
 		expand("\201j", myhostbuf, &myhostbuf[sizeof myhostbuf - 1], e);
 
-#ifdef SETPROCTITLE
-	(void) strcpy(ptbuf, ProcTitleBuf);
-	setproctitle("getmxrr(%s)", host);
-#endif
-
 	nmx = getmxrr(host, mxhosts, myhostbuf, &rcode);
-
-#ifdef SETPROCTITLE
-	setproctitle(NULL, ptbuf);
-#endif
 
 	if (nmx <= 0)
 	{
