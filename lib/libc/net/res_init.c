@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)res_init.c	6.3 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)res_init.c	6.4 (Berkeley) 03/18/86";
 #endif LIBC_SCCS and not lint
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@ static char sccsid[] = "@(#)res_init.c	6.3 (Berkeley) 03/09/86";
 #include <netinet/in.h>
 #include <stdio.h>
 #include <arpa/nameser.h>
-#include <arpa/resolv.h>
+#include <resolv.h>
 
 /*
  * Resolver configuration file. Contains the address of the
@@ -97,13 +97,13 @@ res_init()
                 _res.nsaddr_list[n].sin_addr.s_addr = inet_addr(cp);
                 if (_res.nsaddr_list[n].sin_addr.s_addr == (unsigned)-1) 
                     _res.nsaddr_list[n].sin_addr.s_addr = INADDR_ANY;
-                    _res.nsaddr_list[n].sin_family = AF_INET;
-                    _res.nsaddr_list[n].sin_port = htons(NAMESERVER_PORT);
-                    if ( ++n >= MAXNS) { 
-                       n = MAXNS;
+                _res.nsaddr_list[n].sin_family = AF_INET;
+                _res.nsaddr_list[n].sin_port = htons(NAMESERVER_PORT);
+                if ( ++n >= MAXNS) { 
+                    n = MAXNS;
 #ifdef DEBUG
-                       if ( _res.options & RES_DEBUG )
-                          printf("MAXNS reached, reading resolv.conf\n");
+                    if ( _res.options & RES_DEBUG )
+                        printf("MAXNS reached, reading resolv.conf\n");
 #endif DEBUG
                 }
                 continue;
