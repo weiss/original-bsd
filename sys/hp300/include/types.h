@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)types.h	7.7 (Berkeley) 01/15/91
+ *	@(#)types.h	7.8 (Berkeley) 01/28/91
  */
 
 #ifndef	_MACHTYPES_H_
@@ -28,7 +28,7 @@
 #define	_VA_LIST_	char *			/* va_list */
 #define	_WCHAR_T_	unsigned short		/* wchar_t */
 
-#if defined(KERNEL)
+#if !defined(_ANSI_SOURCE) && !defined(_POSIX_SOURCE)
 typedef struct _physadr {
 	short r[1];
 } *physadr;
