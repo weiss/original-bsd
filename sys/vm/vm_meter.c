@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_meter.c	7.13 (Berkeley) 02/25/92
+ *	@(#)vm_meter.c	7.14 (Berkeley) 03/03/92
  */
 
 #include "param.h"
@@ -188,7 +188,8 @@ vmtotal(totalp)
 		paging = 0;
 		for (map = &p->p_vmspace->vm_map, entry = map->header.next;
 		     entry != &map->header; entry = entry->next) {
-			if (entry->is_a_map || entry->is_sub_map)
+			if (entry->is_a_map || entry->is_sub_map ||
+			    entry->object.vm_object == NULL)
 				continue;
 			entry->object.vm_object->flags |= OBJ_ACTIVE;
 			paging |= entry->object.vm_object->paging_in_progress;
