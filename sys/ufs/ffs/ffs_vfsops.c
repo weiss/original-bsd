@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ffs_vfsops.c	7.38 (Berkeley) 03/27/90
+ *	@(#)ffs_vfsops.c	7.39 (Berkeley) 04/10/90
  */
 
 #include "param.h"
@@ -295,14 +295,14 @@ mountfs(devvp, mp)
 		fs->fs_nrpos = 8;				/* XXX */
 	return (0);
 out:
+	if (bp)
+		brelse(bp);
 	if (needclose)
 		(void) VOP_CLOSE(devvp, ronly ? FREAD : FREAD|FWRITE, NOCRED);
 	if (ump->um_fs) {
 		free((caddr_t)ump->um_fs, M_SUPERBLK);
 		ump->um_fs = NULL;
 	}
-	if (bp)
-		brelse(bp);
 	return (error);
 }
 
