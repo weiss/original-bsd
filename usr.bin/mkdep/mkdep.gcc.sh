@@ -5,7 +5,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)mkdep.gcc.sh	5.2 (Berkeley) 04/12/91
+#	@(#)mkdep.gcc.sh	5.3 (Berkeley) 05/06/91
 #
 
 PATH=/bin:/usr/bin:/usr/ucb
@@ -30,8 +30,6 @@ while :
 		# so .o's don't get produced
 		-p)
 			SED='s;\.o;;'
-			shift ;;
-		-*)
 			shift ;;
 		*)
 			break ;;
