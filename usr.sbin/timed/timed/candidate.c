@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)candidate.c	2.2 (Berkeley) 04/11/86";
+static char sccsid[] = "@(#)candidate.c	2.3 (Berkeley) 04/21/86";
 #endif not lint
 
 #include "globals.h"
@@ -101,8 +101,8 @@ struct netinfo *net;
 				(void) addmach(resp->tsp_name, &from);
 				break;
 
-			case TSP_DATE:
-			case TSP_DATEREQ:
+			case TSP_SETDATE:
+			case TSP_SETDATEREQ:
 				break;
 
 			default:
