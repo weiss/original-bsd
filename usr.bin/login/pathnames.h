@@ -14,11 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.5 (Berkeley) 06/24/90
+ *	@(#)pathnames.h	5.6 (Berkeley) 03/01/91
  */
 
 #include <paths.h>
 
-#define	_PATH_DEFPATH	"/bin:/usr/bin:/usr/games:"
 #define	_PATH_HUSHLOGIN	".hushlogin"
 #define	_PATH_MOTDFILE	"/etc/motd"

@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.65 (Berkeley) 02/05/91";
+static char sccsid[] = "@(#)login.c	5.66 (Berkeley) 03/01/91";
 #endif /* not lint */
 
 /*
@@ -403,7 +403,7 @@ motd()
 {
 	register int fd, nchars;
 	sig_t oldint;
-	int sigint();
+	void sigint();
 	char tbuf[8192];
 
 	if ((fd = open(_PATH_MOTDFILE, O_RDONLY, 0)) < 0)
@@ -416,6 +416,7 @@ motd()
 	(void)close(fd);
 }
 
+void
 sigint()
 {
 	longjmp(motdinterrupt, 1);
