@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)optim.c	5.3 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)optim.c	5.4 (Berkeley) 01/03/88";
 #endif not lint
 
 /*
@@ -758,7 +758,7 @@ LOCAL expptr buffpower( p )
 		fatal( "buffpower: bad non-integer exponent" );
 
 	base = expand(p->exprblock.leftp);
-	exp = p->exprblock.rightp->constblock.const.ci;
+	exp = p->exprblock.rightp->constblock.constant.ci;
 	if ( exp < 2 )
 		fatal( "buffpower: bad exponent less than 2" );
 
