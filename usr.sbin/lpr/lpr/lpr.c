@@ -1,4 +1,4 @@
-/*	lpr.c	4.22	83/06/22	*/
+/*	lpr.c	4.23	83/06/29	*/
 /*
  *      lpr -- off line print
  *
@@ -6,7 +6,14 @@
  * using information from a printer data base.
  */
 
-#include "lp.h"
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/file.h>
+#include <sys/stat.h>
+#include <pwd.h>
+#include <signal.h>
+#include <ctype.h>
+#include "lp.local.h"
 
 char    *tfname;		/* tmp copy of cf before linking */
 char    *cfname;		/* daemon control files, linked from tf's */
@@ -29,9 +36,21 @@ char	*person;		/* user name */
 char	*title;			/* pr'ing title */
 char	*fonts[4];		/* troff font names */
 char	*width;			/* width for versatec printing */
+char	host[32];		/* host name */
 char	*class = host;		/* class title on header page */
 char    *jobname;		/* job name on header page */
+char	*name;			/* program name */
+char	*printer;		/* printer name */
+char	buf[BUFSIZ];
 
+int	MX;			/* maximum number of blocks to copy */
+int	MC;			/* maximum number of copies allowed */
+char	*SD;			/* spool directory */
+char	*LO;			/* lock file name */
+short	SC;			/* suppress multiple copies */
+
+char	*getenv();
+char	*rindex();
 char	*linked();
 int	cleanup();
 
@@ -182,8 +201,8 @@ main(argc, argv)
 	/*
 	 * Check to make sure queuing is enabled if userid is not root.
 	 */
-	(void) sprintf(line, "%s/%s", SD, LO);
-	if (userid && stat(line, &stb) == 0 && (stb.st_mode & 010))
+	(void) sprintf(buf, "%s/%s", SD, LO);
+	if (userid && stat(buf, &stb) == 0 && (stb.st_mode & 010))
 		fatal("Printer queue is disabled");
 	/*
 	 * Initialize the control file.
@@ -273,7 +292,7 @@ main(argc, argv)
 		unlink(tfname);
 		if (qflag)		/* just q things up */
 			exit(0);
-		if (!startdaemon(host))
+		if (!startdaemon(printer))
 			printf("jobs queued, but cannot start daemon.\n");
 		exit(0);
 	}
@@ -289,7 +308,6 @@ copy(f, n)
 	char n[];
 {
 	register int fd, i, nr, nc;
-	char buf[BUFSIZ];
 
 	if (format == 'p')
 		card('T', title ? title : n);
@@ -360,7 +378,6 @@ linked(file)
 card(c, p2)
 	register char c, *p2;
 {
-	char buf[BUFSIZ];
 	register char *p1 = buf;
 	register int len = 2;
 
@@ -516,14 +533,17 @@ itoa(i)
  * Perform lookup for printer name or abbreviation --
  */
 chkprinter(s)
-	register char *s;
+	char *s;
 {
 	int status;
+	static char pbuf[BUFSIZ/2];
+	char *bp = pbuf;
+	extern char *pgetstr();
 
-	if ((status = pgetent(line, s)) < 0)
+	if ((status = pgetent(buf, s)) < 0)
 		fatal("cannot open printer description file");
 	else if (status == 0)
-		fatal("unknown printer");
+		fatal("%s: unknown printer", s);
 	if ((SD = pgetstr("sd", &bp)) == NULL)
 		SD = DEFSPOOL;
 	if ((LO = pgetstr("lo", &bp)) == NULL)
@@ -532,8 +552,6 @@ chkprinter(s)
 		MX = DEFMX;
 	if ((MC = pgetnum("mc")) < 0)
 		MC = DEFMAXCOPIES;
-	if ((DU = pgetnum("du")) < 0)
-		DU = DEFUID;
 	SC = pgetflag("sc");
 }
 
@@ -544,7 +562,7 @@ mktemps()
 {
 	register int c, len, fd, n;
 	register char *cp;
-	char buf[BUFSIZ], *mktemp();
+	char *mktemp();
 
 	(void) sprintf(buf, "%s/.seq", SD);
 	if ((fd = open(buf, O_RDWR|O_CREAT, 0661)) < 0) {
@@ -584,9 +602,20 @@ mktemp(id, num, len)
 	int	num, len;
 {
 	register char *s;
+	extern char *malloc();
 
 	if ((s = malloc(len)) == NULL)
 		fatal("out of memory");
 	(void) sprintf(s, "%s/%sA%03d%s", SD, id, num, host);
 	return(s);
+}
+
+/*VARARGS1*/
+fatal(msg, a1, a2, a3)
+	char *msg;
+{
+	printf("%s: ", name);
+	printf(msg, a1, a2, a3);
+	putchar('\n');
+	exit(1);
 }
