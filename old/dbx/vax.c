@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)vax.c 1.2 12/15/82";
+static char sccsid[] = "@(#)vax.c 1.3 12/15/82";
 
 /*
  * Target machine dependent stuff.
@@ -15,7 +15,7 @@ static char sccsid[] = "@(#)vax.c 1.2 12/15/82";
 #include "source.h"
 #include "mappings.h"
 #include "object.h"
-#include "vaxops.h"
+#include "ops.h"
 #include <signal.h>
 
 #ifndef public
