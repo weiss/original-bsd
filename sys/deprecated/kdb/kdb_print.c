@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kdb_print.c	7.8 (Berkeley) 06/10/89
+ *	@(#)kdb_print.c	7.9 (Berkeley) 08/26/89
  */
 
 #include "machine/mtpr.h"
@@ -184,6 +184,10 @@ printtrace(modif)
 		}
 		break;
 	}
+
+	case 'k':
+		panic("kdb requested panic");
+		/* NOTREACHED */
 
 	case 'l': {
 		struct pte savemmap;
