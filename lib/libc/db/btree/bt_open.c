@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)bt_open.c	5.15 (Berkeley) 12/09/91";
+static char sccsid[] = "@(#)bt_open.c	5.16 (Berkeley) 12/16/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -179,7 +179,7 @@ __bt_open(fname, flags, mode, openinfo)
 		 *
 		 * Lorder is always stored in host-independent format.
 		 */
-		m.m_lorder = NTOHL(m.m_lorder);
+		m.m_lorder = ntohl(m.m_lorder);
 		if (m.m_lorder != BIG_ENDIAN && m.m_lorder != LITTLE_ENDIAN)
 			goto eftype;
 		if (m.m_lorder != BYTE_ORDER) {
