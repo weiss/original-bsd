@@ -1,6 +1,13 @@
-/* Copyright (c) 1982 Regents of the University of California */
+/*-
+ * Copyright (c) 1982 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ */
 
-static	char sccsid[] = "@(#)PFCLOSE.c	1.3	(Berkeley)	01/21/83";
+#ifndef lint
+static char sccsid[] = "@(#)PFCLOSE.c	1.4 (Berkeley) 04/09/90";
+#endif /* not lint */
 
 /*
  * Close a Pascal file deallocating resources as appropriate.

@@ -1,6 +1,13 @@
-/* Copyright (c) 1979 Regents of the University of California */
+/*-
+ * Copyright (c) 1979 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ */
 
-static char sccsid[] = "@(#)GETNAME.c 1.12 10/18/85";
+#ifndef lint
+static char sccsid[] = "@(#)GETNAME.c	1.13 (Berkeley) 04/09/90";
+#endif /* not lint */
 
 #include "h00vars.h"
 #include "libpc.h"

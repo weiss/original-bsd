@@ -1,6 +1,11 @@
-/* Copyright (c) 1979 Regents of the University of California */
-
-/* static char sccsid[] = "@(#)libpc.h 1.8 08/29/82"; */
+/*-
+ * Copyright (c) 1979 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)libpc.h	1.9 (Berkeley) 04/09/90
+ */
 
 extern FILE *ACTFILE();
 extern long *ADDT();

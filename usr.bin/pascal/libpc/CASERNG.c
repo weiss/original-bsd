@@ -1,6 +1,13 @@
-/* Copyright (c) 1982 Regents of the University of California */
+/*-
+ * Copyright (c) 1982 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ */
 
-static char sccsid[] = "@(#)CASERNG.c 1.1 02/02/82";
+#ifndef lint
+static char sccsid[] = "@(#)CASERNG.c	1.2 (Berkeley) 04/09/90";
+#endif /* not lint */
 
 CASERNG(val)
 	int val;

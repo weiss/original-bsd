@@ -1,6 +1,13 @@
-/* Copyright (c) 1979 Regents of the University of California */
+/*-
+ * Copyright (c) 1979 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ */
 
-static char sccsid[] = "@(#)RSNG4.c 1.5 01/09/89";
+#ifndef lint
+static char sccsid[] = "@(#)RSNG4.c	1.6 (Berkeley) 04/09/90";
+#endif /* not lint */
 
 extern char ERANG[];	/* ERANG is defined in RANG4.c */
 
