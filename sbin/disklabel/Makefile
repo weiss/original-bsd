@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 04/01/91
+#	@(#)Makefile	5.7 (Berkeley) 11/15/91
 
 PROG=	disklabel
 SRCS=	disklabel.c dkcksum.c
@@ -7,7 +7,8 @@ BINGRP=operator
 BINMODE=2550
 CLEANFILES=disklabel.5.0
 
-all: disklabel.5.0
+all: disklabel
+disklabel: disklabel.5.0
 
 beforeinstall:
 	install -c -o ${MANOWN} -g ${MANGRP} -m ${MANMODE} disklabel.5.0 \
