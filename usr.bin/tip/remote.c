@@ -13,8 +13,14 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)remote.c	5.9 (Berkeley) 09/16/92";
+static char sccsid[] = "@(#)remote.c	5.10 (Berkeley) 10/17/92";
 #endif /* not lint */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "pathnames.h"
+#include "tip.h"
 
 /*
  * Attributes to be gleened from remote host description
