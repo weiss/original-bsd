@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)assyms.c	5.1 (Berkeley) 04/30/85";
+static char sccsid[] = "@(#)assyms.c	5.2 (Berkeley) 10/22/87";
 #endif not lint
 
 #include <stdio.h>
@@ -351,7 +351,7 @@ char *tagstring(tag)
 		case OKTOBUMP:		return("oktobump");
 		case ISET:		return("iset");
 		case ILSYM:		return("ilsym");
-		default:		sprintf(tagbuff,"%d", tag);
+		default:		(void)sprintf(tagbuff,"%d", tag);
 					return(tagbuff);
 	}
 }
