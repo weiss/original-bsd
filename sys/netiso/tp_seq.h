@@ -29,7 +29,7 @@ SOFTWARE.
  *
  * $Header: tp_seq.h,v 5.1 88/10/12 12:20:59 root Exp $
  * $Source: /usr/argo/sys/netiso/RCS/tp_seq.h,v $
- *	@(#)tp_seq.h	7.3 (Berkeley) 08/29/89 *
+ *	@(#)tp_seq.h	7.4 (Berkeley) 01/16/90 *
  *
  * These macros perform sequence number arithmetic modulo (2**7 or 2**31).
  * The relevant fields in the tpcb are:
@@ -65,6 +65,10 @@ SOFTWARE.
 ? ((-(int)((seq)-(operand))) < (int)(tpcb)->tp_seqhalf)\
 : !(((int)(seq)-(operand)) < (int)(tpcb)->tp_seqhalf))
 	
+#define SEQ_MIN(tpcb, a, b) ( SEQ_GT(tpcb, a, b) ? b : a)
+
+#define SEQ_MAX(tpcb, a, b) ( SEQ_GT(tpcb, a, b) ? a : b)
+
 #define SEQ_INC(tpcb, Seq) ((++Seq), ((Seq) &= (tpcb)->tp_seqmask))
 
 #define SEQ_DEC(tpcb, Seq)\
