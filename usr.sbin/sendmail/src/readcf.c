@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.68 (Berkeley) 02/20/95";
+static char sccsid[] = "@(#)readcf.c	8.69 (Berkeley) 02/24/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1322,6 +1322,8 @@ struct optioninfo
 	"ServiceSwitchFile",	O_SSFILE,	FALSE,
 #define O_DIALDELAY	0x87
 	"DialDelay",		O_DIALDELAY,	TRUE,
+#define O_NORCPTACTION	0x88
+	"NoRecipientAction",	O_NORCPTACTION,	TRUE,
 
 	NULL,			'\0',		FALSE,
 };
@@ -1932,6 +1934,20 @@ setoption(opt, val, safe, sticky, e)
 	  case O_DIALDELAY:	/* delay for dial-on-demand operation */
 		DialDelay = convtime(val, 's');
 		break;
+
+	  case O_NORCPTACTION:	/* what to do if no recipient */
+		if (strcasecmp(val, "none") == 0)
+			NoRecipientAction = NRA_NO_ACTION;
+		else if (strcasecmp(val, "add-to") == 0)
+			NoRecipientAction = NRA_ADD_TO;
+		else if (strcasecmp(val, "add-apparently-to") == 0)
+			NoRecipientAction = NRA_ADD_APPARENTLY_TO;
+		else if (strcasecmp(val, "add-bcc") == 0)
+			NoRecipientAction = NRA_ADD_BCC;
+		else if (strcasecmp(val, "add-to-undisclosed") == 0)
+			NoRecipientAction = NRA_ADD_TO_UNDISCLOSED;
+		else
+			syserr("Invalid NoRecipientAction: %s", val);
 
 	  default:
 		if (tTd(37, 1))

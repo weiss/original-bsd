@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.27 (Berkeley) 02/23/95";
+static char sccsid[] = "@(#)collect.c	8.28 (Berkeley) 02/24/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -481,18 +481,41 @@ readerr:
 	    hvalue("apparently-to", e->e_header) == NULL)
 	{
 		register ADDRESS *q;
+		char *hdr = NULL;
+		extern void addheader();
 
 		/* create an Apparently-To: field */
 		/*    that or reject the message.... */
-		for (q = e->e_sendqueue; q != NULL; q = q->q_next)
+		switch (NoRecipientAction)
 		{
-			extern void addheader();
+		  case NRA_ADD_APPARENTLY_TO:
+			hdr = "Apparently-To";
+			break;
 
-			if (q->q_alias != NULL)
-				continue;
-			if (tTd(30, 3))
-				printf("Adding Apparently-To: %s\n", q->q_paddr);
-			addheader("Apparently-To", q->q_paddr, &e->e_header);
+		  case NRA_ADD_TO:
+			hdr = "To";
+			break;
+
+		  case NRA_ADD_BCC:
+			addheader("Bcc", "", &e->e_header);
+			break;
+
+		  case NRA_ADD_TO_UNDISCLOSED:
+			addheader("To", "undisclosed-recipients:;", &e->e_header);
+			break;
+		}
+
+		if (hdr != NULL)
+		{
+			for (q = e->e_sendqueue; q != NULL; q = q->q_next)
+			{
+				if (q->q_alias != NULL)
+					continue;
+				if (tTd(30, 3))
+					printf("Adding %s: %s\n",
+						hdr, q->q_paddr);
+				addheader(hdr, q->q_paddr, &e->e_header);
+			}
 		}
 	}
 
