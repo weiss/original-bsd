@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdset.h	1.5 (Berkeley) 06/01/90
+ *	@(#)fdset.h	5.1 (Berkeley) 09/14/90
  */
 
 /*

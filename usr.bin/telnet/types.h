@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)types.h	1.4 (Berkeley) 06/01/90
+ *	@(#)types.h	5.1 (Berkeley) 09/14/90
  */
 
 typedef struct {

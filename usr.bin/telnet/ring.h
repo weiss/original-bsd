@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ring.h	1.10 (Berkeley) 06/28/90
+ *	@(#)ring.h	5.1 (Berkeley) 09/14/90
  */
 
 /*
