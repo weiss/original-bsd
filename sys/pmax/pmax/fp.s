@@ -7,16 +7,17 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fp.s	7.2 (Berkeley) 05/25/92
+ *	@(#)fp.s	7.3 (Berkeley) 10/11/92
  */
 
 /*
  * Standard header stuff.
  */
 
-#include "machine/regdef.h"
-#include "machine/machAsmDefs.h"
-#include "machine/machConst.h"
+#include <machine/regdef.h>
+#include <machine/machAsmDefs.h>
+#include <machine/machConst.h>
+
 #include "assym.h"
 
 #define SEXP_INF	0xff

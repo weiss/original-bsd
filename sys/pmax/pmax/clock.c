@@ -11,14 +11,14 @@
  *
  * from: Utah $Hdr: clock.c 1.18 91/01/21$
  *
- *	@(#)clock.c	7.4 (Berkeley) 09/13/92
+ *	@(#)clock.c	7.5 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "kernel.h"
+#include <sys/param.h>
+#include <sys/kernel.h>
 
-#include "../include/machConst.h"
-#include "clockreg.h"
+#include <machine/machConst.h>
+#include <pmax/pmax/clockreg.h>
 
 /*
  * Machine-dependent clock routines.

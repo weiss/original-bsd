@@ -7,20 +7,20 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sys_machdep.c	7.2 (Berkeley) 07/10/92
+ *	@(#)sys_machdep.c	7.3 (Berkeley) 10/11/92
  */
 
-#include "sys/param.h"
-#include "sys/systm.h"
-#include "sys/ioctl.h"
-#include "sys/file.h"
-#include "sys/time.h"
-#include "sys/proc.h"
-#include "sys/uio.h"
-#include "sys/kernel.h"
-#include "sys/mtio.h"
-#include "sys/buf.h"
-#include "sys/trace.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/ioctl.h>
+#include <sys/file.h>
+#include <sys/time.h>
+#include <sys/proc.h>
+#include <sys/uio.h>
+#include <sys/kernel.h>
+#include <sys/mtio.h>
+#include <sys/buf.h>
+#include <sys/trace.h>
 
 #ifdef TRACE
 int	nvualarm;
