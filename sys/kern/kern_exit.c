@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_exit.c	7.2 (Berkeley) 11/03/86
+ *	@(#)kern_exit.c	7.3 (Berkeley) 02/23/87
  */
 
 #include "../machine/reg.h"
@@ -130,7 +130,7 @@ exit(rv)
 	}
 	if (p->p_pid == 1) {
 		if (p->p_dsize == 0) {
-			printf("Can't exec /etc/init\n");
+			printf("Can't exec /etc/init (errno %d)\n", rv >> 8);
 			for (;;)
 				;
 		} else
