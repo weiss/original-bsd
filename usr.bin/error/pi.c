@@ -1,4 +1,13 @@
-static	char *sccsid = "@(#)pi.c	1.3 (Berkeley) 07/02/83";
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)pi.c	5.1 (Berkeley) 05/31/85";
+#endif not lint
+
 #include <stdio.h>
 #include <ctype.h>
 #include "error.h"
