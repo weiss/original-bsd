@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)atexit.h	5.1 (Berkeley) 05/15/90
+ *	@(#)atexit.h	8.1 (Berkeley) 06/04/93
  */
 
 /* must be at least 32 to guarantee ANSI conformance */
