@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.76 (Berkeley) 05/29/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.77 (Berkeley) 05/30/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.76 (Berkeley) 05/29/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.77 (Berkeley) 05/30/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -91,7 +91,6 @@ bool	OneXact = FALSE;		/* one xaction only this run */
 char	*CurSmtpClient;			/* who's at the other end of channel */
 
 static char	*skipword();
-extern char	RealUserName[];
 
 
 #define MAXBADCOMMANDS	25		/* maximum number of bad commands */
