@@ -1,6 +1,14 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)fdreg.h	7.1 (Berkeley) 05/09/91
+ */
+
 /*
  * AT floppy controller registers and bitfields
- *	@(#)fdreg.h	1.2 (Berkeley) 05/09/91
  */
 
 /* uses NEC765 controller */

@@ -3,13 +3,11 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * William Jolitz.
+ * William Jolitz and Don Ahn.
  *
- * Added stuff to read the cmos clock on startup - Don Ahn
+ * %sccs.include.redist.c%
  *
- * %sccs.include.386.c%
- *
- *	@(#)clock.c	5.5 (Berkeley) 05/09/91
+ *	@(#)clock.c	7.1 (Berkeley) 05/09/91
  */
 
 /*

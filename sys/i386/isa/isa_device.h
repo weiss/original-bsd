@@ -1,6 +1,14 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)isa_device.h	7.1 (Berkeley) 05/09/91
+ */
+
 /*
  * ISA Bus Autoconfiguration
- *	@(#)isa_device.h	1.1 (Berkeley) 11/08/90
  */
 
 /*
