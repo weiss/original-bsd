@@ -14,9 +14,9 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.11 (Berkeley) 09/16/88
+#	@(#)Makefile	5.12 (Berkeley) 04/01/89
 #
-CFLAGS=	-O -R
+CFLAGS=	-O -R -DUSE_OLD_TTY
 LIBC=	/lib/libc.a
 SRCS=	version.c aux.c cmd1.c cmd2.c cmd3.c cmdtab.c collect.c edit.c fio.c \
 	getname.c head.c v7.local.c lex.c list.c main.c names.c popen.c \
