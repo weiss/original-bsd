@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_srvcache.c	7.18 (Berkeley) 09/30/92
+ *	@(#)nfs_srvcache.c	7.19 (Berkeley) 10/11/92
  */
 
 /*
@@ -25,6 +25,7 @@
 #include <sys/malloc.h>
 #include <sys/socket.h>
 #include <sys/socketvar.h>
+
 #include <netinet/in.h>
 #ifdef ISO
 #include <netiso/iso.h>

@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_syscalls.c	7.34 (Berkeley) 10/08/92
+ *	@(#)nfs_syscalls.c	7.35 (Berkeley) 10/11/92
  */
 
 #include <sys/param.h>
@@ -27,12 +27,12 @@
 #include <sys/domain.h>
 #include <sys/protosw.h>
 #include <sys/namei.h>
+
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #ifdef ISO
 #include <netiso/iso.h>
 #endif
-#include <machine/endian.h>
 #include <nfs/rpcv2.h>
 #include <nfs/nfsv2.h>
 #include <nfs/nfs.h>
