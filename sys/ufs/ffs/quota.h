@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)quota.h	7.11 (Berkeley) 06/25/92
+ *	@(#)quota.h	7.12 (Berkeley) 07/20/92
  */
 
 #ifndef _QUOTA_
@@ -88,7 +88,7 @@ struct	dqblk {
  * used entries.
  */
 struct	dquot {
-	struct	dquot *dq_forw, *dq_back;/* MUST be first entry */
+	struct	dquot *dq_forw, **dq_back; /* hash list */
 	struct	dquot *dq_freef, **dq_freeb; /* free list */
 	short	dq_flags;		/* flags, see below */
 	short	dq_cnt;			/* count of active references */
