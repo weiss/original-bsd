@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.28 (Berkeley) 03/11/94";
+static char sccsid[] = "@(#)savemail.c	8.29 (Berkeley) 05/10/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -495,7 +495,7 @@ returntosender(msg, returnq, sendbody, e)
 			e->e_id, ee->e_id, msg);
 # endif
 
-	(void) sprintf(buf, "Returned mail: %s", msg);
+	(void) sprintf(buf, "Returned mail: %.*s", sizeof buf - 20, msg);
 	addheader("Subject", buf, ee);
 	if (SendMIMEErrors)
 	{
