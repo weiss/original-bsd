@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkproto.c	5.7 (Berkeley) 04/19/91";
+static char sccsid[] = "@(#)mkproto.c	5.8 (Berkeley) 03/07/92";
 #endif /* not lint */
 
 /*
@@ -21,8 +21,8 @@ static char sccsid[] = "@(#)mkproto.c	5.7 (Berkeley) 04/19/91";
  */
 #include <sys/param.h>
 #include <sys/dir.h>
-#include <ufs/dinode.h>
-#include <ufs/fs.h>
+#include <ufs/ufs/dinode.h>
+#include <ufs/ffs/fs.h>
 #include <stdio.h>
 
 union {
