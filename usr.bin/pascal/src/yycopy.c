@@ -1,7 +1,8 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)yycopy.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)yycopy.c 1.2 05/11/83";
 
+#include	"whoami.h"
 #include	"0.h"
 #include	"yy.h"
 
