@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tset.c	5.2 (Berkeley) 06/19/85";
+static char sccsid[] = "@(#)tset.c	5.3 (Berkeley) 08/05/85";
 #endif not lint
 
 /*
@@ -264,6 +264,8 @@ static char sccsid[] = "@(#)tset.c	5.2 (Berkeley) 06/19/85";
 **			by just stating the terminal type.
 **		10/77 -- Written.
 */
+
+#define UCB_NTTY
 
 # ifdef USG
 #  define index strchr
