@@ -1,12 +1,12 @@
 /*-
- * Copyright (c) 1983, 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1983, 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #if !defined(lint) && defined(LIBC_SCCS)
-static char sccsid[] = "@(#)gmon.c	5.16 (Berkeley) 05/25/93";
+static char sccsid[] = "@(#)gmon.c	8.1 (Berkeley) 06/04/93";
 #endif
 
 #include <sys/param.h>
