@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.6 (Berkeley) 05/10/87
+#	@(#)Makefile	5.7 (Berkeley) 05/31/87
 #
 DESTDIR=
 DFLAGS= 
@@ -51,6 +51,8 @@ print:
 
 lint:
 	lint ${LINTFLAGS} ${DFLAGS} ${GPROFSRCS}
+
+depend:
 
 gprof.o: gprof.c gprof.h ${MACHINE}.h gcrt0.h
 arcs.o: arcs.c gprof.h ${MACHINE}.h gcrt0.h
