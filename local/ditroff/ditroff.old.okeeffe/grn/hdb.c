@@ -1,4 +1,4 @@
-/*	hdb.c	1.5	(Berkeley) 84/03/15
+/*	hdb.c	1.6	(Berkeley) 84/04/07
  *
  * Copyright -C- 1982 Barry S. Roitblat
  *
@@ -8,6 +8,9 @@
 
 #include "gprint.h"
 
+/* imports from main.c */
+extern int linenum;		/* current line number in input file */
+extern char gremlinfile[];	/* name of file currently reading */
 
 /* imports from c */
 
@@ -76,7 +79,7 @@ register FILE *file;
     elist = DBInit();
     (void) fscanf(file,"%s",string);
     if (strcmp(string, "gremlinfile")) {
-        fprintf(stderr, "not gremlin file\n");
+        error("%s is not a gremlin file", gremlinfile);
         return(elist);
     }
     (void) fscanf(file, "%d%f%f", &size, &x, &y);
@@ -84,7 +87,7 @@ register FILE *file;
     done = FALSE;
     while (!done) {
         if (fscanf(file,"%d", &size) == EOF) {
-            fprintf(stderr, "error in file format\n");
+            error("%s, error in file format", gremlinfile);
             return(elist);
         }
         if ((type = size) < 0) {	/* no more data */
