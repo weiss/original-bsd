@@ -1,4 +1,4 @@
-char version[] = "@(#)main.c	2.17	(Berkeley)	11/15/82";
+char version[] = "@(#)main.c	2.18	(Berkeley)	12/03/82";
 
 #include <stdio.h>
 #include <ctype.h>
@@ -289,7 +289,7 @@ retry:
 		if (stchar.st_mode & S_IFCHR) {
 			if (stslash.st_dev == stblock.st_rdev) {
 				hotroot++;
-				raw = unrawname(name);
+				raw = rawname(name);
 			}
 			checkfilesys(raw);
 			return (1);
