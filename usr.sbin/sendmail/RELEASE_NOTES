@@ -1,3 +1,33 @@
+8.5/8.5		93/07/23
+	Serious bug: if you used a command line recipient that was unknown
+		sendmail would not send a return message (it was treating
+		everything as though it had an SMTP-style client that
+		would do the return itself).  Problem noted by Josh Smith.
+	Change "trymx" option in getcanonname() to ignore all MX data,
+		even during a T_ANY query.  This actually didn't break
+		anything, because the only time you called getcanonname
+		with !trymx was if you already knew there were no MX
+		records, but it is somewhat cleaner.  From Motonori
+		Nakamura.
+	Don't call getcanonname from getmxrr if you already know there
+		are no DNS records matching the name.
+	Fix a problem causing error messages to always include "The
+		original message was received ... from localhost".
+		The correct original host information is now included.
+	Previous change to cf/sh/makeinfo.sh doesn't port to Ultrix (their
+		version of "test" doesn't have the -x flag).  Change it
+		to use -f instead.  From John Myers.
+	CONFIG: 8.4 mistakenly set the default SMTP-style mailer to
+		esmtp -- it should be smtp.
+	CONFIG: send all relayed mail using confRELAY_MAILER (defaults
+		to "relay" (a variant of "smtp") if MAILER(smtp) is used,
+		else "suucp" if MAILER(uucp) is used, else "unknown");
+		this cleans up the configs somewhat.  This fixes a serious
+		problem that caused route-addrs to get mistaken as relays,
+		pointed out by John Myers.  WARNING: this also causes
+		the default on SMART_HOST to change from "suucp" to
+		"relay" if you have MAILER(smtp) specified.
+
 8.4/8.4		93/07/22
 	Add option `w'.  If you receive a message that comes to you because
 		you are the best (lowest preference) target of an MX, and
