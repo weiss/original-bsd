@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)err.c	3.34		11/24/82);
+SCCSID(@(#)err.c	3.35		11/24/82);
 
 /*
 **  SYSERR -- Print error message.
@@ -142,7 +142,7 @@ nmessage(num, msg, a, b, c, d, e)
 	register char *msg;
 {
 	errno = 0;
-	fmtmsg(MsgBuf, NULL, num, msg, a, b, c, d, e);
+	fmtmsg(MsgBuf, (char *) NULL, num, msg, a, b, c, d, e);
 	putmsg(MsgBuf, FALSE);
 }
 /*

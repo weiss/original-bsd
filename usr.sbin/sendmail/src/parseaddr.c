@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.65		11/17/82);
+SCCSID(@(#)parseaddr.c	3.66		11/24/82);
 
 /*
 **  PARSE -- Parse an address
@@ -50,7 +50,6 @@ parse(addr, a, copyf)
 	register struct mailer *m;
 	extern char **prescan();
 	extern ADDRESS *buildaddr();
-	static char nbuf[MAXNAME];
 
 	/*
 	**  Initialize and prescan address.
@@ -211,7 +210,7 @@ prescan(addr, delim)
 {
 	register char *p;
 	register char *q;
-	register char c;
+	register int c;
 	char **avp;
 	bool bslashmode;
 	int cmntcnt;
