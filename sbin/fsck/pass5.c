@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass5.c	8.5 (Berkeley) 11/29/94";
+static char sccsid[] = "@(#)pass5.c	8.6 (Berkeley) 11/30/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -224,7 +224,7 @@ pass5()
 			}
 		}
 		if (fs->fs_contigsumsize > 0) {
-			long *sump = cg_clustersum(newcg);
+			int32_t *sump = cg_clustersum(newcg);
 			u_char *mapp = cg_clustersfree(newcg);
 			int map = *mapp++;
 			int bit = 1;
