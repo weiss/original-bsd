@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)command.c	4.5 08/11/83";
+static	char sccsid[] = "@(#)command.c	4.6 10/13/84";
 #endif
 /*
  *
@@ -175,9 +175,12 @@ CHAR		defcom;
 	    case '>':
 		lastcom=0; savc=rdc();
 		IF regptr=getreg(savc)
-		THEN IF kcore THEN *(int *)regptr = dot; ELSE
-		     * (ADDR *) (((ADDR)&u)+regptr)=dot;
-		     ptrace(WUREGS,pid,regptr,* (ADDR *) (((ADDR)&u)+regptr));
+		THEN IF kcore THEN
+			*(int *)regptr = dot;
+		     ELSE
+		        *(ADDR *)(((ADDR)&u)+regptr) = dot;
+		        ptrace(PT_WRITE_U, pid, regptr,
+			     *(ADDR *)(((ADDR)&u)+regptr));
 		     FI
 		ELIF (modifier=varchk(savc)) != -1
 		THEN	var[modifier]=dot;
