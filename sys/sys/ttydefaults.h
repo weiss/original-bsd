@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ttydefaults.h	7.3 (Berkeley) 06/15/90
+ *	@(#)ttydefaults.h	7.4 (Berkeley) 06/20/90
  */
 
 /*
@@ -29,7 +29,7 @@
 #define	CEOL		((unsigned)'\377')	/* XXX avoid _POSIX_VDISABLE */
 #define	CERASE		0177
 #define	CINTR		CTRL('c')
-#define	CINFO		((unsigned)'\377')	/* XXX avoid _POSIX_VDISABLE */
+#define	CSTATUS		((unsigned)'\377')	/* XXX avoid _POSIX_VDISABLE */
 #define	CKILL		CTRL('u')
 #define	CMIN		1
 #define	CQUIT		034		/* FS, ^\ */
@@ -57,7 +57,7 @@
 cc_t	ttydefchars[NCC] = {
 	CEOF,	CEOL,	CEOL,	CERASE, CWERASE, CKILL, CREPRINT, 
 	_POSIX_VDISABLE, CINTR,	CQUIT,	CSUSP,	CDSUSP,	CSTART,	CSTOP,	CLNEXT,
-	CDISCARD, CMIN,	CTIME,  CINFO, _POSIX_VDISABLE
+	CDISCARD, CMIN,	CTIME,  CSTATUS, _POSIX_VDISABLE
 };
 #undef TTYDEFCHARS
 #endif /* TTYDEFCHARS */
