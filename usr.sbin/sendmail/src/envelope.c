@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	8.33 (Berkeley) 02/10/94";
+static char sccsid[] = "@(#)envelope.c	8.34 (Berkeley) 04/14/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -184,7 +184,8 @@ dropenvelope(e)
 	**  Send back return receipts as requested.
 	*/
 
-	if (e->e_receiptto != NULL && bitset(EF_SENDRECEIPT, e->e_flags))
+	if (e->e_receiptto != NULL && bitset(EF_SENDRECEIPT, e->e_flags)
+	    && !bitset(PRIV_NORECEIPTS, PrivacyFlags))
 	{
 		auto ADDRESS *rlist = NULL;
 

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.86 (Berkeley) 04/12/94";
+static char sccsid[] = "@(#)conf.c	8.87 (Berkeley) 04/14/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -121,6 +121,7 @@ struct prival PrivacyValues[] =
 	"restrictmailq",	PRIV_RESTRICTMAILQ,
 	"restrictqrun",		PRIV_RESTRICTQRUN,
 	"authwarnings",		PRIV_AUTHWARNINGS,
+	"noreceipts",		PRIV_NORECEIPTS,
 	"goaway",		PRIV_GOAWAY,
 	NULL,			0,
 };
