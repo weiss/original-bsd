@@ -1,4 +1,4 @@
-#	@(#)bsd.prog.mk	5.14 (Berkeley) 05/15/90
+#	@(#)bsd.prog.mk	5.15 (Berkeley) 05/29/90
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -94,8 +94,8 @@ cleandir: _PROGSUBDIR
 
 # some of the rules involve .h sources, so remove them from mkdep line
 .if !target(depend)
-depend: .depend
-.depend: ${SRCS} _PROGSUBDIR
+depend: .depend _PROGSUBDIR
+.depend: ${SRCS}
 .if defined(PROG)
 	mkdep ${CFLAGS:M-[ID]*} ${.ALLSRC:M*.c}
 .endif
