@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_exit.c	8.9 (Berkeley) 02/14/95
+ *	@(#)kern_exit.c	8.10 (Berkeley) 02/23/95
  */
 
 #include <sys/param.h>
@@ -137,7 +137,7 @@ exit1(p, rv)
 				 * if we blocked.
 				 */
 				if (sp->s_ttyvp)
-					vgoneall(sp->s_ttyvp);
+					VOP_REVOKE(sp->s_ttyvp, REVOKEALL);
 			}
 			if (sp->s_ttyvp)
 				vrele(sp->s_ttyvp);
