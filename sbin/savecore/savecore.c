@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.5 (Berkeley) 02/18/86";
+static char sccsid[] = "@(#)savecore.c	5.6 (Berkeley) 05/12/86";
 #endif not lint
 
 /*
@@ -37,8 +37,6 @@ static char sccsid[] = "@(#)savecore.c	5.5 (Berkeley) 02/18/86";
 #else
 #define ok(number) (number)
 #endif
-
-#define SHUTDOWNLOG "/usr/adm/shutdownlog"
 
 struct nlist current_nl[] = {	/* namelist for currently running system */
 #define X_DUMPDEV	0
@@ -117,7 +115,7 @@ main(argc, argv)
 	dirname = argv[0];
 	if (argc == 2)
 		system = argv[1];
-	openlog("savecore", LOG_ODELAY, LOG_USER);
+	openlog("savecore", LOG_ODELAY, LOG_AUTH);
 	if (access(dirname, W_OK) < 0) {
 		syslog(LOG_ERR, "%s: %m", dirname);
 		exit(1);
