@@ -1,9 +1,8 @@
-#	@(#)Makefile	6.1 (Berkeley) 12/21/92
+#	@(#)Makefile	6.2 (Berkeley) 05/20/93
 
 PROG=	praliases
 CFLAGS+=-I${.CURDIR}/../src
 DPADD=	${LIBDBM}
-LDADD=	-ldbm
 NOMAN=	noman
 
 .include "../../Makefile.inc"
