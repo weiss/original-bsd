@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfs_vnops.c	7.41 (Berkeley) 02/02/93
+ *	@(#)mfs_vnops.c	7.42 (Berkeley) 04/28/93
  */
 
 #include <sys/param.h>
@@ -139,7 +139,7 @@ mfs_strategy(ap)
 	struct vnode *vp;
 	struct proc *p = curproc;		/* XXX */
 
-	if (vfinddev(bp->b_dev, VBLK, &vp) || vp->v_usecount == 0)
+	if (!vfinddev(bp->b_dev, VBLK, &vp) || vp->v_usecount == 0)
 		panic("mfs_strategy: bad dev");
 	mfsp = VTOMFS(vp);
 	/* check for mini-root access */
