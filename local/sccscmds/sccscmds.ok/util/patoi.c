@@ -1,4 +1,4 @@
-static char Sccsid[] "@(#)patoi	2.1";
+static char Sccsid[] = "@(#)patoi.c	1.2	02/15/87";
 /*
 	Function to convert ascii string to integer.  Converts
 	positive numbers only.  Returns -1 if non-numeric

@@ -1,4 +1,4 @@
-static char Sccsid[] "@(#)any	2.1";
+static char Sccsid[] = "@(#)any.c	1.2	02/15/87";
 /*
 	If any character of `s' is `c', return 1
 	else return 0.

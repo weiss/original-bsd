@@ -1,4 +1,4 @@
-static char Sccsid[] "@(#)verify	2.1";
+static char Sccsid[] = "@(#)verify.c	1.2	02/15/87";
 /*
 	If `astr1' contains any characters not in `str2' return the
 	offset of the first such character found in `astr1',

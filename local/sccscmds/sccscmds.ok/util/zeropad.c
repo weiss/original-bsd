@@ -1,4 +1,4 @@
-static char Sccsid[] "@(#)zeropad	2.2";
+static char Sccsid[] = "@(#)zeropad.c	1.2	02/15/87";
 /*
 	Replace initial blanks with '0's in `str'.
 	Return `str'.

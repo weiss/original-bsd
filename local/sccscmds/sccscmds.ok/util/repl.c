@@ -1,4 +1,4 @@
-static char Sccsid[] "@(#)repl	3.1";
+static char Sccsid[] = "@(#)repl.c	1.2	02/15/87";
 /*
 	Replace each occurrence of `old' with `new' in `str'.
 	Return `str'.
