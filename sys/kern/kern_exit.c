@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_exit.c	7.38 (Berkeley) 09/07/91
+ *	@(#)kern_exit.c	7.39 (Berkeley) 01/14/92
  */
 
 #include "param.h"
@@ -136,6 +136,7 @@ exit(p, rv)
 	/* 
 	 * release trace file
 	 */
+	p->p_traceflag = 0;	/* don't trace the vrele() */
 	if (p->p_tracep)
 		vrele(p->p_tracep);
 #endif
