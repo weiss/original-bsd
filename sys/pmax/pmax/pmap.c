@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pmap.c	7.5 (Berkeley) 05/11/92
+ *	@(#)pmap.c	7.6 (Berkeley) 05/11/92
  */
 
 /*
@@ -803,7 +803,7 @@ pmap_enter(pmap, va, pa, prot, wired)
 				 * just record page as dirty.
 				 */
 				npte = PG_M;
-				mem->clean = FALSE;
+				mem->clean = TRUE;
 			} else
 #ifdef ATTR
 				if ((pmap_attributes[atop(pa - KERNBASE)] &
