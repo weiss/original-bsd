@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1985 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1985, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This file includes significant work done at Cornell University by
  * Bill Nesheim.  That work included by permission.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)input.c	5.9 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)input.c	8.1 (Berkeley) 06/05/93";
 #endif /* not lint */
 
 /*
