@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_vget.c	6.12 (Berkeley) 01/25/89";
+static char *sccsid = "@(#)ex_vget.c	6.13 (Berkeley) 09/11/89";
 #endif not lint
 
 #include "ex.h"
@@ -639,7 +639,7 @@ vgetcnt()
 fastpeekkey()
 {
 	int trapalarm();
-	int (*Oint)();
+	void (*Oint)();
 	register int c;
 
 	/*
