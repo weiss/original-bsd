@@ -1,7 +1,14 @@
-(* Copyright (c) 1979 Regents of the University of California *)
+(*
+ * Copyright (c) 1979 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)unixio.h	1.2 (Berkeley) 04/12/91
+ *)
 
 const
-sccsid = '@(#)unixio.h 1.1 06/17/81';
+sccsid = '@(#)unixio.h 1.2 04/12/91';
 
 type
 fileptr = record
