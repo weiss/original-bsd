@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)main.c	1.1 (Berkeley) 03/02/81";
+static	char *sccsid = "@(#)main.c	1.2 (Berkeley) 08/13/82";
 /* Copyright (c) 1979 Regents of the University of California */
 #
 /*
@@ -213,7 +213,8 @@ header()
 	}
 	reenter++;
 	if (profile || table) {
-		printf("Berkeley Pascal PXP -- Version 1.1 (%s)\n\n%s  %s\n\n", version, myctime(&tvec), filename);
+		printf("Berkeley Pascal PXP -- Version %s\n\n%s  %s\n\n",
+			version, myctime(&tvec), filename);
 		printf("Profiled %s\n\n", myctime(&ptvec));
 	}
 }
