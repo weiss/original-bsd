@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.66 (Berkeley) 01/27/94";
+static char sccsid[] = "@(#)deliver.c	8.67 (Berkeley) 02/05/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -100,7 +100,8 @@ sendall(e, mode)
 		errno = 0;
 		syserr("554 too many hops %d (%d max): from %s via %s, to %s",
 			e->e_hopcount, MaxHopCount, e->e_from.q_paddr,
-			RealHostName, e->e_sendqueue->q_paddr);
+			RealHostName == NULL ? "localhost" : RealHostName,
+			e->e_sendqueue->q_paddr);
 		return;
 	}
 
