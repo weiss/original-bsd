@@ -5,13 +5,13 @@
  * This code is derived from software contributed to Berkeley by
  * Ralph Campbell.
  *
- * %sccs.include.redist.sh%
+ * %sccs.include.redist.c%
  *
- *	@(#)crt0.s	5.2 (Berkeley) 03/15/92
+ *	@(#)crt0.s	5.3 (Berkeley) 07/27/92
  */
 
 #include <machine/regdef.h>
-#include "../libc/mips/DEFS.h"
+#include <machine/machAsmDefs.h>
 
 	.comm	environ, 4
 
