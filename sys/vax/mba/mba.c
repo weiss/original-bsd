@@ -1,4 +1,4 @@
-/*	mba.c	3.2	10/14/12	*/
+/*	mba.c	3.3	06/07/80	*/
 
 #include "../h/param.h"
 #include "../h/buf.h"

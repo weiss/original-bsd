@@ -1,4 +1,4 @@
-/*	machdep.c	3.7	10/14/12	*/
+/*	machdep.c	3.8	06/07/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -13,7 +13,7 @@
 #include "../h/proc.h"
 #include "../h/psl.h"
 
-char	version[] = "VM/UNIX (Berkeley Version 3.7) 10/14/12 \n";
+char	version[] = "VM/UNIX (Berkeley Version 3.8) 10/14/12 \n";
 int	icode[] =
 {
 	0x9f19af9f,	/* pushab [&"init.vm",0]; pushab */
