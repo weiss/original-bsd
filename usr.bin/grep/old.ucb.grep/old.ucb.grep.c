@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)old.ucb.grep.c	5.4 (Berkeley) 10/07/87";
+static char sccsid[] = "@(#)old.ucb.grep.c	5.5 (Berkeley) 03/01/91";
 #endif not lint
 
 #include <stdio.h>
@@ -232,6 +232,7 @@ letter(c)
 }
 
 execute(file)
+	char *file;
 {
 	register char *p1, *p2;
 	register c;
