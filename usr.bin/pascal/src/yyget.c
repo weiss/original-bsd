@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)yyget.c 1.4 05/11/83";
+static	char sccsid[] = "@(#)yyget.c 1.5 07/26/83";
 
 #include "whoami.h"
 #include "0.h"
@@ -271,7 +271,7 @@ includ()
  *
  */
 #	ifdef PC
-	    stabinclude( filename );
+	    stabinclude( filename , TRUE );
 #	endif PC
 	return (1);
 }
@@ -348,7 +348,7 @@ uninclud()
 	    if ( inclev == 0 ) {
 		stabsource( filename );
 	    } else {
-		stabinclude( filename );
+		stabinclude( filename , FALSE );
 	    }
 #	endif PC
 	inclev--;
