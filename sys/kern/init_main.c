@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	8.14 (Berkeley) 05/10/95
+ *	@(#)init_main.c	8.15 (Berkeley) 05/10/95
  */
 
 #include <sys/param.h>
@@ -83,7 +83,6 @@ main(framep)
 	register int i;
 	int s;
 	register_t rval[2];
-	extern int (*mountroot) __P((void));
 	extern struct pdevinit pdevinit[];
 	extern void roundrobin __P((void *));
 	extern void schedcpu __P((void *));
@@ -222,7 +221,7 @@ main(framep)
 	schedcpu(NULL);
 
 	/* Mount the root file system. */
-	if ((*mountroot)())
+	if (vfs_mountroot())
 		panic("cannot mount root");
 	mountlist.cqh_first->mnt_flag |= MNT_ROOTFS;
 
