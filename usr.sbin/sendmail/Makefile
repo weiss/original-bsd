@@ -1,6 +1,6 @@
-#       @(#)Makefile	8.3 (Berkeley) 02/27/94
+#       @(#)Makefile	8.4 (Berkeley) 04/22/94
 
-SUBDIR= src mailstats makemap praliases
+SUBDIR= src mailstats makemap praliases cf/cf
 FTPDIR=	barad-dur:/disks/barad-dur/ftp/sendmail/.
 VER=	XX
 
