@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)put.c 1.15 07/22/81";
+static char sccsid[] = "@(#)put.c 1.16 04/27/82";
 
 #include "whoami.h"
 #include "opcode.h"
@@ -67,19 +67,23 @@ put(a)
 			break;
 		case O_AS:
 			switch(p[1]) {
+			case 0:
+				break;
 			case 2:
 				op = O_AS2;
+				n = 1;
 				break;
 			case 4:
 				op = O_AS4;
+				n = 1;
 				break;
 			case 8:
 				op = O_AS8;
+				n = 1;
 				break;
 			default:
 				goto pack;
 			}
-			n = 1;
 #			ifdef DEBUG
 				cp = otext[op];
 #			endif DEBUG
