@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)scan.l	5.2 (Berkeley) 06/21/85";
+static char sccsid[] = "@(#)scan.l	5.3 (Berkeley) 04/16/86";
 #endif not lint
 
 #include "y.tab.h"
@@ -15,9 +15,9 @@ static char sccsid[] = "@(#)scan.l	5.2 (Berkeley) 06/21/85";
 
 BLANK	[ \t]
 DIGIT	[0-9]
-ALPHA	[A-Z]
-ANUM	[0-9A-Z]
-NAMECHR	[0-9A-Z./-]
+ALPHA	[A-Za-z]
+ANUM	[0-9A-Za-z]
+NAMECHR	[0-9A-Za-z./-]
 
 %%
 "NET"		{
