@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kdb_print.c	7.7 (Berkeley) 05/11/89
+ *	@(#)kdb_print.c	7.8 (Berkeley) 06/10/89
  */
 
 #include "machine/mtpr.h"
@@ -11,6 +11,8 @@
 #include "../kdb/defs.h"
 #undef CTRL
 #include "tty.h"
+#include "vnode.h"
+#include "../ufs/inode.h"
 
 char	*BADRAD;
 
@@ -169,6 +171,19 @@ printtrace(modif)
 					printc(*comptr++);
 			}
 		break;
+
+	case 'i': {
+		register struct inode *ip;
+
+		printf("Locked inodes\n");
+		for (ip = inode; ip < inodeNINODE; ip++) {
+			if ((ip->i_flag & ILOCKED) == 0)
+				continue;
+			printf("inode %d dev 0x%x type %d\n", ip->i_number,
+				ip->i_dev, ITOV(ip)->v_type);
+		}
+		break;
+	}
 
 	case 'l': {
 		struct pte savemmap;
