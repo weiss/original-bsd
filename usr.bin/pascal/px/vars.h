@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)vars.h 1.12 01/22/83"; */
+/* static char sccsid[] = "@(#)vars.h 2.1 02/08/84"; */
 
 #include <stdio.h>
 

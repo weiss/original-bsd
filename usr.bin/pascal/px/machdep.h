@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)machdep.h 1.3 01/10/83"; */
+/* static char sccsid[] = "@(#)machdep.h 2.1 02/08/84"; */
 
 #ifdef ADDR32
 #define pushaddr push4
