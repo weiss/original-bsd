@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1982, 1986 Regents of the University of California.
+ * Copyright (c) 1982, 1986, 1988 Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -14,11 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tcp_output.c	7.13.1.4 (Berkeley) 02/15/89
+ *	@(#)tcp_output.c	7.18 (Berkeley) 04/08/89
  */
 
 #include "param.h"
 #include "systm.h"
+#include "malloc.h"
 #include "mbuf.h"
 #include "protosw.h"
 #include "socket.h"
@@ -53,7 +54,7 @@ tcp_output(tp)
 	register struct tcpcb *tp;
 {
 	register struct socket *so = tp->t_inpcb->inp_socket;
-	register int len, win;
+	register long len, win;
 	struct mbuf *m0;
 	int off, flags, error;
 	register struct mbuf *m;
@@ -72,7 +73,7 @@ tcp_output(tp)
 again:
 	sendalot = 0;
 	off = tp->snd_nxt - tp->snd_una;
-	win = MIN(tp->snd_wnd, tp->snd_cwnd);
+	win = min(tp->snd_wnd, tp->snd_cwnd);
 
 	/*
 	 * If in persist timeout with window of 0, send 1 byte.
@@ -89,7 +90,7 @@ again:
 		}
 	}
 
-	len = MIN(so->so_snd.sb_cc, win) - off;
+	len = min(so->so_snd.sb_cc, win) - off;
 	flags = tcp_outflags[tp->t_state];
 
 	if (len < 0) {
@@ -215,11 +216,13 @@ send:
 	 * be transmitted, and initialize the header from
 	 * the template for sends on this connection.
 	 */
-	MGET(m, M_DONTWAIT, MT_HEADER);
+	MGETHDR(m, M_DONTWAIT, MT_HEADER);
 	if (m == NULL)
 		return (ENOBUFS);
-	m->m_off = MMAXOFF - sizeof (struct tcpiphdr);
+	m->m_data += max_linkhdr;
 	m->m_len = sizeof (struct tcpiphdr);
+	m->m_pkthdr.rcvif = (struct ifnet *)0;
+	ti = mtod(m, struct tcpiphdr *);
 	if (len) {
 		if (tp->t_force && len == 1)
 			tcpstat.tcps_sndprobe++;
@@ -230,9 +233,15 @@ send:
 			tcpstat.tcps_sndpack++;
 			tcpstat.tcps_sndbyte += len;
 		}
-		m->m_next = m_copy(so->so_snd.sb_mb, off, (int) len);
-		if (m->m_next == 0)
-			len = 0;
+		if (len <= MHLEN - sizeof (struct tcpiphdr) - max_linkhdr) {
+			m_copydata(so->so_snd.sb_mb, off, (int) len,
+			    mtod(m, caddr_t) + sizeof(struct tcpiphdr));
+			m->m_len += len;
+		} else {
+			m->m_next = m_copy(so->so_snd.sb_mb, off, (int) len);
+			if (m->m_next == 0)
+				len = 0;
+		}
 	} else if (tp->t_flags & TF_ACKNOW)
 		tcpstat.tcps_sndacks++;
 	else if (flags & (TH_SYN|TH_FIN|TH_RST))
@@ -242,7 +251,6 @@ send:
 	else
 		tcpstat.tcps_sndwinup++;
 
-	ti = mtod(m, struct tcpiphdr *);
 	if (tp->t_template == 0)
 		panic("tcp_output");
 	bcopy((caddr_t)tp->t_template, (caddr_t)ti, sizeof (struct tcpiphdr));
@@ -265,7 +273,7 @@ send:
 	if (flags & TH_SYN && (tp->t_flags & TF_NOOPT) == 0) {
 		u_short mss;
 
-		mss = MIN(so->so_rcv.sb_hiwat / 2, tcp_mss(tp));
+		mss = min(so->so_rcv.sb_hiwat / 2, tcp_mss(tp));
 		if (mss > IP_MSS - sizeof(struct tcpiphdr)) {
 			opt = tcp_initopt;
 			optlen = sizeof (tcp_initopt);
@@ -299,10 +307,10 @@ send:
 	 */
 	if (win < (long)(so->so_rcv.sb_hiwat / 4) && win < (long)tp->t_maxseg)
 		win = 0;
-	if (win < (long)(tp->rcv_adv - tp->rcv_nxt))
-		win = (long)(tp->rcv_adv - tp->rcv_nxt);
 	if (win > IP_MAXPACKET)
 		win = IP_MAXPACKET;
+	if (win < (long)(tp->rcv_adv - tp->rcv_nxt))
+		win = (long)(tp->rcv_adv - tp->rcv_nxt);
 	ti->ti_win = htons((u_short)win);
 	if (SEQ_GT(tp->snd_up, tp->snd_nxt)) {
 		ti->ti_urp = htons((u_short)(tp->snd_up - tp->snd_nxt));
@@ -394,14 +402,11 @@ send:
 	 * send to IP level.
 	 */
 	((struct ip *)ti)->ip_len = sizeof (struct tcpiphdr) + optlen + len;
+	if (m->m_flags & M_PKTHDR)
+		m->m_pkthdr.len = ((struct ip *)ti)->ip_len;
 	((struct ip *)ti)->ip_ttl = TCP_TTL;
-#if BSD>=43
 	error = ip_output(m, tp->t_inpcb->inp_options, &tp->t_inpcb->inp_route,
 	    so->so_options & SO_DONTROUTE);
-#else
-	error = ip_output(m, (struct mbuf *)0, &tp->t_inpcb->inp_route, 
-			  so->so_options & SO_DONTROUTE);
-#endif
 	if (error) {
 		if (error == ENOBUFS) {
 			tcp_quench(tp->t_inpcb);
