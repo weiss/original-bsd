@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogin.c	5.24 (Berkeley) 04/10/90";
+static char sccsid[] = "@(#)rlogin.c	5.25 (Berkeley) 05/11/90";
 #endif /* not lint */
 
 /*
@@ -45,6 +45,7 @@ static char sccsid[] = "@(#)rlogin.c	5.24 (Berkeley) 04/10/90";
 #include <strings.h>
 
 #ifdef KERBEROS
+#include <kerberosIV/des.h>
 #include <kerberosIV/krb.h>
 
 CREDENTIALS cred;
