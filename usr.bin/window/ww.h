@@ -1,5 +1,5 @@
 /*
- * @(#)ww.h	3.42 10/02/87	
+ * @(#)ww.h	3.43 10/22/87	
  */
 
 /*
@@ -251,7 +251,6 @@ char *tgetstr();
 char *rindex();
 char *strcpy();
 char *strcat();
-char *sprintf();
 
 #undef MIN
 #undef MAX
