@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ctreg.h	7.1 (Berkeley) 05/08/90
+ *	@(#)ctreg.h	8.1 (Berkeley) 06/10/93
  */
 
 struct	ct_iocmd {

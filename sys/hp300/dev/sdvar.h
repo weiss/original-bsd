@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Van Jacobson of Lawrence Berkeley Laboratory.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sdvar.h	7.1 (Berkeley) 12/27/92
+ *	@(#)sdvar.h	8.1 (Berkeley) 06/10/93
  */
 
 struct sdinfo {
