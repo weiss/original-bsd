@@ -8,8 +8,8 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)allmasquerade.m4	8.1 (Berkeley) 07/07/93')
+VERSIONID(`@(#)allmasquerade.m4	8.2 (Berkeley) 01/22/94')
 divert(-1)
 
 
-define(`_ALL_MASQUERADE_')
+define(`_ALL_MASQUERADE_', 1)
