@@ -1,4 +1,4 @@
-/*	lfs_inode.c	3.3	06/07/80	*/
+/*	lfs_inode.c	3.4	07/08/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
