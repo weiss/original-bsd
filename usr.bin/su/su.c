@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)su.c	5.24 (Berkeley) 03/01/91";
+static char sccsid[] = "@(#)su.c	5.25 (Berkeley) 05/29/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -24,7 +24,7 @@ static char sccsid[] = "@(#)su.c	5.24 (Berkeley) 03/01/91";
 #include <grp.h>
 #include <string.h>
 #include <unistd.h>
-#include "pathnames.h"
+#include <paths.h>
 
 #ifdef KERBEROS
 #include <kerberosIV/des.h>
@@ -187,7 +187,7 @@ main(argc, argv)
 	if (!asme) {
 		if (asthem) {
 			p = getenv("TERM");
-			cleanenv[0] = _PATH_SEARCHPATH;
+			cleanenv[0] = _PATH_DEFPATH;
 			cleanenv[1] = NULL;
 			environ = cleanenv;
 			(void)setenv("TERM", p, 1);
