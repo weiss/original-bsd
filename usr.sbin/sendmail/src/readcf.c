@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.36 (Berkeley) 08/22/94";
+static char sccsid[] = "@(#)readcf.c	8.37 (Berkeley) 08/23/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1157,9 +1157,11 @@ setoption(opt, val, safe, sticky, e)
 	extern int RefuseLA;
 	extern bool Warn_Q_option;
 
+	errno = 0;
 	if (opt == ' ')
 	{
 		/* full word options */
+		struct optioninfo *sel;
 
 		p = strchr(val, '=');
 		if (p == NULL)
@@ -1177,13 +1179,40 @@ setoption(opt, val, safe, sticky, e)
 			*p++ = '\0';
 		while (*p == ' ')
 			p++;
+		sel = NULL;
 		for (o = OptionTab; o->o_name != NULL; o++)
 		{
-			if (strcasecmp(o->o_name, val) == 0)
+			if (strncasecmp(o->o_name, val, strlen(val)) != 0)
+				continue;
+			if (strlen(o->o_name) == strlen(val))
+			{
+				/* completely specified -- this must be it */
+				sel = NULL;
 				break;
+			}
+			if (sel != NULL)
+				break;
+			sel = o;
 		}
-		if (o->o_name == NULL)
+		if (sel != NULL && o->o_name == NULL)
+			o = sel;
+		else if (o->o_name == NULL)
 			syserr("readcf: unknown option name %s", val);
+		else if (sel != NULL)
+		{
+			syserr("readcf: ambiguous option name %s (matches %s and %s)",
+				val, sel->o_name, o->o_name);
+			return;
+		}
+		if (strlen(val) != strlen(o->o_name))
+		{
+			bool oldVerbose = Verbose;
+
+			Verbose = TRUE;
+			message("Option %s used as abbreviation for %s",
+				val, o->o_name);
+			Verbose = oldVerbose;
+		}
 		opt = o->o_code;
 		val = p;
 	}
