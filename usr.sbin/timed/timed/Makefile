@@ -3,12 +3,12 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.1	(Berkeley)	06/27/85
+#	@(#)Makefile	1.2	(Berkeley)	09/07/85
 #
 # optional flags are: MEASURE TESTING
 
 CFLAGS= -O -DMEASURE -DTESTING
-DESTDIR= /etc
+DESTDIR=
 MACHINE= vax
 LIBS=
 PROGRS=	timed timedc
@@ -50,8 +50,8 @@ timedc: ${OBJCS} ${COMMO}
 	cc ${CFLAGS} ${OBJCS} ${COMMO} ${LIBS} -o timedc
 
 install: ${PROGRS}
-	install -s timed ${DESTDIR}
-	install -s -m 4511 timedc ${DESTDIR}
+	install -s timed ${DESTDIR}/etc
+	install -s -m 4511 timedc ${DESTDIR}/etc
 
 clean:
 	rm -f a.out core ${OBJDS} ${OBJCS} ${COMMO} ${PROGRS}
