@@ -1,6 +1,6 @@
 /* Copyright (c) 1981 Regents of the University of California */
 
-static char version[] = "@(#)lfs_alloc.c 1.1 09/09/81";
+static char vers[] = "@(#)lfs_alloc.c 1.2 09/09/81";
 
 /*	alloc.c	4.8	81/03/08	*/
 
