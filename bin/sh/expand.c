@@ -1,6 +1,6 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Kenneth Almquist.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)expand.c	5.10 (Berkeley) 04/20/93";
+static char sccsid[] = "@(#)expand.c	8.1 (Berkeley) 05/31/93";
 #endif /* not lint */
 
 /*

@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Kenneth Almquist.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)input.h	5.2 (Berkeley) 06/23/92
+ *	@(#)input.h	8.1 (Berkeley) 05/31/93
  */
 
 /* PEOF (the end of file marker) is defined in syntax.h */
