@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	5.9 (Berkeley) 03/02/91";
+static char sccsid[] = "@(#)lpr.c	5.10 (Berkeley) 08/02/91";
 #endif /* not lint */
 /*
  *      lpr -- off line print
@@ -562,9 +562,13 @@ test(file)
 			if (access(".", 2) == 0)
 				return(1);
 		} else {
-			*cp = '\0';
-			fd = access(file, 2);
-			*cp = '/';
+			if (cp == file) {
+				fd = access("/", 2);
+			} else {
+				*cp = '\0';
+				fd = access(file, 2);
+				*cp = '/';
+			}
 			if (fd == 0)
 				return(1);
 		}
