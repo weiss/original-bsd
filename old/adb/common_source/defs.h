@@ -1,4 +1,4 @@
-/*	@(#)defs.h	5.1 (Berkeley) 01/16/89	*/
+/*	@(#)defs.h	5.2 (Berkeley) 04/09/89	*/
 
 /*
  * adb: common definitions
@@ -162,7 +162,7 @@ int	signo;			/* signal that stopped process pid */
 int	sigcode;		/* extension info (machine dependent) */
 
 addr_t	maxoff;			/* max offset for symbol match ($s) */
-#define	MAXOFF	255		/* default value */
+#define	MAXOFF	1024		/* default value */
 
 int	maxcol;			/* max output column ($w) */
 #define	MAXCOL	80		/* default value */
