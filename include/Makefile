@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.60 (Berkeley) 06/02/93
+#	@(#)Makefile	5.61 (Berkeley) 06/10/93
 #
 # Doing a make install builds /usr/include
 #
@@ -77,7 +77,7 @@ copies:
 	    tar Hcf - *.h | (cd ${DESTDIR}/usr/include/machine; tar xpfB -);
 	rm -f ${DESTDIR}/usr/include/X11
 	mkdir ${DESTDIR}/usr/include/X11
-	cd /usr/X11R4/include/X11 && \
+	cd /usr/X11/include/X11 && \
 	    tar Hcf - *.h | (cd ${DESTDIR}/usr/include/X11; tar xpfB -);
 
 symlinks:
