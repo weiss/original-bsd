@@ -1,4 +1,7 @@
-/*	lpq.c	4.4	83/06/02	*/
+#ifndef lint
+static char sccsid[] = "@(#)lpq.c	4.5 (Berkeley) 07/17/83";
+#endif
+
 /*
  * Spool Queue examination program
  *

@@ -1,4 +1,7 @@
-/*	lpr.c	4.23	83/06/29	*/
+#ifndef lint
+static char sccsid[] = "@(#)lpr.c	4.24 (Berkeley) 07/17/83";
+#endif
+
 /*
  *      lpr -- off line print
  *
