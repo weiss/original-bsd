@@ -1,11 +1,10 @@
-/*	@(#)defs.h	5.3 (Berkeley) 09/15/89	*/
+/*	@(#)defs.h	5.4 (Berkeley) 02/20/90	*/
 
 /*
  * adb: common definitions
  */
 
 #include <sys/param.h>
-#include <sys/dir.h>
 #include <sys/user.h>
 
 #include <a.out.h>
