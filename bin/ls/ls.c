@@ -25,11 +25,12 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.20 (Berkeley) 06/26/89";
+static char sccsid[] = "@(#)ls.c	5.21 (Berkeley) 06/26/89";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
+#include <sys/ioctl.h>
 #include <dirent.h>
 #include <strings.h>
 #include <errno.h>
@@ -41,11 +42,12 @@ char *emalloc();
 
 int (*lengthfcn)() = strlen;
 int (*sortfcn)();
+int (*printfcn)();
 int needstat;
+int termwidth;
 
 /* flags */
 int f_accesstime;		/* use time of last access */
-int f_firsttime = 1;		/* to control recursion */
 int f_group;			/* show group ownership of a file */
 int f_ignorelink;		/* indirect through symbolic link operands */
 int f_inode;			/* print inode */
@@ -68,9 +70,13 @@ main(argc, argv)
 	char **argv;
 {
 	extern int optind, stat();
+	struct sgttyb sgbuf;
+	struct winsize win;
 	int ch;
+	char *p, *getenv();
 	int namecmp(), revnamecmp(), acccmp(), revacccmp();
 	int modcmp(), revmodcmp(), statcmp(), revstatcmp();
+	int printcol(), printlong(), printscol();
 
 	/*
 	 * terminal defaults to -C -q
@@ -79,6 +85,11 @@ main(argc, argv)
 	if (isatty(1)) {
 		f_nonprint = 1;
 		lengthfcn = prablelen;
+		(void)ioctl(1, TIOCGETP, &sgbuf);
+		if (ioctl(1, TIOCGWINSZ, &win) == -1 || !win.ws_col)
+			termwidth = (p = getenv("COLUMNS")) ? atoi(p) : 80;
+		else
+			termwidth = win.ws_col;
 	} else
 		f_singlecol = 1;
 
@@ -194,6 +205,14 @@ main(argc, argv)
 		else /* use modification time */
 			sortfcn = modcmp;
 	}
+
+	/* select a print function */
+	if (f_singlecol)
+		printfcn = printscol;
+	else if (f_longform)
+		printfcn = printlong;
+	else
+		printfcn = printcol;
 
 	if (argc)
 		doargs(argc, argv);
@@ -312,7 +331,7 @@ displaydir(stats, num)
 	if (num > 1 && !f_specialdir)
 		qsort((char *)stats, num, sizeof(LS), sortfcn);
 
-	printdir(stats, num);
+	printfcn(stats, num);
 
 	if (f_recursive) {
 		savedpath = endofpath;
