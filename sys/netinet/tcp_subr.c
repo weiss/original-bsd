@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_subr.c	7.26 (Berkeley) 04/18/93
+ *	@(#)tcp_subr.c	7.27 (Berkeley) 05/24/93
  */
 
 #include <sys/param.h>
@@ -315,7 +315,7 @@ tcp_close(tp)
 				rt->rt_rmx.rmx_ssthresh = i;
 		}
 	}
-#endif RTV_RTT
+#endif /* RTV_RTT */
 	/* free the reassembly queue, if any */
 	t = tp->seg_next;
 	while (t != (struct tcpiphdr *)tp) {
