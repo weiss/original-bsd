@@ -1,9 +1,12 @@
 #ifndef lint
-static char *sccsid ="@(#)fort.c	4.5 (Berkeley) 03/27/85";
+static char *sccsid ="@(#)fort.c	4.6 (Berkeley) 04/08/85";
 #endif lint
 
+# ifndef FORT
 # define FORT
-/* this forces larger trees, etc. */
+/* this may force larger trees, etc. */
+# endif
+
 # include "pass2.h"
 # include "fort.h"
 
