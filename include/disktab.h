@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)disktab.h	5.1 (Berkeley) 05/30/85
+ *	@(#)disktab.h	5.2 (Berkeley) 10/01/85
  */
 
 /*
@@ -19,6 +19,8 @@ struct	disktab {
 	int	d_nsectors;		/* # sectors/track */
 	int	d_ncylinders;		/* # cylinders */
 	int	d_rpm;			/* revolutions/minute */
+	int	d_badsectforw;		/* supports DEC bad144 std */
+	int	d_sectoffset;		/* use sect rather than cyl offsets */
 	struct	partition {
 		int	p_size;		/* #sectors in partition */
 		short	p_bsize;	/* block size in bytes */
