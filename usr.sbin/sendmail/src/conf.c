@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)conf.c	5.13 (Berkeley) 01/05/86";
+static char	SccsId[] = "@(#)conf.c	5.14 (Berkeley) 01/10/86";
 #endif not lint
 
 # include <pwd.h>
@@ -147,7 +147,7 @@ setdefaults()
 	SpaceSub = ' ';
 	WkRecipFact = 1000;
 	WkClassFact = 1800;
-	WkTimeFact = 600;
+	WkTimeFact = 9000;
 	FileMode = 0644;
 	DefUid = 1;
 	DefGid = 1;
