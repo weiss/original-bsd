@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 03/03/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	xinstall
 SRCS=	stat_flags.c xinstall.c
