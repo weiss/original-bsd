@@ -14,23 +14,8 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ip.h	7.6.1.3 (Berkeley) 02/20/89
+ *	@(#)ip.h	7.9 (Berkeley) 06/28/90
  */
-#ifndef BYTE_ORDER
-/*
- * Definitions for byte order,
- * according to byte significance from low address to high.
- */
-#define	LITTLE_ENDIAN	1234	/* least-significant byte first (vax) */
-#define	BIG_ENDIAN	4321	/* most-significant byte first (IBM, net) */
-#define	PDP_ENDIAN	3412	/* LSB first in word, MSW first in long (pdp) */
-
-#ifdef vax
-#define	BYTE_ORDER	LITTLE_ENDIAN
-#else
-#define	BYTE_ORDER	BIG_ENDIAN	/* mc68000, tahoe, most others */
-#endif
-#endif BYTE_ORDER
 
 /*
  * Definitions for internet protocol version 4.
@@ -67,6 +52,25 @@ struct ip {
 };
 
 #define	IP_MAXPACKET	65535		/* maximum packet size */
+
+/*
+ * Definitions for IP type of service (ip_tos)
+ */
+#define	IPTOS_LOWDELAY		0x10
+#define	IPTOS_THROUGHPUT	0x08
+#define	IPTOS_RELIABILITY	0x04
+
+/*
+ * Definitions for IP precedence (also in ip_tos) (hopefully unused)
+ */
+#define	IPTOS_PREC_NETCONTROL		0xe0
+#define	IPTOS_PREC_INTERNETCONTROL	0xc0
+#define	IPTOS_PREC_CRITIC_ECP		0xa0
+#define	IPTOS_PREC_FLASHOVERRIDE	0x80
+#define	IPTOS_PREC_FLASH		0x60
+#define	IPTOS_PREC_IMMEDIATE		0x40
+#define	IPTOS_PREC_PRIORITY		0x20
+#define	IPTOS_PREC_ROUTINE		0x10
 
 /*
  * Definitions for options.
