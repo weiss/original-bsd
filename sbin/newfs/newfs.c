@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	4.7 05/08/83";
+static char sccsid[] = "@(#)newfs.c	4.8 07/02/83";
 #endif
 
 /*
@@ -8,9 +8,9 @@ static char sccsid[] = "@(#)newfs.c	4.7 05/08/83";
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/fs.h>
+#include <sys/dir.h>
 
 #include <stdio.h>
-#include <dir.h>
 #include <disktab.h>
 
 #define	BOOTDIR	"/usr/mdec"	/* directory for boot blocks */
