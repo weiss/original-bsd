@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)main.c	3.27 11/20/84";
+static char sccsid[] = "@(#)main.c	3.28 01/18/85";
 #endif
 
 #include "defs.h"
@@ -22,6 +22,8 @@ char **argv;
 	char *cmd = 0;
 	char tflag = 0;
 
+	nbufline = NLINE;
+	escapec = ESCAPEC;	
 	if (p = rindex(*argv, '/'))
 		p++;
 	else
@@ -62,8 +64,6 @@ char **argv;
 		} else
 			(void) usage();
 	}
-	nbufline = NLINE;
-	escapec = ESCAPEC;	
 	if ((p = getenv("SHELL")) == 0)
 		p = SHELL;
 	if ((shellfile = str_cpy(p)) == 0)
