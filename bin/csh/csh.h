@@ -1,9 +1,9 @@
 /*
  * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
+ * All rights reserved.  The Berkeley Software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)csh.h	5.1 (Berkeley) 06/04/85
+ *	@(#)csh.h	5.2 (Berkeley) 06/06/85
  */
 
 #include <sys/time.h>
