@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	6.34 (Berkeley) 04/17/93";
+static char sccsid[] = "@(#)savemail.c	6.35 (Berkeley) 04/26/93";
 #endif /* not lint */
 
 # include <pwd.h>
@@ -678,7 +678,7 @@ pruneroute(addr)
 
 	while (start)
 	{
-		if (getmxrr(hostbuf, mxhosts, "", &rcode) > 0)
+		if (getmxrr(hostbuf, mxhosts, FALSE, &rcode) > 0)
 		{
 			strcpy(addr + 1, start + 1);
 			return TRUE;

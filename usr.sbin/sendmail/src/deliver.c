@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.65 (Berkeley) 04/26/93";
+static char sccsid[] = "@(#)deliver.c	6.66 (Berkeley) 04/26/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -2026,7 +2026,6 @@ hostsignature(m, host, e)
 	char *endp;
 	int oldoptions;
 	char *mxhosts[MAXMXHOSTS + 1];
-	static char myhostbuf[MAXNAME];
 #endif
 
 	/*
@@ -2066,16 +2065,13 @@ hostsignature(m, host, e)
 		_res.options &= ~(RES_DEFNAMES | RES_DNSRCH);	/* XXX */
 	}
 
-	if (myhostbuf[0] == '\0')
-		expand("\201j", myhostbuf, &myhostbuf[sizeof myhostbuf - 1], e);
-
 	for (hp = host; hp != NULL; hp = endp)
 	{
 		endp = strchr(hp, ':');
 		if (endp != NULL)
 			*endp = '\0';
 
-		nmx = getmxrr(hp, mxhosts, myhostbuf, &rcode);
+		nmx = getmxrr(hp, mxhosts, TRUE, &rcode);
 
 		if (nmx <= 0)
 		{
