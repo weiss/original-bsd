@@ -1,4 +1,7 @@
-/* @(#)strcpy.c	4.1 (Berkeley) 10/05/82 */
+#ifndef lint
+static char sccsid[] = "@(#)strcpy.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 /*
  * Copy string s2 to s1.  s1 must be large enough.
  * return s1
