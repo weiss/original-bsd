@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1990 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1990, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)shar.sh	5.3 (Berkeley) 03/04/93
+#	@(#)shar.sh	8.1 (Berkeley) 06/06/93
 #
 
 if [ $# -eq 0 ]; then
