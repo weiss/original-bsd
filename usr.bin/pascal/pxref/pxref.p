@@ -3,7 +3,7 @@ program xref(input, output);
 label
     99, 100;
 const
-    { sccsid = '@(#)pxref.p	1.1 (Berkeley) 03/02/81'; }
+    { sccsid = '@(#)pxref.p	1.2 (Berkeley) 03/05/82'; }
     alfasize = 18;
     linesize = 10;
     namesize = 64;
@@ -107,7 +107,7 @@ var
 	    end else begin
 		h := (h + d) mod p;
 		d := d + 2;
-		if d = p then begin
+		if d >= p then begin
 		    writeln;
 		    writeln(' **** table full');
 		    goto 99
