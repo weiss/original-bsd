@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.43 (Berkeley) 04/02/93
+ *	@(#)sendmail.h	6.44 (Berkeley) 04/04/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.43		04/02/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.44		04/04/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -453,6 +453,7 @@ MAP
 	void		*map_db;	/* the open database ptr */
 	char		*map_app;	/* to append to successful matches */
 	char		*map_domain;	/* the (nominal) NIS domain */
+	char		*map_rebuild;	/* program to run to do auto-rebuild */
 };
 
 /* bit values for map_flags */
