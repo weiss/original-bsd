@@ -8,12 +8,18 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)union.h	1.8 (Berkeley) 02/07/94
+ *	@(#)union.h	1.9 (Berkeley) 02/08/94
  */
 
 struct union_args {
 	char		*target;	/* Target of loopback  */
+	int		mntflags;	/* Options on the mount */
 };
+
+#define UNMNT_ABOVE	0x0001		/* Target appears below mount point */
+#define UNMNT_BELOW	0x0002		/* Target appears below mount point */
+#define UNMNT_REPLACE	0x0003		/* Target replaces mount point */
+#define UNMNT_OPMASK	0x0003
 
 struct union_mount {
 	struct vnode	*um_uppervp;
