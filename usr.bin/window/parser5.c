@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1983 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1983, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Edward Wang at The University of California, Berkeley.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parser5.c	3.13 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)parser5.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 #include "parser.h"
