@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)ptx.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)ptx.c	4.2 (Berkeley) 09/23/85";
 #
 
 /*	permuted title index
@@ -245,7 +245,9 @@ char **argv;
 
 
 	getsort();
-	onintr();
+	if(*sortfile)
+		unlink(sortfile);
+	exit(0);
 }
 
 msg(s,arg)
