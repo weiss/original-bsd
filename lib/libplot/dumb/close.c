@@ -5,12 +5,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 05/07/85";
+static char sccsid[] = "@(#)close.c	5.2 (Berkeley) 02/24/91";
 #endif not lint
 
 #include <signal.h>
 #include "dumb.h"
 
+void
 closepl()
 {
 	int i, j;
