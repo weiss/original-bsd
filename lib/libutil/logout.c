@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)logout.c	5.2 (Berkeley) 02/17/89";
+static char sccsid[] = "@(#)logout.c	5.3 (Berkeley) 04/18/89";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -24,8 +24,6 @@ static char sccsid[] = "@(#)logout.c	5.2 (Berkeley) 02/17/89";
 #include <sys/time.h>
 #include <utmp.h>
 #include <stdio.h>
-
-#define	UTMPFILE	"/etc/utmp"
 
 /* 0 on failure, 1 on success */
 
@@ -37,7 +35,7 @@ logout(line)
 	int rval;
 	time_t time();
 
-	if (!(fp = fopen(UTMPFILE, "r+")))
+	if (!(fp = fopen(_PATH_UTMP, "r+")))
 		return(0);
 	rval = 0;
 	while (fread((char *)&ut, sizeof(struct utmp), 1, fp) == 1) {
