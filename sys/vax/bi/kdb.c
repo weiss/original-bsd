@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kdb.c	7.7 (Berkeley) 05/29/89
+ *	@(#)kdb.c	7.8 (Berkeley) 02/17/90
  */
 
 /*
@@ -58,7 +58,6 @@
 #include "map.h"
 #include "buf.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
 #include "vm.h"
