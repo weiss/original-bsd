@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static	char sccsid[] = "@(#)runpcs.c	4.3 08/11/83";
+#endif
 /*
  *
  *	UNIX debugger
@@ -6,7 +8,6 @@
  */
 
 #include "defs.h"
-static	char sccsid[] = "@(#)runpcs.c 4.2 10/28/82";
 
 extern	MAP	txtmap;
 
