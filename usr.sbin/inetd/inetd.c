@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)inetd.c	5.28 (Berkeley) 03/28/91";
+static char sccsid[] = "@(#)inetd.c	5.29 (Berkeley) 05/18/91";
 #endif /* not lint */
 
 /*
@@ -267,12 +267,10 @@ main(argc, argv, envp)
 					sep->se_fd = -1;
 					sep->se_count = 0;
 					nsock--;
-					sigsetmask(0L);
 					if (!timingout) {
 						timingout = 1;
 						alarm(RETRYTIME);
 					}
-					continue;
 				}
 			    }
 			    pid = fork();
@@ -287,8 +285,10 @@ main(argc, argv, envp)
 		    }
 		    if (pid && sep->se_wait) {
 			    sep->se_wait = pid;
-			    FD_CLR(sep->se_fd, &allsock);
-			    nsock--;
+			    if (sep->se_fd >= 0) {
+				FD_CLR(sep->se_fd, &allsock);
+			        nsock--;
+			    }
 		    }
 		    sigsetmask(0L);
 		    if (pid == 0) {
