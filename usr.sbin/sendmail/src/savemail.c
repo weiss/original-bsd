@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	5.19 (Berkeley) 07/19/92";
+static char sccsid[] = "@(#)savemail.c	5.20 (Berkeley) 07/20/92";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -468,14 +468,18 @@ errbody(fp, m, e)
 			if (xfile != NULL)
 			{
 				while (fgets(buf, sizeof buf, xfile) != NULL)
+				{
+					expand(buf, buf, &buf[sizeof buf - 1], e);
 					putline(buf, fp, m);
+				}
 				(void) fclose(xfile);
 				fprintf(fp, "\n");
 			}
 		}
 		else
 		{
-			putline(ErrMsgFile, fp, m);
+			expand(ErrMsgFile, buf, &buf[sizeof buf - 1], e);
+			putline(buf, fp, m);
 			fprintf(fp, "\n");
 		}
 	}
