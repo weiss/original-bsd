@@ -1,4 +1,4 @@
-/*	machdep.c	3.26	10/02/80	*/
+/*	machdep.c	3.27	10/02/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -16,7 +16,7 @@
 #include "../h/cons.h"
 #include "../h/reboot.h"
 
-char	version[] = "VM/UNIX (Berkeley Version 3.26) 10/14/12 \n";
+char	version[] = "VM/UNIX (Berkeley Version 3.27) 10/14/12 \n";
 int	icode[] =
 {
 	0x9f19af9f,	/* pushab [&"init.vm",0]; pushab */
@@ -370,16 +370,13 @@ boot(panic, arghowto)
 	register int devtype;		/* r10 == major of root dev */
 
 	howto = arghowto;
-	printf("howto %d\n", howto);
 	if ((howto&RB_NOSYNC)==0 && waittime < 0) {
 		waittime = 0;
 		update();
-		printf("updating (wait");
-		while (++waittime <= 10) {
-			printf(".");
+		printf("syncing disks... ");
+		while (++waittime <= 5)
 			sleep((caddr_t)&lbolt, PZERO);
-		}
-		printf(") done\n");
+		printf("done\n");
 	}
 	splx(0x1f);			/* extreme priority */
 	devtype = major(rootdev);
