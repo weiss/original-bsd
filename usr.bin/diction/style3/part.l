@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)part.l	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)part.l	8.2 (Berkeley) 01/28/94";
 #endif /* not lint */
 
 #include "style.h"
@@ -114,10 +114,6 @@ collect1:
 	goto collect1;
 	}
 ^",:".+	{
-	comma++;
-	goto collect;
-	}
-^",:"[:,-]+	{
 	comma++;
 	goto collect;
 	}
