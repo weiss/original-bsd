@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)systm.h	8.5 (Berkeley) 01/09/95
+ *	@(#)systm.h	8.6 (Berkeley) 02/19/95
  */
 
 /*
@@ -66,9 +66,12 @@ extern dev_t swapdev;		/* swapping device */
 extern struct vnode *swapdev_vp;/* vnode equivalent to above */
 
 extern struct sysent {		/* system call table */
-	int	sy_narg;	/* number of arguments */
+	short	sy_narg;	/* number of args */
+	short	sy_argsize;	/* total size of arguments */
 	int	(*sy_call)();	/* implementing function */
 } sysent[];
+extern int nsysent;
+#define	SCARG(p,k)	((p)->k.datum)	/* get arg from args pointer */
 
 extern int boothowto;		/* reboot flags, from console subsystem */
 
