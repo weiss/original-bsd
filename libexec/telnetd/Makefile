@@ -1,11 +1,4 @@
-#
-# Copyright (c) 1990 The Regents of the University of California.
-# All rights reserved.
-#
-# %sccs.include.redist.sh%
-#
-#	@(#)Makefile	5.15 (Berkeley) 03/05/91
-#
+#	@(#)Makefile	5.16 (Berkeley) 05/13/91
 
 PROG=	telnetd
 CFLAGS+=-DLINEMODE -DKLUDGELINEMODE -DUSE_TERMIO -DDIAGNOSTICS
