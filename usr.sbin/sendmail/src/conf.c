@@ -36,7 +36,7 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	3.30	09/12/81";
+static char SccsId[] = "@(#)conf.c	3.31	09/20/81";
 
 
 # include <whoami.h>		/* definitions of machine id's at berkeley */
@@ -107,6 +107,14 @@ char	Arpa_Usrerr[] =	"450";	/* some (fatal) user error */
 char	*AliasFile =	"/usr/lib/aliases";	/* alias file */
 char	*ConfFile =	"/usr/lib/sendmail.cf";	/* runtime configuration */
 char	*StatFile =	"/usr/eric/mailstats";	/* statistics summary */
+
+
+/*
+**  Other configuration.
+*/
+
+int	DefUid = 1;		/* the uid to execute mailers as */
+int	DefGid = 1;		/* ditto for gid */
 
 
 
