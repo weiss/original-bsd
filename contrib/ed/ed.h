@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Rodney Ruddock of the University of Guelph.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ed.h	5.6 (Berkeley) 04/28/93
+ *	@(#)ed.h	8.1 (Berkeley) 05/31/93
  */
 
 #define	FILENAME_LEN	PATH_MAX
