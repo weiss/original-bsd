@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setup.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)setup.c	5.2 (Berkeley) 09/11/85";
 #endif not lint
 
 #include <sys/param.h>
@@ -108,6 +108,7 @@ setup(dev)
 	altsblock.fs_flags = sblock.fs_flags;
 	altsblock.fs_maxcontig = sblock.fs_maxcontig;
 	altsblock.fs_minfree = sblock.fs_minfree;
+	altsblock.fs_optim = sblock.fs_optim;
 	altsblock.fs_rotdelay = sblock.fs_rotdelay;
 	altsblock.fs_maxbpg = sblock.fs_maxbpg;
 	bcopy((char *)sblock.fs_csp, (char *)altsblock.fs_csp,
