@@ -1,7 +1,7 @@
 /*
 **  CONF.H -- All user-configurable parameters for sendmail
 **
-**	@(#)conf.h	4.1		07/25/83
+**	@(#)conf.h	4.2		03/11/84
 */
 
 
@@ -11,7 +11,7 @@
 **	There shouldn't be much need to change these....
 */
 
-# define MAXLINE	256		/* max line length */
+# define MAXLINE	512		/* max line length */
 # define MAXNAME	128		/* max length of a name */
 # define MAXFIELD	2500		/* max total length of a hdr field */
 # define MAXPV		40		/* max # of parms to mailers */
