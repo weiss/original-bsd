@@ -92,7 +92,7 @@
 **		Copyright 1980 Regents of the University of California
 */
 
-static char SccsId[] = "@(#)sccs.c	1.61.1.2 05/11/82";
+static char SccsId[] = "@(#)sccs.c	1.65 05/11/82";
 
 /*******************  Configuration Information  ********************/
 
@@ -133,6 +133,7 @@ struct sccsprog
 # define SHELL		5	/* call a shell file (like PROG) */
 # define DIFFS		6	/* diff between sccs & file out */
 # define DODIFF		7	/* internal call to diff program */
+# define CREATE		8	/* create new files */
 
 /* bits for sccsflags */
 # define NO_SDOT	0001	/* no s. on front of args */
@@ -181,6 +182,7 @@ struct sccsprog SccsProg[] =
 	"print",	CMACRO,	0,			"prt -e/get -p -m -s",
 	"branch",	CMACRO,	NO_SDOT,
 		"get:ixrc -e -b/delta: -s -n -ybranch-place-holder/get:pl -e -t -g",
+	"create",	CREATE,	NO_SDOT,		NULL,
 	NULL,		-1,	0,			NULL
 };
 
@@ -343,7 +345,7 @@ command(argv, forkflag, arg0)
 {
 	register struct sccsprog *cmd;
 	register char *p;
-	char buf[40];
+	char buf[100];
 	extern struct sccsprog *lookup();
 	char *nav[1000];
 	char **np;
@@ -534,6 +536,33 @@ command(argv, forkflag, arg0)
 		execv(cmd->sccspath, argv);
 		syserr("cannot exec %s", cmd->sccspath);
 		exit(EX_OSERR);
+
+	  case CREATE:		/* create new sccs files */
+		/* skip over flag arguments */
+		for (np = &ap[1]; *np != NULL && **np == '-'; np++)
+			continue;
+		argv = np;
+
+		/* do an admin for each file */
+		p = argv[1];
+		while (*np != NULL)
+		{
+			printf("\n%s:\n", *np);
+			sprintf(buf, "-i%s", *np);
+			ap[0] = buf;
+			argv[0] = tail(*np);
+			argv[1] = NULL;
+			rval = command(ap, TRUE, "admin");
+			argv[1] = p;
+			if (rval == 0)
+			{
+				sprintf(buf, ",%s", tail(*np));
+				if (link(*np, buf) >= 0)
+					unlink(*np);
+			}
+			np++;
+		}
+		break;
 
 	  default:
 		syserr("oper %d", cmd->sccsoper);
@@ -1420,7 +1449,12 @@ username()
 	return (pw->pw_name);
 # else
 	extern char *getlogin();
+	extern char *getenv();
+	register char *p;
 
-	return (getlogin());
+	p = getenv("USER");
+	if (p == NULL || p[0] == '\0')
+		p = getlogin();
+	return (p);
 # endif UIDUSER
 }
