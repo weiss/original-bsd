@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_prf.c	7.6 (Berkeley) 03/13/87
+ *	@(#)subr_prf.c	7.7 (Berkeley) 03/29/87
  */
 
 #include "param.h"
@@ -84,6 +84,8 @@ printf(fmt, x1)
 /*
  * Uprintf prints to the current user's terminal.
  * It may block if the tty queue is overfull.
+ * No message is printed if the queue does not clear
+ * in a reasonable time.
  * Should determine whether current terminal user is related
  * to this process.
  */
@@ -104,8 +106,8 @@ uprintf(fmt, x1)
 		if (p->p_uid != u.u_uid)	/* doesn't account for setuid */
 			return;
 #endif
-	(void)ttycheckoutq(tp, 1);
-	prf(fmt, &x1, TOTTY, tp);
+	if (ttycheckoutq(tp, 1))
+		prf(fmt, &x1, TOTTY, tp);
 }
 
 /*
