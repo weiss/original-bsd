@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.98 (Berkeley) 05/30/95";
+static char sccsid[] = "@(#)readcf.c	8.99 (Berkeley) 05/31/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -370,7 +370,14 @@ readcf(cfname, safe, e)
 
 		  case 'S':		/* select rewriting set */
 			ruleset = strtorwset(&bp[1], NULL, ST_ENTER);
-			rwp = NULL;
+			rwp = RewriteRules[ruleset];
+			if (rwp != NULL)
+			{
+				while (rwp->r_next != NULL)
+					rwp = rwp->r_next;
+				fprintf(stderr, "WARNING: Ruleset %s redefined\n",
+					&bp[1]);
+			}
 			break;
 
 		  case 'D':		/* macro definition */
