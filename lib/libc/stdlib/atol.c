@@ -16,16 +16,15 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)atol.c	5.4 (Berkeley) 11/01/89";
+static char sccsid[] = "@(#)atol.c	5.5 (Berkeley) 05/16/90";
 #endif /* LIBC_SCCS and not lint */
 
-#include <stdio.h>
+#include <stddef.h>
+#include <stdlib.h>
 
 long
 atol(str)
 	char *str;
 {
-	long strtol();
-
 	return(strtol(str, (char **)NULL, 10));
 }
