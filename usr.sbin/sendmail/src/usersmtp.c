@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.12		06/19/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.12.1.1		07/04/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.12		06/19/82);
+SCCSID(@(#)usersmtp.c	3.12.1.1		07/04/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
@@ -79,6 +79,14 @@ smtpinit(m, pvp, ctladdr)
 		return (EX_UNAVAILABLE);
 	if (REPLYTYPE(r) != 2)
 		return (EX_TEMPFAIL);
+
+	/*
+	**  Send the HOPS command.
+	**	This is non-standard and may give an "unknown command".
+	**		This is not an error.
+	**	It can give a "bad hop count" error if the hop
+	**		count is exceeded.
+	*/
 
 	/*
 	**  Send the MAIL command.
