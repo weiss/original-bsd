@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.20 (Berkeley) 07/09/92
+#	@(#)Makefile.inc	5.21 (Berkeley) 07/12/92
 
 # sys sources
 .PATH: ${.CURDIR}/${MACHINE}/sys ${.CURDIR}/sys
@@ -34,7 +34,7 @@ ASM=	accept.o access.o acct.o adjtime.o bind.o chdir.o \
 	statfs.o swapon.o symlink.o sync.o truncate.o umask.o unlink.o \
 	unmount.o utimes.o vadvise.o wait4.o write.o writev.o \
 	sem_lock.o sem_wakeup.o \
-	__getrlimit.o __setrlimit.o
+	__getrlimit.o __indir.o __setrlimit.o
 
 PSEUDO=	_exit.o _getlogin.o
 
