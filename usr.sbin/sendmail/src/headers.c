@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.35 (Berkeley) 08/17/94";
+static char sccsid[] = "@(#)headers.c	8.36 (Berkeley) 08/21/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -442,9 +442,28 @@ eatheader(e, full)
 	if (p != NULL)
 		e->e_class = priencode(p);
 	if (full)
+	{
 		e->e_msgpriority = e->e_msgsize
 				 - e->e_class * WkClassFact
 				 + e->e_nrcpts * WkRecipFact;
+		if (e->e_class < 0)
+			e->e_timeoutclass = TOC_NONURGENT;
+		else if (e->e_class > 0)
+			e->e_timeoutclass = TOC_URGENT;
+	}
+
+	/* message timeout priority */
+	p = hvalue("priority", e->e_header);
+	if (full && p != NULL)
+	{
+		/* (this should be in the configuration file) */
+		if (strcasecmp(p, "urgent"))
+			e->e_timeoutclass = TOC_URGENT;
+		else if (strcasecmp(p, "normal"))
+			e->e_timeoutclass = TOC_NORMAL;
+		else if (strcasecmp(p, "non-urgent"))
+			e->e_timeoutclass = TOC_NONURGENT;
+	}
 
 	/* date message originated */
 	p = hvalue("posted-date", e->e_header);

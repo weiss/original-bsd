@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.34 (Berkeley) 08/20/94";
+static char sccsid[] = "@(#)readcf.c	8.35 (Berkeley) 08/21/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -510,6 +510,9 @@ readcf(cfname, safe, e)
 	}
 	fclose(cf);
 	FileName = NULL;
+
+	/* initialize host maps from local service tables */
+	inithostmaps();
 
 	if (stab("host", ST_MAP, ST_FIND) == NULL)
 	{
@@ -1153,7 +1156,6 @@ setoption(opt, val, safe, sticky, e)
 	extern int QueueLA;
 	extern int RefuseLA;
 	extern bool Warn_Q_option;
-	extern bool trusteduser();
 
 	if (opt == ' ')
 	{
@@ -1564,9 +1566,9 @@ setoption(opt, val, safe, sticky, e)
 		if (p != NULL)
 		{
 			*p++ = '\0';
-			TimeOuts.to_q_warning = convtime(p, 'd');
+			TimeOuts.to_q_warning[TOC_NORMAL] = convtime(p, 'd');
 		}
-		TimeOuts.to_q_return = convtime(val, 'h');
+		TimeOuts.to_q_return[TOC_NORMAL] = convtime(val, 'h');
 		break;
 
 	  case 't':		/* time zone name */
@@ -1868,9 +1870,21 @@ settimeouts(val)
 			else if (strcasecmp(val, "fileopen") == 0)
 				TimeOuts.to_fileopen = to;
 			else if (strcasecmp(val, "queuewarn") == 0)
-				TimeOuts.to_q_warning = to;
+				TimeOuts.to_q_warning[TOC_NORMAL] = to;
 			else if (strcasecmp(val, "queuereturn") == 0)
-				TimeOuts.to_q_return = to;
+				TimeOuts.to_q_return[TOC_NORMAL] = to;
+			else if (strcasecmp(val, "queuewarn.normal") == 0)
+				TimeOuts.to_q_warning[TOC_NORMAL] = to;
+			else if (strcasecmp(val, "queuereturn.normal") == 0)
+				TimeOuts.to_q_return[TOC_NORMAL] = to;
+			else if (strcasecmp(val, "queuewarn.urgent") == 0)
+				TimeOuts.to_q_warning[TOC_URGENT] = to;
+			else if (strcasecmp(val, "queuereturn.urgent") == 0)
+				TimeOuts.to_q_return[TOC_URGENT] = to;
+			else if (strcasecmp(val, "queuewarn.non-urgent") == 0)
+				TimeOuts.to_q_warning[TOC_NONURGENT] = to;
+			else if (strcasecmp(val, "queuereturn.non-urgent") == 0)
+				TimeOuts.to_q_return[TOC_NONURGENT] = to;
 			else
 				syserr("settimeouts: invalid timeout %s", val);
 		}
