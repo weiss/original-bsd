@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)telnetd.c	5.36 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)telnetd.c	5.37 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 /*
@@ -291,7 +291,7 @@ doit(f, who)
 gotpty:
 	dup2(f, 0);
 	line[strlen("/dev/")] = 't';
-	t = open("/dev/tty", O_RDWR);
+	t = open(_PATH_TTY, O_RDWR);
 	if (t >= 0) {
 		ioctl(t, TIOCNOTTY, 0);
 		close(t);
