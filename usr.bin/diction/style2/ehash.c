@@ -1,7 +1,7 @@
 /*-
  * %sccs.include.proprietary.c%
  *
- *	@(#)ehash.c	4.5 (Berkeley) 04/27/91
+ *	@(#)ehash.c	8.1 (Berkeley) 06/06/93
  */
 
 struct hnode {
