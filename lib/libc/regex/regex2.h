@@ -1,14 +1,14 @@
 /*-
  * Copyright (c) 1992 Henry Spencer.
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Henry Spencer of the University of Toronto.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)regex2.h	5.2 (Berkeley) 05/21/93
+ *	@(#)regex2.h	8.1 (Berkeley) 06/04/93
  */
 
 /*
