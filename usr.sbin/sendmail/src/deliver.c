@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.52 (Berkeley) 12/10/93";
+static char sccsid[] = "@(#)deliver.c	8.53 (Berkeley) 12/10/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -19,6 +19,8 @@ static char sccsid[] = "@(#)deliver.c	8.52 (Berkeley) 12/10/93";
 
 extern int	h_errno;
 #endif
+
+extern char	SmtpError[];
 
 /*
 **  SENDALL -- actually send all the messages.
@@ -569,7 +571,6 @@ deliver(e, firstto)
 	char buf[MAXNAME];
 	char rpathbuf[MAXNAME];		/* translated return path */
 	extern int checkcompat();
-	extern char SmtpError[];
 
 	errno = 0;
 	if (bitset(QDONTSEND|QBADADDR|QQUEUEUP, to->q_flags))
@@ -1640,8 +1641,6 @@ giveresponse(stat, m, mci, ctladdr, e)
 			else
 			{
 #ifdef SMTP
-				extern char SmtpError[];
-
 				statmsg = SmtpError;
 #else /* SMTP */
 				statmsg = NULL;
