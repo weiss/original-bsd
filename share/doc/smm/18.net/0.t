@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)0.t	6.5 (Berkeley) 04/17/91
+.\"	@(#)0.t	6.6 (Berkeley) 06/05/93
 .\"
 .if n .ND
 .TL
@@ -50,8 +50,8 @@ Revised
 .\".lt \\n(.lu
 .\"..
 .\".ds RH Contents
-.OH 'Networking Implementation Notes''SMM:15-%'
-.EH 'SMM:15-%''Networking Implementation Notes'
+.OH 'Networking Implementation Notes''SMM:13-%'
+.EH 'SMM:13-%''Networking Implementation Notes'
 .bp
 .ce
 .B "TABLE OF CONTENTS"
