@@ -4,7 +4,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)tmac.andoc	5.9 (Berkeley) 06/30/93
+.\"	@(#)tmac.andoc	8.1 (Berkeley) 06/30/93
 .\"
 .\" If -mdoc macros, source tmac.mdoc
 .\" If -man macros, check to see if groff or troff/nroff is being used
