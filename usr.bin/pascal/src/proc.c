@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)proc.c 1.14 09/03/82";
+static char sccsid[] = "@(#)proc.c 1.15 10/14/82";
 
 #include "whoami.h"
 #ifdef OBJ
@@ -179,16 +179,18 @@ proc(r)
 				 */
 				argv = argv[2];
 				argc--;
-			} else
+			} else {
 				/*
 				 * Set up for writing on 
 				 * standard output.
 				 */
 				put(1, O_UNITOUT);
 				output->nl_flags |= NUSED;
-		} else
+			}
+		} else {
 			put(1, O_UNITOUT);
 			output->nl_flags |= NUSED;
+		}
 		/*
 		 * Loop and process each
 		 * of the arguments.
