@@ -1,4 +1,4 @@
-.\"	@(#)e2	4.1 (Berkeley) 05/22/86
+.\"	@(#)e2	5.1 (Berkeley) 05/22/86
 .\"
 .SH
 Writing text out as a file \- the Write command ``w''
