@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.2 (Berkeley) 03/19/93
+#	@(#)Makefile	6.3 (Berkeley) 04/18/93
 
 PROG=	sendmail
 
@@ -12,7 +12,7 @@ PROG=	sendmail
 # spiral snail, but it will work.
 DBMDEF=	-DNEWDB -DNDBM
 
-CFLAGS+=-I${.CURDIR} ${DBMDEF} -DNETISO
+CFLAGS+=-I${.CURDIR} ${DBMDEF} -DNETISO -D_FORGIVING_CC_
 
 SRCS=	alias.c arpadate.c clock.c collect.c conf.c convtime.c daemon.c \
 	deliver.c domain.c envelope.c err.c headers.c macro.c main.c map.c \
