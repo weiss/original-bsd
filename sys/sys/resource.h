@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)resource.h	7.8 (Berkeley) 04/27/93
+ *	@(#)resource.h	7.9 (Berkeley) 05/25/93
  */
 
 #ifndef _RESOURCE_H_
@@ -89,11 +89,9 @@ extern struct loadavg averunnable;
 
 __BEGIN_DECLS
 int	getpriority __P((int, int));
-#define getrlimit __getrlimit
 int	getrlimit __P((int, struct rlimit *));
 int	getrusage __P((int, struct rusage *));
 int	setpriority __P((int, int, int));
-#define setrlimit __setrlimit
 int	setrlimit __P((int, const struct rlimit *));
 __END_DECLS
 
