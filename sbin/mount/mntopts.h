@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mntopts.h	8.5 (Berkeley) 06/23/94
+ *	@(#)mntopts.h	8.6 (Berkeley) 07/07/94
  */
 
 struct mntopt {
@@ -25,7 +25,7 @@ struct mntopt {
 #define MOPT_GROUPQUOTA		{ "groupquota",	0, 0 }
 
 /* Control flags. */
-#define MOPT_FORCE		{ "force",	1, MNT_FORCE }
+#define MOPT_FORCE		{ "force",	0, MNT_FORCE }
 #define MOPT_UPDATE		{ "update",	0, MNT_UPDATE }
 #define MOPT_RO			{ "ro",		0, MNT_RDONLY }
 #define MOPT_RW			{ "rw",		1, MNT_RDONLY }
