@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- * 		@(#)qdioctl.h	1.4  Berkeley  06/03/88
+ * 		@(#)qdioctl.h	1.5  Berkeley  12/16/90
  *
  *	derived from: qdioctl.h	1.1	(ULTRIX)	8/22/85
  */
@@ -52,7 +52,7 @@
 
 
 #ifdef KERNEL
-#include "ioctl.h"
+#include "sys/ioctl.h"
 #else
 #include <sys/ioctl.h>
 #endif
