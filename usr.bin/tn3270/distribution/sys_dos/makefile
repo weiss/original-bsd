@@ -1,4 +1,4 @@
-#	@(#)makefile	4.2 (Berkeley) 04/26/91
+#	@(#)makefile	8.1 (Berkeley) 06/06/93
 
 # msdos versus unix defines
 O	= .o
