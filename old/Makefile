@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/25/90
+#	@(#)Makefile	5.6 (Berkeley) 06/29/90
 
-SUBDIR=	compact crypt
+SUBDIR=	compact crypt lex make yacc
 
 .if   make(clean) || make(cleandir)
 SUBDIR+=talk
