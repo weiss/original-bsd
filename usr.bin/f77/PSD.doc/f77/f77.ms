@@ -1,9 +1,9 @@
 .\" Copyright (c) 1985, 1993
 .\"	The Regents of the University of California.  All rights reserved.
 .\"
-.\" %sccs.include.redist.man%
+.\" %sccs.include.proprietary.man%
 .\"
-.\"	@(#)f77.ms	8.1 (Berkeley) 08/14/93
+.\"	@(#)f77.ms	8.2 (Berkeley) 04/20/94
 .\"
 .rm CM
 .hw name-list
