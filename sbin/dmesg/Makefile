@@ -1,8 +1,10 @@
-#	@(#)Makefile	5.5 (Berkeley) 07/25/90
+#	@(#)Makefile	5.6 (Berkeley) 05/02/91
 
 PROG=	dmesg
 MAN8=	dmesg.0
 BINGRP=	kmem
 BINMODE=2555
+LDADD=	-lutil
+DPADD=	${LIBUTIL}
 
 .include <bsd.prog.mk>
