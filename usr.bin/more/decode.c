@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)decode.c	5.8 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)decode.c	5.9 (Berkeley) 03/01/91";
 #endif /* not lint */
 
 /*
@@ -132,7 +132,6 @@ cmd_decode(c)
 /*
  * Search a command table for the current command string (in kbuf).
  */
-static
 cmd_search(table, endtable)
 	char *table;
 	char *endtable;
