@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.14 (Berkeley) 12/22/91
+#	@(#)Makefile	8.1 (Berkeley) 06/09/93
 
 PROG=	tset
 SRCS=	map.c misc.c set.c term.c tset.c wrterm.c
