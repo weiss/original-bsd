@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.29 (Berkeley) 01/05/94";
+static char sccsid[] = "@(#)parseaddr.c	8.30 (Berkeley) 02/09/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1305,7 +1305,7 @@ badaddr:
 		}
 		else
 		{
-			usrerr("%s", buf);
+			usrerr("553 %s", buf);
 		}
 		goto badaddr;
 	}
