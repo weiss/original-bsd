@@ -6,11 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)scroll.c	8.1 (Berkeley) 06/11/93";
+static char sccsid[] = "@(#)scroll.c	8.2 (Berkeley) 01/09/94";
 #endif /* not lint */
 
 #include <curses.h>
-#include <termios.h>
 
 /*
  * scroll --
