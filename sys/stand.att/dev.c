@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dev.c	7.9 (Berkeley) 12/16/90
+ *	@(#)dev.c	7.10 (Berkeley) 05/03/91
  */
 
 #include "sys/param.h"
@@ -23,7 +23,7 @@ devread(io)
 
 	io->i_flgs |= F_RDDATA;
 	io->i_error = 0;
-	cc = (*devsw[io->i_dev].dv_strategy)(io, READ);
+	cc = (*devsw[io->i_dev].dv_strategy)(io, F_READ);
 	io->i_flgs &= ~F_TYPEMASK;
 	return (cc);
 }
