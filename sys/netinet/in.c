@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)in.c	7.10 (Berkeley) 04/22/89
+ *	@(#)in.c	7.11 (Berkeley) 04/26/89
  */
 
 #include "param.h"
@@ -268,8 +268,8 @@ in_control(so, cmd, data, ifp)
 	case SIOCSIFADDR:
 	case SIOCSIFNETMASK:
 	case SIOCSIFDSTADDR:
-		if (!suser())
-			return (u.u_error);
+		if (error = suser(u.u_cred, &u.u_acflag))
+			return (error);
 
 		if (ifp == 0)
 			panic("in_control");
@@ -307,8 +307,8 @@ in_control(so, cmd, data, ifp)
 		break;
 
 	case SIOCSIFBRDADDR:
-		if (!suser())
-			return (u.u_error);
+		if (error = suser(u.u_cred, &u.u_acflag))
+			return (error);
 		/* FALLTHROUGH */
 
 	default:
