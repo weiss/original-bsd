@@ -21,7 +21,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)var.c	5.3 (Berkeley) 03/12/90";
+static char sccsid[] = "@(#)var.c	5.4 (Berkeley) 03/12/90";
 #endif /* not lint */
 
 /*-
@@ -1725,12 +1725,6 @@ Var_Subst (str, ctxt, undefErr)
 		 * the string...
 		 */
 		if (oldVars) {
-#ifndef DEF_OLD_VARS
-		    if (!sysVmake && !amMake && undefErr && !errorReported) {
-			Parse_Error (PARSE_WARNING,
-				     "Undefined variable \"%.*s\"",length,str);
-		    }
-#endif
 		    str += length;
 		} else if (undefErr) {
 		    /*
