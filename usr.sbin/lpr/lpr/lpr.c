@@ -1,4 +1,4 @@
-/*	lpr.c	4.13	83/03/29	*/
+/*	lpr.c	4.14	83/04/05	*/
 /*
  *      lpr -- off line print
  *
@@ -186,7 +186,7 @@ main(argc, argv)
 		printer = DEFLP;
 	if (!chkprinter(printer)) {
 		printf("%s: unknown printer %s\n", name, printer);
-		exit(2);
+		exit(1);
 	}
 	/*
 	 * Get the identity of the person doing the lpr and initialize the
@@ -447,7 +447,7 @@ out()
 			while (dfname[i]-- != 'A');
 			dfname[i] = 'z';
 		} while (dfname[i-2]-- != 'd');
-	exit();
+	exit(1);
 }
 
 /*
@@ -547,7 +547,7 @@ chkprinter(s)
 
 	if ((stat = pgetent(b, s)) < 0) {
 		printf("%s: can't open printer description file\n", name);
-		exit(3);
+		exit(1);
 	} else if (stat == 0)
 		return(0);
 	if ((DN = pgetstr("dn", &bp)) == NULL)
