@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)GETNAME.c 1.1 10/30/80";
+static char sccsid[] = "@(#)GETNAME.c 1.2 01/10/81";
 
 #include "h00vars.h"
 #include "h01errs.h"
@@ -77,6 +77,10 @@ GETNAME(filep, name, maxnamlen, datasize)
 			/*
 			 * have a previous buffer, close associated file
 			 */
+			if (filep->fblk > PREDEF) {
+				fflush(filep->fbuf);
+				setbuf(filep->fbuf, NULL);
+			}
 			fclose(filep->fbuf);
 			if (ferror(filep->fbuf)) {
 				ERROR(ECLOSE, filep->pfname);
