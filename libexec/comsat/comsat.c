@@ -17,7 +17,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)comsat.c	5.9 (Berkeley) 12/04/87";
+static char sccsid[] = "@(#)comsat.c	5.10 (Berkeley) 12/26/87";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -103,7 +103,7 @@ main(argc, argv)
 
 reapchildren()
 {
-	while (wait3((struct wait *)NULL, WNOHANG, (struct rusage *)NULL) > 0);
+	while (wait3((union wait *)NULL, WNOHANG, (struct rusage *)NULL) > 0);
 }
 
 onalrm()
