@@ -1,3 +1,4 @@
+/*	@(#)if_ddnvar.h	6.2 (Berkeley) 09/16/85 */
 
 
 
