@@ -3,7 +3,7 @@
 /*
  *	This routine gets a string starting at (_cury,_curx)
  *
- * 04/10/81 (Berkeley) @(#)getstr.c	1.2
+ * 04/29/81 (Berkeley) @(#)getstr.c	1.3
  */
 wgetstr(win,str)
 reg WINDOW	*win; 
@@ -12,8 +12,8 @@ reg char	*str; {
 	while ((*str = wgetch(win)) != ERR && *str != '\n');
 		str++;
 	if (*str == ERR) {
-		return ERR;
 		*str = '\0';
+		return ERR;
 	}
 	*str = '\0';
 	return OK;
