@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mt.c	5.6 (Berkeley) 06/06/91";
+static char sccsid[] = "@(#)mt.c	5.7 (Berkeley) 11/13/91";
 #endif /* not lint */
 
 /*
@@ -104,13 +104,13 @@ main(argc, argv)
 }
 
 #ifdef vax
-#include <vaxmba/mtreg.h>
-#include <vaxmba/htreg.h>
+#include <vax/mba/mtreg.h>
+#include <vax/mba/htreg.h>
 
-#include <vaxuba/utreg.h>
-#include <vaxuba/tmreg.h>
+#include <vax/uba/utreg.h>
+#include <vax/uba/tmreg.h>
 #undef b_repcnt		/* argh */
-#include <vaxuba/tsreg.h>
+#include <vax/uba/tsreg.h>
 #endif
 
 #ifdef sun
