@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)finger.c	4.2 (Berkeley) 10/23/82";
+static char *sccsid = "@(#)finger.c	4.3 (Berkeley) 12/13/82";
 
 /*  This is a finger program.  It prints out useful information about users
  *  by digging it up from various system files.  It is not very portable
@@ -1256,6 +1256,8 @@ matchcmp( gname, login, given )
 	    if(  namecmp( login, given )  )  {
 		return( 1 );
 	    }
+	    else if (*gname == '\0')
+		return (0);
 	    else  {
 		if( *gname == ASTERISK )  {
 		    gname++;
