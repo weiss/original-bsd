@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)conn.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)conn.c	5.2 (Berkeley) 07/02/83";
 #endif
 
 #include "uucp.h"
@@ -7,7 +7,7 @@ static char sccsid[] = "@(#)conn.c	5.1 (Berkeley) 07/02/83";
 #include <setjmp.h>
 #include <ctype.h>
 #include <sys/types.h>
-#include <time.h>
+#include <sys/time.h>
 #include <errno.h>
 #ifdef	SYSIII
 #include <termio.h>
