@@ -1,4 +1,4 @@
-    /* sccsid:  @(#)vax.h	1.1 (Berkeley) 03/24/83 */
+    /* sccsid:  @(#)vax.h	1.2 (Berkeley) 03/31/83 */
 
     /*
      *	opcode of the `calls' instruction
@@ -10,6 +10,7 @@
      *	(see asgnsamples for use and explanation.)
      */
 #define OFFSET_OF_CODE	2
+#define	UNITS_TO_CODE	(OFFSET_OF_CODE / sizeof(UNIT))
 
     /*
      *	register for pc relative addressing
