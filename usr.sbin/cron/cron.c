@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)cron.c	4.2 (Berkeley) 05/17/81";
+static char *sccsid = "@(#)cron.c	4.3 (Berkeley) 07/05/81";
 #include <sys/types.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -61,10 +61,8 @@ main()
 			cp = cmp(cp, loct->tm_mday);
 			cp = cmp(cp, loct->tm_mon);
 			cp = cmp(cp, loct->tm_wday);
-			if(flag == 0) {
-				slp();
+			if(flag == 0)
 				ex(cp);
-			}
 			while(*cp++ != 0)
 				;
 		}
@@ -115,6 +113,11 @@ slp()
 
 	time(&t);
 	i = itime - t;
+	if(i < -60 * 60 || i > 60 * 60) {
+		itime = t;
+		i = 60 - localtime(&itime)->tm_sec;
+		itime += i;
+	}
 	if(i > 0)
 		sleep(i);
 }
