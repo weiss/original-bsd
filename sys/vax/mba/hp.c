@@ -1,6 +1,6 @@
-/*	hp.c	4.1	11/09/80	*/
+/*	hp.c	4.2	12/19/80	*/
 
-#include "../conf/hp.h"
+#include "hp.h"
 #if NHP > 0
 /*
  * RP06/RM03/RM05 disk driver
