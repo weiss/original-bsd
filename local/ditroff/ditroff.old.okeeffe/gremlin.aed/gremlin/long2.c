@@ -1,4 +1,4 @@
-/* @(#)long2.c	1.2	04/18/83
+/* @(#)long2.c	1.3	09/27/84
  *
  * Copyright -C- 1982 Barry S. Roitblat
  *
@@ -436,6 +436,7 @@ char *line;
         }
         else     
         {
+	    fclose(fp);
             PICTURE = DBRead(tname, &Orientation, &pos);
             SetOrient(Orientation);    /* Set appropriate picture area
                                         * orientation                    */
