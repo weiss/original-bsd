@@ -14,7 +14,7 @@
 ; IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 ; WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ;
-;	@(#)spintasm.asm	3.3 (Berkeley) 07/09/88
+;	@(#)spintasm.asm	4.1 (Berkeley) 12/04/88
 ; The code in this file complete the spint calls
 ;
 

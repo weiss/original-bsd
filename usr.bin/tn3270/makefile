@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)makefile	3.6 (Berkeley) 10/30/88
+#	@(#)makefile	4.1 (Berkeley) 12/04/88
 #
 
 # Makefile for tn3270 and friends...

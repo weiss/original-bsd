@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)termcodes.m4	1.3 (Berkeley) 07/09/88
+ *	@(#)termcodes.m4	4.1 (Berkeley) 12/04/88
  */
 
 /* the following allows us to generate our TC values.  it is a bit painful. */
