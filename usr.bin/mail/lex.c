@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)lex.c	2.14 (Berkeley) 08/11/83";
+#endif
 
 #include "rcv.h"
 
@@ -7,8 +9,6 @@
  *
  * Lexical processing of commands.
  */
-
-static char *SccsId = "@(#)lex.c	2.13 06/15/83";
 
 char	*prompt = "& ";
 
