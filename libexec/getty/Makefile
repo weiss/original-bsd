@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 04/29/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 DESTDIR=
 CFLAGS=	-O
@@ -20,6 +20,8 @@ install: all
 
 clean:
 	rm -f getty ${OBJS} a.out core errs
+
+depend:
 
 main.o: gettytab.h
 init.o: gettytab.h
