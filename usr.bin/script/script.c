@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)script.c	5.8 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)script.c	5.9 (Berkeley) 08/21/89";
 #endif /* not lint */
 
 /*
@@ -206,7 +206,7 @@ done()
 
 	if (subchild) {
 		tvec = time((time_t *)NULL);
-		fprintf(fscript,"\nscript done on %s", ctime(&tvec));
+		fprintf(fscript,"\nScript done on %s", ctime(&tvec));
 		(void) fclose(fscript);
 		(void) close(master);
 	} else {
