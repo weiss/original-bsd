@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)boot.c	7.9 (Berkeley) 02/22/88
+ *	@(#)boot.c	7.10 (Berkeley) 03/04/88
  */
 
 #include "param.h"
@@ -21,7 +21,6 @@
  * boot comes from.
  */
 
-#define	UNIX	"/vmunix"
 char line[100];
 
 extern	unsigned opendev;
