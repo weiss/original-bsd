@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)from.c	5.6 (Berkeley) 07/21/90";
+static char sccsid[] = "@(#)from.c	5.7 (Berkeley) 03/01/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -27,7 +27,7 @@ main(argc, argv)
 {
 	extern char *optarg;
 	extern int optind;
-	struct passwd *pwd, *getpwuid();
+	struct passwd *pwd;
 	int ch, newline;
 	char *file, *sender, *p;
 #if MAXPATHLEN > BUFSIZ
