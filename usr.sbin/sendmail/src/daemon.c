@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.16 (Berkeley) 03/09/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.17 (Berkeley) 03/13/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.16 (Berkeley) 03/09/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.17 (Berkeley) 03/13/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -616,9 +616,23 @@ maphostname(map, hbuf, hbsize, avp)
 
 	if (*hbuf != '[')
 	{
+		bool canonical;
 		extern bool getcanonname();
+#ifdef SETPROCTITLE
+		char ptbuf[MAXNAME];
+		extern char ProcTitleBuf[MAXNAME];
 
-		if (getcanonname(hbuf, hbsize))
+		(void) strcpy(ptbuf, ProcTitleBuf);
+		setproctitle("getcanonname(%s)", hbuf);
+#endif SETPROCTITLE
+
+		canonical = getcanonname(hbuf, hbsize);
+
+#ifdef SETPROCTITLE
+		setproctitle(NULL, ptbuf);
+#endif
+
+		if (canonical)
 			return hbuf;
 		else
 			return NULL;
