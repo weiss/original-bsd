@@ -1,4 +1,6 @@
-.\"	@(#)p0	6.3 (Berkeley) 05/09/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)p0	6.4 (Berkeley) 04/17/91
 .\"
 .if n .ls 1
 .\" .TM 78-1273-9 39199 39199-11

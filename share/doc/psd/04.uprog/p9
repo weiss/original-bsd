@@ -1,4 +1,6 @@
-.\"	@(#)p9	6.1 (Berkeley) 04/25/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)p9	6.2 (Berkeley) 04/17/91
 .\"
 .sp 100
 .TL

@@ -1,4 +1,6 @@
-.\"	@(#)p3	6.3 (Berkeley) 05/10/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)p3	6.4 (Berkeley) 04/17/91
 .\"
 .NH
 THE STANDARD I/O LIBRARY
