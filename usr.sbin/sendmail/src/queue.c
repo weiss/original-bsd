@@ -10,19 +10,16 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.56 (Berkeley) 05/04/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.57 (Berkeley) 05/22/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.56 (Berkeley) 05/04/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.57 (Berkeley) 05/22/93 (without queueing)";
 #endif
 #endif /* not lint */
 
-# include <sys/dir.h>
 # include <signal.h>
 # include <errno.h>
 # include <pwd.h>
-# ifndef MAXNAMLEN
 # include <dirent.h>
-# endif
 
 # ifdef QUEUE
 
@@ -531,7 +528,7 @@ runqueue(forkflag)
 orderq(doall)
 	bool doall;
 {
-	register struct direct *d;
+	register struct dirent *d;
 	register WORK *w;
 	DIR *f;
 	register int i;

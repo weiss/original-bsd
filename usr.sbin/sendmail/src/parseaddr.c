@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.55 (Berkeley) 05/21/93";
+static char sccsid[] = "@(#)parseaddr.c	6.56 (Berkeley) 05/22/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1698,7 +1698,6 @@ maplocaluser(a, sendq, e)
 **
 **	Parameters:
 **		map -- the internal map structure.
-**		mapname -- the name of the mapl.
 **		args -- arguments.
 **
 **	Returns:
@@ -1706,9 +1705,8 @@ maplocaluser(a, sendq, e)
 */
 
 bool
-dequote_init(map, mapname, args)
+dequote_init(map, args)
 	MAP *map;
-	char *mapname;
 	char *args;
 {
 	register char *p = args;
