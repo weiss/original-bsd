@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dirent.h	5.17 (Berkeley) 02/22/91
+ *	@(#)dirent.h	5.18 (Berkeley) 02/23/91
  */
 
 #ifndef _DIRENT_H_
@@ -70,7 +70,7 @@ int closedir __P((DIR *));
 long telldir __P((const DIR *));
 void seekdir __P((DIR *, long));
 int scandir __P((const char *, struct dirent ***,
-    int (*)(struct dirent *), int (*)(void *, void *)));
+    int (*)(struct dirent *), int (*)(const void *, const void *)));
 int alphasort __P((const void *, const void *));
 int getdirentries __P((int, char *, int, long *));
 #endif /* not POSIX */
