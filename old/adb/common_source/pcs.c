@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)pcs.c	5.1 (Berkeley) 01/16/89";
+static char sccsid[] = "@(#)pcs.c	5.2 (Berkeley) 01/17/89";
 #endif
 
 /*
@@ -130,7 +130,6 @@ subpcs(modif)
 		} else {
 			setup();
 			runmode = SINGLESTEP | NEW;
-			runcount--;
 			execsig = 0;
 		}
 		break;
