@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)if_css.c	7.4 (Berkeley) 05/14/88
+ *	@(#)if_css.c	7.5 (Berkeley) 05/26/88
  */
 
 #include "css.h"
@@ -279,12 +279,12 @@ cssdown(unit)
 cssoflush(unit)
 	int unit;
 {
-	register struct acc_softc *sc = &acc_softc[unit];
+	register struct css_softc *sc = &css_softc[unit];
 
-	sc->acc_imp->imp_cb.ic_oactive = 0;
-	if (sc->acc_ifuba.ifu_xtofree) {
-		m_freem(sc->acc_ifuba.ifu_xtofree);
-		sc->acc_ifuba.ifu_xtofree = 0;
+	sc->css_imp->imp_cb.ic_oactive = 0;
+	if (sc->css_ifuba.ifu_xtofree) {
+		m_freem(sc->css_ifuba.ifu_xtofree);
+		sc->css_ifuba.ifu_xtofree = 0;
 	}
 }
 
