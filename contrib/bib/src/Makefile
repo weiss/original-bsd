@@ -1,7 +1,7 @@
-#	@(#)Makefile	2.7	05/27/93
+#	@(#)Makefile	2.8	06/07/93
 #
 # 
-CFLAGS = -DBASEDIR=\"$(DEST_BASE)\" -DINCORE -g
+CFLAGS = -DBASEDIR=\"$(DEST_BASE)\" -DINCORE -fwritable-strings
 CC = cc $(CFLAGS)
 .c.o:
 	$(CC) -c $*.c
