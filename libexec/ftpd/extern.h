@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.1 (Berkeley) 07/19/92
+ *	@(#)extern.h	8.1 (Berkeley) 06/04/93
  */
 
 void	  blkfree __P((char **));
