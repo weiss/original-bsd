@@ -1,7 +1,7 @@
 /*
  * Terminal initialization routines.
  *
- * 10/26/81 (Berkeley) @(#)setterm.c	1.7
+ * 10/31/81 (Berkeley) @(#)setterm.c	1.8
  */
 
 # undef	DEBUG
@@ -22,7 +22,7 @@ static char	*xPC,
 		},
 		*tgoto();
 
-static char	tspace[128],		/* Space for capability strings */
+static char	tspace[256],		/* Space for capability strings */
 		*aoftspace;		/* Address of tspace for relocation */
 
 static int	destcol, destline;
