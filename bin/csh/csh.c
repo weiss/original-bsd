@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)csh.c 4.4 11/19/81";
+static	char *sccsid = "@(#)csh.c 4.5 11/22/81";
 
 #include "sh.h"
 #include <sys/ioctl.h>
@@ -525,8 +525,9 @@ srcunit(unit, onlyown, hflg)
 		arginp = oarginp, onelflg = oonelflg;
 		evalp = oevalp, evalvec = oevalvec;
 		intty = oldintty, whyles = oldwhyl, gointr = ogointr;
+		if (enterhist)
+			HIST = OHIST;
 		enterhist = oenterhist;
-		HIST = OHIST;
 #ifdef TELL
 		cantell = otell;
 #endif
