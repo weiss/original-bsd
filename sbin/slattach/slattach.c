@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)slattach.c	8.1 (Berkeley) 06/05/93";
+static char sccsid[] = "@(#)slattach.c	8.2 (Berkeley) 01/07/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -53,7 +53,8 @@ main(argc, argv)
 		exit(1);
 	}
 	if (strncmp(_PATH_DEV, dev, sizeof(_PATH_DEV) - 1)) {
-		(void)sprintf(devname, "%s/%s", _PATH_DEV, dev);
+		(void)snprintf(devname, sizeof(devname),
+		    "%s%s", _PATH_DEV, dev);
 		dev = devname;
 	}
 	if ((fd = open(dev, O_RDWR | O_NDELAY)) < 0) {
