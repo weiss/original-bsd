@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)random_.c	5.3	10/30/86
+ *	@(#)random_.c	5.4	05/13/90
  * 
  * Routines to return random values
  *
@@ -19,7 +19,7 @@
  *	Real values will range from 0.0 thru 1.0 .
  */
 
-#if	defined(vax) || defined(tahoe)
+#if	defined(vax) || defined(tahoe) || defined(hp300)
 #define	RANDMAX		2147483647
 #else	vax || tahoe
 	UNKNOWN MACHINE!
