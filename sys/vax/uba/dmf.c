@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dmf.c	7.6 (Berkeley) 04/25/89
+ *	@(#)dmf.c	7.7 (Berkeley) 05/09/89
  */
 
 /*
@@ -498,7 +498,7 @@ dmflwrite(dev, uio)
 			sc->dmfl_state |= MOREIO;
 		} else
 			sc->dmfl_state &= ~MOREIO;
-		if (error = uiomove(sc->dmfl_buf, (int)n, UIO_WRITE, uio))
+		if (error = uiomove(sc->dmfl_buf, (int)n, uio))
 			return (error);
 		if (error = dmflout(dev, sc->dmfl_buf, n))
 			return (error);
