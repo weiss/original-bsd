@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)value.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)value.c	5.4 (Berkeley) 12/22/90";
 #endif /* not lint */
 
 #include "tip.h"
@@ -70,7 +70,7 @@ vassign(p, v)
 	switch (p->v_type&TMASK) {
 
 	case STRING:
-		if (equal(p->v_value, v))
+		if (p->v_value && equal(p->v_value, v))
 			return;
 		if (!(p->v_type&(ENVIRON|INIT)))
 			free(p->v_value);
