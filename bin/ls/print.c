@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)print.c	5.13 (Berkeley) 06/27/89";
+static char sccsid[] = "@(#)print.c	5.14 (Berkeley) 06/28/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -176,7 +176,7 @@ printgrp(gid)
 	register struct ncache *cp;
 
 	cp = c_gid + (gid & LSMASK);
-	if (cp->gid != gid || *cp->name) {
+	if (cp->gid != gid || !*cp->name) {
 		/* can't find group, print out number instead */
 		if (!(gr = getgrgid(gid))) {
 			(void)printf("%-*u ", UT_NAMESIZE, gid);
