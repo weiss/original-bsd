@@ -12,7 +12,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)bad144.c	5.19 (Berkeley) 04/11/91";
+static char sccsid[] = "@(#)bad144.c	5.20 (Berkeley) 11/13/91";
 #endif not lint
 
 /*
@@ -32,9 +32,9 @@ static char sccsid[] = "@(#)bad144.c	5.19 (Berkeley) 04/11/91";
 #include <sys/param.h>
 #include <sys/dkbad.h>
 #include <sys/ioctl.h>
-#include <ufs/fs.h>
 #include <sys/file.h>
 #include <sys/disklabel.h>
+#include <ufs/ffs/fs.h>
 
 #include <stdio.h>
 #include <paths.h>
