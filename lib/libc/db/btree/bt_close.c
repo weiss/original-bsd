@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)bt_close.c	5.5 (Berkeley) 10/09/92";
+static char sccsid[] = "@(#)bt_close.c	5.6 (Berkeley) 11/07/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -87,7 +87,8 @@ __bt_sync(dbp)
 
 	t = dbp->internal;
 
-	if (ISSET(t, BTF_INMEM) || ISSET(t, BTF_RDONLY))
+	if (ISSET(t, BTF_INMEM) || ISSET(t, BTF_RDONLY) ||
+	    NOTSET(t, BTF_MODIFIED))
 		return (RET_SUCCESS);
 
 	if (ISSET(t, BTF_METADIRTY) && bt_meta(t) == RET_ERROR)
