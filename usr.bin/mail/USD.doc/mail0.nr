@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)mail0.nr	6.1 (Berkeley) 05/23/86
+.\"	@(#)mail0.nr	6.2 (Berkeley) 06/19/90
 .\"
 .eh 'USD:7-%''Mail Reference Manual'
 .oh 'Mail Reference Manual''USD:7-%'
@@ -32,7 +32,15 @@ Craig Leres
 .)l
 .r
 .(l C
-Version 5.2
+and
+.)l
+.i
+.(l C
+Mark Andrews
+.)l
+.r
+.(l C
+Version 5.5
 
 
 \*(td
