@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.5 (Berkeley) 04/11/87
+#	@(#)Makefile	5.6 (Berkeley) 05/10/87
 #
 DESTDIR=
 DFLAGS= 
@@ -31,8 +31,16 @@ install: gprof gprof.flat gprof.callg
 clean:
 	${RM} ${GPROFOBJS} errs gprof
 
-gcrt0.h:
-	cp /usr/src/libc/csu/gcrt0.h gcrt0.h
+gcrt0.h: FRC
+	-if [ -r gcrt0.h ] && \
+	   cmp -s gcrt0.h /usr/src/lib/libc/${MACHINE}/csu/gmon.h; then \
+	       :; \
+	else \
+	       rm -f gcrt0.h; \
+	       cp /usr/src/lib/libc/${MACHINE}/csu/gmon.h gcrt0.h; \
+	fi
+
+FRC:
 
 print:
 	@ ls -l | ${PR}
