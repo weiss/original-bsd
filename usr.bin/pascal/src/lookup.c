@@ -1,9 +1,11 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)lookup.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)lookup.c 1.2 08/27/82";
 
 #include "whoami.h"
 #include "0.h"
+
+struct nl *disptab[077+1];
 
 /*
  * Lookup is called to
