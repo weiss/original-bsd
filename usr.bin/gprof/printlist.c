@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)printlist.c	5.1 (Berkeley) 06/04/85";
+static char sccsid[] = "@(#)printlist.c	5.2 (Berkeley) 04/27/87";
 #endif not lint
 
 #include "gprof.h"
@@ -16,6 +16,10 @@ static char sccsid[] = "@(#)printlist.c	5.1 (Berkeley) 06/04/85";
      *	is a pointer to the list head
      *	(for ease of passing to stringlist functions).
      */
+struct stringlist	kfromhead = { 0 , 0 };
+struct stringlist	*kfromlist = &kfromhead;
+struct stringlist	ktohead = { 0 , 0 };
+struct stringlist	*ktolist = &ktohead;
 struct stringlist	fhead = { 0 , 0 };
 struct stringlist	*flist = &fhead;
 struct stringlist	Fhead = { 0 , 0 };
