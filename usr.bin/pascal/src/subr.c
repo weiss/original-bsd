@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)subr.c	5.2 (Berkeley) 05/28/90";
 #endif not lint
 
 #include "whoami.h"
@@ -91,9 +91,6 @@ inpflist(fp)
 	return (0);
 }
 #endif
-
-extern	int errno;
-extern	char *sys_errlist[];
 
 /*
  * Boom!
