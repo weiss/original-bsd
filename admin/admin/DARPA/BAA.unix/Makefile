@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.3 (Berkeley) 02/23/89
+#	@(#)Makefile	1.4 (Berkeley) 02/24/89
 #
-V1SRCS=	A.t B.t C.t D.t E.t F.t G.t H.t I.t J.t
+V1SRCS=	cover.t A.t B.t C.t D.t E.t F.t G.t H.t I.t J.t
 V2SRCS=	V2A.t V2B.t
 MACROS=	-ms
 PRINTER=Plz
