@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkmakefile.c	5.15 (Berkeley) 05/08/87";
+static char sccsid[] = "@(#)mkmakefile.c	5.16 (Berkeley) 06/15/87";
 #endif not lint
 
 /*
@@ -480,7 +480,7 @@ for (ftp = ftab; ftp != 0; ftp = ftp->f_next) {
 	och = *cp;
 	*cp = '\0';
 	if (och == 'o') {
-		fprintf(f, "%so:\n\t-cp ../%so .\n", tail(np), np);
+		fprintf(f, "%so:\n\t-cp ../%so .\n\n", tail(np), np);
 		continue;
 	}
 	fprintf(f, "%so: ../%s%c\n", tail(np), np, och);
