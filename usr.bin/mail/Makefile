@@ -1,7 +1,7 @@
 #
 # Unix version 7.
 #
-# Sccs Id = "@(#)Makefile	2.6 09/10/81";
+# Sccs Id = "@(#)Makefile	2.7 12/07/81";
 #
 
 CFLAGS=-O -DVMUNIX -DV7
@@ -40,9 +40,10 @@ S = $(SRCS) $(HDRS)
 	mv x.o $*.o
 	@$(RM) -f x.c
 
-Mail:	$S $(OBJS) tags
+Mail:	$S $(OBJS)
 	$(RM) -f Mail
-	$(CC) -n -o Mail $(OBJS) $(LIBES)
+	@echo Loading ...
+	@$(CC) -n -o Mail $(OBJS) $(LIBES)
 	@size Mail
 
 mail.g:	$(SRCS)
