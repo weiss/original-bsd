@@ -3,14 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_prot.c	7.3 (Berkeley) 03/07/89
+ *	@(#)kern_prot.c	7.4 (Berkeley) 04/25/89
  */
 
 /*
  * System calls related to processes and protection
  */
-
-#include "../machine/reg.h"
 
 #include "param.h"
 #include "systm.h"
@@ -25,6 +23,8 @@
 #include "buf.h"
 #include "mount.h"
 #include "quota.h"
+
+#include "machine/reg.h"
 
 getpid()
 {

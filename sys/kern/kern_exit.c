@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_exit.c	7.5 (Berkeley) 04/08/89
+ *	@(#)kern_exit.c	7.6 (Berkeley) 04/25/89
  */
 
 #include "param.h"
@@ -22,9 +22,9 @@
 #include "syslog.h"
 #include "malloc.h"
 
-#include "../machine/reg.h"
+#include "machine/reg.h"
 #ifdef COMPAT_43
-#include "../machine/psl.h"
+#include "machine/psl.h"
 #endif
 
 /*

@@ -3,13 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_exec.c	7.8 (Berkeley) 10/18/88
+ *	@(#)kern_exec.c	7.9 (Berkeley) 04/25/89
  */
-
-#include "../machine/reg.h"
-#include "../machine/pte.h"
-#include "../machine/psl.h"
-#include "../machine/mtpr.h"
 
 #include "param.h"
 #include "systm.h"
@@ -27,6 +22,11 @@
 #include "uio.h"
 #include "acct.h"
 #include "exec.h"
+
+#include "machine/reg.h"
+#include "machine/pte.h"
+#include "machine/psl.h"
+#include "machine/mtpr.h"
 
 /*
  * exec system call, with and without environments.
