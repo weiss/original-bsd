@@ -9,7 +9,7 @@
  * Startup -- interface with user.
  */
 
-static char *SccsId = "@(#)main.c	1.3 02/06/81";
+static char *SccsId = "@(#)main.c	1.4 04/01/81";
 
 /*
  * Find out who the user is, copy his mail file (if exists) into
@@ -228,7 +228,11 @@ main(argc, argv)
 	if (setfile(mailname, edit) < 0)
 		exit(1);
 	commands();
-	if (!edit)
+	if (!edit) {
+		sigset(SIGHUP, SIG_IGN);
+		sigset(SIGINT, SIG_IGN);
+		sigset(SIGQUIT, SIG_IGN);
 		quit();
+	}
 	exit(0);
 }
