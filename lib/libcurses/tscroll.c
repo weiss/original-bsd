@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tscroll.c	5.3 (Berkeley) 12/22/92";
+static char sccsid[] = "@(#)tscroll.c	5.4 (Berkeley) 01/11/93";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -36,7 +36,7 @@ static char sccsid[] = "@(#)tscroll.c	5.3 (Berkeley) 12/22/92";
  * all other characters are ``self-inserting''.
  */
 char *
-tscroll(cap, n)
+__tscroll(cap, n)
 	const char *cap;
 	int n;
 {
