@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	5.36 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)utilities.c	5.37 (Berkeley) 06/04/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -502,11 +502,11 @@ pfatal(s, a1, a2, a3)
 {
 
 	if (preen) {
-		printf("%s: ", devname);
+		printf("%s: ", cdevname);
 		printf(s, a1, a2, a3);
 		printf("\n");
 		printf("%s: UNEXPECTED INCONSISTENCY; RUN fsck MANUALLY.\n",
-			devname);
+			cdevname);
 		exit(8);
 	}
 	printf(s, a1, a2, a3);
@@ -522,7 +522,7 @@ pwarn(s, a1, a2, a3, a4, a5, a6)
 {
 
 	if (preen)
-		printf("%s: ", devname);
+		printf("%s: ", cdevname);
 	printf(s, a1, a2, a3, a4, a5, a6);
 }
 
