@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)c.c 1.6 08/05/83";
+static char sccsid[] = "@(#)c.c 1.7 08/16/83";
 
 /*
  * C-dependent symbol routines.
@@ -351,7 +351,7 @@ Integer indent;
 
 	case TYPE:
 	    if (t->name != nil) {
-		printname(stdout, t);
+		printf("%s", symname(t));
 	    } else {
 		printtype(t, t->type, indent);
 	    }
