@@ -1,4 +1,6 @@
-/*	frame.h	1.1	86/01/05	*/
+/*
+ *	@(#)frame.h	7.1 (Berkeley) 05/21/88
+ */
 
 /*
  * Definition of the tahoe call frame.
