@@ -1,11 +1,11 @@
-# include	"curses.h"
+# include	"curses.ext"
 
 # define	min(a,b)	(a < b ? a : b)
 
 /*
  *	This routine writes win1 on win2 destructively.
  *
- * 01/26/81 (Berkeley) @(#)overwrite.c	1.1
+ * 02/16/82 (Berkeley) @(#)overwrite.c	1.2
  */
 overwrite(win1, win2)
 reg WINDOW	*win1, *win2; {
