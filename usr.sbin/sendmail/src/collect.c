@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.37 (Berkeley) 04/22/95";
+static char sccsid[] = "@(#)collect.c	8.38 (Berkeley) 04/24/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -172,7 +172,7 @@ collect(fp, smtpmode, requeueflag, hdrp, e)
 				while (!feof(fp) && !ferror(fp))
 				{
 					errno = 0;
-					c = fgetc(fp);
+					c = getc(fp);
 					if (errno != EINTR)
 						break;
 					clearerr(fp);
@@ -186,7 +186,7 @@ collect(fp, smtpmode, requeueflag, hdrp, e)
 					if (c == EOF)
 						fprintf(TrafficLogFile, "[EOF]\n");
 					else
-						fputc(c, TrafficLogFile);
+						putc(c, TrafficLogFile);
 				}
 				if (c == EOF)
 					goto readerr;
@@ -270,7 +270,7 @@ bufferchar:
 				/* just put the character out */
 				if (MaxMessageSize <= 0 ||
 				    e->e_msgsize <= MaxMessageSize)
-					fputc(c, tf);
+					putc(c, tf);
 				continue;
 			}
 
@@ -333,7 +333,7 @@ nextstate:
 			{
 				clearerr(fp);
 				errno = 0;
-				c = fgetc(fp);
+				c = getc(fp);
 			} while (errno == EINTR);
 			if (c != EOF)
 				ungetc(c, fp);
@@ -372,7 +372,7 @@ nextstate:
 			    e->e_msgsize <= MaxMessageSize)
 			{
 				while (*bp != '\0')
-					fputc(*bp++, tf);
+					putc(*bp++, tf);
 			}
 			break;
 		}

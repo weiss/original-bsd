@@ -9,7 +9,7 @@
 # include "sendmail.h"
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.45 (Berkeley) 04/23/95";
+static char sccsid[] = "@(#)alias.c	8.46 (Berkeley) 04/24/95";
 #endif /* not lint */
 
 
@@ -666,7 +666,7 @@ readaliases(map, af, announcestats, logstats)
 			}
 
 			/* see if there should be a continuation line */
-			c = fgetc(af);
+			c = getc(af);
 			if (!feof(af))
 				(void) ungetc(c, af);
 			if (c != ' ' && c != '\t')
