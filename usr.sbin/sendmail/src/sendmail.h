@@ -1,7 +1,7 @@
 /*
 **  SENDMAIL.H -- Global definitions for sendmail.
 **
-**	@(#)sendmail.h	3.29	08/21/81
+**	@(#)sendmail.h	3.30	08/22/81
 */
 
 
@@ -254,7 +254,6 @@ extern ADDRESS	From;		/* the person it is from */
 extern char	*To;		/* the target person */
 extern int	HopCount;	/* hop count */
 extern long	CurTime;	/* time of this message */
-extern char	FromLine[];	/* a UNIX-style From line for this message */
 extern int	AliasLevel;	/* depth of aliasing */
 
 
