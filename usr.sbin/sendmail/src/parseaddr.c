@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.39 (Berkeley) 11/04/94";
+static char sccsid[] = "@(#)parseaddr.c	8.40 (Berkeley) 11/20/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1611,7 +1611,24 @@ printaddr(a, follow)
 	if (first)
 		printf("[NULL]\n");
 }
+/*
+**  EMPTYADDR -- return TRUE if this address is empty (``<>'')
+**
+**	Parameters:
+**		a -- pointer to the address
+**
+**	Returns:
+**		TRUE -- if this address is "empty" (i.e., no one should
+**			ever generate replies to it.
+**		FALSE -- if it is a "regular" (read: replyable) address.
+*/
 
+bool
+emptyaddr(a)
+	register ADDRESS *a;
+{
+	return strcmp(a->q_paddr, "<>") == 0 || strcmp(a->q_user, "<>") == 0;
+}
 /*
 **  REMOTENAME -- return the name relative to the current mailer
 **
