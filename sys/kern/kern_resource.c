@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_resource.c	6.8 (Berkeley) 10/23/85
+ *	@(#)kern_resource.c	6.9 (Berkeley) 05/14/86
  */
 
 #include "param.h"
@@ -39,7 +39,7 @@ getpriority()
 		else
 			p = pfind(uap->who);
 		if (p == 0)
-			return;
+			break;
 		low = p->p_nice;
 		break;
 
@@ -92,7 +92,7 @@ setpriority()
 		else
 			p = pfind(uap->who);
 		if (p == 0)
-			return;
+			break;
 		donice(p, uap->prio);
 		found++;
 		break;
