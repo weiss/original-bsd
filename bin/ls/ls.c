@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.45 (Berkeley) 03/04/91";
+static char sccsid[] = "@(#)ls.c	5.46 (Berkeley) 04/02/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -236,7 +236,8 @@ doargs(argc, argv)
 	 * structures for directory and non-directory files.
 	 */
 	dstats = rstats = NULL;
-	statfcn = (f_longform || f_listdir) && !f_ignorelink ? lstat : stat;
+	statfcn =
+	    (f_longform || f_listdir || f_type) && !f_ignorelink ? lstat : stat;
 	for (dircnt = regcnt = 0; *argv; ++argv) {
 		if (statfcn(*argv, &sb)) {
 			if (statfcn != stat || lstat(*argv, &sb)) {
