@@ -1,6 +1,11 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)rio.c	1.2 (Berkeley) 08/11/83";
-#endif
+static char sccsid[] = "@(#)rio.c	1.3 (Berkeley) 04/16/91";
+#endif /* not lint */
+
 
 #include "r.h"
 char	ibuf[BUFSIZ];

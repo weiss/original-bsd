@@ -1,4 +1,9 @@
-/* @(#)r.y	1.1 (Berkeley) 12/15/82 */
+/*-
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)r.y	1.2 (Berkeley) 04/16/91
+ */
+
 %{
 extern int transfer;
 extern	int	indent;

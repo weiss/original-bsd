@@ -1,4 +1,8 @@
-/*	r.h	1.2	83/08/11	*/
+/*-
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)r.h	1.3 (Berkeley) 04/16/91
+ */
 
 #include <stdio.h>
 #include "y.tab.h"
