@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)deliver.c	5.2 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)deliver.c	5.3 (Berkeley) 06/08/85";
 #endif not lint
 
 # include <signal.h>
@@ -380,8 +380,8 @@ deliver(e, firstto)
 				}
 				else
 				{
-					strcat(tobuf, ",");
-					strcat(tobuf, to->q_paddr);
+					(void) strcat(tobuf, ",");
+					(void) strcat(tobuf, to->q_paddr);
 				}
 			}
 
@@ -1086,7 +1086,7 @@ putbody(fp, m, e)
 		{
 			if (buf[0] == 'F' && bitnset(M_ESCFROM, m->m_flags) &&
 			    strncmp(buf, "From", 4) == 0)
-				putc('>', fp);
+				(void) putc('>', fp);
 			putline(buf, fp, m);
 		}
 
@@ -1156,7 +1156,7 @@ mailfile(filename, ctladdr)
 		(void) signal(SIGINT, SIG_DFL);
 		(void) signal(SIGHUP, SIG_DFL);
 		(void) signal(SIGTERM, SIG_DFL);
-		umask(OldUmask);
+		(void) umask(OldUmask);
 		if (stat(filename, &stb) < 0)
 		{
 			errno = 0;
