@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)md-sparc.c	5.2 (Berkeley) 06/29/92";
+static char sccsid[] = "@(#)md-sparc.c	5.3 (Berkeley) 03/31/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -19,7 +19,6 @@ static char sccsid[] = "@(#)md-sparc.c	5.2 (Berkeley) 06/29/92";
 #include <sys/stat.h>
 #include <sys/proc.h>
 #include <sys/user.h>
-#include <sys/kinfo.h>
 #include <sys/kinfo_proc.h>
 #include <machine/vmparam.h>
 
