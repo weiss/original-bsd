@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.16 (Berkeley) 12/02/92
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	compress
 LINKS=	${BINDIR}/compress ${BINDIR}/uncompress
