@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	5.11 (Berkeley) 02/11/86";
+static char sccsid[] = "@(#)syslogd.c	5.12 (Berkeley) 03/11/86";
 #endif not lint
 
 /*
@@ -531,8 +531,8 @@ logmsg(pri, msg, from, flags)
 
 		case F_FORW:
 			dprintf(" %s\n", f->f_un.f_forw.f_hname);
-			(void) sprintf(line, "<%d>%.15s %s", pri, v[0].iov_base,
-				v[4].iov_base);
+			(void) sprintf(line, "<%d>%.15s %s", pri,
+				iov[0].iov_base, iov[4].iov_base);
 			l = strlen(line);
 			if (l > MAXLINE)
 				l = MAXLINE;
