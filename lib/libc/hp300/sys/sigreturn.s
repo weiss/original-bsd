@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)sigreturn.s	5.1 (Berkeley) 05/12/90"
+	.asciz "@(#)sigreturn.s	5.2 (Berkeley) 05/03/93"
 #endif /* LIBC_SCCS and not lint */
 
 #include "SYS.h"
@@ -20,11 +20,25 @@
  */
 #ifdef PROF
 #undef ENTRY
+#ifdef __STDC__
+#if __GNUC__ >= 2
+#define	ENTRY(x) \
+	.globl _ ## x; .even; _ ## x:; moveml \#0xC0C0,sp@-; .data; \
+	PROF ## x:; .long 0; .text; lea PROF ## x,a0; jbsr mcount; \
+	moveml sp@+,\#0x0303
+#else
+#define	ENTRY(x) \
+	.globl _ ## x; .even; _ ## x:; moveml #0xC0C0,sp@-; .data; \
+	PROF ## x:; .long 0; .text; lea PROF ## x,a0; jbsr mcount; \
+	moveml sp@+,#0x0303
+#endif
+#else
 #define	ENTRY(x) \
 	.globl _/**/x; .even; _/**/x:; moveml #0xC0C0,sp@-; .data; \
 	PROF/**/x:; .long 0; .text; lea PROF/**/x,a0; jbsr mcount; \
 	moveml sp@+,#0x0303
-#endif PROF
+#endif
+#endif
 
 ENTRY(sigreturn)
 	trap	#1		/* signals sigreturn() */
