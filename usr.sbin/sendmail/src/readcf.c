@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.19 (Berkeley) 09/11/89";
+static char sccsid[] = "@(#)readcf.c	5.20 (Berkeley) 04/18/90";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -866,6 +866,7 @@ setoption(opt, val, safe, sticky)
 
 	  case 'u':		/* set default uid */
 		DefUid = atoi(val);
+		setdefuser();
 		break;
 
 	  case 'v':		/* run in verbose mode */
