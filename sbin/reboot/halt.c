@@ -1,4 +1,7 @@
-static	char *sccsid = "@(#)halt.c	4.7 (Berkeley) 01/02/83";
+#ifndef lint
+static	char *sccsid = "@(#)halt.c	4.8 (Berkeley) 05/22/83";
+#endif
+
 /*
  * Halt
  */
@@ -103,6 +106,7 @@ markdown()
 		lseek(f, 0L, 2);
 		SCPYN(wtmp.ut_line, "~");
 		SCPYN(wtmp.ut_name, "shutdown");
+		SCPYN(wtmp.ut_host, "");
 		time(&wtmp.ut_time);
 		write(f, (char *)&wtmp, sizeof(wtmp));
 		close(f);
