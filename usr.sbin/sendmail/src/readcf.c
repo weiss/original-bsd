@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.58 (Berkeley) 01/04/95";
+static char sccsid[] = "@(#)readcf.c	8.59 (Berkeley) 01/07/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1993,7 +1993,11 @@ inittimeouts(val)
 		TimeOuts.to_quit = (time_t) 2 MINUTES;
 		TimeOuts.to_nextcommand = (time_t) 1 HOUR;
 		TimeOuts.to_miscshort = (time_t) 2 MINUTES;
+#if IDENTPROTO
 		TimeOuts.to_ident = (time_t) 30 SECONDS;
+#else
+		TimeOuts.to_ident = (time_t) 0 SECONDS;
+#endif
 		TimeOuts.to_fileopen = (time_t) 60 SECONDS;
 		return;
 	}
