@@ -1,10 +1,11 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)TEOLN.c 1.1 10/30/80";
+static char sccsid[] = "@(#)TEOLN.c 1.2 03/07/81";
 
 #include "h00vars.h"
 #include "h01errs.h"
 
+bool
 TEOLN(filep)
 
 	register struct iorec	*filep;
