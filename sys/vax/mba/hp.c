@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)hp.c	7.11 (Berkeley) 05/27/88
+ *	@(#)hp.c	7.12 (Berkeley) 06/03/88
  */
 
 #ifdef HPDEBUG
@@ -311,6 +311,9 @@ hpinit(dev, flags)
 		lp->d_nsectors = 32;
 		lp->d_ntracks = 20;
 		lp->d_secpercyl = 32*20;
+		lp->d_npartitions = 1;
+		lp->d_partitions[0].p_offset = 0;
+		lp->d_partitions[0].p_size = LABELSECTOR + 1;
 	}
 
 	if (flags & O_NDELAY)
@@ -1247,6 +1250,8 @@ struct	size {
  * for many of the drives listed in this table.
  * Try patching things with something i/o intensive
  * running and watch iostat.
+ *
+ * The order of these entries must agree with the indices in hptypes[].
  */
 struct hpst {
 	short	nsect;		/* # sectors/track */
@@ -1363,8 +1368,10 @@ hpmaptype(mi, lp)
 			lp->d_ncylinders = ncyl;
 			lp->d_secpercyl = nsectors*ntracks;
 			lp->d_secperunit = lp->d_secpercyl * lp->d_ncylinders;
+#ifdef notdef		/* set elsewhere */
 			lp->d_npartitions = 1;
 			lp->d_partitions[0].p_offset = 0;
+#endif
 			lp->d_partitions[0].p_size = lp->d_secperunit;
 			return (0);
 		}
