@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmds.c	5.6 (Berkeley) 12/22/87";
+static char sccsid[] = "@(#)cmds.c	5.7 (Berkeley) 09/02/88";
 #endif not lint
 
 #include "tip.h"
@@ -605,7 +605,7 @@ abort(msg)
 		printf("\r\n%s", msg);
 	printf("\r\n[EOT]\r\n");
 	daemon_uid();
-	delock(uucplock);
+	(void)uu_unlock(uucplock);
 	unraw();
 	exit(0);
 }
