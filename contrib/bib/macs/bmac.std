@@ -1,4 +1,4 @@
-.\"	@(#)bmac.std	2.5	04/27/87;
+.\"	@(#)bmac.std	2.6	04/27/87;
 .\" standard format troff commands
 .\" citation formatting strings
 .ds [[ [
@@ -34,7 +34,7 @@
 .\" reference formmating macros
 .de s[   \" start reference
 .nh
-.IP [\\*([F] 5m
+.IP "[\\*([F]" 5m
 ..
 .de e[   \" end reference
 .[-
