@@ -1,7 +1,7 @@
 #
 # Machine Language Assist for UC Berkeley Virtual Vax/Unix
 #
-#	locore.s		3.7	06/22/80
+#	locore.s		3.8	07/19/80
 #
 
 	.set	HIGH,31		# mask for total disable
@@ -317,7 +317,6 @@ ubasrv:
 	pushab	SBImsg
 	calls	$1,_printf
 	popr	$0xf
-	halt
 #
 # No SBI fault bits set in UBA config reg - must be
 # some error bits set in UBA status reg.
