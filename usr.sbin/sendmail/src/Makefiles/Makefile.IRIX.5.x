@@ -5,15 +5,14 @@
 #  old make program (I recommend that you get and port the new make if you
 #  are going to be doing any signficant work on sendmail).
 #
-#  Tested on IRIX 5.2 and 5.3 by Kari E. Hurtta <Kari.Hurtta@fmi.fi>.
+#  Tested on IRIX 5.3 by Kari E. Hurtta <Kari.Hurtta@fmi.fi>.
 #
-#	@(#)Makefile.IRIX.5.x	8.2 (Berkeley) 04/10/95
+#	@(#)Makefile.IRIX.5.x	8.3 (Berkeley) 06/10/95
 #
 SHELL=	/bin/sh
 
 # use O=-O (usual) or O=-g (debugging)
 O=	-O
-CC=gcc
 
 # define the database mechanisms available for map & alias lookups:
 #	-DNDBM -- use new DBM
