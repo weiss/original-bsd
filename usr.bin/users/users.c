@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)users.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)users.c	4.2 (Berkeley) 04/28/83";
 /*
  * users
  */
@@ -22,7 +22,7 @@ char **argv;
 	if(argc == 2)
 		s = argv[1];
 	if ((fi = fopen(s, "r")) == NULL) {
-		puts("who: cannot open utmp");
+		perror(s);
 		exit(1);
 	}
 	while (fread((char *)&utmp, sizeof(utmp), 1, fi) == 1) {
