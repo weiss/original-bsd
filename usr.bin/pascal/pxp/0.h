@@ -1,4 +1,4 @@
-/* static	char *sccsid = "@(#)0.h	1.3 (Berkeley) 02/06/83";*/
+/* static	char *sccsid = "@(#)0.h	1.4 (Berkeley) 05/12/83";*/
 /* Copyright (c) 1979 Regents of the University of California */
 /* #define DEBUG */
 #define	CHAR
@@ -57,10 +57,21 @@
  *		indenting unit in the program.
  *
  *	_	Underline keywords in the output.
+ *
+ *	O	remove `others'.  if an `others' label is found in a
+ *		case statement the case statement (minus the others case)
+ *		is printed as a guarded case statement, and the others case
+ *		is the else branch of the guard.  this transformation
+ *		causes the case selector to be evaluated twice, a lose
+ *		if the selector has side-effects.  this option is only
+ *		available if pxp is compiled with RMOTHERS defined.
  */
 
 char	all, core, nodecl, full, justify, pmain, stripcomm, table, underline;
 char	profile, onefile;
+#ifdef RMOTHERS
+char	rmothers;
+#endif RMOTHERS
 char	*firstname, *stdoutn;
 #ifdef DEBUG
 char	fulltrace, errtrace, testtrace, yyunique, typetest;
