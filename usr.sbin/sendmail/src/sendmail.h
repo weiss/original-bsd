@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.72 (Berkeley) 06/03/93
+ *	@(#)sendmail.h	6.73 (Berkeley) 06/03/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.72		06/03/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.73		06/03/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -855,7 +855,7 @@ extern char		*xalloc __P((int));
 extern bool		sameaddr __P((ADDRESS *, ADDRESS *));
 extern FILE		*dfopen __P((char *, int, int));
 extern EVENT		*setevent __P((time_t, int(*)(), int));
-extern char		*sfgets __P((char *, int, FILE *, time_t));
+extern char		*sfgets __P((char *, int, FILE *, time_t, char *));
 extern char		*queuename __P((ENVELOPE *, int));
 extern time_t		curtime __P(());
 extern bool		transienterror __P((int));
@@ -872,7 +872,6 @@ extern void		clearenvelope __P((ENVELOPE *, int));
 extern char		*username __P(());
 extern MCI		*mci_get __P((char *, MAILER *));
 extern char		*pintvl __P((time_t, int));
-extern char		*sfgets __P((char *, int, FILE *, time_t, char *));
 extern char		*map_rewrite __P((MAP *, char *, int, char **));
 extern ADDRESS		*getctladdr __P((ADDRESS *));
 extern char		*anynet_ntoa __P((SOCKADDR *));
