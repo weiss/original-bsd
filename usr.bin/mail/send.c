@@ -2,7 +2,7 @@
 
 #include "rcv.h"
 #ifdef VMUNIX
-#include <wait.h>
+#include <sys/wait.h>
 #endif
 #include <ctype.h>
 #include <sys/stat.h>
@@ -13,7 +13,7 @@
  * Mail to others.
  */
 
-static char *SccsId = "@(#)send.c	2.11 05/19/83";
+static char *SccsId = "@(#)send.c	2.12 07/02/83";
 
 /*
  * Send message described by the passed pointer to the
