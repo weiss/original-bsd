@@ -10,16 +10,15 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	8.16 (Berkeley) 03/27/95 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	8.17 (Berkeley) 03/31/95 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	8.16 (Berkeley) 03/27/95 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	8.17 (Berkeley) 03/31/95 (without USERDB)";
 #endif
 #endif
 
 #ifdef USERDB
 
 #include <errno.h>
-#include <netdb.h>
 #include <db.h>
 
 #ifdef HESIOD
@@ -781,7 +780,7 @@ _udbx_init()
 
 			for (i = 0; i < nmx; i++)
 			{
-				h = gethostbyname(mxhosts[i]);
+				h = sm_gethostbyname(mxhosts[i]);
 				if (h == NULL)
 					continue;
 				up->udb_type = UDB_REMOTE;

@@ -7,11 +7,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.75 (Berkeley) 03/27/95";
+static char sccsid[] = "@(#)recipient.c	8.76 (Berkeley) 03/31/95";
 #endif /* not lint */
 
 # include "sendmail.h"
-# include <pwd.h>
 
 /*
 **  SENDTOLIST -- Designate a send list.
@@ -582,8 +581,6 @@ finduser(name, fuzzyp)
 {
 	register struct passwd *pw;
 	register char *p;
-	extern struct passwd *getpwent();
-	extern struct passwd *getpwnam();
 
 	if (tTd(29, 4))
 		printf("finduser(%s): ", name);
@@ -604,7 +601,7 @@ finduser(name, fuzzyp)
 #endif
 
 	/* look up this login name using fast path */
-	if ((pw = getpwnam(name)) != NULL)
+	if ((pw = sm_getpwnam(name)) != NULL)
 	{
 		if (tTd(29, 4))
 			printf("found (non-fuzzy)\n");
@@ -960,7 +957,7 @@ resetuid:
 	{
 		register struct passwd *pw;
 
-		pw = getpwuid(st.st_uid);
+		pw = sm_getpwuid(st.st_uid);
 		if (pw == NULL)
 			ctladdr->q_flags |= QBOGUSSHELL;
 		else
