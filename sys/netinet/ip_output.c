@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ip_output.c	7.30 (Berkeley) 02/12/93
+ *	@(#)ip_output.c	7.31 (Berkeley) 03/12/93
  */
 
 #include <sys/param.h>
@@ -313,6 +313,7 @@ sendit:
 		mhip->ip_len = htons((u_short)(len + mhlen));
 		m->m_next = m_copy(m0, off, len);
 		if (m->m_next == 0) {
+			m_free(m);
 			error = ENOBUFS;	/* ??? */
 			ipstat.ips_odropped++;
 			goto sendorfree;
