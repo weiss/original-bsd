@@ -1,7 +1,10 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 06/02/90
 
 MSSRCS=	acc.ms cov.ms eqn.ms ref.ms tbl.ms ths.ms toc.ms
-TMSRCS=	tmac.os tmac.s
+TMSRCS=	tmac.s tmac.os tmac.scover
+
+# sources for old tmac.*, previously installed in /usr/lib/tmac
+OSRCS=	tmac.sdisp tmac.skeep tmac.srefs
 
 all clean cleandir depend lint tags:
 

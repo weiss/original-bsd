@@ -1,3 +1,4 @@
+.\" @(#)ths.ms	1.3 (Berkeley) 06/02/90
 .	\" TM - U.C. Berkeley thesis mode
 .ls 2
 .if v .nr PO 1.5i
