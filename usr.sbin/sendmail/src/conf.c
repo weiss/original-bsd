@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)conf.c	5.3 (Berkeley) 06/08/85";
+static char	SccsId[] = "@(#)conf.c	5.4 (Berkeley) 07/31/85";
 #endif not lint
 
 # include <pwd.h>
@@ -346,7 +346,8 @@ username()
 			if(getuid() != pw->pw_uid)
 			{
 				pw = getpwuid(getuid());
-				myname = pw->pw_name;
+				if (pw != NULL)
+					myname = pw->pw_name;
 			}
 		}
 		if (myname == NULL || myname[0] == '\0')
