@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)arpadate.c	5.2 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)arpadate.c	5.3 (Berkeley) 06/08/85";
 #endif not lint
 
 # include "conf.h"
@@ -223,6 +223,8 @@ fconvert(a, b)
 
 	for (euptr = Foreign; euptr->f_from != NULL; euptr++)
 	{
+		extern bool sameword();
+
 		if (sameword(euptr->f_from, a))
 		{
 			p = euptr->f_to;

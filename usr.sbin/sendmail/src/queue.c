@@ -16,10 +16,14 @@
 # include <errno.h>
 
 # ifndef QUEUE
-static char	SccsId[] = "@(#)queue.c	5.3 (Berkeley) 06/08/85	(no queueing)";
+# ifndef lint
+static char	SccsId[] = "@(#)queue.c	5.4 (Berkeley) 06/08/85	(no queueing)";
+# endif not lint
 # else QUEUE
 
-static char	SccsId[] = "@(#)queue.c	5.3 (Berkeley) 06/08/85";
+# ifndef lint
+static char	SccsId[] = "@(#)queue.c	5.4 (Berkeley) 06/08/85";
+# endif not lint
 
 /*
 **  Work queue.
@@ -402,7 +406,7 @@ orderq()
 	**  Sort the work directory.
 	*/
 
-	qsort(wlist, min(wn, WLSIZE), sizeof *wlist, workcmpf);
+	qsort((char *) wlist, min(wn, WLSIZE), sizeof *wlist, workcmpf);
 
 	/*
 	**  Convert the work list into canonical form.
