@@ -1,5 +1,5 @@
 /*
- *	@(#)ww.h	3.31 84/04/16	
+ *	@(#)ww.h	3.32 84/05/23	
  */
 
 #include <sgtty.h>
@@ -85,7 +85,7 @@ struct ww_tty {
 union ww_char {
 	short c_w;		/* as a word */
 	struct {
-#ifndef O_SUN
+#ifndef mc68000
 		char C_c;	/* the character part */
 		char C_m;	/* the mode part */
 #else
