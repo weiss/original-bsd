@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.8 (Berkeley) 02/18/93";
+static char sccsid[] = "@(#)readcf.c	6.9 (Berkeley) 02/20/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -907,7 +907,7 @@ setoption(opt, val, safe, sticky)
 
 	if (!safe && getuid() == 0)
 		safe = TRUE;
-	if (!safe && strchr("deEiLmorsvC8", opt) == NULL)
+	if (!safe && strchr("bdeEiLmoprsvC8", opt) == NULL)
 	{
 		if (opt != 'M' || (val[0] != 'r' && val[0] != 's'))
 		{
@@ -949,6 +949,10 @@ setoption(opt, val, safe, sticky)
 		SpaceSub = val[0];
 		if (SpaceSub == '\0')
 			SpaceSub = ' ';
+		break;
+
+	  case 'b':		/* minimum number of blocks free on queue fs */
+		MinBlocksFree = atol(val);
 		break;
 
 	  case 'c':		/* don't connect to "expensive" mailers */
@@ -1116,6 +1120,32 @@ setoption(opt, val, safe, sticky)
 			CurEnv->e_flags |= EF_OLDSTYLE;
 		else
 			CurEnv->e_flags &= ~EF_OLDSTYLE;
+		break;
+
+	  case 'p':		/* select privacy level */
+		p = val;
+		for (;;)
+		{
+			register struct prival *pv;
+			extern struct prival PrivacyValues[];
+
+			while (isascii(*p) && (isspace(*p) || ispunct(*p)))
+				p++;
+			if (*p == '\0')
+				break;
+			val = p;
+			while (isascii(*p) && isalnum(*p))
+				p++;
+			if (*p != '\0')
+				*p++ = '\0';
+
+			for (pv = PrivacyValues; pv->pv_name != NULL; pv++)
+			{
+				if (strcasecmp(val, pv->pv_name) == 0)
+					break;
+			}
+			PrivacyFlags |= pv->pv_flag;
+		}
 		break;
 
 	  case 'P':		/* postmaster copy address for returned mail */

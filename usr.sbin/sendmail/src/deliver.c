@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.18 (Berkeley) 02/19/93";
+static char sccsid[] = "@(#)deliver.c	6.19 (Berkeley) 02/20/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -898,6 +898,9 @@ openmailer(m, pvp, ctladdr, clever, e)
 			(void) signal(SIGHUP, SIG_IGN);
 			(void) signal(SIGTERM, SIG_DFL);
 
+			/* close any other cached connections */
+			mci_flush(FALSE, mci);
+
 			/* arrange to filter std & diag output of command */
 			if (clever)
 			{
@@ -1596,6 +1599,18 @@ sendall(e, mode)
 		}
 # endif /* LOCKF */
 
+		/*
+		**  Close any cached connections.
+		**
+		**	We don't send the QUIT protocol because the parent
+		**	still knows about the connection.
+		**
+		**	This should only happen when delivering an error
+		**	message.
+		*/
+
+		mci_flush(FALSE, NULL);
+
 		break;
 	}
 
@@ -1676,7 +1691,8 @@ sendall(e, mode)
 				printf("Errors to %s\n", obuf);
 
 			/* owner list exists -- add it to the error queue */
-			sendtolist(obuf, (ADDRESS *) NULL, &e->e_errorqueue, e);
+			(void) sendtolist(obuf, (ADDRESS *) NULL,
+					  &e->e_errorqueue, e);
 
 			/* and set the return path to point to it */
 			e->e_returnpath = newstr(obuf);
@@ -1687,7 +1703,8 @@ sendall(e, mode)
 
 		/* if we did not find an owner, send to the sender */
 		if (qq == NULL && bitset(QBADADDR, q->q_flags))
-			sendtolist(e->e_from.q_paddr, qq, &e->e_errorqueue, e);
+			(void) sendtolist(e->e_from.q_paddr, qq,
+					  &e->e_errorqueue, e);
 	}
 
 	if (mode == SM_FORK)

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.16 (Berkeley) 02/19/93";
+static char sccsid[] = "@(#)parseaddr.c	6.17 (Berkeley) 02/20/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -883,7 +883,8 @@ rewrite(pvp, ruleset)
 				if (xpvp != NULL)
 				{
 					cataddr(xpvp, replac,
-						&pvpbuf[sizeof pvpbuf] - replac);
+						&pvpbuf[sizeof pvpbuf] - replac,
+						'\0');
 					*++arg_rvp = replac;
 					replac += strlen(replac) + 1;
 					xpvp = NULL;
@@ -904,7 +905,8 @@ rewrite(pvp, ruleset)
 			if (xpvp != NULL)
 			{
 				cataddr(xpvp, replac,
-					&pvpbuf[sizeof pvpbuf] - replac);
+					&pvpbuf[sizeof pvpbuf] - replac, 
+					'\0');
 				*++arg_rvp = replac;
 			}
 			*++arg_rvp = NULL;
@@ -914,7 +916,7 @@ rewrite(pvp, ruleset)
 			bcopy((char *) rvp, (char *) pvpb1, trsize);
 
 			/* look it up */
-			cataddr(key_rvp, buf, sizeof buf);
+			cataddr(key_rvp, buf, sizeof buf, '\0');
 			argvect[0] = buf;
 			if (map != NULL && bitset(MF_VALID, map->s_map.map_flags))
 			{
@@ -936,7 +938,7 @@ rewrite(pvp, ruleset)
 				char buf2[sizeof buf];
 
 				/* rewrite the default with % translations */
-				cataddr(default_rvp, buf2, sizeof buf2);
+				cataddr(default_rvp, buf2, sizeof buf2, '\0');
 				map_rewrite(buf2, sizeof buf2, buf, sizeof buf,
 					argvect);
 				replac = buf;
@@ -1083,33 +1085,8 @@ buildaddr(tv, a)
 		}
 		if ((**tv & 0377) != CANONUSER)
 			syserr("buildaddr: error: no user");
-		bp = buf;
-		spaceleft = sizeof buf - 2;
-		while (*++tv != NULL)
-		{
-			int i = strlen(*tv);
-
-			if (i > spaceleft)
-			{
-				/* out of space for this address */
-				if (spaceleft >= 0)
-					syserr("buildaddr: error message too long (%.40s...)",
-						buf);
-				i = spaceleft;
-				spaceleft = 0;
-			}
-			if (i <= 0)
-				continue;
-			if (bp != buf)
-			{
-				*bp++ = ' ';
-				spaceleft--;
-			}
-			bcopy(*tv, bp, i);
-			bp += i;
-			spaceleft -= i;
-		}
-		*bp = '\0';
+		cataddr(++tv, buf, sizeof buf, ' ');
+		stripquotes(buf);
 		usrerr(buf);
 		return (NULL);
 	}
@@ -1184,7 +1161,7 @@ buildaddr(tv, a)
 		else if (*p == ':')
 		{
 			/* may be :include: */
-			cataddr(tv, buf, sizeof buf);
+			cataddr(tv, buf, sizeof buf, '\0');
 			stripquotes(buf);
 			if (strncasecmp(buf, ":include:", 9) == 0)
 			{
@@ -1209,7 +1186,7 @@ buildaddr(tv, a)
 	rewrite(tv, 4);
 
 	/* save the result for the command line/RCPT argument */
-	cataddr(tv, buf, sizeof buf);
+	cataddr(tv, buf, sizeof buf, '\0');
 	a->q_user = buf;
 
 	return (a);
@@ -1221,6 +1198,8 @@ buildaddr(tv, a)
 **		pvp -- parameter vector to rebuild.
 **		buf -- buffer to build the string into.
 **		sz -- size of buf.
+**		spacesub -- the space separator character; if null,
+**			use SpaceSub.
 **
 **	Returns:
 **		none.
@@ -1229,15 +1208,19 @@ buildaddr(tv, a)
 **		Destroys buf.
 */
 
-cataddr(pvp, buf, sz)
+cataddr(pvp, buf, sz, spacesub)
 	char **pvp;
 	char *buf;
 	register int sz;
+	char spacesub;
 {
 	bool oatomtok = FALSE;
 	bool natomtok = FALSE;
 	register int i;
 	register char *p;
+
+	if (spacesub == '\0')
+		spacesub = SpaceSub;
 
 	if (pvp == NULL)
 	{
@@ -1250,7 +1233,7 @@ cataddr(pvp, buf, sz)
 	{
 		natomtok = (toktype(**pvp) == ATM);
 		if (oatomtok && natomtok)
-			*p++ = SpaceSub;
+			*p++ = spacesub;
 		(void) strcpy(p, *pvp);
 		oatomtok = natomtok;
 		p += i;
@@ -1480,7 +1463,7 @@ remotename(name, m, senderaddress, header, canonical, e)
 	**  Now restore the comment information we had at the beginning.
 	*/
 
-	cataddr(pvp, lbuf, sizeof lbuf);
+	cataddr(pvp, lbuf, sizeof lbuf, '\0');
 	define('g', lbuf, e);
 	expand(fancy, buf, &buf[sizeof buf - 1], e);
 	define('g', oldg, e);
