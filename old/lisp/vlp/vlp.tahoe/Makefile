@@ -14,7 +14,7 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.1 (Berkeley) 10/25/88
+# @(#)Makefile	5.2 (Berkeley) 05/10/89
 #
 
 CFLAGS=	-O
@@ -38,7 +38,7 @@ depend: ${SRCS}
 	mkdep -p ${CFLAGS} ${SRCS}
 
 install:
-	install -s -o bin -g bin -m 755 vlp ${DESTDIR}/usr/ucb
+	install -s -o bin -g bin -m 755 vlp ${DESTDIR}/usr/bin
 
 lint: ${SRCS}
 	lint ${CFLAGS} ${SRCS}
