@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)param.c	7.23 (Berkeley) 10/11/92
+ *	@(#)param.c	7.24 (Berkeley) 06/16/93
  */
 
 #include <sys/param.h>
@@ -46,7 +46,7 @@ struct	timezone tz = { TIMEZONE, DST };
 int	maxproc = NPROC;
 #define	NTEXT (80 + NPROC / 8)			/* actually the object cache */
 #define	NVNODE (NPROC + NTEXT + 100)
-long	desiredvnodes = NVNODE;
+int	desiredvnodes = NVNODE;
 int	maxfiles = 3 * (NPROC + MAXUSERS) + 80;
 int	ncallout = 16 + NPROC;
 int	nclist = 60 + 12 * MAXUSERS;
