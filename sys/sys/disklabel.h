@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)disklabel.h	7.11 (Berkeley) 03/06/90
+ *	@(#)disklabel.h	7.12 (Berkeley) 05/15/90
  */
 
 /*
@@ -223,6 +223,11 @@ static char *fstypenames[] = {
  */
 #define d_precompcyl	d_drivedata[0]
 #define d_gap3		d_drivedata[1]		/* used only when formatting */
+
+/*
+ * Drive data for SCSI.
+ */
+#define	d_blind		d_drivedata[0]
 
 #ifndef LOCORE
 /*
