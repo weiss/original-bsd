@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)stab.c	1.10 (Berkeley) 10/22/83";
+static char *sccsid ="@(#)stab.c	1.11 (Berkeley) 04/02/85";
 #endif
 /*
  * Symbolic debugging info interface.
@@ -8,7 +8,7 @@ static char *sccsid ="@(#)stab.c	1.10 (Berkeley) 10/22/83";
  * symbolic debugging information into the object file.
  */
 
-#include "mfile1"
+#include "pass1.h"
 
 #include <sys/types.h>
 #include <a.out.h>
