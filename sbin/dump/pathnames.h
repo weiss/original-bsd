@@ -4,12 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.5 (Berkeley) 06/01/90
+ *	@(#)pathnames.h	5.6 (Berkeley) 02/28/91
  */
 
 #include <paths.h>
 
-#define	_PATH_DEFDISK	"/dev/rrp1g"
 #define	_PATH_DEFTAPE	"/dev/rmt8"
 #define	_PATH_DTMP	"/etc/dtmp"
 #define	_PATH_DUMPDATES	"/etc/dumpdates"
