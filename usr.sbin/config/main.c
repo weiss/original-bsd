@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 10/13/86";
+static char sccsid[] = "@(#)main.c	5.4 (Berkeley) 01/13/87";
 #endif not lint
 
 #include <stdio.h>
@@ -61,7 +61,18 @@ main(argc, argv)
 		printf("Specify machine type, e.g. ``machine vax''\n");
 		exit(1);
 	}
-	symlink("../h", path("sys"));	/* make genassym.c work */
+	/*
+	 * make symbolic links in compilation directory
+	 * for "sys" (to make genassym.c work along with #include <sys/xxx>)
+	 * and similarly for "machine".
+	 */
+	{
+	char xxx[80];
+
+	(void) symlink("../h", path("sys"));	
+	sprintf(xxx, "../%s", machinename);
+	(void) symlink(xxx, path("machine"));
+	}
 	makefile();			/* build Makefile */
 	headers();			/* make a lot of .h files */
 	swapconf();			/* swap config files */
