@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)pc.h 1.4 11/13/81"; */
+/* static	char sccsid[] = "@(#)pc.h 1.5 02/02/82"; */
 
     /*
      *		random constants for pc
@@ -85,9 +85,3 @@ char	*enclosing[ DSPLYSZ ];
      *	and of course ...
      */
 #define	BITSPERBYTE	8
-
-    /*
-     *	error number for case label not found (ECASE)
-     *	stolen from ~mckusick/px/lib/h01errs.h
-     */
-#define	ECASE		5
