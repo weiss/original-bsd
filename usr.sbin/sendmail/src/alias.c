@@ -23,12 +23,12 @@
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.33 (Berkeley) 05/29/92 (with NEWDB)";
 #else
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.33 (Berkeley) 05/29/92 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.33 (Berkeley) 05/29/92 (without DBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -59,6 +59,21 @@ static char sccsid[] = "@(#)alias.c	5.32 (Berkeley) 03/20/92 (without DBM)";
 **			nothing.
 */
 
+
+/*
+**  Sun YP servers read the dbm files directly, so we have to build them
+**  even if NEWDB
+*/
+
+#ifdef DBM
+# ifndef NEWDB
+#  define IF_MAKEDBMFILES
+# else
+#  ifdef YPCOMPAT
+#   define IF_MAKEDBMFILES		if (makedbmfiles)
+#  endif
+# endif
+#endif
 
 #ifdef DBM
 #ifndef NEWDB
@@ -379,6 +394,7 @@ readaliases(aliasfile, init)
 	bool skipping;
 	int naliases, bytes, longest;
 	FILE *af;
+	bool makedbmfiles;
 	void (*oldsigint)();
 	ADDRESS al, bl;
 	register STAB *s;
@@ -444,26 +460,31 @@ readaliases(aliasfile, init)
 			(void) signal(SIGINT, oldsigint);
 			return;
 		}
-# else
-# ifdef DBM
-		(void) strcpy(line, aliasfile);
-		(void) strcat(line, ".dir");
-		if (close(creat(line, DBMMODE)) < 0)
-		{
-			syserr("cannot make %s", line);
-			(void) signal(SIGINT, oldsigint);
-			return;
-		}
-		(void) strcpy(line, aliasfile);
-		(void) strcat(line, ".pag");
-		if (close(creat(line, DBMMODE)) < 0)
-		{
-			syserr("cannot make %s", line);
-			(void) signal(SIGINT, oldsigint);
-			return;
-		}
-		dbminit(aliasfile);
 # endif
+# ifdef IF_MAKEDBMFILES
+# ifdef NEWDB
+		makedbmfiles = access("/var/yp/Makefile", R_OK) == 0;
+# endif
+		IF_MAKEDBMFILES
+		{
+			(void) strcpy(line, aliasfile);
+			(void) strcat(line, ".dir");
+			if (close(creat(line, DBMMODE)) < 0)
+			{
+				syserr("cannot make %s", line);
+				(void) signal(SIGINT, oldsigint);
+				return;
+			}
+			(void) strcpy(line, aliasfile);
+			(void) strcat(line, ".pag");
+			if (close(creat(line, DBMMODE)) < 0)
+			{
+				syserr("cannot make %s", line);
+				(void) signal(SIGINT, oldsigint);
+				return;
+			}
+			dbminit(aliasfile);
+		}
 # endif
 	}
 
@@ -593,8 +614,10 @@ readaliases(aliasfile, init)
 # ifdef NEWDB
 			if (dbp->put(dbp, &key, &content, 0) != 0)
 				syserr("readaliases: db put (%s)", al.q_user);
-# else
-			store(key, content);
+# endif
+# ifdef IF_MAKEDBMFILES
+			IF_MAKEDBMFILES
+				store(key, content);
 # endif
 		}
 		else
@@ -624,7 +647,8 @@ readaliases(aliasfile, init)
 		    dbp->put(dbp, &key, &key, 0) != 0 ||
 		    dbp->close(dbp) != 0)
 			syserr("readaliases: db close failure");
-# else
+# endif
+# ifdef MAKEDBMFILES
 		store(key, key);
 # endif
 
