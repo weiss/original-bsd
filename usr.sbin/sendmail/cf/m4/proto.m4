@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.6 (Berkeley) 07/21/93')
+VERSIONID(`@(#)proto.m4	8.7 (Berkeley) 07/21/93')
 
 MAILER(local)dnl
 
@@ -21,6 +21,8 @@ V4
 define(`_SET_96_', 96)dnl
 define(`_SET_97_', 97)dnl
 define(`_SET_98_', 98)dnl')
+ifdef(`confSMTP_MAILER',, `define(`confSMTP_MAILER', `esmtp')')dnl
+define(`_SMTP_', `confSMTP_MAILER')dnl	for readability only
 
 ##################
 #   local info   #
@@ -492,7 +494,7 @@ ifdef(`_MAILER_smtp_',
 ifdef(`_NO_CANONIFY_', `dnl',
 `R$* < @ [ $+ ] > $*	$: $1 < @ $[ [$2] $] > $3	numeric internet addr')
 R$* < @ [ $+ ] > $*	$: $>_SET_98_ $1 < @ [ $2 ] > $3	numeric internet spec
-R$* < @ [ $+ ] > $*	$#smtp $@ [$2] $: $1 @ [$2] $3	still numeric: send',
+R$* < @ [ $+ ] > $*	$#_SMTP_ $@ [$2] $: $1 @ [$2] $3	still numeric: send',
 	`dnl')
 
 # now delete the local info -- note $=O to find characters that cause forwarding
@@ -530,19 +532,19 @@ ifdef(`_NO_UUCP_', `dnl',
 ifdef(`_CLASS_V_',
 `R$* < @ $=V . UUCP > $*		$: < $V > <@ $V> : $1 @ $2.UUCP $3
 R< $- : $+ > $*			$# $1 $@ $2 $: $3	$=V UUCP routing
-R< $+ > $*			$#smtp $@ $1 $: $2
+R< $+ > $*			$#_SMTP_ $@ $1 $: $2
 R<> $*				$: $1			else strip off gunk',
 	`dnl')
 ifdef(`_CLASS_W_',
 `R$* < @ $=W . UUCP > $*		$: < $W > <@ $W> : $1 @ $2.UUCP $3
 R< $- : $+ > $*			$# $1 $@ $2 $: $3	$=W UUCP routing
-R< $+ > $*			$#smtp $@ $1 $: $2
+R< $+ > $*			$#_SMTP_ $@ $1 $: $2
 R<> $*				$: $1			else strip off gunk',
 	`dnl')
 ifdef(`_CLASS_X_',
 `R$* < @ $=X . UUCP > $*		$: < $X > <@ $X> : $1 @ $2.UUCP $3
 R< $- : $+ > $*			$# $1 $@ $2 $: $3	$=X UUCP routing
-R< $+ > $*			$#smtp $@ $1 $: $2
+R< $+ > $*			$#_SMTP_ $@ $1 $: $2
 R<> $*				$: $1			else strip off gunk',
 	`dnl')')
 
@@ -550,13 +552,13 @@ R<> $*				$: $1			else strip off gunk',
 ifdef(`BITNET_RELAY',
 `R$*<@$+.BITNET>$*	$: < $B > $1 <@$2.BITNET> $3	user@host.BITNET
 R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#smtp $@ $1 $: $2
+R< $+ > $*		$#_SMTP_ $@ $1 $: $2
 R<> $*			$: $1				else strip off gunk',
 	`dnl')
 ifdef(`CSNET_RELAY',
 `R$*<@$+.CSNET>$*	$: < $C > $1 <@$2.CSNET> $3	user@host.CSNET
 R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#smtp $@ $1 $: $2
+R< $+ > $*		$#_SMTP_ $@ $1 $: $2
 R<> $*			$: $1				else strip off gunk',
 	`dnl')
 ifdef(`_MAILER_fax_',
@@ -564,7 +566,7 @@ ifdef(`_MAILER_fax_',
 `ifdef(`FAX_RELAY',
 `R$*<@$+.FAX>$*		$: < $F > $1 <@$2.FAX> $3	user@host.FAX
 R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#smtp $@ $1 $: $2
+R< $+ > $*		$#_SMTP_ $@ $1 $: $2
 R<> $*			$: $1				else strip off gunk',
 	`dnl')')
 
@@ -572,7 +574,7 @@ ifdef(`UUCP_RELAY',
 `# forward non-local UUCP traffic to our UUCP relay
 R$*<@$*.UUCP>$*		$: < $Y > <@ $Y> : $1 @ $2.UUCP $3	uucp mail
 R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#smtp $@ $1 $: $2
+R< $+ > $*		$#_SMTP_ $@ $1 $: $2
 R<> $*			$: $1				else strip off gunk',
 `ifdef(`_MAILER_uucp_',
 `# forward other UUCP traffic straight to UUCP
@@ -597,7 +599,7 @@ R<> $*			$: $1				else strip off gunk',
 
 `# deal with other remote names
 ifdef(`_MAILER_smtp_',
-`R$* < @$* > $*		$#smtp $@ $2 $: $1 < @ $2 > $3		user@host.domain',
+`R$* < @$* > $*		$#_SMTP_ $@ $2 $: $1 < @ $2 > $3		user@host.domain',
 `R$* < @$* > $*		$#error $@NOHOST $: Unrecognized host name $2')')
 
 ifdef(`_OLD_SENDMAIL_',
