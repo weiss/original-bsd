@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)man.c	8.1 (Berkeley) 06/18/93";
+static char sccsid[] = "@(#)man.c	8.2 (Berkeley) 01/02/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -79,6 +79,7 @@ main(argc, argv)
 		default:
 			usage();
 		}
+	argc -= optind;
 	argv += optind;
 
 	if (!*argv)
