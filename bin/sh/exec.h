@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)exec.h	8.2 (Berkeley) 05/04/95
+ *	@(#)exec.h	8.3 (Berkeley) 06/08/95
  */
 
 /* values of cmdtype */
@@ -31,7 +31,7 @@ extern char *pathopt;		/* set by padvance */
 void shellexec __P((char **, char **, char *, int));
 char *padvance __P((char **, char *));
 int hashcmd __P((int, char **));
-void find_command __P((char *, struct cmdentry *, int));
+void find_command __P((char *, struct cmdentry *, int, char *));
 int find_builtin __P((char *));
 void hashcd __P((void));
 void changepath __P((char *));
