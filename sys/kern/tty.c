@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.19 (Berkeley) 11/20/89
+ *	@(#)tty.c	7.20 (Berkeley) 02/07/90
  */
 
 #include "param.h"
@@ -233,6 +233,16 @@ ttioctl(tp, com, data, flag)
 	case TIOCSETAWS:
 	case TIOCSETAFS:
 /***************************/
+#ifdef COMPAT_43
+	case TIOCSETP:
+	case TIOCSETN:
+	case TIOCSETC:
+	case TIOCSLTC:
+	case TIOCLBIS:
+	case TIOCLBIC:
+	case TIOCLSET:
+	case OTIOCSETD:
+#endif
 		while (isbackground(u.u_procp, tp) && 
 		   u.u_procp->p_pgrp->pg_jobc &&
 		   (u.u_procp->p_flag&SVFORK) == 0 &&
@@ -456,7 +466,7 @@ ttioctl(tp, com, data, flag)
 
 		if (!isctty(p, tp))
 			return (ENOTTY);
-		else if (pgrp->pg_session != p->p_session)
+		else if (pgrp == NULL || pgrp->pg_session != p->p_session)
 			return (EPERM);
 		tp->t_pgrp = pgrp;
 		break;
