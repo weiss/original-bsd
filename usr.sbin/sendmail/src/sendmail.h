@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.3 (Berkeley) 01/02/93
+ *	@(#)sendmail.h	6.4 (Berkeley) 01/09/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.3		01/02/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.4		01/09/93";
 # endif lint
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -588,7 +588,7 @@ EXTERN int	FileMode;	/* mode on files */
 EXTERN int	QueueLA;	/* load average starting forced queueing */
 EXTERN int	RefuseLA;	/* load average refusing connections are */
 EXTERN int	CurrentLA;	/* current load average */
-EXTERN int	QueueFactor;	/* slope of queue function */
+EXTERN long	QueueFactor;	/* slope of queue function */
 EXTERN time_t	QueueIntvl;	/* intervals between running the queue */
 EXTERN char	*AliasFile;	/* location of alias file */
 EXTERN char	*HelpFile;	/* location of SMTP help file */
@@ -609,9 +609,9 @@ extern char	*FreezeFile;	/* location of frozen memory image [conf.c] */
 extern char	Arpa_Info[];	/* the reply code for Arpanet info [conf.c] */
 extern ADDRESS	NullAddress;	/* a null (template) address [main.c] */
 EXTERN char	SpaceSub;	/* substitution for <lwsp> */
-EXTERN int	WkClassFact;	/* multiplier for message class -> priority */
-EXTERN int	WkRecipFact;	/* multiplier for # of recipients -> priority */
-EXTERN int	WkTimeFact;	/* priority offset each time this job is run */
+EXTERN long	WkClassFact;	/* multiplier for message class -> priority */
+EXTERN long	WkRecipFact;	/* multiplier for # of recipients -> priority */
+EXTERN long	WkTimeFact;	/* priority offset each time this job is run */
 EXTERN char	*PostMasterCopy;	/* address to get errs cc's */
 EXTERN char	*TrustedUsers[MAXTRUST+1];	/* list of trusted users */
 EXTERN char	*UserEnviron[MAXUSERENVIRON+1];	/* saved user environment */
