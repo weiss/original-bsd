@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)paths.h	5.8 (Berkeley) 08/24/90
+ *	@(#)paths.h	5.9 (Berkeley) 02/05/91
  */
 
 #define	_PATH_BSHELL	"/bin/sh"
@@ -22,5 +22,6 @@
 #define	_PATH_TMP	"/tmp/"
 #define	_PATH_TTY	"/dev/tty"
 #define	_PATH_UNIX	"/vmunix"
+#define	_PATH_VARRUN	"/var/run"
 #define	_PATH_VARTMP	"/var/tmp"
 #define	_PATH_VI	"/usr/bin/vi"
