@@ -1,4 +1,4 @@
-#	@(#)Japanese	5.1 (Berkeley) 05/30/93
+#	@(#)Japanese	8.1 (Berkeley) 06/06/93
 
 /*
  * Japanese LOCALE_CTYPE definitions using EUC of JIS character sets
