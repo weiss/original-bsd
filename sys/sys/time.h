@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)time.h	8.4 (Berkeley) 03/20/95
+ *	@(#)time.h	8.5 (Berkeley) 05/04/95
  */
 
 #ifndef _SYS_TIME_H_
@@ -17,8 +17,8 @@
  * and used in other calls.
  */
 struct timeval {
-	int32_t	tv_sec;		/* seconds */
-	int32_t	tv_usec;	/* and microseconds */
+	long	tv_sec;		/* seconds */
+	long	tv_usec;	/* and microseconds */
 };
 
 /*
