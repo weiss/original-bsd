@@ -4,10 +4,16 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stdarg.h	7.2 (Berkeley) 05/04/91
+ *	@(#)stdarg.h	7.3 (Berkeley) 02/19/92
  */
 
 typedef char *va_list;
+
+#define	__va_promote(type) \
+	(((sizeof(type) + sizeof(int) - 1) / sizeof(int)) * sizeof(int))
+
+#define	va_start(ap, last) \
+	(ap = ((char *)&(last) + __va_promote(last)))
 
 #ifdef KERNEL
 #define	va_arg(ap, type) \
@@ -19,9 +25,3 @@ typedef char *va_list;
 #endif
 
 #define	va_end(ap)
-
-#define	__va_promote(type) \
-	(((sizeof(type) + sizeof(int) - 1) / sizeof(int)) * sizeof(int))
-
-#define	va_start(ap, last) \
-	(ap = ((char *)&(last) + __va_promote(last)))
