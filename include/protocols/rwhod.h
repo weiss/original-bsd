@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)rwhod.h	5.2 (Berkeley) 03/05/89
+ *	@(#)rwhod.h	5.3 (Berkeley) 04/17/89
  */
 
 /*
@@ -43,3 +43,5 @@ struct	whod {
 
 #define	WHODVERSION	1
 #define	WHODTYPE_STATUS	1		/* host status */
+
+#define	_PATH_RWHODIR	"/usr/spool/rwho"
