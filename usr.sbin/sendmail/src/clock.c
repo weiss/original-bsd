@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)clock.c	5.9 (Berkeley) 03/02/91";
+static char sccsid[] = "@(#)clock.c	5.10 (Berkeley) 03/04/91";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -130,7 +130,7 @@ clrevent(ev)
 **		calls the next function in EventQueue.
 */
 
-void
+static void
 tick()
 {
 	register time_t now;
