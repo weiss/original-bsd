@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)field.c	5.8 (Berkeley) 03/16/89";
+static char sccsid[] = "@(#)field.c	5.9 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -25,7 +25,7 @@ static char sccsid[] = "@(#)field.c	5.8 (Berkeley) 03/16/89";
 #include <strings.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <chpass.h>
+#include "chpass.h"
 #include "pathnames.h"
 
 /* ARGSUSED */

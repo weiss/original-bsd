@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chpass.c	5.10 (Berkeley) 03/26/89";
+static char sccsid[] = "@(#)chpass.c	5.11 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -35,8 +35,9 @@ static char sccsid[] = "@(#)chpass.c	5.10 (Berkeley) 03/26/89";
 #include <errno.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <chpass.h>
 #include <strings.h>
+#include "chpass.h"
+#include "pathnames.h"
 
 char e1[] = ": ";
 char e2[] = ":,";
@@ -238,7 +239,7 @@ info(pw)
 	int fd, rval;
 	char *tfile;
 
-	tfile = "/tmp/passwd.XXXXXX";
+	tfile = _PATH_TMP;
 	if ((fd = mkstemp(tfile)) == -1 || !(fp = fdopen(fd, "w+"))) {
 		(void)fprintf(stderr, "chpass: no temporary file");
 		return(0);
