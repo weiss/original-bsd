@@ -16,10 +16,10 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)ktrace.s	5.1 (Berkeley) 12/14/88"
+	.asciz "@(#)ktrace.s	5.2 (Berkeley) 05/12/90"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
 
 SYSCALL(ktrace)
-	ret		#
+	ret		/* err = ktrace(file, ops, trpoints, pid); */
