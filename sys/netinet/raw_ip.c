@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)raw_ip.c	7.5 (Berkeley) 04/08/89
+ *	@(#)raw_ip.c	7.6 (Berkeley) 09/20/89
  */
 
 #include "param.h"
@@ -55,8 +55,11 @@ rip_input(m)
 	ripproto.sp_protocol = ip->ip_p;
 	ripdst.sin_addr = ip->ip_dst;
 	ripsrc.sin_addr = ip->ip_src;
-	raw_input(m, &ripproto, (struct sockaddr *)&ripsrc,
-	  (struct sockaddr *)&ripdst);
+	if (raw_input(m, &ripproto, (struct sockaddr *)&ripsrc,
+	  (struct sockaddr *)&ripdst) == 0) {
+		ipstat.ips_noproto++;
+		ipstat.ips_delivered--;
+	}
 }
 
 /*
