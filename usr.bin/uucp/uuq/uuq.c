@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuq.c	4.9	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)uuq.c	4.10	(Berkeley) 05/04/88";
 #endif
 
 /*
@@ -89,9 +89,10 @@ char **argv;
 	strcpy(Progname, "uuq");
 	uucpname(Myname);
 
-	while ((i = getopt(argc, argv, "r:s:u:d:b:hl")) != EOF)
+	while ((i = getopt(argc, argv, "r:S:s:u:d:b:hl")) != EOF)
 		switch (i) {
 		case 'r':
+		case 'S':
 			Spool = optarg;
 			break;
 		case 's':
