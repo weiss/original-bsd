@@ -1,6 +1,6 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Arthur David Olson of the National Cancer Institute.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ialloc.c	5.3 (Berkeley) 04/20/91";
+static char sccsid[] = "@(#)ialloc.c	8.1 (Berkeley) 06/08/93";
 #endif /* not lint */
 
 #ifdef notdef
