@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ex_cmds.c	7.9 (Berkeley) 05/31/85";
+static char *sccsid = "@(#)ex_cmds.c	7.10 (Berkeley) 06/07/85";
 #endif not lint
 
 #include "ex.h"
@@ -672,7 +672,7 @@ suspend:
 /* version */
 				tail("version");
 				setNAEOL();
-				printf("@(#) Version 3.7, 05/31/85."+5);
+				printf("@(#) Version 3.7, 06/07/85."+5);
 				noonl();
 				continue;
 
