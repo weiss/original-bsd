@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 02/15/93
+#	@(#)Makefile	5.4 (Berkeley) 06/02/93
 
 PROG=	kdump
 CFLAGS+=-I${.CURDIR}/../ktrace
@@ -9,5 +9,4 @@ CLEANFILES+=ioctl.c
 ioctl.c: mkioctls
 	/bin/sh ${.CURDIR}/mkioctls > ioctl.c
 
-.include "../../Makefile.inc"
 .include <bsd.prog.mk>
