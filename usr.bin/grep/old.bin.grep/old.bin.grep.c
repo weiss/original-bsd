@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)old.bin.grep.c	4.9 (Berkeley) 04/17/91";
+static char sccsid[] = "@(#)old.bin.grep.c	4.10 (Berkeley) 06/22/92";
 #endif /* not lint */
 
 /*
@@ -86,7 +86,7 @@ main(argc, argv)
 	extern int optind;
 	int ch;
 
-	while ((ch = getopt(argc, argv, "iywohsvblcne")) != EOF)
+	while ((ch = getopt(argc, argv, "iywohsvblcne:")) != EOF)
 		switch((char)ch) {
 		case 'i':
 		case 'y':
@@ -120,8 +120,8 @@ main(argc, argv)
 			nflag++;
 			break;
 		case 'e':
-			argv += optind;
-			argc -= optind;
+			argv += optind - 1;
+			argc -= optind - 1;
 			*argv = optarg;
 			goto out;
 		case '?':
