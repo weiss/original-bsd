@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tcp_output.c	6.12 (Berkeley) 01/22/86
+ *	@(#)tcp_output.c	6.13 (Berkeley) 02/03/86
  */
 
 #include "param.h"
@@ -337,13 +337,8 @@ send:
 	 */
 	((struct ip *)ti)->ip_len = sizeof (struct tcpiphdr) + optlen + len;
 	((struct ip *)ti)->ip_ttl = TCP_TTL;
-	if (so->so_options & SO_DONTROUTE)
-		error =
-		   ip_output(m, tp->t_inpcb->inp_options, (struct route *)0,
-			IP_ROUTETOIF);
-	else
-		error = ip_output(m, tp->t_inpcb->inp_options,
-		    &tp->t_inpcb->inp_route, 0);
+	error = ip_output(m, tp->t_inpcb->inp_options, &tp->t_inpcb->inp_route,
+	    so->so_options & SO_DONTROUTE);
 	if (error)
 		return (error);
 
