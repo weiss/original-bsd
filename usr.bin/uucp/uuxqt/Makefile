@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 03/02/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	uuxqt
 CFLAGS+=-I${.CURDIR}/../includes
