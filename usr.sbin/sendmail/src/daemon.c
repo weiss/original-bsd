@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.99 (Berkeley) 06/10/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.100 (Berkeley) 06/11/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.99 (Berkeley) 06/10/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.100 (Berkeley) 06/11/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -955,6 +955,7 @@ myhostname(hostbuf, size)
 	{
 		int nmaps;
 		int i;
+		auto int stat;
 		char *maptype[MAXMAPSTACK];
 		short mapreturn[MAXMAPACTIONS];
 
@@ -963,7 +964,7 @@ myhostname(hostbuf, size)
 			if (strcmp(maptype[i], "dns") == 0)
 				break;
 		if (i < nmaps &&
-		    !dns_getcanonname(hostbuf, size, TRUE) &&
+		    !dns_getcanonname(hostbuf, size, TRUE, &stat) &&
 		    h_errno == TRY_AGAIN)
 		{
 			/* try twice in case name server not yet started up */
