@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)syslog.c	8.4 (Berkeley) 03/18/94";
+static char sccsid[] = "@(#)syslog.c	8.5 (Berkeley) 04/29/95";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -83,7 +83,7 @@ vsyslog(pri, fmt, ap)
 	}
 
 	/* Check priority against setlogmask values. */
-	if (!LOG_MASK(LOG_PRI(pri)) & LogMask)
+	if (!(LOG_MASK(LOG_PRI(pri)) & LogMask))
 		return;
 
 	saved_errno = errno;
