@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)malloc.h	7.2 (Berkeley) 06/06/87
+ *	@(#)malloc.h	7.3 (Berkeley) 07/15/87
  */
 
 #define KMEMSTATS
@@ -107,8 +107,8 @@ struct kmembuckets {
 /*
  * Turn virtual addresses into kmem map indicies
  */
-#define kmemxtob(addr)	(kmembase + (addr) * CLBYTES)
-#define btokmemx(addr)	(((addr) - kmembase) / CLBYTES)
+#define kmemxtob(addr)	(kmembase + (addr) * NBPG)
+#define btokmemx(addr)	(((addr) - kmembase) / NBPG)
 #define btokup(addr)	(&kmemusage[((addr) - kmembase) >> CLSHIFT])
 
 /*
