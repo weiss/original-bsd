@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)lwrite.c	5.2	07/30/85
+ *	@(#)lwrite.c	5.3	07/27/87
  */
 
 /*
@@ -127,15 +127,14 @@ lwrt_L(ln) ftnint ln;
 LOCAL
 lwrt_A(p,len) char *p; ftnlen len;
 {	int i,n;
-	chk_len(LSTRW);
 	if(formatted == LISTDIRECTED)
 	{
-		PUT(' ')
-		PUT(' ')
+		chk_len(len);
 		for(i=0;i<len;i++) PUT(*p++)
 	}
 	else
 	{
+		chk_len(len+2);
 		PUT('\'')
 		for(i=0;i<len;i++) PUT(*p++)
 		PUT('\'')
