@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.55		09/12/82);
+SCCSID(@(#)parseaddr.c	3.56		09/12/82);
 
 /*
 **  PARSE -- Parse an address
@@ -296,6 +296,17 @@ prescan(addr, delim)
 			}
 			else if (cmntcnt > 0)
 				c = NOCHAR;
+			else if (c == ':' && !CurEnv->e_oldstyle)
+			{
+				/* consume characters until a semicolon */
+				while (*p != '\0' && *p != ';')
+					p++;
+				if (*p == '\0')
+					usrerr("Unbalanced ':...;' group spec");
+				else
+					p++;
+				c = ' ';
+			}
 
 			if (c == NOCHAR)
 				continue;
