@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)hist.c	5.10 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)hist.c	5.11 (Berkeley) 05/22/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -47,7 +47,7 @@ savehist(sp)
 	    histlen = histlen * 10 + *p++ - '0';
 	}
     }
-    for (hp = &Histlist; np = hp->Hnext;)
+    for (hp = &Histlist; (np = hp->Hnext) != NULL;)
 	if (eventno - np->Href >= histlen || histlen == 0)
 	    hp->Hnext = np->Hnext, hfree(np);
 	else

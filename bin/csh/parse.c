@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parse.c	5.12 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)parse.c	5.13 (Berkeley) 05/22/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -584,7 +584,7 @@ again:
 		seterror(ERR_MISRED);
 		continue;
 	    }
-	    if ((flags & POUT) && (flags & PERR) == 0 || t->t_drit)
+	    if ((flags & POUT) && ((flags & PERR) == 0 || t->t_drit))
 		seterror(ERR_OUTRED);
 	    else
 		t->t_drit = Strsave(p->word);
