@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)disklabel.c	5.2 (Berkeley) 10/02/85";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)disklabel.c	5.3 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 #include <disktab.h>
 #include <stdio.h>
