@@ -32,7 +32,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.70		03/06/83);
+SCCSID(@(#)conf.c	3.71		04/30/83);
 
 
 
@@ -399,6 +399,10 @@ bool
 checkcompat(to)
 	register ADDRESS *to;
 {
+# ifdef lint
+	if (to == NULL)
+		to++;
+# endif lint
 # ifdef EXAMPLE_CODE
 	/* this code is intended as an example only */
 	register STAB *s;
