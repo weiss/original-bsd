@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)spec_vnops.c	7.56 (Berkeley) 05/28/93
+ *	@(#)spec_vnops.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
