@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_subr.c	7.13 (Berkeley) 05/28/90";
+static char *sccsid = "@(#)ex_subr.c	7.14 (Berkeley) 03/01/91";
 #endif not lint
 
 #include "ex.h"
@@ -778,6 +778,7 @@ markit(addr)
  * in a weird state, etc.
  */
 int _ovno;
+void
 onemt()
 {
 	signal(SIGEMT, onemt);
@@ -797,6 +798,7 @@ onemt()
  * as they are a backup even without preservation if they
  * are not removed.
  */
+void
 onhup()
 {
 
@@ -826,6 +828,7 @@ onhup()
  * Then like a normal error (with the \n before Interrupt
  * suppressed in visual mode).
  */
+void
 onintr()
 {
 
@@ -908,6 +911,7 @@ ex_exit(i)
 /*
  * We have just gotten a susp.  Suspend and prepare to resume.
  */
+void
 onsusp()
 {
 	ttymode f;

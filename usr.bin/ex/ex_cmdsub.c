@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_cmdsub.c	7.10 (Berkeley) 06/24/90";
+static char *sccsid = "@(#)ex_cmdsub.c	7.11 (Berkeley) 03/01/91";
 #endif not lint
 
 #include "ex.h"
@@ -773,6 +773,7 @@ zop2(lines, op)
 	register int op;
 {
 	register line *split;
+	static void splitit();
 
 	split = NULL;
 	switch (op) {
@@ -848,7 +849,7 @@ zop2(lines, op)
 	plines(addr1, addr2, 0);
 }
 
-static
+static void
 splitit()
 {
 	register int l;
