@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)autoconf.c	7.10 (Berkeley) 07/09/88
+ *	@(#)autoconf.c	7.11 (Berkeley) 07/10/88
  */
 
 #include "param.h"
@@ -256,7 +256,7 @@ configure()
 
 	/* give unibus devices a chance to recover... */
 	if (nuba > 0)
-		DELAY(2000000);
+		DELAY(500000);
 }
 
 #if VAX8600 || VAX780
