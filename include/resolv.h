@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)resolv.h	5.8 (Berkeley) 12/14/89
+ *	@(#)resolv.h	5.9 (Berkeley) 12/18/89
  */
 
 /*
@@ -66,4 +66,4 @@ struct state {
 #define RES_DEFAULT	(RES_RECURSE | RES_DEFNAMES | RES_DNSRCH)
 
 extern struct state _res;
-extern char *p_cdname(), *p_rr(), *p_type(), *p_class();
+extern char *p_cdname(), *p_rr(), *p_type(), *p_class(), *p_time();
