@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	5.14 (Berkeley) 08/29/90";
+static char sccsid[] = "@(#)savemail.c	5.15 (Berkeley) 12/15/91";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -379,6 +379,7 @@ returntosender(msg, returnq, sendbody)
 
 	SendBody = sendbody;
 	define('g', "\001f", CurEnv);
+	define('<', "\001f", CurEnv);
 	ee = newenvelope(&errenvelope);
 	define('a', "\001b", ee);
 	ee->e_puthdr = putheader;
