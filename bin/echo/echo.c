@@ -12,17 +12,17 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)echo.c	5.4 (Berkeley) 04/03/91";
+static char sccsid[] = "@(#)echo.c	5.5 (Berkeley) 04/28/93";
 #endif /* not lint */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-/* ARGSUSED */
+int
 main(argc, argv)
 	int argc;
-	char **argv;
+	char *argv[];
 {
 	int nflag;
 
