@@ -6,8 +6,8 @@ divert(-1)
 #
 # %sccs.include.redist.sh%
 #
-VERSIONID(`@(#)version.m4	8.7.Beta (Berkeley) 06/19/95')
+VERSIONID(`@(#)version.m4	8.7.Beta (Berkeley) 06/21/95')
 #
 divert(0)
 # Configuration version number
-DZ8.7.Beta.6`'ifdef(`confCF_VERSION', `/confCF_VERSION')
+DZ8.7.Beta.7`'ifdef(`confCF_VERSION', `/confCF_VERSION')
