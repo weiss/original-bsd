@@ -6,14 +6,17 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)touch.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)touch.c	5.7 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/signal.h>
+#include <signal.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 #include "error.h"
 #include "pathnames.h"
 
@@ -665,6 +668,7 @@ mustwrite(base, n, preciousfile)
 	}
 }
 
+void
 onintr()
 {
 	switch(inquire(terse
