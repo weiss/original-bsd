@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_uba.c	6.11 (Berkeley) 02/23/86
+ *	@(#)if_uba.c	6.12 (Berkeley) 04/01/86
  */
 
 #include "../machine/pte.h"
@@ -175,7 +175,7 @@ if_ubaget(ifu, ifr, totlen, off0, ifp)
 			cp = ifr->ifrw_addr + ifu->iff_hlen + off;
 		} else
 			len = totlen;
-		if (len >= NBPG) {
+		if (len >= CLBYTES/2) {
 			struct pte *cpte, *ppte;
 			int x, *ip, i;
 
