@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)strcatn.c	4.2 (Berkeley) 05/30/85";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)strcatn.c	4.3 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /*
  * Concatenate s2 on the end of s1.  S1's space must be large enough.
