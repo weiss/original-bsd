@@ -1,4 +1,4 @@
-/*	@(#)if_sl.c	7.2 (Berkeley) 09/04/86 */
+/*	@(#)if_sl.c	7.3 (Berkeley) 05/08/87 */
 
 /*
  * Serial Line interface
@@ -29,7 +29,7 @@
 #include "param.h"
 #include "mbuf.h"
 #include "buf.h"
-#include "dk.h"
+#include "dkstat.h"
 #include "socket.h"
 #include "ioctl.h"
 #include "file.h"
