@@ -20,7 +20,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)command.c	5.3 (Berkeley) 07/21/88";
+static char sccsid[] = "@(#)command.c	5.4 (Berkeley) 07/22/88";
 #endif /* not lint */
 
 /*
@@ -274,7 +274,6 @@ getcc()
 exec_mca()
 {
 	register char *p;
-	register int n;
 
 	*cp = '\0';
 	cmd_exec();
