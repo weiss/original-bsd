@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)save.c	5.2 (Berkeley) 05/12/93";
+static char sccsid[] = "@(#)save.c	5.3 (Berkeley) 05/13/93";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -95,7 +95,6 @@ char *outfile;  /* to output the data using checksum to start random #s */
 	FILE *out;
 	struct savestruct *p;
 	char *s;
-	int crc();
 	long sum;
 	int i;
 
