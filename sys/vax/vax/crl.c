@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)crl.c	1.2 (Berkeley) 08/07/85
+ *	@(#)crl.c	1.3 (Berkeley) 02/23/86
  */
 /*
  * TO DO (tef  7/18/85):
@@ -151,6 +151,9 @@ crlstart()
 		crltab.crl_active = CRL_F_WRITE;
 		mtpr(STXCS, bp->b_blkno<<8 | STXCS_IE | CRL_F_WRITE);
 	}
+#ifdef lint
+	crlintr();
+#endif
 }
 
 crlintr()
