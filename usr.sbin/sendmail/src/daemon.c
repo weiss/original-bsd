@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.47 (Berkeley) 05/13/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.48 (Berkeley) 05/14/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.47 (Berkeley) 05/13/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.48 (Berkeley) 05/14/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1040,7 +1040,7 @@ maphostname(map, hbuf, hbsize, avp, statp)
 
 					message(msg);
 					if (CurEnv->e_message == NULL)
-						CurEnv->e_message = msg;
+						CurEnv->e_message = newstr(msg);
 				}
 				*statp = EX_TEMPFAIL;
 				break;
