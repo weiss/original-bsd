@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)termout.c	3.4 (Berkeley) 05/15/88";
+static char sccsid[] = "@(#)termout.c	3.5 (Berkeley) 05/15/88";
 #endif /* not lint */
 
 #if defined(unix)
@@ -20,6 +20,14 @@ static char sccsid[] = "@(#)termout.c	3.4 (Berkeley) 05/15/88";
 #endif
 #include <stdio.h>
 #include <curses.h>
+#if	defined(ultrix)
+/* Some version of this OS has a bad definition for nonl() */
+#undef	nl
+#undef	nonl
+
+#define nl()	 (_tty.sg_flags |= CRMOD,_pfast = _rawmode,stty(_tty_ch, &_tty))
+#define nonl()	 (_tty.sg_flags &= ~CRMOD, _pfast = TRUE, stty(_tty_ch, &_tty))
+#endif	/* defined(ultrix) */
 
 #include "../general/general.h"
 
