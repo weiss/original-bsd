@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)vsort.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)vsort.c	5.4 (Berkeley) 03/02/91";
 #endif /* not lint */
 
 # include <stdio.h>
@@ -315,17 +315,12 @@ getch() {
 	return(getc(in));
 }
 
-ungetc(c) {
-	peekc = c;
-}
-
-
 error(s)
 	char *s;
 {
 
 	fflush(out);
-	fprintf(stderr, stderr, "vsort: %s\n", s);
+	fprintf(stderr, "vsort: %s\n", s);
 }
 
 crail(nrail)
