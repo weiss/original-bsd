@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ttyent.h	5.2 (Berkeley) 09/19/89
+ *	@(#)ttyent.h	5.3 (Berkeley) 03/06/90
  */
 
 #define	_PATH_TTYS	"/etc/ttys"
@@ -35,4 +35,14 @@ struct ttyent {
 	char	*ty_comment;	/* comment field */
 };
 
-extern struct ttyent *getttyent(), *getttynam();
+#ifdef __STDC__
+extern struct ttyent *getttyent(void);
+extern struct ttyent *getttynam(const char *);
+extern int setttyent(void);
+extern int endttyent(void);
+#else
+extern struct ttyent *getttyent();
+extern struct ttyent *getttynam();
+extern int setttyent();
+extern int endttyent();
+#endif
