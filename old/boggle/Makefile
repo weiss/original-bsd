@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.16 (Berkeley) 03/16/92
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	boggle
 MAN6=	boggle.0
