@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	6.35 (Berkeley) 05/27/93";
+static char sccsid[] = "@(#)headers.c	6.36 (Berkeley) 05/28/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -382,6 +382,7 @@ eatheader(e, full)
 	if (full && LogLevel > 4)
 	{
 		char *name;
+		register char *sbp;
 		char hbuf[MAXNAME];
 		char sbuf[MAXLINE];
 
@@ -404,9 +405,19 @@ eatheader(e, full)
 		}
 
 		/* some versions of syslog only take 5 printf args */
-		sprintf(sbuf, "from=%.200s, size=%ld, class=%d, pri=%ld, nrcpts=%d, msgid=%.100s",
+		sbp = sbuf;
+		sprintf(sbp, "from=%.200s, size=%ld, class=%d, pri=%ld, nrcpts=%d, msgid=%.100s",
 		    e->e_from.q_paddr, e->e_msgsize, e->e_class,
 		    e->e_msgpriority, e->e_nrcpts, msgid);
+		sbp += strlen(sbp);
+		if (e->e_bodytype != NULL)
+		{
+			(void) sprintf(sbp, ", bodytype=%.20s", e->e_bodytype);
+			sbp += strlen(sbp);
+		}
+		p = macvalue('r', e);
+		if (p != NULL)
+			(void) sprintf(sbp, ", proto=%.20s", p);
 		syslog(LOG_INFO, "%s: %s, relay=%s",
 		    e->e_id, sbuf, name);
 	}
