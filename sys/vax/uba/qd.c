@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)qd.c	1.13 (Berkeley) 05/01/89
+ *	@(#)qd.c	1.14 (Berkeley) 02/17/90
  */
 
 /************************************************************************
@@ -52,7 +52,6 @@
 #include "machine/cpu.h"
 #include "param.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "qdioctl.h"
 #include "tty.h"
