@@ -1,7 +1,7 @@
 /*
  * Terminal initialization routines.
  *
- * 04/28/81 (Berkeley) @(#)setterm.c	1.3
+ * 05/15/81 (Berkeley) @(#)setterm.c	1.4
  */
 
 # undef	DEBUG
@@ -148,4 +148,14 @@ zap() {
 		SO = US;
 		SE = UE;
 	}
+}
+
+/*
+ * return a capability from termcap
+ */
+char *
+getcap(name)
+char *name;
+{
+	return tgetent(name, &aoftspace);
 }
