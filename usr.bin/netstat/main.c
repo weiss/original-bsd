@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 06/12/93";
+static char sccsid[] = "@(#)main.c	8.2 (Berkeley) 01/02/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -254,6 +254,7 @@ main(argc, argv)
 			break;
 		case 'w':
 			interval = atoi(optarg);
+			iflag = 1;
 			break;
 		case '?':
 		default:
