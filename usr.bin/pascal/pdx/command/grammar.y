@@ -1,13 +1,13 @@
 %{
 /*-
- * Copyright (c) 1982 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)grammar.y	5.2 (Berkeley) 04/16/91";
+static char sccsid[] = "@(#)grammar.y	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 /*
