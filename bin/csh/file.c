@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)file.c	1.6 (Berkeley from Hp Labs) 12/13/84";
+static	char *sccsid = "@(#)file.c	1.7 (Berkeley from Hp Labs) 04/25/85";
 #endif
 
 #ifdef FILEC
@@ -387,17 +387,10 @@ search(word, command, max_word_length)
 					"names in password file":"files");
 				break;
 			}
-			if (items == NULL) {
+			if (items == NULL)
 				items = (char **) calloc(sizeof (items[1]),
 				    MAXITEMS);
-				if (items == NULL)
-					break;
-			}
-			items[numitems] = malloc((unsigned)strlen(entry) + 1);
-			if (items[numitems] == NULL) {
-				printf("out of mem\n");
-				break;
-			}
+			items[numitems] = xalloc((unsigned)strlen(entry) + 1);
 			copyn(items[numitems], entry, MAXNAMLEN);
 			numitems++;
 		} else				/* RECOGNIZE command */
