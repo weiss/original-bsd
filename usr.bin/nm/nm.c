@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)nm.c 4.3 06/30/83";
+static	char sccsid[] = "@(#)nm.c 4.4 07/01/83";
 #endif
 /*
  * nm - print name list; VAX string table version
