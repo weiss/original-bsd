@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_ace.c	7.4 (Berkeley) 04/22/89
+ *	@(#)if_ace.c	7.5 (Berkeley) 04/25/89
  */
 
 /*
@@ -55,8 +55,8 @@
 #include "../netns/ns_if.h"
 #endif
 
-#include "../machine/cpu.h"
-#include "../machine/pte.h"
+#include "machine/cpu.h"
+#include "machine/pte.h"
 
 #include "../tahoe/mtpr.h"
 #include "../tahoeif/if_acereg.h"
