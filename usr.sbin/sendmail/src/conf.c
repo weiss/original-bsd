@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.195 (Berkeley) 06/13/95";
+static char sccsid[] = "@(#)conf.c	8.196 (Berkeley) 06/13/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -3558,7 +3558,7 @@ char	*CompileOptions[] =
 #if HESIOD
 	"HESIOD",
 #endif
-#if LOG
+#ifdef LOG
 	"LOG",
 #endif
 #if MATCHGECOS
