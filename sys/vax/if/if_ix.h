@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_ix.h	6.1 (Berkeley) 02/17/86
+ *	@(#)if_ix.h	7.1 (Berkeley) 06/05/86
  */
 
 union ix_stats {
