@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_loop.c	6.8 (Berkeley) 12/19/85
+ *	@(#)if_loop.c	6.9 (Berkeley) 02/06/86
  */
 
 /*
@@ -48,6 +48,7 @@ loattach()
 
 	ifp->if_name = "lo";
 	ifp->if_mtu = LOMTU;
+	ifp->if_flags = IFF_LOOPBACK;
 	ifp->if_ioctl = loioctl;
 	ifp->if_output = looutput;
 	if_attach(ifp);
