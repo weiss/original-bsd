@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/11/90
+#	@(#)Makefile	5.5 (Berkeley) 05/15/90
 
 LIB=	y
-SRCS=	libmai.c libzer.c
+SRCS=	main.c yyerror.c
 
 .include <bsd.lib.mk>
