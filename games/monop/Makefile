@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 03/16/92
+#	@(#)Makefile	5.8 (Berkeley) 09/02/92
 
 PROG=	monop
 SRCS=	monop.c cards.c execute.c getinp.c houses.c jail.c misc.c morg.c \
@@ -20,7 +20,7 @@ initdeck: initdeck.c
 	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/initdeck.c
 
 beforeinstall:
-	install -o ${BINOWN} -g ${BINGRP} -m 444 cards.pck \
+	install -c -o ${BINOWN} -g ${BINGRP} -m 444 cards.pck \
 	    ${DESTDIR}/usr/share/games
 
 .include <bsd.prog.mk>
