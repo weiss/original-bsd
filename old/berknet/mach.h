@@ -1,4 +1,4 @@
-/*	@(#)mach.h	4.3	(Berkeley)	09/20/82	*/
+/*	@(#)mach.h	4.4	(Berkeley)	10/02/82	*/
 
 /* sccs id variable */
 static char *mach_h_sid = "@(#)mach.h	1.11";
@@ -175,11 +175,11 @@ definition for "VANILLA7" which indicates the v7 UNIX options.
 # define NUID (501)
 # endif H
 
-/* CSSG - ing70 */
-# ifdef ING70
+/* CSSG - ucberl70 */
+# ifdef ERL70
 # define LOCAL 'i'
 # define NUID (174)
-# endif ING70
+# endif ERL70
 
 /* Ingres Group - ucbingres */
 # ifdef INGVAX
