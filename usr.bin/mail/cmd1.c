@@ -11,7 +11,7 @@
  */
 
 #ifdef notdef
-static char sccsid[] = "@(#)cmd1.c	5.8 (Berkeley) 06/16/88";
+static char sccsid[] = "@(#)cmd1.c	5.9 (Berkeley) 06/17/88";
 #endif /* notdef */
 
 #include "rcv.h"
@@ -391,7 +391,7 @@ top(msgvec)
 		mp = &message[mesg-1];
 		dot = mp;
 		if (value("quiet") == NOSTR)
-			printf("Message %2d:\n", mesg);
+			printf("Message %d:\n", mesg);
 		ibuf = setinput(mp);
 		c = mp->m_lines;
 		if (!lineb)
