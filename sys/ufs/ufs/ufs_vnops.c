@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_vnops.c	7.86 (Berkeley) 05/13/92
+ *	@(#)ufs_vnops.c	7.87 (Berkeley) 05/14/92
  */
 
 #include <sys/param.h>
@@ -1655,7 +1655,8 @@ ufs_advlock(vp, id, op, fl, flags)
 int
 ufs_vinit(mntp, specops, fifoops, vpp)
 	struct mount *mntp;
-	struct vnodeops *specops, *fifoops;
+	int (**specops)();
+	int (**fifoops)();
 	struct vnode **vpp;
 {
 	struct inode *ip, *nip;
