@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)authenc.c	8.1 (Berkeley) 06/04/93";
+static char sccsid[] = "@(#)authenc.c	8.2 (Berkeley) 05/30/95";
 #endif /* not lint */
 
 #if	defined(AUTHENTICATION) || defined(ENCRYPTION)
@@ -19,7 +19,7 @@ net_write(str, len)
 	int len;
 {
 	if (nfrontp + len < netobuf + BUFSIZ) {
-		bcopy((void *)str, (void *)nfrontp, len);
+		memmove((void *)nfrontp, (void *)str, len);
 		nfrontp += len;
 		return(len);
 	}
