@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fts.c	5.37 (Berkeley) 05/05/92";
+static char sccsid[] = "@(#)fts.c	5.38 (Berkeley) 05/05/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -573,10 +573,9 @@ fts_build(sp, type)
 	 */
 	if (nlinks || type == BREAD)
 		if (FCHDIR(sp, dirfd(dirp))) {
-			if (nlinks && type == BREAD) {
-				cur->fts_flags |= FTS_DONTCHDIR;
+			if (nlinks && type == BREAD)
 				cur->fts_errno = errno;
-			}
+			cur->fts_flags |= FTS_DONTCHDIR;
 			descend = 0;
 			cderrno = errno;
 		} else {
