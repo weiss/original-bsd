@@ -2,7 +2,7 @@
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	4.1		07/25/83	(w/o daemon mode));
+SCCSID(@(#)daemon.c	4.2		07/27/83	(w/o daemon mode));
 #else
 
 #include <sys/socket.h>
@@ -10,7 +10,7 @@ SCCSID(@(#)daemon.c	4.1		07/25/83	(w/o daemon mode));
 #include <netdb.h>
 #include <sys/wait.h>
 
-SCCSID(@(#)daemon.c	4.1		07/25/83	(with daemon mode));
+SCCSID(@(#)daemon.c	4.2		07/27/83	(with daemon mode));
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -403,13 +403,9 @@ myhostname(hostbuf, size)
 	extern struct hostent *gethostbyname();
 	struct hostent *hp;
 	auto int i = size;
-	register char *p;
 
 	gethostname(hostbuf, &i);
 	hp = gethostbyname(hostbuf);
-	for (p = hostbuf; *p != '\0'; p++)
-		if (islower(*p))
-			*p -= 'a' - 'A';
 	if (hp != NULL)
 		return (hp->h_aliases);
 	else
