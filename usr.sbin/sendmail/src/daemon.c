@@ -21,9 +21,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.28 (Berkeley) 11/17/88 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.29 (Berkeley) 01/01/89 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.28 (Berkeley) 11/17/88 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.29 (Berkeley) 01/01/89 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -113,10 +113,8 @@ getrequests()
 	**  Try to actually open the connection.
 	*/
 
-# ifdef DEBUG
 	if (tTd(15, 1))
 		printf("getrequests: port 0x%x\n", SendmailAddress.sin_port);
-# endif DEBUG
 
 	/* get a socket for the SMTP connection */
 	DaemonSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -132,11 +130,9 @@ getrequests()
 		finis();
 	}
 
-#ifdef DEBUG
 	/* turn on network debugging? */
 	if (tTd(15, 15))
 		(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_DEBUG, (char *)&on, sizeof on);
-#endif DEBUG
 
 	(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_REUSEADDR, (char *)&on, sizeof on);
 	(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_KEEPALIVE, (char *)&on, sizeof on);
@@ -156,10 +152,8 @@ getrequests()
 
 	(void) signal(SIGCHLD, reapchild);
 
-# ifdef DEBUG
 	if (tTd(15, 1))
 		printf("getrequests: %d\n", DaemonSocket);
-# endif DEBUG
 
 	for (;;)
 	{
@@ -189,10 +183,8 @@ getrequests()
 		**  Create a subprocess to process the mail.
 		*/
 
-# ifdef DEBUG
 		if (tTd(15, 2))
 			printf("getrequests: forking (fd = %d)\n", t);
-# endif DEBUG
 
 		pid = fork();
 		if (pid < 0)
@@ -237,10 +229,8 @@ getrequests()
 			(void) close(DaemonSocket);
 			InChannel = fdopen(t, "r");
 			OutChannel = fdopen(dup(t), "w");
-# ifdef DEBUG
 			if (tTd(15, 2))
 				printf("getreq: returning\n");
-# endif DEBUG
 # ifdef LOG
 			if (LogLevel > 11)
 				syslog(LOG_DEBUG, "connected, pid=%d", getpid());
@@ -380,11 +370,9 @@ makeconnection(host, port, outfile, infile)
 	*/
 
 again:
-# ifdef DEBUG
 	if (tTd(16, 1))
 		printf("makeconnection (%s [%s])\n", host,
 		    inet_ntoa(SendmailAddress.sin_addr.s_addr));
-# endif DEBUG
 
 	s = socket(AF_INET, SOCK_STREAM, 0);
 	if (s < 0)
@@ -394,7 +382,6 @@ again:
 		goto failure;
 	}
 
-# ifdef DEBUG
 	if (tTd(16, 1))
 		printf("makeconnection: %d\n", s);
 
@@ -404,7 +391,6 @@ again:
 		int on = 1;
 		(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_DEBUG, (char *)&on, sizeof on);
 	}
-# endif DEBUG
 	(void) fflush(CurEnv->e_xfp);			/* for debugging */
 	errno = 0;					/* for debugging */
 	SendmailAddress.sin_family = AF_INET;
