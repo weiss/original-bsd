@@ -1,4 +1,4 @@
-/*  sccs id  @(#)ex_vars.h	5.1 08/20/80 */
+/*  sccs id  @(#)ex_vars.h	6.1 10/19/80 */
 #define AUTOINDENT      0
 #define AUTOPRINT       1
 #define AUTOWRITE       2
