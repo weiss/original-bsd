@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.33 (Berkeley) 05/03/93";
+static char sccsid[] = "@(#)readcf.c	6.34 (Berkeley) 05/04/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -984,7 +984,7 @@ setoption(opt, val, safe, sticky, e)
 
 	if (!safe && getuid() == 0)
 		safe = TRUE;
-	if (!safe && strchr("bdeEiLmoprsvC8", opt) == NULL)
+	if (!safe && strchr("bdeEijLmoprsvC7", opt) == NULL)
 	{
 		if (opt != 'M' || (val[0] != 'r' && val[0] != 's'))
 		{
@@ -1165,6 +1165,10 @@ setoption(opt, val, safe, sticky, e)
 
 	  case 'i':		/* ignore dot lines in message */
 		IgnrDot = atobool(val);
+		break;
+
+	  case 'j':		/* send errors in MIME (RFC 1341) format */
+		SendMIMEErrors = atobool(val);
 		break;
 
 	  case 'J':		/* .forward search path */
