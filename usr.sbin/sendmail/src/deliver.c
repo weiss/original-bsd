@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.31 (Berkeley) 02/28/93";
+static char sccsid[] = "@(#)deliver.c	6.32 (Berkeley) 02/28/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -388,7 +388,7 @@ deliver(e, firstto)
 	**	If we are running SMTP, we just need to clean up.
 	*/
 
-	if (ctladdr == NULL)
+	if (ctladdr == NULL && m != ProgMailer)
 		ctladdr = &e->e_from;
 #ifdef NAMED_BIND
 	if (ConfigLevel < 2)
