@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)langpats.c	1.5 (Berkeley) 11/25/86";
+static char sccsid[] = "@(#)langpats.c	1.6 (Berkeley) 10/09/88";
 #endif
 
 #include "inline.h"
@@ -49,7 +49,7 @@ struct pats language_ptab[] = {
 	mtpr	$0x18,$8\n" },
 
 	{ 0, "_splsoftclock\n",
-"	mfpr	$18,r0\n\
+"	mfpr	$8,r0\n\
 	mtpr	$0x8,$8\n" },
 
 	{ 0, "_splnet\n",
