@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)un.h	7.5 (Berkeley) 12/15/89
+ *	@(#)un.h	7.6 (Berkeley) 06/06/90
  */
 
 /*
@@ -28,4 +28,9 @@ struct	sockaddr_un {
 
 #ifdef KERNEL
 int	unp_discard();
+#else
+
+/* actual length of an initialized sockaddr_un */
+#define SUN_LEN(su) \
+	(sizeof(*(su)) - sizeof((su)->sun_path) + strlen((su)->sun_path))
 #endif
