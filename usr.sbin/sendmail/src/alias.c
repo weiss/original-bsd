@@ -21,14 +21,20 @@
 # include <db.h>
 # endif
 
+# ifdef NDBM
+# ifndef DBM
+# define DBM
+# endif
+# endif
+
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.34 (Berkeley) 07/12/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.35 (Berkeley) 11/13/92 (with NEWDB)";
 #else
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.34 (Berkeley) 07/12/92 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.35 (Berkeley) 11/13/92 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.34 (Berkeley) 07/12/92 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.35 (Berkeley) 11/13/92 (without DBM)";
 #endif
 #endif
 #endif /* not lint */
