@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.31 (Berkeley) 04/27/93";
+static char sccsid[] = "@(#)readcf.c	6.32 (Berkeley) 05/03/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -971,7 +971,7 @@ setoption(opt, val, safe, sticky, e)
 	**  See if this option is preset for us.
 	*/
 
-	if (bitnset(opt, StickyOpt))
+	if (safe && bitnset(opt, StickyOpt))
 	{
 		if (tTd(37, 1))
 			printf(" (ignored)\n");
@@ -1010,9 +1010,9 @@ setoption(opt, val, safe, sticky, e)
 
 	  case 'A':		/* set default alias file */
 		if (val[0] == '\0')
-			AliasFile = "aliases";
+			setalias("aliases");
 		else
-			AliasFile = newstr(val);
+			setalias(val);
 		break;
 
 	  case 'a':		/* look N minutes for "@:@" in alias file */
