@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)tab3.c	4.1 06/07/82";
-#endif lint
+static char sccsid[] = "@(#)tab3.c	4.2 (Berkeley) 04/18/91";
+#endif /* not lint */
 
 #define BYTE 8
 #define PAIR(A,B) (A|(B<<BYTE))
