@@ -4,9 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tprintf.h	7.1 (Berkeley) 07/01/90
+ *	@(#)tprintf.h	7.2 (Berkeley) 05/04/91
  */
 
 typedef struct session *tpr_t;
 
-tpr_t	tprintf_open();
+tpr_t	tprintf_open __P((struct proc *));
+void	tprintf_close __P((tpr_t));
+
+void	tprintf __P((tpr_t, const char *fmt, ...));
