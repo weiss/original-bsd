@@ -1,8 +1,6 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 01/28/92
 
 PROG=	arp
-BINGRP=	kmem
-BINMODE=2555
 MAN8=	arp.0
 
 .include <bsd.prog.mk>
