@@ -3,10 +3,10 @@
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	4.6		03/11/84	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	4.7		03/11/84	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	4.6		03/11/84);
+SCCSID(@(#)srvrsmtp.c	4.7		03/11/84);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -109,7 +109,7 @@ smtp()
 		(void) dup(fileno(OutChannel));
 	}
 	settime();
-	expand("$e", inp, &inp[sizeof inp], CurEnv);
+	expand("\001e", inp, &inp[sizeof inp], CurEnv);
 	message("220", inp);
 	for (;;)
 	{
