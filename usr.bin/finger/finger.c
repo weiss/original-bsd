@@ -2,6 +2,9 @@
  * Copyright (c) 1989 The Regents of the University of California.
  * All rights reserved.
  *
+ * This code is derived from software contributed to Berkeley by
+ * Tony Nardo of the Johns Hopkins University/Applied Physics Lab.
+ *
  * Redistribution and use in source and binary forms are permitted
  * provided that the above copyright notice and this paragraph are
  * duplicated in all such forms and that any documentation,
@@ -22,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)finger.c	5.18 (Berkeley) 09/01/89";
+static char sccsid[] = "@(#)finger.c	5.19 (Berkeley) 02/07/90";
 #endif /* not lint */
 
 /*

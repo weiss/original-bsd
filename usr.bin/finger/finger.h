@@ -2,6 +2,9 @@
  * Copyright (c) 1989 The Regents of the University of California.
  * All rights reserved.
  *
+ * This code is derived from software contributed to Berkeley by
+ * Tony Nardo of the Johns Hopkins University/Applied Physics Lab.
+ *
  * Redistribution and use in source and binary forms are permitted
  * provided that the above copyright notice and this paragraph are
  * duplicated in all such forms and that any documentation,
@@ -14,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)finger.h	5.3 (Berkeley) 05/08/89
+ *	@(#)finger.h	5.4 (Berkeley) 02/07/90
  */
 
 #include <pwd.h>
