@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)fend.c	5.3 (Berkeley) 11/12/86";
+static char sccsid[] = "@(#)fend.c	5.4 (Berkeley) 01/12/87";
 #endif not lint
 
 #include "whoami.h"
@@ -702,7 +702,7 @@ fp_entrycode(eecookiep)
 	     *	call mcount for profiling
 	     */
 	putprintf( "	pushal	" , 1 );
-	putprintf( PREFIXFORMAT , 1 , (int) LABELPREFIX , proflabel, 0 );
+	putprintf( PREFIXFORMAT , 0 , (int) LABELPREFIX , proflabel );
 	putprintf( "	callf	$8,mcount" , 0 );
 	putprintf( "	.data" , 0 );
 	putprintf( "	.align	2" , 0 );
