@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in_cksum.c	7.4 (Berkeley) 03/02/92
+ *	@(#)in_cksum.c	7.5 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "mbuf.h"
+#include <sys/param.h>
+#include <sys/mbuf.h>
 
 /*
  * Checksum routine for Internet Protocol family headers (Portable Version).
