@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.3 (Berkeley) 06/05/92
+ *	@(#)extern.h	5.4 (Berkeley) 04/29/93
  */
 
 struct kinfo;
@@ -20,7 +20,6 @@ void	 command __P((KINFO *, VARENT *));
 void	 cputime __P((KINFO *, VARENT *));
 char	*devname __P((dev_t, mode_t));
 int	 donlist __P((void));
-void	 err __P((const char *, ...));
 void	 evar __P((KINFO *, VARENT *));
 char	*fmt_argv __P((char **, char *, int));
 double	 getpcpu __P((KINFO *));
