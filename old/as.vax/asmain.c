@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)asmain.c	5.3 (Berkeley) 10/22/87";
+static char sccsid[] = "@(#)asmain.c	5.4 (Berkeley) 05/10/89";
 #endif not lint
 
 #include <stdio.h>
@@ -22,10 +22,11 @@ static char sccsid[] = "@(#)asmain.c	5.3 (Berkeley) 10/22/87";
 #include "assyms.h"
 #include "asscan.h"
 #include "asexpr.h"
+#include <paths.h>
 
 #include <sys/stat.h>
 
-#define	unix_lang_name "VAX/UNIX Assembler V10/22/87 5.3"
+#define	unix_lang_name "VAX/UNIX Assembler V05/10/89 5.4"
 /*
  *	variables to manage reading the assembly source files
  */
