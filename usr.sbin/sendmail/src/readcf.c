@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.23 (Berkeley) 03/29/93";
+static char sccsid[] = "@(#)readcf.c	6.24 (Berkeley) 03/30/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1226,6 +1226,8 @@ setoption(opt, val, safe, sticky, e)
 				if (strcasecmp(val, pv->pv_name) == 0)
 					break;
 			}
+			if (pv->pv_name == NULL)
+				syserr("readcf: Op line: %s unrecognized", val);
 			PrivacyFlags |= pv->pv_flag;
 		}
 		break;
