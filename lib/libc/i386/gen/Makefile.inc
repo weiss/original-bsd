@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.2 (Berkeley) 05/31/93
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 SRCS+=	isinf.c
 SRCS+=	_setjmp.s alloca.s fabs.s ldexp.c modf.s setjmp.s
