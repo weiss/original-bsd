@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.63 (Berkeley) 03/13/92";
+static char sccsid[] = "@(#)ls.c	5.64 (Berkeley) 04/02/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -255,7 +255,7 @@ traverse(argc, argv, options)
 
 	if ((ftsp =
 	    fts_open(argv, options, f_nosort ? NULL : mastercmp)) == NULL)
-		err(1, "fts_open: %s", strerror(errno));
+		err(1, "%s", strerror(errno));
 
 	display(NULL, fts_children(ftsp, 0));
 	if (f_listdir)
