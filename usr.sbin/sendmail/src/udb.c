@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	8.15 (Berkeley) 03/20/95 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	8.16 (Berkeley) 03/27/95 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	8.15 (Berkeley) 03/20/95 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	8.16 (Berkeley) 03/27/95 (without USERDB)";
 #endif
 #endif
 
@@ -274,8 +274,9 @@ udbexpand(a, sendq, aliaslevel, e)
 				fprintf(e->e_xfp,
 					"Message delivered to mailing list %s\n",
 					a->q_paddr);
-				e->e_flags |= EF_SENDRECEIPT;
 			}
+			e->e_flags |= EF_SENDRECEIPT;
+			a->q_flags |= QREPORT|QEXPLODED;
 			break;
 
 #ifdef HESIOD

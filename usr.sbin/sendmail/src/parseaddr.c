@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.60 (Berkeley) 03/25/95";
+static char sccsid[] = "@(#)parseaddr.c	8.61 (Berkeley) 03/27/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1603,6 +1603,8 @@ struct qflags	AddressFlags[] =
 	"QPINGONDELAY",		QPINGONDELAY,
 	"QHASNOTIFY",		QHASNOTIFY,
 	"QRELAYED",		QRELAYED,
+	"QEXPLODED",		QEXPLODED,
+	"QTHISPASS",		QTHISPASS,
 	NULL
 };
 
@@ -1636,9 +1638,11 @@ printaddr(a, follow)
 			m->m_name = "NULL";
 		}
 
-		printf("%s:\n\tmailer %d (%s), host `%s', user `%s', ruser `%s'\n",
+		printf("%s:\n\tmailer %d (%s), host `%s'\n",
 		       a->q_paddr, m->m_mno, m->m_name,
-		       a->q_host == NULL ? "<null>" : a->q_host, a->q_user,
+		       a->q_host == NULL ? "<null>" : a->q_host);
+		printf("\tuser `%s', ruser `%s'\n",
+		       a->q_user,
 		       a->q_ruser == NULL ? "<null>" : a->q_ruser);
 		printf("\tnext=%x, alias %x, uid %d, gid %d\n",
 		       a->q_next, a->q_alias, a->q_uid, a->q_gid);

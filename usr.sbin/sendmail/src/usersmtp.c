@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.40 (Berkeley) 03/25/95 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.41 (Berkeley) 03/27/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.40 (Berkeley) 03/25/95 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.41 (Berkeley) 03/27/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -487,7 +487,8 @@ smtprcpt(to, m, mci, e)
 	if (bitset(MCIF_DSN, mci->mci_flags))
 	{
 		/* NOTIFY= parameter */
-		if (bitset(QHASNOTIFY, to->q_flags))
+		if (bitset(QHASNOTIFY, to->q_flags) &&
+		    bitset(QPRIMARY, to->q_flags))
 		{
 			bool firstone = TRUE;
 
