@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.31 (Berkeley) 06/23/92";
+static char sccsid[] = "@(#)savecore.c	5.32 (Berkeley) 07/15/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -26,7 +26,6 @@ static char sccsid[] = "@(#)savecore.c	5.31 (Berkeley) 06/23/92";
 #include <dirent.h>
 #include <nlist.h>
 #include <paths.h>
-#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -561,7 +560,12 @@ Write(fd, buf, size)
 	}
 }
 
-/* VARARGS2 */
+#if __STDC__
+#include <stdarg.h>
+#else
+#include <varargs.h>
+#endif
+
 void
 #if __STDC__
 log(int level, char *fmt, ...)
