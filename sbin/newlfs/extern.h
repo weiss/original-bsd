@@ -4,15 +4,15 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	8.1 (Berkeley) 06/05/93
+ *	@(#)extern.h	8.2 (Berkeley) 05/24/95
  */
 
 u_long	cksum __P((void *, size_t));
 u_short	dkcksum __P((struct disklabel *));
 void	fatal __P((const char *fmt, ...));
 u_int	log2 __P((u_int));
-int	make_lfs
-	    __P((int, struct disklabel *, struct partition *, int, int, int));
+int	make_lfs __P((int, struct disklabel *, struct partition *, int,
+		int, int, int));
 int	mkfs __P((struct partition *, char *, int, int));
 
 extern char	*progname;
