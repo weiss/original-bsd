@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)raw_ip.c	7.7 (Berkeley) 06/28/90
+ *	@(#)raw_ip.c	7.8 (Berkeley) 07/25/90
  */
 
 #include "param.h"
@@ -222,7 +222,7 @@ rip_usrreq(so, req, m, nam, rights, control)
 		     (addr->sin_family != AF_IMPLINK))
 			return (EAFNOSUPPORT);
 		rp->rinp_rcb.rcb_faddr = (struct sockaddr *)&rp->rinp_faddr;
-		rp->rinp_laddr = *addr;
+		rp->rinp_faddr = *addr;
 		soisconnected(so);
 		return (0);
 	    }
