@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.12 (Berkeley) 06/09/93
+#	@(#)Makefile	8.1 (Berkeley) 06/09/93
 
 PROG=	vfontedpr
 SRCS=	regexp.c vfontedpr.c
