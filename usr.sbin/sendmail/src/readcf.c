@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)readcf.c	4.3		03/11/84);
+SCCSID(@(#)readcf.c	4.4		03/11/84);
 
 /*
 **  READCF -- read control file.
@@ -73,6 +73,24 @@ readcf(cfname, safe)
 	LineNumber = 0;
 	while (fgetfolded(buf, sizeof buf, cf) != NULL)
 	{
+		/* map $ into \001 (ASCII SOH) for macro expansion */
+		for (p = buf; *p != '\0'; p++)
+		{
+			if (*p != '$')
+				continue;
+
+			if (p[1] == '$')
+			{
+				/* actual dollar sign.... */
+				strcpy(p, p + 1);
+				continue;
+			}
+
+			/* convert to macro expansion character */
+			*p = '\001';
+		}
+
+		/* interpret this line */
 		switch (buf[0])
 		{
 		  case '\0':
