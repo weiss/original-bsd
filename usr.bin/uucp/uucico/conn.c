@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)conn.c	5.15	(Berkeley) 05/04/88";
+static char sccsid[] = "@(#)conn.c	5.16	(Berkeley) 03/02/91";
 #endif
 
 #include <signal.h>
@@ -45,6 +45,7 @@ char *PCP = "PCP";	/* PC Pursuit device type */
 /*
  *	catch alarm routine for "expect".
  */
+void
 alarmtr()
 {
 	signal(SIGALRM, alarmtr);

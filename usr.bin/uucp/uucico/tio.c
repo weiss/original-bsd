@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)tio.c	4.10	(Berkeley) 01/14/91";
+static char sccsid[] = "@(#)tio.c	4.11	(Berkeley) 03/02/91";
 #endif
 
 #include <sys/param.h>
@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)tio.c	4.10	(Berkeley) 01/14/91";
 #include "uucp.h"
 #include <setjmp.h>
 
-extern int pkfail();
+extern void pkfail();
 #define TPACKSIZE	512
 #define TBUFSIZE	1024
 #define min(a,b)	(((a)<(b))?(a):(b))
