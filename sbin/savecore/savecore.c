@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	8.2 (Berkeley) 11/24/93";
+static char sccsid[] = "@(#)savecore.c	8.3 (Berkeley) 01/02/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -205,6 +205,10 @@ kmem_setup()
 	kmem = Open(_PATH_KMEM, O_RDONLY);
 	Lseek(kmem, (off_t)current_nl[X_DUMPDEV].n_value, L_SET);
 	(void)Read(kmem, &dumpdev, sizeof(dumpdev));
+	if (dumpdev == NODEV) {
+		syslog(LOG_WARNING, "no core dump (no dumpdev)");
+		exit(1);
+	}
 	Lseek(kmem, (off_t)current_nl[X_DUMPLO].n_value, L_SET);
 	(void)Read(kmem, &dumplo, sizeof(dumplo));
 	if (verbose)
@@ -435,7 +439,7 @@ find_dev(dev, type)
 	(void)strcpy(devname, _PATH_DEV);
 	while ((dir = readdir(dfd))) {
 		(void)strcpy(devname + sizeof(_PATH_DEV) - 1, dir->d_name);
-		if (stat(devname, &sb)) {
+		if (lstat(devname, &sb)) {
 			syslog(LOG_ERR, "%s: %s", devname, strerror(errno));
 			continue;
 		}
