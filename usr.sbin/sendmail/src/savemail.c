@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	6.15 (Berkeley) 02/28/93";
+static char sccsid[] = "@(#)savemail.c	6.16 (Berkeley) 02/28/93";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -213,9 +213,15 @@ savemail(e)
 
 				/* deliver a cc: to the postmaster if desired */
 				if (PostMasterCopy != NULL)
+				{
+					auto ADDRESS *rlist = NULL;
+
 					(void) sendtolist(PostMasterCopy,
 							  (ADDRESS *) NULL,
-							  &e->e_errorqueue, e);
+							  &rlist, e);
+					(void) returntosender(e->e_message,
+							      rlist, FALSE, e);
+				}
 				q = e->e_errorqueue;
 				if (q == NULL)
 				{
