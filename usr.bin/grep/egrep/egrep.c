@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)egrep.c	5.4 (Berkeley) 10/05/87";
+static char sccsid[] = "@(#)egrep.c	5.5 (Berkeley) 10/07/87";
 #endif not lint
 
 /*
@@ -737,9 +737,10 @@ alternate(regexpr)
 				oops("out of memory");
 			bcopy(start, altpat[nalt], j);
 			altpat[nalt][j] = EOS;
+			++nalt;
 			if (!*stop)
 				break;
-			if (++nalt == NALT)
+			if (nalt == NALT)
 				return(NULL);
 			if (*stop == NL)
 				*stop = '|';
