@@ -3,14 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_time.c	7.4 (Berkeley) 03/23/87
+ *	@(#)kern_time.c	7.5 (Berkeley) 07/21/87
  */
 
 #include "param.h"
 #include "dir.h"		/* XXX */
 #include "user.h"
 #include "kernel.h"
-#include "inode.h"
 #include "proc.h"
 
 #include "../machine/reg.h"
