@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.5 (Berkeley) 03/26/86
+#	@(#)Makefile	5.6 (Berkeley) 04/24/86
 #
 # Bug report processor and associated programs
 #
@@ -18,7 +18,7 @@ DESTDIR=
 all: bugfiler unixtomh
 
 bugfiler: bugfiler.c
-	${CC} ${CFLAGS} -DUNIXTOMH=$'"{LIBDIR}/unixtomh"' -o bugfiler bugfiler.c
+	${CC} ${CFLAGS} -DUNIXTOMH='"${LIBDIR}/unixtomh"' -o bugfiler bugfiler.c
 
 unixtomh: unixtomh.c
 	${CC} ${CFLAGS} -o unixtomh unixtomh.c
