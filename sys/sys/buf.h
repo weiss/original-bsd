@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)buf.h	6.6 (Berkeley) 06/08/85
+ *	@(#)buf.h	6.7 (Berkeley) 02/23/86
  */
 
 /*
@@ -185,6 +185,6 @@ unsigned minphys();
  * Zero out a buffer's data portion.
  */
 #define	clrbuf(bp) { \
-	blkclr(bp->b_un.b_addr, bp->b_bcount); \
-	bp->b_resid = 0; \
+	blkclr((bp)->b_un.b_addr, (unsigned)(bp)->b_bcount); \
+	(bp)->b_resid = 0; \
 }

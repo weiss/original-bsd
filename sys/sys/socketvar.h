@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)socketvar.h	6.10 (Berkeley) 02/17/86
+ *	@(#)socketvar.h	6.11 (Berkeley) 02/23/86
  */
 
 /*
@@ -143,6 +143,4 @@ struct socket {
 
 #ifdef KERNEL
 struct	socket *sonewconn();
-struct	mbuf *sbdrop();
-struct	mbuf *sbdroprecord();
 #endif
