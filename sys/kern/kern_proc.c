@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_proc.c	7.1 (Berkeley) 06/05/86
+ *	@(#)kern_proc.c	7.2 (Berkeley) 07/13/87
  */
 
 #include "../machine/reg.h"
@@ -18,7 +18,6 @@
 #include "kernel.h"
 #include "proc.h"
 #include "buf.h"
-#include "inode.h"
 #include "seg.h"
 #include "acct.h"
 #include "wait.h"
