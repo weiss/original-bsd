@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)acucntrl.c	5.8 (Berkeley) 02/12/86";
+static char sccsid[] = "@(#)acucntrl.c	5.9 (Berkeley) 06/18/87";
 #endif
 
 /*  acucntrl - turn around tty line between dialin and dialout
@@ -49,11 +49,7 @@ static char sccsid[] = "@(#)acucntrl.c	5.8 (Berkeley) 02/12/86";
 #include <sys/buf.h>
 #include <signal.h>
 #include <sys/conf.h>
-#ifdef BSD4_2
-#include <vaxuba/ubavar.h>
-#else
-#include <sys/ubavar.h>
-#endif
+#include "/sys/vaxuba/ubavar.h"
 #include <sys/stat.h>
 #include <nlist.h>
 #include <sgtty.h>
