@@ -1,4 +1,7 @@
-/*	recvjob.c	4.5	83/06/17	*/
+#ifndef lint
+static char sccsid[] = "@(#)recvjob.c	4.6 (Berkeley) 07/17/83";
+#endif
+
 /*
  * Receive printer jobs from the network, queue them and
  * start the printer daemon.
