@@ -1,5 +1,5 @@
 #! /bin/sh -
-#	@(#)makesyscalls.sh	7.3 (Berkeley) 05/27/93
+#	@(#)makesyscalls.sh	8.1 (Berkeley) 06/11/93
 
 set -e
 
