@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vfsops.c	7.42 (Berkeley) 07/06/92
+ *	@(#)nfs_vfsops.c	7.43 (Berkeley) 07/12/92
  */
 
 #include "param.h"
@@ -352,10 +352,18 @@ mountnfs(argp, mp, nam, pth, hst, vpp)
 		error = EPERM;
 		goto bad;
 	}
-	if ((nmp->nm_flag & (NFSMNT_RDIRALOOK | NFSMNT_LEASETERM)) &&
-	    (nmp->nm_flag & NFSMNT_NQNFS) == 0) {
-		error = EPERM;
-		goto bad;
+	if (nmp->nm_flag & (NFSMNT_RDIRALOOK | NFSMNT_LEASETERM)) {
+		if ((nmp->nm_flag & NFSMNT_NQNFS) == 0) {
+			error = EPERM;
+			goto bad;
+		}
+		/*
+		 * We have to set mnt_maxsymlink to a non-zero value so
+		 * that COMPAT_43 routines will know that we are setting
+		 * the d_type field in directories (and can zero it for
+		 * unsuspecting binaries).
+		 */
+		mp->mnt_maxsymlinklen = 1;
 	}
 	nmp->nm_timeo = NFS_TIMEO;
 	nmp->nm_retry = NFS_RETRANS;
