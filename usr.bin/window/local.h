@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)local.h	3.8 (Berkeley) 02/16/89
+ *	@(#)local.h	3.9 (Berkeley) 04/20/89
  */
 
 /*
@@ -24,4 +24,3 @@
 #define RUNCOM		".windowrc"
 #define ESCAPEC		ctrl('p')
 #define NLINE		48			/* default text buffer size */
-#define SHELL		"/bin/sh"		/* if no environment SHELL */
