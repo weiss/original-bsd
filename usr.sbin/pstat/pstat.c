@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)pstat.c	8.6 (Berkeley) 01/23/94";
+static char sccsid[] = "@(#)pstat.c	8.7 (Berkeley) 01/23/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -517,7 +517,7 @@ mount_print(mp)
 	case MOUNT_MFS:
 		type = "mfs";
 		break;
-	case MOUNT_PC:
+	case MOUNT_MSDOS:
 		type = "pc";
 		break;
 	default:
