@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.15 (Berkeley) 02/21/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.16 (Berkeley) 02/21/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.15 (Berkeley) 02/21/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.16 (Berkeley) 02/21/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -388,7 +388,7 @@ runqueue(forkflag)
 
 	CurrentLA = getla();	/* get load average */
 
-	if (shouldqueue(-100000000L, curtime()))
+	if (shouldqueue(0L, curtime()))
 	{
 		if (Verbose)
 			printf("Skipping queue run -- load average too high\n");
