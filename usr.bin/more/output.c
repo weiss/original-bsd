@@ -18,7 +18,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)output.c	5.6 (Berkeley) 11/26/88";
+static char sccsid[] = "@(#)output.c	5.7 (Berkeley) 12/03/88";
 #endif /* not lint */
 
 /*
@@ -129,6 +129,15 @@ flush()
 		return;
 	if (write(1, obuf, n) != n)
 		screen_trashed = 1;
+	ob = obuf;
+}
+
+/*
+ * Purge any pending output.
+ */
+purge()
+{
+
 	ob = obuf;
 }
 
