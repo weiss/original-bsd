@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)contents.c	5.6 (Berkeley) 03/12/91";
+static char sccsid[] = "@(#)contents.c	5.7 (Berkeley) 04/10/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -49,7 +49,7 @@ contents(argv)
 			goto next;
 		if (options & AR_V) {
 			(void)strmode(chdr.mode, buf);
-			(void)printf("%s %6d/%-6d %8ld ",
+			(void)printf("%s %6d/%-6d %8qd ",
 			    buf + 1, chdr.uid, chdr.gid, chdr.size);
 			tp = localtime(&chdr.date);
 			(void)strftime(buf, sizeof(buf), "%b %e %H:%M %Y", tp);
