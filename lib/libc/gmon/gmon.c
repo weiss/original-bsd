@@ -6,12 +6,12 @@
  */
 
 #if !defined(lint) && defined(LIBC_SCCS)
-static char sccsid[] = "@(#)gmon.c	5.13 (Berkeley) 03/31/93";
+static char sccsid[] = "@(#)gmon.c	5.14 (Berkeley) 04/27/93";
 #endif
 
-#include <unistd.h>
-#include <sys/types.h>
+#include <sys/param.h>
 #include <sys/time.h>
+#include <sys/gmon.h>
 #include <sys/sysctl.h>
 
 #ifdef DEBUG
@@ -19,7 +19,7 @@ static char sccsid[] = "@(#)gmon.c	5.13 (Berkeley) 03/31/93";
 #include <fcntl.h>
 #endif
 
-#include <sys/gmon.h>
+#include <unistd.h>
 
 extern char *minbrk asm ("minbrk");
 
