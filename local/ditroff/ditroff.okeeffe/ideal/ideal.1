@@ -1,4 +1,4 @@
-.\"	ideal.1	(CWI)	1.1	85/03/01
+.\"	ideal.1	(CWI)	1.2	85/03/03
 .EQ
 .nr 99 \n(.s
 .nr 98 \n(.f
@@ -14,6 +14,8 @@ ideal \- troff preprocessor for drawing pictures
 .B ideal
 [
 .BI \-p
+[
+.BI \-v
 ]
 [
 .BI \-4
@@ -57,6 +59,12 @@ option produces raw
 .IR ideal
 output, which passes unharmed through
 .IR nroff (1).
+The
+.I \-v
+option produces
+.IR ditroff (1)
+input meant for the Versatec V-80, of course ditroff should know about
+the Versatec by using the flag -Tver.
 .PP
 The building block for
 .I ideal
