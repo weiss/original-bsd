@@ -6,11 +6,15 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)C.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)C.c	5.5 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 #include <stdio.h>
-#include <ctags.h>
+#include <string.h>
+#include "ctags.h"
+
+static int func_entry(), str_entry();
+static void hash_entry();
 
 /*
  * c_entries --
@@ -233,7 +237,7 @@ func_entry()
  * hash_entry --
  *	handle a line starting with a '#'
  */
-static
+static void
 hash_entry()
 {
 	extern int	dflag;		/* -d: non-macro defines */

@@ -6,13 +6,16 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)fortran.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)fortran.c	5.5 (Berkeley) 02/26/91";
 #endif /* not lint */
 
-#include <ctags.h>
+#include <stdio.h>
 #include <string.h>
+#include "ctags.h"
 
-char	*lbp;				/* line buffer pointer */
+static void takeprec();
+
+char *lbp;				/* line buffer pointer */
 
 PF_funcs()
 {
@@ -112,7 +115,7 @@ cicmp(cp)
 	return(NO);
 }
 
-static
+static void
 takeprec()
 {
 	for (;isspace(*lbp);++lbp);
