@@ -4,18 +4,18 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.3 (Berkeley) 07/19/91
+ *	@(#)extern.h	5.4 (Berkeley) 05/01/93
  */
 
 #include <sys/cdefs.h>
 
 void	 brace_subst __P((char *, char **, char *, int));
 void	*emalloc __P((unsigned int));
-void	 err __P((const char *, ...));
 PLAN	*find_create __P((char ***));
 void	 find_execute __P((PLAN *, char **));
 PLAN	*find_formplan __P((char **));
 PLAN	*not_squish __P((PLAN *));
+OPTION	*option __P((char *));
 PLAN	*or_squish __P((PLAN *));
 PLAN	*paren_squish __P((PLAN *));
 struct stat;
