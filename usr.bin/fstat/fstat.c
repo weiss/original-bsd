@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)fstat.c	5.45 (Berkeley) 05/25/93";
+static char sccsid[] = "@(#)fstat.c	5.46 (Berkeley) 06/02/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -341,7 +341,6 @@ vtrans(vp, i, flag)
 	int i;
 	int flag;
 {
-	extern char *devname();
 	struct vnode vn;
 	struct filestat fst;
 	char rw[3], mode[15];
