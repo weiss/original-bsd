@@ -1,4 +1,4 @@
-/* @(#)main.c	1.6	05/29/84
+/* @(#)main.c	1.7	10/10/84
  *
  * Copyright -C- 1982 Barry S. Roitblat
  *
@@ -78,7 +78,7 @@ extern char *malloc(), *sprintf(), *strcat(), *strcpy();
 
 /* Version number */
 
-char SccsId [] = "@(#)main.c	1.6	(Berkeley)	05/29/84";
+char SccsId [] = "@(#)main.c	1.7	(Berkeley)	10/10/84";
 
 #ifdef SIGTINT
 static int lintrup = LINTRUP;    /* Constant for local mode bit */
