@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * William Jolitz.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kbd.c	7.4 (Berkeley) 05/04/91
+ *	@(#)kbd.c	8.1 (Berkeley) 06/11/93
  */
 
 #define	L		0x01	/* locking function */
