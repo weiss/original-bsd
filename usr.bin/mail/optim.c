@@ -9,7 +9,7 @@
 #include "rcv.h"
 #include <ctype.h>
 
-static char *SccsId = "@(#)optim.c	2.1 07/01/81";
+static char *SccsId = "@(#)optim.c	2.2 09/08/81";
 
 /*
  * Map a name into the correct network "view" of the
@@ -515,6 +515,9 @@ err:
 	while (*cp) {
 		if ((cp2 = netname(*cp++)) == NOSTR) {
 			printf("Made up bad net name\n");
+			printf("Machine code %c (0%o)\n", cp[-1], cp[-1]);
+			printf("Sorry -- dumping now.  Alert K. Shoens\n");
+			core(0);
 			goto err;
 		}
 		strcat(name, cp2);
