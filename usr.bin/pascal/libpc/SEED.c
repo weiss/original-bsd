@@ -1,18 +1,15 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)SEED.c 1.3 01/06/81";
+static char sccsid[] = "@(#)SEED.c 1.4 01/16/81";
 
-#include <math.h>
+#include "h00vars.h"
 
 SEED(value)
-
-	long	value;
+	long value;
 {
-	static long	seed;
-	long		tmp;
+	long tmp;
 
-	srand(value);
-	tmp = seed;
-	seed = value;
+	tmp = _seed;
+	_seed = value;
 	return tmp;
 }

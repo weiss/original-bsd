@@ -1,6 +1,8 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)RANDOM.c 1.1 10/30/80";
+static char sccsid[] = "@(#)RANDOM.c 1.2 01/16/81";
+
+#include "h00vars.h"
 
 double
 RANDOM()
@@ -8,5 +10,6 @@ RANDOM()
 	/*
 	 * div by maxint to get 0..1
 	 */
-	return (rand() / 2.147483647e+09);
+	_seed = RAND(_seed);
+	return((double)_seed / 0x7fffffff);
 }
