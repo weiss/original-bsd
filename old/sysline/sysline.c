@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)sysline.c	5.7 (Berkeley) 04/29/87";
+static char sccsid[] = "@(#)sysline.c	5.8 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -971,7 +971,8 @@ stringprt(format, a, b, c)
 {
 	char tempbuf[150];
 
-	stringcat(sprintf(tempbuf, format, a, b, c), -1);
+	(void)sprintf(tempbuf, format, a, b, c);
+	stringcat(tempbuf, -1);
 }
 
 stringdump()
