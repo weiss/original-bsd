@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)gettytab.h	5.4 (Berkeley) 06/01/90
+ *	@(#)gettytab.h	5.5 (Berkeley) 03/27/91
  */
 
 /*
@@ -106,6 +106,7 @@ struct gettyflags {
 #define UB	gettyflags[18].value
 #define AB	gettyflags[19].value
 #define DX	gettyflags[20].value
+#define	NP	gettyflags[21].value
 
 int	getent();
 long	getnum();

@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.15 (Berkeley) 03/04/91";
+static char sccsid[] = "@(#)main.c	5.16 (Berkeley) 03/27/91";
 #endif /* not lint */
 
 #define USE_OLD_TTY
@@ -400,9 +400,11 @@ putchr(cc)
 	char c;
 
 	c = cc;
-	c |= partab[c&0177] & 0200;
-	if (OP)
-		c ^= 0200;
+	if (!NP) {
+		c |= partab[c&0177] & 0200;
+		if (OP)
+			c ^= 0200;
+	}
 	if (!UB) {
 		outbuf[obufcnt++] = c;
 		if (obufcnt >= OBUFSIZ)
