@@ -9,7 +9,7 @@
  * Termination processing.
  */
 
-static char *SccsId = "@(#)quit.c	2.5 05/24/83";
+static char *SccsId = "@(#)quit.c	2.6 05/28/83";
 
 /*
  * Save all of the undetermined messages at the top of "mbox"
@@ -218,6 +218,7 @@ quit()
 		fclose(ibuf);
 		fflush(obuf);
 	}
+	trunc(obuf);
 	if (ferror(obuf)) {
 		perror(mbox);
 		fclose(obuf);
@@ -254,6 +255,7 @@ cream:
 		while ((c = getc(rbuf)) != EOF)
 			putc(c, fbuf);
 		fclose(rbuf);
+		trunc(fbuf);
 		fclose(fbuf);
 		alter(mailname);
 		unlock();
@@ -306,6 +308,7 @@ writeback(res)
 			putc(c, obuf);
 #endif
 	fflush(obuf);
+	trunc(obuf);
 	if (ferror(obuf)) {
 		perror(mailname);
 		fclose(obuf);
