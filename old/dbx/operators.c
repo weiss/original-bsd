@@ -1,6 +1,12 @@
-/* Copyright (c) 1982 Regents of the University of California */
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
 
-static	char sccsid[] = "@(#)operators.c	1.9 (Berkeley) 03/01/85";
+#ifndef lint
+static char sccsid[] = "@(#)operators.c	5.1 (Berkeley) 05/31/85";
+#endif not lint
 
 static char rcsid[] = "$Header: operators.c,v 1.5 84/12/26 10:41:01 linton Exp $";
 
