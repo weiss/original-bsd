@@ -1,5 +1,5 @@
 #!/bin/sh
-#	dumpall.sh	1.3	08/01/84
+#	dumpall.sh	1.4	08/01/84
 #	shell script to do all pending dumps
 #	Asks for confirmation before proceeding
 PATH=:/etc:/bin:/usr/bin:
@@ -9,7 +9,7 @@ list=`dump w|sed -e '/^ /!d
 for fi in $list
 do
 	echo "File system to dump is $fi"
-	echo -n "Do you wish to continue"
+	echo -n "Do you wish to continue? "
 	read ans
 	if [ "$ans" = "yes" -o "$ans" = "y" -o "$ans" = "Y" ]
 	then
