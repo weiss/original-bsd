@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)versys.c	5.6 (Berkeley) 02/24/88";
+static char sccsid[] = "@(#)versys.c	5.7	(Berkeley) 04/05/88";
 #endif
 
 #include "uucp.h"
@@ -36,7 +36,10 @@ register char **nameptr;
 		return SUCCESS;
 
 	fp = fopen(SYSFILE, "r");
-	ASSERT(fp != NULL, CANTOPEN, SYSFILE, 0);
+	if (fp == NULL) {
+		syslog(LOG_ERR, "fopen(%s) failed: %m", SYSFILE);
+		cleanup(FAIL);
+	}
 	PhoneNumber[0] = '\0';
 	while (cfgets(line, sizeof(line), fp) != NULL) {
 		char *targs[100];
