@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)disks.c	5.7 (Berkeley) 02/04/91";
+static char sccsid[] = "@(#)disks.c	5.8 (Berkeley) 04/11/91";
 #endif not lint
 
 #include "systat.h"
@@ -110,8 +110,8 @@ dkcmd(cmd, args)
 	lseek(kmem, where, L_SET); read(kmem, &var, sizeof var);
 
 #ifdef vax
-#include <vaxuba/ubavar.h>
-#include <vaxmba/mbavar.h>
+#include <vax/uba/ubavar.h>
+#include <vax/mba/mbavar.h>
 
 read_names()
 {
