@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.16 (Berkeley) 10/28/93";
+static char sccsid[] = "@(#)parseaddr.c	8.17 (Berkeley) 10/31/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1212,6 +1212,12 @@ buildaddr(tv, a, flags, e)
 	static MAILER errormailer;
 	static char *errorargv[] = { "ERROR", NULL };
 	static char buf[MAXNAME];
+
+	if (tTd(24, 5))
+	{
+		printf("buildaddr, flags=%o, tv=", flags);
+		printav(tv);
+	}
 
 	if (a == NULL)
 		a = (ADDRESS *) xalloc(sizeof *a);
