@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.19 (Berkeley) 02/20/93";
+static char sccsid[] = "@(#)conf.c	6.20 (Berkeley) 02/21/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -169,8 +169,8 @@ setdefaults()
 	MaxMciCache = 1;			/* option k */
 	MciCacheTimeout = 300;			/* option K */
 	LogLevel = 9;				/* option L */
-	ReadTimeout = 2 * 60 * 60;		/* option r */
-	TimeOut = 3 * 24 * 60 * 60;		/* option T */
+	settimeouts(NULL);			/* option r */
+	TimeOut = 5 * 24 * 60 * 60;		/* option T */
 	setdefuser();
 	setupmaps();
 	setupmailers();
