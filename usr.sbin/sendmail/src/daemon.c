@@ -1,22 +1,31 @@
 /*
-**  Sendmail
-**  Copyright (c) 1983  Eric P. Allman
-**  Berkeley, California
-**
-**  Copyright (c) 1983 Regents of the University of California.
-**  All rights reserved.  The Berkeley software License Agreement
-**  specifies the terms and conditions for redistribution.
-*/
-
+ * Copyright (c) 1988 Regents of the University of California.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms are permitted
+ * provided that this notice is preserved and that due credit is given
+ * to the University of California at Berkeley. The name of the University
+ * may not be used to endorse or promote products derived from this
+ * software without specific prior written permission. This software
+ * is provided ``as is'' without express or implied warranty.
+ *
+ *  Sendmail
+ *  Copyright (c) 1983  Eric P. Allman
+ *  Berkeley, California
+ */
 
 # include <errno.h>
 # include "sendmail.h"
 
-# ifndef DAEMON
-# ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.23 (Berkeley) 12/21/87	(w/o daemon mode)";
-# endif not lint
-# else
+#ifndef lint
+#ifdef DAEMON
+static char sccsid[] = "@(#)daemon.c	5.24 (Berkeley) 03/24/88 (with daemon mode)";
+#else
+static char sccsid[] = "@(#)daemon.c	5.24 (Berkeley) 03/24/88 (without daemon mode)";
+#endif
+#endif /* not lint */
+
+#ifdef DAEMON
 
 # include <netdb.h>
 # include <sys/signal.h>
@@ -24,12 +33,6 @@ static char	SccsId[] = "@(#)daemon.c	5.23 (Berkeley) 12/21/87	(w/o daemon mode)"
 # include <sys/time.h>
 # include <sys/resource.h>
 
-# ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.23 (Berkeley) 12/21/87 (with daemon mode)";
-# endif not lint
-# endif
-
-# ifdef DAEMON
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
 **
