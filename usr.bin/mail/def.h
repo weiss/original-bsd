@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)def.h	5.8 (Berkeley) 06/16/88
+ *	@(#)def.h	5.9 (Berkeley) 06/17/88
  */
 
 #include <sys/param.h>		/* includes <sys/types.h> */
@@ -274,6 +274,7 @@ char	*nameof();
 char	*nextword();
 char	*getenv();
 char	*getfilename();
+char	*findmail();
 char	*ishfield();
 char	*malloc();
 char	*netmap();
