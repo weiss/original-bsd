@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.4 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)misc.c	5.5 (Berkeley) 05/18/90";
 #endif /* not lint */
 
 #include	"mille.h"
@@ -236,7 +236,7 @@ readch()
 flush_input()
 {
 # ifdef	TIOCFLUSH
-	static int	ioctl_args = FREAD;
+	static int	ioctl_args = O_RDONLY;
 
 	(void) ioctl(fileno(stdin), TIOCFLUSH, &ioctl_args);
 # else
