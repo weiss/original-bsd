@@ -16,12 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)interactive.c	5.7 (Berkeley) 01/19/90";
+static char sccsid[] = "@(#)interactive.c	5.8 (Berkeley) 02/15/90";
 #endif /* not lint */
 
 #include "restore.h"
 #include <protocols/dumprestore.h>
 #include <setjmp.h>
+#include <ufs/dir.h>
 
 #define round(a, b) (((a) + (b) - 1) / (b) * (b))
 

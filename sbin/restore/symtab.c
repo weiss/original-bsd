@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)symtab.c	5.3 (Berkeley) 10/24/88";
+static char sccsid[] = "@(#)symtab.c	5.4 (Berkeley) 02/15/90";
 #endif /* not lint */
 
 /*
@@ -30,6 +30,7 @@ static char sccsid[] = "@(#)symtab.c	5.3 (Berkeley) 10/24/88";
 
 #include "restore.h"
 #include <sys/stat.h>
+#include <ufs/dir.h>
 
 /*
  * The following variables define the inode symbol table.
