@@ -8,7 +8,7 @@
  * User commands.
  */
 
-static char *SccsId = "@(#)cmd1.c	1.8 03/20/81";
+static char *SccsId = "@(#)cmd1.c	1.9 04/01/81";
 
 /*
  * Print the current active headings.
@@ -224,7 +224,7 @@ type(msgvec)
 			pclose(obuf);
 			pipef = NULL;
 		}
-		signal(SIGPIPE, SIG_DFL);
+		sigset(SIGPIPE, SIG_DFL);
 		return(0);
 	}
 	if (intty && outtty && (cp = value("crt")) != NOSTR) {
@@ -238,7 +238,7 @@ type(msgvec)
 			}
 			else {
 				pipef = obuf;
-				signal(SIGPIPE, brokpipe);
+				sigset(SIGPIPE, brokpipe);
 			}
 		}
 	}
@@ -253,7 +253,7 @@ type(msgvec)
 		pclose(obuf);
 		pipef = NULL;
 	}
-	signal(SIGPIPE, SIG_DFL);
+	sigset(SIGPIPE, SIG_DFL);
 	return(0);
 }
 
@@ -265,8 +265,8 @@ type(msgvec)
 brokpipe()
 {
 
-	signal(SIGPIPE, SIG_IGN);
 	longjmp(pipestop, 1);
+	sigrelse(SIGPIPE);
 }
 
 /*
