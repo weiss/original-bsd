@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)eval.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)eval.c	5.4 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 /*
@@ -18,12 +18,14 @@ static char sccsid[] = "@(#)eval.c	5.3 (Berkeley) 06/01/90";
  * by: oz
  */
 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "mdef.h"
 #include "extr.h"
 
 extern ndptr lookup();
-extern char *strsave();
-extern char *mktemp();
 
 /*
  * eval - evaluate built-in macros.
@@ -322,7 +324,7 @@ register int  td;
 		 * dom4wrap - set up for wrap-up/wind-down activity
 		 *
 		 */
-		m4wraps = (argc > 2) ? strsave(argv[2]) : null;
+		m4wraps = (argc > 2) ? strdup(argv[2]) : null;
 		break;
 
 	case EXITTYPE:
