@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_malloc.c	7.11 (Berkeley) 04/22/89
+ *	@(#)kern_malloc.c	7.12 (Berkeley) 04/25/89
  */
 
 #include "param.h"
@@ -26,7 +26,7 @@
 #include "kernel.h"
 #include "malloc.h"
 
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
 struct kmembuckets bucket[MINBUCKET + 16];
 struct kmemstats kmemstats[M_LAST];
