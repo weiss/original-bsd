@@ -9,13 +9,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)lsearch.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)lsearch.c	5.4 (Berkeley) 07/03/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
 #include <unistd.h>
 
-char *linear_base();
+static char *linear_base();
 
 char *
 lsearch(key, base, nelp, width, compar)
