@@ -1,4 +1,6 @@
-/*	tran.c	4.2	83/02/09	*/
+#ifndef lint
+static char sccsid[] = "@(#)tran.c	4.3 08/11/83";
+#endif
 
 #include "stdio.h"
 #include "awk.def"
