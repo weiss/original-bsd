@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.5 (Berkeley) 02/14/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.6 (Berkeley) 02/15/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.5 (Berkeley) 02/14/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.6 (Berkeley) 02/15/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -354,12 +354,6 @@ makeconnection(host, port, mci, usesecureport)
 			if (errno == ECONNREFUSED && UseNameServer)
 				return (EX_TEMPFAIL);
 #endif
-
-			/*
-			**  XXX Should look for mail forwarder record here
-			**  XXX if (h_errno == NO_ADDRESS).
-			*/
-
 			return (EX_NOHOST);
 		}
 		bcopy(hp->h_addr, (char *) &addr.sin_addr, hp->h_length);

@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	6.5 (Berkeley) 02/14/93 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	6.6 (Berkeley) 02/15/93 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	6.5 (Berkeley) 02/14/93 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	6.6 (Berkeley) 02/15/93 (without USERDB)";
 #endif
 #endif
 
@@ -207,7 +207,8 @@ udbexpand(a, sendq, e)
 			}
 			if (i < 0)
 			{
-				syserr("udbexpand: db-get stat %s");
+				syserr("udbexpand: db-get %.*s stat %d",
+					key.size, key.data, i);
 				return EX_TEMPFAIL;
 			}
 			break;
