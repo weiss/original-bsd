@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 08/16/92
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	window
 CFLAGS+=-R -DVMIN_BUG
