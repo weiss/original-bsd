@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)netisr.h	7.1 (Berkeley) 06/04/86
+ *	@(#)netisr.h	7.2 (Berkeley) 10/28/86
  */
 
 /*
@@ -14,7 +14,7 @@
  * level for the clock (so you can enter the network in routines called
  * at timeout time).
  */
-#ifdef vax
+#if defined(vax) || defined(tahoe)
 #define	setsoftnet()	mtpr(SIRR, 12)
 #endif
 
