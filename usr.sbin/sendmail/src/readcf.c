@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)readcf.c	3.35		09/26/82);
+SCCSID(@(#)readcf.c	3.36		10/06/82);
 
 /*
 **  READCF -- read control file.
@@ -617,6 +617,7 @@ setoption(opt, val, safe, sticky)
 		  case MD_FORK:		/* fork after verification */
 		  case MD_QUEUE:	/* queue only */
 		  case MD_VERIFY:	/* verify only */
+		  case MD_TEST:		/* test addresses */
 			break;
 
 		  default:
