@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)sliplogin.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)sliplogin.c	8.2 (Berkeley) 02/01/94";
 #endif /* not lint */
 
 /*
@@ -58,9 +58,7 @@ static char sccsid[] = "@(#)sliplogin.c	8.1 (Berkeley) 06/06/93";
 #else
 #include <sgtty.h>
 #endif
-#include <netinet/in.h>
-#include <net/if.h>
-#include <net/if_slvar.h>
+#include <net/slip.h>
 
 #include <stdio.h>
 #include <errno.h>
