@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.48 (Berkeley) 12/02/93";
+static char sccsid[] = "@(#)deliver.c	8.49 (Berkeley) 12/02/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1753,7 +1753,7 @@ logdelivery(m, mci, stat, ctladdr, e)
 	if (ctladdr != NULL)
 	{
 		strcpy(bp, ", ctladdr=");
-		strcpy(bp, shortenstring(ctladdr->q_paddr, 83));
+		strcat(bp, shortenstring(ctladdr->q_paddr, 83));
 		bp += strlen(bp);
 		if (bitset(QGOODUID, ctladdr->q_flags))
 		{
