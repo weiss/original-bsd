@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.60 (Berkeley) 04/03/93";
+static char sccsid[] = "@(#)deliver.c	6.61 (Berkeley) 04/12/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -282,7 +282,6 @@ sendenvelope(e, mode)
 #endif
 
 	oldverbose = Verbose;
-	e->e_statmsg = NULL;
 	switch (mode)
 	{
 	  case SM_VERIFY:
@@ -585,6 +584,7 @@ deliver(e, firstto)
 	m = to->q_mailer;
 	host = to->q_host;
 	CurEnv = e;			/* just in case */
+	e->e_statmsg = NULL;
 
 	if (tTd(10, 1))
 		printf("\n--deliver, mailer=%d, host=`%s', first user=`%s'\n",
