@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)wall.c	5.15 (Berkeley) 08/01/91";
+static char sccsid[] = "@(#)wall.c	5.16 (Berkeley) 10/29/91";
 #endif /* not lint */
 
 /*
@@ -130,7 +130,7 @@ makemsg(fname)
 	}
 	(void)fprintf(fp, "%79s\r\n", " ");
 
-	if (*fname && !(freopen(fname, "r", stdin))) {
+	if (fname && !(freopen(fname, "r", stdin))) {
 		(void)fprintf(stderr, "wall: can't read %s.\n", fname);
 		exit(1);
 	}
