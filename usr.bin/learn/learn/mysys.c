@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mysys.c	4.6	(Berkeley)	05/10/89";
+static char sccsid[] = "@(#)mysys.c	4.7	(Berkeley)	02/21/90";
 #endif not lint
 
 #include <sys/signal.h>
@@ -136,8 +136,9 @@ char *s;
 system(s)
 char *s;
 {
-	int status, pid, w;
-	register int (*istat)(), (*qstat)();
+	register int pid, w;
+	sig_t istat, qstat;
+	int status;
 
 	istat = signal(SIGINT, SIG_IGN);
 	qstat = signal(SIGQUIT, SIG_IGN);
@@ -151,8 +152,8 @@ char *s;
 		;
 	if (w == -1)
 		status = -1;
-	signal(SIGINT, istat);
-	signal(SIGQUIT, qstat);
+	(void)signal(SIGINT, istat);
+	(void)signal(SIGQUIT, qstat);
 	return(status);
 }
 
