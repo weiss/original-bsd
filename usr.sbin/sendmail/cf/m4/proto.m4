@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	6.42 (Berkeley) 06/01/93')
+VERSIONID(`@(#)proto.m4	6.43 (Berkeley) 06/04/93')
 
 MAILER(local)dnl
 
@@ -196,6 +196,9 @@ CONCAT(Ok, confMCI_CACHE_SIZE)
 
 # open connection cache timeout
 CONCAT(OK, confMCI_CACHE_TIMEOUT)
+
+# use Errors-To: header?
+CONCAT(Ol, confUSE_ERRORS_TO)
 
 # log level
 CONCAT(OL, confLOG_LEVEL)
@@ -482,10 +485,10 @@ ifdef(`MAILER_TABLE',
 `
 # try mailer table lookup
 R$* <@ $+ > $*		$: < $2 > $1 < @ $2 > $3	extract host name
-R<$+ . > $*		$: < $1 > $2			strip trailing dot
-R<$- . $+ > $*		$: < $(mailertable .$2 $: $) > $3	lookup
-R<$- : $+ > $*		$# $1 $@ $2 $: $3		check -- resolved?
-R<$- . $+ > $*		$: $>90 <$2> $3			try domain',
+R< $+ . > $*		$: < $1 > $2			strip trailing dot
+R< $+ > $*		$: < $(mailertable .$1 $) > $3	lookup
+R< $- : $+ > $*		$# $1 $@ $2 $: $3		check -- resolved?
+R< $- . $+ > $*		$: $>90 <$2> $3			try domain',
 `dnl')
 
 # short circuit local delivery so forwarded email works
@@ -596,7 +599,7 @@ ifdef(`MAILER_TABLE',
 ###########################################################################
 
 S90
-R<$- . $+ > $*		$: < $(mailertable .$2 $: $) > $3	lookup
+R<$- . $+ > $*		$: < $(mailertable .$2 $) > $3	lookup
 R<$- : $+ > $*		$# $1 $@ $2 $: $3		check -- resolved?
 R<$- . $+ > $*		$@ $>90 <$2> $3			no -- strip & try again
 R<$*> $*		$@ $2				no match',
