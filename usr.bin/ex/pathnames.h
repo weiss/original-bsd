@@ -14,13 +14,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.3 (Berkeley) 09/07/89
+ *	@(#)pathnames.h	5.4 (Berkeley) 01/28/91
  */
 
 #include <paths.h>
 
 #define	_PATH_MAKEKEY		"/usr/libexec/makekey"
-#define	_PATH_BINMAIL		"/usr/libexec/delivermail"
+#define	_PATH_BINMAIL		"/usr/libexec/mail.local"
 #define	_PATH_EXRECOVER		"/usr/libexec/ex3.7recover"
 #define	_PATH_EXPRESERVE	"/usr/libexec/ex3.7preserve"
 #define	_PATH_PRESERVE		"/var/preserve"
