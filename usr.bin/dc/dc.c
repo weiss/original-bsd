@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)dc.c	4.1	(Berkeley)	02/11/83";
+static char sccsid[] = "@(#)dc.c	4.2	(Berkeley)	03/30/83";
 #endif not lint
 
 #include <stdio.h>
@@ -913,7 +913,7 @@ char *argv[];
 	readptr = &readstk[0];
 	k=0;
 	sp = sptr = &symlst[0];
-	while(sptr < &symlst[TBLSZ]){
+	while(sptr < &symlst[TBLSZ-1]){
 		sptr->next = ++sp;
 		sptr++;
 	}
