@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/23/90
+#	@(#)Makefile	5.5 (Berkeley) 12/31/90
 #
 # ieee		- for most IEEE machines, we hope.
 # mc68881	- the, ahem, mc68881.
