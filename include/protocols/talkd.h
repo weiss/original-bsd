@@ -4,11 +4,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)talkd.h	5.5 (Berkeley) 06/01/90
+ *	@(#)talkd.h	5.6 (Berkeley) 02/26/91
  */
 
-#include <sys/types.h>
-#include <sys/socket.h>
 /*
  * This describes the protocol used by the talk server and clients.
  *
