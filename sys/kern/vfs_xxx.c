@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)vfs_xxx.c	7.2 (Berkeley) 05/03/89
+ *	@(#)vfs_xxx.c	7.3 (Berkeley) 05/09/89
  */
 
 #ifdef COMPAT
@@ -75,7 +75,7 @@ ostat1(vp, ub)
 	struct vattr vattr;
 	int error;
 
-	error = vop_getattr(vp, &vattr, u.u_cred);
+	error = VOP_GETATTR(vp, &vattr, u.u_cred);
 	if (error)
 		return(error);
 	/*
