@@ -1,8 +1,10 @@
-#	@(#)Makefile	5.5 (Berkeley) 01/17/91
+#	@(#)Makefile	5.6 (Berkeley) 04/23/91
 
 PROG=	iostat
-CFLAGS+=-I/sys
+CFLAGS+=-I/sys -I${.CURDIR}/../../usr.bin/vmstat
 MAN8=	iostat.0
+DPADD=	${LIBUTIL}
+LDADD=	-lutil
 BINGRP=	kmem
 BINMODE=2555
 
