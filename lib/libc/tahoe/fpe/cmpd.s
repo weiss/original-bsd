@@ -1,3 +1,7 @@
+#ifdef LIBC_SCCS
+	.asciz	"@(#)cmpd.s	1.2 (Berkeley/CCI) 07/02/86"
+#endif LIBC_SCCS
+
 #include "DEFS.h"
 
 XENTRY(cmpd, R12|R11|R10|R9)
