@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tree.c	5.1 (Berkeley) 05/31/85";
+static char sccsid[] = "@(#)tree.c	5.2 (Berkeley) 04/06/87";
 #endif not lint
 
 static char rcsid[] = "$Header: tree.c,v 1.5 84/12/26 10:42:55 linton Exp $";
@@ -388,7 +388,7 @@ Command cmd;
 		    fprintf(f, ";");
 		}
 	    endfor
-	    fprintf(f, " }", opinfo[ord(cmd->op)].opstring);
+	    fprintf(f, "%s }", opinfo[ord(cmd->op)].opstring);
 	    break;
 
 	case O_TRACEON:
