@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.1 (Berkeley) 12/21/92
+#	@(#)Makefile	6.2 (Berkeley) 01/07/93
 
 M4=	m4
 #M4=	/usr/src/usr.bin/m4/obj/m4
@@ -18,7 +18,7 @@ ALL=	cs-hidden.cf cs-exposed.cf \
 	sunos4.1-cs-exposed.cf sunos4.1-cs-hidden.cf \
 	ultrix4.1-cs-exposed.cf ultrix4.1-cs-hidden.cf \
 	mail.cs.cf mail.eecs.cf ucbvax.cf vangogh.cf \
-	chez.cf knecht.cf cogsci.cf alpha.cf s2000.cf
+	chez.cf knecht.cf cogsci.cf alpha.cf s2k.cf
 
 all: $(ALL)
 
