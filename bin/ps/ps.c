@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)ps.c	4.24 (Berkeley) 05/22/83";
+static	char *sccsid = "@(#)ps.c	4.25 (Berkeley) 09/22/83";
 #endif
 
 /*
@@ -138,7 +138,7 @@ int	pcbpf;
 int	argaddr;
 extern	char _sobuf[];
 
-#define	pgtok(a)	((a)*CLBYTES/1024)
+#define	pgtok(a)	((a)/(1024/NBPG))
 
 main(argc, argv)
 	char **argv;
