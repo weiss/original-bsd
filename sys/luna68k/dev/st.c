@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)st.c	7.3 (Berkeley) 09/01/92
+ *	@(#)st.c	7.4 (Berkeley) 10/11/92
  */
 
 /*
@@ -22,17 +22,17 @@
 #include "st.h"
 #if NST > 0
 
-#include "sys/param.h"
-#include "sys/systm.h"
-#include "sys/buf.h"
-#include "sys/file.h"
-#include "sys/proc.h"
-#include "sys/mtio.h"
-#include "sys/tprintf.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/buf.h>
+#include <sys/file.h>
+#include <sys/proc.h>
+#include <sys/mtio.h>
+#include <sys/tprintf.h>
 
-#include "device.h"
-#include "scsireg.h"
-#include "scsivar.h"
+#include <luna68k/dev/device.h>
+#include <luna68k/dev/scsireg.h>
+#include <luna68k/dev/scsivar.h>
 
 extern int scsi_test_unit_rdy();
 extern int scsi_request_sense();
