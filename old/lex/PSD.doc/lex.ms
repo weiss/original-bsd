@@ -1,4 +1,4 @@
-.\"	@(#)lex.ms	6.1 (Berkeley) 04/28/86
+.\"	@(#)lex.ms	6.2 (Berkeley) 05/01/87
 .\"
 .EH 'PS1:16-%''Lex \- A Lexical Analyzer Generator'
 .OH 'Lex \- A Lexical Analyzer Generator''PS1:16-%'
@@ -1307,7 +1307,7 @@ Thus expressions like
 stop on the
 current line.
 Don't try to defeat this with expressions like
-.I [.\en]+
+.I (.|\en)+
 or
 equivalents;
 the Lex generated program will try to read
