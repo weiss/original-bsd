@@ -11,7 +11,7 @@
  */
 
 #ifdef notdef
-static char sccsid[] = "@(#)cmd1.c	5.7 (Berkeley) 06/16/88";
+static char sccsid[] = "@(#)cmd1.c	5.8 (Berkeley) 06/16/88";
 #endif /* notdef */
 
 #include "rcv.h"
@@ -313,7 +313,8 @@ type1(msgvec, doign, page)
 		signal(SIGPIPE, SIG_DFL);
 		return(0);
 	}
-	if (intty && outtty && (page || (cp = value("crt")) != NOSTR)) {
+	if (value("interactive") != NOSTR &&
+	    (page || (cp = value("crt")) != NOSTR)) {
 		nlines = 0;
 		if (!page) {
 			for (ip = msgvec; *ip && ip-msgvec < msgCount; ip++)
