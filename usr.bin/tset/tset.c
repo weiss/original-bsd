@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tset.c	5.8 (Berkeley) 04/28/86";
+static char sccsid[] = "@(#)tset.c	5.9 (Berkeley) 01/03/88";
 #endif not lint
 
 /*
@@ -496,6 +496,8 @@ char	*Alias[16];
 
 extern char *strcpy();
 extern char *index();
+extern char *tgetstr();
+extern int prc();
 
 struct delay
 {
@@ -546,13 +548,11 @@ char	*argv[];
 # ifdef GTTYN
 	char		*stypeof();
 	extern char	*ttyname();
-	extern char	*tgetstr();
 # endif
 	char		bs_char;
 	int		csh;
 	int		settle;
 	int		setmode();
-	extern		prc();
 	extern char	PC;
 # ifdef	V6
 	extern int	ospeed;
