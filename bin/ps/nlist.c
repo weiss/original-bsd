@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)nlist.c	8.1 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)nlist.c	8.2 (Berkeley) 09/23/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -23,7 +23,7 @@ static char sccsid[] = "@(#)nlist.c	8.1 (Berkeley) 05/31/93";
 
 #include "ps.h"
 
-#ifdef SPPWAIT
+#ifdef P_PPWAIT
 #define NEWVM
 #endif
 
