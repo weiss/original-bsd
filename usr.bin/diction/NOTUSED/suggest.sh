@@ -1,11 +1,13 @@
 #!/bin/sh -
 #
-# Copyright (c) 1988 Regents of the University of California.
-# All rights reserved.  The Berkeley software License Agreement
-# specifies the terms and conditions for redistribution.
+# Copyright (c) 1988 The Regents of the University of California.
+# All rights reserved.
 #
-#	@(#)suggest.sh	5.2 (Berkeley) 05/11/89
+# %sccs.include.proprietary.sh%
 #
+#	@(#)suggest.sh	5.3 (Berkeley) 04/17/91
+#
+
 trap 'rm $$; exit' 1 2 3 15
 D=/usr/share/dict/explain.d
 while echo "phrase?";read x
