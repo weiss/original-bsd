@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.4 (Berkeley) 02/11/93
+ *	@(#)extern.h	8.1 (Berkeley) 06/05/93
  */
 
 struct entry	*addentry __P((char *, ino_t, int));
