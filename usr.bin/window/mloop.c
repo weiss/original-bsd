@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mloop.c	3.10 (Berkeley) 02/21/88";
+static char sccsid[] = "@(#)mloop.c	3.11 (Berkeley) 04/25/88";
 #endif /* not lint */
 
 #include "defs.h"
@@ -34,21 +34,20 @@ mloop()
 			register char *p;
 			register n;
 
-			wwiomux();
-			if (wwibp < wwibq) {
-				for (p = wwibp; p < wwibq && *p != escapec;
-				     p++)
-					;
-				if ((n = p - wwibp) > 0) {
-					if (!w->ww_ispty && w->ww_stopped)
-						startwin(w);
-					(void) write(w->ww_pty, wwibp, n);
-					wwibp = p;
-				}
-				if (wwpeekc() == escapec) {
-					(void) wwgetc();
-					setcmd(1);
-				}
+			if (wwibp >= wwibq)
+				wwiomux();
+			for (p = wwibp; p < wwibq && *p != escapec;
+			     p++)
+				;
+			if ((n = p - wwibp) > 0) {
+				if (!w->ww_ispty && w->ww_stopped)
+					startwin(w);
+				(void) write(w->ww_pty, wwibp, n);
+				wwibp = p;
+			}
+			if (wwpeekc() == escapec) {
+				(void) wwgetc();
+				setcmd(1);
 			}
 		}
 	}
