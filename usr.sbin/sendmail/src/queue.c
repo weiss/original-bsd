@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.24 (Berkeley) 10/23/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.25 (Berkeley) 10/27/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.24 (Berkeley) 10/23/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.25 (Berkeley) 10/27/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -306,9 +306,7 @@ queueup(e, queueall, announce)
 	**  Clean up.
 	*/
 
-	fflush(tfp);
-	fsync(fileno(tfp));
-	if (ferror(tfp))
+	if (fflush(tfp) < 0 || fsync(fileno(tfp)) < 0 || ferror(tfp))
 	{
 		if (newid)
 			syserr("!552 Error writing control file %s", tf);
