@@ -1,5 +1,4 @@
-# @(#)Makefile	4.5 05/28/83
-OPTIONS=-DLOCALNET=46
+# @(#)Makefile	4.6 11/03/83
 CFLAGS=	-O
 DESTDIR=
 ALL=	htable
@@ -10,7 +9,7 @@ htable:	htable.o parse.o scan.o
 	${CC} htable.o parse.o scan.o -o htable
 
 htable.o: htable.c htable.h
-	${CC} ${CFLAGS} ${OPTIONS} -c htable.c
+	${CC} ${CFLAGS} -c htable.c
 
 scan.o:	scan.c htable.h y.tab.h
 
