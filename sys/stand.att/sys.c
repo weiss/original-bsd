@@ -3,14 +3,16 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)sys.c	7.7 (Berkeley) 07/01/88
+ *	@(#)sys.c	7.8 (Berkeley) 03/15/90
  */
 
-#include "param.h"
-#include "inode.h"
-#include "fs.h"
-#include "dir.h"
-#include "reboot.h"
+#include "sys/param.h"
+#include "sys/time.h"
+#include "sys/vnode.h"
+#include "ufs/inode.h"
+#include "ufs/fs.h"
+#include "ufs/dir.h"
+#include "sys/reboot.h"
 #include "saio.h"
 
 #define	isdigit(c)	((u_int)((c) - '0') <= 9)
