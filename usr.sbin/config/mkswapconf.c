@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkswapconf.c	5.9 (Berkeley) 01/09/91";
+static char sccsid[] = "@(#)mkswapconf.c	5.10 (Berkeley) 07/01/91";
 #endif /* not lint */
 
 /*
@@ -67,8 +67,6 @@ do_swap(fl)
 	}
 	fprintf(fp, "dev_t\trootdev = makedev(%d, %d);\n",
 		major(fl->f_rootdev), minor(fl->f_rootdev));
-	fprintf(fp, "dev_t\targdev  = makedev(%d, %d);\n",
-		major(fl->f_argdev), minor(fl->f_argdev));
 	fprintf(fp, "dev_t\tdumpdev = makedev(%d, %d);\n",
 		major(fl->f_dumpdev), minor(fl->f_dumpdev));
 	fprintf(fp, "\n");
