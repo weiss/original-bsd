@@ -17,13 +17,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)rpcv2.h	7.1 (Berkeley) 07/05/89
+ *	@(#)rpcv2.h	7.2 (Berkeley) 12/20/89
  */
 
 /*
  * Definitions for Sun RPC Version 2, from
- * "Remote Procedure Call Protocol Specification" in the manual
- * "Networking on the Sun Workstation", Part #800-1324-03 Rev. B
+ * "RPC: Remote Procedure Call Protocol Specification" RFC1057
  */
 
 /* Version # */
