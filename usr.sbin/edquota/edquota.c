@@ -22,23 +22,22 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)edquota.c	5.6 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)edquota.c	5.7 (Berkeley) 03/05/89";
 #endif /* not lint */
 
 /*
  * Disk quota editor.
  */
-#include <stdio.h>
-#include <signal.h>
-#include <errno.h>
-#include <pwd.h>
-#include <ctype.h>
-#include <fstab.h>
-
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/file.h>
 #include <sys/quota.h>
+#include <signal.h>
+#include <errno.h>
+#include <fstab.h>
+#include <pwd.h>
+#include <ctype.h>
+#include <stdio.h>
 
 #define	DEFEDITOR	"/usr/ucb/vi"
 
