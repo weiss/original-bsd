@@ -4,11 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stddef.h	5.4 (Berkeley) 03/09/91
+ *	@(#)stddef.h	5.5 (Berkeley) 04/03/91
  */
 
 #ifndef _STDDEF_H_
 #define _STDDEF_H_
+
 #include <machine/ansi.h>
 
 typedef	_PTRDIFF_T_	ptrdiff_t;
