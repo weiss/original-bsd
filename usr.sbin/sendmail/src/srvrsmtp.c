@@ -1,10 +1,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.34		10/16/82	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.35		11/17/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.34		10/16/82);
+SCCSID(@(#)srvrsmtp.c	3.35		11/17/82);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -220,14 +220,14 @@ smtp()
 			FatalErrors = FALSE;
 
 			/* send to all recipients */
-			sendall(CurEnv, FALSE);
+			sendall(CurEnv, SendMode);
 			CurEnv->e_to = NULL;
 
 			/* issue success if appropriate and reset */
 			if (Errors == 0 || HoldErrs)
 			{
 				HoldErrs = FALSE;
-				message("250", "Sent");
+				message("250", "Ok");
 			}
 			else
 				FatalErrors = FALSE;
