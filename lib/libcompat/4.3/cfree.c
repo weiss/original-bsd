@@ -6,12 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)cfree.c	5.1 (Berkeley) 01/12/93";
+static char sccsid[] = "@(#)cfree.c	5.2 (Berkeley) 01/12/93";
 #endif /* LIBC_SCCS and not lint */
 
 void
 cfree(p)
 	void *p;
 {
-	(void)free(p);
+	free(p);
 }
