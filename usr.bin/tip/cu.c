@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cu.c	5.2 (Berkeley) 01/13/86";
+static char sccsid[] = "@(#)cu.c	5.3 (Berkeley) 02/09/87";
 #endif not lint
 
 #include "tip.h"
@@ -87,12 +87,7 @@ cumain(argc, argv)
 	}
 	setbuf(stdout, NULL);
 	loginit();
-	gid = getgid();
-	egid = getegid();
-	uid = getuid();
-	euid = geteuid();
-	setregid(egid, gid);
-	setreuid(euid, uid);
+	user_uid();
 	vinit();
 	setparity("none");
 	boolean(value(VERBOSE)) = 0;
@@ -100,8 +95,7 @@ cumain(argc, argv)
 		ttysetup(speed(BR));
 	if (connect()) {
 		printf("Connect failed\n");
-		setreuid(uid, euid);
-		setregid(gid, egid);
+		daemon_uid();
 		delock(uucplock);
 		exit(1);
 	}
