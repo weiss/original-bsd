@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.2 (Berkeley) 10/22/88
+#	@(#)Makefile	5.3 (Berkeley) 05/11/89
 #
 COMMON=	../common_source
 CFLAGS=	-O -DNEQN -I. -I${COMMON}
@@ -48,7 +48,7 @@ depend: ${SRCS}
 	mkdep ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o bin -g bin -m 755 neqn ${DESTDIR}/usr/bin/neqn
+	install -s -o bin -g bin -m 755 neqn ${DESTDIR}/usr/bin
 
 lint: ${SRCS}
 	lint ${CFLAGS} ${SRCS}
