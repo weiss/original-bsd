@@ -28,15 +28,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.23 (Berkeley) 03/13/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.23 (Berkeley) 03/13/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.23 (Berkeley) 03/13/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.23 (Berkeley) 03/13/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -646,6 +646,11 @@ readaliases(aliasfile, init, e)
 		for (;;)
 		{
 			register char c;
+			register char *nlp;
+
+			nlp = &p[strlen(p)];
+			if (nlp[-1] == '\n')
+				*--nlp = '\0';
 
 			if (init && CheckAliases)
 			{
@@ -666,9 +671,7 @@ readaliases(aliasfile, init, e)
 			}
 			else
 			{
-				p = &p[strlen(p)];
-				if (p[-1] == '\n')
-					*--p = '\0';
+				p = nlp;
 			}
 
 			/* see if there should be a continuation line */
