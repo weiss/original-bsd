@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)pftn.c	1.19 (Berkeley) 12/10/87";
+static char *sccsid ="@(#)pftn.c	1.20 (Berkeley) 12/10/87";
 #endif lint
 
 # include "pass1.h"
@@ -1032,6 +1032,16 @@ endinit(){
 	inoff = 0;
 	iclass = SNULL;
 
+	}
+
+fixinit(){
+	/* called from the grammar if we must punt during initialization */
+	/* stolen from endinit() */
+	pstk = instack;
+	paramno = 0;
+	vfdalign( AL_INIT );
+	inoff = 0;
+	iclass = SNULL;
 	}
 
 doinit( p ) register NODE *p; {
