@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)process.c 1.8 04/08/83";
+static char sccsid[] = "@(#)process.c 1.9 05/17/83";
 
 /*
  * Process management.
@@ -107,7 +107,10 @@ public process_init()
     defregname(identname("$pc", true), PROGCTR);
     if (coredump) {
 	coredump_readin(process->mask, process->reg, process->signo);
+	pc = process->reg[PROGCTR];
+	getsrcpos();
     }
+    arginit();
 }
 
 /*
