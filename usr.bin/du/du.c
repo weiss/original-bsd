@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)du.c	8.4 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)du.c	8.5 (Berkeley) 05/04/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -28,6 +28,7 @@ static char sccsid[] = "@(#)du.c	8.4 (Berkeley) 04/01/94";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 int	 linkchk __P((FTSENT *));
 void	 usage __P((void));
