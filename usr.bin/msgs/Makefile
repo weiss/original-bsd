@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/04/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 #
 CFLAGS=-O
@@ -14,6 +14,9 @@ install:
 	install -s msgs ${DESTDIR}/usr/ucb
 clean:
 	-rm -f msgs
+
+depend:
+
 sources: $(SRCS)
 $(SRCS):
 	sccs get $@
