@@ -3,9 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_dereg.h	6.2 (Berkeley) 06/08/85
+ *	@(#)if_dereg.h	6.3 (Berkeley) 06/09/85
  */
 
+/*
  * DEC DEUNA interface
  */
 struct dedevice {
