@@ -12,7 +12,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dc.c	7.7 (Berkeley) 07/27/92
+ *	@(#)dc.c	7.8 (Berkeley) 09/13/92
  *
  * devDC7085.c --
  *
@@ -67,7 +67,7 @@ struct	driver dcdriver = {
 
 extern void dcstart __P((struct tty *));
 extern void dcxint __P((struct tty *));
-extern void ttrstrt __P((struct tty *));
+extern void ttrstrt __P((void *));
 
 struct	tty dc_tty[NDCLINE];
 int	dc_cnt = NDCLINE;
