@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)initscr.c	5.13 (Berkeley) 01/24/93";
+static char sccsid[] = "@(#)initscr.c	5.14 (Berkeley) 05/10/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -44,8 +44,6 @@ initscr()
 	if (!HO && !CM) 
 		return (NULL);
 
-	__startwin();
-
 	if (curscr != NULL)
 		delwin(curscr);
 	if ((curscr = newwin(LINES, COLS, 0, 0)) == ERR)
@@ -64,6 +62,7 @@ initscr()
 #ifdef DEBUG
 	__TRACE("initscr: LINES = %d, COLS = %d\n", LINES, COLS);
 #endif
+	__startwin();
+
 	return (stdscr);
 }
-
