@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.40		08/08/82);
+SCCSID(@(#)savemail.c	3.41		08/22/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -33,7 +33,6 @@ savemail()
 	extern char *ttypath();
 	static int exclusive;
 	typedef int (*fnptr)();
-	extern ENVELOPE *newenvelope();
 
 # ifdef DEBUG
 	if (tTd(6, 1))
@@ -269,6 +268,7 @@ returntosender(msg, returnto, sendbody)
 	checkerrors(ee);
 
 	/* restore state */
+	dropenvelope(ee);
 	CurEnv = CurEnv->e_parent;
 	returndepth--;
 
