@@ -4,31 +4,31 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.55 (Berkeley) 09/22/92
+ *	@(#)init_main.c	7.56 (Berkeley) 12/01/92
  */
 
-#include "param.h"
-#include "filedesc.h"
-#include "kernel.h"
-#include "mount.h"
-#include "map.h"
-#include "proc.h"
-#include "resourcevar.h"
-#include "signalvar.h"
-#include "systm.h"
-#include "vnode.h"
-#include "conf.h"
-#include "buf.h"
-#include "clist.h"
-#include "protosw.h"
-#include "reboot.h"
-#include "user.h"
+#include <sys/param.h>
+#include <sys/filedesc.h>
+#include <sys/kernel.h>
+#include <sys/mount.h>
+#include <sys/map.h>
+#include <sys/proc.h>
+#include <sys/resourcevar.h>
+#include <sys/signalvar.h>
+#include <sys/systm.h>
+#include <sys/vnode.h>
+#include <sys/conf.h>
+#include <sys/buf.h>
+#include <sys/clist.h>
+#include <sys/protosw.h>
+#include <sys/reboot.h>
+#include <sys/user.h>
 
-#include "ufs/ufs/quota.h"
+#include <ufs/ufs/quota.h>
 
-#include "machine/cpu.h"
+#include <machine/cpu.h>
 
-#include "vm/vm.h"
+#include <vm/vm.h>
 
 #ifdef HPFPLIB
 char	copyright[] =
