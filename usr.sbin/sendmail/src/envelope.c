@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	8.44 (Berkeley) 11/21/94";
+static char sccsid[] = "@(#)envelope.c	8.45 (Berkeley) 11/22/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -121,7 +121,8 @@ dropenvelope(e)
 			queueit = TRUE;
 
 		/* see if a notification is needed */
-		if (bitset(QBADADDR, q->q_flags) &&
+		if (e->e_df != NULL &&
+		    bitset(QBADADDR, q->q_flags) &&
 		    bitset(QPINGONFAILURE, q->q_flags))
 		{
 			failure_return = TRUE;
