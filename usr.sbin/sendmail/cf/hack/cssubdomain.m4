@@ -7,7 +7,7 @@ divert(-1)
 # %sccs.include.redist.sh%
 #
 divert(0)
-VERSIONID(`@(#)cssubdomain.m4	2.5 (Berkeley) 11/14/92')
+VERSIONID(`@(#)cssubdomain.m4	6.1 (Berkeley) 12/21/92')
 
 divert(2)
 # find possible (old & new) versions of our name via short circuit hack
