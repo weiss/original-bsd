@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2.1.1 (Berkeley) 05/31/85
+#	@(#)Makefile	5.2.2.1 (Berkeley) 05/31/85
 #
 VERSION=3.5
 #
