@@ -14,12 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_syscalls.c	7.54 (Berkeley) 06/22/90
+ *	@(#)vfs_syscalls.c	7.55 (Berkeley) 06/28/90
  */
 
 #include "param.h"
 #include "systm.h"
-#include "syscontext.h"
+#include "user.h"
 #include "kernel.h"
 #include "file.h"
 #include "stat.h"
@@ -29,7 +29,6 @@
 #include "uio.h"
 #include "malloc.h"
 
-#undef RETURN
 #define RETURN(val) {if (u.u_spare[0] != 0) panic("lock count"); return (val);}
 
 /*
