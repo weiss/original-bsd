@@ -3,16 +3,16 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_clock.c	7.12 (Berkeley) 03/17/91
+ *	@(#)kern_clock.c	7.13 (Berkeley) 05/03/91
  */
 
 #include "param.h"
 #include "systm.h"
 #include "dkstat.h"
 #include "callout.h"
-#include "user.h"
 #include "kernel.h"
 #include "proc.h"
+#include "resourcevar.h"
 
 #include "machine/cpu.h"
 
@@ -65,7 +65,7 @@ hardclock(frame)
 {
 	register struct callout *p1;
 	register struct proc *p = curproc;
-	register struct pstats *pstats = p->p_stats;
+	register struct pstats *pstats;
 	register int s;
 	int needsoft = 0;
 	extern int tickdelta;
@@ -92,6 +92,12 @@ hardclock(frame)
 	}
 
 	/*
+	 * Curproc (now in p) is null if no process is running.
+	 * We assume that curproc is set in user mode!
+	 */
+	if (p)
+		pstats = p->p_stats;
+	/*
 	 * Charge the time out based on the mode the cpu is in.
 	 * Here again we fudge for the lack of proper interval timers
 	 * assuming that the current state has been around at least
@@ -113,7 +119,7 @@ hardclock(frame)
 		/*
 		 * CPU was in system state.
 		 */
-		if (!noproc)
+		if (p)
 			BUMPTIME(&p->p_stime, tick);
 	}
 
@@ -125,7 +131,7 @@ hardclock(frame)
 	 * This assumes that the current process has been running
 	 * the entire last tick.
 	 */
-	if (noproc == 0) {
+	if (p) {
 		if ((p->p_utime.tv_sec+p->p_stime.tv_sec+1) >
 		    p->p_rlimit[RLIMIT_CPU].rlim_cur) {
 			psignal(p, SIGXCPU);
@@ -240,7 +246,7 @@ gatherstats(framep)
 		 * timers makes doing anything else difficult.
 		 */
 		cpstate = CP_SYS;
-		if (noproc && CLKF_BASEPRI(framep))
+		if (curproc == NULL && CLKF_BASEPRI(framep))
 			cpstate = CP_IDLE;
 #ifdef GPROF
 		s = CLKF_PC(framep) - s_lowpc;
