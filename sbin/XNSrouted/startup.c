@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)startup.c	5.10 (Berkeley) 11/29/90";
+static char sccsid[] = "@(#)startup.c	5.11 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 /*
@@ -19,7 +19,7 @@ static char sccsid[] = "@(#)startup.c	5.10 (Berkeley) 11/29/90";
 #include <sys/ioctl.h>
 #include <net/if.h>
 #include <nlist.h>
-#include <syslog.h>
+#include <stdlib.h>
 
 struct	interface *ifnet;
 int	lookforinterfaces = 1;
