@@ -1,4 +1,4 @@
-/*	in.h	4.19	82/12/17	*/
+/*	in.h	4.20	83/01/17	*/
 
 /*
  * Constants and structures defined by the internet system,
@@ -13,6 +13,7 @@
 #define	IPPROTO_TCP		6		/* tcp */
 #define	IPPROTO_PUP		12		/* pup */
 #define	IPPROTO_UDP		17		/* user datagram protocol */
+#define	IPPROTO_ND		77		/* UNOFFICIAL net disk proto */
 
 #define	IPPROTO_RAW		255		/* raw IP packet */
 #define	IPPROTO_MAX		256
