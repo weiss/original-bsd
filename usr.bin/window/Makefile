@@ -9,7 +9,7 @@
 # software without specific prior written permission. This software
 # is provided ``as is'' without express or implied warranty.
 #
-#	@(#)Makefile	3.7 (Berkeley) 02/21/88
+#	@(#)Makefile	3.8 (Berkeley) 05/22/88
 #
 CFLAGS=	-O -R
 LIBC=	/lib/libc.a
@@ -46,7 +46,7 @@ window: ${OBJS} ${LIBC}
 	${CC} -o $@ ${CFLAGS} ${OBJS} -ltermcap
 
 clean: FRC
-	rm -f ${OBJS} core window
+	rm -f ${OBJS} core window make.out tags
 
 depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
