@@ -1,4 +1,4 @@
-/*	trap.c	3.3	10/14/12	*/
+/*	trap.c	3.4	10/14/12	*/
 
 
 #include "../h/param.h"
@@ -147,7 +147,7 @@ unsigned code;
 	u.u_ar0 = locr0;
 	params = (caddr_t)locr0[AP] + NBPW;
 	u.u_error = 0;
-	opc = u.u_ar0[PC] - 2;
+	opc = pc - 2;
 	if (code > 63)
 		opc -= 2;
 	callp = &sysent[code&0177];
