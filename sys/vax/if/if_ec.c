@@ -3,10 +3,11 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_ec.c	6.12 (Berkeley) 09/16/85
+ *	@(#)if_ec.c	6.13 (Berkeley) 10/24/85
  */
 
 #include "ec.h"
+#if NEC > 0
 
 /*
  * 3Com Ethernet Controller interface
@@ -972,3 +973,4 @@ int unit;
 	ether_addr(es->es_addr);
 #endif
 }
+#endif
