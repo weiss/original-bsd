@@ -7,25 +7,24 @@
  *
  * %sccs.include.noredist.c%
  *
- *	@(#)mem.c	5.2 (Berkeley) 04/24/90
+ *	@(#)mem.c	5.3 (Berkeley) 11/14/90
  */
-
 
 /*
  * Memory special file
  */
 
-#include "../machine/pte.h"
+#include "machine/pte.h"
 
-#include "../h/param.h"
-#include "../h/dir.h"
-#include "../h/user.h"
-#include "../h/conf.h"
-#include "../h/buf.h"
-#include "../h/systm.h"
-#include "../h/vm.h"
-#include "../h/cmap.h"
-#include "../h/uio.h"
+#include "param.h"
+#include "dir.h"
+#include "user.h"
+#include "conf.h"
+#include "buf.h"
+#include "systm.h"
+#include "vm.h"
+#include "cmap.h"
+#include "uio.h"
 
 mmread(dev, uio)
 	dev_t dev;
