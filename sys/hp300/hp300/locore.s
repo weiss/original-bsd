@@ -11,11 +11,11 @@
  *
  * from: Utah $Hdr: locore.s 1.62 92/01/20$
  *
- *	@(#)locore.s	7.17 (Berkeley) 08/03/92
+ *	@(#)locore.s	7.18 (Berkeley) 10/11/92
  */
 
 #include "assym.s"
-#include "vectors.s"
+#include <hp300/hp300/vectors.s>
 
 #define MMUADDR(ar)	movl	_MMUbase,ar
 #define CLKADDR(ar)	movl	_CLKbase,ar
