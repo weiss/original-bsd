@@ -29,6 +29,7 @@ SOFTWARE.
  *
  * $Header: tp_timer.c,v 5.2 88/11/18 17:29:07 nhall Exp $
  * $Source: /usr/argo/sys/netiso/RCS/tp_timer.c,v $
+ *	@(#)tp_timer.c	7.3 (Berkeley) 08/29/89 *
  *
  * Contains all the timer code.  
  * There are two sources of calls to these routines:

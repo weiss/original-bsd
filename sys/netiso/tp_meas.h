@@ -24,6 +24,7 @@ SOFTWARE.
 /*
  * ARGO Project, Computer Sciences Dept., University of Wisconsin - Madison
  */
+/*	@(#)tp_meas.h	7.3 (Berkeley) 08/29/89 */
 #ifdef TPPT
 #define TP_PERF_MEAS
 #endif TPPT
