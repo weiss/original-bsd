@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	7.24 (Berkeley) 01/25/89
+#	@(#)Makefile	7.25 (Berkeley) 03/06/89
 #
 VERSION=3.7
 #
@@ -64,8 +64,8 @@ MAN=	ex.0 vi.0
 #	${CC} -E ${CFLAGS} x$*.c | xstr -c -
 #	rm -f x$*.c
 # endif
-	${CC} ${CFLAGS} -c x.c 
-	mv x.o $*.o
+	@${CC} ${CFLAGS} -c x.c
+	@mv x.o $*.o
 
 all: ex exrecover expreserve
 
