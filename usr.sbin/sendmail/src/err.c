@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)err.c	6.19 (Berkeley) 05/17/93";
+static char sccsid[] = "@(#)err.c	6.20 (Berkeley) 05/21/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -251,7 +251,8 @@ putmsg(msg, holdmsg)
 			fprintf(OutChannel, "%s\r\n", msg);
 		else
 			fprintf(OutChannel, "%s\n", &msg[4]);
-		(void) fflush(OutChannel);
+		if (msg[3] == ' ')
+			(void) fflush(OutChannel);
 		if (ferror(OutChannel))
 		{
 			HoldErrs = TRUE;
