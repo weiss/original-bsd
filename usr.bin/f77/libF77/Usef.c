@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)Usef.c	1.3	09/14/87
+ *	@(#)Usef.c	1.4	02/25/90
  */
 
 /*		returns '-f' if need to use -f to bypass C bug		*/
@@ -22,14 +22,18 @@ int argc;
 char **argv;
 {
 	char **ptr;
+	float f;
 
-	argv++;
-	ptr = needs_f;
-	while( *ptr != 0 ) {
-		if( strcmp( *ptr++, *argv ) == 0 )
-		{
-			printf("-f");
-			exit(0);
+	if (sizeof (f + f) != sizeof f)
+	{
+		argv++;
+		ptr = needs_f;
+		while( *ptr != 0 ) {
+			if( strcmp( *ptr++, *argv ) == 0 )
+			{
+				printf("-f");
+				exit(0);
+			}
 		}
 	}
 	printf(" ");
