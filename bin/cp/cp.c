@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	5.15 (Berkeley) 03/05/90";
+static char sccsid[] = "@(#)cp.c	5.16 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 /*
@@ -49,7 +49,7 @@ static char sccsid[] = "@(#)cp.c	5.15 (Berkeley) 03/05/90";
 #include <sys/time.h>
 #include <stdio.h>
 #include <errno.h>
-#include <strings.h>
+#include <string.h>
 
 #define	type(st)	((st).st_mode & S_IFMT)
 
