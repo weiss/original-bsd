@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)lex.c	4.8 (Berkeley) 01/30/85";
+static	char *sccsid = "@(#)lex.c	4.9 (Berkeley) 03/19/85";
 #endif
 
 #include "sh.h"
@@ -1044,7 +1044,7 @@ setexclp(cp)
 	register char *cp;
 {
 
-	if (cp[0] == '\n')
+	if (cp && cp[0] == '\n')
 		return;
 	exclp = cp;
 }
