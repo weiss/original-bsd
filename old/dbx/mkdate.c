@@ -1,9 +1,9 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)mkdate.c 1.1 03/31/83";
+static char sccsid[] = "@(#)mkdate.c 1.2 07/03/83";
 
 #include <stdio.h>
-#include <time.h>
+#include <sys/time.h>
 
 main()
 {
