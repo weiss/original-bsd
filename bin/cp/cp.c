@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	5.23 (Berkeley) 04/03/91";
+static char sccsid[] = "@(#)cp.c	5.24 (Berkeley) 05/06/91";
 #endif /* not lint */
 
 /*
@@ -334,7 +334,8 @@ copy_file(fs, dne)
 		    fs->st_mode & RETAINBITS & ~myumask))
 			error(to.p_path);
 	(void)close(from_fd);
-	(void)close(to_fd);
+	if (close(to_fd))
+		error(to.p_path);
 }
 
 copy_dir()
