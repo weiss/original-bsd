@@ -1,3 +1,5 @@
+/* @(#)cribbage.h	1.4 (Berkeley) 05/19/83 */
+
 extern  CARD		deck[ CARDS ];		/* a deck */
 extern  CARD		phand[ FULLHAND ];	/* player's hand */
 extern  CARD		chand[ FULLHAND ];	/* computer's hand */
