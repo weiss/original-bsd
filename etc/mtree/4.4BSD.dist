@@ -3,7 +3,7 @@
 #	   tree: distribution tree: /, /usr, /var
 #	   date: Wed Jul 15 13:40:13 1992
 #
-#	@(#)4.4BSD.dist	5.26 (Berkeley) 06/13/93
+#	@(#)4.4BSD.dist	5.27 (Berkeley) 06/13/93
 
 /set type=dir uname=root gname=wheel mode=0755
 # .
@@ -416,21 +416,6 @@ include
 ..
 
 # ./usr/libexec/gcc2
-..
-
-# ./usr/libexec/lpr
-lpr
-# ./usr/libexec/lpr
-..
-
-# ./usr/libexec/lpr
-lpr
-# ./usr/libexec/lpr
-..
-
-# ./usr/libexec/lpr
-lpr
-# ./usr/libexec/lpr
 ..
 
 # ./usr/libexec/lpr
