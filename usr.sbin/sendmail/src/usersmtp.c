@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.47 (Berkeley) 04/22/95 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.48 (Berkeley) 04/23/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.47 (Berkeley) 04/22/95 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.48 (Berkeley) 04/23/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -542,7 +542,7 @@ smtprcpt(to, m, mci, e)
 	SmtpPhase = mci->mci_phase = "client RCPT";
 	setproctitle("%s %s: %s", e->e_id, CurHostName, mci->mci_phase);
 	r = reply(m, mci, e, TimeOuts.to_rcpt, NULL);
-	setstatus(to, SmtpReplyBuffer);
+	to->q_rstatus = newstr(SmtpReplyBuffer);
 	to->q_status = smtptodsn(r);
 	if (r < 0 || REPLYTYPE(r) == 4)
 		return EX_TEMPFAIL;
