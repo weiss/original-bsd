@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)sys_generic.c	7.15 (Berkeley) 05/01/90
+ *	@(#)sys_generic.c	7.16 (Berkeley) 05/15/90
  */
 
 #include "param.h"
@@ -53,8 +53,6 @@ read()
 	    (fp = u.u_ofile[uap->fdes]) == NULL ||
 	    (fp->f_flag & FREAD) == 0)
 		RETURN (EBADF);
-	if (uap->count < 0)
-		RETURN (EINVAL);
 	aiov.iov_base = (caddr_t)uap->cbuf;
 	aiov.iov_len = uap->count;
 	auio.uio_iov = &aiov;
@@ -135,7 +133,7 @@ readv()
 	 * if tracing, save a copy of iovec
 	 */
 	if (KTRPOINT(u.u_procp, KTR_GENIO))  {
-		int iovlen = auio.uio_iovcnt * sizeof (struct iovec);
+		unsigned iovlen = auio.uio_iovcnt * sizeof (struct iovec);
 
 		MALLOC(ktriov, struct iovec *, iovlen, M_TEMP, M_WAITOK);
 		bcopy((caddr_t)auio.uio_iov, (caddr_t)ktriov, iovlen);
@@ -184,8 +182,6 @@ write()
 	    (fp = u.u_ofile[uap->fdes]) == NULL ||
 	    (fp->f_flag & FWRITE) == 0)
 		RETURN (EBADF);
-	if (uap->count < 0)
-		RETURN (EINVAL);
 	aiov.iov_base = (caddr_t)uap->cbuf;
 	aiov.iov_len = uap->count;
 	auio.uio_iov = &aiov;
@@ -270,7 +266,7 @@ writev()
 	 * if tracing, save a copy of iovec
 	 */
 	if (KTRPOINT(u.u_procp, KTR_GENIO))  {
-		int iovlen = auio.uio_iovcnt * sizeof (struct iovec);
+		unsigned iovlen = auio.uio_iovcnt * sizeof (struct iovec);
 
 		MALLOC(ktriov, struct iovec *, iovlen, M_TEMP, M_WAITOK);
 		bcopy((caddr_t)auio.uio_iov, (caddr_t)ktriov, iovlen);
