@@ -4,12 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)string.h	5.4 (Berkeley) 05/29/90
+ *	@(#)string.h	5.5 (Berkeley) 01/17/91
  */
 
 #ifndef _STRING_H_
 #define	_STRING_H_
-#include <machine/machtypes.h>
+#include <machine/types.h>
 
 #ifdef	_SIZE_T_
 typedef	_SIZE_T_	size_t;
@@ -85,7 +85,7 @@ void	*memccpy(void *, const void *, int, size_t);
 char	*rindex(const char *, int);
 int	 strcasecmp(const char *, const char *);
 char	*strdup(const char *);
-void	 strmode(mode_t, char *);
+void	 strmode(int, char *);
 int	 strncasecmp(const char *, const char *, size_t);
 char	*strsep(char *, const char *);
 void	 swab(const char *, char *, size_t);
