@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkinit.c	5.3 (Berkeley) 03/13/91";
+static char sccsid[] = "@(#)mkinit.c	5.4 (Berkeley) 06/23/92";
 #endif /* not lint */
 
 /*
@@ -31,8 +31,10 @@ static char sccsid[] = "@(#)mkinit.c	5.3 (Berkeley) 03/13/91";
 
 
 #include <sys/cdefs.h>
+#include <sys/types.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 
 /*
@@ -409,7 +411,7 @@ touch(file)
 		close(fd);
 		return 0;
 	}
-	lseek(fd, 0L, 0);
+	lseek(fd, (off_t)0, 0);
 	write(fd, &c, 1);
 	close(fd);
 	return 1;
