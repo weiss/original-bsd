@@ -1,12 +1,13 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)RELTGE.c 1.1 10/30/80";
+static char sccsid[] = "@(#)RELTGE.c 1.2 03/07/81";
 
 #include "h00vars.h"
 
+bool
 RELTGE(bytecnt, left, right)
 
-	int		bytecnt;
+	long		bytecnt;
 	register long	*left;
 	register long	*right;
 {
