@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)raw_usrreq.c	7.9 (Berkeley) 06/28/90
+ *	@(#)raw_usrreq.c	7.10 (Berkeley) 03/07/92
  */
 
 #include "param.h"
@@ -19,8 +19,6 @@
 #include "route.h"
 #include "netisr.h"
 #include "raw_cb.h"
-
-#include "machine/mtpr.h"
 
 /*
  * Initialize raw connection block q.
