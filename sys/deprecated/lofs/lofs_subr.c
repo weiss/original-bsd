@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lofs_subr.c	1.2 (Berkeley) 06/18/92
+ *	@(#)lofs_subr.c	7.1 (Berkeley) 07/12/92
  *
  * $Id: lofs_subr.c,v 1.11 1992/05/30 10:05:43 jsp Exp jsp $
  */
@@ -21,7 +21,7 @@
 #include <sys/mount.h>
 #include <sys/namei.h>
 #include <sys/malloc.h>
-#include <lofs/lofs.h>
+#include <miscfs/lofs/lofs.h>
 
 #define LOG2_SIZEVNODE 7		/* log2(sizeof struct vnode) */
 #define	NLOFSCACHE 16
