@@ -1,7 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)var.c 2.2 03/15/85";
+static char sccsid[] = "@(#)var.c 2.3 03/20/85";
 #endif
 
 #include "whoami.h"
@@ -11,7 +11,6 @@ static char sccsid[] = "@(#)var.c 2.2 03/15/85";
 #include "iorec.h"
 #ifdef PC
 #   include	"pc.h"
-#   include	"pcops.h"
 #endif PC
 #include "tmps.h"
 #include "tree_ty.h"
