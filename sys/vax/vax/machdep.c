@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.c	7.9.1.2 (Berkeley) 12/15/87
+ *	@(#)machdep.c	7.11 (Berkeley) 04/23/88
  */
 
 #include "reg.h"
@@ -30,6 +30,7 @@
 #include "mbuf.h"
 #include "msgbuf.h"
 #include "quota.h"
+#include "malloc.h"
 
 #include "frame.h"
 #include "clock.h"
@@ -56,6 +57,7 @@ int	bufpages = BUFPAGES;
 #else
 int	bufpages = 0;
 #endif
+int	msgbufmapped;		/* set when safe to use msgbuf */
 
 /*
  * Machine-dependent startup code
@@ -85,6 +87,7 @@ startup(firstaddr)
 	for (i = 0; i < btoc(sizeof (struct msgbuf)); i++)
 		*(int *)pte++ = PG_V | PG_KW | (maxmem + i);
 	mtpr(TBIA, 0);
+	msgbufmapped = 1;
 
 #if VAX630
 #include "qv.h"
@@ -94,6 +97,14 @@ startup(firstaddr)
 	 */
 	if (!qvcons_init())
 		printf("qvss not initialized\n");
+#endif 
+#include "qd.h"
+#if NQD > 0
+	/*
+	 * redirect console to qdss if it exists
+	 */
+	if (!qdcons_init())
+		printf("qdss not initialized\n");
 #endif
 #endif
 
@@ -132,6 +143,8 @@ startup(firstaddr)
 	valloc(kernelmap, struct map, nproc);
 	valloc(mbmap, struct map, nmbclusters/4);
 	valloc(namecache, struct namecache, nchsize);
+	valloc(kmemmap, struct map, ekmempt - kmempt);
+	valloc(kmemusage, struct kmemusage, ekmempt - kmempt);
 #ifdef QUOTA
 	valloclim(quota, struct quota, nquota, quotaNQUOTA);
 	valloclim(dquot, struct dquot, ndquot, dquotNDQUOT);
@@ -257,6 +270,7 @@ startup(firstaddr)
 	    "usrpt", nproc);
 	rminit(mbmap, (long)(nmbclusters * CLSIZE), (long)CLSIZE,
 	    "mbclusters", nmbclusters/4);
+	kmeminit();	/* now safe to do malloc/free */
 
 	/*
 	 * Set up CPU-specific registers, cache, etc.
@@ -881,12 +895,9 @@ dumpsys()
 {
 
 	rpb.rp_flag = 1;
+	msgbufmapped = 0;
 	if (dumpdev == NODEV)
 		return;
-#ifdef notdef
-	if ((minor(dumpdev)&07) != 1)
-		return;
-#endif
 	/*
 	 * For dumps during autoconfiguration,
 	 * if dump device has already configured...
