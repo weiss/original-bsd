@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.68		12/09/82);
+SCCSID(@(#)parseaddr.c	3.69		12/09/82);
 
 /*
 **  PARSE -- Parse an address
@@ -990,14 +990,16 @@ remotename(name, m, senderaddress)
 		/* append from domain to this address */
 		register char **pxp = pvp;
 
+		/* see if there is an "@domain" in the current name */
 		while (*pxp != NULL && strcmp(*pxp, "@") != 0)
 			pxp++;
 		if (*pxp == NULL)
 		{
+			/* no.... append the "@domain" from the sender */
 			register char **qxq = CurEnv->e_fromdomain;
 
-			while (*qxq != NULL)
-				*pxp++ = *qxq++;
+			while ((*pxp++ = *qxq++) != NULL)
+				continue;
 		}
 	}
 
