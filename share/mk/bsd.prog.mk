@@ -1,3 +1,5 @@
+#	@(#)bsd.prog.mk	5.11 (Berkeley) 05/10/90
+
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif

@@ -1,3 +1,5 @@
+#	@(#)sys.mk	5.7 (Berkeley) 05/10/90
+
 unix=		We run UNIX.
 
 .SUFFIXES: .out .a .ln .o .c .F .f .e .r .y .l .s .cl .p .h 
