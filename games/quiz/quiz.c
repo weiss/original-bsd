@@ -16,16 +16,19 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)quiz.c	8.2 (Berkeley) 01/03/94";
+static char sccsid[] = "@(#)quiz.c	8.3 (Berkeley) 05/04/95";
 #endif /* not lint */
 
 #include <sys/types.h>
+
+#include <ctype.h>
 #include <errno.h>
-#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include <time.h>
+#include <unistd.h>
+
 #include "quiz.h"
 #include "pathnames.h"
 
