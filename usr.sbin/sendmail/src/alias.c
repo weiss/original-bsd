@@ -6,24 +6,6 @@
  * %sccs.include.redist.c%
  */
 
-#ifndef lint
-#ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (with DBM)";
-#else
-#ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (with NEWDB)";
-#else
-static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (without DBM)";
-#endif
-#endif
-#endif /* not lint */
-
-# ifdef DBM
-# ifdef NEWDB
-#   ERROR: must choose one of DBM or NEWDB compilation flags
-# endif
-# endif
-
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <signal.h>
@@ -34,6 +16,24 @@ static char sccsid[] = "@(#)alias.c	5.24 (Berkeley) 07/26/91 (without DBM)";
 
 # ifdef NEWDB
 # include <db.h>
+# endif
+
+#ifndef lint
+#ifdef DBM
+static char sccsid[] = "@(#)alias.c	5.25 (Berkeley) 07/26/91 (with DBM)";
+#else
+#ifdef NEWDB
+static char sccsid[] = "@(#)alias.c	5.25 (Berkeley) 07/26/91 (with NEWDB)";
+#else
+static char sccsid[] = "@(#)alias.c	5.25 (Berkeley) 07/26/91 (without DBM)";
+#endif
+#endif
+#endif /* not lint */
+
+# ifdef DBM
+# ifdef NEWDB
+  ERROR ERROR ERROR: must choose one of DBM or NEWDB compilation flags
+# endif
 # endif
 
 /*
