@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: ite_rb.c 1.17 92/01/21$
+ * from: Utah $Hdr: ite_rb.c 1.18 92/12/20$
  *
- *	@(#)ite_rb.c	7.7 (Berkeley) 10/11/92
+ *	@(#)ite_rb.c	7.8 (Berkeley) 12/27/92
  */
 
 #include "ite.h"
@@ -175,8 +175,6 @@ rbox_scroll(ip, sy, sx, count, dir)
 	register int dx = sx;
 	register int height = 1;
 	register int width = ip->cols;
-
-	rbox_cursor(ip, ERASE_CURSOR);
 
 	if (dir == SCROLL_UP) {
 		dy = sy - count;
