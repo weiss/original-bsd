@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dr_main.c	5.1 (Berkeley) 05/29/85";
+static char sccsid[] = "@(#)dr_main.c	5.2 (Berkeley) 01/21/86";
 #endif not lint
 
 #include "driver.h"
@@ -52,6 +52,7 @@ dr_main()
 	}
 	windspeed = cc->windspeed;
 	winddir = cc->winddir;
+	people = 0;
 	for (;;) {
 		sleep(7);
 		if (Sync() < 0) {
