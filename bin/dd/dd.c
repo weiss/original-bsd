@@ -1,7 +1,8 @@
 #ifndef lint
-static char *sccsid = "@(#)dd.c	4.4 (Berkeley) 01/22/85";
+static char *sccsid = "@(#)dd.c	4.5 (Berkeley) 04/07/87";
 #endif
 
+#include <sys/file.h>
 #include <stdio.h>
 #include <signal.h>
 
@@ -257,10 +258,7 @@ char	**argv;
 		perror(ifile);
 		exit(1);
 	}
-	if (ofile)
-		obf = creat(ofile, 0666);
-	else
-		obf = dup(1);
+	obf = ofile ? open(ofile, O_WRONLY|O_CREAT, 0666) : dup(1);
 	if(obf < 0) {
 		fprintf(stderr,"cannot create: %s\n", ofile);
 		exit(1);
