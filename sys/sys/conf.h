@@ -1,4 +1,4 @@
-/*	conf.h	3.3	10/14/12	*/
+/*	conf.h	3.4	10/14/12	*/
 
 /*
  * Declaration of block device
@@ -47,7 +47,3 @@ extern struct linesw
 	int	(*l_start)();
 	int	(*l_modem)();
 } linesw[];
-
-#ifdef BERKNET
-#define	NETLDISC	1		/* line discip for berk net */
-#endif
