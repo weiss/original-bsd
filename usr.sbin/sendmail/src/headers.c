@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.25 (Berkeley) 02/05/94";
+static char sccsid[] = "@(#)headers.c	8.26 (Berkeley) 02/05/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -991,6 +991,7 @@ commaize(h, p, oldstyle, mci, e)
 {
 	register char *obp;
 	int opos;
+	int omax;
 	bool firstone = TRUE;
 	char obuf[MAXLINE + 3];
 
@@ -1006,6 +1007,9 @@ commaize(h, p, oldstyle, mci, e)
 	(void) sprintf(obp, "%s: ", h->h_field);
 	opos = strlen(h->h_field) + 2;
 	obp += opos;
+	omax = 78;
+	if (mci->mci_mailer->m_linelimit - 2 < omax)
+		omax = mci->mci_mailer->m_linelimit - 2;
 
 	/*
 	**  Run through the list of values.
@@ -1080,7 +1084,7 @@ commaize(h, p, oldstyle, mci, e)
 		opos += strlen(name);
 		if (!firstone)
 			opos += 2;
-		if (opos > 78 && !firstone)
+		if (opos > omax && !firstone)
 		{
 			(void) strcpy(obp, ",\n");
 			putline(obuf, mci);
