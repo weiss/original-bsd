@@ -7,9 +7,17 @@ divert(-1)
 # %sccs.include.redist.sh%
 #
 
+#
+#  This machine has been decommissioned at Berkeley, and hence should
+#  not be considered to be tested.  This file is provided as an example
+#  only, of how you might set up a joint SMTP/UUCP configuration.  At
+#  this point I recommend using `FEATURE(mailertable)' instead of
+#  `SITECONFIG'.  See also ucbvax.mc.
+#
+
 include(`../m4/cf.m4')
-VERSIONID(`@(#)ucbarpa.mc	8.1 (Berkeley) 06/07/93')
-DOMAIN(cs.exposed)dnl
+VERSIONID(`@(#)ucbarpa.mc	8.2 (Berkeley) 04/21/95')
+DOMAIN(CS.Berkeley.EDU)dnl
 OSTYPE(bsd4.4)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
