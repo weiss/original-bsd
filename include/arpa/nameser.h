@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)nameser.h	5.5 (Berkeley) 10/30/85
+ *	@(#)nameser.h	5.6 (Berkeley) 10/31/85
  */
 
 /*
@@ -93,7 +93,8 @@
 
 typedef struct {
 	u_short	id;		/* query identification number */
-#if defined (sun) || defined (gould) || defined (BIT_ZERO_ON_LEFT)
+#if defined (sun) || defined (sel) || defined (pyr) || define (is68k) \
+|| defined (BIT_ZERO_ON_LEFT)
 	/* Bit zero on left:  Gould and similar architectures */
 			/* fields in third byte */
 	u_char	qr:1;		/* response flag */
