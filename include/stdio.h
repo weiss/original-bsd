@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stdio.h	5.22 (Berkeley) 07/09/92
+ *	@(#)stdio.h	5.23 (Berkeley) 10/09/92
  */
 
 #ifndef	_STDIO_H_
@@ -220,7 +220,7 @@ int	 scanf __P((const char *, ...));
 void	 setbuf __P((FILE *, char *));
 int	 setvbuf __P((FILE *, char *, int, size_t));
 int	 sprintf __P((char *, const char *, ...));
-int	 sscanf __P((char *, const char *, ...));
+int	 sscanf __P((const char *, const char *, ...));
 FILE	*tmpfile __P((void));
 char	*tmpnam __P((char *));
 int	 ungetc __P((int, FILE *));
