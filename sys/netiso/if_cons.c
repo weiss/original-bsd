@@ -27,7 +27,7 @@ SOFTWARE.
 /*
  * $Header: if_cons.c,v 4.7 88/08/11 15:52:55 nhall Exp $
  * $Source: /usr/argo/sys/netiso/RCS/if_cons.c,v $
- *	@(#)if_cons.c	7.6 (Berkeley) 05/03/91
+ *	@(#)if_cons.c	7.7 (Berkeley) 05/06/91
  *
  * cons.c - Connection Oriented Network Service:
  * including support for a) user transport-level service, 
@@ -325,8 +325,15 @@ struct pklcd *lcp;
 	register struct x25_packet *xp;
 	int cmd;
 
-	if (m0 == 0)
+	if (isop == 0)
+		return;
+	if (m0 == 0) {
+		isop->isop_chan = 0;
+		isop->isop_refcnt = 0;
+		lcp->lcd_upnext = 0;
+		lcp->lcd_upper = 0;
 		goto dead;
+	}
 	switch(m0->m_type) {
 	case MT_DATA:
 	case MT_OOBDATA:
@@ -340,6 +347,11 @@ struct pklcd *lcp;
 
 		case RR:
 			cmd = PRC_CONS_SEND_DONE;
+			break;
+
+		case CALL_ACCEPTED:
+			if (lcp->lcd_sb.sb_mb)
+				lcp->lcd_send(lcp); /* XXX - fix this */
 			break;
 
 		dead:
@@ -377,6 +389,8 @@ cons_connect(isop)
 		printf("\n" );
 	ENDDEBUG
 	NSAPtoDTE(isop->isop_faddr, &lcp->lcd_faddr);
+	lcp->lcd_upper = cons_tpinput;
+	lcp->lcd_upnext = (caddr_t)isop;
 	IFDEBUG(D_CCONN)
 		printf(
 		"calling make_partial_x25_packet( 0x%x, 0x%x, 0x%x)\n",
