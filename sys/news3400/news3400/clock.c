@@ -12,10 +12,9 @@
  *
  * from: Utah $Hdr: clock.c 1.18 91/01/21$
  *
- *	@(#)clock.c	7.6 (Berkeley) 01/21/93
+ *	@(#)clock.c	7.7 (Berkeley) 03/09/93
  */
 
-#include <machine/fix_machine_type.h>
 #include <machine/adrsmap.h>
 
 #include <sys/param.h>
