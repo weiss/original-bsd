@@ -8,14 +8,14 @@
  * %sccs.include.redist.c%
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)sig.c	5.1 (Berkeley) 06/22/92";
-#endif /* not lint */
+#if !defined(lint) && !defined(SCCSID)
+static char sccsid[] = "@(#)sig.c	5.2 (Berkeley) 07/03/92";
+#endif /* not lint && not SCCSID */
 
 /*
- * el.sig.c: Signal handling stuff.
- *	     our policy is to trap all signals, set a good state
- *	     and pass the ball to our caller.
+ * sig.c: Signal handling stuff.
+ *	  our policy is to trap all signals, set a good state
+ *	  and pass the ball to our caller.
  */
 #include "sys.h"
 #include "el.h"

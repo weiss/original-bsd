@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)map.h	5.1 (Berkeley) 06/22/92
+ *	@(#)map.h	5.2 (Berkeley) 07/03/92
  */
 
 /*

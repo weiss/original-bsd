@@ -8,12 +8,12 @@
  * %sccs.include.redist.c%
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)common.c	5.1 (Berkeley) 06/22/92";
-#endif /* not lint */
+#if !defined(lint) && !defined(SCCSID)
+static char sccsid[] = "@(#)common.c	5.2 (Berkeley) 07/03/92";
+#endif /* not lint && not SCCSID */
 
 /*
- * el.common.c: Common Editor functions
+ * common.c: Common Editor functions
  */
 #include "sys.h"
 #include "el.h"

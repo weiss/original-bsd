@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)refresh.h	5.2 (Berkeley) 06/22/92
+ *	@(#)refresh.h	5.3 (Berkeley) 07/03/92
  */
 
 /*
