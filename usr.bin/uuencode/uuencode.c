@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuencode.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)uuencode.c	5.2 (Berkeley) 12/19/83";
 #endif
 
 /*
@@ -39,6 +39,8 @@ char **argv;
 	/* figure out the input file mode */
 	fstat(fileno(in), &sbuf);
 	mode = sbuf.st_mode & 0777;
+	if (in == stdin && mode == 0)
+		mode = 0600;	/* use a reasonable mode in case of pipes */
 	printf("begin %o %s\n", mode, argv[1]);
 
 	encode(in, stdout);
