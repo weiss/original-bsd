@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_segment.c	7.4 (Berkeley) 12/13/91
+ *	@(#)lfs_segment.c	7.5 (Berkeley) 12/13/91
  */
 
 #include <sys/param.h>
@@ -652,7 +652,6 @@ lfs_writesuper(fs, sp)
 	dev_t i_dev;
 	int (*strategy) __P((BUF *));
 
-	return;
 #ifdef VERBOSE
 	printf("lfs_writesuper\n");
 #endif
