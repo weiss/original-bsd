@@ -6,7 +6,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#       @(#)makesendmail	8.4 (Berkeley) 01/24/94
+#       @(#)makesendmail	8.5 (Berkeley) 02/27/94
 #
 
 #
@@ -61,7 +61,7 @@ else
 	elif [ -r Makefile.$os.$rel ]; then
 		makefile=Makefile.$os.$rel
 	elif [ -r Makefile.$os.$rbase.x ]; then
-		makefile=Makefile.$os.$base.x
+		makefile=Makefile.$os.$rbase.x
 	elif [ -r Makefile.$os.$arch ]; then
 		makefile=Makefile.$os.$arch
 	elif [ -r Makefile.$arch.$rel ]; then
