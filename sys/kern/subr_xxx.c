@@ -1,4 +1,4 @@
-/*	subr_xxx.c	4.4	03/09/81	*/
+/*	subr_xxx.c	4.5	81/03/09	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
