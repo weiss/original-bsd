@@ -13,7 +13,7 @@
 	.data
 	.align	2
 _sccsid:
-	.asciz	"@(#)support.s	5.1	(ucb.elefunt)	11/30/87"
+	.asciz	"@(#)support.s	5.2	(ucb.elefunt)	11/30/87"
 /*
  * copysign(x,y),
  * logb(x),

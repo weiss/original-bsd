@@ -13,7 +13,7 @@
 	.data
 	.align	2
 _sccsid:
-.asciz	"@(#)infnan.s	5.1	(ucb.elefunt)	11/30/87"
+.asciz	"@(#)infnan.s	5.2	(ucb.elefunt)	11/30/87"
 
 /*
  * double infnan(arg)

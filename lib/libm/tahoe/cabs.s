@@ -13,7 +13,7 @@
 	.data
 	.align	2
 _sccsid:
-.asciz	"@(#)cabs.s	5.1	5.1	(ucb.elefunt)	11/30/87"
+.asciz	"@(#)cabs.s	5.2	5.2	(ucb.elefunt)	11/30/87"
 
 # double precision complex absolute value
 # CABS by W. Kahan, 9/7/80.
