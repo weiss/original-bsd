@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)w.c	5.25 (Berkeley) 03/02/91";
+static char sccsid[] = "@(#)w.c	5.26 (Berkeley) 03/15/91";
 #endif not lint
 
 /*
@@ -296,6 +296,7 @@ main(argc, argv)
 			prttime(ep->idle, " ");
 		printf("%.*s\n", argwidth, ep->args);
 	}
+	exit(0);
 }
 
 struct stat *
