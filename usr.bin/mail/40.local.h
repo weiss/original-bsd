@@ -4,7 +4,7 @@
  */
  
 /*
- * Sccs Id = "@(#)40.local.h	1.1 10/08/80";
+ * Sccs Id = "@(#)40.local.h	2.1 07/01/81";
  */
 
 #define	LOCAL		'z'		/* Local machine id */

@@ -8,7 +8,7 @@
  * Give names to all the temporary files that we will need.
  */
 
-static char *SccsId = "@(#)temp.c	1.3 10/31/80";
+static char *SccsId = "@(#)temp.c	2.1 07/01/81";
 
 char	tempMail[14];
 char	tempQuit[14];

@@ -4,7 +4,7 @@
  */
 
 /*
- * Sccs Id = "@(#)glob.h	1.6 02/06/81";
+ * Sccs Id = "@(#)glob.h	2.1 07/01/81";
  */
 
 int	msgCount;			/* Count of messages read in */

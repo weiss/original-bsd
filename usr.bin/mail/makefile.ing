@@ -1,7 +1,7 @@
 #
 # Unix version 6 (Ingres).
 #
-# Sccs Id = "@(#)makefile.ing	1.1 10/08/80";
+# Sccs Id = "@(#)makefile.ing	2.1 07/01/81";
 #
 
 CFLAGS=-O -DINGRES -Dsignal=Signal -I/usr/include/retrofit

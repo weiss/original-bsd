@@ -1,7 +1,7 @@
 #
 # Unix version 7.
 #
-# Sccs Id = "@(#)Makefile	1.7 05/18/81";
+# Sccs Id = "@(#)Makefile	2.1 07/01/81";
 #
 
 CFLAGS=-O -DVMUNIX -DV7

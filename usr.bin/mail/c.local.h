@@ -4,7 +4,7 @@
  */
  
 /*
- * Sccs Id = "@(#)c.local.h	1.1 10/08/80";
+ * Sccs Id = "@(#)c.local.h	2.1 07/01/81";
  */
 
 #define APPEND				/* New mail to end of mail box */

@@ -1,5 +1,5 @@
 /*
- * Sccs Id = "@(#)local.h	1.1 10/08/80";
+ * Sccs Id = "@(#)local.h	2.1 07/01/81";
  */
 
 #ifdef V7
