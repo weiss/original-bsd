@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dinode.h	6.10 (Berkeley) 11/09/85
+ *	@(#)dinode.h	6.11 (Berkeley) 11/26/85
  */
 
 /*
@@ -146,7 +146,6 @@ ino_t	dirpref();
 #define	ILWAIT		0x200		/* someone waiting on file lock */
 #define	IMOD		0x400		/* inode has been modified */
 #define	IRENAME		0x800		/* inode is being renamed */
-#define	IXMOD		0x8000		/* inode is text, but impure (XXX) */
 
 /* modes */
 #define	IFMT		0170000		/* type of file */
