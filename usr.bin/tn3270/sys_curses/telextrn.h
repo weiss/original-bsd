@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1988 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)telextrn.h	4.2 (Berkeley) 04/26/91
+ */
+
 /*
  * Definitions of external routines and variables for tn3270
  */
