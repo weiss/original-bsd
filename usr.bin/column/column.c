@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)column.c	8.3 (Berkeley) 04/02/94";
+static char sccsid[] = "@(#)column.c	8.4 (Berkeley) 05/04/95";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -24,6 +24,7 @@ static char sccsid[] = "@(#)column.c	8.3 (Berkeley) 04/02/94";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 void  c_columnate __P((void));
 void *emalloc __P((int));
