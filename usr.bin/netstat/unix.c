@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)unix.c	5.10 (Berkeley) 04/27/91";
+static char sccsid[] = "@(#)unix.c	5.11 (Berkeley) 07/01/91";
 #endif /* not lint */
 
 /*
@@ -22,6 +22,8 @@ static char sccsid[] = "@(#)unix.c	5.10 (Berkeley) 04/27/91";
 #define KERNEL
 struct uio;
 #include <sys/file.h>
+struct file *file, *fileNFILE;
+int nfile;
 
 int	Aflag;
 extern	char *calloc();
