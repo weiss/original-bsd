@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)res_comp.c	6.7 (Berkeley) 03/11/86";
+static char sccsid[] = "@(#)res_comp.c	6.8 (Berkeley) 01/31/87";
 #endif LIBC_SCCS and not lint
 
 #include <sys/types.h>
@@ -238,7 +238,7 @@ dn_find(exp_dn, msg, dnptrs, lastdnptr)
  */
 
 u_short
-getshort(msgp)
+_getshort(msgp)
 	char *msgp;
 {
 	register u_char *p = (u_char *) msgp;
@@ -256,7 +256,7 @@ getshort(msgp)
 }
 
 u_long
-getlong(msgp)
+_getlong(msgp)
 	char *msgp;
 {
 	register u_char *p = (u_char *) msgp;
