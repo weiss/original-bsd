@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)gmon.c	1.8 (Berkeley) 11/25/81";
+static	char *sccsid = "@(#)gmon.c	4.1 (Berkeley) 11/29/81";
 
 #ifdef DEBUG
 #include <stdio.h>

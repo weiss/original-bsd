@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)crt0.c	1.1 (Berkeley) 11/29/81";
+static	char *sccsid = "@(#)crt0.c	4.1 (Berkeley) 11/29/81";
 
 /*
  *	C start up routine.
