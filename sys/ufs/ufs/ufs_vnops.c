@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_vnops.c	8.13 (Berkeley) 10/09/94
+ *	@(#)ufs_vnops.c	8.14 (Berkeley) 10/26/94
  */
 
 #include <sys/param.h>
@@ -2058,7 +2058,7 @@ ufs_advlock(ap)
 	lock->lf_inode = ip;
 	lock->lf_type = fl->l_type;
 	lock->lf_next = (struct lockf *)0;
-	lock->lf_block = (struct lockf *)0;
+	TAILQ_INIT(&lock->lf_blkhd);
 	lock->lf_flags = ap->a_flags;
 	/*
 	 * Do the requested operation.
