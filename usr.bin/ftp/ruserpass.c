@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ruserpass.c	1.5 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)ruserpass.c	1.6 (Berkeley) 09/20/88";
 #endif /* not lint */
 
 struct macel {
@@ -29,10 +29,10 @@ extern int macnum, proxy;			/* number of defined macros */
 extern struct macel macros[16], *macpt;
 extern char macbuf[4096];
 
+#include <sys/types.h>
 #include <stdio.h>
 #include <utmp.h>
 #include <ctype.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
 
