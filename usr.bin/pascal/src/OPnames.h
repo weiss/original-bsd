@@ -1,4 +1,4 @@
-/* static	char sccsid[] = "@(#)OPnames.h 1.4 02/08/82"; */
+/* static	char sccsid[] = "@(#)OPnames.h 1.5 08/29/82"; */
 
 char	*otext[] = {
 	0,
@@ -219,20 +219,20 @@ char	*otext[] = {
 	0,
 	" PACK",
 	" UNPACK",
+	" NEW",
+	" DISPOSE",
+	" DFDISP",
 	" ARGC",
 	" ARGV",
-	0,
-	0,
-	0,
 	0,
 	" CLCK",
 	" WCLCK",
 	" SCLCK",
-	" DISPOSE",
-	" NEW",
 	" DATE",
 	" TIME",
 	" UNDEF",
+	0,
+	0,
 	" ATAN",
 	" COS",
 	" EXP",
