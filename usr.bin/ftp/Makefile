@@ -14,12 +14,12 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.7 (Berkeley) 09/20/88
+#	@(#)Makefile	5.8 (Berkeley) 09/21/88
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
-SRCS=	cmds.c cmdtab.c ftp.c getpass.c glob.c main.c pclose.c ruserpass.c              domacro.c
-OBJS=	cmds.o cmdtab.o ftp.o getpass.o glob.o main.o pclose.o ruserpass.o              domacro.o
+SRCS=	cmds.c cmdtab.c ftp.c glob.c main.c ruserpass.c domacro.c
+OBJS=	cmds.o cmdtab.o ftp.o glob.o main.o ruserpass.o domacro.o
 MAN=	ftp.0
 
 all: ftp
