@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)more.c	5.9 (Berkeley) 04/22/87";
+static char sccsid[] = "@(#)more.c	5.10 (Berkeley) 05/06/87";
 #endif not lint
 
 /*
@@ -1752,6 +1752,8 @@ set_tty ()
 
 reset_tty ()
 {
+    if (no_tty)
+	return;
     if (pstate) {
 	tputs(ULexit, 1, putch);
 	fflush(stdout);
