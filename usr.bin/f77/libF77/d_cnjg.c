@@ -3,13 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)d_cnjg.c	5.2	11/03/86
+ *	@(#)d_cnjg.c	5.3	01/15/91
  */
 
 #include "complex"
 #ifdef tahoe
-#include <tahoemath/FP.h>
-#endif tahoe
+#include <tahoe/math/FP.h>
+#endif
 
 d_cnjg(r, z)
 dcomplex *r, *z;

@@ -3,14 +3,14 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)z_sqrt.c	5.2	11/03/86
+ *	@(#)z_sqrt.c	5.3	01/15/91
  */
 
 #include "complex"
 #ifdef tahoe
-#include <tahoemath/FP.h>
+#include <tahoe/math/FP.h>
 #define cabs zabs
-#endif tahoe
+#endif
 
 z_sqrt(r, z)
 dcomplex *r, *z;

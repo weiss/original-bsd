@@ -3,15 +3,15 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)z_div.c	5.2	11/03/86
+ *	@(#)z_div.c	5.3	01/15/91
  */
 
 #include "complex"
 #include <stdio.h>
 #include <errno.h>
 #ifdef tahoe
-#include <tahoemath/FP.h>
-#endif tahoe
+#include <tahoe/math/FP.h>
+#endif
 
 z_div(c, a, b)
 dcomplex *a, *b, *c;
