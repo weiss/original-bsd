@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)old.bin.grep.c	4.5 (Berkeley) 08/11/83";
+static char sccsid[] = "@(#)old.bin.grep.c	4.6 (Berkeley) 05/14/84";
 #endif
 
 /*
@@ -67,8 +67,6 @@ char	bittab[] = {
 main(argc, argv)
 char **argv;
 {
-	extern char _sobuf[];
-	setbuf(stdout, _sobuf);
 	while (--argc > 0 && (++argv)[0][0]=='-')
 		switch (argv[0][1]) {
 
