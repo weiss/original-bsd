@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)arpadate.c	5.1 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)arpadate.c	5.2 (Berkeley) 06/07/85";
 #endif not lint
 
 # include "conf.h"
@@ -23,8 +23,6 @@ static char	SccsId[] = "@(#)arpadate.c	5.1 (Berkeley) 06/07/85";
 # endif V6
 # endif USG
 # include "useful.h"
-
-SCCSID(@(#)arpadate.c	5.1		06/07/85);
 
 # ifdef V6
 # define OLDTIME
