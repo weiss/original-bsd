@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)umap_vnops.c	1.4 (Berkeley) 07/23/92
+ *	@(#)umap_vnops.c	7.1 (Berkeley) 07/23/92
  */
 
 /*
