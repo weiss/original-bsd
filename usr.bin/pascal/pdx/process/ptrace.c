@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ptrace.c	5.2 (Berkeley) 04/07/87";
+static char sccsid[] = "@(#)ptrace.c	5.3 (Berkeley) 05/11/87";
 #endif not lint
 
 /*
@@ -88,7 +88,9 @@ char *outfile;
     if (p->pid != 0) {                  /* child already running? */
 	ptrace(PKILL, p->pid, 0, 0);    /* ... kill it! */
     }
+#ifdef tahoe
     INTFP = (ADDRESS)0;
+#endif tahoe
     psigtrace(p, SIGTRAP, TRUE);
     if ((p->pid = fork()) == -1) {
 	panic("can't fork");
