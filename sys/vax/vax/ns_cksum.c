@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1985 Regents of the University of California.
+ * Copyright (c) 1985, 1986 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ns_cksum.c	6.5 (Berkeley) 02/20/86
+ *	@(#)ns_cksum.c	7.1 (Berkeley) 06/05/86
  */
 #include "types.h"
 #include "mbuf.h"
