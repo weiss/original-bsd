@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)initquad.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)initquad.c	4.2	(Berkeley)	05/09/83";
 #endif not lint
 
 # include	"trek.h"
@@ -83,7 +83,7 @@ int	f;
 	{
 		sector(&rx, &ry);
 		Sect[rx][ry] = INHABIT;
-		nstars =- 1;
+		nstars -= 1;
 	}
 
 	/* initialize black holes */

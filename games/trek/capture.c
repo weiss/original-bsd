@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)capture.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)capture.c	4.2	(Berkeley)	05/09/83";
 #endif not lint
 
 # include	"trek.h"
@@ -48,9 +48,9 @@ capture()
 	/* check out that Klingon */
 	k->srndreq++;
 	x = Param.klingpwr;
-	x =* Ship.energy;
-	x =/ k->power * Etc.nkling;
-	x =* Param.srndrprob;
+	x *= Ship.energy;
+	x /= k->power * Etc.nkling;
+	x *= Param.srndrprob;
 	i = x;
 #	ifdef xTRACE
 	if (Trace)
@@ -65,7 +65,7 @@ capture()
 			Param.klingcrew - i);
 		if (i > Ship.brigfree)
 			i = Ship.brigfree;
-		Ship.brigfree =- i;
+		Ship.brigfree -= i;
 		printf("%d captives taken\n", i);
 		killk(k->x, k->y);
 		return;

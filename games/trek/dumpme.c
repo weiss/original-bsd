@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)dumpme.c	4.1	(Berkeley)	03/23/83";
+static char sccsid[] = "@(#)dumpme.c	4.2	(Berkeley)	05/09/83";
 #endif not lint
 
 # include	"trek.h"
@@ -29,8 +29,8 @@ int	flag;
 	Ship.quady = ranf(NQUADS);
 	Ship.sectx = ranf(NSECTS);
 	Ship.secty = ranf(NSECTS);
-	x =+ 1.5 * franf();
-	Move.time =+ x;
+	x += 1.5 * franf();
+	Move.time += x;
 	if (f)
 	{
 		printf("%s falls into a black hole.\n", Ship.shipname);
