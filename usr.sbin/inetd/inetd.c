@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)inetd.c	5.14 (Berkeley) 01/23/89";
+static char sccsid[] = "@(#)inetd.c	5.15 (Berkeley) 04/02/89";
 #endif /* not lint */
 
 /*
@@ -79,6 +79,7 @@ static char sccsid[] = "@(#)inetd.c	5.14 (Berkeley) 01/23/89";
 #include <pwd.h>
 #include <stdio.h>
 #include <strings.h>
+#include "pathnames.h"
 
 #define	TOOMANY		40		/* don't start more than TOOMANY */
 #define	CNT_INTVL	60		/* servers in CNT_INTVL sec. */
@@ -151,7 +152,7 @@ struct biltin {
 };
 
 #define NUMINT	(sizeof(intab) / sizeof(struct inent))
-char	*CONFIG = "/etc/inetd.conf";
+char	*CONFIG = _PATH_INETDCONF;
 char	**Argv;
 char 	*LastArg;
 
