@@ -3,14 +3,14 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/05/85
+#	@(#)Makefile	5.2 (Berkeley) 09/07/85
 #
-SCCSID = "@(#)Makefile	5.1 (Berkeley) 06/05/85"
+SCCSID = "@(#)Makefile	5.2 (Berkeley) 09/07/85"
 DESTDIR=
 ED=	-ex
 AS=	-as
 RM=	rm -f
-EYACC=	/usr/ucb/eyacc
+EYACC=	../eyacc/eyacc
 CFLAGS=	-O -I. -I${SRCDIR} -w -DRMOTHERS
 SRCDIR=	../src
 BINDIR=	../pxp
@@ -62,7 +62,7 @@ clean:
 	-rm -f *.o x* y.tab.c y.tab.h opcode.h
 
 install: a.out
-	install a.out ${DESTDIR}/usr/ucb/pxp
+	install -s a.out ${DESTDIR}/usr/ucb/pxp
 #	cp a.outNOID /usr/ucb/pxp34
 
 print:
