@@ -14,10 +14,9 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.2 (Berkeley) 05/08/89
+ *	@(#)pathnames.h	5.3 (Berkeley) 05/08/89
  */
 
 #include <paths.h>
 
 #define	_PATH_MAKEKEY	"/usr/libexec/makekey"
-#define	_PATH_TMP	"/tmp/eXXXXX";
