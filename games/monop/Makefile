@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 11/15/91
+#	@(#)Makefile	5.7 (Berkeley) 03/16/92
 
 PROG=	monop
 SRCS=	monop.c cards.c execute.c getinp.c houses.c jail.c misc.c morg.c \
@@ -9,7 +9,7 @@ LDADD=	-lcompat
 HIDEGAME=hidegame
 CLEANFILES+=initdeck cards.pck
 
-all: monop
+all: ${PROG} ${MAN6}
 
 monop: cards.pck
 
