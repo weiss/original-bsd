@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.5 (Berkeley) 12/11/91
+#	@(#)Makefile	5.6 (Berkeley) 02/19/92
 
 PROG=	mtree
-CFLAGS=-O
+#CFLAGS+=-DDEBUG
 SRCS=	compare.c crc.c create.c misc.c mtree.c spec.c verify.c
 .PATH:	${.CURDIR}/../../usr.bin/cksum
 
