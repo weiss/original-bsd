@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.38		08/25/82	(no queueing));
+SCCSID(@(#)queue.c	3.39		08/25/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.38		08/25/82);
+SCCSID(@(#)queue.c	3.39		08/25/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -552,10 +552,10 @@ dowork(w)
 		/* if still not sent, perhaps we should time out.... */
 # ifdef DEBUG
 		if (tTd(40, 3))
-			printf("CurTime=%ld, TimeOut=%ld\n", CurTime,
+			printf("curtime=%ld, TimeOut=%ld\n", curtime(),
 					     CurEnv->e_ctime + TimeOut);
 # endif DEBUG
-		if (CurEnv->e_queueup && CurTime > CurEnv->e_ctime + TimeOut)
+		if (CurEnv->e_queueup && curtime() > CurEnv->e_ctime + TimeOut)
 			timeout(w);
 
 		/* finish up and exit */
