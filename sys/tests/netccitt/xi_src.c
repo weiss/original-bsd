@@ -5,7 +5,7 @@
  * %sccs.include.redist.c%
  */
 #ifndef lint
-static char sccsid[] = "@(#)xi_src.c	7.1 (Berkeley) 10/30/90";
+static char sccsid[] = "@(#)xi_src.c	7.2 (Berkeley) 11/13/90";
 #endif /* not lint */
 
 /*
@@ -193,9 +193,9 @@ int *flags;
 	*datasize = 0;
 	datasize = &iov->iov_len;
 	cp = data_msg + 1;
-	cplim  = cp + sizeof(data_msg);
+	cplim  = data_msg + sizeof(data_msg);
 
-	data_msg[0] = 0;
+	*data_msg = 0;
 	for(;;) {
 		x = scanf("%s", workbuf);
 		if (x == EOF)
@@ -215,7 +215,7 @@ int *flags;
 				break;
 		} else {
 			int len = strlen(workbuf);
-			localsize = 0;
+			localsize = 1;
 			while ((factor-- > 0) &&
 			       ((cp + len) < cplim)) {
 					strcpy(cp, workbuf);
