@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)stab.c	1.2 (Berkeley) 01/11/86";
+static char sccsid[] = "@(#)stab.c	1.3 (Berkeley) 02/04/86";
 #endif
 /*
  * Symbolic debugging info interface.
@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)stab.c	1.2 (Berkeley) 01/11/86";
  * symbolic debugging information into the object file.
  */
 
-#include "mfile1"
+#include "pass1.h"
 
 #include <sys/types.h>
 #include <a.out.h>
@@ -463,6 +463,7 @@ int size;
 	    printf("%s:%d,", field->sname, field->offset);
 	    i++;
 	}
+	putchar(';');
 	break;
 
     default:
