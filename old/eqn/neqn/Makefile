@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 05/11/90
+#	@(#)Makefile	5.6 (Berkeley) 06/24/90
 
 PROG=	neqn
 CFLAGS+=-DNEQN -I. -I${.CURDIR}/../common_source
@@ -9,7 +9,7 @@ SRCS=	diacrit.c eqnbox.c font.c fromto.c funny.c glob.c integral.c io.c \
 OBJS+=	e.o
 NOMAN=	noman
 .PATH:	${.CURDIR}/../common_source
-CLEANFILES+=e.c y.tab.h
+CLEANFILES+=e.c e.def y.tab.h
 
 e.c:
 	${YACC} ${YFLAGS} ${.CURDIR}/../common_source/e.y
