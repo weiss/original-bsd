@@ -1,3 +1,7 @@
+#ifndef lint
+static char sccsid[] = "@(#)graph.c	4.2 03/30/83";
+#endif
+
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
