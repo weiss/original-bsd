@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: ite.c 1.22 89/08/17$
+ * from: Utah $Hdr: ite.c 1.1 90/07/09$
  *
- *	@(#)ite.c	7.2 (Berkeley) 06/22/90
+ *	@(#)ite.c	7.3 (Berkeley) 11/04/90
  */
 
 /*
