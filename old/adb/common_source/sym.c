@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)sym.c	5.1 (Berkeley) 01/16/89";
+static char sccsid[] = "@(#)sym.c	5.2 (Berkeley) 04/09/89";
 #endif
 
 /*
@@ -42,7 +42,7 @@ findsym(val, space, diffp)
 
 	diff = ~(addr_t)0;
 	sym = NULL;
-	if (space != SP_NONE || symtab != NULL) {
+	if (space != SP_NONE && symtab != NULL) {
 		for (sp = symtab; sp < esymtab; sp++) {
 			/* must be global */
 			if (isstab(sp) || (sp->n_type & N_EXT) == 0)
