@@ -20,9 +20,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	5.10 (Berkeley) 06/30/88 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	5.11 (Berkeley) 11/18/88 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	5.10 (Berkeley) 06/30/88 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	5.11 (Berkeley) 11/18/88 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -422,7 +422,7 @@ reply(m)
 				pause();
 # endif DEBUG
 # ifdef LOG
-			syslog(LOG_ERR, "%s", &MsgBuf[4]);
+			syslog(LOG_INFO, "%s", &MsgBuf[4]);
 # endif LOG
 			SmtpState = SMTP_CLOSED;
 			smtpquit(m);
