@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)defs.h	7.8 (Berkeley) 09/02/89
+ *	@(#)defs.h	7.9 (Berkeley) 02/20/90
  */
 
 /*
@@ -56,7 +56,7 @@ struct	pcb kdbpcb;		/* must go before redef.h */
 #define	PANIC	9
 
 #define LINSIZ	256
-#define MAXOFF	1024
+#define MAXOFF	65535
 #define MAXPOS	80
 #define MAXLIN	256
 #define QUOTE	0200
