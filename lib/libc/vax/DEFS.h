@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)DEFS.h	5.3 (Berkeley) 06/01/90
+ *	@(#)DEFS.h	8.1 (Berkeley) 06/04/93
  */
 
 #define R0	0x001
