@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/08/90
+#	@(#)Makefile	5.8 (Berkeley) 04/26/93
 
 LIST=	buf callout callout.next clist clist.nxt dino dir dir.nxt \
 	dmap file filsys findinode findinode.nxt findproc host.nxt \
@@ -15,6 +15,6 @@ all clean cleandir depend lint tags:
 
 install:
 	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${LIST} \
-	    ${DESTDIR}/usr/libdata/adb
+	    ${DESTDIR}/usr/old/libdata/adb
 
 .include <bsd.prog.mk>
