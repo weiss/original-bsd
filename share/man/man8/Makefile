@@ -14,10 +14,10 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.4 (Berkeley) 03/06/89
+#	@(#)Makefile	5.5 (Berkeley) 05/10/90
 #
-MDIR=	${DESTDIR}/usr/man/cat8
-OBJS=	adduser.0 intro.0 makedev.0 makekey.0 rc.0 sticky.0
+MDIR=	${DESTDIR}/usr/share/man/cat8
+OBJS=	adduser.0 intro.0 makedev.0 rc.0 sticky.0
 
 all clean depend lint tags:
 
