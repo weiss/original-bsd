@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 08/09/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 DIR=	usd/03.shell
 SRCS=	t.mac t1 t2 t3 t4
