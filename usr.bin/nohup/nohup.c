@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)nohup.c	5.2 (Berkeley) 12/02/89";
+static char sccsid[] = "@(#)nohup.c	5.3 (Berkeley) 03/05/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -31,11 +31,12 @@ static char sccsid[] = "@(#)nohup.c	5.2 (Berkeley) 12/02/89";
 #include <unistd.h>
 #include <stdio.h>
 
+extern int errno;
+
 main(argc, argv)
 	int argc;
 	char **argv;
 {
-	extern int errno;
 	char *strerror();
 
 	if (argc < 2)
