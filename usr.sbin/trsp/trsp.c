@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)trsp.c	6.4 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)trsp.c	6.5 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -53,7 +53,7 @@ static char sccsid[] = "@(#)trsp.c	6.4 (Berkeley) 04/02/89";
 #include <stdio.h>
 #include <errno.h>
 #include <nlist.h>
-#include "pathnames.h"
+#include <paths.h>
 
 unsigned long	ntime;
 int	sflag;
