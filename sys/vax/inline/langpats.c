@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)langpats.c	1.4 (Berkeley) 07/28/84";
+static char sccsid[] = "@(#)langpats.c	1.5 (Berkeley) 08/12/84";
 #endif
 
 /*
@@ -199,8 +199,10 @@ struct pats {
 	jsb	_Swtch\n" },
 
 	{ "_setjmp\n",
-"	movl	(sp)+,r0 \n\
-	jsb	_Setjmp\n" },
+"	movl	(sp)+,r1 \n\
+	clrl	r0 \n\
+	movl	fp,(r1)+ \n\
+	moval	1(pc),(r1)\n" },
 
 	{ "_longjmp\n",
 "	movl	(sp)+,r0 \n\
