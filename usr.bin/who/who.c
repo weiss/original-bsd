@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)who.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)who.c	4.2 (Berkeley) 11/01/80";
 /*
  * who
  */
@@ -6,6 +6,8 @@ static char *sccsid = "@(#)who.c	4.1 (Berkeley) 10/01/80";
 #include <stdio.h>
 #include <utmp.h>
 #include <pwd.h>
+#include <whoami.h>
+#include <ctype.h>
 
 #define NMAX sizeof(utmp.ut_name)
 #define LMAX sizeof(utmp.ut_line)
@@ -45,11 +47,12 @@ char **argv;
 	}
 	while (fread((char *)&utmp, sizeof(utmp), 1, fi) == 1) {
 		if(argc==3) {
+			static char myname[]=sysname;
 			if (strcmp(utmp.ut_line, tp))
 				continue;
-#ifdef vax
-			printf("(Vax) ");
-#endif
+			if (islower(*myname))
+				*myname = toupper(*myname);
+			printf("(%s) ",myname);
 			putline();
 			exit(0);
 		}
