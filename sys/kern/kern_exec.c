@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_exec.c	7.17 (Berkeley) 11/13/89
+ *	@(#)kern_exec.c	7.18 (Berkeley) 12/29/89
  */
 
 #include "param.h"
@@ -412,7 +412,7 @@ getxfile(vp, ep, nargc, uid, gid, cred)
 		goto bad;
 	}
 	if (ep->a_text != 0 && (vp->v_flag & VTEXT) == 0 &&
-	    vp->v_count != 1) {
+	    vp->v_usecount != 1) {
 		register struct file *fp;
 
 		for (fp = file; fp < fileNFILE; fp++) {
