@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.49 (Berkeley) 05/15/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.50 (Berkeley) 05/15/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.49 (Berkeley) 05/15/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.50 (Berkeley) 05/15/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -876,7 +876,7 @@ gothostent:
 **		Adds numeric codes to $=w.
 */
 
-char **
+struct hostent *
 myhostname(hostbuf, size)
 	char hostbuf[];
 	int size;
@@ -915,24 +915,7 @@ myhostname(hostbuf, size)
 		}
 	}
 #endif
-
-	if (hp->h_addrtype == AF_INET && hp->h_length == 4)
-	{
-		register int i;
-
-		for (i = 0; hp->h_addr_list[i] != NULL; i++)
-		{
-			char ipbuf[100];
-
-			sprintf(ipbuf, "[%s]",
-				inet_ntoa(*((struct in_addr *) hp->h_addr_list[i])));
-			if (tTd(0, 4))
-				printf("\ta.k.a.: %s\n", ipbuf);
-			setclass('w', ipbuf);
-		}
-	}
-
-	return (hp->h_aliases);
+	return (hp);
 }
 /*
 **  GETAUTHINFO -- get the real host name asociated with a file descriptor
