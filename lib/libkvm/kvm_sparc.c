@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm_sparc.c	5.2 (Berkeley) 04/29/92";
+static char sccsid[] = "@(#)kvm_sparc.c	5.3 (Berkeley) 05/28/92";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -22,6 +22,7 @@ static char sccsid[] = "@(#)kvm_sparc.c	5.2 (Berkeley) 04/29/92";
 #include <sys/user.h>
 #include <sys/proc.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <nlist.h>
 #include <kvm.h>
 
