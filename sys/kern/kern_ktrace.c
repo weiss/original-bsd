@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_ktrace.c	7.13 (Berkeley) 04/15/91
+ *	@(#)kern_ktrace.c	7.14 (Berkeley) 05/28/91
  */
 
 #ifdef KTRACE
@@ -175,6 +175,7 @@ ktrace(curp, uap, retval)
 		if (error = vn_open(&nd, curp, FREAD|FWRITE, 0))
 			return (error);
 		vp = nd.ni_vp;
+		VOP_UNLOCK(vp);
 		if (vp->v_type != VREG) {
 			vrele(vp);
 			return (EACCES);
