@@ -8,13 +8,13 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)cname.h	5.1 (Berkeley) 08/06/92
+ *	@(#)cname.h	5.2 (Berkeley) 05/21/93
  */
 
 /* character-name table */
 static struct cname {
 	char *name;
-	uchar code;
+	char code;
 } cnames[] = {
 	"NUL",	'\0',
 	"SOH",	'\001',
