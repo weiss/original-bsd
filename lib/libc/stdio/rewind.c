@@ -1,4 +1,7 @@
-/* @(#)rewind.c	4.3 (Berkeley) 02/13/85 */
+#ifndef lint
+static char sccsid[] = "@(#)rewind.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include	<stdio.h>
 
 rewind(iop)
