@@ -1,5 +1,5 @@
 #! /bin/sh -
-#	@(#)makesyscalls.sh	7.6 (Berkeley) 04/20/91
+#	@(#)makesyscalls.sh	7.7 (Berkeley) 10/11/92
 
 set -e
 
@@ -49,8 +49,8 @@ awk < $1 "
 	}
 	NR == 1 {
 		printf " * created from%s\n */\n\n", $0 > sysdcl
-		printf "#include \"param.h\"\n" > sysdcl
-		printf "#include \"systm.h\"\n\n" > sysdcl
+		printf "#include <sys/param.h>\n" > sysdcl
+		printf "#include <sys/systm.h>\n\n" > sysdcl
 		printf "int\tnosys();\n\n" > sysdcl
 
 		printf "struct sysent sysent[] = {\n" > sysent
