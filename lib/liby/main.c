@@ -6,13 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 05/15/90";
+static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 01/13/91";
 #endif /* not lint */
 
 main()
 {
-	extern yyparse();
-
-	(void)yyparse();
-	return(0);
+	exit(yyparse());
 }
