@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 05/15/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	tn3270
 CFLAGS+=-I${.CURDIR} -I.
