@@ -1,11 +1,11 @@
-#	@(#)Makefile	8.7 (Berkeley) 01/02/94
+#	@(#)Makefile	8.8 (Berkeley) 02/21/94
 
 PROG=	dbtest
 OBJS=	dbtest.o
 
 # Add -DSTATISTICS to CFLAGS to get btree statistical use info.
 # Note, the db library has to be compiled for statistics as well.
-CFLAGS=	-O -DDEBUG
+CFLAGS=	-O -DDEBUG ${INC}
 
 dbtest: ${OBJS} ${LIB}
 	${CC} -o $@ ${OBJS} ${LIB}
