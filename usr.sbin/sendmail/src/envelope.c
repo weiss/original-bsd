@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	5.24 (Berkeley) 12/15/91";
+static char sccsid[] = "@(#)envelope.c	5.25 (Berkeley) 01/18/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -428,7 +428,7 @@ setsender(from)
 	**	Username can return errno != 0 on non-errors.
 	*/
 
-	if (QueueRun || OpMode == MD_SMTP || OpMode == MD_ARPAFTP)
+	if (QueueRun || OpMode == MD_SMTP)
 		realname = from;
 	if (realname == NULL || realname[0] == '\0')
 	{

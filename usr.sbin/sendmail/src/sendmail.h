@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.29 (Berkeley) 01/05/92
+ *	@(#)sendmail.h	5.30 (Berkeley) 01/18/92
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.29		01/05/92";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.30		01/18/92";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -441,7 +441,6 @@ EXTERN EVENT	*EventQueue;		/* head of event queue */
 EXTERN char	OpMode;		/* operation mode, see below */
 
 #define MD_DELIVER	'm'		/* be a mail sender */
-#define MD_ARPAFTP	'a'		/* old-style arpanet protocols */
 #define MD_SMTP		's'		/* run SMTP on standard input */
 #define MD_DAEMON	'd'		/* run as a daemon */
 #define MD_VERIFY	'v'		/* verify: don't collect or deliver */
