@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)paths.h	5.17 (Berkeley) 04/29/92
+ *	@(#)paths.h	5.18 (Berkeley) 05/03/93
  */
 
 #ifndef _PATHS_H_
@@ -12,6 +12,8 @@
 
 /* Default search path. */
 #define	_PATH_DEFPATH	"/usr/bin:/bin"
+/* All standard utilities path. */
+#define	_PATH_STDPATH	"/usr/bin:/bin:/usr/sbin"
 
 #define	_PATH_BSHELL	"/bin/sh"
 #define	_PATH_CONSOLE	"/dev/console"
