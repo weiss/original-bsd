@@ -9,12 +9,16 @@
 
 # include <stdio.h>
 # include <sysexits.h>
-# include "useful.h"
 
-SCCSID(@(#)rmail.c	3.11	(Berkeley)	05/31/82);
+static char	SccsId[] =	"@(#)rmail.c	3.12	(Berkeley)	12/27/82";
 
-extern FILE *popen();
-extern char *index();
+typedef char	bool;
+#define TRUE	1
+#define FALSE	0
+
+extern FILE	*popen();
+extern char	*index();
+extern char	*rindex();
 
 bool	Debug;
 
