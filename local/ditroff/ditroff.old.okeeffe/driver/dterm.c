@@ -1,4 +1,4 @@
-/* @(#)dterm.c	1.11	(Berkeley)	04/13/84"
+/* @(#)dterm.c	1.12	(Berkeley)	05/17/84"
  *
  *	Converts ditroff output to text on a terminal.  It is NOT meant to
  *	produce readable output, but is to show one how one's paper is (in
@@ -55,7 +55,7 @@
 #define sqr(x)		(long int)(x)*(x)
 
 
-char	SccsId [] = "@(#)dterm.c	1.11	(Berkeley)	04/13/84";
+char	SccsId [] = "@(#)dterm.c	1.12	(Berkeley)	05/17/84";
 
 char	**spectab;		/* here go the special characters */
 char	*specfile = SPECFILE;	/* place to look up special characters */
@@ -275,6 +275,12 @@ register FILE *fp;
 				sscanf(buf+1, "%d %d %d %d", &n, &m, &n1, &m1);
 				drawarc(n, m, n1, m1);
 				break;
+			case 'q':	/* versatec polygon - ignore */
+				while (buf[strlen(buf) - 1] != '\n')
+				    if (fgets(buf, sizeof(buf), fp) == NULL)
+					error(FATAL,"unexpected end of input");
+				break;
+			case 'P':	/* unbordered */
 			case 'p':	/* polygon */
 				sscanf(buf+1, "%d", &n);
 				n = 1;
