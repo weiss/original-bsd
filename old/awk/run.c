@@ -1,4 +1,6 @@
-/*	run.c	4.3	83/06/17	*/
+#ifndef lint
+static char sccsid[] = "@(#)run.c	4.4 08/11/83";
+#endif
 
 #include "awk.def"
 #include	"math.h"
