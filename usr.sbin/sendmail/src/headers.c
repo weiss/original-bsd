@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.61 (Berkeley) 05/05/95";
+static char sccsid[] = "@(#)headers.c	8.62 (Berkeley) 05/15/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -1055,13 +1055,13 @@ putheader(mci, h, e)
 	mci->mci_flags |= MCIF_INHEADER;
 	for (; h != NULL; h = h->h_link)
 	{
-		register char *p;
+		register char *p = h->h_value;
 		extern bool bitintersect();
 
 		if (tTd(34, 11))
 		{
 			printf("  %s: ", h->h_field);
-			xputs(h->h_value);
+			xputs(p);
 		}
 
 		/* suppress Content-Transfer-Encoding: if we are MIMEing */
@@ -1102,7 +1102,6 @@ putheader(mci, h, e)
 		}
 
 		/* macro expand value if generated internally */
-		p = h->h_value;
 		if (bitset(H_DEFAULT, h->h_flags))
 		{
 			expand(p, buf, sizeof buf, e);
