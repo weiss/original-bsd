@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)vacation.c	5.14 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)vacation.c	5.15 (Berkeley) 06/04/89";
 #endif /* not lint */
 
 /*
@@ -39,7 +39,7 @@ static char sccsid[] = "@(#)vacation.c	5.14 (Berkeley) 05/11/89";
 #include <tzfile.h>
 #include <stdio.h>
 #include <ctype.h>
-#include "pathnames.h"
+#include <paths.h>
 
 /*
  *  VACATION -- return a message to the sender when on vacation.
