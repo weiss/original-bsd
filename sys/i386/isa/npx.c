@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 1990 W. Jolitz
- * @(#)npx.c	1.2 (Berkeley) 11/18/90
+ * @(#)npx.c	1.3 (Berkeley) 01/08/91
  */
 #include "npx.h"
 #if	NNPX > 0
