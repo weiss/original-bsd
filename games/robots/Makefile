@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4	(Berkeley)	06/05/87
+#	@(#)Makefile	5.5	(Berkeley)	09/21/87
 #
 DEFS=	-DMAX_PER_UID=5
 CFLAGS=	-O ${DEFS}
@@ -26,8 +26,9 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	install -s -o daemon -g bin -m 4711 robots ${DESTDIR}/usr/games/robots
-	install -c -o daemon -g bin -m 644 /dev/null ${DESTDIR}/usr/games/lib/robots_roll
+	install -s -o games -g bin -m 4700 robots ${DESTDIR}/usr/games/hide
+	(cd ${DESTDIR}/usr/games; rm -f robots; ln -s dm robots; chown games.bin robots)
+	install -c -o games -g bin -m 600 /dev/null ${DESTDIR}/usr/games/lib/robots_roll
 
 lint: FRC
 	lint ${CFLAGS} ${SRCS}
