@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 05/29/85
+#	@(#)Makefile	5.2 (Berkeley) 09/07/85
 #
 DESTDIR=
 CFLAGS= -O -DV7
@@ -43,8 +43,8 @@ backgammon.doc: backgammon.src
 
 #	Installation
 install:
-	install backgammon ${DESTDIR}/usr/games/backgammon
-	install teachgammon ${DESTDIR}/usr/games/teachgammon
+	install -s backgammon ${DESTDIR}/usr/games/backgammon
+	install -s teachgammon ${DESTDIR}/usr/games/teachgammon
 
 clean:
-	rm -f ${OBJS} ${TOBJS}
+	rm -f ${OBJS} ${TOBJS} backgammon teachgammon
