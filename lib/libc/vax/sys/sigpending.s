@@ -16,12 +16,12 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)sigpending.s	5.1 (Berkeley) 08/27/89"
+	.asciz "@(#)sigpending.s	5.2 (Berkeley) 10/10/89"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
 
 SYSCALL(sigpending)
-	movl	r0,*4(fp)		# store old mask
+	movl	r0,*4(ap)		# store old mask
 	clrl	r0
 	ret
