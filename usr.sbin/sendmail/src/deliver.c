@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.98		08/15/82);
+SCCSID(@(#)deliver.c	3.99		08/17/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1420,6 +1420,7 @@ sendall(e, verifyonly)
 	bool verifyonly;
 {
 	register ADDRESS *q;
+	bool oldverbose;
 
 # ifdef DEBUG
 	if (tTd(13, 2))
@@ -1433,6 +1434,9 @@ sendall(e, verifyonly)
 	**  Run through the list and send everything.
 	*/
 
+	oldverbose = Verbose;
+	if (verifyonly)
+		Verbose = TRUE;
 	for (q = e->e_sendqueue; q != NULL; q = q->q_next)
 	{
 		if (verifyonly)
@@ -1444,6 +1448,7 @@ sendall(e, verifyonly)
 		else
 			(void) deliver(q);
 	}
+	Verbose = oldverbose;
 
 	/*
 	**  Now run through and check for errors.
