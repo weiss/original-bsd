@@ -14,9 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	6.1 (Berkeley) 11/30/89
+ *	@(#)pathnames.h	6.2 (Berkeley) 03/15/90
  */
 #include <paths.h>
 
 #define	_PATH_EXPORTS		"/etc/exports"
 #define	_PATH_RMOUNTLIST	"/var/mountdtab"
+#define _PATH_MOUNTDPID		"/var/run/mountd.pid"
