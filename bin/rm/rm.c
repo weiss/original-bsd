@@ -1,8 +1,8 @@
-static char *sccsid = "@(#)rm.c	4.7 (Berkeley) 03/31/82";
+static char *sccsid = "@(#)rm.c	4.8 (Berkeley) 03/31/82";
 int	errcode;
 
 #include <stdio.h>
-#include <sys/types.h>
+#include <sys/param.h>
 #include <sys/stat.h>
 #include <ndir.h>
 

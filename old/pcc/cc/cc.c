@@ -1,8 +1,8 @@
-static	char sccsid[] = "@(#)cc.c 4.3 02/25/82";
+static	char sccsid[] = "@(#)cc.c 4.4 03/31/82";
 /*
  * cc - front end for C compiler
  */
-#include <sys/types.h>
+#include <sys/param.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <signal.h>

@@ -1,9 +1,9 @@
-static char *sccsid = "@(#)rmdir.c	4.3 (Berkeley) 02/19/82";
+static char *sccsid = "@(#)rmdir.c	4.4 (Berkeley) 03/31/82";
 /*
  * Remove directory
  */
 
-#include <sys/types.h>
+#include <sys/param.h>
 #include <sys/stat.h>
 #include <ndir.h>
 #include <stdio.h>
