@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.12 (Berkeley) 08/14/93
+ *	@(#)sendmail.h	8.13 (Berkeley) 08/17/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.12		08/14/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.13		08/17/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -121,6 +121,8 @@ typedef struct address ADDRESS;
 # define QSELFREF	000200	/* this address references itself */
 # define QVERIFIED	000400	/* verified, but not expanded */
 # define QREPORT	001000	/* report this address in return message */
+
+# define NULLADDR	((ADDRESS *) NULL)
 /*
 **  Mailer definition structure.
 **	Every mailer known to the system is declared in this
@@ -485,6 +487,7 @@ MAP
 	char		*map_app;	/* to append to successful matches */
 	char		*map_domain;	/* the (nominal) NIS domain */
 	char		*map_rebuild;	/* program to run to do auto-rebuild */
+	time_t		map_mtime;	/* last database modification time */
 };
 
 /* bit values for map_flags */
@@ -676,14 +679,17 @@ struct prival
 
 
 /*
-**  Flags passed to remotename
+**  Flags passed to remotename, parseaddr, allocaddr, and buildaddr.
 */
 
 #define RF_SENDERADDR		0001	/* this is a sender address */
 #define RF_HEADERADDR		0002	/* this is a header address */
 #define RF_CANONICAL		0004	/* strip comment information */
 #define RF_ADDDOMAIN		0010	/* OK to do domain extension */
-
+#define RF_COPYPARSE		0020	/* copy parsed user & host */
+#define RF_COPYPADDR		0040	/* copy print address */
+#define RF_COPYALL		(RF_COPYPARSE|RF_COPYPADDR)
+#define RF_COPYNONE		0
 
 /*
 **  Regular UNIX sockaddrs are too small to handle ISO addresses, so

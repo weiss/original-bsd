@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.9 (Berkeley) 08/06/93";
+static char sccsid[] = "@(#)savemail.c	8.10 (Berkeley) 08/17/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -80,7 +80,8 @@ savemail(e)
 	if (e->e_from.q_paddr == NULL)
 	{
 		e->e_sender = "Postmaster";
-		if (parseaddr(e->e_sender, &e->e_from, 0, '\0', NULL, e) == NULL)
+		if (parseaddr(e->e_sender, &e->e_from,
+			      RF_COPYPARSE|RF_SENDERADDR, '\0', NULL, e) == NULL)
 		{
 			syserr("553 Cannot parse Postmaster!");
 			ExitStat = EX_SOFTWARE;
@@ -224,14 +225,12 @@ savemail(e)
 			if (ExitStat == EX_CONFIG || ExitStat == EX_SOFTWARE)
 			{
 				(void) sendtolist("postmaster",
-					  (ADDRESS *) NULL,
-					  &e->e_errorqueue, e);
+					  NULLADDR, &e->e_errorqueue, e);
 			}
 			if (strcmp(e->e_from.q_paddr, "<>") != 0)
 			{
 				(void) sendtolist(e->e_from.q_paddr,
-					  (ADDRESS *) NULL,
-					  &e->e_errorqueue, e);
+					  NULLADDR, &e->e_errorqueue, e);
 			}
 
 			/*
@@ -460,7 +459,7 @@ returntosender(msg, returnq, sendbody, e)
 			ee->e_nrcpts++;
 
 		if (!DontPruneRoutes && pruneroute(q->q_paddr))
-			parseaddr(q->q_paddr, q, 0, '\0', NULL, e);
+			parseaddr(q->q_paddr, q, RF_COPYPARSE, '\0', NULL, e);
 
 		if (q->q_alias == NULL)
 			addheader("To", q->q_paddr, ee);
@@ -487,7 +486,7 @@ returntosender(msg, returnq, sendbody, e)
 
 	/* fake up an address header for the from person */
 	expand("\201n", buf, &buf[sizeof buf - 1], e);
-	if (parseaddr(buf, &ee->e_from, 1, '\0', NULL, e) == NULL)
+	if (parseaddr(buf, &ee->e_from, RF_COPYALL|RF_SENDERADDR, '\0', NULL, e) == NULL)
 	{
 		syserr("553 Can't parse myself!");
 		ExitStat = EX_SOFTWARE;
@@ -503,7 +502,7 @@ returntosender(msg, returnq, sendbody, e)
 	eatheader(ee, TRUE);
 
 	/* mark statistics */
-	markstats(ee, (ADDRESS *) NULL);
+	markstats(ee, NULLADDR);
 
 	/* actually deliver the error message */
 	sendall(ee, SM_DEFAULT);

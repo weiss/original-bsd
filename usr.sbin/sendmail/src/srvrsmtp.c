@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.11 (Berkeley) 08/06/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.12 (Berkeley) 08/17/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.11 (Berkeley) 08/06/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.12 (Berkeley) 08/17/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -222,7 +222,9 @@ smtp(e)
 				SmtpPhase = "server HELO";
 			}
 			sendinghost = newstr(p);
-			if (strcasecmp(p, RealHostName) != 0)
+			if (strcasecmp(p, RealHostName) != 0 &&
+			    (strcasecmp(RealHostName, "localhost") != 0 ||
+			     strcasecmp(p, MyHostName) != 0))
 			{
 				auth_warning(e, "Host %s claimed to be %s",
 					RealHostName, p);
@@ -438,7 +440,7 @@ smtp(e)
 			p = skipword(p, "to");
 			if (p == NULL)
 				break;
-			a = parseaddr(p, (ADDRESS *) NULL, 1, ' ', NULL, e);
+			a = parseaddr(p, NULLADDR, RF_COPYALL, ' ', NULL, e);
 			if (a == NULL)
 				break;
 			a->q_flags |= QPRIMARY;
@@ -614,8 +616,7 @@ smtp(e)
 			}
 			else
 			{
-				(void) sendtolist(p, (ADDRESS *) NULL,
-						  &vrfyqueue, e);
+				(void) sendtolist(p, NULLADDR, &vrfyqueue, e);
 			}
 			if (Errors != 0)
 			{

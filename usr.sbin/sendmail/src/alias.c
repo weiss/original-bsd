@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.7 (Berkeley) 08/16/93";
+static char sccsid[] = "@(#)alias.c	8.8 (Berkeley) 08/17/93";
 #endif /* not lint */
 
 
@@ -492,7 +492,7 @@ readaliases(map, af, automatic)
 			syserr("554 missing colon");
 			continue;
 		}
-		if (parseaddr(line, &al, 1, ':', NULL, CurEnv) == NULL)
+		if (parseaddr(line, &al, RF_COPYALL, ':', NULL, CurEnv) == NULL)
 		{
 			syserr("554 %s... illegal alias name", al.q_paddr);
 			continue;
@@ -528,7 +528,8 @@ readaliases(map, af, automatic)
 						p++;
 					if (*p == '\0')
 						break;
-					if (parseaddr(p, &bl, -1, ',', &delimptr, CurEnv) == NULL)
+					if (parseaddr(p, &bl, RF_COPYNONE, ',',
+						      &delimptr, CurEnv) == NULL)
 						usrerr("553 %s... bad address", p);
 					p = delimptr;
 				}
