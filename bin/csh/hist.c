@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)hist.c 4.6 06/11/83";
+static	char *sccsid = "@(#)hist.c 4.7 08/31/84";
 
 #include "sh.h"
 
@@ -73,7 +73,7 @@ dohist(vp)
 	if (getn(value("history")) == 0)
 		return;
 	if (setintr)
-		sigrelse(SIGINT);
+		sigsetmask(sigblock(0) & ~sigmask(SIGINT));
 	vp++;
 	while (*vp && *vp[0] == '-') {
 		if (*vp && eq(*vp, "-h")) {
