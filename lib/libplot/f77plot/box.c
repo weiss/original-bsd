@@ -5,11 +5,16 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)box.c	5.1 (Berkeley) 06/07/85";
+static char sccsid[] = "@(#)box.c	5.2 (Berkeley) 06/08/85";
 #endif not lint
 
 box_(x0, y0, x1, y1)
 int *x0, *y0, *x1, *y1;
 {
-	box(*x0, *y0, *x1, *y1);
+	move(*x0, *y0);
+	cont(*x0, *y1);
+	cont(*x1, *y1);
+	cont(*x1, *y0);
+	cont(*x0, *y0);
+	move(*x1, *y1);
 }
