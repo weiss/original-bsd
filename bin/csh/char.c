@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)char.c	5.6 (Berkeley) 06/07/91";
+static char sccsid[] = "@(#)char.c	5.7 (Berkeley) 07/19/91";
 #endif /* not lint */
 
 #include "char.h"
