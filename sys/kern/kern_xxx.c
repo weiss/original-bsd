@@ -14,12 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_xxx.c	7.8 (Berkeley) 11/20/89
+ *	@(#)kern_xxx.c	7.9 (Berkeley) 05/02/90
  */
 
 #include "param.h"
 #include "systm.h"
-#include "user.h"
+#include "syscontext.h"
 #include "kernel.h"
 #include "proc.h"
 #include "reboot.h"
@@ -28,6 +28,7 @@ gethostid()
 {
 
 	u.u_r.r_val1 = hostid;
+	RETURN (0);
 }
 
 sethostid()
@@ -35,10 +36,12 @@ sethostid()
 	struct a {
 		long	hostid;
 	} *uap = (struct a *)u.u_ap;
+	int error;
 
-	if (u.u_error = suser(u.u_cred, &u.u_acflag))
-		return;
+	if (error = suser(u.u_cred, &u.u_acflag))
+		RETURN (error);
 	hostid = uap->hostid;
+	RETURN (0);
 }
 
 gethostname()
@@ -50,8 +53,7 @@ gethostname()
 
 	if (uap->len > hostnamelen + 1)
 		uap->len = hostnamelen + 1;
-	u.u_error = copyout((caddr_t)hostname, (caddr_t)uap->hostname,
-		uap->len);
+	RETURN (copyout((caddr_t)hostname, (caddr_t)uap->hostname, uap->len));
 }
 
 sethostname()
@@ -60,16 +62,16 @@ sethostname()
 		char	*hostname;
 		u_int	len;
 	} *uap = (struct a *)u.u_ap;
+	int error;
 
-	if (u.u_error = suser(u.u_cred, &u.u_acflag))
-		return;
-	if (uap->len > sizeof (hostname) - 1) {
-		u.u_error = EINVAL;
-		return;
-	}
+	if (error = suser(u.u_cred, &u.u_acflag))
+		RETURN (error);
+	if (uap->len > sizeof (hostname) - 1)
+		RETURN (EINVAL);
 	hostnamelen = uap->len;
-	u.u_error = copyin((caddr_t)uap->hostname, hostname, uap->len);
+	error = copyin((caddr_t)uap->hostname, hostname, uap->len);
 	hostname[hostnamelen] = 0;
+	RETURN (error);
 }
 
 reboot()
@@ -77,13 +79,16 @@ reboot()
 	register struct a {
 		int	opt;
 	};
+	int error;
 
-	if (u.u_error = suser(u.u_cred, &u.u_acflag))
-		return;
+	if (error = suser(u.u_cred, &u.u_acflag))
+		RETURN (error);
 	boot(((struct a *)u.u_ap)->opt);
+	RETURN (0);
 }
 
 ovhangup()
 {
-	u.u_error = EINVAL;
+
+	RETURN (EINVAL);
 }
