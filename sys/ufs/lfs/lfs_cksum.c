@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_cksum.c	7.1 (Berkeley) 11/01/91
+ *	@(#)lfs_cksum.c	7.2 (Berkeley) 12/06/91
  */
 
 #include <sys/param.h>
