@@ -1,5 +1,5 @@
 /*
- *	@(#)uda.c	7.4 (Berkeley) 04/17/87
+ *	@(#)uda.c	7.5 (Berkeley) 05/04/87
  */
 
 /************************************************************************
@@ -556,8 +556,9 @@ rainit(ui, flags)
 			ra->rastate = OPEN;
 		else
 			ra->rastate = OPENRAW;
-#endif
+#else
 		ra->rastate = OPENRAW;
+#endif
 	} else
 		ra->rastate = OPEN;
 	wakeup((caddr_t)ra);
