@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_output.c	8.1 (Berkeley) 06/10/93
+ *	@(#)tp_output.c	8.2 (Berkeley) 02/09/95
  */
 
 /***********************************************************
@@ -136,7 +136,7 @@ tp_consistency( tpcb, cmd, param )
 		printf("p_class 0x%x, class_to_use 0x%x\n",  param->p_class,
 			class_to_use);
 	ENDDEBUG
-	if((param->p_netservice < 0) || (param->p_netservice > TP_MAX_NETSERVICES)){
+	if(param->p_netservice > TP_MAX_NETSERVICES){
 		error = EINVAL; goto done;
 	}
 	if( (param->p_class & TP_CLASSES_IMPLEMENTED) == 0 ) {
