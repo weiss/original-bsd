@@ -4,9 +4,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-static char SccsId[] = "@(#)alias.c	3.22	09/16/81	(with DBM)";
+static char SccsId[] = "@(#)alias.c	3.23	09/16/81	(with DBM)";
 # else DBM
-static char SccsId[] = "@(#)alias.c	3.22	09/16/81	(without DBM)";
+static char SccsId[] = "@(#)alias.c	3.23	09/16/81	(without DBM)";
 # endif DBM
 
 /*
@@ -113,7 +113,7 @@ alias(a)
 		message(Arpa_Info, "aliased to %s", p);
 	a->q_flags |= QDONTSEND;
 	AliasLevel++;
-	sendto(p, 1, a);
+	sendto(p, 1, (a->q_alias == NULL) ? &From : a);
 	AliasLevel--;
 }
 /*
