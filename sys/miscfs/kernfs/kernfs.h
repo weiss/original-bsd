@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernfs.h	7.1 (Berkeley) 07/18/92
+ *	@(#)kernfs.h	7.2 (Berkeley) 07/19/92
  */
 
 #ifdef KERNEL
@@ -25,4 +25,5 @@ struct kernfs_node {
 
 extern int (**kernfs_vnodeop_p)();
 extern struct vfsops kernfs_vfsops;
+extern struct vnode *rrootvp;
 #endif /* KERNEL */
