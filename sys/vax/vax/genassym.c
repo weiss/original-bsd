@@ -1,3 +1,6 @@
+/*	@(#)genassym.c	6.5 (Berkeley) 12/21/84 */
+
+#define KERNEL
 #define	VAX780	1
 #define	VAX750	1
 #define	VAX730	1
@@ -19,6 +22,8 @@
 #include "rpb.h"
 #include "mbuf.h"
 #include "msgbuf.h"
+
+struct uba_hd uba_hd[1];
 
 main()
 {
