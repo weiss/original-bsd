@@ -17,7 +17,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)vacation.c	5.7 (Berkeley) 12/26/87";
+static char sccsid[] = "@(#)vacation.c	5.8 (Berkeley) 01/05/88";
 #endif /* not lint */
 
 /*
@@ -173,7 +173,7 @@ readheaders()
 				exit(EX_OK);
 			break;
 		case 'C':		/* "Cc:" */
-			if (!strncmp(buf, "Cc:", 3))
+			if (strncmp(buf, "Cc:", 3))
 				break;
 			cont = 1;
 			goto findme;
