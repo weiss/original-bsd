@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ip_mroute.h	7.1 (Berkeley) 07/08/92
+ *	@(#)ip_mroute.h	7.2 (Berkeley) 07/08/92
  */
 
 /*
@@ -22,14 +22,6 @@
  * MROUTING 1.0
  */
 
-/*
- * Copyright (c) 1992 Regents of the University of California.
- * All rights reserved.
- *
- * %sccs.include.redist.c%
- *
- *	@(#)ip_mroute.h	7.1 (Berkeley) 07/08/92
- */
 
 /*
  * DVMRP-specific setsockopt commands.

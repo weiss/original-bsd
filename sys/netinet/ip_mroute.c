@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ip_mroute.c	7.1 (Berkeley) 07/08/92
+ *	@(#)ip_mroute.c	7.2 (Berkeley) 07/08/92
  */
 
 /*
@@ -22,14 +22,6 @@
  * MROUTING 1.1
  */
 
-/*
- * Copyright (c) 1992 Regents of the University of California.
- * All rights reserved.
- *
- * %sccs.include.redist.c%
- *
- *	@(#)ip_mroute.c	7.1 (Berkeley) 07/08/92
- */
 #ifndef MROUTING
 int	ip_mrtproto;				/* for netstat only */
 #else
