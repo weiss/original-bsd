@@ -6,7 +6,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"     @(#)date.1	6.18 (Berkeley) 06/01/93
+.\"     @(#)date.1	6.19 (Berkeley) 06/01/93
 .\"
 .Dd 
 .Dt DATE 1
@@ -110,7 +110,7 @@ and years are handled automatically.
 .Sh EXAMPLES
 The command:
 .Bd -literal -offset indent
-date ``+DATE: %m/%d/%y%nTIME: %H:%M:%s%n''
+date ``+DATE: %m/%d/%y%nTIME: %H:%M:0n''
 .Ed
 .Pp
 will display:
