@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.23 (Berkeley) 12/21/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.24 (Berkeley) 01/15/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.23 (Berkeley) 12/21/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.24 (Berkeley) 01/15/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -144,11 +144,15 @@ smtp(e)
 	for (;;)
 	{
 		/* arrange for backout */
-		if (setjmp(TopFrame) > 0 && InChild)
+		if (setjmp(TopFrame) > 0)
 		{
-			QuickAbort = FALSE;
-			SuprErrs = TRUE;
-			finis();
+			/* if() nesting is necessary for Cray UNICOS */
+			if (InChild)
+			{
+				QuickAbort = FALSE;
+				SuprErrs = TRUE;
+				finis();
+			}
 		}
 		QuickAbort = FALSE;
 		HoldErrs = FALSE;

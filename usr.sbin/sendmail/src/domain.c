@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	8.10 (Berkeley) 12/21/93 (with name server)";
+static char sccsid[] = "@(#)domain.c	8.11 (Berkeley) 01/15/94 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	8.10 (Berkeley) 12/21/93 (without name server)";
+static char sccsid[] = "@(#)domain.c	8.11 (Berkeley) 01/15/94 (without name server)";
 #endif
 #endif /* not lint */
 
@@ -41,6 +41,10 @@ static char	MXHostBuf[MAXMXHOSTS*PACKETSZ];
 
 #ifndef NO_DATA
 # define NO_DATA	NO_ADDRESS
+#endif
+
+#ifndef HEADERSZ
+# define HEADERSZ	sizeof(HEADER)
 #endif
 
 /* don't use sizeof because sizeof(long) is different on 64-bit machines */
@@ -156,7 +160,7 @@ getmxrr(host, mxhosts, droplocalhost, rcode)
 
 	/* find first satisfactory answer */
 	hp = (HEADER *)&answer;
-	cp = (u_char *)&answer + sizeof(HEADER);
+	cp = (u_char *)&answer + HEADERSZ;
 	eom = (u_char *)&answer + n;
 	for (qdcount = ntohs(hp->qdcount); qdcount--; cp += n + QFIXEDSZ)
 		if ((n = dn_skipname(cp, eom)) < 0)
@@ -520,7 +524,7 @@ cnameloop:
 		*/
 
 		hp = (HEADER *) &answer;
-		ap = (u_char *) &answer + sizeof(HEADER);
+		ap = (u_char *) &answer + HEADERSZ;
 		eom = (u_char *) &answer + ret;
 
 		/* skip question part of response -- we know what we asked */
