@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.35 (Berkeley) 03/30/93";
+static char sccsid[] = "@(#)parseaddr.c	6.36 (Berkeley) 04/05/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -121,7 +121,7 @@ parseaddr(addr, a, copyf, delim, delimptr, e)
 	**  Build canonical address from pvp.
 	*/
 
-	a = buildaddr(pvp, a);
+	a = buildaddr(pvp, a, e);
 	if (a == NULL)
 		return (NULL);
 
@@ -1058,6 +1058,7 @@ rewrite(pvp, ruleset)
 **		tv -- token vector.
 **		a -- pointer to address descriptor to fill.
 **			If NULL, one will be allocated.
+**		e -- the current envelope.
 **
 **	Returns:
 **		NULL if there was an error.
@@ -1087,9 +1088,10 @@ struct errcodes
 };
 
 ADDRESS *
-buildaddr(tv, a)
+buildaddr(tv, a, e)
 	register char **tv;
 	register ADDRESS *a;
+	register ENVELOPE *e;
 {
 	struct mailer **mp;
 	register struct mailer *m;
@@ -1132,6 +1134,8 @@ buildaddr(tv, a)
 		cataddr(++tv, NULL, buf, sizeof buf, ' ');
 		stripquotes(buf);
 		usrerr(buf);
+		if (e->e_message == NULL)
+			e->e_message = newstr(buf);
 		return (NULL);
 	}
 
@@ -1574,7 +1578,7 @@ maplocaluser(a, sendq, e)
 		return;
 
 	/* if non-null, mailer destination specified -- has it changed? */
-	a1 = buildaddr(pvp, NULL);
+	a1 = buildaddr(pvp, NULL, e);
 	if (a1 == NULL || sameaddr(a, a1))
 		return;
 
