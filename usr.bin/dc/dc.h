@@ -1,6 +1,5 @@
-/*
- *	@(#)dc.h	1.1	(Berkeley)	02/11/83
- */
+/*	dc.h	1.2	83/03/30	*/
+
 #define FATAL 0
 #define NFATAL 1
 #define BLK sizeof(struct blk)
