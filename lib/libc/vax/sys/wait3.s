@@ -1,4 +1,14 @@
-/*	@(#)wait3.s	4.2	(Berkeley)	12/28/82	*/
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)wait3.s	5.1 (Berkeley) 06/03/85";
+#endif not lint
+
+/*	@(#)wait3.s	5.1	(Berkeley)	06/03/85	*/
 
 /*
  * C library -- wait3
