@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.8 (Berkeley) 07/22/93
+ *	@(#)sendmail.h	8.9 (Berkeley) 07/26/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.8		07/22/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.9		07/26/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -883,6 +883,8 @@ extern bool		lockfile __P((int, char *, int));
 extern char		*hostsignature __P((MAILER *, char *, ENVELOPE *));
 extern void		openxscript __P((ENVELOPE *));
 extern void		closexscript __P((ENVELOPE *));
+typedef void		(*setsig_t) __P((int));
+extern setsig_t		setsignal __P((int, setsig_t));
 
 /* ellipsis is a different case though */
 #ifdef __STDC__
