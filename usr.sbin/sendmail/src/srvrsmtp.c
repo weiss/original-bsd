@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	5.32 (Berkeley) 12/15/91 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.33 (Berkeley) 12/15/91 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	5.32 (Berkeley) 12/15/91 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.33 (Berkeley) 12/15/91 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -177,6 +177,9 @@ smtp()
 			if (!strcasecmp(c->cmdname, cmdbuf))
 				break;
 		}
+
+		/* reset errors */
+		errno = 0;
 
 		/* process command */
 		switch (c->cmdcode)
