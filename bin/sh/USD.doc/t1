@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)t1	6.3 (Berkeley) 08/09/93
+.\"	@(#)t1	8.1 (Berkeley) 08/14/93
 .\"
 .EH 'USD:3-%''An Introduction to the UNIX Shell'
 .OH 'An Introduction to the UNIX Shell''USD:3-%'
