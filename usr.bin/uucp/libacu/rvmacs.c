@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)rvmacs.c	4.3 (Berkeley) 10/23/85";
+static char sccsid[] = "@(#)rvmacs.c	4.4 (Berkeley) 06/07/86";
 #endif
 
 #include "../condevs.h"
@@ -170,6 +170,9 @@ rvmacscls(fd)
 register int fd;
 {
 	if (fd > 0) {
+		char c;
+
+		pc(fd, ABORT);
 		ioctl(fd, TIOCCDTR, STBNULL);
 		sleep(1);
 		ioctl(fd, TIOCNXCL, STBNULL);
