@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lprint.c	5.16 (Berkeley) 07/27/91";
+static char sccsid[] = "@(#)lprint.c	5.17 (Berkeley) 10/27/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -237,7 +237,7 @@ demi_print(str, oddfield)
 	return(oddfield);
 }
 
-static
+static int
 show_text(directory, file_name, header)
 	char *directory, *file_name, *header;
 {
