@@ -6,20 +6,20 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)err.c	5.9 (Berkeley) 06/08/91";
+static char sccsid[] = "@(#)err.c	5.10 (Berkeley) 06/08/91";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <stdlib.h>
 #include <unistd.h>
+#if __STDC__
+# include <stdarg.h>
+#else
+# include <varargs.h>
+#endif
+
 #include "csh.h"
 #include "extern.h"
-
-#if __STDC__
-#include <stdarg.h>
-#else
-#include <varargs.h>
-#endif
 
 char   *seterr = NULL;	/* Holds last error if there was one */
 
