@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.50 (Berkeley) 11/06/91";
+static char sccsid[] = "@(#)ls.c	5.51 (Berkeley) 11/19/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -215,7 +215,7 @@ main(argc, argv)
 	if (argc)
 		doargs(argc, argv);
 	else {
-		static char *dotav[] = { ".", NULL };
+		static char dot[] = ".", *dotav[] = { dot, NULL };
 		doargs(1, dotav);
 	}
 	exit(0);
