@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 1988 Mark Nudleman
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
@@ -9,12 +9,12 @@
 #ifndef lint
 char copyright[] =
 "@(#) Copyright (c) 1988 Mark Nudleman.\n\
-@(#) Copyright (c) 1988 Regents of the University of California.\n\
- All rights reserved.\n";
+@(#) Copyright (c) 1988, 1993
+	Regents of the University of California.  All rights reserved.\n";
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.13 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)main.c	5.14 (Berkeley) 06/07/93";
 #endif /* not lint */
 
 /*
