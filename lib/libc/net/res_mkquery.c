@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)res_mkquery.c	6.4 (Berkeley) 11/10/86";
+static char sccsid[] = "@(#)res_mkquery.c	6.5 (Berkeley) 08/03/87";
 #endif LIBC_SCCS and not lint
 
 #include <stdio.h>
@@ -78,8 +78,6 @@ res_mkquery(op, dname, class, type, data, datalen, newrr, buf, buflen)
 	 */
 	switch (op) {
 	case QUERY:
-	case CQUERYM:
-	case CQUERYU:
 		buflen -= QFIXEDSZ;
 		if ((n = dn_comp(dname, cp, buflen, dnptrs, lastdnptr)) < 0)
 			return (-1);
