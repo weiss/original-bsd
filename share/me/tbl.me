@@ -1,9 +1,10 @@
 .nr _0 \n(c.
-.\"	@(#)tbl.me	2.1	08/18/80
+.\"	@(#)tbl.me	2.2	04/27/85
 .\"	%beginstrip%
 .de TS			\" *** table start
 .sp \\n(bsu
 .@C 1
+.fi				\" drop into fill mode for text boxes
 .if "\\$1"H" \
 \{\
 .	di |h			\" save header part
