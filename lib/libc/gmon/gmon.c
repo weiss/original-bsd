@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)gmon.c	1.4 (Berkeley) 11/06/81";
+static	char *sccsid = "@(#)gmon.c	1.5 (Berkeley) 11/10/81";
 
 #include <stdio.h>
 
@@ -25,9 +25,14 @@ static	char *sccsid = "@(#)gmon.c	1.4 (Berkeley) 11/06/81";
      */
 
 char **environ;
+    /*
+     *	etext is added by the loader, and is the end of the text space.
+     *	eprol is a local symbol, and labels almost the beginning of text space.
+     *	    its name is changed so it doesn't look like a function.
+     */
 extern	unsigned char	etext;
-asm( "#define _eprol eprol" );
 extern	unsigned char	eprol;
+asm( "#define _eprol _$eprol" );
 
 asm( "#define _start start" );
 start()
@@ -55,7 +60,7 @@ start()
     if ( targv >= (char **) ( *argv ) )
 	--targv;
     environ = targv;
-asm("eprol:");
+asm("_eprol:");
     _mstartup( &eprol , &etext );
     exit( main( kfp -> kargc , argv , environ ) );
 }
