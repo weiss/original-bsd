@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)source.c 1.2 02/11/82";
+static char sccsid[] = "@(#)source.c 1.3 03/24/83";
 
 /*
  * Source file management.
@@ -36,7 +36,7 @@ static char sccsid[] = "@(#)source.c 1.2 02/11/82";
 
 typedef int SEEKADDR;
 
-#define NSLOTS 20
+#define NSLOTS 40
 #define NLINESPERSLOT 500
 
 #define slotno(line)    ((line)/NLINESPERSLOT)
