@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)shutdown.c	5.10 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)shutdown.c	5.11 (Berkeley) 09/05/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -157,7 +157,7 @@ main(argc, argv)
 	mbuflen = strlen(mbuf);
 
 	if (offset)
-		printf("Shutdown at %.24s.", ctime(&shuttime));
+		printf("Shutdown at %.24s.\n", ctime(&shuttime));
 	else
 		printf("Shutdown NOW!\n");
 
