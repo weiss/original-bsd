@@ -18,12 +18,12 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)updatedb.csh	4.8 (Berkeley) 05/04/89
+#	@(#)updatedb.csh	4.9 (Berkeley) 05/19/89
 #
 set SRCHPATHS = "/"			# directories to be put in the database
 set LIBDIR = /usr/libexec		# for subprograms
 set FINDHONCHO = root			# for error messages
-set FCODES = /usr/libdata/find.database	# the database
+set FCODES = /var/db/find.database	# the database
 
 set path = ( $LIBDIR /usr/ucb /bin /usr/bin )
 set bigrams = /tmp/f.bigrams$$
