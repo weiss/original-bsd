@@ -1,9 +1,9 @@
-.\" Copyright (c) 1991 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1991, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)doc-syms	5.10 (Berkeley) 12/05/92
+.\"     @(#)doc-syms	8.1 (Berkeley) 06/08/93
 .\"
 .\"     %beginstrip%
 .\" NS Ux macro - UNIX
