@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_cmds.c	7.12 (Berkeley) 01/02/88";
+static char *sccsid = "@(#)ex_cmds.c	7.13 (Berkeley) 06/29/90";
 #endif not lint
 
 #include "ex.h"
@@ -593,8 +593,6 @@ quit:
 			case 'u':
 				tail("suspend");
 suspend:
-				if (!ldisc)
-					error("Old tty driver|Not using new tty driver/shell");
 				c = exclam();
 				eol();
 				if (!c)
