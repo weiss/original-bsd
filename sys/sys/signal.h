@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signal.h	7.21 (Berkeley) 11/01/91
+ *	@(#)signal.h	7.22 (Berkeley) 11/11/91
  */
 
 #ifndef	_SYS_SIGNAL_H_
@@ -134,4 +134,12 @@ struct	sigstack {
 
 #endif	/* !_POSIX_SOURCE */
 #endif	/* !_ANSI_SOURCE */
+
+/*
+ * For historical reasons; programs expect signal's return value to be
+ * defined by <sys/signal.h>.
+ */
+__BEGIN_DECLS
+void	(*signal __P((int, void (*) __P((int))))) __P((int));
+__END_DECLS
 #endif	/* !_SYS_SIGNAL_H_ */
