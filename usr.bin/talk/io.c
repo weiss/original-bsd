@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)io.c	5.6 (Berkeley) 03/01/91";
+static char sccsid[] = "@(#)io.c	5.7 (Berkeley) 08/31/92";
 #endif /* not lint */
 
 /*
@@ -15,11 +15,12 @@ static char sccsid[] = "@(#)io.c	5.6 (Berkeley) 03/01/91";
  * ctl.c
  */
 
+#include <sys/ioctl.h>
 #include <sys/time.h>
-#include "talk.h"
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
+#include "talk.h"
 
 #define A_LONG_TIME 10000000
 #define STDIN_MASK (1<<fileno(stdin))	/* the bit mask for standard
