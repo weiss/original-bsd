@@ -1,4 +1,4 @@
-#	Makefile	1.2	07/21/80
+#	Makefile	1.3	07/28/80
 
 CFLAGS = -O -DSTANDALONE
 RELOC=	70000
@@ -64,7 +64,7 @@ print:
 
 clean:
 	rm -f *.o *.exe
-	rm -f a.out b.out boot cat ls mkfs restor rpboot
+	rm -f a.out b.out boot cat ls mkfs restor rpboot tpmkfs tprestor
 
 install:
 	cp tprestor ${DESTDIR}/sys/restor
