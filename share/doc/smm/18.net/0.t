@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)0.t	6.7 (Berkeley) 06/06/93
+.\"	@(#)0.t	6.8 (Berkeley) 06/10/93
 .\"
 .de IR
 \fI\\$1\fP\\$2
@@ -53,8 +53,8 @@ Revised
 .\".lt \\n(.lu
 .\"..
 .\".ds RH Contents
-.OH 'Networking Implementation Notes''SMM:13-%'
-.EH 'SMM:13-%''Networking Implementation Notes'
+.OH 'Networking Implementation Notes''SMM:18-%'
+.EH 'SMM:18-%''Networking Implementation Notes'
 .bp
 .ce
 .B "TABLE OF CONTENTS"
