@@ -1,4 +1,6 @@
-/*	getlogin.c	4.2	82/11/14	*/
+#ifndef lint
+static char sccsid[] = "@(#)getlogin.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
 
 #include <utmp.h>
 
