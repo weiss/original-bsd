@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1990, 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1990, 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)device.h	7.2 (Berkeley) 11/17/92
+ *	@(#)device.h	8.1 (Berkeley) 06/10/93
  */
 
 struct driver {
