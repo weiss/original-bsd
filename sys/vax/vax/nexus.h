@@ -1,4 +1,10 @@
-/*	nexus.h	6.1	83/08/01	*/
+/*
+ * Copyright (c) 1982 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)nexus.h	6.2 (Berkeley) 06/08/85
+ */
 
 /*
  * Information about nexus's.
