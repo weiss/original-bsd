@@ -144,7 +144,7 @@ static char *files[] =		/* all files to create */
 	    while (fgets(Databuf, SZ_DATABUF, fp) != NULL)
 		/* read in text file, convert to binary */
 		{
-		sscanf(&Databuf[24], "s.setup.cFs.setup.cFs.setup.cd%d%F",
+		sscanf(&Databuf[24], "%lf%lf%lf%lf%lf%d%d%lf",
 		    &Curmonster.m_strength, &Curmonster.m_brains,
 		    &Curmonster.m_speed, &Curmonster.m_energy,
 		    &Curmonster.m_experience, &Curmonster.m_treasuretype,
