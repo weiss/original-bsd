@@ -4,16 +4,16 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dir.h	5.3 (Berkeley) 04/04/91
+ *	@(#)dir.h	5.4 (Berkeley) 06/04/91
  */
 
 /*
  * Structure for entries in directory stack.
  */
-struct	directory	{
-	struct	directory *di_next;	/* next in loop */
-	struct	directory *di_prev;	/* prev in loop */
-	unsigned short *di_count;	/* refcount of processes */
-	char	*di_name;		/* actual name */
+struct directory {
+    struct directory *di_next;	/* next in loop */
+    struct directory *di_prev;	/* prev in loop */
+    unsigned short *di_count;	/* refcount of processes */
+    Char   *di_name;		/* actual name */
 };
 struct directory *dcwd;		/* the one we are in now */
