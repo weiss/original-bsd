@@ -9,15 +9,13 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)envelope.c	5.1 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)envelope.c	5.2 (Berkeley) 06/07/85";
 #endif not lint
 
 #include <pwd.h>
 #include <sys/time.h>
 #include "sendmail.h"
 #include <sys/stat.h>
-
-SCCSID(@(#)envelope.c	5.1		06/07/85);
 
 /*
 **  NEWENVELOPE -- allocate a new envelope
@@ -219,8 +217,10 @@ initsys()
 {
 	static char cbuf[5];			/* holds hop count */
 	static char pbuf[10];			/* holds pid */
+#ifdef TTYNAME
 	static char ybuf[10];			/* holds tty id */
 	register char *p;
+#endif TTYNAME
 	extern char *ttyname();
 	extern char *macvalue();
 	extern char Version[];
