@@ -5,9 +5,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-SCCSID(@(#)alias.c	4.5		08/11/84	(with DBM));
+SCCSID(@(#)alias.c	4.6		09/18/84	(with DBM));
 # else DBM
-SCCSID(@(#)alias.c	4.5		08/11/84	(without DBM));
+SCCSID(@(#)alias.c	4.6		09/18/84	(without DBM));
 # endif DBM
 
 /*
@@ -377,18 +377,13 @@ readaliases(aliasfile, init)
 					while (*p != '\n' && *p != ',' && *p != '\0')
 						p++;
 					c = *p;
-					*p++ = '\0';
 					if (c == '\n')
 						c = '\0';
-					if (*p2 == '\0')
-					{
-						p[-1] = c;
-						continue;
-					}
-					(void) parseaddr(p2, &bl, -1, ',');
-					p[-1] = c;
-					while (isspace(*p))
-						p++;
+					*p = '\0';
+					if (*p2 != '\0')
+						(void) parseaddr(p2, &bl, -1, ',');
+					if (c != '\0')
+						*p++ = c;
 				}
 			}
 			else
