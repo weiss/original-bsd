@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.15 (Berkeley) 02/06/91";
+static char sccsid[] = "@(#)main.c	5.16 (Berkeley) 04/03/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -169,7 +169,7 @@ path(file)
 
 #define	CDIR	"../../compile/"
 	cp = malloc((unsigned int)(sizeof(CDIR) + strlen(PREFIX) +
-	    strlen(file) + 2));
+	    (file ? strlen(file) : 0) + 2));
 	(void) strcpy(cp, CDIR);
 	(void) strcat(cp, PREFIX);
 	if (file) {
