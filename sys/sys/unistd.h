@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)unistd.h	8.1 (Berkeley) 06/02/93
+ *	@(#)unistd.h	8.2 (Berkeley) 01/07/94
  */
 
 #ifndef _SYS_UNISTD_H_
@@ -27,10 +27,12 @@
 #define	_POSIX2_VERSION		199212L
 
 /* execution-time symbolic constants */
-#define	_POSIX_CHOWN_RESTRICTED	/* chown requires appropriate privileges */
-#define	_POSIX_NO_TRUNC		/* too-long path components generate errors */
+				/* chown requires appropriate privileges */
+#define	_POSIX_CHOWN_RESTRICTED	1
+				/* too-long path components generate errors */
+#define	_POSIX_NO_TRUNC		1
 				/* may disable terminal special characters */
-#define	_POSIX_VDISABLE	((unsigned char)'\377')
+#define	_POSIX_VDISABLE		((unsigned char)'\377')
 
 /* access function */
 #define	F_OK		0	/* test for existence of file */
