@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 1989 Jan-Simon Pendry
  * Copyright (c) 1989 Imperial College of Science, Technology & Medicine
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fsi_util.c	5.4 (Berkeley) 02/09/92
+ *	@(#)fsi_util.c	8.1 (Berkeley) 06/06/93
  *
  * $Id: fsi_util.c,v 5.2.2.1 1992/02/09 15:09:39 jsp beta $
  *
