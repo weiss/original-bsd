@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)chmod.c	5.2 (Berkeley) 06/09/85";
+static char sccsid[] = "@(#)chmod.c	5.3 (Berkeley) 06/18/85";
 #endif not lint
 
 /*
@@ -109,9 +109,10 @@ chmodr(dir, mode)
 			fprintf(stderr, "chmod: can't access %s\n", dp->d_name);
 			return(1);
 		}
-		chmod(dp->d_name, newmode(st.st_mode));
 		if (st.st_mode & S_IFDIR)
-			chmodr(dp->d_name, mode);
+			chmodr(dp->d_name, newmode(st.st_mode));
+		else
+			chmod(dp->d_name, newmode(st.st_mode));
 	}
 	closedir(dirp);
 	chdir(savedir);
