@@ -27,11 +27,11 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)indent.c	5.9 (Berkeley) 09/15/88";
+static char sccsid[] = "@(#)indent.c	5.10 (Berkeley) 09/15/88";
 #endif /* not lint */
 
-#include "indent_globs.h";
-#include "indent_codes.h";
+#include "indent_globs.h"
+#include "indent_codes.h"
 #include <sys/param.h>
 #include <ctype.h>
 
@@ -46,6 +46,7 @@ main(argc, argv)
     char      **argv;
 {
 
+    extern int  found_err;	/* flag set in diag() on error */
     int         dec_ind;	/* current indentation for declarations */
     int         di_stack[20];	/* a stack of structure indentation levels */
     int         flushed_nl;	/* used when buffering up comments to remember
@@ -402,7 +403,7 @@ check_type:
 		       (1.0 * ps.com_lines) / code_lines);
 	    }
 	    fflush(output);
-	    exit(1);
+	    exit(found_err);
 	}
 	if (
 		(type_code != comment) &&
