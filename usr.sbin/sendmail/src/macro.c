@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)macro.c	3.14		08/08/82);
+SCCSID(@(#)macro.c	3.15		08/22/82);
 
 /*
 **  EXPAND -- macro expand a string using $x escapes.
@@ -158,7 +158,8 @@ expand2(s, buf, buflim, e)
 **		$f   raw from address
 **		$g   translated from address
 **		$h   to host
-**		$i   official SMTP hostname, used in messages+
+**		$i   queue id
+**		$j   official SMTP hostname, used in messages+
 **		$l   UNIX-style from line+
 **		$n   name of sendmail ("MAILER-DAEMON" on local
 **		     net typically)+
