@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)prmail.c	4.1 (Berkeley) 10/10/80";
+static	char *sccsid = "@(#)prmail.c	4.2 (Berkeley) 02/09/83";
 
 #include <pwd.h>
 /*
@@ -48,7 +48,7 @@ prmail(user, other)
 		printf("No mail for %s.\n", user);
 		return;
 	}
-	if (access(user, "4") < 0) {
+	if (access(user, 4) < 0) {
 		printf("Mailbox for %s unreadable\n", user);
 		return;
 	}
