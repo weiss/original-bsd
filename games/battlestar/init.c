@@ -6,11 +6,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)init.c	8.1 (Berkeley) 05/31/93";
+static char sccsid[] = "@(#)init.c	8.2 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 #include <sys/types.h>
-#include "externs.h"
+#include "extern.h"
 #include <pwd.h>
 
 initialize(startup)
