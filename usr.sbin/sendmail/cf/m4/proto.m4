@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	6.38 (Berkeley) 05/11/93')
+VERSIONID(`@(#)proto.m4	6.39 (Berkeley) 05/21/93')
 
 MAILER(local)dnl
 
@@ -20,6 +20,8 @@ V4')
 #   local info   #
 ##################
 
+CP.
+
 Cwlocalhost
 ifdef(`USE_CW_FILE',
 `# file containing names of hosts for which we receive email
@@ -28,21 +30,25 @@ CONCAT(`Fw', confCW_FILE)', `dnl')
 ifdef(`UUCP_RELAY',
 `# UUCP relay host
 CONCAT(DY, UUCP_RELAY)
+CPUUCP
 
 ')dnl
 ifdef(`BITNET_RELAY',
 `#  BITNET relay host
 CONCAT(DB, BITNET_RELAY)
+CPBITNET
 
 ')dnl
 ifdef(`CSNET_RELAY',
 `# CSNET relay host
 CONCAT(DC, CSNET_RELAY)
+CPCSNET
 
 ')dnl
 ifdef(`FAX_RELAY',
 `# FAX relay host
 CONCAT(DF, FAX_RELAY)
+CPFAX
 
 ')dnl
 ifdef(`SMART_HOST',
@@ -402,7 +408,7 @@ ifdef(`_OLD_SENDMAIL_',
 ')
 ifdef(`_NO_CANONIFY_', `dnl',
 `# pass to name server to make hostname canonical
-R$* < @ $* $~. > $*		$: $1 < @ $[ $2 $3 $] > $4
+R$* < @ $* $~P > $*		$: $1 < @ $[ $2 $3 $] > $4
 ')
 # handle possible alternate names
 R$* < @ $=w . $m . > $*		$: $1 < @ $j . > $3
@@ -503,20 +509,20 @@ ifdef(`_CLASS_X_',
 
 # resolve fake top level domains by forwarding to other hosts
 ifdef(`BITNET_RELAY',
-`R$*<@$+.BITNET>$*	$#smtp $@ $B $: $1 <@$2.BITNET> $3	user@host.BITNET',
+`R$*<@$+.BITNET>$*	$#smtp $@ $B. $: $1 <@$2.BITNET> $3	user@host.BITNET',
 	`dnl')
 ifdef(`CSNET_RELAY',
-`R$*<@$+.CSNET>$*	$#smtp $@ $C $: $1 <@$2.CSNET> $3	user@host.CSNET',
+`R$*<@$+.CSNET>$*	$#smtp $@ $C. $: $1 <@$2.CSNET> $3	user@host.CSNET',
 	`dnl')
 ifdef(`_MAILER_fax_',
 `R$+ < @ $+ .FAX >	$#fax $@ $2 $: $1			user@host.FAX',
 `ifdef(`FAX_RELAY',
-`R$*<@$+.FAX>$*		$#smtp $@ $F $: $1 <@$2.FAX> $3		user@host.FAX',
+`R$*<@$+.FAX>$*		$#smtp $@ $F. $: $1 <@$2.FAX> $3	user@host.FAX',
 	`dnl')')
 
 ifdef(`UUCP_RELAY',
 `# forward non-local UUCP traffic to our UUCP relay
-R$*<@$*.UUCP>$*		$#smtp $@ $Y $: <@ $Y> : $1 @ $2.UUCP $3	uucp mail',
+R$*<@$*.UUCP>$*		$#smtp $@ $Y. $: <@ $Y> : $1 @ $2.UUCP $3	uucp mail',
 `ifdef(`_MAILER_uucp_',
 `# forward other UUCP traffic straight to UUCP
 R< @ $+ .UUCP > : $+	$#uucp $@ $1 $: $2			@host.UUCP:...
