@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	5.21 (Berkeley) 07/12/92";
+static char sccsid[] = "@(#)headers.c	5.22 (Berkeley) 11/04/92";
 #endif /* not lint */
 
 # include <sys/param.h>
@@ -53,7 +53,7 @@ chompheader(line, def, e)
 	/* strip off options */
 	clrbitmap(mopts);
 	p = line;
-	if (*p == '?')
+	if (def && *p == '?')
 	{
 		/* have some */
 		register char *q = index(p + 1, *p);
