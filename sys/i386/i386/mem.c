@@ -7,7 +7,7 @@
  *
  * %sccs.include.noredist.c%
  *
- *	@(#)mem.c	5.3 (Berkeley) 11/14/90
+ *	@(#)mem.c	5.4 (Berkeley) 11/18/90
  */
 
 /*
@@ -71,7 +71,7 @@ mmrw(dev, uio, rw)
 				goto fault;
 			*(int *)mmap = ctob(v) | PG_V |
 				(rw == UIO_READ ? PG_KR : PG_KW);
-			load_cr3(_cr3());
+			tlbflush();
 			o = (int)uio->uio_offset & PGOFSET;
 			c = (u_int)(NBPG - ((int)iov->iov_base & PGOFSET));
 			c = MIN(c, (u_int)(NBPG - o));
