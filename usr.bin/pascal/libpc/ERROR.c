@@ -1,9 +1,10 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)ERROR.c 1.1 10/30/80";
+static char sccsid[] = "@(#)ERROR.c 1.2 01/16/81";
 
-#include	"stdio.h"
-#include	"signal.h"
+#include	<stdio.h>
+#include	<signal.h>
+#include	"h00vars.h"
 #include	"h01errs.h"
 
 /*
@@ -22,6 +23,10 @@ ERROR(errnum, errdata)
 	} errdata;
 {
 	PFLUSH();
+	if (_entry[errnum].entryaddr != 0) {
+		(*_entry[errnum].entryaddr)(errdata);
+		return;
+	}
 	fputc('\n',stderr);
 	SETRACE();
 	switch (errnum) {
