@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)strings.c	5.4 (Berkeley) 10/21/88";
+static char sccsid[] = "@(#)strings.c	5.5 (Berkeley) 11/13/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -60,7 +60,7 @@ main(argc, argv)
 	 * for backward compatibility, allow '-' to specify 'a' flag; no
 	 * longer documented in the man page or usage string.
 	 */
-	asdata = 0;
+	asdata = oflg = 0;
 	minlen = -1;
 	while ((ch = getopt(argc, argv, "-0123456789ao")) != EOF)
 		switch((char)ch) {
