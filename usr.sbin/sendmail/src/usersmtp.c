@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.10		05/31/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.11		05/31/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.10		05/31/82);
+SCCSID(@(#)usersmtp.c	3.11		05/31/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
@@ -261,7 +261,7 @@ smtpmessage(f, a, b, c)
 	char buf[100];
 
 	(void) sprintf(buf, f, a, b, c);
-	strcat(buf, "\r\n");
+	(void) strcat(buf, "\r\n");
 	if (Debug)
 		fputs(buf, stdout);
 	fputs(buf, SmtpOut);
