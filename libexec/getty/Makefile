@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.8 (Berkeley) 06/28/90
+#	@(#)Makefile	5.9 (Berkeley) 06/29/90
 
 PROG=	getty
-SRCS=	main.c init.c subr.c gettytab.c get_date.c
+SRCS=	main.c init.c subr.c gettytab.c get_date.c ttydefaults.c
 LDADD=	-lutil
 MAN5=	gettytab.0 ttys.0
 MAN8=	getty.0
