@@ -20,15 +20,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tags.c	5.1 (Berkeley) 07/21/88";
+static char sccsid[] = "@(#)tags.c	5.2 (Berkeley) 07/21/88";
 #endif /* not lint */
 
 #include <stdio.h>
 #include "less.h"
 
 #define	WHITESP(c)	((c)==' ' || (c)=='\t')
-
-#if TAGS
 
 public char *tagfile;
 public char *tagpattern;
@@ -193,5 +191,3 @@ tagsearch()
 	jump_loc(linepos);
 	return (0);
 }
-
-#endif

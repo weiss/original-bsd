@@ -27,7 +27,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 07/21/88";
+static char sccsid[] = "@(#)main.c	5.4 (Berkeley) 07/21/88";
 #endif /* not lint */
 
 /*
@@ -65,11 +65,9 @@ public char *	namelogfile = NULL;
 
 public char *	editor;
 
-#if TAGS
 extern char *	tagfile;
 extern char *	tagpattern;
 extern int	tagoption;
-#endif
 
 /*
  * Edit a new file.
@@ -378,7 +376,6 @@ main(argc, argv)
 	/*
 	 * Select the first file to examine.
 	 */
-#if TAGS
 	if (tagoption)
 	{
 		/*
@@ -400,7 +397,6 @@ main(argc, argv)
 		if (tagsearch())
 			quit();
 	} else
-#endif
 	if (ac < 1)
 		edit("-");	/* Standard input */
 	else 
