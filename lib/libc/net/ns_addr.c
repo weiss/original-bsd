@@ -7,9 +7,9 @@
  * Used by permission.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)ns_addr.c	6.1 (Berkeley) 01/29/86";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)ns_addr.c	6.2 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 #include <sys/types.h>
 #include <netns/ns.h>
