@@ -1,4 +1,11 @@
-/*	netdb.h	4.1	82/10/05	*/
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)netdb.h	5.1 (Berkeley) 06/18/85
+ */
+
 /*
  * Structures returned by network
  * data base library.  All addresses
