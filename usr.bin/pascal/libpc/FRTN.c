@@ -1,12 +1,12 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)FRTN.c 1.3 03/07/81";
+static char sccsid[] = "@(#)FRTN.c 1.4 04/01/81";
 
 #include "h00vars.h"
 
-FRTN(frtn)
+FRTN(frtn, save)
 	register struct formalrtn *frtn;
+	char *save;
 {
-	blkcpy(frtn->cbn * sizeof(struct display),
-	       &frtn->disp[frtn->cbn], &_disply[1]);
+	blkcpy(frtn->fbn * sizeof(struct display), save, &_disply[1]);
 }
