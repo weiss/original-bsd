@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sem.c	5.21 (Berkeley) 11/04/91";
+static char sccsid[] = "@(#)sem.c	5.22 (Berkeley) 11/06/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -464,7 +464,7 @@ splicepipe(t, cp)
 	if (gflag) {
 	    pv = globall(blk);
 	    if (pv == NULL) {
-		setname(short2str(blk[0]));
+		setname(vis_str(blk[0]));
 		xfree((ptr_t) blk[0]);
 		stderror(ERR_NAME | ERR_NOMATCH);
 	    }

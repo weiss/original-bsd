@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)set.c	5.16 (Berkeley) 10/28/91";
+static char sccsid[] = "@(#)set.c	5.17 (Berkeley) 11/06/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -534,7 +534,7 @@ unset1(v, head)
 	while (vp = madrof(*v, head->v_left))
 	    unsetv1(vp), cnt++;
 	if (cnt == 0)
-	    setname(short2str(*v));
+	    setname(vis_str(*v));
     }
 }
 

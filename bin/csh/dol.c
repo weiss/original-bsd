@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dol.c	5.17 (Berkeley) 11/04/91";
+static char sccsid[] = "@(#)dol.c	5.18 (Berkeley) 11/06/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -112,7 +112,7 @@ Dfix1(cp)
     Dv[1] = NULL;
     Dfix2(Dv);
     if (gargc != 1) {
-	setname(short2str(cp));
+	setname(vis_str(cp));
 	stderror(ERR_NAME | ERR_AMBIG);
     }
     cp = Strsave(gargv[0]);
@@ -362,7 +362,7 @@ static void
 dolerror(s)
     Char   *s;
 {
-    setname(short2str(s));
+    setname(vis_str(s));
     stderror(ERR_NAME | ERR_RANGE);
 }
 
