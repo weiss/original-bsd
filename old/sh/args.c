@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)args.c	4.4 07/31/85";
+static char sccsid[] = "@(#)args.c	4.5 04/24/88";
 #endif
 
 #
@@ -13,7 +13,7 @@ static char sccsid[] = "@(#)args.c	4.4 07/31/85";
 
 #include	"defs.h"
 
-PROC STRING *copyargs();
+PROC DOLPTR copyargs();
 LOCAL DOLPTR	dolh;
 
 CHAR	flagadr[10];
@@ -102,21 +102,21 @@ freeargs(blk)
 	return(argr);
 }
 
-LOCAL STRING *	copyargs(from, n)
+LOCAL DOLPTR	copyargs(from, n)
 	STRING		from[];
 {
-	REG STRING *	np=alloc(sizeof(STRING*)*n+3*BYTESPERWORD);
+	REG DOLPTR	dp=alloc(sizeof(STRING*)*n+3*BYTESPERWORD);
+	REG STRING *	np;
 	REG STRING *	fp=from;
-	REG STRING *	pp=np;
 
-	np->doluse=1;	/* use count */
-	np=np->dolarg;
+	dp->doluse=1;	/* use count */
+	np=dp->dolarg;
 	dolv=np;
 
 	WHILE n--
 	DO *np++ = make(*fp++) OD
 	*np++ = ENDARGS;
-	return(pp);
+	return(dp);
 }
 
 clearup()
