@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm_mips.c	1.1 (Berkeley) 02/04/93";
+static char sccsid[] = "@(#)kvm_mips.c	5.1 (Berkeley) 02/15/93";
 #endif /* LIBC_SCCS and not lint */
 /*
  * MIPS machine dependent routines for kvm.  Hopefully, the forthcoming 
