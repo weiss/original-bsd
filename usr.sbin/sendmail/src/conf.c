@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.46 (Berkeley) 04/21/93";
+static char sccsid[] = "@(#)conf.c	6.47 (Berkeley) 04/26/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -1065,6 +1065,20 @@ initgroups(name, basegid)
 	int basegid;
 {
 	return 0;
+}
+
+#endif
+/*
+**  SETSID -- set session id (for non-POSIX systems)
+*/
+
+#ifndef HASSETSID
+
+setsid()
+{
+# ifdef SYSTEM5
+	setpgrp();
+# endif
 }
 
 #endif
