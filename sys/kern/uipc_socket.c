@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_socket.c	7.26 (Berkeley) 02/19/91
+ *	@(#)uipc_socket.c	7.27 (Berkeley) 05/03/91
  */
 
 #include "param.h"
@@ -315,7 +315,8 @@ restart:
 			snderr(so->so_error);
 		if ((so->so_state & SS_ISCONNECTED) == 0) {
 			if (so->so_proto->pr_flags & PR_CONNREQUIRED) {
-				if ((so->so_state & SS_ISCONFIRMING) == 0)
+				if ((so->so_state & SS_ISCONFIRMING) == 0 &&
+				    !(resid == 0 && clen != 0))
 					snderr(ENOTCONN);
 			} else if (addr == 0)
 				snderr(EDESTADDRREQ);
