@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)sortbib.c	4.3 (Berkeley) 05/11/89";
+static char *sccsid = "@(#)sortbib.c	4.4 (Berkeley) 03/01/91";
 #endif
 
 #include <stdio.h>
@@ -19,7 +19,8 @@ int argc;
 char *argv[];
 {
 	FILE *fp[MXFILES], *tfp, *fopen();
-	int i, onintr();
+	int i;
+	void onintr();
 	char *mktemp();
 
 	if (argc == 1)		/* can't use stdin for seeking anyway */
@@ -270,6 +271,7 @@ char *s;
 	exit(1);
 }
 
+void
 onintr()		/* remove tempfile in case of interrupt */
 {
 	fprintf(stderr, "\nInterrupt\n");
