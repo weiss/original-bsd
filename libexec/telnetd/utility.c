@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utility.c	5.9 (Berkeley) 12/18/92";
+static char sccsid[] = "@(#)utility.c	5.10 (Berkeley) 01/19/93";
 #endif /* not lint */
 
 #define PRINTOPTIONS
@@ -587,10 +587,14 @@ printsub(direction, pointer, length)
 		break;
 	    }
 	    switch (pointer[1]) {
-	    case 0:
+	    case LFLOW_OFF:
 		sprintf(nfrontp, " OFF"); break;
-	    case 1:
+	    case LFLOW_ON:
 		sprintf(nfrontp, " ON"); break;
+	    case LFLOW_RESTART_ANY:
+		sprintf(nfrontp, " RESTART-ANY"); break;
+	    case LFLOW_RESTART_XON:
+		sprintf(nfrontp, " RESTART-XON"); break;
 	    default:
 		sprintf(nfrontp, " %d (unknown)", pointer[1]);
 	    }
