@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)object.c 1.2 12/15/82";
+static char sccsid[] = "@(#)object.c 1.3 12/18/82";
 
 /*
  * Object code interface, mainly for extraction of symbolic information.
@@ -343,6 +343,12 @@ register struct nlist *np;
 	    break;
 
 	case N_PC:
+	    break;
+
+	case N_LENG:
+	    /*
+	     * Should complain out this, obviously the wrong symbol format.
+	     */
 	    break;
 
 	default:
