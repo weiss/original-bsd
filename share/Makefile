@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 07/25/92
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 SUBDIR=	dict doc man me misc mk skel tabset termcap tmac zoneinfo
 
