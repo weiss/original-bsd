@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.48 (Berkeley) 03/12/95";
+static char sccsid[] = "@(#)map.c	8.49 (Berkeley) 03/13/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -19,7 +19,7 @@ static char sccsid[] = "@(#)map.c	8.48 (Berkeley) 03/12/95";
 # include <db.h>
 #endif
 #ifdef NIS
-# include <rpcsvc/yp_prot.h>
+  struct dom_binding { int dummy; };	/* needed on IRIX */
 # include <rpcsvc/ypclnt.h>
 #endif
 
