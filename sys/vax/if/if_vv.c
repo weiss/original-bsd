@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_vv.c	7.6 (Berkeley) 09/22/89
+ *	@(#)if_vv.c	7.7 (Berkeley) 04/07/90
  */
 
 #include "vv.h"
@@ -297,7 +297,7 @@ vvinit(unit, cansleep)
 	 */
 	while (vs->vs_flags & VS_INIT) {
 		if (cansleep)
-			sleep((caddr_t)vs);
+			sleep((caddr_t)vs, PZERO);
 		else
 			return;
 	}
