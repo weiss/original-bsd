@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/06/85
+#	@(#)Makefile	5.2 (Berkeley) 02/03/86
 #
 ALL=	ftpd.o ftpcmd.o glob.o vers.o
 DESTDIR=
