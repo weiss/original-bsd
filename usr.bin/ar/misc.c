@@ -9,16 +9,17 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.1 (Berkeley) 01/17/91";
+static char sccsid[] = "@(#)misc.c	5.2 (Berkeley) 03/10/91";
 #endif /* not lint */
 
 #include <sys/param.h>
-#include <sys/signal.h>
 #include <sys/errno.h>
+#include <signal.h>
 #include <dirent.h>
+#include <unistd.h>
 #include <stdio.h>
-#include "pathnames.h"
 #include "archive.h"
+#include "pathnames.h"
 
 extern CHDR chdr;			/* converted header */
 extern char *archive;			/* archive name */
