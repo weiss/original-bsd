@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)tran.c	4.4 12/09/83";
+static char sccsid[] = "@(#)tran.c	4.5 10/22/87";
 #endif
 
 #include "stdio.h"
@@ -197,9 +197,9 @@ register cell *vp;
 		if (!(vp->tval&FLD))
 			strfree(vp->sval);
 		if ((long)vp->fval==vp->fval)
-			sprintf(s, "%.20g", vp->fval);
+			(void)sprintf(s, "%.20g", vp->fval);
 		else
-			sprintf(s, *OFMT, vp->fval);
+			(void)sprintf(s, *OFMT, vp->fval);
 		vp->sval = tostring(s);
 		vp->tval &= ~FLD;
 		vp->tval |= STR;
