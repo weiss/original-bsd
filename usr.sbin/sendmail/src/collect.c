@@ -1,9 +1,9 @@
 # include <stdio.h>
 # include <ctype.h>
 # include <errno.h>
-# include "postbox.h"
+# include "sendmail.h"
 
-static char	SccsId[] = "@(#)collect.c	3.6	03/11/81";
+static char	SccsId[] = "@(#)collect.c	3.7	03/20/81";
 
 /*
 **  COLLECT -- read & parse message header & make temp file.
