@@ -8,7 +8,7 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)mailertable.m4	6.1 (Berkeley) 03/23/93')
+VERSIONID(`@(#)mailertable.m4	6.2 (Berkeley) 05/21/93')
 divert(-1)
 
-define(`MAILER_TABLE', ifelse(_ARG_, `', `hash /etc/mailertable.db -o', `_ARG_'))dnl
+define(`MAILER_TABLE', ifelse(_ARG_, `', `hash /etc/mailertable -o', `_ARG_'))dnl
