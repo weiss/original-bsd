@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	5.9 (Berkeley) 06/30/88";
+static char sccsid[] = "@(#)parseaddr.c	5.10 (Berkeley) 01/01/89";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -81,10 +81,8 @@ parseaddr(addr, a, copyf, delim)
 	*/
 
 	CurEnv->e_to = addr;
-# ifdef DEBUG
 	if (tTd(20, 1))
 		printf("\n--parseaddr(%s)\n", addr);
-# endif DEBUG
 
 	pvp = prescan(addr, delim, pvpbuf);
 	if (pvp == NULL)
@@ -159,13 +157,11 @@ parseaddr(addr, a, copyf, delim)
 	**  Compute return value.
 	*/
 
-# ifdef DEBUG
 	if (tTd(20, 1))
 	{
 		printf("parseaddr-->");
 		printaddr(a, FALSE);
 	}
-# endif DEBUG
 
 	return (a);
 }
@@ -281,14 +277,12 @@ prescan(addr, delim, pvpbuf)
 	state = OPR;
 	c = NOCHAR;
 	p = addr;
-# ifdef DEBUG
 	if (tTd(22, 45))
 	{
 		printf("prescan: ");
 		xputs(p);
 		(void) putchar('\n');
 	}
-# endif DEBUG
 
 	do
 	{
@@ -317,10 +311,8 @@ prescan(addr, delim, pvpbuf)
 				break;
 			c &= ~0200;
 
-# ifdef DEBUG
 			if (tTd(22, 101))
 				printf("c=%c, s=%d; ", c, state);
-# endif DEBUG
 
 			/* chew up special characters */
 			*q = '\0';
@@ -381,10 +373,8 @@ prescan(addr, delim, pvpbuf)
 				break;
 
 			newstate = StateTab[state][toktype(c)];
-# ifdef DEBUG
 			if (tTd(22, 101))
 				printf("ns=%02o\n", newstate);
-# endif DEBUG
 			state = newstate & TYPE;
 			if (bitset(M, newstate))
 				c = NOCHAR;
@@ -396,14 +386,12 @@ prescan(addr, delim, pvpbuf)
 		if (tok != q)
 		{
 			*q++ = '\0';
-# ifdef DEBUG
 			if (tTd(22, 36))
 			{
 				printf("tok=");
 				xputs(tok);
 				(void) putchar('\n');
 			}
-# endif DEBUG
 			if (avp >= &av[MAXATOM])
 			{
 				syserr("prescan: too many tokens");
@@ -531,13 +519,11 @@ rewrite(pvp, ruleset)
 
 	for (rwr = RewriteRules[ruleset]; rwr != NULL; )
 	{
-# ifdef DEBUG
 		if (tTd(21, 12))
 		{
 			printf("-----trying rule:");
 			printav(rwr->r_lhs);
 		}
-# endif DEBUG
 
 		/* try to match on this rule */
 		mlp = mlist;
@@ -546,7 +532,6 @@ rewrite(pvp, ruleset)
 		while ((ap = *avp) != NULL || *rvp != NULL)
 		{
 			rp = *rvp;
-# ifdef DEBUG
 			if (tTd(21, 35))
 			{
 				printf("ap=");
@@ -555,7 +540,6 @@ rewrite(pvp, ruleset)
 				xputs(rp);
 				printf("\n");
 			}
-# endif DEBUG
 			if (rp == NULL)
 			{
 				/* end-of-pattern before end-of-address */
@@ -647,22 +631,18 @@ rewrite(pvp, ruleset)
 
 		if (rvp < rwr->r_lhs || *rvp != NULL)
 		{
-# ifdef DEBUG
 			if (tTd(21, 10))
 				printf("----- rule fails\n");
-# endif DEBUG
 			rwr = rwr->r_next;
 			continue;
 		}
 
 		rvp = rwr->r_rhs;
-# ifdef DEBUG
 		if (tTd(21, 12))
 		{
 			printf("-----rule matches:");
 			printav(rvp);
 		}
-# endif DEBUG
 
 		rp = *rvp;
 		if (*rp == CANONUSER)
@@ -694,7 +674,6 @@ rewrite(pvp, ruleset)
 					syserr("rewrite: ruleset %d: replacement out of bounds", ruleset);
 					return;
 				}
-# ifdef DEBUG
 				if (tTd(21, 15))
 				{
 					printf("$%c:", rp[1]);
@@ -707,7 +686,6 @@ rewrite(pvp, ruleset)
 					}
 					printf("\n");
 				}
-# endif DEBUG
 				pp = m->first;
 				while (pp <= m->last)
 				{
@@ -807,10 +785,8 @@ rewrite(pvp, ruleset)
 		{
 			bcopy((char *) &npvp[2], (char *) pvp,
 				(int) (avp - npvp - 2) * sizeof *avp);
-# ifdef DEBUG
 			if (tTd(21, 3))
 				printf("-----callsubr %s\n", npvp[1]);
-# endif DEBUG
 			rewrite(pvp, atoi(npvp[1]));
 		}
 		else
@@ -818,13 +794,11 @@ rewrite(pvp, ruleset)
 			bcopy((char *) npvp, (char *) pvp,
 				(int) (avp - npvp) * sizeof *avp);
 		}
-# ifdef DEBUG
 		if (tTd(21, 4))
 		{
 			printf("rewritten as:");
 			printav(pvp);
 		}
-# endif DEBUG
 	}
 
 	if (OpMode == MD_TEST || tTd(21, 2))
@@ -1037,8 +1011,6 @@ sameaddr(a, b)
 **		none.
 */
 
-# ifdef DEBUG
-
 printaddr(a, follow)
 	register ADDRESS *a;
 	bool follow;
@@ -1066,7 +1038,6 @@ printaddr(a, follow)
 		printf("[NULL]\n");
 }
 
-# endif DEBUG
 /*
 **  REMOTENAME -- return the name relative to the current mailer
 **
@@ -1108,10 +1079,8 @@ remotename(name, m, senderaddress, canonical)
 	extern char **prescan();
 	extern char *crackaddr();
 
-# ifdef DEBUG
 	if (tTd(12, 1))
 		printf("remotename(%s)\n", name);
-# endif DEBUG
 
 	/* don't do anything if we are tagging it as special */
 	if ((senderaddress ? m->m_s_rwset : m->m_r_rwset) < 0)
@@ -1196,9 +1165,7 @@ remotename(name, m, senderaddress, canonical)
 	expand(fancy, buf, &buf[sizeof buf - 1], CurEnv);
 	define('g', oldg, CurEnv);
 
-# ifdef DEBUG
 	if (tTd(12, 1))
 		printf("remotename => `%s'\n", buf);
-# endif DEBUG
 	return (buf);
 }

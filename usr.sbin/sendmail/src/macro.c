@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)macro.c	5.5 (Berkeley) 06/30/88";
+static char sccsid[] = "@(#)macro.c	5.6 (Berkeley) 01/01/89";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -53,14 +53,12 @@ expand(s, buf, buflim, e)
 	char xbuf[BUFSIZ];
 	extern char *macvalue();
 
-# ifdef DEBUG
 	if (tTd(35, 24))
 	{
 		printf("expand(");
 		xputs(s);
 		printf(")\n");
 	}
-# endif DEBUG
 
 	skipping = FALSE;
 	if (s == NULL)
@@ -120,14 +118,12 @@ expand(s, buf, buflim, e)
 	}
 	*xp = '\0';
 
-# ifdef DEBUG
 	if (tTd(35, 24))
 	{
 		printf("expand ==> ");
 		xputs(xbuf);
 		printf("\n");
 	}
-# endif DEBUG
 
 	/* recurse as appropriate */
 	if (recurse)
@@ -208,14 +204,12 @@ define(n, v, e)
 	char *v;
 	register ENVELOPE *e;
 {
-# ifdef DEBUG
 	if (tTd(35, 9))
 	{
 		printf("define(%c as ", n);
 		xputs(v);
 		printf(")\n");
 	}
-# endif DEBUG
 	e->e_macro[n & 0177] = v;
 }
 /*

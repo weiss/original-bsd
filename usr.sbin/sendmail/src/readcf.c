@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.16 (Berkeley) 12/28/88";
+static char sccsid[] = "@(#)readcf.c	5.17 (Berkeley) 01/01/89";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -603,8 +603,6 @@ makeargv(p)
 **		prints rewrite rules.
 */
 
-# ifdef DEBUG
-
 printrules()
 {
 	register struct rewrite *rwp;
@@ -626,7 +624,6 @@ printrules()
 	}
 }
 
-# endif DEBUG
 /*
 **  SETOPTION -- set global processing option
 **
@@ -662,10 +659,8 @@ setoption(opt, val, safe, sticky)
 	extern bool trusteduser();
 	extern char *username();
 
-# ifdef DEBUG
 	if (tTd(37, 1))
 		printf("setoption %c=%s", opt, val);
-# endif DEBUG
 
 	/*
 	**  See if this option is preset for us.
@@ -673,10 +668,8 @@ setoption(opt, val, safe, sticky)
 
 	if (bitnset(opt, StickyOpt))
 	{
-# ifdef DEBUG
 		if (tTd(37, 1))
 			printf(" (ignored)\n");
-# endif DEBUG
 		return;
 	}
 
@@ -688,10 +681,8 @@ setoption(opt, val, safe, sticky)
 		safe = TRUE;
 	if (!safe && index("deiLmorsv", opt) == NULL)
 	{
-# ifdef DEBUG
 		if (tTd(37, 1))
 			printf(" (unsafe)");
-# endif DEBUG
 		if (getuid() != geteuid())
 		{
 			printf("(Resetting uid)\n");
@@ -699,10 +690,8 @@ setoption(opt, val, safe, sticky)
 			(void) setuid(getuid());
 		}
 	}
-#ifdef DEBUG
 	else if (tTd(37, 1))
 		printf("\n");
-#endif DEBUG
 
 	switch (opt)
 	{

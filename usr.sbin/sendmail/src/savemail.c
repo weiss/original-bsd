@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	5.10 (Berkeley) 11/17/88";
+static char sccsid[] = "@(#)savemail.c	5.11 (Berkeley) 01/01/89";
 #endif /* not lint */
 
 # include <pwd.h>
@@ -67,10 +67,8 @@ savemail(e)
 	extern char *ttypath();
 	typedef int (*fnptr)();
 
-# ifdef DEBUG
 	if (tTd(6, 1))
 		printf("\nsavemail, ErrorMode = %c\n", ErrorMode);
-# endif DEBUG
 
 	if (bitset(EF_RESPONSE, e->e_flags))
 		return;
@@ -146,10 +144,8 @@ savemail(e)
 
 	while (state != ESM_DONE)
 	{
-# ifdef DEBUG
 		if (tTd(6, 5))
 			printf("  state %d\n", state);
-# endif DEBUG
 
 		switch (state)
 		{
@@ -373,7 +369,6 @@ returntosender(msg, returnq, sendbody)
 	static int returndepth;
 	register ADDRESS *q;
 
-# ifdef DEBUG
 	if (tTd(6, 1))
 	{
 		printf("Return To Sender: msg=\"%s\", depth=%d, CurEnv=%x,\n",
@@ -381,7 +376,6 @@ returntosender(msg, returnq, sendbody)
 		printf("\treturnq=");
 		printaddr(returnq, TRUE);
 	}
-# endif DEBUG
 
 	if (++returndepth >= MAXRETURNS)
 	{
