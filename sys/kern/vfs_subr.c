@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_subr.c	7.96 (Berkeley) 03/05/93
+ *	@(#)vfs_subr.c	7.97 (Berkeley) 03/08/93
  */
 
 /*
@@ -190,7 +190,7 @@ void vattr_null(vap)
 		vap->va_mtime.ts_sec = vap->va_mtime.ts_nsec =
 		vap->va_ctime.ts_sec = vap->va_ctime.ts_nsec =
 		vap->va_flags = vap->va_gen = VNOVAL;
-	vap->va_cflags = 0;
+	vap->va_vaflags = 0;
 }
 
 /*
