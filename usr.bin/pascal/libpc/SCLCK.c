@@ -6,9 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)SCLCK.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)SCLCK.c	8.2 (Berkeley) 05/23/94";
 #endif /* not lint */
 
+#include <sys/types.h>
 #include <sys/time.h>
 #include <sys/resource.h>
 
