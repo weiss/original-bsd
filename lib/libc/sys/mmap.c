@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)mmap.c	5.2 (Berkeley) 06/01/93";
+static char sccsid[] = "@(#)mmap.c	5.3 (Berkeley) 06/03/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -27,6 +27,6 @@ mmap(addr, len, prot, flags, fd, offset)
 	off_t	offset;
 {
 
-	return((caddr_t)__indir(SYS_mmap, addr, len, prot, flags, fd, 0,
+	return((caddr_t)__indir((quad_t)SYS_mmap, addr, len, prot, flags, fd, 0,
 		offset));
 }
