@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)locore.s	7.7 (Berkeley) 05/11/92
+ *	@(#)locore.s	7.8 (Berkeley) 05/20/92
  */
 
 #include "assym.s"
@@ -1458,6 +1458,22 @@ ENTRY(ntohs)
 	movzwl	4(%esp),%eax
 	xchgb	%al,%ah
 	ret
+
+/* DELAY(n)  delay about n microseconds */
+ENTRY(DELAY)
+	movl 4(%esp), %ecx
+	incl %ecx /* make DELAY(0) go through the loop just once */
+
+	/* 
+	 * 0x80 is the manufacturing test port, which should be safe to
+	 * write to on any motherboard.  The output instruction will
+	 * be executed at bus speed, rather than processor speed, so
+	 * it will be about 750ns on any ISA or EISA machine.
+	 */
+1:
+	outb %al, $0x80
+	loop 1b
+	ret	
 
 #include "vector.s"
 #include "i386/isa/icu.s"
