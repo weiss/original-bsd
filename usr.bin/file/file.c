@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)file.c 3.3 09/21/80";
+static	char sccsid[] = "@(#)file.c 4.1 10/01/80";
 /*
  * file - determine type of file
  */
