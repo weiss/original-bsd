@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lprint.c	5.6 (Berkeley) 09/01/89";
+static char sccsid[] = "@(#)lprint.c	5.7 (Berkeley) 09/02/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -240,7 +240,7 @@ vputc(ch)
 		meta = 1;
 	} else
 		meta = 0;
-	if (isprint(ch) || !meta && isspace(ch))
+	if (isprint(ch) || !meta && (ch == ' ' || ch == '\t' || ch == '\n'))
 		(void)putchar(ch);
 	else {
 		(void)putchar('^');
