@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)hp.c	6.8 (Berkeley) 06/08/85
+ *	@(#)hp.c	6.9 (Berkeley) 08/05/85
  */
 
 #ifdef HPDEBUG
@@ -802,6 +802,7 @@ hpecc(mi, flag)
 	sn %= st->nsect;
 	cn += tn/st->ntrak;
 	tn %= st->ntrak;
+	bn += npf;
 	switch (flag) {
 	case ECC: {
 		register int i;
