@@ -1,4 +1,4 @@
-#	@(#)bsd.doc.mk	5.3 (Berkeley) 01/02/91
+#	@(#)bsd.doc.mk	5.4 (Berkeley) 08/07/91
 
 PRINTER=psc
 
@@ -18,6 +18,10 @@ TBL?=		dtbl -P${PRINTER}
 .if !target(print)
 print: paper.${PRINTER}
 	lpr -P${PRINTER} paper.${PRINTER}
+.endif
+
+.if !target(manpages)
+manpages:
 .endif
 
 clean cleandir:
