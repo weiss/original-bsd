@@ -1,7 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
 #ifndef lint
-static	char sccsid[] = "@(#)tree.c 1.4 09/19/83";
+static	char sccsid[] = "@(#)tree.c 1.5 02/04/84";
 #endif
 
 #include "whoami.h"
@@ -69,7 +69,7 @@ inittree()
  * which was always true before we
  * segmented the tree space.
  */
-/*VARARGS*/
+/*VARARGS1*/
 struct tnode *
 tree(cnt, a)
 	int cnt;
