@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if.c	7.9 (Berkeley) 04/05/90
+ *	@(#)if.c	7.10 (Berkeley) 05/10/90
  */
 
 #include "param.h"
@@ -383,7 +383,7 @@ ifioctl(so, cmd, data)
 			cmd, data, ifp));
 #else
 	    {
-		int error, ocmd = cmd;
+		int ocmd = cmd;
 
 		switch (cmd) {
 
