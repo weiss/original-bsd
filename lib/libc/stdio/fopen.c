@@ -1,4 +1,4 @@
-/* @(#)fopen.c	4.1 (Berkeley) 12/21/80 */
+/* @(#)fopen.c	4.2 (Berkeley) 03/09/81 */
 #include	<stdio.h>
 #include	<errno.h>
 
@@ -8,29 +8,43 @@ char *file;
 register char *mode;
 {
 	extern int errno;
-	register f;
+	register f, rw;
 	register FILE *iop;
 	extern FILE *_lastbuf;
 
-	for (iop = _iob; iop->_flag&(_IOREAD|_IOWRT); iop++)
+	for (iop = _iob; iop->_flag&(_IOREAD|_IOWRT|_IORW); iop++)
 		if (iop >= _lastbuf)
 			return(NULL);
-	if (*mode=='w')
+
+	rw = mode[1] == '+';
+
+	if (*mode=='w') {
 		f = creat(file, 0666);
-	else if (*mode=='a') {
-		if ((f = open(file, 1)) < 0) {
-			if (errno == ENOENT)
+		if (rw && f>=0) {
+			close(f);
+			f = open(file, 2);
+		}
+	} else if (*mode=='a') {
+		if ((f = open(file, rw? 2: 1)) < 0) {
+			if (errno == ENOENT) {
 				f = creat(file, 0666);
+				if (rw && f>=0) {
+					close(f);
+					f = open(file, 2);
+				}
+			}
 		}
 		if (f >= 0)
 			lseek(f, 0L, 2);
 	} else
-		f = open(file, 0);
+		f = open(file, rw? 2: 0);
 	if (f < 0)
 		return(NULL);
 	iop->_cnt = 0;
 	iop->_file = f;
-	if (*mode != 'r')
+	if (rw)
+		iop->_flag |= _IORW;
+	else if (*mode != 'r')
 		iop->_flag |= _IOWRT;
 	else
 		iop->_flag |= _IOREAD;
