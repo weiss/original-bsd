@@ -1,10 +1,11 @@
 #ifndef lint
-static char sccsid[] = "@(#)lrntee.c	4.2	(Berkeley)	04/26/83";
+static char sccsid[] = "@(#)lrntee.c	4.3	(Berkeley)	05/15/86";
 #endif not lint
 
 main()
 {
-	int f, c;
+	int f;
+	char c;
 
 	f = creat(".ocopy", 0666);
 	while (read(0, &c, 1) == 1) {
