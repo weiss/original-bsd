@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- * 		@(#)qvcons.c	7.1  Berkeley  05/27/88
+ * 		@(#)qvcons.c	7.2  Berkeley  06/06/88
  *
  *	derived from: @(#)qvcons.c	4.1 11/23/87
  */
