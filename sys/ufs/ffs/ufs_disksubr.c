@@ -1,4 +1,4 @@
-/*	ufs_disksubr.c	4.2	02/23/81	*/
+/*	ufs_disksubr.c	4.3	81/03/09	*/
 
 /*
  * Seek sort for disks.  We depend on the driver
