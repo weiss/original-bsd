@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: hpux_tty.c 1.1 90/07/09$
+ * from: Utah $Hdr: hpux_tty.c 1.12 92/04/15$
  *
- *	@(#)hpux_tty.c	7.13 (Berkeley) 10/11/92
+ *	@(#)hpux_tty.c	7.14 (Berkeley) 12/27/92
  */
 
 /*
@@ -397,12 +397,13 @@ hpuxtobsdbaud(hpuxspeed)
 }
 
 #ifdef COMPAT_OHPUX
+struct ohpuxsgtty_args {
+	int	fdes;
+	caddr_t	cmarg;
+};
 ohpuxgtty(p, uap, retval)
 	struct proc *p;
-	struct args {
-		int	fdes;
-		caddr_t	cmarg;
-	} *uap;
+	struct ohpuxsgtty_args *uap;
 	int *retval;
 {
 
@@ -411,10 +412,7 @@ ohpuxgtty(p, uap, retval)
 
 ohpuxstty(p, uap, retval)
 	struct proc *p;
-	struct args {
-		int	fdes;
-		caddr_t	cmarg;
-	} *uap;
+	struct ohpuxsgtty_args *uap;
 	int *retval;
 {
 
