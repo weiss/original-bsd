@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)vacation.c	5.12 (Berkeley) 02/07/89";
+static char sccsid[] = "@(#)vacation.c	5.13 (Berkeley) 04/11/89";
 #endif /* not lint */
 
 /*
@@ -99,7 +99,7 @@ main(argc, argv)
 			break;
 		case 'r':
 			if (isdigit(*optarg)) {
-				interval = atol(optarg) * SECS_PER_DAY;
+				interval = atol(optarg) * SECSPERDAY;
 				if (interval < 0)
 					goto usage;
 			}
@@ -298,7 +298,7 @@ recent()
 	if (data.dptr)
 		bcopy(data.dptr, (char *)&next, sizeof(next));
 	else
-		next = SECS_PER_DAY * DAYS_PER_WEEK;
+		next = SECSPERDAY * DAYSPERWEEK;
 
 	/* get record for this address */
 	key.dptr = from;
