@@ -17,22 +17,26 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ppt.c	5.1 (Berkeley) 02/08/88";
+static char sccsid[] = "@(#)ppt.c	5.2 (Berkeley) 02/08/88";
 #endif /* not lint */
 
 #include <stdio.h>
 
 void	putppt();
 
-/*ARGSUSED*/
 main(argc, argv)
 	int argc;
 	char **argv;
 {
 	register int c;
+	register char *p;
 
 	(void) puts("___________");
-	while ((c = getchar()) != EOF)
+	if (argc > 1)
+		while (p = *++argv)
+			for (; *p; ++p)
+				putppt((int)*p);
+	else while ((c = getchar()) != EOF)
 		putppt(c);
 	(void) puts("___________");
 	exit(0);
