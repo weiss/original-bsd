@@ -21,7 +21,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pow.c	5.4 (Berkeley) 09/22/88";
+static char sccsid[] = "@(#)pow.c	5.5 (Berkeley) 05/17/90";
 #endif /* not lint */
 
 /* POW(X,Y)  
@@ -159,6 +159,7 @@ double x,y;
 	}
 }
 
+#ifndef mc68881
 /* pow_p(x,y) return x**y for x with sign=1 and finite y */
 static double pow_p(x,y)       
 double x,y;
@@ -235,3 +236,4 @@ double x,y;
 	    		return(scalb(one, 5000)); 
 
 }
+#endif /* mc68881 */
