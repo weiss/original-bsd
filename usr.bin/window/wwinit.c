@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwinit.c	3.22 11/20/84";
+static char sccsid[] = "@(#)wwinit.c	3.23 04/22/85";
 #endif
 
 #include "ww.h"
@@ -18,6 +18,8 @@ wwinit()
 	int s;
 
 	wwdtablesize = getdtablesize();
+	if (wwdtablesize > 32)				/* XXX */
+		wwdtablesize = 32;
 	wwhead.ww_forw = &wwhead;
 	wwhead.ww_back = &wwhead;
 
