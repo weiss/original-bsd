@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkioconf.c	5.26 (Berkeley) 11/06/92";
+static char sccsid[] = "@(#)mkioconf.c	5.27 (Berkeley) 01/21/93";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -801,9 +801,9 @@ news_ioconf()
 		perror(path("ioconf.c"));
 		exit(1);
 	}
-	fprintf(fp, "#include \"param.h\"\n");
-	fprintf(fp, "#include \"buf.h\"\n");
-	fprintf(fp, "#include \"map.h\"\n");
+	fprintf(fp, "#include \"sys/param.h\"\n");
+	fprintf(fp, "#include \"sys/buf.h\"\n");
+	fprintf(fp, "#include \"sys/map.h\"\n");
 	fprintf(fp, "#include \"vm/vm.h\"\n");
 	fprintf(fp, "#include \"iop.h\"\n");
 	fprintf(fp, "#include \"hb.h\"\n");
