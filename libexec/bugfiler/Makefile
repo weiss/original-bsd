@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.3 (Berkeley) 11/04/85
+#	@(#)Makefile	5.4 (Berkeley) 02/12/86
 #
 # Bug report processor and associated programs
 #
@@ -26,7 +26,7 @@ unixtomh: unixtomh.c
 install: bugfiler sendbug.sh bugformat
 	install -s bugfiler ${DESTDIR}${LIBDIR}/bugfiler
 	install -c sendbug.sh ${DESTDIR}/usr/ucb/sendbug
-	install -c -m 644 bugformat ${DESTDIR}/usr/ucb/bugformat
+	install -c -m 644 bugformat ${DESTDIR}/usr/lib/bugformat
 
 clean:
 	rm -f *.o bugfiler
