@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 01/17/89";
+static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 05/08/89";
 #endif
 
 /*
@@ -10,6 +10,7 @@ static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 01/17/89";
 #include <setjmp.h>
 #include <sys/file.h>
 #include <sys/uio.h>
+#include "pathnames.h"
 
 extern char NOEOR[];		/* "newline expected" */
 
@@ -19,7 +20,7 @@ extern char NOEOR[];		/* "newline expected" */
 int	executing;
 
 int	infile;			/* XXX */
-char	*Ipath = "/usr/lib/adb";/* XXX */
+char	*Ipath = _PATH_SCRIPTS;	/* XXX */
 
 static int xargc;		/* remembers argc for getfile() */
 
