@@ -3,10 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  */
-
-#ifndef lint
-static char sccsid[] = "@(#)reset.s	5.1 (Berkeley) 05/30/85";
-#endif not lint
+_sccsid:.asciz	"@(#)reset.s	5.2 (Berkeley) 05/30/85"
 
 /*
  * C library -- reset, setexit
