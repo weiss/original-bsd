@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_vfsops.c	8.5 (Berkeley) 02/15/95
+ *	@(#)ufs_vfsops.c	8.6 (Berkeley) 03/30/95
  */
 
 #include <sys/param.h>
@@ -133,6 +133,25 @@ ufs_quotactl(mp, cmds, uid, arg, p)
 	}
 	/* NOTREACHED */
 #endif
+}
+
+/*
+ * Initial UFS filesystems, done only once.
+ */
+int
+ufs_init(vfsp)
+	struct vfsconf *vfsp;
+{
+	static int done;
+
+	if (done)
+		return (0);
+	done = 1;
+	ufs_ihashinit();
+#ifdef QUOTA
+	dqinit();
+#endif
+	return (0);
 }
 
 /*
