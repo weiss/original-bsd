@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_sig.c	6.17 (Berkeley) 06/08/85
+ *	@(#)kern_sig.c	6.18 (Berkeley) 08/23/85
  */
 
 #include "../machine/reg.h"
@@ -268,7 +268,7 @@ killpg1(signo, pgrp, all)
 		if (signo)
 			psignal(p, signo);
 	}
-	return (f == 0 ? ESRCH : error);
+	return (error ? error : (f == 0 ? ESRCH : 0));
 }
 
 /*
