@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)boot.c	7.2 (Berkeley) 03/01/92
+ *	@(#)boot.c	7.3 (Berkeley) 03/15/92
  */
 
 #include "param.h"
@@ -46,7 +46,6 @@ main(argc, argv, argenv)
 		argc--;
 		argv++;
 		argv[0] = getenv(boot);
-		printf("boot '%s'\n", argv[0]); /* XXX */
 	}
 	howto = 0;
 	for (cp = argv[0]; *cp; cp++) {
