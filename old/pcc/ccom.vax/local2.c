@@ -1,5 +1,5 @@
 # ifndef lint
-static char *sccsid ="@(#)local2.c	1.27 (Berkeley) 12/11/87";
+static char *sccsid ="@(#)local2.c	1.28 (Berkeley) 12/11/87";
 # endif
 
 # include "pass2.h"
@@ -487,7 +487,7 @@ zzzcode( p, c ) register NODE *p; {
 		putchar('\t');
 
 	case 'E':	/* INCR and DECR, FOREFF */
-		if (p->in.right->tn.lval == 1)
+		if (p->in.right->in.op == ICON && p->in.right->tn.lval == 1)
 			{
 			putstr( p->in.op == INCR ? "inc" : "dec" );
 			prtype(p->in.left);
