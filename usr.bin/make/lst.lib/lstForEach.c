@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lstForEach.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)lstForEach.c	8.2 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 /*-
@@ -38,7 +38,7 @@ static char sccsid[] = "@(#)lstForEach.c	8.1 (Berkeley) 06/06/93";
 void
 Lst_ForEach (l, proc, d)
     Lst	    	  	l;
-    register int	(*proc)();
+    register int	(*proc) __P((ClientData, ClientData));
     register ClientData	d;
 {
     Lst_ForEachFrom(l, Lst_First(l), proc, d);
