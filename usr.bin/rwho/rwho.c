@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rwho.c	5.3 (Berkeley) 08/25/88";
+static char sccsid[] = "@(#)rwho.c	5.4 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -44,7 +44,6 @@ struct	myutmp {
 int	nusers;
 
 #define	WHDRSIZE	(sizeof (wd) - sizeof (wd.wd_we))
-#define	RWHODIR		"/usr/spool/rwho"
 /* 
  * this macro should be shared with ruptime.
  */
@@ -79,8 +78,8 @@ main(argc, argv)
 			fprintf(stderr, "usage: rwho [-a]\n");
 			exit(1);
 		}
-	if (chdir(RWHODIR) || (dirp = opendir(".")) == NULL) {
-		perror(RWHODIR);
+	if (chdir(_PATH_RWHODIR) || (dirp = opendir(".")) == NULL) {
+		perror(_PATH_RWHODIR);
 		exit(1);
 	}
 	mp = myutmp;
