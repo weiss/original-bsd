@@ -26,15 +26,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.29 (Berkeley) 03/30/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.30 (Berkeley) 04/01/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.29 (Berkeley) 03/30/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.30 (Berkeley) 04/01/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.29 (Berkeley) 03/30/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.30 (Berkeley) 04/01/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.29 (Berkeley) 03/30/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.30 (Berkeley) 04/01/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -628,6 +628,8 @@ readaliases(aliasfile, init, e)
 		**	'p' points to the text of the RHS.
 		*/
 
+		while (isascii(*p) && isspace(*p))
+			p++;
 		rhs = p;
 		for (;;)
 		{
