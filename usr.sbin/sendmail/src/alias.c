@@ -9,7 +9,7 @@
 # include "sendmail.h"
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.44 (Berkeley) 04/21/95";
+static char sccsid[] = "@(#)alias.c	8.45 (Berkeley) 04/23/95";
 #endif /* not lint */
 
 
@@ -142,7 +142,7 @@ alias(a, sendq, aliaslevel, e)
 		fprintf(e->e_xfp, "Message delivered to mailing list %s\n",
 			a->q_paddr);
 	e->e_flags |= EF_SENDRECEIPT;
-	a->q_flags |= QREPORT|QEXPLODED;
+	a->q_flags |= QDELIVERED|QEXPANDED;
 }
 /*
 **  ALIASLOOKUP -- look up a name in the alias file.
