@@ -1,13 +1,13 @@
 /*
  * Copyright (c) 1983 Eric P. Allman
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	6.42 (Berkeley) 06/24/93";
+static char sccsid[] = "@(#)recipient.c	8.1 (Berkeley) 06/27/93";
 #endif /* not lint */
 
 # include "sendmail.h"
