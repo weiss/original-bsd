@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)spp_debug.c	6.4 (Berkeley) 08/23/85
+ *	@(#)spp_debug.c	6.5 (Berkeley) 09/26/85
  */
 
 #include "param.h"
@@ -40,7 +40,7 @@ spp_trace(act, ostate, sp, si, req)
 	struct spidp *si;
 	int req;
 {
-#ifndef BBNNET
+#ifdef INET
 	u_short seq, ack, len, alo;
 	unsigned long iptime();
 	int flags;
