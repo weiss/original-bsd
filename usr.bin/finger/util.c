@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.16 (Berkeley) 07/27/91";
+static char sccsid[] = "@(#)util.c	5.17 (Berkeley) 09/23/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -133,7 +133,7 @@ enter_person(pw)
 	PERSON *pn;
 	DBT data, key;
 
-	if (db == NULL && (db = hash_open(NULL, O_RDWR, 0, NULL)) == NULL)
+	if (db == NULL && (db = dbopen(NULL, O_RDWR, 0, DB_HASH, NULL)) == NULL)
 		err("%s", strerror(errno));
 
 	key.data = pw->pw_name;
@@ -154,7 +154,7 @@ enter_person(pw)
 
 		data.size = sizeof(PERSON *);
 		data.data = &pn;
-		if ((*db->put)(db, &key, &data, R_PUT))
+		if ((*db->put)(db, &key, &data, 0))
 			err("%s", strerror(errno));
 		return(pn);
 	}
