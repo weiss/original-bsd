@@ -2,7 +2,7 @@
 # include "sendmail.h"
 
 #ifndef DAEMON
-SCCSID(@(#)daemon.c	4.9		08/11/84	(w/o daemon mode));
+SCCSID(@(#)daemon.c	4.10		08/11/84	(w/o daemon mode));
 #else
 
 #include <sys/socket.h>
@@ -10,7 +10,7 @@ SCCSID(@(#)daemon.c	4.9		08/11/84	(w/o daemon mode));
 #include <netdb.h>
 #include <sys/wait.h>
 
-SCCSID(@(#)daemon.c	4.9		08/11/84	(with daemon mode));
+SCCSID(@(#)daemon.c	4.10		08/11/84	(with daemon mode));
 
 /*
 **  DAEMON.C -- routines to use when running as a daemon.
@@ -188,7 +188,7 @@ getrequests()
 			{
 				strcpy(buf, hp->h_name);
 				if (NetName != NULL && NetName[0] != '\0' &&
-				    index(hp->h_name), '.') == NULL)
+				    index(hp->h_name, '.') == NULL)
 				{
 					strcat(buf, ".");
 					strcat(buf, NetName);
