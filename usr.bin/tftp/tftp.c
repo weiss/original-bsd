@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tftp.c	5.3 (Berkeley) 02/07/86";
+static char sccsid[] = "@(#)tftp.c	5.4 (Berkeley) 02/07/86";
 #endif not lint
 
 /* Many bug fixes are from Jim Guyton <guyton@rand-unix> */
@@ -342,6 +342,7 @@ nak(error)
 }
 
 tpacket(s, tp, n)
+	char *s;
 	struct tftphdr *tp;
 	int n;
 {
