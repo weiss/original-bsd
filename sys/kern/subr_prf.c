@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_prf.c	7.18 (Berkeley) 06/28/90
+ *	@(#)subr_prf.c	7.19 (Berkeley) 12/05/90
  */
 
 #include "param.h"
@@ -12,7 +12,6 @@
 #include "buf.h"
 #include "conf.h"
 #include "reboot.h"
-#include "vm.h"
 #include "msgbuf.h"
 #include "user.h"
 #include "proc.h"
@@ -366,6 +365,7 @@ putchar(c, flags, ttyp)
 	register int c;
 	struct tty *ttyp;
 {
+	register struct msgbuf *mbp = msgbufp;
 	extern int msgbufmapped;
 
 	if (panicstr)
@@ -379,17 +379,17 @@ putchar(c, flags, ttyp)
 		constty = 0;
 	if ((flags & TOLOG) && c != '\0' && c != '\r' && c != 0177 &&
 	    msgbufmapped) {
-		if (msgbuf.msg_magic != MSG_MAGIC) {
+		if (mbp->msg_magic != MSG_MAGIC) {
 			register int i;
 
-			msgbuf.msg_magic = MSG_MAGIC;
-			msgbuf.msg_bufx = msgbuf.msg_bufr = 0;
+			mbp->msg_magic = MSG_MAGIC;
+			mbp->msg_bufx = mbp->msg_bufr = 0;
 			for (i=0; i < MSG_BSIZE; i++)
-				msgbuf.msg_bufc[i] = 0;
+				mbp->msg_bufc[i] = 0;
 		}
-		msgbuf.msg_bufc[msgbuf.msg_bufx++] = c;
-		if (msgbuf.msg_bufx < 0 || msgbuf.msg_bufx >= MSG_BSIZE)
-			msgbuf.msg_bufx = 0;
+		mbp->msg_bufc[mbp->msg_bufx++] = c;
+		if (mbp->msg_bufx < 0 || mbp->msg_bufx >= MSG_BSIZE)
+			mbp->msg_bufx = 0;
 	}
 	if ((flags & TOCONS) && constty == 0 && c != '\0')
 		(*v_putc)(c);
