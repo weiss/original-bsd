@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1986, 1988 Regents of the University of California.
+ * Copyright (c) 1992 Regents of the University of California.
  * All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tuba_usrreq.c	7.1 (Berkeley) 10/09/92
+ *	@(#)tuba_usrreq.c	7.2 (Berkeley) 10/09/92
  */
 
 #include "param.h"
