@@ -3,17 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mbuf.h	6.9 (Berkeley) 09/16/85
+ *	@(#)mbuf.h	6.10 (Berkeley) 12/19/85
  */
 
 /*
  * Constants related to memory allocator.
  */
-#ifdef BBNNET
-#define MSIZE		256
-#else
 #define	MSIZE		128			/* size of an mbuf */
-#endif
 
 #define	MMINOFF		12			/* mbuf header length */
 #define	MTAIL		4
