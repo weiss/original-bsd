@@ -1,5 +1,5 @@
 /*
- *	@(#)kdb_opset.c	7.3 (Berkeley) 05/26/88
+ *	@(#)kdb_opset.c	7.4 (Berkeley) 05/01/89
  */
 
 #include "../kdb/defs.h"
@@ -282,8 +282,7 @@ static savevar(val)
 }
 
 /* ARGSUSED */
-printins(fmt, Idsp, ins)
-	char	fmt;
+printins(Idsp, ins)
 	u_char	ins;
 	int	Idsp;
 {
