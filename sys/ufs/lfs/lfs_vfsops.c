@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_vfsops.c	8.14 (Berkeley) 05/08/95
+ *	@(#)lfs_vfsops.c	8.15 (Berkeley) 05/10/95
  */
 
 #include <sys/param.h>
@@ -324,11 +324,8 @@ lfs_unmount(mp, mntflags, p)
 	int i, error, flags, ronly;
 
 	flags = 0;
-	if (mntflags & MNT_FORCE) {
-		if (!doforce || (mp->mnt_flag & MNT_ROOTFS))
-			return (EINVAL);
+	if (mntflags & MNT_FORCE)
 		flags |= FORCECLOSE;
-	}
 
 	ump = VFSTOUFS(mp);
 	fs = ump->um_lfs;
