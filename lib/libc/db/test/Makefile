@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 11/13/92
+#	@(#)Makefile	5.3 (Berkeley) 01/10/93
 
 PROG=	dbtest
 SRCS=	dbtest.c
@@ -9,7 +9,8 @@ SRCS=	dbtest.c
 #	bt_overflow.c bt_put.c bt_search.c bt_seq.c bt_split.c bt_stack.c \
 #	bt_utils.c
 #.PATH:	${.CURDIR}/../btree
-CFLAGS=	-g -DDEBUG
+#LDADD=	/usr/src/lib/libc/obj/libc.a
+CFLAGS=	-g -DDEBUG -DSTATISTICS
 NOMAN=	noman
 
 NOINCLUDE=1
