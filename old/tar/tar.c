@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)tar.c	4.2 (Berkeley) 12/18/80";
+static char *sccsid = "@(#)tar.c	4.3 (Berkeley) 03/22/81";
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -9,7 +9,7 @@ char	*sprintf();
 char	*strcat();
 daddr_t	bsrch();
 #define TBLOCK	512
-#define NBLOCK	40
+#define NBLOCK	20
 #define NAMSIZ	100
 union hblock {
 	char dummy[TBLOCK];
