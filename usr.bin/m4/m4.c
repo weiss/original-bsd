@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)m4.c	1.3 (Berkeley) 08/11/83";
+static char sccsid[] = "@(#)m4.c	1.4 (Berkeley) 07/22/88";
 #endif
 
 #include <stdio.h>
@@ -104,7 +104,7 @@ char	*syscmdloc;
 char	*dumploc;
 char	*errploc;
 
-char	*tempname;
+char	tempname[] = "/tmp/m4aXXXXX";
 struct nlist	*lookup();
 char	*install();
 char	*malloc();
@@ -201,7 +201,7 @@ char **argv;
 		signal(SIGHUP, catchsig);
 	if (signal(SIGINT, SIG_IGN) != SIG_IGN)
 		signal(SIGINT, catchsig);
-	tempname = mktemp("/tmp/m4aXXXXX");
+	mktemp(tempname);
 	close(creat(tempname, 0));
 #endif
 #ifdef gcos
