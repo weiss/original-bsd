@@ -1,4 +1,4 @@
-/*	vp.c	4.5	12/30/80	*/
+/*	vp.c	4.6	02/27/81	*/
 
 #include "vp.h"
 #if NVP > 0
@@ -210,7 +210,7 @@ vptimo()
 {
 
 	if (vp11.vp_state&VISOPEN)
-		timeout(vptimo, (caddr_t)0, HZ/10);
+		timeout(vptimo, (caddr_t)0, hz/10);
 	vpintr(0);
 }
 
