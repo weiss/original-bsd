@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char *sccsid = "@(#)glue1.c	4.4 (Berkeley) 09/28/87";
-#endif
+static char sccsid[] = "@(#)glue1.c	4.5 (Berkeley) 04/18/91";
+#endif /* not lint */
 
 #include <stdio.h>
 #define unopen(fil) {if (fil!=NULL) {fclose(fil); fil=NULL;}}

@@ -1,4 +1,8 @@
-/*	refer..c	4.4	87/10/22	*/
+/*-
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)refer..c	4.5 (Berkeley) 04/18/91
+ */
 
 #include <stdio.h>
 #include <ctype.h>
