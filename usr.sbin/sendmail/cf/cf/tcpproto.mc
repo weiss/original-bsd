@@ -8,6 +8,7 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)tcpproto.mc	6.1 (Berkeley) 12/21/92')
-MAILER(local)dnl
-MAILER(smtp)dnl
+VERSIONID(`@(#)tcpproto.mc	6.2 (Berkeley) 02/27/93')
+FEATURE(nouucp)
+MAILER(local)
+MAILER(smtp)
