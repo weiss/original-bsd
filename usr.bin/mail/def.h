@@ -9,7 +9,7 @@
 #undef isdigit
 
 /*
- * Sccs Id = "@(#)def.h	1.4 10/16/80";
+ * Sccs Id = "@(#)def.h	1.5 10/17/80";
  */
 
 /*
@@ -232,6 +232,7 @@ FILE	*collect();
 FILE	*infix();
 FILE	*mesedit();
 FILE	*mespipe();
+FILE	*popen();
 FILE	*setinput();
 char	**unpack();
 char	*addto();
