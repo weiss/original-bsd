@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_clock.c	7.17 (Berkeley) 02/25/92
+ *	@(#)kern_clock.c	7.18 (Berkeley) 03/15/92
  */
 
 #include "param.h"
@@ -69,6 +69,7 @@ hardclock(frame)
 	register struct pstats *pstats;
 	register int s;
 	int needsoft = 0;
+	time_t secs;
 	extern int tickdelta;
 	extern long timedelta;
 
@@ -133,12 +134,16 @@ hardclock(frame)
 	 * the entire last tick.
 	 */
 	if (p) {
-		if ((p->p_utime.tv_sec+p->p_stime.tv_sec+1) >
-		    p->p_rlimit[RLIMIT_CPU].rlim_cur) {
-			psignal(p, SIGXCPU);
-			if (p->p_rlimit[RLIMIT_CPU].rlim_cur <
-			    p->p_rlimit[RLIMIT_CPU].rlim_max)
-				p->p_rlimit[RLIMIT_CPU].rlim_cur += 5;
+		secs = p->p_utime.tv_sec + p->p_stime.tv_sec + 1;
+		if (secs > p->p_rlimit[RLIMIT_CPU].rlim_cur) {
+			if (secs > p->p_rlimit[RLIMIT_CPU].rlim_max)
+				psignal(p, SIGKILL);
+			else {
+				psignal(p, SIGXCPU);
+				if (p->p_rlimit[RLIMIT_CPU].rlim_cur <
+				    p->p_rlimit[RLIMIT_CPU].rlim_max)
+					p->p_rlimit[RLIMIT_CPU].rlim_cur += 5;
+			}
 		}
 		if (timerisset(&pstats->p_timer[ITIMER_PROF].it_value) &&
 		    itimerdecr(&pstats->p_timer[ITIMER_PROF], tick) == 0)
