@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tape.c	8.5 (Berkeley) 09/13/94";
+static char sccsid[] = "@(#)tape.c	8.6 (Berkeley) 09/13/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -238,6 +238,13 @@ setup()
 	dumpmap = map;
 	curfile.action = USING;
 	getfile(xtrmap, xtrmapskip);
+	/*
+	 * If there may be whiteout entries on the tape, pretend that the
+	 * whiteout inode exists, so that the whiteout entries can be
+	 * extracted.
+	 */
+	if (oldinofmt == 0)
+		SETINO(WINO, dumpmap);
 }
 
 /*
