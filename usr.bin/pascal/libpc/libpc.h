@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)libpc.h 1.7 02/08/82"; */
+/* static char sccsid[] = "@(#)libpc.h 1.8 08/29/82"; */
 
 extern FILE *ACTFILE();
 extern long *ADDT();
@@ -25,6 +25,7 @@ extern long *MULT();
 extern char *NAM();
 extern char *NIL();
 extern long PRED();
+extern struct iorec *PFCLOSE();
 extern double RANDOM();
 extern char READC();
 extern long READ4();
