@@ -1,9 +1,7 @@
 
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)runtime.c 1.8 8/10/83";
-
-static char rcsid[] = "$Header: runtime.c,v 1.3 84/03/27 10:23:40 linton Exp $";
+static	char sccsid[] = "@(#)runtime.c	1.11 (Berkeley) 06/23/84";
 
 /*
  * Runtime organization dependent routines, mostly dealing with
@@ -197,32 +195,33 @@ Symbol f;
     register Frame frp;
     static struct Frame frame;
     Symbol p;
-    Boolean done;
 
     frp = &frame;
     getcurframe(frp);
-    if (f != nil) {
-	if (f == curfunc and curframe != nil) {
-	    *frp = *curframe;
-	} else {
-	    done = false;
-	    p = whatblock(frp->save_pc);
-	    do {
-		if (p == f) {
-		    done = true;
-		} else if (p == program) {
-		    done = true;
-		    frp = nil;
-		} else {
-		    frp = nextfunc(frp, &p);
-		    if (frp == nil) {
-			done = true;
-		    }
-		}
-	    } while (not done);
+    if (f == nil)
+	return (frp);
+    /*
+     * Starting at the current stack frame,
+     * walk backwards looking for a symbol
+     * match.  Beware of local blocks which
+     * have a back pointer but no stack frame.
+     */
+    p = whatblock(frp->save_pc);
+    while (p != f) {
+	if (p == program) {
+	    frp = nil;
+	    break;
 	}
+	if (isinline(p)) {
+	    p = container(p);
+	    continue;
+	}
+	frp = nextframe(frp);
+	if (frp == nil)
+	   break;
+	p = whatblock(frp->save_pc);
     }
-    return frp;
+    return (frp);
 }
 
 /*
