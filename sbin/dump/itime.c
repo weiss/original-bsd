@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)itime.c	1.9 (Berkeley) 05/19/83";
+static	char *sccsid = "@(#)itime.c	1.10 (Berkeley) 06/09/83";
 
 #include "dump.h"
 #include <sys/file.h>
@@ -85,6 +85,7 @@ getitime()
 		if (ip->id_ddate <= spcl.c_ddate)
 			continue;
 		spcl.c_ddate = ip->id_ddate;
+ 		lastincno = ip->id_incno;
 	} 
 }
 
