@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] =	"@(#)rmail.c	4.5 (Berkeley) 08/18/84";
+static char sccsid[] =	"@(#)rmail.c	4.6 (Berkeley) 12/06/85";
 #endif
 
 /*
@@ -30,11 +30,11 @@ main(argc, argv)
 	char **argv;
 {
 	FILE *out;	/* output to sendmail */
-	char lbuf[512];	/* one line of the message */
-	char from[512];	/* accumulated path of sender */
-	char ufrom[64];	/* user on remote system */
-	char sys[64];	/* a system in path */
-	char junk[512];	/* scratchpad */
+	char lbuf[1024];	/* one line of the message */
+	char from[512];		/* accumulated path of sender */
+	char ufrom[512];	/* user on remote system */
+	char sys[512];		/* a system in path */
+	char junk[1024];	/* scratchpad */
 	char cmd[2000];
 	register char *cp;
 	register char *uf;	/* ptr into ufrom */
