@@ -1,5 +1,5 @@
 #
-#	"@(#)bib.stda	2.1	06/22/83";
+#	"@(#)bib.stda	2.2	09/09/83";
 #
 #  standard alphabetic format
 #
@@ -11,5 +11,5 @@ EA
 .so \*(l]/bmac.std
 .de s[   \" start reference
 .nh
-.IP [\\*([F] 9n
+.IP [\\*([F] 10n
 ..
