@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)printgprof.c	1.6 (Berkeley) 11/10/81";
+    static	char *sccsid = "@(#)printgprof.c	1.7 (Berkeley) 11/12/81";
 #endif lint
 
 #include "gprof.h"
@@ -594,9 +594,6 @@ printblurb( blurbname )
     FILE	*blurbfile;
     int		input;
 
-#   ifndef BLURBLIB
-#	define BLURBLIB	"./"
-#   endif not BLURBLIB
     sprintf( pathname , "%s%s" , BLURBLIB , blurbname );
     blurbfile = fopen( pathname , "r" );
     if ( blurbfile == NULL ) {
