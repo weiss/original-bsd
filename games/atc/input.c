@@ -8,7 +8,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)input.c	5.1 (Berkeley) 10/22/87";
+static char sccsid[] = "@(#)input.c	5.2 (Berkeley) 10/22/87";
 #endif not lint
 
 #include "include.h"
@@ -183,7 +183,7 @@ push(ruleno, ch)
 {
 	int	newstate, newpos;
 
-	sprintf(T_STR, st[T_STATE].rule[ruleno].str, tval);
+	(void)sprintf(T_STR, st[T_STATE].rule[ruleno].str, tval);
 	T_RULE = ruleno;
 	T_CH = ch;
 	newstate = st[T_STATE].rule[ruleno].to_state;
