@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_subr.c	8.9 (Berkeley) 01/21/94
+ *	@(#)vfs_subr.c	8.10 (Berkeley) 03/21/94
  */
 
 /*
@@ -563,8 +563,13 @@ vget(vp, lockflag)
 		sleep((caddr_t)vp, PINOD);
 		return (1);
 	}
-	if (vp->v_usecount == 0)
+	if (vp->v_usecount == 0) {
+#ifdef DIAGNOSTIC
+		if (vp->v_freelist.tqe_prev == 0xdeadb)
+			panic("vget: race with getnewvnode");
+#endif
 		TAILQ_REMOVE(&vnode_free_list, vp, v_freelist);
+	}
 	vp->v_usecount++;
 	if (lockflag)
 		VOP_LOCK(vp);
