@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkswapconf.c	5.6 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)mkswapconf.c	5.7 (Berkeley) 04/25/89";
 #endif /* not lint */
 
 /*
@@ -61,8 +61,8 @@ do_swap(fl)
 		perror(path(swapname));
 		exit(1);
 	}
-	fprintf(fp, "#include \"../h/param.h\"\n");
-	fprintf(fp, "#include \"../h/conf.h\"\n");
+	fprintf(fp, "#include \"../sys/param.h\"\n");
+	fprintf(fp, "#include \"../sys/conf.h\"\n");
 	fprintf(fp, "\n");
 	/*
 	 * If there aren't any swap devices
