@@ -6,18 +6,19 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)termios.c	5.12 (Berkeley) 02/14/92";
+static char sccsid[] = "@(#)termios.c	5.13 (Berkeley) 10/04/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
-#include <sys/errno.h>
 #include <sys/ioctl.h>
 #include <sys/tty.h>
 #define KERNEL			/* XXX - FREAD and FWRITE ifdef'd KERNEL*/
 #include <sys/fcntl.h>
 #undef KERNEL
-#include <termios.h>
+
+#include <errno.h>
 #include <stdio.h>
+#include <termios.h>
 #include <unistd.h>
 
 int
