@@ -5,9 +5,8 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)const.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)const.c	5.2 (Berkeley) 06/21/85";
 #endif not lint
-#endif
 
 #include "whoami.h"
 #include "0.h"
