@@ -6,11 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)usleep.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)usleep.c	5.6 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/time.h>
 #include <sys/signal.h>
+#include <unistd.h>
 
 #define	TICK	10000		/* system clock resolution in microseconds */
 #define	USPS	1000000		/* number of microseconds in a second */
@@ -20,6 +21,7 @@ static char sccsid[] = "@(#)usleep.c	5.5 (Berkeley) 06/01/90";
 
 static int ringring;
 
+void
 usleep(useconds)
 	unsigned int useconds;
 {
@@ -27,7 +29,7 @@ usleep(useconds)
 	struct itimerval itv, oitv;
 	struct sigvec vec, ovec;
 	long omask;
-	void sleephandler();
+	static void sleephandler();
 
 	itp = &itv;
 	if (!useconds)

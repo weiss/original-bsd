@@ -6,11 +6,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)isatty.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)isatty.c	5.6 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <termios.h>
+#include <unistd.h>
 
+int
 isatty(fd)
 	int fd;
 {

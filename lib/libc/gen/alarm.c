@@ -6,16 +6,18 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)alarm.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)alarm.c	5.5 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
  * Backwards compatible alarm.
  */
 #include <sys/time.h>
+#include <unistd.h>
 
+unsigned int
 alarm(secs)
-	int secs;
+	unsigned int secs;
 {
 	struct itimerval it, oitv;
 	register struct itimerval *itp = &it;

@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sigsetops.c	5.2 (Berkeley) 07/01/90
+ *	@(#)sigsetops.c	5.3 (Berkeley) 02/23/91
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)sigsetops.c	5.2 (Berkeley) 07/01/90";
+static char sccsid[] = "@(#)sigsetops.c	5.3 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/signal.h>
@@ -50,7 +50,7 @@ sigdelset(set, signo)
 }
 
 sigismember(set, signo)
-	sigset_t *set;
+	const sigset_t *set;
 	int signo;
 {
 	return ((*set & ~sigmask(signo)) != 0);

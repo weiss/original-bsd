@@ -6,11 +6,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)telldir.c	5.8 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)telldir.c	5.9 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
 #include <dirent.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /*
  * The option SINGLEUSE may be defined to say that a telldir
@@ -43,7 +45,7 @@ static struct	ddloc *dd_hash[NDIRHASH];   /* Hash list heads for ddlocs */
  */
 long
 telldir(dirp)
-	DIR *dirp;
+	const DIR *dirp;
 {
 	register int index;
 	register struct ddloc *lp;

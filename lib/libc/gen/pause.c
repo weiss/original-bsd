@@ -6,15 +6,18 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)pause.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)pause.c	5.7 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
+
+#include <signal.h>
+#include <unistd.h>
 
 /*
  * Backwards compatible pause.
  */
+int
 pause()
 {
-	long sigblock();
 
-	sigpause(sigblock(0L));
+	return sigpause(sigblock(0L));
 }

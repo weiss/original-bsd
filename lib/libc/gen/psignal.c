@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)psignal.c	5.5 (Berkeley) 11/28/90";
+static char sccsid[] = "@(#)psignal.c	5.6 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -14,13 +14,13 @@ static char sccsid[] = "@(#)psignal.c	5.5 (Berkeley) 11/28/90";
  * along with the supplied message.
  */
 #include <sys/signal.h>
+#include <string.h>
 #include <unistd.h>
 
-extern	char *sys_siglist[];
-
+void
 psignal(sig, s)
 	unsigned int sig;
-	char *s;
+	const char *s;
 {
 	register char *c;
 	register int n;

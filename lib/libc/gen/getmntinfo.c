@@ -6,11 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getmntinfo.c	6.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)getmntinfo.c	6.4 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
 #include <sys/mount.h>
+#include <stdlib.h>
 
 /*
  * Return information about mounted filesystems.
@@ -21,7 +22,8 @@ getmntinfo(mntbufp, flags)
 	int flags;
 {
 	static struct statfs *mntbuf;
-	static int mntsize, bufsize;
+	static int mntsize;
+	static long bufsize;
 
 	if (mntsize <= 0 && (mntsize = getfsstat(0, 0, MNT_NOWAIT)) < 0)
 		return (0);

@@ -6,15 +6,17 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)nice.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)nice.c	5.5 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/time.h>
 #include <sys/resource.h>
+#include <unistd.h>
 
 /*
  * Backwards compatible nice.
  */
+int
 nice(incr)
 	int incr;
 {

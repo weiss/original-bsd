@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ctime.c	5.25 (Berkeley) 02/13/91";
+static char sccsid[] = "@(#)ctime.c	5.26 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -27,6 +27,7 @@ static char sccsid[] = "@(#)ctime.c	5.25 (Berkeley) 02/13/91";
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #ifdef __STDC__
 #include <stdlib.h>
@@ -918,7 +919,7 @@ const time_t * const	timep;
 const long		offset;
 struct tm * const	tmp;
 {
-	register const struct state *	sp;
+	register struct state *	sp;
 	register const struct ttinfo *	ttisp;
 	register int			i;
 	const time_t			t = *timep;

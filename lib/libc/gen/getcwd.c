@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getcwd.c	5.9 (Berkeley) 02/20/91";
+static char sccsid[] = "@(#)getcwd.c	5.10 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -16,6 +16,7 @@ static char sccsid[] = "@(#)getcwd.c	5.9 (Berkeley) 02/20/91";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define	ISDOT(dp) \
 	(dp->d_name[0] == '.' && (dp->d_name[1] == '\0' || \
