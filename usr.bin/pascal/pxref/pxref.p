@@ -3,7 +3,7 @@ program xref(input, output);
 label
     99, 100;
 const
-    { sccsid = '@(#)pxref.p	1.2 (Berkeley) 03/05/82'; }
+    { sccsid = '@(#)pxref.p	1.3 (Berkeley) 12/28/83'; }
     alfasize = 18;
     linesize = 10;
     namesize = 64;
@@ -165,19 +165,15 @@ var
     inp :file of char;
     
     procedure lwriteln;
-    var
-	i :linptr;
     begin
 	if list then begin
-	    { actually should use ...
-	    for i:=1 to lineptr do
-		write(line[i]);
-	    }
-	    line[lineptr+1]:=chr(0);
-	    writeln(line);
+	    { write sans trailing blanks }
+	    if lineptr > 0 then
+		writeln(line: lineptr)
+	    else
+		writeln;
 	end;
 	get(inp);
-	line:=blanks;
 	lineptr:=0
     end { lwriteln };
 
