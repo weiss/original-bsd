@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)driver.c	4.1 (Berkeley) 08/11/83";
+static char sccsid[] = "@(#)driver.c	4.2 (Berkeley) 11/11/83";
 #endif
 
 #include <stdio.h>
@@ -29,6 +29,7 @@ main(argc,argv)  char **argv; {
 				exit(1);
 				}
 			fplt(fin);
+			fclose(fin);
 			}
 		argv++;
 		}
