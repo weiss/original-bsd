@@ -7,14 +7,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hd.c	7.8 (Berkeley) 06/28/90
+ *	@(#)hd.c	7.9 (Berkeley) 06/30/90
  */
 
 #include "sys/param.h"
 #include "sys/time.h"
-#include "sys/vnode.h"
-#include "ufs/inode.h"
-#include "ufs/fs.h"
 #include "sys/buf.h"
 #include "sys/ioctl.h"
 #include "sys/disklabel.h"
