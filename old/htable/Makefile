@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 09/18/85
+#	@(#)Makefile	5.3 (Berkeley) 05/31/87
 #
 CFLAGS=	-O
 DESTDIR=
@@ -34,3 +34,5 @@ clean:
 
 install:
 	install -s htable ${DESTDIR}/etc/htable
+
+depend:
