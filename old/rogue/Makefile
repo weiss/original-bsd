@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.3 (Berkeley) 06/23/85
+#	@(#)Makefile	5.4 (Berkeley) 06/03/87
 #
 OBJS=		main.obj machdep.o
 
@@ -24,3 +24,5 @@ install: rogue
 
 clean:
 	rm -f rogue machdep.o
+
+depend:
