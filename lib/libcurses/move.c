@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)move.c	5.12 (Berkeley) 04/13/93";
+static char sccsid[] = "@(#)move.c	5.13 (Berkeley) 05/16/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -22,7 +22,7 @@ wmove(win, y, x)
 {
 
 #ifdef DEBUG
-	__TRACE("wmove: (%d, %d)\n", y, x);
+	__CTRACE("wmove: (%d, %d)\n", y, x);
 #endif
 	if (x < 0 || y < 0)
 		return (ERR);
