@@ -14,9 +14,9 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.2 (Berkeley) 05/11/89
+ *	@(#)pathnames.h	5.3 (Berkeley) 05/19/89
  */
 
 #include <paths.h>
 
-#define	_PATH_IMPLOG	"/usr/adm/implog"
+#define	_PATH_IMPLOG	"/var/log/implog"
