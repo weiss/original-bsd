@@ -4,7 +4,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)READ_ME	4.6 (Berkeley) 04/23/91
+#	@(#)READ_ME	6.1 (Berkeley) 12/21/92
 #
 
 This directory contains the source files for sendmail.
@@ -68,4 +68,4 @@ version.c	A master file for Version.c -- it may not exist in
 
 Eric Allman
 
-(Version 4.6, last update 04/23/91 19:52:41)
+(Version 6.1, last update 12/21/92 16:07:55)

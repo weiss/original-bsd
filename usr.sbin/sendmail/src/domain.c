@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	5.39 (Berkeley) 12/20/92 (with name server)";
+static char sccsid[] = "@(#)domain.c	6.1 (Berkeley) 12/21/92 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	5.39 (Berkeley) 12/20/92 (without name server)";
+static char sccsid[] = "@(#)domain.c	6.1 (Berkeley) 12/21/92 (without name server)";
 #endif
 #endif /* not lint */
 

@@ -30,12 +30,12 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.44 (Berkeley) 12/21/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.1 (Berkeley) 12/21/92 (with NEWDB)";
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	5.44 (Berkeley) 12/21/92 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.1 (Berkeley) 12/21/92 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.44 (Berkeley) 12/21/92 (without NDBM)";
+static char sccsid[] = "@(#)alias.c	6.1 (Berkeley) 12/21/92 (without NDBM)";
 #endif
 #endif
 #endif /* not lint */

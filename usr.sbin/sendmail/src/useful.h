@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)useful.h	4.7 (Berkeley) 11/14/92
+ *	@(#)useful.h	6.1 (Berkeley) 12/21/92
  */
 
 # include <sys/types.h>
