@@ -9,14 +9,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dcm.c	7.4 (Berkeley) 06/18/92
+ *	@(#)dcm.c	7.5 (Berkeley) 10/11/92
  */
 
 #ifdef DCMCONSOLE
-#include "sys/param.h"
-#include "hp/dev/cons.h"
-#include "hp/dev/device.h"
-#include "../dev/dcmreg.h"
+#include <sys/param.h>
+#include <hp/dev/cons.h>
+#include <hp/dev/device.h>
+#include <hp300/dev/dcmreg.h>
 
 struct dcmdevice *dcmcnaddr = NULL;
 

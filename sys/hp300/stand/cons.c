@@ -11,12 +11,12 @@
  *
  * from: Utah $Hdr: cons.c 1.7 92/02/28$
  *
- *	@(#)cons.c	7.5 (Berkeley) 06/18/92
+ *	@(#)cons.c	7.6 (Berkeley) 10/11/92
  */
 
-#include "sys/param.h"
-#include "samachdep.h"
-#include "../hp/dev/cons.h"
+#include <sys/param.h>
+#include <hp300/stand/samachdep.h>
+#include <hp/dev/cons.h>
 
 #ifdef ITECONSOLE
 int	iteprobe(), iteinit(), itegetchar(), iteputchar();

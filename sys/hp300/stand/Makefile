@@ -1,9 +1,8 @@
-#	@(#)Makefile	7.15 (Berkeley) 07/25/92
+#	@(#)Makefile	7.16 (Berkeley) 10/11/92
 
 DESTDIR=
-STAND=	../../stand
-INCPATH=-I. -I${STAND} -I../.. -I../../sys -I..
-VPATH=	${STAND}
+INCPATH=-I../..
+VPATH=	../../stand
 
 CC=cc
 AS=as
