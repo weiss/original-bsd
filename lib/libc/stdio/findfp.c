@@ -5,10 +5,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)findfp.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)findfp.c	5.2 (Berkeley) 09/18/85";
 #endif not lint
 
 #include <stdio.h>
+#include <errno.h>
+
+extern int errno;
 
 #define active(iop)	((iop)->_flag & (_IOREAD|_IOWRT|_IORW))
 
@@ -51,8 +54,10 @@ _findiop()
 
 	iov = iobglue;
 	while (*iov != NULL && active(*iov))
-		if (++iov >= endglue)
+		if (++iov >= endglue) {
+			errno = EMFILE;
 			return (NULL);
+		}
 
 	if (*iov == NULL)
 		*iov = (FILE *)calloc(1, sizeof **iov);
