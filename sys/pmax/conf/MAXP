@@ -1,7 +1,7 @@
 #
 # Standard DECstation (3100 or 5000/xxx)
 #
-#	@(#)MAXP	7.5 (Berkeley) 06/29/93
+#	@(#)MAXP	8.1 (Berkeley) 06/29/93
 #
 machine		pmax
 
