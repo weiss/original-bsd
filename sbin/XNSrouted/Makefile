@@ -14,9 +14,9 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.8 (Berkeley) 09/19/88
+#	@(#)Makefile	5.9 (Berkeley) 09/20/88
 #
-CFLAGS=	-O -I../routed
+CFLAGS=	-O
 LIBC=	/lib/libc.a
 SRCS=	af.c if.c input.c main.c output.c startup.c tables.c timer.c trace.c
 OBJS=	af.o if.o input.o main.o output.o startup.o tables.o timer.o trace.o
