@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)write.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)write.c	4.2 (Berkeley) 11/10/80";
 /*
  * write to another user
  */
@@ -63,6 +63,8 @@ char *argv[];
 		strcat(histty, histtya);
 	}
 	while (fread((char *)&ubuf, sizeof(ubuf), 1, uf) == 1) {
+		if (ubuf.ut_name[0] == '\0')
+			continue;
 		if (strcmp(ubuf.ut_line, mytty)==0) {
 			for(i=0; i<NMAX; i++) {
 				c1 = ubuf.ut_name[i];
