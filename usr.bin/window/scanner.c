@@ -16,10 +16,9 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)scanner.c	3.11 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)scanner.c	3.12 (Berkeley) 10/13/89";
 #endif /* not lint */
 
-#include <stdio.h>
 #include "value.h"
 #include "token.h"
 #include "context.h"

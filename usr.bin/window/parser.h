@@ -14,10 +14,9 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)parser.h	3.6 (Berkeley) 06/29/88
+ *	@(#)parser.h	3.7 (Berkeley) 10/13/89
  */
 
-#include <stdio.h>
 #include "value.h"
 #include "context.h"
 #include "token.h"

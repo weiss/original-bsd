@@ -16,12 +16,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwrint.c	3.7 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)wwrint.c	3.8 (Berkeley) 10/13/89";
 #endif /* not lint */
 
 #include "ww.h"
 #include <fcntl.h>
-#include <sys/signal.h>
 
 /*
  * Tty input interrupt handler.
