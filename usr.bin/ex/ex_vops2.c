@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_vops2.c	6.3 07/08/81";
+static char *sccsid = "@(#)ex_vops2.c	6.4 07/10/81";
 #include "ex.h"
 #include "ex_tty.h"
 #include "ex_vis.h"
@@ -809,8 +809,7 @@ def:
 			if (!backsl) {
 				int cnt;
 				putchar(c);
-				if (ioctl(0, FIONREAD, &cnt) != 0 || cnt==0)
-					flush();
+				flush();
 			}
 			if (gcursor > &genbuf[LBSIZE - 2])
 				error("Line too long");
