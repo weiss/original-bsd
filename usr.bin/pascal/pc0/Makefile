@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.24 04/16/82"
+SCCSID = "@(#)Makefile 1.25 04/16/82"
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
 WHOAMI = pc
@@ -98,7 +98,7 @@ config.c: CONFIG.c makefile
 clean:
 	${RM} *.o ${TMPDIR}/*.c
 	${RM} y.tab.h y.tab.c y.tab.out
-	${RM} ${ERRORSTRINGS}
+	${RM} ${WHOAMI}*strings
 	${RM} config.c
 	${RM} a.out core *.list *.bak
 	${RM} opc pic tags
