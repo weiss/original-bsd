@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_swap.c	7.28 (Berkeley) 04/19/93
+ *	@(#)vm_swap.c	7.29 (Berkeley) 07/06/93
  */
 
 #include <sys/param.h>
@@ -232,10 +232,11 @@ swfree(p, index)
 			blk = dmmax;
 		if (vsbase == 0) {
 			/*
-			 * First of all chunks... initialize the swapmap
-			 * the second half of the hunk.
+			 * First of all chunks.
+			 * Cannot free a zero-index block in a resource
+			 * map so we waste the first block.
 			 */
-			rminit(swapmap, (long)(blk/2), (long)(blk/2),
+			rminit(swapmap, (long)(blk - 1), (long)1,
 			    "swap", nswapmap);
 		} else if (dvbase == 0) {
 			/*
