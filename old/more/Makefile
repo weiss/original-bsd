@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/04/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 CFLAGS=	-O
 DESTDIR=
@@ -29,3 +29,5 @@ more.o:	/usr/include/sys/stat.h
 
 clean:
 	rm -f more more.o core a.out errs
+
+depend:
