@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mset.c	3.3 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)mset.c	3.4 (Berkeley) 08/28/88";
 #endif /* not lint */
 
 /*
@@ -41,10 +41,11 @@ static char sccsid[] = "@(#)mset.c	3.3 (Berkeley) 06/29/88";
 #include "../ctlr/function.h"
 
 #include "state.h"
+#include "map3270.h"
+
 #include "../api/astosc.h"
 
 #include "../general/globals.h"
-#include "map3270.ext"
 
 struct regstate {
 	char *result;
