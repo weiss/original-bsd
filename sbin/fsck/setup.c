@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setup.c	5.40 (Berkeley) 06/26/92";
+static char sccsid[] = "@(#)setup.c	5.41 (Berkeley) 07/16/92";
 #endif /* not lint */
 
 #define DKTYPENAMES
@@ -160,10 +160,11 @@ setup(dev)
 		}
 	}
 	if (sblock.fs_inodefmt >= FS_44INODEFMT) {
-		newinofmt++;
+		newinofmt = 1;
 	} else {
 		sblock.fs_qbmask = ~sblock.fs_bmask;
 		sblock.fs_qfmask = ~sblock.fs_fmask;
+		newinofmt = 0;
 	}
 	/*
 	 * Convert to new inode format.
