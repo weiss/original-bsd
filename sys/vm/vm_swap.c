@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_swap.c	8.3 (Berkeley) 12/30/93
+ *	@(#)vm_swap.c	8.4 (Berkeley) 01/06/94
  */
 
 #include <sys/param.h>
@@ -121,10 +121,10 @@ swapinit()
 	for (i = 0; i < nswbuf - 1; i++, sp++) {
 		sp->b_actf = sp + 1;
 		sp->b_rcred = sp->b_wcred = p->p_ucred;
-		sp->b_vnbufs.le_next = NULL;
+		sp->b_vnbufs.le_next = NOLIST;
 	}
 	sp->b_rcred = sp->b_wcred = p->p_ucred;
-	sp->b_vnbufs.le_next = NULL;
+	sp->b_vnbufs.le_next = NOLIST;
 	sp->b_actf = NULL;
 }
 
