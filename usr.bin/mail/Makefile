@@ -1,7 +1,7 @@
 #
 # Unix version 7.
 #
-# Sccs Id = "@(#)Makefile	2.1 07/01/81";
+# Sccs Id = "@(#)Makefile	2.2 07/20/81";
 #
 
 CFLAGS=-O -DVMUNIX -DV7
@@ -82,7 +82,7 @@ cmdtab.o: cmdtab.c
 
 errlst.o: errlst.c
 	${CC} -E ${CFLAGS} errlst.c | ${XSTR} -c -
-	${CC} ${CFLAGS} -R x.c
+	${CC} ${CFLAGS} -R -c x.c
 	mv x.o errlst.o
 
 #
