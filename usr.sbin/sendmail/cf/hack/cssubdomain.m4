@@ -8,7 +8,7 @@ PUSHDIVERT(-1)
 #
 POPDIVERT
 
-VERSIONID(@(#)cssubdomain.m4	2.3 (Berkeley) 10/03/91)
+VERSIONID(`@(#)cssubdomain.m4	2.4 (Berkeley) 11/13/92')
 
 PUSHDIVERT(2)
 # find possible (old & new) versions of our name via short circuit hack
