@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.7 (Berkeley) 08/30/91
+ *	@(#)extern.h	5.8 (Berkeley) 09/06/91
  */
 
 #include <sys/cdefs.h>
@@ -73,7 +73,7 @@ void	xechoit __P((Char **));
 /*
  * exp.c
  */
-int	exp __P((Char ***));
+int	expr __P((Char ***));
 int	exp0 __P((Char ***, bool));
 
 /*

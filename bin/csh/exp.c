@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)exp.c	5.13 (Berkeley) 07/22/91";
+static char sccsid[] = "@(#)exp.c	5.14 (Berkeley) 09/06/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -62,7 +62,7 @@ static void	etraci	__P((char *, int, Char ***));
 #endif
 
 int
-exp(vp)
+expr(vp)
     register Char ***vp;
 {
     return (exp0(vp, 0));
