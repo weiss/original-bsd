@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dir.c	5.14 (Berkeley) 08/02/91";
+static char sccsid[] = "@(#)dir.c	5.15 (Berkeley) 10/27/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -96,7 +96,7 @@ dinit(hp)
 		    swd.st_ino == shp.st_ino)
 		    tcp = cwd;
 	    }
-	    cp = dcanon(str2short(tcp), STRNULL);
+	    cp = dcanon(SAVE(tcp), STRNULL);
 	}
     }
 
