@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)verify.c	5.10 (Berkeley) 12/11/91";
+static char sccsid[] = "@(#)verify.c	5.11 (Berkeley) 04/17/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -84,13 +84,11 @@ vwalk()
 			    p->fts_name, FNM_PATHNAME|FNM_QUOTE) ||
 			    !strcmp(ep->name, p->fts_name)) {
 				ep->flags |= F_VISIT;
-				if (ep->flags & F_IGN) {
-					(void)fts_set(t, p, FTS_SKIP);
-					continue;
-				}
 				if (compare(ep->name, ep, p))
 					rval = MISMATCHEXIT;
-				if (ep->child && ep->type == F_DIR &&
+				if (ep->flags & F_IGN)
+					(void)fts_set(t, p, FTS_SKIP);
+				else if (ep->child && ep->type == F_DIR &&
 				    p->fts_info == FTS_D) {
 					level = ep->child;
 					++specdepth;
