@@ -1,4 +1,16 @@
-#	"@(#)h_indx_s.s	5.1 (Berkeley) 11/03/86"
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Computer Consoles Inc.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
+#ifndef lint
+	.asciz "@(#)h_indx_s.s	5.2 (Berkeley) 04/12/91"
+#endif /* not lint */
 
 .data
 .text
