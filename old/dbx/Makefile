@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.17 (Berkeley) 06/29/90
+#	@(#)Makefile	5.18 (Berkeley) 06/29/90
 #
 
 # The file "defs.h" is included by all.
@@ -189,7 +189,7 @@ mkdate: mkdate.c
 	${CC} -g ${CFLAGS} mkdate.c -o mkdate
 
 dbx.0:	dbx.1
-	nroff -man dbx.1 > dbx.0
+	nroff -mandoc dbx.1 > dbx.0
 
 print:
 	@echo "don't print it, it's too long"
