@@ -9,14 +9,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rec_open.c	5.12 (Berkeley) 12/19/92";
+static char sccsid[] = "@(#)rec_open.c	5.13 (Berkeley) 02/11/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 
-#include <db.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -24,6 +23,7 @@ static char sccsid[] = "@(#)rec_open.c	5.12 (Berkeley) 12/19/92";
 #include <stdio.h>
 #include <unistd.h>
 
+#include <db.h>
 #include "recno.h"
 
 DB *

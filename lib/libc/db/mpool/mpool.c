@@ -6,17 +6,19 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)mpool.c	5.3 (Berkeley) 11/24/91";
+static char sccsid[] = "@(#)mpool.c	5.4 (Berkeley) 02/11/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
+
 #include <errno.h>
-#include <db.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
+#include <db.h>
 #define	__MPOOLINTERFACE_PRIVATE
 #include "mpool.h"
 
