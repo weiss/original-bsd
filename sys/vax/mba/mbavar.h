@@ -1,4 +1,4 @@
-/*	mbavar.h	3.5	10/09/80	*/
+/*	mbavar.h	4.1	11/09/80	*/
 
 /*
  * VAX Massbus adapter registers

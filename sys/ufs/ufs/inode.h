@@ -1,4 +1,4 @@
-/*	inode.h	3.6	06/07/80	*/
+/*	inode.h	4.1	11/09/80	*/
 
 /*
  * The I node is the focus of all

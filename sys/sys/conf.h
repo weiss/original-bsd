@@ -1,4 +1,4 @@
-/*	conf.h	3.7	07/01/80	*/
+/*	conf.h	4.1	11/09/80	*/
 
 /*
  * Declaration of block device
