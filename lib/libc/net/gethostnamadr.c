@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.6 (Berkeley) 03/14/86";
+static char sccsid[] = "@(#)gethostnamadr.c	6.7 (Berkeley) 03/17/86";
 #endif LIBC_SCCS and not lint
 
 #include <sys/param.h>
@@ -17,7 +17,7 @@ static char sccsid[] = "@(#)gethostnamadr.c	6.6 (Berkeley) 03/14/86";
 #include <stdio.h>
 #include <errno.h>
 #include <arpa/nameser.h>
-#include <arpa/resolv.h>
+#include <resolv.h>
 
 #define	MAXALIASES	35
 #define MAXADDRS	35
