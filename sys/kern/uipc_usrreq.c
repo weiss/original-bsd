@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	7.24 (Berkeley) 03/24/91
+ *	@(#)uipc_usrreq.c	7.25 (Berkeley) 04/15/91
  */
 
 #include "param.h"
@@ -16,6 +16,7 @@
 #include "socketvar.h"
 #include "unpcb.h"
 #include "un.h"
+#include "namei.h"
 #include "vnode.h"
 #include "file.h"
 #include "stat.h"
@@ -41,6 +42,7 @@ uipc_usrreq(so, req, m, nam, control)
 	struct unpcb *unp = sotounpcb(so);
 	register struct socket *so2;
 	register int error = 0;
+	struct proc *p = curproc;	/* XXX */
 
 	if (req == PRU_CONTROL)
 		return (EOPNOTSUPP);
@@ -67,7 +69,7 @@ uipc_usrreq(so, req, m, nam, control)
 		break;
 
 	case PRU_BIND:
-		error = unp_bind(unp, nam);
+		error = unp_bind(unp, nam, p);
 		break;
 
 	case PRU_LISTEN:
@@ -76,7 +78,7 @@ uipc_usrreq(so, req, m, nam, control)
 		break;
 
 	case PRU_CONNECT:
-		error = unp_connect(so, nam);
+		error = unp_connect(so, nam, p);
 		break;
 
 	case PRU_CONNECT2:
@@ -140,7 +142,7 @@ uipc_usrreq(so, req, m, nam, control)
 		break;
 
 	case PRU_SEND:
-		if (control && (error = unp_internalize(control)))
+		if (control && (error = unp_internalize(control, p)))
 			break;
 		switch (so->so_type) {
 
@@ -152,7 +154,7 @@ uipc_usrreq(so, req, m, nam, control)
 					error = EISCONN;
 					break;
 				}
-				error = unp_connect(so, nam);
+				error = unp_connect(so, nam, p);
 				if (error)
 					break;
 			} else {
@@ -335,9 +337,10 @@ unp_detach(unp)
 		unp_gc();
 }
 
-unp_bind(unp, nam)
+unp_bind(unp, nam, p)
 	struct unpcb *unp;
 	struct mbuf *nam;
+	struct proc *p;
 {
 	struct sockaddr_un *soun = mtod(nam, struct sockaddr_un *);
 	register struct vnode *vp;
@@ -358,7 +361,7 @@ unp_bind(unp, nam)
 /* SHOULD BE ABLE TO ADOPT EXISTING AND wakeup() ALA FIFO's */
 	ndp->ni_nameiop = CREATE | FOLLOW | LOCKPARENT;
 	ndp->ni_segflg = UIO_SYSSPACE;
-	if (error = namei(ndp, curproc)) 		/* XXX */
+	if (error = namei(ndp, p))
 		return (error);
 	vp = ndp->ni_vp;
 	if (vp != NULL) {
@@ -373,7 +376,7 @@ unp_bind(unp, nam)
 	VATTR_NULL(&vattr);
 	vattr.va_type = VSOCK;
 	vattr.va_mode = 0777;
-	if (error = VOP_CREATE(ndp, &vattr))
+	if (error = VOP_CREATE(ndp, &vattr, p))
 		return (error);
 	vp = ndp->ni_vp;
 	vp->v_socket = unp->unp_socket;
@@ -383,9 +386,10 @@ unp_bind(unp, nam)
 	return (0);
 }
 
-unp_connect(so, nam)
+unp_connect(so, nam, p)
 	struct socket *so;
 	struct mbuf *nam;
+	struct proc *p;
 {
 	register struct sockaddr_un *soun = mtod(nam, struct sockaddr_un *);
 	register struct vnode *vp;
@@ -404,14 +408,14 @@ unp_connect(so, nam)
 		*(mtod(nam, caddr_t) + nam->m_len) = 0;
 	ndp->ni_nameiop = LOOKUP | FOLLOW | LOCKLEAF;
 	ndp->ni_segflg = UIO_SYSSPACE;
-	if (error = namei(ndp, curproc))		/* XXX */
+	if (error = namei(ndp, p))
 		return (error);
 	vp = ndp->ni_vp;
 	if (vp->v_type != VSOCK) {
 		error = ENOTSOCK;
 		goto bad;
 	}
-	if (error = VOP_ACCESS(vp, VWRITE, curproc->p_ucred))
+	if (error = VOP_ACCESS(vp, VWRITE, p->p_ucred, p))
 		goto bad;
 	so2 = vp->v_socket;
 	if (so2 == 0) {
@@ -581,10 +585,11 @@ unp_externalize(rights)
 	return (0);
 }
 
-unp_internalize(control)
+unp_internalize(control, p)
 	struct mbuf *control;
+	struct proc *p;
 {
-	struct filedesc *fdp = curproc->p_fd;		/* XXX */
+	struct filedesc *fdp = p->p_fd;
 	register struct cmsghdr *cm = mtod(control, struct cmsghdr *);
 	register struct file **rp;
 	register struct file *fp;
