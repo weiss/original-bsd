@@ -1,6 +1,6 @@
 # Copyright (c) 1982 Regents of the University of California
 #
-#	@(#)Makefile	4.6	(Berkeley)	02/18/83
+#	@(#)Makefile	4.7	(Berkeley)	03/23/83
 #
 DESTDIR=
 CFLAGS= -O
@@ -30,3 +30,5 @@ lint:
 
 print:
 	@pr /usr/include/dumprestor.h restore.h ${FILES}
+
+${OBJS}: restore.h
