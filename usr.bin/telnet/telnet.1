@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)telnet.1	8.1 (Berkeley) 06/06/93
+.\"	@(#)telnet.1	8.2 (Berkeley) 12/30/93
 .\"
 .Dd 
 .Dt TELNET 1
@@ -666,7 +666,7 @@ the terminal's
 .Ic suspend
 character.
 .It Ic tracefile
-Thi is the file to which the output, caused by
+This is the file to which the output, caused by
 .Ic netdata
 or
 .Ic option
@@ -698,7 +698,7 @@ commands.
 The
 .Ic slc
 command (Set Local Characters) is used to set
-or change the state of the the special
+or change the state of the special
 characters when the 
 .Dv TELNET LINEMODE
 option has
@@ -730,7 +730,7 @@ connection was established.
 .It Ic check
 Verify the current settings for the current special characters.
 The remote side is requested to send all the current special
-character settings, and if there are any discrepencies with
+character settings, and if there are any discrepancies with
 the local side, the local side will switch to the remote value.
 .It Ic \&?
 Prints out help information for the
@@ -740,11 +740,11 @@ command.
 .It Ic environ Ar arguments... 
 The
 .Ic environ
-command is used to manipulate the
-the variables that my be sent through the
+command is used to manipulate 
+the variables that may be sent through the
 .Dv TELNET ENVIRON
 option.
-The initial set of variables is taken from the users
+The initial set of variables is taken from the user's
 environment, with only the
 .Ev DISPLAY
 and
@@ -1032,8 +1032,8 @@ uses at least the
 .Ev DISPLAY ,
 and
 .Ev TERM
-environent variables.
-Other envirnoment variables may be propogated
+environment variables.
+Other environment variables may be propagated
 to the other side via the
 .Dv TELNET ENVIRON
 option.
