@@ -6,17 +6,18 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getservbyport.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)getservbyport.c	5.7 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <netdb.h>
+#include <string.h>
 
 extern int _serv_stayopen;
 
 struct servent *
 getservbyport(port, proto)
 	int port;
-	char *proto;
+	const char *proto;
 {
 	register struct servent *p;
 

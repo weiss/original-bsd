@@ -6,16 +6,17 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getprotoname.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)getprotoname.c	5.7 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <netdb.h>
+#include <string.h>
 
 extern int _proto_stayopen;
 
 struct protoent *
 getprotobyname(name)
-	register char *name;
+	register const char *name;
 {
 	register struct protoent *p;
 	register char **cp;
