@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lstInt.h	8.1 (Berkeley) 06/06/93
+ *	@(#)lstInt.h	8.2 (Berkeley) 04/28/95
  */
 
 /*-
