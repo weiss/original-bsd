@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)register.c	1.6 (Berkeley) 08/21/89";
+static char sccsid[] = "@(#)register.c	1.7 (Berkeley) 08/21/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -240,7 +240,7 @@ setup_key(local)
 	char	namebuf[MAXPATHLEN];
 	extern int errno;
 
-	(void) sprintf(namebuf, "%s%s"
+	(void) sprintf(namebuf, "%s%s",
 		CLIENT_KEYFILE,
 		inet_ntoa(local.sin_addr));
 
