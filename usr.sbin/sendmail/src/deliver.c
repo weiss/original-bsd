@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.69 (Berkeley) 04/27/93";
+static char sccsid[] = "@(#)deliver.c	6.70 (Berkeley) 04/29/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1837,6 +1837,10 @@ putbody(fp, m, e)
 			ExitStat = EX_IOERR;
 		}
 	}
+
+	/* some mailers want extra blank line at end of message */
+	if (bitnset(M_BLANKEND, m->m_flags) && buf[0] != '\0' && buf[0] != '\n')
+		putline("", fp, m);
 
 	(void) fflush(fp);
 	if (ferror(fp) && errno != EPIPE)
