@@ -3,9 +3,9 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)fig3.2.n	5.2 (Berkeley) 04/17/91
+.\"	@(#)fig3.2.n	5.3 (Berkeley) 10/09/94
 .\"
-.FK
+.KF
 .TS
 center, box;
 cw(15).
