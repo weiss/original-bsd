@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.11 (Berkeley) 06/18/92
+#	@(#)Makefile	7.12 (Berkeley) 06/27/92
 
 DESTDIR=
 STAND=	../../stand
@@ -121,9 +121,9 @@ lint:
 	    grep -v 'struct/union .* never defined'
 
 install: mkboot installboot ${ALL}
-	mkboot dboot diskboot.lif
-	mkboot nboot ndiskboot.lif
-	mkboot tboot tcopy tapeboot.lif
+	./mkboot dboot diskboot.lif
+	./mkboot nboot ndiskboot.lif
+	./mkboot tboot tcopy tapeboot.lif
 	install -c -s installboot ${DESTDIR}/usr/mdec
 	install -c -m 644 diskboot.lif ${DESTDIR}/usr/mdec/bootrd
 	rm -f ${DESTDIR}/usr/mdec/bootsd
