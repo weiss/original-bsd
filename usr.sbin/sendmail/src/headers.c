@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.34 (Berkeley) 07/23/94";
+static char sccsid[] = "@(#)headers.c	8.35 (Berkeley) 08/17/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -100,7 +100,7 @@ chompheader(line, def, e)
 		if (hi->hi_field == NULL)
 			printf("no header match\n");
 		else
-			printf("header match, hi_flags=%o\n", hi->hi_flags);
+			printf("header match, hi_flags=%x\n", hi->hi_flags);
 	}
 
 	/* see if this is a resent message */
@@ -938,6 +938,15 @@ putheader(mci, h, e)
 		{
 			if (tTd(34, 11))
 				printf(" (skipped (receipt))\n");
+			continue;
+		}
+
+		/* suppress Content-Transfer-Encoding: if we are MIMEing */
+		if (bitset(H_CTE, h->h_flags) &&
+		    bitset(MCIF_CVT8TO7, mci->mci_flags))
+		{
+			if (tTd(34, 11))
+				printf(" (skipped (content-transfer-encoding))\n");
 			continue;
 		}
 
