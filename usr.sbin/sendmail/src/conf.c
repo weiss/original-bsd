@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.48 (Berkeley) 11/20/93";
+static char sccsid[] = "@(#)conf.c	8.49 (Berkeley) 12/01/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1804,6 +1804,8 @@ solaris_gethostbyname(name)
 
 	return _switch_gethostbyname_r(name, &hp, buf, sizeof(buf), &h_errno);
 # else
+	extern struct hostent *__switch_gethostbyname();
+
 	return __switch_gethostbyname(name);
 # endif
 }
@@ -1821,6 +1823,8 @@ solaris_gethostbyaddr(addr, len, type)
 
 	return _switch_gethostbyaddr_r(addr, len, type, &hp, buf, sizeof(buf), &h_errno);
 # else
+	extern struct hostent *__switch_gethostbyaddr();
+
 	return __switch_gethostbyaddr(addr, len, type);
 # endif
 }
