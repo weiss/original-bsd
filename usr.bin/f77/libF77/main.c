@@ -5,14 +5,17 @@
  * %sccs.include.proprietary.c%
  */
 
+/*
+ * Don't split the copyright notice over two lines, it makes mkvers
+ * unhappy.
+ */
 #ifndef lint
 char copyright[] =
-"@(#) Copyright (c) 1980 The Regents of the University of California.\n\
- All rights reserved.\n";
+"@(#) Copyright (c) 1980 The Regents of the University of California.\n All rights reserved.\n";
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.6 (Berkeley) 04/12/91";
+static char sccsid[] = "@(#)main.c	5.7 (Berkeley) 11/13/91";
 #endif /* not lint */
 
 #include <stdio.h>
