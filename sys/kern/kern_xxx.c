@@ -4,12 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_xxx.c	7.16 (Berkeley) 03/17/91
+ *	@(#)kern_xxx.c	7.17 (Berkeley) 04/20/91
  */
 
 #include "param.h"
 #include "systm.h"
-#include "user.h"
 #include "kernel.h"
 #include "proc.h"
 #include "reboot.h"
@@ -93,14 +92,10 @@ reboot(p, uap, retval)
 	return (0);
 }
 
-ovhangup()
+#ifdef COMPAT_43
+oquota()
 {
 
-	return (EINVAL);
+	return (ENOSYS);
 }
-
-oldquota()
-{
-
-	return (EINVAL);
-}
+#endif
