@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_vmain.c	7.10 (Berkeley) 09/09/88";
+static char *sccsid = "@(#)ex_vmain.c	7.11 (Berkeley) 06/29/90";
 #endif not lint
 
 #include "ex.h"
@@ -883,7 +883,7 @@ gogo:
 		 *	control in kernel.
 		 */
 		case CTRL('z'):
-			forbid(dosusp == 0 || !ldisc);
+			forbid(dosusp == 0);
 			vsave();
 			oglobp = globp;
 			globp = "stop";
