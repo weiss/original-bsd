@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pcproc.c 1.18 02/01/83";
+static	char sccsid[] = "@(#)pcproc.c 1.19 02/28/83";
 
 #include "whoami.h"
 #ifdef PC
@@ -13,6 +13,7 @@ static	char sccsid[] = "@(#)pcproc.c 1.18 02/01/83";
 #include "opcode.h"
 #include "pc.h"
 #include "pcops.h"
+#include "tmps.h"
 
 /*
  * The constant REALSPC defines the amount of forced padding preceeding
