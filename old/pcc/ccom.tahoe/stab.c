@@ -1,9 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)stab.c	1.1 (Berkeley) 01/11/86";
-#endif
-
-#ifndef lint
-static char *sccsid ="@(#)stab.c	1.9 (Berkeley) 8/11/83";
+static char sccsid[] = "@(#)stab.c	1.2 (Berkeley) 01/11/86";
 #endif
 /*
  * Symbolic debugging info interface.
