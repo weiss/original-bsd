@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.5 (Berkeley) 12/12/85
+#	@(#)Makefile	5.6 (Berkeley) 10/26/87
 #
-SCCSID = @(#)Makefile 5.5 12/12/85
+SCCSID = @(#)Makefile 5.6 10/26/87
 INSTALL = ${DESTDIR}/usr/ucb
 INSTALLIB = ${DESTDIR}/usr/lib
 SRCDIR=	../src
@@ -95,6 +95,8 @@ clean:
 	cd pc2; make clean
 
 print: picture
-	@pr READ_ME makefile picture
+	@pr READ_ME Makefile picture
 	@ls -l | pr
 	@pr pix.c pmerge.c pxref.p pc.c pc3.h pc3.c
+
+depend:
