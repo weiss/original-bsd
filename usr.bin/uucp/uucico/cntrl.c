@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)cntrl.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)cntrl.c	5.2 (Berkeley) 08/30/84";
 #endif
 
 #include "uucp.h"
@@ -22,9 +22,13 @@ struct Proto {
 extern int gturnon(), gturnoff();
 extern int grdmsg(), grddata();
 extern int gwrmsg(), gwrdata();
+extern int nturnon(), nturnoff();
+extern int nrdmsg(), nrddata();
+extern int nwrmsg(), nwrdata();
 extern int imsg(), omsg();
 
 struct Proto Ptbl[]={
+	'n', nturnon, nrdmsg, nwrmsg, nrddata, nwrdata, nturnoff,
 	'g', gturnon, grdmsg, gwrmsg, grddata, gwrdata, gturnoff,
 	'\0'
 };
