@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.14 (Berkeley) 05/11/90
+#	@(#)Makefile	5.15 (Berkeley) 06/08/90
 
 MAN3=	assert.0 bitstring.0 end.0 intro.0 monitor.0 varargs.0
 MLINKS=	end.3 edata.3 end.3 etext.3 monitor.3 moncontrol.3 monitor.3 \
@@ -13,4 +13,4 @@ cleandir:
 
 install: maninstall
 
-.include <bsd.man.mk>
+.include <bsd.prog.mk>
