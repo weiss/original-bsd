@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 1988 Mark Nudleman
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)less.h	5.9 (Berkeley) 06/01/90
+ *	@(#)less.h	8.1 (Berkeley) 06/06/93
  */
 
 #define	RECOMP
