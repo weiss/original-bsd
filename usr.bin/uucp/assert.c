@@ -1,10 +1,9 @@
 #ifndef lint
-static char sccsid[] = "@(#)assert.c	5.3 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)assert.c	5.4 (Berkeley) 04/10/85";
 #endif
 
 #include "uucp.h"
 #include <sys/time.h>
-#include <sys/types.h>
 #include <errno.h>
 
 /*******
