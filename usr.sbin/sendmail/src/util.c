@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.34 (Berkeley) 12/15/92";
+static char sccsid[] = "@(#)util.c	5.35 (Berkeley) 12/20/92";
 #endif /* not lint */
 
 # include <stdio.h>
@@ -704,10 +704,10 @@ fgetfolded(buf, n, f)
 			int nn;
 
 			nn = (p - bp);
-			if (nn < 1024)
+			if (nn < MEMCHUNKSIZE)
 				nn *= 2;
 			else
-				nn += 1024;
+				nn += MEMCHUNKSIZE;
 			nbp = xalloc(nn);
 			bcopy(bp, nbp, p - bp);
 			p = &nbp[p - bp];

@@ -30,12 +30,12 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.42 (Berkeley) 12/15/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.43 (Berkeley) 12/20/92 (with NEWDB)";
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	5.42 (Berkeley) 12/15/92 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	5.43 (Berkeley) 12/20/92 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.42 (Berkeley) 12/15/92 (without NDBM)";
+static char sccsid[] = "@(#)alias.c	5.43 (Berkeley) 12/20/92 (without NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -746,7 +746,7 @@ forward(user, sendq, e)
 
 	for (pp = ForwardPath; pp != NULL; pp = ep)
 	{
-		char buf[256];
+		char buf[MAXPATHLEN+1];
 
 		ep = strchr(pp, ':');
 		if (ep != NULL)
