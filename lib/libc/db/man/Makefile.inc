@@ -1,6 +1,7 @@
-#       @(#)Makefile.inc	5.2 (Berkeley) 09/12/91
+#       @(#)Makefile.inc	5.3 (Berkeley) 08/06/92
 
 .PATH: ${.CURDIR}/db/man
 
 # mpool.3
 MAN3+=	btree.0 dbopen.0 hash.0 recno.0
+MLINKS+= dbopen.3 db.3
