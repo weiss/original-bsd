@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rain.c	5.6 (Berkeley) 02/28/91";
+static char sccsid[] = "@(#)rain.c	5.7 (Berkeley) 02/03/93";
 #endif /* not lint */
 
 /*
@@ -211,9 +211,9 @@ onsig()
 	exit(0);
 }
 
-static
+int
 fputchar(c)
-	char c;
+	int c;
 {
 	putchar(c);
 }
