@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)vfs_lookup.c	7.1 (Berkeley) 06/05/86
+ *	@(#)vfs_lookup.c	7.1.1.1 (Berkeley) 04/02/87
  */
 
 #include "param.h"
@@ -1060,7 +1060,11 @@ blkatoff(ip, offset, res)
 		dirbad(ip, offset, "hole in dir");
 		return (0);
 	}
+#ifdef SECSIZE
+	bp = bread(ip->i_dev, fsbtodb(fs, bn), bsize, fs->fs_dbsize);
+#else SECSIZE
 	bp = bread(ip->i_dev, fsbtodb(fs, bn), bsize);
+#endif SECSIZE
 	if (bp->b_flags & B_ERROR) {
 		brelse(bp);
 		return (0);
