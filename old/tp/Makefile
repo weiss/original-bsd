@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.1	12/18/82
+#	@(#)Makefile	4.2	05/31/87
 
 CFLAGS=-O
 h = tp.h tp_defs.h
@@ -14,3 +14,5 @@ install : tp
 
 clean : 
 	rm -f *.o
+
+depend:
