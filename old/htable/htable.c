@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)htable.c	5.3 (Berkeley) 06/21/85";
+static char sccsid[] = "@(#)htable.c	5.4 (Berkeley) 07/15/85";
 #endif not lint
 
 /*
@@ -172,8 +172,6 @@ lower(str)
 	while (*cp) {
 		if (isupper(*cp))
 			*cp = tolower(*cp);
-		if (*cp == '.')
-			break;
 		cp++;
 	}
 	return (str);
