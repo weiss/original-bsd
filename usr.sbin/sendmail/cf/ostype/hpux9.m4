@@ -8,11 +8,12 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)hpux9.m4	8.6 (Berkeley) 04/07/95')
+VERSIONID(`@(#)hpux9.m4	8.7 (Berkeley) 05/24/95')
 
 define(`QUEUE_DIR', /usr/spool/mqueue)dnl
 define(`ALIAS_FILE', /usr/lib/aliases)dnl
 define(`STATUS_FILE', /usr/lib/sendmail.st)dnl
+define(`LOCAL_MAILER_PATH', `/bin/rmail')dnl
 define(`LOCAL_MAILER_FLAGS', `m')dnl
 define(`LOCAL_MAILER_ARGS', `rmail -d $u')dnl
 define(`UUCP_MAILER_ARGS', `uux - -r -a$f -gC $h!rmail ($u)')dnl
