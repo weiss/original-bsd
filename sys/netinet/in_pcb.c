@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in_pcb.c	8.2 (Berkeley) 01/04/94
+ *	@(#)in_pcb.c	8.3 (Berkeley) 11/04/94
  */
 
 #include <sys/param.h>
@@ -104,7 +104,7 @@ in_pcbbind(inp, nam)
 			/* GROSS */
 			if (ntohs(lport) < IPPORT_RESERVED &&
 			    (error = suser(p->p_ucred, &p->p_acflag)))
-				return (error);
+				return (EACCES);
 			t = in_pcblookup(head, zeroin_addr, 0,
 			    sin->sin_addr, lport, wild);
 			if (t && (reuseport & t->inp_socket->so_options) == 0)
