@@ -16,10 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwsize.c	3.6 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)wwsize.c	3.7 (Berkeley) 06/02/90";
 #endif /* not lint */
 
 #include "ww.h"
+#ifdef POSIX_TTY
+#include <sys/ioctl.h>
+#endif
 
 /*
  * Resize a window.  Should be unattached.
