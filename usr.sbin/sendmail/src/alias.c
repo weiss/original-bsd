@@ -10,9 +10,9 @@
 
 #ifndef lint
 # ifdef DBM
-static char	SccsId[] = "@(#)alias.c	5.8 (Berkeley) 12/17/85	(with DBM)";
+static char	SccsId[] = "@(#)alias.c	5.9 (Berkeley) 01/05/86	(with DBM)";
 # else DBM
-static char	SccsId[] = "@(#)alias.c	5.8 (Berkeley) 12/17/85	(without DBM)";
+static char	SccsId[] = "@(#)alias.c	5.9 (Berkeley) 01/05/86	(without DBM)";
 # endif DBM
 #endif not lint
 
@@ -194,12 +194,28 @@ initaliases(aliasfile, init)
 	**	to us to rebuild it.
 	*/
 
-	dbminit(aliasfile);
+	if (!init)
+		dbminit(aliasfile);
 	atcnt = SafeAlias * 2;
 	if (atcnt > 0)
 	{
 		while (!init && atcnt-- >= 0 && aliaslookup("@") == NULL)
+		{
+			/*
+			**  Reinitialize alias file in case the new
+			**  one is mv'ed in instead of cp'ed in.
+			**
+			**	Only works with new DBM -- old one will
+			**	just consume file descriptors forever.
+			**	If you have a dbmclose() it can be
+			**	added before the sleep(30).
+			*/
+
 			sleep(30);
+# ifdef NDBM
+			dbminit(aliasfile);
+# endif NDBM
+		}
 	}
 	else
 		atcnt = 1;
@@ -342,6 +358,7 @@ readaliases(aliasfile, init)
 			(void) signal(SIGINT, oldsigint);
 			return;
 		}
+		dbminit(aliasfile);
 		(void) strcpy(line, aliasfile);
 		(void) strcat(line, ".pag");
 		if (close(creat(line, DBMMODE)) < 0)
