@@ -1,7 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
 #ifndef lint
-static	char sccsid[] = "@(#)yyget.c 1.4.1.1 02/04/84";
+static	char sccsid[] = "@(#)yyget.c 1.6 02/04/84";
 #endif
 
 #include "whoami.h"
@@ -276,7 +276,7 @@ includ()
  *
  */
 #	ifdef PC
-	    stabinclude( filename );
+	    stabinclude( filename , TRUE );
 #	endif PC
 	return (1);
 }
@@ -354,7 +354,7 @@ uninclud()
 	    if ( inclev == 0 ) {
 		stabsource( filename );
 	    } else {
-		stabinclude( filename );
+		stabinclude( filename , FALSE );
 	    }
 #	endif PC
 	inclev--;
