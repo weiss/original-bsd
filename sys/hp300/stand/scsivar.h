@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1982, 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Van Jacobson of Lawrence Berkeley Laboratory and the Systems
@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)scsivar.h	7.2 (Berkeley) 08/14/92
+ *	@(#)scsivar.h	8.1 (Berkeley) 06/10/93
  */
 
 struct	scsi_softc {
