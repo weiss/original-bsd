@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.5 (Berkeley) 11/29/90
+#	@(#)Makefile	5.6 (Berkeley) 06/27/91
 
 PROG=	route
 MAN8=	route.0
+SRCS=	route.c ccitt_addr.c
 CFLAGS+=-I.
 CLEANFILES+=keywords.h
 BINOWN=	root
