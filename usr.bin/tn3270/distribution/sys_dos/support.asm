@@ -1,9 +1,9 @@
 ; Copyright (c) 1988 The Regents of the University of California.
 ; All rights reserved.
 ;
-; %sccs.include.redist.c%
+; %sccs.include.redist.semicolon%
 ;
-;	@(#)support.asm	4.2 (Berkeley) 04/26/91
+;	@(#)support.asm	4.3 (Berkeley) 06/06/93
 ;
 
 _TEXT	segment	byte public 'CODE'
