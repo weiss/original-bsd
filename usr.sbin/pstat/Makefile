@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/04/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	pstat
 CFLAGS+=-I/sys
