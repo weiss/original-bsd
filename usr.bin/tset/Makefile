@@ -1,6 +1,8 @@
-#	@(#)Makefile	5.13 (Berkeley) 12/18/91
+#	@(#)Makefile	5.14 (Berkeley) 12/22/91
 
 PROG=	tset
+SRCS=	map.c misc.c set.c term.c tset.c wrterm.c
+
 DPADD=	${LIBTERMCAP}
 LDADD=	-ltermcap
 LINKS=	${BINDIR}/tset ${BINDIR}/reset
