@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)win.c	3.10 06/05/84";
+static char sccsid[] = "@(#)win.c	3.11 03/01/85";
 #endif
 
 #include "defs.h"
@@ -47,8 +47,7 @@ char *shf, **sh;
 	w->ww_id = id;
 	window[id] = w;
 	w->ww_hasframe = hasframe;
-	w->ww_altpos.r = 1;
-	w->ww_altpos.c = 0;
+	w->ww_alt = w->ww_w;
 	if (label != 0 && setlabel(w, label) < 0)
 		error("No memory for label.");
 	wwcursor(w, 1);
