@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ld.c	5.5 (Berkeley) 10/13/86";
+static char sccsid[] = "@(#)ld.c	5.6 (Berkeley) 11/11/86";
 #endif not lint
 
 /*
@@ -807,8 +807,12 @@ load1(libflg, loc)
 
 	readhdr(loc);
 	if (filhdr.a_syms == 0) {
-		if (filhdr.a_text+filhdr.a_data == 0)
+		if (filhdr.a_text+filhdr.a_data == 0) {
+			/* load2() adds a symbol for the file name */
+			if (!libflg)
+				ssize += sizeof (cursym);
 			return (0);
+		}
 		error(1, "no namelist");
 	}
 	if (libflg)
