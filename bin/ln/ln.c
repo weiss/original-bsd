@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)ln.c 4.6 11/15/85";
+static	char sccsid[] = "@(#)ln.c 4.7 10/22/87";
 /*
  * ln
  */
@@ -73,7 +73,7 @@ linkit(from, to)
 			tail = from;
 		else
 			tail++;
-		sprintf(name, "%s/%s", to, tail);
+		(void)sprintf(name, "%s/%s", to, tail);
 		to = name;
 	}
 	if ((*linkf)(from, to) < 0) {
