@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)refer7.c	4.3 (Berkeley) 04/23/86";
+static char *sccsid = "@(#)refer7.c	4.4 (Berkeley) 09/30/87";
 #endif
 
 #include "refer..c"
@@ -32,8 +32,10 @@ dumpold()
 
 	if (!endpush)
 		return;
-	fclose(fo);
-	fo = NULL;
+	if (fo != NULL) {
+		fclose(fo);
+		fo = NULL;
+	}
 	if (sort) {
 		char comm[100];
 		sprintf(comm, "sort -f %s -o %s", tfile, tfile);
