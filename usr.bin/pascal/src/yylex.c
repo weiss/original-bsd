@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)yylex.c 1.1 08/27/80";
+static char sccsid[] = "@(#)yylex.c 1.2 03/08/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -86,7 +86,7 @@ next:
 			if (opt('s'))
 				for (cp = token; *cp; cp++)
 					if (*cp >= 'A' && *cp <= 'Z') {
-						*cp =| ' ';
+						*cp |= ' ';
 					}
 			yysavc = c;
 			ip = hash(0, 1);
