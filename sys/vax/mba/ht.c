@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ht.c	6.5 (Berkeley) 06/08/85
+ *	@(#)ht.c	6.6 (Berkeley) 10/01/85
  */
 
 #include "tu.h"
@@ -120,9 +120,11 @@ htopen(dev, flag)
 	int olddens, dens;
 
 	tuunit = TUUNIT(dev);
-	if (tuunit >= NTU || (sc = &tu_softc[tuunit])->sc_openf ||
-	    (mi = htinfo[HTUNIT(dev)]) == 0 || mi->mi_alive == 0)
+	if (tuunit >= NTU || (mi = htinfo[HTUNIT(dev)]) == 0 ||
+	    mi->mi_alive == 0)
 		return (ENXIO);
+	if ((sc = &tu_softc[tuunit])->sc_openf)
+		return (EBUSY);
 	olddens = sc->sc_dens;
 	dens = sc->sc_dens =
 	    ((minor(dev)&H_1600BPI)?HTTC_1600BPI:HTTC_800BPI)|
