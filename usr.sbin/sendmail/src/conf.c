@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.103 (Berkeley) 09/09/94";
+static char sccsid[] = "@(#)conf.c	8.104 (Berkeley) 10/08/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -209,6 +209,8 @@ setdefuser()
 /*
 **  HOST_MAP_INIT -- initialize host class structures
 */
+
+bool	host_map_init __P((MAP *map, char *args));
 
 bool
 host_map_init(map, args)
