@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)version.c	5.136 (Berkeley) 12/16/92";
+static char sccsid[] = "@(#)version.c	5.137 (Berkeley) 12/17/92";
 #endif /* not lint */
 
-char	Version[] = "ALPHA-5.136";
+char	Version[] = "ALPHA-5.137";
