@@ -1,5 +1,11 @@
 /*
- * @(#)tt.h	3.12 11/19/84
+ * @(#)tt.h	3.13 04/24/85
+ */
+
+/*
+ * Copyright (c) 1983 Regents of the University of California,
+ * All rights reserved.  Redistribution permitted subject to
+ * the terms of the Berkeley Software License Agreement.
  */
 
 /*
