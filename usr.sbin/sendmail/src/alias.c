@@ -17,7 +17,7 @@
 # endif
 
 # ifdef DBM
-# error DBM is no longer supported -- use NDBM instead.
+ERROR: DBM is no longer supported -- use NDBM instead.
 # endif
 
 # ifdef NEWDB
@@ -30,12 +30,12 @@
 
 #ifndef lint
 #ifdef NEWDB
-static char sccsid[] = "@(#)alias.c	5.39 (Berkeley) 11/16/92 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	5.40 (Berkeley) 11/16/92 (with NEWDB)";
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	5.39 (Berkeley) 11/16/92 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	5.40 (Berkeley) 11/16/92 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.39 (Berkeley) 11/16/92 (without NDBM)";
+static char sccsid[] = "@(#)alias.c	5.40 (Berkeley) 11/16/92 (without NDBM)";
 #endif
 #endif
 #endif /* not lint */
