@@ -648,7 +648,7 @@ getrnge(str)
 register char *str;
 {
 	low = *str++ & 0377;
-	size = *str == 255 ? 20000 : (*str &0377) - low;
+	size = (*str & 0377) == 255 ? 20000 : (*str & 0377) - low;
 }
 
 ecmp(a, b, count)
@@ -662,7 +662,7 @@ register	count;
 	return(1);
 }
 
-static char *sccsid = "@(#)expr.y	4.6 (Berkeley) 10/22/87";
+static char *sccsid = "@(#)expr.y	4.7 (Berkeley) 04/24/88";
 yyerror(s)
 
 {
