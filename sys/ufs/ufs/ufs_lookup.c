@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_lookup.c	8.9 (Berkeley) 08/11/94
+ *	@(#)ufs_lookup.c	8.10 (Berkeley) 12/30/94
  */
 
 #include <sys/param.h>
@@ -303,7 +303,8 @@ searchloop:
 				 * reclen in ndp->ni_ufs area, and release
 				 * directory buffer.
 				 */
-				if (ep->d_type == DT_WHT) {
+				if (vdp->v_mount->mnt_maxsymlinklen > 0 &&
+				    ep->d_type == DT_WHT) {
 					slotstatus = FOUND;
 					slotoffset = dp->i_offset;
 					slotsize = ep->d_reclen;
