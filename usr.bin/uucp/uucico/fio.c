@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)fio.c	5.5	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)fio.c	5.6	(Berkeley) 06/29/90";
 #endif
 
 /*
@@ -77,7 +77,7 @@ falarm()
 	longjmp(Ffailbuf, 1);
 }
 
-static int (*fsig)();
+static void (*fsig)();
 
 #ifndef USG
 #define TCGETA	TIOCGETP
