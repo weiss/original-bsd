@@ -3,7 +3,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-static char SccsId[] = "@(#)alias.c	3.10	08/10/81";
+static char SccsId[] = "@(#)alias.c	3.11	08/10/81";
 
 /*
 **  ALIAS -- Compute aliases.
@@ -271,6 +271,7 @@ forward(user)
 		return;
 
 	/* good address -- look for .forward file in home */
+	define('z', user->q_home);
 	(void) expand("$z/.forward", buf, &buf[sizeof buf - 1]);
 	fp = fopen(buf, "r");
 	if (fp == NULL)
