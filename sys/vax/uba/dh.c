@@ -1,4 +1,4 @@
-/*	dh.c	3.14	08/24/80	*/
+/*	dh.c	3.15	09/20/80	*/
 
 /*
  *	DH-11 driver
@@ -250,7 +250,7 @@ caddr_t addr;
 	cmd = (*linesw[tp->t_line].l_ioctl)(tp, cmd, addr);
 	if (cmd==0)
 		return;
-	if (ttioccomm(cmd, tp, addr, dev)) {
+	if (ttioctl(cmd, tp, addr, dev, flag)) {
 		if (cmd==TIOCSETP||cmd==TIOCSETN)
 			dhparam(dev);
 	} else switch(cmd) {
