@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkioconf.c	5.10 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)mkioconf.c	5.11 (Berkeley) 04/25/89";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@ vax_ioconf()
 		perror(path("ioconf.c"));
 		exit(1);
 	}
-	fprintf(fp, "#include \"../machine/pte.h\"\n");
+	fprintf(fp, "#include \"machine/pte.h\"\n");
 	fprintf(fp, "#include \"../h/param.h\"\n");
 	fprintf(fp, "#include \"../h/buf.h\"\n");
 	fprintf(fp, "#include \"../h/map.h\"\n");
@@ -286,7 +286,7 @@ tahoe_ioconf()
 		exit(1);
 	}
 	fprintf(fp, "#include \"../h/param.h\"\n");
-	fprintf(fp, "#include \"../machine/pte.h\"\n");
+	fprintf(fp, "#include \"machine/pte.h\"\n");
 	fprintf(fp, "#include \"../h/buf.h\"\n");
 	fprintf(fp, "#include \"../h/map.h\"\n");
 	fprintf(fp, "\n");
