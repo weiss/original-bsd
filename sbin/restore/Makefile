@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 05/28/85
+#	@(#)Makefile	5.2 (Berkeley) 06/18/85
 #
 DESTDIR=
 CFLAGS= -O
@@ -37,6 +37,6 @@ lint:
 	lint ${FILES}
 
 print:
-	@pr /usr/include/dumprestor.h restore.h ${FILES}
+	@pr /usr/include/protocols/dumprestore.h restore.h ${FILES}
 
 ${OBJS}: restore.h
