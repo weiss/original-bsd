@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_vget.c	6.11 (Berkeley) 01/25/89";
+static char *sccsid = "@(#)ex_vget.c	6.12 (Berkeley) 01/25/89";
 #endif not lint
 
 #include "ex.h"
@@ -673,13 +673,13 @@ fastpeekkey()
 		alarm(0);
 #ifdef MDEBUG
 		if (trace)
-			fprintf(trace,"[OK]",c);
+			fprintf(trace,"[OK]");
 #endif
 	ONERR
 		c = 0;
 #ifdef MDEBUG
 		if (trace)
-			fprintf(trace,"[TIMEOUT]",c);
+			fprintf(trace,"[TIMEOUT]");
 #endif
 	ENDCATCH
 #ifdef MDEBUG
