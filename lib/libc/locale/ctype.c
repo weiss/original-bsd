@@ -1,4 +1,7 @@
-/* @(#)ctype.c	4.4 (Berkeley) 03/01/85 */
+#ifndef lint
+static char sccsid[] = "@(#)ctype.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include	<ctype.h>
 
 char _ctype_[1 + 256] = {
