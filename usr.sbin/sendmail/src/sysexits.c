@@ -1,6 +1,6 @@
 # include <sysexits.h>
 
-static char	SccsId[] = "@(#)sysexits.c	3.1	03/07/81";
+static char	SccsId[] = "@(#)sysexits.c	3.2	10/15/81";
 
 /*
 **  SYSEXITS.C -- error messages corresponding to sysexits.h
@@ -19,6 +19,7 @@ char	*SysExMsg[] =
 	/* 72 */	"System file missing",
 	/* 73 */	"Can't create output",
 	/* 74 */	"I/O error",
+	/* 75 */	"Temporary failure",
 };
 
 int	N_SysEx = sizeof SysExMsg / sizeof SysExMsg[0];
