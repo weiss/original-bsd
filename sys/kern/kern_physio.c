@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)kern_physio.c	7.24 (Berkeley) 02/05/92
+ *	@(#)kern_physio.c	7.25 (Berkeley) 07/12/92
  */
 
 #include <sys/param.h>
@@ -15,7 +15,6 @@
 #include <sys/trace.h>
 #include <sys/map.h>
 #include <sys/vnode.h>
-#include <sys/specdev.h>
 
 #ifdef HPUXCOMPAT
 #include <sys/user.h>
