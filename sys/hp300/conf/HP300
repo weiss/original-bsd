@@ -1,4 +1,4 @@
-#	@(#)HP300	8.1 (Berkeley) 03/22/94
+#	@(#)HP300	8.2 (Berkeley) 04/22/94
 #
 # PICASSO (HP300)
 #
@@ -19,7 +19,7 @@ maxusers	16
 options		QUOTA
 options		INET,MULTICAST,MROUTING
 options		FFS,MFS,NFS,LFS,FIFO
-options		LOFS,KERNFS,FDESC,PORTAL,NULLFS,UMAPFS
+options		PROCFS,UNION,KERNFS,FDESC,PORTAL,NULLFS,UMAPFS
 options		"CD9660"
 options		"COMPAT_43"
 options		"TCP_COMPAT_42"
