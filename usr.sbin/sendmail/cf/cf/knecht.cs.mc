@@ -8,11 +8,10 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(@(#)knecht.cs.mc	2.1 (Berkeley) 10/03/91)
+VERSIONID(@(#)knecht.cs.mc	2.2 (Berkeley) 10/03/91)
 OSTYPE(ultrix4.1)dnl
 DOMAIN(cs.exposed)dnl
 define(`LOCAL_RELAY', CS.Berkeley.EDU)dnl
-MAILER(local)dnl
 MAILER(smtp)dnl
 
 # our local domain
