@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.92 (Berkeley) 05/23/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.93 (Berkeley) 05/27/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.92 (Berkeley) 05/23/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.93 (Berkeley) 05/27/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1200,7 +1200,7 @@ postident:
 		if (ipoptlen == 0)
 			goto noipsr;
 		o = (u_char *) ipopt.ipopt_list;
-		while (o != NULL && o < (u_char *) (&ipopt + ipoptlen))
+		while (o != NULL && o < (u_char *) &ipopt + ipoptlen)
 		{
 			switch (*o)
 			{
