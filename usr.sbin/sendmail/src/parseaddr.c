@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.22 (Berkeley) 03/03/93";
+static char sccsid[] = "@(#)parseaddr.c	6.23 (Berkeley) 03/04/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1282,6 +1282,10 @@ sameaddr(a, b)
 
 	/* if the user isn't the same, we can drop out */
 	if (strcmp(a->q_user, b->q_user) != 0)
+		return (FALSE);
+
+	/* if we have good uids for both but the differ, these are different */
+	if (bitset(QGOODUID, a->q_flags & b->q_flags) && a->q_uid != b->q_uid)
 		return (FALSE);
 
 	/* if the mailer ignores hosts, we have succeeded! */
