@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)union_subr.c	8.8 (Berkeley) 05/17/94
+ *	@(#)union_subr.c	8.9 (Berkeley) 05/17/94
  */
 
 #include <sys/param.h>
@@ -270,7 +270,8 @@ union_allocvp(vpp, mp, undvp, dvp, cnp, uppervp, lowervp)
 	    ((lowervp == NULLVP) || lowervp == um->um_lowervp)) {
 		if (lowervp == NULLVP) {
 			lowervp = um->um_lowervp;
-			VREF(lowervp);
+			if (lowervp != NULLVP)
+				VREF(lowervp);
 		}
 		vflag = VROOT;
 	}
