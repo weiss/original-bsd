@@ -1,4 +1,4 @@
-/*	subr_prf.c	4.12	03/03/81	*/
+/*	subr_prf.c	4.13	03/06/81	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -174,14 +174,26 @@ panic(s)
 }
 
 /*
- * Hard error is the preface to plaintive error messages
- * about failing device transfers.
+ * Warn that a system table is full.
  */
-harderr(bp)
-	struct buf *bp;
+tablefull(tab)
+	char *tab;
 {
 
-	printf("hard err bn%d ", bp->b_blkno);
+	printf("%s: table is full\n", tab);
+}
+
+/*
+ * Hard error is the preface to plaintive error messages
+ * about failing disk transfers.
+ */
+harderr(bp, cp)
+	struct buf *bp;
+	char *cp;
+{
+
+	printf("%s%d%c: hard error sn%d ", cp,
+	    dkunit(bp), 'a'+(minor(bp->b_dev)&07), bp->b_blkno);
 }
 
 /*
