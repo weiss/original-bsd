@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)signal.h	7.9 (Berkeley) 05/29/90
+ *	@(#)signal.h	7.10 (Berkeley) 06/27/90
  */
 
 #ifndef	NSIG
@@ -184,6 +184,11 @@ struct	sigcontext {
 	(((p)->p_sig == 0 || \
 	    ((p)->p_flag&STRC) == 0 && ((p)->p_sig &~ (p)->p_sigmask) == 0) ? \
 	    0 : issig())
+
+/*
+ * Clear a pending signal from a process.
+ */
+#define	CLRSIG(p, sig)	{ (p)->p_sig &= ~sigmask(sig); }
 
 #endif /* KERNEL */
 
