@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 04/01/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	vacation
 DPADD=	${LIBDBM}
