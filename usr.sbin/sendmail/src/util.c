@@ -3,7 +3,7 @@
 # include "useful.h"
 # include <ctype.h>
 
-static char	SccsId[] = "@(#)util.c	3.6	08/09/81";
+static char	SccsId[] = "@(#)util.c	3.7	08/10/81";
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -13,6 +13,8 @@ static char	SccsId[] = "@(#)util.c	3.6	08/09/81";
 **
 **	Parameters:
 **		s -- the string to strip.
+**		qf -- if set, remove actual `` " '' characters
+**			as well as the quote bits.
 **
 **	Returns:
 **		none.
@@ -24,16 +26,20 @@ static char	SccsId[] = "@(#)util.c	3.6	08/09/81";
 **		deliver
 */
 
-stripquotes(s)
+stripquotes(s, qf)
 	char *s;
+	bool qf;
 {
 	register char *p;
 	register char *q;
 	register char c;
 
+	if (s == NULL)
+		return;
+
 	for (p = q = s; (c = *p++) != '\0'; )
 	{
-		if (c != '"')
+		if (c != '"' || !qf)
 			*q++ = c & 0177;
 	}
 	*q = '\0';
@@ -310,6 +316,27 @@ sameword(a, b)
 		b++;
 	}
 	return (FALSE);
+}
+/*
+**  CLEAR -- clear a block of memory
+**
+**	Parameters:
+**		p -- location to clear.
+**		l -- number of bytes to clear.
+**
+**	Returns:
+**		none.
+**
+**	Side Effects:
+**		none.
+*/
+
+clear(p, l)
+	register char *p;
+	register int l;
+{
+	while (l-- > 0)
+		*p++ = 0;
 }
 /*
 **  SYSLOG -- fake entry to fool lint
