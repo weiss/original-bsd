@@ -1,5 +1,7 @@
-/* Copyright (c) 1980 Regents of the University of California */
-/* "@(#)assyms.h 4.2 08/15/80" */
+/*
+ *	Copyright (c) 1982 Regents of the University of California
+ *	@(#)assyms.h 4.3 02/14/82
+ */
 /*
  *	To speed up walks through symbols defined in a particular
  *	segment, we buil up a table of pointers into the symbol table

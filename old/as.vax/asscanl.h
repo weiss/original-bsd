@@ -1,6 +1,6 @@
 /*
  *	Copyright (c) 1982 Regents of the University of California
- *	@(#)asscanl.h 4.2 02/14/82
+ *	@(#)asscanl.h 4.3 02/14/82
  */
 /*
  *	This file contains definitions local to the files implementing

@@ -2,7 +2,7 @@
  *	Copyright (c) 1982 Regents of the University of California
  */
 #ifndef lint
-static char sccsid[] = "@(#)asscan3.c 4.2 02/14/82";
+static char sccsid[] = "@(#)asscan3.c 4.3 02/14/82";
 #endif not lint
 
 #include "asscanl.h"
