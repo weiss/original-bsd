@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.17 (Berkeley) 08/14/93";
+static char sccsid[] = "@(#)conf.c	8.18 (Berkeley) 08/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1285,6 +1285,9 @@ enoughspace(msize)
 		return TRUE;
 	}
 
+	if (msize < 0)
+		msize = 0;
+
 # if defined(HASUSTAT)
 	if (stat(QueueDir, &statbuf) == 0 && ustat(statbuf.st_dev, &fs) == 0)
 # else
@@ -1312,8 +1315,10 @@ enoughspace(msize)
 		{
 #ifdef LOG
 			if (LogLevel > 0)
-				syslog(LOG_ALERT, "%s: low on space (have %ld, need %ld)",
-					QueueDir, fs.f_bavail, msize);
+				syslog(LOG_ALERT,
+					"%s: low on space (have %ld, %s needs %ld in %s)",
+					CurEnv->e_id, fs.f_bavail,
+					CurHostName, msize, QueueDir);
 #endif
 			return FALSE;
 		}
