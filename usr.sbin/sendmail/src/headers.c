@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.12 (Berkeley) 09/26/93";
+static char sccsid[] = "@(#)headers.c	8.13 (Berkeley) 10/24/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -687,9 +687,9 @@ crackaddr(addr)
 			gotangle = TRUE;
 
 			/* oops -- have to change our mind */
-			anglelev++;
+			anglelev = 1;
 			if (!skipping)
-				realanglelev++;
+				realanglelev = 1;
 
 			bp = buf;
 			if (quoteit)
@@ -746,6 +746,7 @@ crackaddr(addr)
 				/* syntax error: unmatched > */
 				if (copylev > 0)
 					bp--;
+				quoteit = TRUE;
 				continue;
 			}
 			if (copylev++ <= 0)
