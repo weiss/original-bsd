@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.1 (Berkeley) 08/12/85
+#	@(#)Makefile	1.2 (Berkeley) 03/13/86
 # 
 BOOTS=	boot
 STDBOOS= defboo.com anyboo.com
@@ -18,6 +18,7 @@ DRIVE=	/dev/crl
 # build a boot console rl02 from a DEC console rl02 pack
 update:	${OBJS}
 	arff rmf ${DRIVE} ${OBJS}
+	-rm -f defboo.com
 
 defboo.com:
 	@echo You must copy one of ${DEFBOOS} to defboo.com.
