@@ -1,4 +1,6 @@
-.\"	@(#)g0	6.1 (Berkeley) 05/22/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)g0	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'USD:27-%''Typesetting Mathematics _ User\'s Guide'
 .OH 'Typesetting Mathematics _ User\'s Guide''USD:27-%'

@@ -1,4 +1,6 @@
-.\"	@(#)g.mac	6.1 (Berkeley) 05/22/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)g.mac	6.2 (Berkeley) 04/17/91
 .\"
 .tr %$
 .de SC
