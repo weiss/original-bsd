@@ -1,9 +1,9 @@
-.\" Copyright (c) 1980 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1980, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)mail0.nr	6.4 (Berkeley) 04/17/91
+.\"	@(#)mail0.nr	8.1 (Berkeley) 06/08/93
 .\"
 .eh 'USD:7-%''Mail Reference Manual'
 .oh 'Mail Reference Manual''USD:7-%'
