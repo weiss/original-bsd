@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)ttgeneric.c	3.31 05/18/87";
+static char sccsid[] = "@(#)ttgeneric.c	3.32 09/15/87";
 #endif
 
 /*
@@ -200,7 +200,7 @@ gen_write(p, n)
 }
 
 gen_move(row, col)
-register char row, col;
+register int row, col;
 {
 	if (tt.tt_row == row && tt.tt_col == col)
 		return;
