@@ -1,7 +1,7 @@
 /*
  * Terminal initialization routines.
  *
- * 10/26/81 (Berkeley) @(#)setterm.c	1.5
+ * 10/26/81 (Berkeley) @(#)setterm.c	1.6
  */
 
 # undef	DEBUG
@@ -158,5 +158,7 @@ char *
 getcap(name)
 char *name;
 {
+	char *tgetent();
+
 	return tgetent(name, &aoftspace);
 }
