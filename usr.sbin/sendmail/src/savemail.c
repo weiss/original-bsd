@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.58 (Berkeley) 03/21/95";
+static char sccsid[] = "@(#)savemail.c	8.59 (Berkeley) 03/22/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -783,7 +783,8 @@ errbody(mci, e, separator)
 		p = e->e_parent->e_from.q_mailer->m_mtatype;
 		if (p == NULL)
 			p = "dns";
-		(void) sprintf(buf, "Reporting-MTA: %s; %s", p, MyHostName);
+		(void) sprintf(buf, "Reporting-MTA: %s; %s", p,
+			xtextify(MyHostName));
 		putline(buf, mci);
 
 		/* Received-From-MTA: shows where we got this message from */
@@ -794,7 +795,7 @@ errbody(mci, e, separator)
 			if (p == NULL)
 				p = "dns";
 			(void) sprintf(buf, "Received-From-MTA: %s; %s",
-				p, RealHostName);
+				p, xtextify(RealHostName));
 			putline(buf, mci);
 		}
 
@@ -830,11 +831,16 @@ errbody(mci, e, separator)
 			for (r = q; r->q_alias != NULL; r = r->q_alias)
 				continue;
 			if (strchr(r->q_user, '@') == NULL)
-				(void) sprintf(buf, "Final-Recipient: %s; %s@%s",
-					p, xtextify(r->q_user), MyHostName);
+			{
+				(void) sprintf(buf, "Final-Recipient: %s; %s@",
+					p, xtextify(r->q_user));
+				strcat(buf, xtextify(MyHostName));
+			}
 			else
+			{
 				(void) sprintf(buf, "Final-Recipient: %s; %s",
 					p, xtextify(r->q_user));
+			}
 			putline(buf, mci);
 
 			/* Action: -- what happened? */
@@ -888,7 +894,7 @@ errbody(mci, e, separator)
 				if (p == NULL)
 					p = "smtp";
 				(void) sprintf(buf, "Diagnostic-Code: %s; %s",
-					p, q->q_rstatus);
+					p, xtextify(q->q_rstatus));
 				putline(buf, mci);
 			}
 
@@ -1092,6 +1098,42 @@ xtextify(t)
 	}
 	*p = '\0';
 	return bp;
+}
+/*
+**  XTEXTOK -- check if a string is legal xtext
+**
+**	Xtext is used in Delivery Status Notifications.  The spec was
+**	taken from draft-ietf-notary-mime-delivery-04.txt.
+**
+**	Parameters:
+**		s -- the string to check.
+**
+**	Returns:
+**		TRUE -- if 's' is legal xtext.
+**		FALSE -- if it has any illegal characters in it.
+*/
+
+bool
+xtextok(s)
+	char *s;
+{
+	int c;
+
+	while ((c = *s++) != '\0')
+	{
+		if (c == '+')
+		{
+			c = *s++;
+			if (!isascii(c) || !isxdigit(c))
+				return FALSE;
+			c = *s++;
+			if (!isascii(c) || !isxdigit(c))
+				return FALSE;
+		}
+		else if (c < '!' || c > '~' || c == '\\' || c == '(')
+			return FALSE;
+	}
+	return TRUE;
 }
 /*
 **  PRUNEROUTE -- prune an RFC-822 source route
