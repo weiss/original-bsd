@@ -1,9 +1,10 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)ex_vis.h	7.5 (Berkeley) 03/09/87
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)ex_vis.h	7.6 (Berkeley) 04/17/91
  */
 
 /*

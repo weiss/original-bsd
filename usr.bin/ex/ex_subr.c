@@ -1,12 +1,13 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_subr.c	7.14 (Berkeley) 03/01/91";
-#endif not lint
+static char sccsid[] = "@(#)ex_subr.c	7.15 (Berkeley) 04/17/91";
+#endif /* not lint */
 
 #include "ex.h"
 #include "ex_re.h"

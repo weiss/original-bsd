@@ -1,9 +1,10 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)ex_tune.h	7.13 (Berkeley) 06/29/90
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)ex_tune.h	7.14 (Berkeley) 04/17/91
  */
 
 #include "pathnames.h"
