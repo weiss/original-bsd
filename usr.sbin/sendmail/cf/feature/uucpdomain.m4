@@ -8,12 +8,12 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)uucpdomain.m4	8.1 (Berkeley) 06/07/93')
+VERSIONID(`@(#)uucpdomain.m4	8.2 (Berkeley) 07/28/93')
 divert(-1)
 
 
 PUSHDIVERT(6)
-Kuudomain ifelse(_ARG_, `', `hash /etc/uudomain -o', `_ARG_')
+Kuudomain ifelse(_ARG_, `', `hash -o /etc/uudomain.db', `_ARG_')
 POPDIVERT
 
 
