@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ns_ip.c	7.4 (Berkeley) 04/22/89
+ *	@(#)ns_ip.c	7.5 (Berkeley) 04/25/89
  */
 
 /*
@@ -42,7 +42,7 @@
 #include "../netinet/ip.h"
 #include "../netinet/ip_var.h"
 
-#include "../machine/mtpr.h"
+#include "machine/mtpr.h"
 
 #include "../netns/ns.h"
 #include "../netns/ns_if.h"
