@@ -1,4 +1,4 @@
-/*	locore.s	1.23	88/02/08	*/
+/*	locore.s	1.21.1.2	88/02/24	*/
 
 #include "../tahoe/mtpr.h"
 #include "../tahoe/trap.h"
@@ -596,19 +596,19 @@ _/**/mname:	.globl	_/**/mname;		\
 	SYSMAP(alignmap	,alignutl	,1		)	/* XXX */
 	SYSMAP(msgbufmap,msgbuf		,MSGBUFPTECNT	)
 	SYSMAP(Mbmap	,mbutl		,NMBCLUSTERS*CLSIZE+CLSIZE )
-	SYSMAP(kmempt	,kmembase	,1024*CLSIZE 	)
+	SYSMAP(camap	,cabase		,16*CLSIZE	 )
 #ifdef	GPROF
 	SYSMAP(profmap	,profbase	,600*CLSIZE	)
 #endif
 	/*
-	 * Enlarge kmempt as needed for bounce buffers allocated
+	 * Enlarge camap as needed for bounce buffers allocated
 	 * by tahoe controllers.
 	 */
 #include "dk.h"
 	SYSMAP(_vdmap	,_vdbase	,NVD*(MAXPHYS/NBPG+CLSIZE) )
 #include "yc.h"
 	SYSMAP(_cymap	,_cybase	,NCY*(MAXPHYS/NBPG+CLSIZE) )
-	SYSMAP(ekmempt	,kmemlimit	,0		)
+	SYSMAP(ecamap	,calimit	,0		)
 	SYSMAP(VMEMbeg	,vmembeg	,0		)
 	SYSMAP(VMEMmap	,vmem		,VBIOSIZE 	)
 	SYSMAP(VMEMmap1	,vmem1		,0		)
