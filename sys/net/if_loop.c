@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_loop.c	8.1 (Berkeley) 06/10/93
+ *	@(#)if_loop.c	8.2 (Berkeley) 01/09/95
  */
 
 /*
@@ -175,7 +175,7 @@ lortrequest(cmd, rt, sa)
 int
 loioctl(ifp, cmd, data)
 	register struct ifnet *ifp;
-	int cmd;
+	u_long cmd;
 	caddr_t data;
 {
 	register struct ifaddr *ifa;

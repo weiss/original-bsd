@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.c	8.4 (Berkeley) 07/01/94
+ *	@(#)if.c	8.5 (Berkeley) 01/09/95
  */
 
 #include <sys/param.h>
@@ -432,7 +432,7 @@ ifunit(name)
 int
 ifioctl(so, cmd, data, p)
 	struct socket *so;
-	int cmd;
+	u_long cmd;
 	caddr_t data;
 	struct proc *p;
 {
