@@ -1,3 +1,5 @@
+#	@(#)pgrpdump	7.2 (Berkeley) 08/02/92
+
 define allpgrps
 	set $lim = pidhashmask + 1
 	set $i = 0
