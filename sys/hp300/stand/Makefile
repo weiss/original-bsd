@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.14 (Berkeley) 07/23/92
+#	@(#)Makefile	7.15 (Berkeley) 07/25/92
 
 DESTDIR=
 STAND=	../../stand
@@ -22,7 +22,7 @@ SRCS=	conf.c machdep.c prf.c ${DRIVERS}
 LIBS=	libsa/libsa.a libdrive.a ${DESTDIR}/usr/lib/libgnulib.a \
 	${DESTDIR}/usr/lib/libc.a
 
-ALL=	dboot nboot tboot tcopy
+ALL=	dboot nboot tboot tcopy mkboot installboot
 
 all: ${ALL}
 
