@@ -10,7 +10,7 @@
 #undef isdigit
 
 /*
- * Sccs Id = "@(#)def.h	2.11 06/12/83";
+ * Sccs Id = "@(#)def.h	2.12 06/15/83";
  */
 
 /*
@@ -255,6 +255,13 @@ struct ignore {
 #define	mask(s)		(1 << ((s) - 1))
 #define	sigsys(s, a)	signal(s, a)
 #endif
+
+/*
+ * Truncate a file to the last character written. This is
+ * useful just before closing an old file that was opened
+ * for read/write.
+ */
+#define trunc(stream)	ftruncate(fileno(stream), (long) ftell(stream))
 
 /*
  * Forward declarations of routine types to keep lint and cc happy.
