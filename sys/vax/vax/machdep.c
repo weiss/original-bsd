@@ -1,4 +1,5 @@
-/*	machdep.c	3.13	07/29/80	*/
+/*	machdep.c	3.14	08/27/80	*/
+extern cmap,ecmap;
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -14,7 +15,7 @@
 #include "../h/psl.h"
 #include "../h/uba.h"
 
-char	version[] = "VM/UNIX (Berkeley Version 3.13) 10/14/12 \n";
+char	version[] = "VM/UNIX (Berkeley Version 3.14) 10/14/12 \n";
 int	icode[] =
 {
 	0x9f19af9f,	/* pushab [&"init.vm",0]; pushab */
@@ -36,6 +37,8 @@ int	memchk();
 startup(firstaddr)
 {
 	register int unixsize;
+	register int i;
+	register struct pte *pte;
 
 	/*
 	 * Good {morning,afternoon,evening,night}.
@@ -45,17 +48,30 @@ startup(firstaddr)
 	printf("real mem  = %d\n", ctob(maxmem));
 
 	/*
-	 * Allow for the u. area of process 0.
+	 * Allow for the u. area of process 0 and its (single)
+	 * page of page tables.
 	 */
+	printf("firstaddr %X unixsize %X, cmap %X, ecmap %X\n", firstaddr, unixsize, cmap, ecmap);
 	unixsize = (firstaddr+UPAGES+1);
+
+	/*
+	 * Initialze buffers
+	 */
+	pte = bufmap;
+	for (i = 0; i < NBUF * CLSIZE; i++)
+		*(int *)pte++ = PG_V | PG_KW | unixsize++;
+	mtpr(TBIA, 1);
+
+#ifdef ERNIE
 	if (coresw)
 		maxmem = 4096;
+#endif
 
 	/*
 	 * Initialize maps.
 	 */
 	meminit(unixsize, maxmem);
-	maxmem -= (unixsize+1);
+	maxmem = freemem;
 	printf("avail mem = %d\n", ctob(maxmem));
 	mfree(kernelmap, USRPTSIZE, 1);
 	ubainit();
