@@ -10,9 +10,9 @@
 
 #ifndef lint
 # ifdef DBM
-static char	SccsId[] = "@(#)alias.c	5.2 (Berkeley) 06/07/85	(with DBM)";
+static char	SccsId[] = "@(#)alias.c	5.3 (Berkeley) 06/08/85	(with DBM)";
 # else DBM
-static char	SccsId[] = "@(#)alias.c	5.2 (Berkeley) 06/07/85	(without DBM)";
+static char	SccsId[] = "@(#)alias.c	5.3 (Berkeley) 06/08/85	(without DBM)";
 # endif DBM
 #endif not lint
 
@@ -302,7 +302,7 @@ readaliases(aliasfile, init)
 			/* wait for other rebuild to complete */
 			(void) flock(fileno(af), LOCK_EX);
 		}
-		fclose(af);
+		(void) fclose(af);
 		errno = 0;
 		return;
 	}
