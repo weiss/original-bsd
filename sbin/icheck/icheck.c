@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)icheck.c	5.11 (Berkeley) 02/15/93";
+static char sccsid[] = "@(#)icheck.c	5.12 (Berkeley) 04/26/93";
 #endif /* not lint */
 
 /*
@@ -75,6 +75,7 @@ daddr_t	ndup;
 int	nerror;
 long	dev_bsize = 1;
 
+int	bread __P((daddr_t, char *, ssize_t));
 long	atol();
 #ifndef STANDALONE
 char	*malloc();
@@ -447,7 +448,7 @@ getsb(fs, file)
 {
 	int i, j, size;
 
-	if (bread(SBOFF, fs, SBSIZE)) {
+	if (bread(SBOFF, (char *)fs, SBSIZE)) {
 		printf("bad super block");
 		perror(file);
 		nerror |= 04;
@@ -471,6 +472,7 @@ getsb(fs, file)
 bread(bno, buf, cnt)
 	daddr_t bno;
 	char *buf;
+	ssize_t cnt;
 {
 	register i;
 
