@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.h	5.1 (Berkeley) 05/30/85
+ *	@(#)machdep.h	5.2 (Berkeley) 10/22/87
  */
 
 /*
@@ -52,7 +52,7 @@ extern struct ltchars	Ltc;
 char	*brk(), *charge_str(), *choose_str(), *ctime(), *getenv(),
 	*inv_name(), *killname(), *malloc(), *nothing(), *nullstr(),
 	*num(), *pick_color(), *ring_num(), *sbrk(), *set_mname(),
-	*sprintf(), *strcat(), *strcpy(), *type_name(), *unctrl(),
+	*strcat(), *strcpy(), *type_name(), *unctrl(),
 	*vowelstr();
 
 int	auto_save(), come_down(), doctor(), endit(), land(), leave(),
