@@ -7,8 +7,7 @@ divert(-1)
 # %sccs.include.redist.sh%
 #
 divert(0)
-VERSIONID(@(#)Berkeley.EDU.m4	2.2 (Berkeley) 12/12/91)
+VERSIONID(@(#)Berkeley.EDU.m4	2.3 (Berkeley) 12/17/91)
 define(`UUCP_RELAY', `ucbvax.Berkeley.EDU')dnl
 define(`BITNET_RELAY', `jade.Berkeley.EDU')dnl
 define(`CSNET_RELAY', `Relay.Prime.COM')dnl
-define(`NEWSENDMAIL')dnl
