@@ -1,4 +1,4 @@
-/* @(#)diff.h 4.1 10/09/80" */
+/* @(#)diff.h 4.2 05/05/82" */
 
 /*
  * diff - common declarations
@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <signal.h>
-#include <sys/dir.h>
+#include <ndir.h>
 
 /*
  * Output format options
