@@ -1,10 +1,10 @@
 /*
  *
- * @(#)ectype.c	1.2 (Berkeley) 07/17/87
+ * @(#)ectype.c	3.1 (Berkeley) 08/11/87
  */
 
 #ifndef	lint
-static char sccsid[] = "@(#)ectype.c	1.2 (Berkeley) 07/17/87";
+static char sccsid[] = "@(#)ectype.c	3.1 (Berkeley) 08/11/87";
 #endif	/* ndef lint */
 
 #include "ectype.h"

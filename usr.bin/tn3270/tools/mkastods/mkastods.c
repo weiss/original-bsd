@@ -20,7 +20,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkastods.c	1.4 (Berkeley) 07/17/87";
+static char sccsid[] = "@(#)mkastods.c	3.1 (Berkeley) 08/11/87";
 #endif	/* not lint */
 
 #include <stdio.h>
