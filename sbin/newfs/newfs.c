@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	6.26 (Berkeley) 05/04/91";
+static char sccsid[] = "@(#)newfs.c	6.27 (Berkeley) 07/03/91";
 #endif /* not lint */
 
 #ifndef lint
@@ -170,7 +170,7 @@ main(argc, argv)
 	else
 		progname = *argv;
 
-	if (!strcmp(progname, "mfs")) {
+	if (strstr(progname, "mfs")) {
 		mfs = 1;
 		Nflag++;
 	}
