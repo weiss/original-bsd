@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.75 (Berkeley) 05/28/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.76 (Berkeley) 05/29/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.75 (Berkeley) 05/28/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.76 (Berkeley) 05/29/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -405,6 +405,7 @@ smtp(e)
 
 			/* check for possible spoofing */
 			if (RealUid != 0 && OpMode == MD_SMTP &&
+			    !wordinclass(RealUserName, 't') &&
 			    !bitnset(M_LOCALMAILER, e->e_from.q_mailer->m_flags) &&
 			    strcmp(e->e_from.q_user, RealUserName) != 0)
 			{
