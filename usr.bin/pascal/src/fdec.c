@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)fdec.c 1.4 10/03/80";
+static	char sccsid[] = "@(#)fdec.c 1.5 10/10/80";
 
 #include "whoami.h"
 #include "0.h"
@@ -916,12 +916,13 @@ funcend(fp, bundle, endline)
 			putprintf( "	.lcomm	%s,%d" , 0 ,
 				    labelname , lwidth( fvar -> type ) );
 			putprintf( "	.text" , 0 );
-			putRV( labelname , 0 , 0 , fvartype );
+			putleaf( P2NAME , 0 , 0 , fvartype , labelname );
 			putLV( fvar -> symbol , ( fvar -> nl_block ) & 037
 				, fvar -> value[ NL_OFFS ] , fvartype );
 			putstrop( P2STASG , fvartype , lwidth( fvar -> type ) ,
 				align( fvar -> type ) );
-			putLV( labelname , 0 , 0 , fvartype );
+			putdot( filename , line );
+			putleaf( P2ICON , 0 , 0 , fvartype , labelname );
 			break;
 		}
 		putop( P2FORCE , fvartype );
