@@ -1,4 +1,4 @@
-/*	if_hy.c	4.1	83/02/20	*/
+/*	if_hy.c	4.2	83/02/21	*/
 
 #include "hy.h"
 #if NHY > 0
@@ -31,8 +31,8 @@
 #include "../netinet/ip_var.h"
 
 #include "../vaxif/if_hy.h"
+#include "../vaxif/if_hyreg.h"
 #include "../vaxif/if_uba.h"
-#include "../vaxif/if_hyroute.h"
 
 #include "../vax/mtpr.h"
 #include "../vaxuba/ubareg.h"
