@@ -5,16 +5,16 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.48 (Berkeley) 02/14/92
+ *	@(#)tty.c	7.49 (Berkeley) 02/15/92
  */
 
 #include "param.h"
 #include "systm.h"
 #include "ioctl.h"
+#include "proc.h"
 #define TTYDEFCHARS
 #include "tty.h"
 #undef TTYDEFCHARS
-#include "proc.h"
 #include "file.h"
 #include "conf.h"
 #include "dkstat.h"
@@ -192,11 +192,7 @@ ttyflush(tp, rw)
 #endif
 		flushq(&tp->t_outq);
 		wakeup((caddr_t)&tp->t_outq);
-		if (tp->t_wsel) {
-			selwakeup(tp->t_wsel, tp->t_state & TS_WCOLL);
-			tp->t_wsel = 0;
-			tp->t_state &= ~TS_WCOLL;
-		}
+		selwakeup(&tp->t_wsel);
 	}
 	splx(s);
 }
@@ -586,9 +582,10 @@ ttnread(tp)
 	return (nread);
 }
 
-ttselect(dev, rw)
+ttselect(dev, rw, p)
 	dev_t dev;
 	int rw;
+	struct proc *p;
 {
 	register struct tty *tp = &cdevsw[major(dev)].d_ttys[minor(dev)];
 	int nread;
@@ -601,19 +598,13 @@ ttselect(dev, rw)
 		if (nread > 0 || 
 		   ((tp->t_cflag&CLOCAL) == 0 && (tp->t_state&TS_CARR_ON) == 0))
 			goto win;
-		if (tp->t_rsel && tp->t_rsel->p_wchan == (caddr_t)&selwait)
-			tp->t_state |= TS_RCOLL;
-		else
-			tp->t_rsel = curproc;
+		selrecord(p, &tp->t_rsel);
 		break;
 
 	case FWRITE:
 		if (tp->t_outq.c_cc <= tp->t_lowat)
 			goto win;
-		if (tp->t_wsel && tp->t_wsel->p_wchan == (caddr_t)&selwait)
-			tp->t_state |= TS_WCOLL;
-		else
-			tp->t_wsel = curproc;
+		selrecord(p, &tp->t_wsel);
 		break;
 	}
 	splx(s);
@@ -1681,11 +1672,7 @@ ttwakeup(tp)
 	register struct tty *tp;
 {
 
-	if (tp->t_rsel) {
-		selwakeup(tp->t_rsel, tp->t_state&TS_RCOLL);
-		tp->t_state &= ~TS_RCOLL;
-		tp->t_rsel = 0;
-	}
+	selwakeup(&tp->t_rsel);
 	if (tp->t_state & TS_ASYNC)
 		pgsignal(tp->t_pgrp, SIGIO, 1); 
 	wakeup((caddr_t)&tp->t_rawq);
