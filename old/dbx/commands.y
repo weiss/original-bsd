@@ -2,9 +2,7 @@
 
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)commands.y 1.9 8/17/83";
-
-static char rcsid[] = "$Header: commands.y,v 1.3 84/03/27 10:19:59 linton Exp $";
+static	char sccsid[] = "@(#)commands.y	1.11 (Berkeley) 06/23/84";
 
 /*
  * Yacc grammar for debugger commands.
@@ -74,6 +72,7 @@ private String curformat = "X";
 %type <y_node>	    event opt_exp_list opt_cond
 %type <y_node>	    exp_list exp term boolean_exp constant address
 %type <y_node>	    integer_list alias_command list_command line_number
+%type <y_node>	    search_command pattern
 %type <y_cmdlist>   actions
 %type <y_list>      sourcepath
 
@@ -340,7 +339,33 @@ command:
 {
 	$$ = build(O_WHICH, $2);
 }
+|
+    search_command
+{
+	$$ = $1;
+}
 ;
+
+
+search_command:
+    '/' pattern
+{
+	$$ = build(O_SEARCH, build(O_LCON, 1), $2);
+}
+|
+    '?' pattern
+{
+	$$ = build(O_SEARCH, build(O_LCON, 0), $2);
+}
+;
+
+pattern:
+    STRING
+{
+	$$ = build(O_SCON, $1);
+}
+;
+
 runcommand:
     run arglist
 |
