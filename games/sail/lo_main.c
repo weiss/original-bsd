@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lo_main.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)lo_main.c	5.7 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 /*
@@ -30,7 +30,7 @@ lo_main()
 	FILE *fp;
 	char sbuf[32];
 	int n = 0, people;
-	struct passwd *getpwuid(), *pass;
+	struct passwd *pass;
 	struct logs log;
 	struct ship *ship;
 

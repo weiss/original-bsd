@@ -6,14 +6,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pl_main.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)pl_main.c	5.5 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 #include "player.h"
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int choke(), child();
+void choke(), child();
 
 /*ARGSUSED*/
 pl_main()
