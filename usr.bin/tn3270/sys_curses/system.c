@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)system.c	3.4 (Berkeley) 08/28/88";
+static char sccsid[] = "@(#)system.c	3.5 (Berkeley) 09/14/88";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -186,7 +186,9 @@ doassociate()
     buffer[sd.length] = 0;
 
     if (strcmp(buffer, key) != 0) {
+#if	(!defined(sun)) || defined(BSD) && (BSD >= 43)
 	extern uid_t geteuid();
+#endif	/* (!defined(sun)) || defined(BSD) && (BSD >= 43) */
 
 	if ((pwent = getpwuid((int)geteuid())) == 0) {
 	    return -1;
