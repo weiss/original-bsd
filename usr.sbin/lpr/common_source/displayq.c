@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)displayq.c	5.9 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)displayq.c	5.10 (Berkeley) 07/27/89";
 #endif /* not lint */
 
 /*
@@ -436,7 +436,7 @@ prank(n)
 		col += 6;
 		return;
 	}
-	if ((n/10) == 1)
+	if ((n/10)%10 == 1)
 		(void) sprintf(line, "%dth", n);
 	else
 		(void) sprintf(line, "%d%s", n, r[n%10]);
