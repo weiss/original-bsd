@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)types.h	7.1 (Berkeley) 05/15/90
+ *	@(#)types.h	7.2 (Berkeley) 05/17/90
  */
 
-#ifndef	_X3J11_H_
-#define	_X3J11_H_
+#ifndef	_MACHTYPES_H_
+#define	_MACHTYPES_H_
 
 /*
  * Types which are fundamental to the implementation and may appear in
@@ -26,4 +26,11 @@
 #define	_WCHAR_T_	unsigned short		/* wchar_t */
 #define	_SIZE_T_	unsigned int		/* sizeof() */
 
-#endif	/* _X3J11_H_ */
+#ifndef _ANSI_SOURCE
+typedef	struct	_physadr { short r[1]; } *physadr;
+typedef	struct	label_t	{
+	int	val[15];	/* consistent with HP-UX */
+} label_t;
+#endif
+
+#endif	/* _MACHTYPES_H_ */
