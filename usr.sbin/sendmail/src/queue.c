@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.63		01/03/83	(no queueing));
+SCCSID(@(#)queue.c	3.64		01/03/83	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.63		01/03/83);
+SCCSID(@(#)queue.c	3.64		01/03/83);
 
 /*
 **  Work queue.
@@ -630,7 +630,7 @@ printqueue()
 		return;
 	}
 
-	printf("\t\tMail Queue (%d requests", nrequests);
+	printf("\t\tMail Queue (%d request%s", nrequests, nrequests == 1 ? "" : "s");
 	if (nrequests > WLSIZE)
 		printf(", only %d printed", WLSIZE);
 	printf(")\n--QID-- --Size-- -----Q-Time----- ------------Sender/Recipient------------\n");
