@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vnops.c	7.89 (Berkeley) 07/13/92
+ *	@(#)nfs_vnops.c	7.90 (Berkeley) 07/25/92
  */
 
 /*
@@ -2269,7 +2269,6 @@ nfsspec_read(ap)
 		struct ucred *a_cred;
 	} */ *ap;
 {
-	extern int (**spec_vnodeop_p)();
 	register struct nfsnode *np = VTONFS(ap->a_vp);
 
 	/*
@@ -2292,7 +2291,6 @@ nfsspec_write(ap)
 		struct ucred *a_cred;
 	} */ *ap;
 {
-	extern int (**spec_vnodeop_p)();
 	register struct nfsnode *np = VTONFS(ap->a_vp);
 
 	/*
@@ -2320,7 +2318,6 @@ nfsspec_close(ap)
 	register struct vnode *vp = ap->a_vp;
 	register struct nfsnode *np = VTONFS(vp);
 	struct vattr vattr;
-	extern int (**spec_vnodeop_p)();
 
 	if (np->n_flag & (NACC | NUPD)) {
 		if (np->n_flag & NACC)
