@@ -12,16 +12,14 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)update.c	4.7 (Berkeley) 04/19/91";
+static char sccsid[] = "@(#)update.c	4.8 (Berkeley) 06/06/91";
 #endif /* not lint */
 
 #include <sys/time.h>
 #include <signal.h>
-#include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "pathnames.h"
 
 main()
 {
@@ -29,11 +27,6 @@ main()
 	void mysync();
 
 	daemon(0, 0);
-
-	(void)open(_PATH_BIN, O_RDONLY, 0);
-	(void)open(_PATH_USR, O_RDONLY, 0);
-	(void)open(_PATH_USRBIN, O_RDONLY, 0);
-	(void)open(_PATH_USRLIB, O_RDONLY, 0);
 
 	(void)signal(SIGALRM, mysync);
 
