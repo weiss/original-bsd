@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)in.c	6.13 (Berkeley) 02/23/86
+ *	@(#)in.c	6.14 (Berkeley) 03/04/86
  */
 
 #include "param.h"
@@ -193,6 +193,7 @@ in_control(so, cmd, data, ifp)
 
 	case SIOCSIFADDR:
 	case SIOCSIFNETMASK:
+	case SIOCSIFDSTADDR:
 		if (!suser())
 			return (u.u_error);
 
@@ -223,7 +224,6 @@ in_control(so, cmd, data, ifp)
 		break;
 
 	case SIOCSIFBRDADDR:
-	case SIOCSIFDSTADDR:
 		if (!suser())
 			return (u.u_error);
 		/* FALLTHROUGH */
