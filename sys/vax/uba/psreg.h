@@ -1,4 +1,4 @@
-/*	psreg.h	4.2	82/08/01	*/
+/*	psreg.h	4.3	83/08/13	*/
 
 
 /*
@@ -28,6 +28,7 @@ struct psdevice {
 #define PSIOSTOPREFRESH		_IO(p, 9)	/* stop refresh */
 #define PSIOSTOPMAP		_IO(p,10)	/* stop map */
 #define PSIOGETADDR		_IOR(p,11, int)	/* get Unibus address */
+#define PSIOTIMEREFRESH		_IO(p,12)	/* time refresh */
 
 /*
  *	Picture system io status register bits
