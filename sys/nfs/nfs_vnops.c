@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_vnops.c	7.19 (Berkeley) 12/20/89
+ *	@(#)nfs_vnops.c	7.20 (Berkeley) 12/30/89
  */
 
 /*
@@ -714,7 +714,7 @@ nfs_create(ndp, vap)
  *	  mpurge the vnode to flush out cmap references
  *	  (This is necessary to update the vnode ref cnt as well as sensible
  *	   for actual removes, to free up the buffers)
- * 2 - If v_count > 1
+ * 2 - If v_usecount > 1
  *	  If a rename is not already in the works
  *	     call nfs_sillyrename() to set it up
  *     else
@@ -744,7 +744,7 @@ nfs_remove(ndp)
 			mpurge(vp);	/* In case cmap entries still ref it */
 		}
 	}
-	if (vp->v_count > 1) {
+	if (vp->v_usecount > 1) {
 		if (!np->n_sillyrename)
 			error = nfs_sillyrename(ndp, REMOVE);
 	} else {
