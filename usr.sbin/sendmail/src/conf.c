@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.45 (Berkeley) 11/14/93";
+static char sccsid[] = "@(#)conf.c	8.46 (Berkeley) 11/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -886,6 +886,7 @@ refuseconnections()
 #  include <sys/exec.h>
 #  ifdef __bsdi__
 #   undef PS_STRINGS	/* BSDI 1.0 doesn't do PS_STRINGS as we expect */
+#   define PROCTITLEPAD	'\0'
 #  endif
 #  ifdef PS_STRINGS
 #   define SETPROC_STATIC static
@@ -894,6 +895,10 @@ refuseconnections()
 # ifndef SETPROC_STATIC
 #  define SETPROC_STATIC
 # endif
+#endif
+
+#ifndef PROCTITLEPAD
+# define PROCTITLEPAD	' '
 #endif
 
 /*VARARGS1*/
@@ -945,7 +950,7 @@ setproctitle(fmt, va_alist)
 	(void) strcpy(Argv[0], buf);
 	p = &Argv[0][i];
 	while (p < LastArgv)
-		*p++ = ' ';
+		*p++ = PROCTITLEPAD;
 #   endif
 #  endif
 # endif /* SETPROCTITLE */
