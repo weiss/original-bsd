@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ffs_subr.c	7.6 (Berkeley) 05/19/88
+ *	@(#)ffs_subr.c	7.7 (Berkeley) 05/01/89
  */
 
 #ifdef KERNEL
@@ -374,7 +374,7 @@ bufstats()
 }
 #endif
 
-#if (!defined(vax) && !defined(tahoe)) || defined(VAX630)
+#if (!defined(vax) && !defined(tahoe)) || defined(VAX630) || defined(VAX650)
 /*
  * C definitions of special instructions.
  * Normally expanded with inline.
