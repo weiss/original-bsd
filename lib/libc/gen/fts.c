@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fts.c	5.29 (Berkeley) 02/03/92";
+static char sccsid[] = "@(#)fts.c	5.30 (Berkeley) 02/04/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -82,7 +82,7 @@ fts_open(argv, options, compar)
 		p->fts_level = FTS_ROOTLEVEL;
 		p->fts_parent = parent;
 		p->fts_accpath = p->fts_name;
-		p->fts_info = fts_stat(sp, p, 0);
+		p->fts_info = fts_stat(sp, p, ISSET(FTS_COMFOLLOW));
 
 		/* Command-line "." and ".." are real directories. */
 		if (p->fts_info == FTS_DOT)
