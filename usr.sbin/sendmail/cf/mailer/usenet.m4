@@ -15,7 +15,7 @@ POPDIVERT
 ###  USENET Mailer specification ###
 ####################################
 
-VERSIONID(`@(#)usenet.m4	8.1 (Berkeley) 06/07/93')
+VERSIONID(`@(#)usenet.m4	8.2 (Berkeley) 01/24/94')
 
-Musenet,	P=USENET_MAILER_PATH, F=USENET_MAILER_FLAGS, S=10, R=20,
+Musenet,	P=USENET_MAILER_PATH, F=USENET_MAILER_FLAGS, S=10, R=20,ifdef(`USENET_MAILER_MAX', ` M=USENET_MAILER_MAX,')
 		A=inews USENET_MAILER_ARGS $u
