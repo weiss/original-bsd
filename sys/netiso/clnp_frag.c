@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clnp_frag.c	7.14 (Berkeley) 10/11/92
+ *	@(#)clnp_frag.c	7.15 (Berkeley) 06/04/93
  */
 
 /***********************************************************
@@ -218,7 +218,7 @@ struct rtentry *rt;			/* route if direct ether */
 			error = troll_output(ifp, frag_hdr, first_hop, rt);
 #else
 			error = (*ifp->if_output)(ifp, frag_hdr, first_hop, rt);
-#endif	TROLL
+#endif	/* TROLL */
 
 			/*
 			 *	Tough situation: if the error occured on the last 
@@ -257,7 +257,7 @@ struct rtentry *rt;			/* route if direct ether */
 					num_bytes *= troll_random();
 				frag_size -= num_bytes;
 			}
-#endif	TROLL
+#endif	/* TROLL */
 			total_len -= frag_size;
 			if (!last_frag) {
 				frag_base += frag_size;
@@ -830,4 +830,4 @@ struct rtentry *rt;
 	}
 }
 
-#endif	TROLL
+#endif	/* TROLL */
