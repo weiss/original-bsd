@@ -6,13 +6,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)lconv.c	5.2 (Berkeley) 02/24/91";
+static char sccsid[] = "@(#)lconv.c	5.3 (Berkeley) 01/12/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <limits.h>
 #include <locale.h>
 
-char	empty[] = "";
+static char empty[] = "";
 
 /*
  * Default (C) locale conversion.
