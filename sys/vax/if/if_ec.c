@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_ec.c	6.14 (Berkeley) 11/08/85
+ *	@(#)if_ec.c	6.15 (Berkeley) 12/19/85
  */
 
 #include "ec.h"
@@ -29,9 +29,6 @@
 #include "../net/netisr.h"
 #include "../net/route.h"
 
-#ifdef	BBNNET
-#define	INET
-#endif
 #ifdef INET
 #include "../netinet/in.h"
 #include "../netinet/in_systm.h"
