@@ -1,8 +1,15 @@
 #ifndef lint
-static char sccsid[] = "@(#)pigs.c	1.5 (Lucasfilm) 10/02/83";
+static char sccsid[] = "@(#)pigs.c	1.6 (Lucasfilm) 08/09/84";
 #endif
 
 #include "systat.h"
+#include <sys/param.h>
+#include <sys/dir.h>
+#include <sys/time.h>
+#include <sys/proc.h>
+#include <sys/file.h>
+#include <nlist.h>
+#include <pwd.h>
 
 WINDOW *
 openpigs()
@@ -25,6 +32,12 @@ closepigs(w)
 	wclear(w);
 	wrefresh(w);
 }
+
+int	maxind;
+int     factor;
+float   total;
+struct  passwd *getpwuid();
+char    pidname[30];
 
 showpigs()
 {
