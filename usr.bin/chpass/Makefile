@@ -1,12 +1,14 @@
-#	@(#)Makefile	5.6 (Berkeley) 07/19/93
+#	@(#)Makefile	5.7 (Berkeley) 07/22/93
 
 PROG=	chpass
 SRCS=	chpass.c edit.c field.c pw_copy.c pw_scan.c pw_util.c table.c util.c
 BINOWN=	root
 BINMODE=4555
-INSTALLFLAGS=-fschg
 .PATH:	${.CURDIR}/../../usr.sbin/pwd_mkdb ${.CURDIR}/../../usr.sbin/vipw
 LINKS=	${BINDIR}/chpass ${BINDIR}/chfn ${BINDIR}/chpass ${BINDIR}/chsh
 MLINKS=	chpass.1 chfn.1 chpass.1 chsh.1
+
+afterinstall:
+	chflags schg /usr/bin/chpass
 
 .include <bsd.prog.mk>
