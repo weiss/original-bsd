@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)rz.c	7.8 (Berkeley) 10/24/92
+ *	@(#)rz.c	7.9 (Berkeley) 05/09/93
  */
 
 /*
@@ -965,8 +965,8 @@ rzdump(dev)
 		baddr += ctod(1);
 	}
 	return (0);
-#else notdef
+#else /* notdef */
 	return (ENXIO);
-#endif notdef
+#endif /* notdef */
 }
 #endif
