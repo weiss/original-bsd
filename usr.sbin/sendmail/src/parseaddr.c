@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	6.9 (Berkeley) 01/20/93";
+static char sccsid[] = "@(#)parseaddr.c	6.10 (Berkeley) 01/26/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1270,14 +1270,26 @@ printaddr(a, follow)
 	bool follow;
 {
 	bool first = TRUE;
+	register MAILER *m;
+	MAILER pseudomailer;
 
 	while (a != NULL)
 	{
 		first = FALSE;
 		printf("%x=", a);
 		(void) fflush(stdout);
+
+		/* find the mailer -- carefully */
+		m = a->q_mailer;
+		if (m == NULL)
+		{
+			m = &pseudomailer;
+			m->m_mno = -1;
+			m->m_name = "NULL";
+		}
+
 		printf("%s: mailer %d (%s), host `%s', user `%s', ruser `%s'\n",
-		       a->q_paddr, a->q_mailer->m_mno, a->q_mailer->m_name,
+		       a->q_paddr, m->m_mno, m->m_name,
 		       a->q_host, a->q_user, a->q_ruser? a->q_ruser: "<null>");
 		printf("\tnext=%x, flags=%o, alias %x\n", a->q_next, a->q_flags,
 		       a->q_alias);
@@ -1465,6 +1477,11 @@ maplocaluser(a, sendq, e)
 
 	/* mark old address as dead; insert new address */
 	a->q_flags |= QDONTSEND;
+	if (tTd(29, 5))
+	{
+		printf("maplocaluser: QDONTSEND ");
+		printaddr(a, FALSE);
+	}
 	a1->q_alias = a;
 	allocaddr(a1, 1, NULL);
 	(void) recipient(a1, sendq, e);

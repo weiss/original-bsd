@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.5 (Berkeley) 01/21/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.6 (Berkeley) 01/26/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.5 (Berkeley) 01/21/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.6 (Berkeley) 01/26/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -426,6 +426,7 @@ runqueue(forkflag)
 	}
 
 	setproctitle("running queue: %s", QueueDir);
+	ForceMail = TRUE;
 
 # ifdef LOG
 	if (LogLevel > 11)
