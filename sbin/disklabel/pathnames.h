@@ -14,8 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 04/02/89
+ *	@(#)pathnames.h	5.2 (Berkeley) 05/11/89
  */
 
+#include <paths.h>
+
 #define	_PATH_BOOTDIR	"/usr/mdec"
-#define	_PATH_EDITOR	"/usr/ucb/vi"
+#undef _PATH_TMP
+#define	_PATH_TMP	"/tmp/EdDk.aXXXXXX"
