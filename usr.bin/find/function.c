@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	8.7 (Berkeley) 07/28/94";
+static char sccsid[] = "@(#)function.c	8.8 (Berkeley) 08/05/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -875,10 +875,12 @@ c_type(typestring)
 	case 's':
 		mask = S_IFSOCK;
 		break;
+#ifdef FTS_WHITEOUT
 	case 'w':
 		mask = S_IFWHT;
 		ftsoptions |= FTS_WHITEOUT;
 		break;
+#endif /* FTS_WHITEOUT */
 	default:
 		errx(1, "-type: %s: unknown type", typestring);
 	}
