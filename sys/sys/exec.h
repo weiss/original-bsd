@@ -3,14 +3,14 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)exec.h	7.2 (Berkeley) 05/09/90
+ *	@(#)exec.h	7.3 (Berkeley) 01/09/91
  */
 
 /*
  * Header prepended to each a.out file.
  */
 struct exec {
-#if !defined(vax) && !defined(tahoe)
+#if !defined(vax) && !defined(tahoe) && !defined(i386)
 unsigned short	a_mid;		/* machine ID */
 unsigned short	a_magic;	/* magic number */
 #else
