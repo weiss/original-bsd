@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_pager.c	7.10 (Berkeley) 11/29/92
+ *	@(#)vm_pager.c	7.11 (Berkeley) 02/03/93
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -190,8 +190,8 @@ vm_pager_map_page(m)
 	vm_offset_t kva;
 
 #ifdef DEBUG
-	if ((m->flags & (PG_BUSY | PG_ACTIVE)) != PG_BUSY)
-		panic("vm_pager_map_page: page active or not busy");
+	if ((m->flags & PG_BUSY) == 0)
+		panic("vm_pager_map_page: page not busy");
 	if (m->flags & PG_PAGEROWNED)
 		printf("vm_pager_map_page: page %x already in pager\n", m);
 #endif
