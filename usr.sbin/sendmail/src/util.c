@@ -5,7 +5,7 @@
 # include "useful.h"
 # include <ctype.h>
 
-SCCSID(@(#)util.c	3.13		12/06/81);
+SCCSID(@(#)util.c	3.14		03/20/82);
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -367,7 +367,7 @@ buildfname(p, login, buf)
 
 	if (*p == '*')
 		p++;
-	while (*p != '\0' && *p != ',' && *p != ';')
+	while (*p != '\0' && *p != ',' && *p != ';' && *p != '%')
 	{
 		if (*p == '&')
 		{
