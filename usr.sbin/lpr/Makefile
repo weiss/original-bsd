@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.14 (Berkeley) 08/21/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 SUBDIR=	lpc lpd lpq lpr lprm lptest pac filters
 
