@@ -88,9 +88,7 @@
 
 /* Copyright (c) 1979 Regents of the University of California */
 
-#ifndef lint
-static	char sccsid[] = "@(#)pas.y 1.11 08/19/83";
-#endif
+/* static	char sccsid[] = "@(#)pas.y 1.12 02/04/84"; */
 
 /*
  * The following line marks the end of the yacc
@@ -100,7 +98,7 @@ static	char sccsid[] = "@(#)pas.y 1.11 08/19/83";
 ##
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pas.y 1.11 08/19/83";
+static	char sccsid[] = "@(#)pas.y 1.12 02/04/84";
 
 #include "whoami.h"
 #include "0.h"
