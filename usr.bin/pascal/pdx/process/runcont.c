@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)runcont.c	5.2 (Berkeley) 04/07/87";
+static char sccsid[] = "@(#)runcont.c	5.3 (Berkeley) 02/05/91";
 #endif not lint
 
 /*
@@ -149,10 +149,10 @@ run()
  * and we'll call printstatus or step will call it.
  */
 
-typedef int INTFUNC();
+typedef void SIGFUN();
 
-LOCAL INTFUNC *dbintr;
-LOCAL intr();
+LOCAL SIGFUN *dbintr;
+LOCAL void intr();
 
 #define fails       == FALSE
 
@@ -194,7 +194,7 @@ cont()
  * which will then be handled.
  */
 
-LOCAL intr()
+LOCAL void intr()
 {
     signal(SIGINT, intr);
 }
