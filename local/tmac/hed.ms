@@ -1,5 +1,5 @@
+.	\" @(#)hed.ms	1.4 04/22/88
 .	\" letter HEad
-.	\" @(#)hed.ms	1.3 04/22/88
 .de HE
 .nr xx \\n(.d
 .nr xy \\n(.u
