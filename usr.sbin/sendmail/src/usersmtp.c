@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.32		01/01/83	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.33		01/04/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.32		01/01/83);
+SCCSID(@(#)usersmtp.c	3.33		01/04/83);
 
 
 
@@ -288,13 +288,16 @@ reply()
 		/* get the line from the other side */
 		p = sfgets(SmtpReplyBuffer, sizeof SmtpReplyBuffer, SmtpIn);
 		if (p == NULL)
+		{
+			syserr("reply: read error");
 			return (-1);
+		}
 		fixcrlf(SmtpReplyBuffer, TRUE);
 
 		/* log the input in the transcript for future error returns */
 		if (Verbose && !HoldErrs)
 			nmessage(Arpa_Info, "%s", SmtpReplyBuffer);
-		if (CurEnv->e_xfp != NULL)
+		else if (CurEnv->e_xfp != NULL)
 			fprintf(CurEnv->e_xfp, "%s\n", SmtpReplyBuffer);
 
 		/* if continuation is required, we can go on */
@@ -342,7 +345,7 @@ smtpmessage(f, a, b, c)
 	(void) sprintf(buf, f, a, b, c);
 	if (tTd(18, 1) || (Verbose && !HoldErrs))
 		nmessage(Arpa_Info, ">>> %s", buf);
-	if (CurEnv->e_xfp != NULL)
+	else if (CurEnv->e_xfp != NULL)
 		fprintf(CurEnv->e_xfp, ">>> %s\n", buf);
 	if (!SmtpClosing)
 		fprintf(SmtpOut, "%s\r\n", buf);
