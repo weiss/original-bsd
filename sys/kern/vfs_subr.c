@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_subr.c	8.30 (Berkeley) 05/22/95
+ *	@(#)vfs_subr.c	8.31 (Berkeley) 05/26/95
  */
 
 /*
@@ -58,8 +58,8 @@ struct mntlist mountlist;			/* mounted filesystem list */
 struct simplelock mountlist_slock;
 static struct simplelock mntid_slock;
 struct simplelock mntvnode_slock;
+struct simplelock vnode_free_list_slock;
 static struct simplelock spechash_slock;
-static struct simplelock vnode_free_list_slock;
 
 /*
  * Initialize the vnode management data structures.
