@@ -1,10 +1,10 @@
-static	char sccsid[] = "@(#)arcv.c 3.1 08/15/80";
+static	char sccsid[] = "@(#)arcv.c 3.2 09/20/80";
 /*
  * arcv - convert old to new archive format
  */
 
 #include <signal.h>
-#include <newar.h>
+#include <ar.h>
 #define	OARMAG	0177545
 struct	oar_hdr {
 	char	oar_name[14];
