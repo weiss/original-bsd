@@ -4,8 +4,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fcntl.h	5.8 (Berkeley) 02/01/91
+ *	@(#)fcntl.h	5.9 (Berkeley) 02/03/91
  */
+
+#include "types.h"
 
 #ifndef F_DUPFD
 
