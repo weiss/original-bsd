@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)config.h	5.2 (Berkeley) 05/12/91
+ *	@(#)config.h	5.3 (Berkeley) 02/09/92
  *
- * $Id: config.h,v 5.2.1.4 91/05/07 22:19:20 jsp Alpha $
+ * $Id: config.h,v 5.2.2.1 1992/02/09 15:09:56 jsp beta $
  *
  */
 
