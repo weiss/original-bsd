@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in_pcb.c	7.20 (Berkeley) 07/18/92
+ *	@(#)in_pcb.c	7.21 (Berkeley) 07/18/92
  */
 
 #include "param.h"
@@ -91,7 +91,7 @@ in_pcbbind(inp, nam)
 		     (so->so_options & SO_ACCEPTCONN) == 0))
 			wild = INPLOOKUP_WILDCARD;
 		t = in_pcblookup(head, zeroin_addr, 0,
-				sin->sin_addr, lport, wild))
+				sin->sin_addr, lport, wild);
 		if (t && !((so->so_options & t->inp_socket->so_options) &
 		    SO_REUSEPORT))
 			return (EADDRINUSE);
