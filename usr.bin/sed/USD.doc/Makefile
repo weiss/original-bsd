@@ -1,10 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/30/90
+#	@(#)Makefile	5.2 (Berkeley) 06/05/93
 
-DIR=	usd/18.sed
+DIR=	usd/15.sed
 SRCS=	sed
 MACROS=	-msU
-
-paper.${PRINTER}: ${SRCS}
-	${ROFF} ${SRCS} > ${.TARGET}
 
 .include <bsd.doc.mk>
