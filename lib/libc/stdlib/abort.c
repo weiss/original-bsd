@@ -16,13 +16,14 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)abort.c	5.8 (Berkeley) 05/16/90";
+static char sccsid[] = "@(#)abort.c	5.9 (Berkeley) 05/17/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/signal.h>
 #include <stdlib.h>
 #include <stddef.h>
 
+void
 abort()
 {
 	sigset_t mask;
