@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)2.t	5.1 (Berkeley) 04/17/86
+.\"	@(#)2.t	6.1 (Berkeley) 04/17/86
 .\"
 .NH 1
 Commands
