@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)crt0.c	5.3 (Berkeley) 05/22/91";
+static char sccsid[] = "@(#)crt0.c	5.4 (Berkeley) 07/16/92";
 #endif /* not lint */
 
 /*
@@ -81,16 +81,10 @@ exit(code)
 
 #ifdef CRT0
 /*
- * null mcount and moncontrol,
- * just in case some routine is compiled for profiling
+ * null moncontrol, just in case some routine is compiled for profiling
  */
 moncontrol(val)
 	int val;
-{
-
-}
-
-mcount()
 {
 
 }
