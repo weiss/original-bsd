@@ -4,9 +4,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.3 (Berkeley) 06/01/90
+ *	@(#)pathnames.h	5.4 (Berkeley) 03/07/91
  */
 
 #define	MAIL_CMD	"/usr/sbin/sendmail -i -t -F \"Bugs Bunny\" -f owner-bugs"
 #undef _PATH_TMP
-#define	_PATH_TMP	"/tmp/BUG_XXXXXX";
+#define	_PATH_TMP	"/tmp/BUG_XXXXXX"
