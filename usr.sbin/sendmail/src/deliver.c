@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.36 (Berkeley) 10/23/93";
+static char sccsid[] = "@(#)deliver.c	8.37 (Berkeley) 10/29/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -610,7 +610,7 @@ deliver(e, firstto)
 			e->e_to = to->q_paddr;
 			message("queued");
 			if (LogLevel > 8)
-				logdelivery(m, NULL, "queued", e);
+				logdelivery(m, NULL, "queued", NULL, e);
 		}
 		e->e_to = NULL;
 		return (0);
@@ -754,14 +754,14 @@ deliver(e, firstto)
 		{
 			NoReturn = TRUE;
 			usrerr("552 Message is too large; %ld bytes max", m->m_maxsize);
-			giveresponse(EX_UNAVAILABLE, m, NULL, e);
+			giveresponse(EX_UNAVAILABLE, m, NULL, ctladdr, e);
 			continue;
 		}
 		rcode = checkcompat(to, e);
 		if (rcode != EX_OK)
 		{
 			markfailure(e, to, rcode);
-			giveresponse(rcode, m, NULL, e);
+			giveresponse(rcode, m, NULL, ctladdr, e);
 			continue;
 		}
 
@@ -805,8 +805,10 @@ deliver(e, firstto)
 
 		if (m == FileMailer)
 		{
-			rcode = mailfile(user, getctladdr(to), e);
-			giveresponse(rcode, m, NULL, e);
+			ADDRESS *caddr = getctladdr(to);
+
+			rcode = mailfile(user, caddr, e);
+			giveresponse(rcode, m, NULL, caddr, e);
 			if (rcode == EX_OK)
 				to->q_flags |= QSENT;
 			continue;
@@ -1346,7 +1348,7 @@ tryhost:
 				if ((i = smtprcpt(to, m, mci, e)) != EX_OK)
 				{
 					markfailure(e, to, i);
-					giveresponse(i, m, mci, e);
+					giveresponse(i, m, mci, ctladdr, e);
 				}
 				else
 				{
@@ -1410,7 +1412,7 @@ tryhost:
 
   give_up:
 	if (tobuf[0] != '\0')
-		giveresponse(rcode, m, mci, e);
+		giveresponse(rcode, m, mci, ctladdr, e);
 	for (to = tochain; to != NULL; to = to->q_tchain)
 	{
 		if (rcode != EX_OK)
@@ -1560,6 +1562,8 @@ endmailer(mci, e, pv)
 **		m -- the mailer info for this mailer.
 **		mci -- the mailer connection info -- can be NULL if the
 **			response is given before the connection is made.
+**		ctladdr -- the controlling address for the recipient
+**			address(es).
 **		e -- the current envelope.
 **
 **	Returns:
@@ -1570,10 +1574,11 @@ endmailer(mci, e, pv)
 **		ExitStat may be set.
 */
 
-giveresponse(stat, m, mci, e)
+giveresponse(stat, m, mci, ctladdr, e)
 	int stat;
 	register MAILER *m;
 	register MCI *mci;
+	ADDRESS *ctladdr;
 	ENVELOPE *e;
 {
 	register const char *statmsg;
@@ -1675,7 +1680,7 @@ giveresponse(stat, m, mci, e)
 	*/
 
 	if (LogLevel > ((stat == EX_TEMPFAIL) ? 8 : (stat == EX_OK) ? 7 : 6))
-		logdelivery(m, mci, &statmsg[4], e);
+		logdelivery(m, mci, &statmsg[4], ctladdr, e);
 
 	if (stat != EX_TEMPFAIL)
 		setstat(stat);
@@ -1698,6 +1703,7 @@ giveresponse(stat, m, mci, e)
 **		mci -- the mailer connection info -- can be NULL if the
 **			log is occuring when no connection is active.
 **		stat -- the message to print for the status.
+**		ctladdr -- the controlling address for the to list.
 **		e -- the current envelope.
 **
 **	Returns:
@@ -1707,21 +1713,39 @@ giveresponse(stat, m, mci, e)
 **		none
 */
 
-logdelivery(m, mci, stat, e)
+logdelivery(m, mci, stat, ctladdr, e)
 	MAILER *m;
 	register MCI *mci;
 	char *stat;
+	ADDRESS *ctladdr;
 	register ENVELOPE *e;
 {
 # ifdef LOG
+	register char *bp;
 	char buf[512];
 
-	(void) sprintf(buf, "delay=%s", pintvl(curtime() - e->e_ctime, TRUE));
+	bp = buf;
+	if (ctladdr != NULL)
+	{
+		strcpy(bp, ", ctladdr=");
+		strcat(bp, ctladdr->q_paddr);
+		bp += strlen(bp);
+		if (bitset(QGOODUID, ctladdr->q_flags))
+		{
+			(void) sprintf(bp, " (%d/%d)",
+					ctladdr->q_uid, ctladdr->q_gid);
+			bp += strlen(bp);
+		}
+	}
+
+	(void) sprintf(bp, ", delay=%s", pintvl(curtime() - e->e_ctime, TRUE));
+	bp += strlen(bp);
 
 	if (m != NULL)
 	{
-		(void) strcat(buf, ", mailer=");
-		(void) strcat(buf, m->m_name);
+		(void) strcpy(bp, ", mailer=");
+		(void) strcat(bp, m->m_name);
+		bp += strlen(bp);
 	}
 
 	if (mci != NULL && mci->mci_host != NULL)
@@ -1730,13 +1754,13 @@ logdelivery(m, mci, stat, e)
 		extern SOCKADDR CurHostAddr;
 # endif
 
-		(void) strcat(buf, ", relay=");
-		(void) strcat(buf, mci->mci_host);
+		(void) strcpy(bp, ", relay=");
+		(void) strcat(bp, mci->mci_host);
 
 # ifdef DAEMON
-		(void) strcat(buf, " (");
-		(void) strcat(buf, anynet_ntoa(&CurHostAddr));
-		(void) strcat(buf, ")");
+		(void) strcat(bp, " (");
+		(void) strcat(bp, anynet_ntoa(&CurHostAddr));
+		(void) strcat(bp, ")");
 # endif
 	}
 	else
@@ -1745,12 +1769,12 @@ logdelivery(m, mci, stat, e)
 
 		if (p != NULL && p[0] != '\0')
 		{
-			(void) strcat(buf, ", relay=");
-			(void) strcat(buf, p);
+			(void) strcpy(bp, ", relay=");
+			(void) strcat(bp, p);
 		}
 	}
 		
-	syslog(LOG_INFO, "%s: to=%s, %s, stat=%s",
+	syslog(LOG_INFO, "%s: to=%s%s, stat=%s",
 	       e->e_id, e->e_to, buf, stat);
 # endif /* LOG */
 }
