@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uipc_usrreq.c	7.1 (Berkeley) 06/05/86
+ *	@(#)uipc_usrreq.c	7.2 (Berkeley) 01/07/88
  */
 
 #include "param.h"
@@ -244,7 +244,7 @@ uipc_usrreq(so, req, m, nam, rights)
 		if (unp->unp_conn && unp->unp_conn->unp_addr) {
 			nam->m_len = unp->unp_conn->unp_addr->m_len;
 			bcopy(mtod(unp->unp_conn->unp_addr, caddr_t),
-			    mtod(m, caddr_t), (unsigned)m->m_len);
+			    mtod(nam, caddr_t), (unsigned)nam->m_len);
 		}
 		break;
 
