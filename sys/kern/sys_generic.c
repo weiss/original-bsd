@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)sys_generic.c	7.18 (Berkeley) 06/21/90
+ *	@(#)sys_generic.c	7.19 (Berkeley) 06/21/90
  */
 
 #include "param.h"
@@ -339,7 +339,7 @@ ioctl(p, uap, retval)
 
 	if (com == FIOCLEX) {
 		u.u_pofile[uap->fdes] |= UF_EXCLOSE;
-		return;
+		RETURN (0);
 	}
 	if (com == FIONCLEX) {
 		u.u_pofile[uap->fdes] &= ~UF_EXCLOSE;
