@@ -11,11 +11,11 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)installboot.c	7.1 (Berkeley) 06/05/86";
+static char sccsid[] = "@(#)installboot.c	7.2 (Berkeley) 12/16/90";
 #endif not lint
 
-#include "../h/param.h"
-#include "../h/fs.h"
+#include "sys/param.h"
+#include "sys/fs.h"
 
 char bootimage[BBSIZE];
 
