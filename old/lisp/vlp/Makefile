@@ -14,12 +14,16 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.1 (Berkeley) 10/25/88
+#	@(#)Makefile	5.2 (Berkeley) 10/25/88
 #
 MAN=	vlp.0
 
-all vlp clean cleandir lint tags: FRC
+all vlp clean lint tags: FRC
 	cd vlp.${MACHINE}; make ${MFLAGS} DESTDIR=${DESTDIR} $@
+
+cleandir: clean
+	cd vlp.${MACHINE}; make ${MFLAGS} DESTDIR=${DESTDIR} $@
+	rm -f ${MAN} tags .depend
 
 install: ${MAN}
 	cd vlp.${MACHINE}; make ${MFLAGS} DESTDIR=${DESTDIR} $@
