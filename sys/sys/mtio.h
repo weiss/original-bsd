@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mtio.h	7.2 (Berkeley) 10/13/86
+ *	@(#)mtio.h	7.3 (Berkeley) 12/18/87
  */
 
 /*
@@ -58,10 +58,10 @@ struct	mtget	{
 #define	MT_ISCY		0x09		/* CCI Cipher */
 
 /* mag tape io control commands */
-#define	MTIOCTOP	_IOW(m, 1, struct mtop)		/* do a mag tape op */
-#define	MTIOCGET	_IOR(m, 2, struct mtget)	/* get tape status */
-#define MTIOCIEOT	_IO(m, 3)			/* ignore EOT error */
-#define MTIOCEEOT	_IO(m, 4)			/* enable EOT error */
+#define	MTIOCTOP	_IOW('m', 1, struct mtop)	/* do a mag tape op */
+#define	MTIOCGET	_IOR('m', 2, struct mtget)	/* get tape status */
+#define MTIOCIEOT	_IO('m', 3)			/* ignore EOT error */
+#define MTIOCEEOT	_IO('m', 4)			/* enable EOT error */
 
 #ifndef KERNEL
 #define	DEFTAPE	"/dev/rmt12"
