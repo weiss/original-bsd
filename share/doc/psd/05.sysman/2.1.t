@@ -2,9 +2,8 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)2.1.t	5.1 (Berkeley) 05/08/86
+.\"	@(#)2.1.t	6.1 (Berkeley) 05/08/86
 .\"
-.\" 2.1.t 5.1 86/05/08
 .sh "Generic operations
 .PP
 .PP
