@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.106 (Berkeley) 06/19/95";
+static char sccsid[] = "@(#)readcf.c	8.107 (Berkeley) 06/20/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -469,7 +469,7 @@ readcf(cfname, safe, e)
 				toomany('P', MAXPRIORITIES);
 				break;
 			}
-			for (p = &bp[1]; *p != '\0' && *p != '=' && *p != '\t'; p++)
+			for (p = &bp[1]; *p != '\0' && *p != '='; p++)
 				continue;
 			if (*p == '\0')
 				goto badline;
