@@ -9,8 +9,8 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)bsd4.4.m4	8.2 (Berkeley) 02/10/94')
+VERSIONID(`@(#)bsd4.4.m4	8.3 (Berkeley) 05/26/95')
 define(`HELP_FILE', /usr/share/misc/sendmail.hf)dnl
 define(`STATUS_FILE', /var/log/sendmail.st)dnl
 define(`LOCAL_MAILER_PATH', /usr/libexec/mail.local)dnl
-define(`UUCP_MAILER_ARGS', `uux - -r -z -a$f $h!rmail ($u)')dnl
+define(`UUCP_MAILER_ARGS', `uux - -r -z -a$g $h!rmail ($u)')dnl
