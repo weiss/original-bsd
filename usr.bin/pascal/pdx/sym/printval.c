@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)printval.c 1.5 03/08/82";
+static char sccsid[] = "@(#)printval.c 1.6 03/09/82";
 
 /*
  * Print out the value at the top of the stack using the given type.
@@ -49,7 +49,7 @@ SYM *s;
 
 	case RANGE:
 	    if (s == t_real) {
-		printreal(pop(double));
+		prtreal(pop(double));
 	    } else if (s == t_char) {
 		printf("'%c'", pop(char));
 	    } else if (s == t_boolean) {
@@ -196,7 +196,7 @@ SYM *a;
  * from "%g" in printf.
  */
 
-LOCAL printreal(r)
+LOCAL prtreal(r)
 double r;
 {
     extern char *index();
