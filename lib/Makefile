@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.20 (Berkeley) 07/03/90
+#	@(#)Makefile	5.21 (Berkeley) 08/24/90
 
 SUBDIR=	libF77 libI77 libc libcurses libcompat libdbm libm libmp \
-	libpc libplot libresolv librpc libterm libutil liby
+	libpc libplot libresolv librpc/rpc libterm libutil liby
 
 .if ${MACHINE} == "tahoe"
 SUBDIR+=csu libU77
