@@ -1,6 +1,6 @@
 # Makefile for the f77 math & startup lib - libF77.a
 
-#	@(#)makefile	1.17	04/15/83
+#	@(#)makefile	1.18	04/17/83
 
 DESTDIR =
 LIB = libF77.a
@@ -124,13 +124,8 @@ Makefile:	makefile
 	@sed -n -e "1,/End of Makefile/p" makefile > Makefile
 
 tape:	Makefile
-	@-ln man/s.makefile man.s.makefile
-	@ls man.s.makefile > /dev/null
-	@rm -f man/s.makefile
-	-tar cbf 20 $(TAPE) READ_ME Makefile man complex $(SOURCES) \
+	-tar cbf 20 $(TAPE) READ_ME Makefile complex $(SOURCES) \
 		mkindx.c subout.c
-	@ln man.s.makefile man/s.makefile
-	@rm -f man.s.makefile
 
 # below here is SCCS stuff ...
 
