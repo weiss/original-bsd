@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hd_output.c	7.6 (Berkeley) 05/29/91
+ *	@(#)hd_output.c	7.7 (Berkeley) 02/06/92
  */
 
 #include "param.h"
@@ -47,7 +47,7 @@ struct mbuf *m0;
 
 	if (m == NULL)
 		panic ("hd_output");
-	if (m->m_flags & M_PKTHDR == 0)
+	if ((m->m_flags & M_PKTHDR) == 0)
 		panic ("hd_output 2");
 
 	if (hdp->hd_state != ABM) {
