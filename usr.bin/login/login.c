@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)login.c	5.9 (Berkeley) 10/18/85";
+static char sccsid[] = "@(#)login.c	5.10 (Berkeley) 11/08/85";
 #endif not lint
 
 /*
@@ -162,7 +162,7 @@ main(argc, argv)
 	for (t = getdtablesize(); t > 2; t--)
 		close(t);
 	ttyn = ttyname(0);
-	if (ttyn == (char *)0)
+	if (ttyn == (char *)0 || *ttyn == '\0')
 		ttyn = "/dev/tty??";
 	tty = rindex(ttyn, '/');
 	if (tty == NULL)
