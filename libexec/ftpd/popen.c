@@ -21,7 +21,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)popen.c	5.5 (Berkeley) 12/16/88";
+static char sccsid[] = "@(#)popen.c	5.6 (Berkeley) 12/19/88";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -90,6 +90,7 @@ ftpd_popen(program, type)
 		if (*type == 'r') {
 			if (pdes[1] != 1) {
 				dup2(pdes[1], 1);
+				dup2(pdes[1], 2);	/* stderr, too! */
 				(void)close(pdes[1]);
 			}
 			(void)close(pdes[0]);
