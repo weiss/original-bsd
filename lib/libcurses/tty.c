@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tty.c	5.5 (Berkeley) 12/22/92";
+static char sccsid[] = "@(#)tty.c	5.6 (Berkeley) 12/29/92";
 #endif /* not lint */
 
 /*
@@ -151,6 +151,7 @@ endwin()
 
 	(void)tputs(VE, 0, __cputchar);
 	(void)tputs(TE, 0, __cputchar);
+	mvcur(curscr->cury, curscr->cury, curscr->maxy - 1, 0);
 	(void)fflush(stdout);
 
 	__echoit = origtermio.c_lflag & ECHO;
