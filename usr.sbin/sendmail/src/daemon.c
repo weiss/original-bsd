@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.25 (Berkeley) 11/20/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.26 (Berkeley) 11/25/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.25 (Berkeley) 11/20/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.26 (Berkeley) 11/25/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -588,7 +588,7 @@ gothostent:
 		  case AF_INET:
 			bcopy(hp->h_addr,
 				&addr.sin.sin_addr,
-				hp->h_length);
+				sizeof addr.sin.sin_addr);
 			break;
 #endif
 
@@ -717,7 +717,7 @@ gothostent:
 			  case AF_INET:
 				bcopy(hp->h_addr_list[i++],
 				      &addr.sin.sin_addr,
-				      hp->h_length);
+				      sizeof addr.sin.sin_addr);
 				break;
 #endif
 
