@@ -1,4 +1,4 @@
-static char *sccsid ="@(#)fort.c	4.1 (Berkeley) 06/11/83";
+static char *sccsid ="@(#)fort.c	4.2 (Berkeley) 06/11/83";
 # define FORT
 /* this forces larger trees, etc. */
 # include "mfile2"
@@ -40,6 +40,7 @@ lnread()
 	}
 	return (tstr(buf));
 }
+#endif
 # endif NOLNREAD
 
 # ifndef NOLREAD
