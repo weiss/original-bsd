@@ -9,11 +9,10 @@
  *
  * from: $Hdr: if_news.c,v 4.300 91/06/09 06:26:01 root Rel41 $ SONY
  *
- *	@(#)if_news.c	7.4 (Berkeley) 01/20/93
+ *	@(#)if_news.c	7.5 (Berkeley) 03/09/93
  */
 
 #include <sys/types.h>
-#include <machine/fix_machine_type.h>
 #include <machine/pte.h>
 
 #include <sys/param.h>
