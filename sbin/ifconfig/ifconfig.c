@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)ifconfig.c	4.7 (Berkeley) 04/10/84";
+static char sccsid[] = "@(#)ifconfig.c	4.8 (Berkeley) 08/02/84";
 #endif
 
 #include <sys/types.h>
@@ -153,7 +153,7 @@ Perror(cmd)
 		break;
 
 	case EPERM:
-		fprintf(stderr, "%s: permission denied\n");
+		fprintf(stderr, "%s: permission denied\n", cmd);
 		break;
 
 	default:
