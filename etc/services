@@ -1,7 +1,7 @@
 #
 # Network services, Internet style
 #
-#	@(#)services	5.10 (Berkeley) 09/25/92
+#	@(#)services	8.1 (Berkeley) 06/09/93
 #
 tcpmux		1/tcp				# TCP port multiplexer (RFC1078)
 echo		7/tcp
