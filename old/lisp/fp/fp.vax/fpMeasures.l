@@ -1,8 +1,13 @@
-(setq SCCS-fpMeasures.l "@(#)fpMeasures.l	1.1	04/27/83")
 ;  FP interpreter/compiler
 ;  Copyright (c) 1982  Scott B. Baden
 ;  Berkeley, California
 ;  Dynamics Statistics by Dorab Patel (UCLA)
+;
+;  Copyright (c) 1982 Regents of the University of California.
+;  All rights reserved.  The Berkeley software License Agreement
+;  specifies the terms and conditions for redistribution.
+;
+(setq SCCS-fpMeasures.l "@(#)fpMeasures.l	5.1 (Berkeley) 05/31/85")
 
 ; Initialize and update the 'Measures' plist  with
 ; the run-time measurement data
