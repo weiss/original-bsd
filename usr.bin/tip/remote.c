@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)remote.c	5.2 (Berkeley) 12/09/85";
+static char sccsid[] = "@(#)remote.c	5.3 (Berkeley) 04/30/86";
 #endif not lint
 
 # include "tip.h"
@@ -112,9 +112,9 @@ getremcap(host)
 		boolean(value(RAWFTP)) = 1;
 	if (rgetflag("hd"))
 		boolean(value(HALFDUPLEX)) = 1;
-	if (*RE == NULL)
+	if (RE == NOSTR)
 		RE = (char *)"tip.record";
-	if (*EX == NULL)
+	if (EX == NOSTR)
 		EX = (char *)"\t\n\b\f";
 	if (ES != NOSTR)
 		vstring("es", ES);
