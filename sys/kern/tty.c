@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.5 (Berkeley) 03/29/87
+ *	@(#)tty.c	7.6 (Berkeley) 07/21/87
  */
 
 #include "../machine/reg.h"
@@ -15,10 +15,8 @@
 #include "ioctl.h"
 #include "tty.h"
 #include "proc.h"
-#include "inode.h"
 #include "file.h"
 #include "conf.h"
-#include "buf.h"
 #include "dkstat.h"
 #include "uio.h"
 #include "kernel.h"
