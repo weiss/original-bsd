@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.50 (Berkeley) 05/15/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.51 (Berkeley) 05/18/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.50 (Berkeley) 05/15/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.51 (Berkeley) 05/18/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -250,6 +250,7 @@ getrequests()
 			*/
 
 			(void) setsignal(SIGCHLD, SIG_DFL);
+			(void) close(DaemonSocket);
 			DisConnected = FALSE;
 
 			setproctitle("startup with %s",
@@ -269,7 +270,6 @@ getrequests()
 			}
 #endif
 
-			(void) close(DaemonSocket);
 			if ((InChannel = fdopen(t, "r")) == NULL ||
 			    (t = dup(t)) < 0 ||
 			    (OutChannel = fdopen(t, "w")) == NULL)
