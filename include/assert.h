@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)assert.h	5.1 (Berkeley) 04/23/92
+ *	@(#)assert.h	5.2 (Berkeley) 06/18/92
  */
 
 /*
@@ -16,7 +16,9 @@
 
 #ifdef NDEBUG
 #define	assert(e)	((void)0)
+#define	_assert(e)	((void)0)
 #else
+#define	_assert(e)	assert(e)
 #ifdef __STDC__
 #define	assert(e)	((e) ? (void)0 : __assert(__FILE__, __LINE__, #e))
 #else	/* PCC */
