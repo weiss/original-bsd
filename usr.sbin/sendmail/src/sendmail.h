@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.23 (Berkeley) 09/25/93
+ *	@(#)sendmail.h	8.24 (Berkeley) 10/15/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.23		09/25/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.24		10/15/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -777,6 +777,7 @@ EXTERN bool	MatchGecos;	/* look for user names in gecos field */
 EXTERN bool	UseErrorsTo;	/* use Errors-To: header (back compat) */
 EXTERN bool	TryNullMXList;	/* if we are the best MX, try host directly */
 EXTERN bool	CheckLoopBack;	/* check for loopback on HELO packet */
+EXTERN bool	InChild;	/* true if running in an SMTP subprocess */
 EXTERN char	SpaceSub;	/* substitution for <lwsp> */
 EXTERN int	PrivacyFlags;	/* privacy flags */
 EXTERN char	*ConfFile;	/* location of configuration file [conf.c] */

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.12 (Berkeley) 09/05/93";
+static char sccsid[] = "@(#)readcf.c	8.13 (Berkeley) 10/15/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -44,7 +44,9 @@ static char sccsid[] = "@(#)readcf.c	8.12 (Berkeley) 09/05/93";
 **				Args specify mailer parameters.
 **		Oxvalue		Set option x to value.
 **		Pname=value	Set precedence name to value.
-**		Vversioncode	Version level of configuration syntax.
+**		Vversioncode[/vendorcode]
+**				Version level/vendor name of
+**				configuration syntax.
 **		Kmapname mapclass arguments....
 **				Define keyed lookup of a given class.
 **				Arguments are class dependent.
@@ -72,6 +74,7 @@ readcf(cfname, safe, e)
 	char *q;
 	struct rewrite *rwp = NULL;
 	char *bp;
+	auto char *ep;
 	int nfuzzy;
 	char *file;
 	bool optional;
@@ -179,6 +182,7 @@ readcf(cfname, safe, e)
 		}
 
 		/* interpret this line */
+		errno = 0;
 		switch (bp[0])
 		{
 		  case '\0':
@@ -466,13 +470,24 @@ readcf(cfname, safe, e)
 					&bp[1]);
 				break;
 			}
-			ConfigLevel = atoi(p);
+			ConfigLevel = strtol(p, &ep, 10);
 			if (ConfigLevel >= 5)
 			{
 				/* level 5 configs have short name in $w */
 				p = macvalue('w', e);
 				if (p != NULL && (p = strchr(p, '.')) != NULL)
 					*p = '\0';
+			}
+			if (*ep++ == '/')
+			{
+				/* extract vendor code */
+				for (p = ep; isascii(*p) && isalpha(*p); )
+					p++;
+				*p = '\0';
+
+				if (!setvendor(ep))
+					syserr("invalid V line vendor code: \"%s\"",
+						ep);
 			}
 			break;
 
@@ -996,6 +1011,7 @@ setoption(opt, val, safe, sticky, e)
 	extern time_t convtime();
 	extern int QueueLA;
 	extern int RefuseLA;
+	extern bool Warn_Q_option;
 	extern bool trusteduser();
 
 	if (tTd(37, 1))
@@ -1308,7 +1324,7 @@ setoption(opt, val, safe, sticky, e)
 		else
 			QueueDir = newstr(val);
 		if (RealUid != 0 && !safe)
-			auth_warning(e, "Processed from queue %s", QueueDir);
+			Warn_Q_option = TRUE;
 		break;
 
 	  case 'R':		/* don't prune routes */
