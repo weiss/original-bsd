@@ -1,5 +1,5 @@
 /*
- * mkmakefile.c	1.6	81/03/31
+ * mkmakefile.c	1.7	81/03/31
  *	Functions in this file build the makefile from the files list
  *	and the information in the config table
  */
@@ -204,6 +204,7 @@ FILE *fp;
     register struct file_list *tp;
     register int lpos, len;
     register char *cp, och, *sp;
+    char *tail();
 
     fprintf(fp, "OBJS=");
     lpos = 6;
