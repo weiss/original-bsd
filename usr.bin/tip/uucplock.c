@@ -1,6 +1,13 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)uucplock.c	4.6 (Berkeley) 06/25/83";
-#endif
+static char sccsid[] = "@(#)uucplock.c	5.1 (Berkeley) 04/30/85";
+#endif not lint
+
 /*
  * defs that come from uucp.h
  */
