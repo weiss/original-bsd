@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)vm_machdep.c	7.7 (Berkeley) 05/04/90
+ *	@(#)vm_machdep.c	7.8 (Berkeley) 06/05/90
  */
 
 #include "param.h"
@@ -47,8 +47,7 @@ chksize(ts, ids, uds, ss)
 	    ctob(uds) > u.u_rlimit[RLIMIT_DATA].rlim_cur ||
 	    ctob(ids + uds) > u.u_rlimit[RLIMIT_DATA].rlim_cur ||
 	    ctob(ss) > u.u_rlimit[RLIMIT_STACK].rlim_cur) {
-		u.u_error = ENOMEM;
-		return (1);
+		return (ENOMEM);
 	}
 	return (0);
 }
