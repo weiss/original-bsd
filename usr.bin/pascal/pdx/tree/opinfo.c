@@ -1,9 +1,9 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)opinfo.c 1.1 01/18/82";
+static char sccsid[] = "@(#)opinfo.c 1.2 01/18/82";
 
 /*
- * operator information structure
+ * Operator information structure.
  */
 
 #include "defs.h"
@@ -73,4 +73,5 @@ OPINFO opinfo[] ={
 /* O_WHICH */		0,		NIL,
 /* O_QLINE */		LEAF,		NIL,
 /* O_ALIAS */		LEAF,		NIL,
+/* O_GRIPE */		0,		NIL,
 };
