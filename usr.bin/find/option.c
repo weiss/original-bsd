@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)option.c	5.9 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)option.c	5.10 (Berkeley) 08/21/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -31,6 +31,7 @@ typedef struct _option {
 	int flags;
 } OPTION;
 
+/* NB: the following table must be sorted in machine (strcmp) order */
 OPTION options[] = {
 	"!",		N_NOT,		c_not,		O_ZERO,
 	"(",		N_OPENPAREN,	c_openparen,	O_ZERO,
@@ -63,7 +64,6 @@ OPTION options[] = {
 	"-type",	N_TYPE,		c_type,		O_ARGV,
 	"-user",	N_USER,		c_user,		O_ARGV,
 	"-xdev",	N_XDEV,		c_xdev,		O_ZERO,
-	{ NULL },
 };
 
 /*
