@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	4.6		03/11/84);
+SCCSID(@(#)deliver.c	4.7		08/11/84);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1052,7 +1052,12 @@ putbody(fp, m, e)
 	{
 		rewind(e->e_dfp);
 		while (!ferror(fp) && fgets(buf, sizeof buf, e->e_dfp) != NULL)
+		{
+			if (buf[0] == 'F' && bitnset(M_ESCFROM, m->m_flags) &&
+			    strncmp(buf, "From", 4) == 0)
+				putc('>', fp);
 			putline(buf, fp, m);
+		}
 
 		if (ferror(e->e_dfp))
 		{
