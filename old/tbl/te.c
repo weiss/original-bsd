@@ -1,4 +1,6 @@
-/*	te.c	4.1	83/02/12	*/
+#ifndef lint
+static char sccsid[] = "@(#)te.c	4.2 08/11/83";
+#endif
 
  /* te.c: error message control, input line count */
 # include "t..c"
