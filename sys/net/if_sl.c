@@ -1,4 +1,4 @@
-/*	@(#)if_sl.c	7.1 (Berkeley) 06/04/86 */
+/*	@(#)if_sl.c	7.2 (Berkeley) 09/04/86 */
 
 /*
  * Serial Line interface
@@ -351,7 +351,10 @@ slinit(sc)
 	struct mbuf *p;
 
 	if (sc->sc_buf == (char *) 0) {
+		int s = splimp();
+
 		MCLALLOC(p, 1);
+		splx(s);
 		if (p) {
 			sc->sc_buf = (char *)p;
 			sc->sc_mp = sc->sc_buf + sizeof(struct ifnet *);
