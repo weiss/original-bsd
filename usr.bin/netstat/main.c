@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.8 (Berkeley) 08/11/86";
+static char sccsid[] = "@(#)main.c	5.9 (Berkeley) 07/27/87";
 #endif not lint
 
 #include <sys/param.h>
@@ -367,9 +367,7 @@ klseek(fd, base, off)
 {
 	if (kflag) {
 		/* get kernel pte */
-#ifdef vax
-		base &= 0x7fffffff;
-#endif
+		base &= ~KERNBASE;
 		base = ctob(Sysmap[btop(base)].pg_pfnum) + (base & PGOFSET);
 	}
 	return (lseek(fd, base, off));
