@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1986, 1988, 1993
+ * Copyright (c) 1982, 1986, 1988, 1993, 1995
  *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_usrreq.c	8.3 (Berkeley) 01/09/95
+ *	@(#)tcp_usrreq.c	8.4 (Berkeley) 05/24/95
  */
 
 #include <sys/param.h>
@@ -75,6 +75,18 @@ tcp_usrreq(so, req, m, nam, control)
 	 */
 	if (inp == 0 && req != PRU_ATTACH) {
 		splx(s);
+#if 0
+		/*
+		 * The following corrects an mbuf leak under rare
+		 * circumstances, but has not been fully tested.
+		 */
+		if (m && req != PRU_SENSE)
+			m_freem(m);
+#else
+		/* safer version of fix for mbuf leak */
+		if (m && (req == PRU_SEND || req == PRU_SENDOOB))
+			m_freem(m);
+#endif
 		return (EINVAL);		/* XXX */
 	}
 	if (inp) {
