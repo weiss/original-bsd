@@ -1,8 +1,4 @@
-/* $Id: os-u3_0.h,v 5.2.1.2 90/11/04 23:17:44 jsp Exp $ */
-
 /*
- * Ultrix 3.0 definitions for Amd (automounter)
- *
  * Copyright (c) 1989 Jan-Simon Pendry
  * Copyright (c) 1989 Imperial College of Science, Technology & Medicine
  * Copyright (c) 1989 The Regents of the University of California.
@@ -13,7 +9,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)os-u3_0.h	5.2 (Berkeley) 03/17/91
+ *	@(#)os-u3_0.h	5.3 (Berkeley) 05/12/91
+ *
+ * $Id: os-u3_0.h,v 5.2.1.3 91/05/07 22:20:03 jsp Alpha $
+ *
+ * Ultrix 3.0 definitions for Amd (automounter)
  */
 
 /*
