@@ -1,13 +1,12 @@
 # include <ctype.h>
-# include <wellknown.h>
 # include <sysexits.h>
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.7		12/06/81	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.8		01/10/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.7		12/06/81);
+SCCSID(@(#)usersmtp.c	3.8		01/10/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
