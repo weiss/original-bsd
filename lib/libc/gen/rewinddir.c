@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rewinddir.c	5.1 (Berkeley) 05/25/90";
+static char sccsid[] = "@(#)rewinddir.c	5.2 (Berkeley) 06/08/93";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -16,8 +16,7 @@ void
 rewinddir(dirp)
 	DIR *dirp;
 {
-	extern long _rewinddir;
 
-	_seekdir((dirp), _rewinddir);
-	_rewinddir = telldir(dirp);
+	_seekdir(dirp, dirp->dd_rewind);
+	dirp->dd_rewind = telldir(dirp);
 }
