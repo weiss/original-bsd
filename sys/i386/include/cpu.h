@@ -6,9 +6,9 @@
  * This code is derived from software contributed to Berkeley by
  * William Jolitz.
  *
- * %sccs.include.noredist.c%
+ * %sccs.include.redist.c%
  *
- *	@(#)cpu.h	5.1 (Berkeley) 04/24/90
+ *	@(#)cpu.h	5.2 (Berkeley) 01/18/91
  */
 
 #define	resettodr()	/* no todr to set */

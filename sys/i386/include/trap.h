@@ -5,9 +5,9 @@
  * This code is derived from software contributed to Berkeley by
  * William Jolitz.
  *
- * %sccs.include.noredist.c%
+ * %sccs.include.redist.c%
  *
- *	@(#)trap.h	5.2 (Berkeley) 11/14/90
+ *	@(#)trap.h	5.3 (Berkeley) 01/18/91
  */
 
 /*
