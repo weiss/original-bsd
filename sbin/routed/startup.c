@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)startup.c	4.5 (Berkeley) 04/10/84";
+static char sccsid[] = "@(#)startup.c	4.6 (Berkeley) 05/16/84";
 #endif
 
 /*
@@ -43,7 +43,7 @@ ifinit()
 			goto bad;
 		}
 		performnlist = 0;
-		if (gateway)
+		if (gateway > 0)
 			rtdefault();
 	}
 	if (kmem < 0) {
