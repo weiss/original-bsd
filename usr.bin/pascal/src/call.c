@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)call.c 1.20 01/17/83";
+static	char sccsid[] = "@(#)call.c 1.21 02/01/83";
 
 #include "whoami.h"
 #include "0.h"
@@ -234,7 +234,7 @@ call(p, argv, porf, psbn)
 				case TCHAR:
 				    precheck( p1 -> type , "_RANG4" , "_RSNG4" );
 				    q = stkrval( argv[1] , p1 -> type , RREQ );
-				    postcheck(p1 -> type, P2INT);
+				    postcheck(p1 -> type, nl+T4INT);
 				    break;
 				case TDOUBLE:
 				    q = stkrval( argv[1] , p1 -> type , RREQ );
