@@ -4,20 +4,20 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfs_vnops.c	7.20 (Berkeley) 02/01/91
+ *	@(#)mfs_vnops.c	7.21 (Berkeley) 03/19/91
  */
 
 #include "param.h"
 #include "time.h"
 #include "kernel.h"
 #include "proc.h"
-#include "user.h"
 #include "buf.h"
-#include "errno.h"
 #include "map.h"
 #include "vnode.h"
-#include "../ufs/mfsnode.h"
-#include "../ufs/mfsiom.h"
+
+#include "mfsnode.h"
+#include "mfsiom.h"
+
 #include "machine/vmparam.h"
 #include "machine/mtpr.h"
 
@@ -124,7 +124,7 @@ mfs_strategy(bp)
 	if (vfinddev(bp->b_dev, VBLK, &vp) || vp->v_usecount == 0)
 		panic("mfs_strategy: bad dev");
 	mfsp = VTOMFS(vp);
-	if (mfsp->mfs_pid == u.u_procp->p_pid) {
+	if (mfsp->mfs_pid == curproc->p_pid) {
 		mfs_doio(bp, mfsp->mfs_baseoff);
 	} else {
 		bp->av_forw = mfsp->mfs_buflist;
