@@ -8,7 +8,7 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(@(#)cs-ultrix4.mc	2.1 (Berkeley) 11/07/91)
+VERSIONID(`@(#)cs-ultrix4.mc	2.2 (Berkeley) 11/13/92')
 OSTYPE(ultrix4.1)dnl
 DOMAIN(cs.exposed)dnl
 MAILER(local)dnl

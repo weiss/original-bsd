@@ -8,7 +8,7 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(@(#)cs-sunos4.1.mc	2.1 (Berkeley) 11/07/91)
+VERSIONID(`@(#)cs-sunos4.1.mc	2.2 (Berkeley) 11/13/92')
 OSTYPE(sunos4.1)dnl
 DOMAIN(cs.exposed)dnl
 MAILER(local)dnl
