@@ -1,5 +1,10 @@
-/*
- *	@(#)kdbparam.h	7.3 (Berkeley) 06/22/90
+/*-
+ * Copyright (c) 1988 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)kdbparam.h	7.4 (Berkeley) 05/08/91
  */
 
 #define DBNAME "kdb\n"
