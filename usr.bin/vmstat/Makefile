@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.6 (Berkeley) 04/23/91
+#	@(#)Makefile	5.7 (Berkeley) 04/24/91
 
 PROG=	vmstat
 CFLAGS+=-I/sys
+MAN8=	vmstat.0
 BINGRP=	kmem
 BINMODE=2555
 DPADD=	names.c ${LIBUTIL}
