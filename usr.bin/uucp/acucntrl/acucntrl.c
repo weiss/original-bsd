@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)acucntrl.c	5.5 (Berkeley) 10/09/85";
+static char sccsid[] = "@(#)acucntrl.c	5.6 (Berkeley) 11/01/85";
 #endif
 
 /*  acucntrl - turn around tty line between dialin and dialout
@@ -452,10 +452,19 @@ int enable;
 	}
 	/* format is now */
 	/* ttyd0 std.100 dialup on secure # comment */
+	/* except, 2nd item may have embedded spaces inside quotes, Hubert */
 	cp = lbuf;
 	for (i=0;*cp && i<3;i++) {
-		while (*cp && *cp != ' ' && *cp != '\t')
+		if (*cp == '"') {
 			cp++;
+			while (*cp && *cp != '"')
+				cp++;
+			if (*cp != '\0')
+				cp++;
+		}else {
+			while (*cp && *cp != ' ' && *cp != '\t')
+				cp++;
+		}
 		while (*cp && (*cp == ' ' || *cp == '\t'))
 			cp++;
 	}
