@@ -10,7 +10,7 @@
 
 #include "rcv.h"
 
-static char *SccsId = "@(#)v7.local.c	1.1 10/08/80";
+static char *SccsId = "@(#)v7.local.c	1.2 10/17/80";
 
 /*
  * Locate the user's mailbox file (ie, the place where new, unread
@@ -49,7 +49,7 @@ username(uid, namebuf)
 	register char *np;
 
 	if (uid == getuid() && (np = getenv("USER")) != NOSTR) {
-		strncpy(namebuf, np, 9);
+		strncpy(namebuf, np, PATHSIZE);
 		return(0);
 	}
 	return(getname(uid, namebuf));
