@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.92 (Berkeley) 05/25/95";
+static char sccsid[] = "@(#)readcf.c	8.93 (Berkeley) 05/27/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -914,7 +914,7 @@ makemailer(line)
 			m->m_defcharset = newstr(p);
 			break;
 
-		  case 'T':		/* MTA Type */
+		  case 'T':		/* MTA-Name/Address/Diagnostic types */
 			m->m_mtatype = newstr(p);
 			p = strchr(m->m_mtatype, '/');
 			if (p != NULL)
