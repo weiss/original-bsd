@@ -1,4 +1,4 @@
-# @(#)Makefile	4.1 (Berkeley) 11/29/81
+# @(#)Makefile	4.2 (Berkeley) 01/05/82
 
 OBJS=	crt0.o mcrt0.o gcrt0.o
 
@@ -13,6 +13,15 @@ OBJS=	crt0.o mcrt0.o gcrt0.o
 	rm -f $*.s
 
 all: ${OBJS}
+
+crt0.o: crt0.c
+	cc -S ${DFLAGS} $*.c
+	/lib/cpp $*.s > $*.S
+	mv $*.S $*.s
+	as -o $*.o $*.s
+	ld -x -r $*.o
+	mv a.out $*.o
+	rm -f $*.s
 
 clean:
 	rm -f ${OBJS}
