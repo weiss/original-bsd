@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.11 (Berkeley) 05/16/93
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 PROG=	tftpd
 SRCS=	tftpd.c tftpsubs.c
