@@ -3,12 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)boot.c	7.12 (Berkeley) 03/21/89
+ *	@(#)boot.c	7.13 (Berkeley) 04/04/90
  */
 
 #include "param.h"
-#include "inode.h"
-#include "fs.h"
 #include "vm.h"
 #include "reboot.h"
 

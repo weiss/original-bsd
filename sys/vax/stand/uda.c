@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uda.c	7.9 (Berkeley) 07/09/88
+ *	@(#)uda.c	7.10 (Berkeley) 04/04/90
  */
 
 /*
@@ -11,9 +11,7 @@
  */
 
 #include "param.h"
-#include "inode.h"
 #include "buf.h"
-#include "fs.h"
 #include "disklabel.h"
 
 #include "../vax/pte.h"

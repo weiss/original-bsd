@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)hp.c	7.10 (Berkeley) 07/08/88
+ *	@(#)hp.c	7.11 (Berkeley) 04/04/90
  */
 
 /*
@@ -12,8 +12,6 @@
  * header and data.
  */
 #include "param.h"
-#include "inode.h"
-#include "fs.h"
 #include "dkbad.h"
 #include "disklabel.h"
 

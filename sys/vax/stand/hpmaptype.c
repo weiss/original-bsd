@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)hpmaptype.c	7.9 (Berkeley) 04/25/89
+ *	@(#)hpmaptype.c	7.10 (Berkeley) 04/04/90
  */
 
 /*
@@ -14,8 +14,6 @@
 #include "machine/pte.h"
 
 #include "param.h"
-#include "inode.h"
-#include "fs.h"
 #include "disklabel.h"
 
 #include "../vaxmba/hpreg.h"
