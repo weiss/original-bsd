@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lpd.c	4.8 (Berkeley) 07/27/83";
+static char sccsid[] = "@(#)lpd.c	4.9 (Berkeley) 08/18/83";
 #endif
 
 /*
@@ -169,6 +169,10 @@ main(argc, argv)
 		}
 		if (fork() == 0) {
 			signal(SIGCHLD, SIG_IGN);
+			signal(SIGHUP, SIG_IGN);
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
+			signal(SIGTERM, SIG_IGN);
 			(void) close(funix);
 			(void) close(finet);
 			dup2(s, 1);
