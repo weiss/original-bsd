@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	4.4 (Berkeley) 10/25/88
+#	@(#)Makefile	4.5 (Berkeley) 05/10/89
 #
 # If you don't want to plot, take out the -Dplot and the loader
 # reference to plot.a
@@ -39,7 +39,7 @@ depend: ${SRCS}
 	mkdep ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o bin -g bin -m 755 prof ${DESTDIR}/usr/bin/prof
+	install -s -o bin -g bin -m 755 prof ${DESTDIR}/usr/bin
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat1
 
 lint: ${SRCS}
