@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)exec.h	7.5.1.1 (Berkeley) 11/20/91
+ *	@(#)exec.h	7.7 (Berkeley) 11/20/91
  */
 
 #ifndef	_EXEC_H_
@@ -35,6 +35,7 @@ unsigned long	a_drsize;	/* data relocation size */
 #define	NMAGIC		0410	/* read-only text */
 #define	ZMAGIC		0413	/* demand load format */
 
+#if !defined(vax) && !defined(tahoe) && !defined(i386)
 /* a_mid */
 #define	MID_ZERO	0	/* unknown - implementation dependent */
 #define	MID_SUN010	1	/* sun 68010/68020 binary */
@@ -43,6 +44,7 @@ unsigned long	a_drsize;	/* data relocation size */
 #define	MID_HP300	300	/* hp300 (68020+68881) BSD binary */
 #define	MID_HPUX	0x20C	/* hp200/300 HP-UX binary */
 #define	MID_HPUX800     0x20B   /* hp800 HP-UX binary */
+#endif
 
 #ifdef COFF
 /*
