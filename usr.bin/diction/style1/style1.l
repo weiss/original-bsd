@@ -4,7 +4,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)style1.l	4.4 (Berkeley) 04/14/92";
+static char sccsid[] = "@(#)style1.l	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 /* break out words, output cap + word(inverted) */

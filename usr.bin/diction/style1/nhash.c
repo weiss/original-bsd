@@ -1,7 +1,7 @@
 /*-
  * %sccs.include.proprietary.c%
  *
- *	@(#)nhash.c	4.5 (Berkeley) 04/27/91
+ *	@(#)nhash.c	8.1 (Berkeley) 06/06/93
  */
 
 struct dict {
