@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)collect.c	5.4 (Berkeley) 01/02/88";
+static char *sccsid = "@(#)collect.c	5.5 (Berkeley) 01/28/88";
 #endif not lint
 
 /*
@@ -339,7 +339,7 @@ cont:
 				perror(THELPFILE);
 				break;
 			}
-			while ((t = getc(fp)) != EOF)
+			while ((t = getc(fbuf)) != EOF)
 				putchar(t);
 			fclose(fbuf);
 			break;
