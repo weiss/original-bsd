@@ -1,4 +1,4 @@
-/*	dh.c	4.1	11/09/80	*/
+/*	dh.c	4.2	11/09/80	*/
 
 #include "../conf/dh.h"
 #if NDH11 > 0
@@ -20,6 +20,7 @@
 #include "../h/uba.h"
 #include "../h/bk.h"
 #include "../h/clist.h"
+#include "../h/mx.h"
 
 /*
  * When running dz's using only SAE (silo alarm) on input

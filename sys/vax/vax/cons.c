@@ -1,4 +1,4 @@
-/*	cons.c	4.1	11/09/80	*/
+/*	cons.c	4.2	11/09/80	*/
 
 /*
  * Vax console driver and floppy interface
@@ -11,6 +11,7 @@
 #include "../h/systm.h"
 #include "../h/cons.h"
 #include "../h/mtpr.h"
+#include "../h/mx.h"
 
 /*
  * When running dz's using only SAE (silo alarm) on input
