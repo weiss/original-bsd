@@ -1,6 +1,5 @@
-/* @(#)nlist.c	4.2 (Berkeley) 01/02/83 */
+/* @(#)nlist.c	4.3 (Berkeley) 06/10/83 */
 #include <sys/types.h>
-#include <pagsiz.h>
 #include <a.out.h>
 #include <stdio.h>
 
