@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	5.19 (Berkeley) 01/05/92 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	5.20 (Berkeley) 02/24/92 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	5.19 (Berkeley) 01/05/92 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	5.20 (Berkeley) 02/24/92 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -246,7 +246,7 @@ smtprcpt(to, m)
 	register int r;
 	extern char *remotename();
 
-	smtpmessage("RCPT To:<%s>", m, remotename(to->q_user, m, FALSE, TRUE));
+	smtpmessage("RCPT To:<%s>", m, to->q_user);
 
 	SmtpPhase = "RCPT wait";
 	setproctitle("%s %s: %s", CurEnv->e_id, CurHostName, SmtpPhase);
