@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.17		08/08/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.18		08/29/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.17		08/08/82);
+SCCSID(@(#)usersmtp.c	3.18		08/29/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
@@ -27,6 +27,7 @@ SCCSID(@(#)usersmtp.c	3.17		08/08/82);
 */
 
 # define REPLYTYPE(r)	((r) / 100)
+# define REPLYCLASS(r)	(((r) / 10) % 10)
 
 static FILE	*SmtpOut;	/* output file */
 static FILE	*SmtpIn;	/* input file */
@@ -71,15 +72,14 @@ smtpinit(m, pvp, ctladdr)
 
 	/*
 	**  Send the HELO command.
-	**	My mother taught me to always introduce myself, even
-	**	if it is useless.
+	**	My mother taught me to always introduce myself.
 	*/
 
 	smtpmessage("HELO %s", HostName);
 	r = reply();
 	if (REPLYTYPE(r) == 5)
 		return (EX_UNAVAILABLE);
-	if (REPLYTYPE(r) != 2)
+	else if (REPLYTYPE(r) != 2)
 		return (EX_TEMPFAIL);
 
 	/*
@@ -92,9 +92,11 @@ smtpinit(m, pvp, ctladdr)
 	r = reply();
 	if (REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
-	if (r != 250)
-		return (EX_SOFTWARE);
-	return (EX_OK);
+	else if (r == 250)
+		return (EX_OK);
+	else if (r == 552)
+		return (EX_UNAVAILABLE);
+	return (EX_SOFTWARE);
 }
 /*
 **  SMTPRCPT -- designate recipient.
@@ -123,10 +125,11 @@ smtprcpt(to)
 	r = reply();
 	if (REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
-	if (r != 250)
+	else if (REPLYCLASS(r) == 5)
 		return (EX_NOUSER);
-
-	return (EX_OK);
+	else if (REPLYTYPE(r) == 2)
+		return (EX_OK);
+	return (EX_SOFTWARE);
 }
 /*
 **  SMTPFINISH -- finish up sending all the SMTP protocol.
@@ -160,7 +163,9 @@ smtpfinish(m, e)
 	r = reply();
 	if (REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
-	if (r != 354)
+	else if (r == 554)
+		return (EX_UNAVAILABLE);
+	else if (r != 354)
 		return (EX_SOFTWARE);
 	(*e->e_puthdr)(SmtpOut, m, CurEnv);
 	fprintf(SmtpOut, "\n");
@@ -169,9 +174,11 @@ smtpfinish(m, e)
 	r = reply();
 	if (REPLYTYPE(r) == 4)
 		return (EX_TEMPFAIL);
-	if (r != 250)
-		return (EX_SOFTWARE);
-	return (EX_OK);
+	else if (r == 250)
+		return (EX_OK);
+	else if (r == 552 || r == 554)
+		return (EX_UNAVAILABLE);
+	return (EX_SOFTWARE);
 }
 /*
 **  SMTPQUIT -- close the SMTP connection.
