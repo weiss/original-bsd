@@ -1,4 +1,4 @@
-/*	map.h	4.1	11/09/80	*/
+/*	map.h	4.2	81/02/19	*/
 
 /*
  * Resource Allocation Maps

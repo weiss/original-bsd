@@ -1,4 +1,4 @@
-/*	nexus.h	4.1	02/19/81	*/
+/*	nexus.h	4.2	81/02/19	*/
 
 /*
  * Information about nexus's.

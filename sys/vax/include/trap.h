@@ -1,4 +1,4 @@
-/*	trap.h	4.2	02/15/81	*/
+/*	trap.h	4.3	81/02/19	*/
 
 /*
  * Trap type values

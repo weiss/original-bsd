@@ -1,4 +1,4 @@
-/*	reboot.h	4.1	11/09/80	*/
+/*	reboot.h	4.2	81/02/19	*/
 
 /*
  * Arguments to reboot system call.
