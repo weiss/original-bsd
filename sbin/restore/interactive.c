@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)interactive.c	5.2 (Berkeley) 06/18/85";
+static char sccsid[] = "@(#)interactive.c	5.3 (Berkeley) 07/21/85";
 #endif not lint
 
 #include "restore.h"
@@ -752,12 +752,18 @@ fmtentry(fp)
 	register struct afile *fp;
 {
 	static char fmtres[BUFSIZ];
+	static int precision = 0;
+	int i;
 	register char *cp, *dp;
 
-	if (vflag)
-		(void) sprintf(fmtres, "%5d ", fp->fnum);
-	else
+	if (!vflag) {
 		fmtres[0] = '\0';
+	} else {
+		if (precision == 0)
+			for (i = maxino; i > 0; i /= 10)
+				precision++;
+		(void) sprintf(fmtres, "%*d ", precision, fp->fnum);
+	}
 	dp = &fmtres[strlen(fmtres)];
 	if (dflag && BIT(fp->fnum, dumpmap) == 0)
 		*dp++ = '^';
