@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.26 (Berkeley) 11/25/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.27 (Berkeley) 12/17/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.26 (Berkeley) 11/25/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.27 (Berkeley) 12/17/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -84,7 +84,6 @@ int		TcpSndBufferSize = 0;		/* size of TCP send buffer */
 getrequests()
 {
 	int t;
-	register struct servent *sp;
 	int on = 1;
 	bool refusingconnections = TRUE;
 	FILE *pidf;
@@ -101,13 +100,16 @@ getrequests()
 		DaemonAddr.sin.sin_addr.s_addr = INADDR_ANY;
 	if (DaemonAddr.sin.sin_port == 0)
 	{
+		register struct servent *sp;
+
 		sp = getservbyname("smtp", "tcp");
 		if (sp == NULL)
 		{
 			syserr("554 service \"smtp\" unknown");
-			goto severe;
+			DaemonAddr.sin.sin_port = htons(25);
 		}
-		DaemonAddr.sin.sin_port = sp->s_port;
+		else
+			DaemonAddr.sin.sin_port = sp->s_port;
 	}
 
 	/*
@@ -614,9 +616,10 @@ gothostent:
 		if (sp == NULL)
 		{
 			syserr("554 makeconnection: service \"smtp\" unknown");
-			return (EX_OSERR);
+			port = htons(25);
 		}
-		port = sp->s_port;
+		else
+			port = sp->s_port;
 	}
 
 	switch (addr.sa.sa_family)
