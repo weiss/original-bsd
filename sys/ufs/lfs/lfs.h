@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs.h	7.12 (Berkeley) 04/08/92
+ *	@(#)lfs.h	7.13 (Berkeley) 05/14/92
  */
 
 #define	LFS_LABELPAD	8192		/* LFS label size */
@@ -224,8 +224,9 @@ struct segsum {
 
 /* Write a block and update the inode change times. */
 #define	LFS_UBWRITE(BP) { \
+	USES_VOP_BWRITE; \
 	VTOI((BP)->b_vp)->i_flag |= ICHG | IUPD; \
-	lfs_bwrite(BP); \
+	VOP_BWRITE(BP); \
 }
 
 /*
