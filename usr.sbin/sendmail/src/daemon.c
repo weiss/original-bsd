@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.50 (Berkeley) 05/24/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.51 (Berkeley) 05/27/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.50 (Berkeley) 05/24/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.51 (Berkeley) 05/27/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -828,7 +828,8 @@ getauthinfo(fd)
 	}
 
 	/* create ident query */
-	(void) sprintf(hbuf, "%d,%d\r\n", fa.sin.sin_port, la.sin.sin_port);
+	(void) sprintf(hbuf, "%d,%d\r\n",
+		ntohs(fa.sin.sin_port), ntohs(la.sin.sin_port));
 
 	/* create local address */
 	bzero(&la, sizeof la);
