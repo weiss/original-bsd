@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vd.c	7.8 (Berkeley) 08/27/88
+ *	@(#)vd.c	7.9 (Berkeley) 09/24/88
  */
 
 #include "dk.h"
@@ -700,7 +700,7 @@ setupaddr:
 
 	case VDOP_RAS:
 	case VDOP_GAW:
-		vd->vd_dcb.trailcnt += vba_sgsetup(bp, &vd->vd_rbuf,
+		vd->vd_dcb.trailcnt += vd_sgsetup(bp, &vd->vd_rbuf,
 		    &vd->vd_dcb.trail.sgtrail);
 		break;
 	}
