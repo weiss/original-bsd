@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)v7.local.c	5.10 (Berkeley) 06/24/90";
+static char sccsid[] = "@(#)v7.local.c	5.11 (Berkeley) 06/24/90";
 #endif /* not lint */
 
 /*
@@ -24,11 +24,9 @@ static char sccsid[] = "@(#)v7.local.c	5.10 (Berkeley) 06/24/90";
  * mail is queued).
  */
 findmail(user, buf)
-	char *user;
-	char *buf;
+	char *user, *buf;
 {
-
-	strcpy(copy(_PATH_MAILDIR, buf), user);
+	(void)sprintf(buf, "%s/%s", _PATH_MAILDIR, user);
 }
 
 /*
