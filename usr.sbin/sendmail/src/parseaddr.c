@@ -2,7 +2,7 @@
 # include <ctype.h>
 # include "postbox.h"
 
-static char	SccsId[] = "@(#)parseaddr.c	3.2	03/07/81";
+static char	SccsId[] = "@(#)parseaddr.c	3.3	03/07/81";
 
 /*
 **  PARSE -- Parse an address
@@ -66,6 +66,7 @@ parse(addr, a, copyf)
 	extern char *xalloc();
 	extern char *newstr();
 	char **pvp;
+	extern char *strcpy();
 
 	/*
 	**  Initialize and prescan address.
