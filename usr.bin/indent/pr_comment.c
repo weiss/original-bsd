@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pr_comment.c	5.3 (Berkeley) 09/08/85";
+static char sccsid[] = "@(#)pr_comment.c	5.4 (Berkeley) 01/02/88";
 #endif not lint
 
 /*-
@@ -49,7 +49,7 @@ static char sccsid[] = "@(#)pr_comment.c	5.3 (Berkeley) 09/08/85";
  * tabs from the beginning of the input line are removed 
  */
 
-#include "indent_globs.h";
+#include "indent_globs.h"
 
 
 pr_comment()
