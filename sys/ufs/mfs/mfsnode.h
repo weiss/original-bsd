@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfsnode.h	8.1 (Berkeley) 06/11/93
+ *	@(#)mfsnode.h	8.2 (Berkeley) 08/11/93
  */
 
 /*
@@ -50,6 +50,7 @@ struct mfsnode {
 #define mfs_lock ((int (*) __P((struct  vop_lock_args *)))nullop)
 #define mfs_unlock ((int (*) __P((struct  vop_unlock_args *)))nullop)
 #define mfs_islocked ((int (*) __P((struct  vop_islocked_args *)))nullop)
+#define mfs_pathconf ((int (*) __P((struct  vop_pathconf_args *)))mfs_badop)
 #define mfs_advlock ((int (*) __P((struct  vop_advlock_args *)))mfs_badop)
 #define mfs_blkatoff ((int (*) __P((struct  vop_blkatoff_args *)))mfs_badop)
 #define mfs_valloc ((int (*) __P((struct  vop_valloc_args *)))mfs_badop)
