@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.42		01/01/83);
+SCCSID(@(#)headers.c	3.43		01/03/83);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -715,10 +715,10 @@ commaize(h, p, fp, oldstyle, m, crlf)
 			opos += 2;
 		if (opos > 78 && !firstone)
 		{
-			fputc(',', obp);
+			fputc(',', fp);
 			if (crlf)
-				fputc('\r', obp);
-			fputc('\n', obp);
+				fputc('\r', fp);
+			fputc('\n', fp);
 			putline(obuf, fp, crlf, fullsmtp);
 			obp = obuf;
 			(void) sprintf(obp, "        ");
