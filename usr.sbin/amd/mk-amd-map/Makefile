@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 07/25/90
+#	@(#)Makefile	5.3 (Berkeley) 03/17/91
 
 PROG=	mk-amd-map
 NOMAN=	true
