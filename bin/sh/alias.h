@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1993 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Kenneth Almquist.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)alias.h	1.2 (Berkeley) 05/31/93
+ *	@(#)alias.h	8.1 (Berkeley) 05/31/93
  */
 
 #define ALIASINUSE	1
