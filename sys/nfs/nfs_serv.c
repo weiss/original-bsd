@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_serv.c	7.55 (Berkeley) 07/12/92
+ *	@(#)nfs_serv.c	7.56 (Berkeley) 07/12/92
  */
 
 /*
@@ -29,6 +29,7 @@
  */
 
 #include <sys/param.h>
+#include <sys/systm.h>
 #include <sys/proc.h>
 #include <sys/file.h>
 #include <sys/namei.h>
