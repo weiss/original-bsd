@@ -1,21 +1,22 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)NAM.c 1.1 10/30/80";
+static char sccsid[] = "@(#)NAM.c 1.2 03/07/81";
 
 #include "h00vars.h"
 #include "h01errs.h"
 
 char *
-NAM(value, name)
+NAM(val, name)
 
-	register int	value;	/* internal enumerated type value */
+	long		val;	/* internal enumerated type value */
 	char		*name;	/* ptr to enumerated type name descriptor */
 {
+	register int	value = val;
 	register short	*sptr;
 
 	sptr = (short *)name;
 	if (value < 0 || value >= *sptr) {
-		ERROR(ENAMRNG, value);
+		ERROR(ENAMRNG, val);
 		return;
 	}
 	sptr++;
