@@ -1,7 +1,8 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)LN.c 1.2 11/20/80";
+static char sccsid[] = "@(#)LN.c 1.3 01/06/81";
 
+#include <math.h>
 #include "h01errs.h"
 
 double
