@@ -1,11 +1,11 @@
-#	@(#)Makefile	5.10 (Berkeley) 05/11/90
+#	@(#)Makefile	5.11 (Berkeley) 02/28/91
 
 PROG=	snake
 SRCS=	snake.c move.c
 MAN6=	snake.0
 DPADD=	${LIBM} ${LIBTERM} ${LIBCOMPAT}
 LDADD=	-lm -ltermcap -lcompat
-SUBDIR=	snscore
 HIDEGAME=hidegame
 
+.include "../../Makefile.inc"
 .include <bsd.prog.mk>
