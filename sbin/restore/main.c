@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 06/18/85";
+static char sccsid[] = "@(#)main.c	5.3 (Berkeley) 04/23/86";
 #endif not lint
 
 /*
@@ -233,6 +233,7 @@ usage:
 	case 't':
 		setup();
 		extractdirs(0);
+		initsymtable((char *)0);
 		while (argc--) {
 			canon(*argv++, name);
 			ino = dirlookup(name);
