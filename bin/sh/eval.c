@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)eval.c	5.3 (Berkeley) 04/12/91";
+static char sccsid[] = "@(#)eval.c	5.4 (Berkeley) 04/16/92";
 #endif /* not lint */
 
 /*
@@ -231,6 +231,11 @@ evaltree(n, flags)
 		defun(n->narg.text, n->narg.next);
 		exitstatus = 0;
 		break;
+	case NNOT:
+		evaltree(n->nnot.com, EV_TESTED);
+		exitstatus = !exitstatus;
+		break;
+
 	case NPIPE:
 		evalpipe(n);
 		break;
