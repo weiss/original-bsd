@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)head.c	2.3 (Berkeley) 08/11/83";
+#endif
 
 #include "rcv.h"
 
@@ -7,8 +9,6 @@
  *
  * Routines for processing and detecting headlines.
  */
-
-static char *SccsId = "@(#)head.c	2.2 03/03/83";
 
 /*
  * See if the passed line buffer is a mail header.

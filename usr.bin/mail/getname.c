@@ -1,5 +1,6 @@
-#
-
+#ifndef lint
+static char sccsid[] = "@(#)getname.c	2.2 (Berkeley) 08/11/83";
+#endif
 
 /*
  * Getname / getuserid for those with no
@@ -11,8 +12,6 @@
  * the open file.  This is used for the Version 6 getenv
  * implementation.
  */
-
-static char *SccsId = "@(#)getname.c	2.1 07/01/81";
 
 #include "rcv.h"
 
