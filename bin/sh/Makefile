@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/01/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 PROG=	sh
 SRCS=	alias.c builtins.c cd.c echo.c error.c eval.c exec.c expand.c \
