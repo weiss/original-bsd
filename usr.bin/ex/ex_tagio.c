@@ -9,10 +9,14 @@
 
 #ifdef FASTTAG
 #ifndef lint
-static char *sccsid = "@(#)ex_tagio.c	7.3 (Berkeley) 01/31/86";
+static char *sccsid = "@(#)ex_tagio.c	7.4 (Berkeley) 03/09/87";
 #endif
 
+#ifndef vms
 #include <sys/file.h>
+#else
+#include <file.h>
+#endif
 #include "ex.h"
 
 static long offset = -1;
