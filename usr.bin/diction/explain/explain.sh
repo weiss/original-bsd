@@ -1,7 +1,10 @@
-#! /bin/sh
+#!/bin/sh -
 #
-#	@(#)explain.sh	4.6	(Berkeley)	89/05/11
+# %sccs.include.proprietary.sh%
 #
+#	@(#)explain.sh	4.7 (Berkeley) 04/17/91
+#
+
 D=/usr/share/dict/explain.d
 while	echo 'phrase?'
 	read x
