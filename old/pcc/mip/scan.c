@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)scan.c	2.1 (Berkeley) 04/23/86";
+static char *sccsid ="@(#)scan.c	2.2 (Berkeley) 10/15/86";
 #endif lint
 
 # include "pass1.h"
@@ -80,7 +80,7 @@ mainp1( argc, argv ) int argc; char *argv[]; {  /* control multiple files */
 	extern int ddebug, xdebug, gdebug, adebug;
 	extern unsigned int offsz;
 	int fdef = 0;
-	char *release = "PCC/2.1 (Berkeley) 04/23/86";
+	extern char *release;
 
 	offsz = caloff();
 	for( i=1; i<argc; ++i ){
