@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.166 (Berkeley) 05/16/95";
+static char sccsid[] = "@(#)conf.c	8.167 (Berkeley) 05/16/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -2753,6 +2753,31 @@ setvendor(vendor)
 #endif
 
 	return FALSE;
+}
+/*
+**  VENDOR_PRE_DEFAULTS, VENDOR_POST_DEFAULTS -- set vendor-specific defaults
+**
+**	Vendor_pre_defaults is called before reading the configuration
+**	file; vendor_post_defaults is called immediately after.
+**
+**	Parameters:
+**		e -- the global environment to initialize.
+**
+**	Returns:
+**		none.
+*/
+
+void
+vendor_pre_defaults(e)
+	ENVELOPE *e;
+{
+}
+
+
+void
+vendor_post_defaults(e)
+	ENVELOPE *e;
+{
 }
 /*
 **  STRTOL -- convert string to long integer
