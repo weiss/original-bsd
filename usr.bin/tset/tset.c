@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)tset.c	1.10 (Berkeley) 06/04/84";
+static char sccsid[] = "@(#)tset.c	1.11 (Berkeley) 01/10/85";
 #endif
 
 /*
@@ -471,7 +471,7 @@ main(argc, argv)
 int	argc;
 char	*argv[];
 {
-	char		buf[256];
+	char		buf[CAPBUFSIZ];
 	char		termbuf[32];
 	auto char	*bufp;
 	register char	*p;
@@ -909,6 +909,7 @@ mapold:				Map->Ident = NewType;
 	}
 	if (Ask)
 	{
+ask:
 		prs("TERM = (");
 		prs(TtyType);
 		prs(") ");
@@ -943,7 +944,8 @@ mapold:				Map->Ident = NewType;
 			if (DoSetenv)
 			{
 				TtyType = DEFTYPE;
-				tgetent(Capbuf, TtyType);
+				Alias[0] = '\0';
+				goto ask;
 			}
 			else
 				exit(1);
