@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sys_socket.c	7.11 (Berkeley) 04/16/91
+ *	@(#)sys_socket.c	7.12 (Berkeley) 07/17/91
  */
 
 #include "param.h"
@@ -148,6 +148,7 @@ soo_stat(so, ub)
 {
 
 	bzero((caddr_t)ub, sizeof (*ub));
+	ub->st_mode = S_IFSOCK;
 	return ((*so->so_proto->pr_usrreq)(so, PRU_SENSE,
 	    (struct mbuf *)ub, (struct mbuf *)0, 
 	    (struct mbuf *)0));
