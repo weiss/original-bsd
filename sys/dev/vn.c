@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: vn.c 1.8 92/12/20$
+ * from: Utah $Hdr: vn.c 1.13 94/04/02$
  *
- *	@(#)vn.c	8.5 (Berkeley) 04/01/94
+ *	@(#)vn.c	8.6 (Berkeley) 04/01/94
  */
 
 /*
