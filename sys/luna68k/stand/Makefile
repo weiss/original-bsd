@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.2 (Berkeley) 12/19/92
+#	@(#)Makefile	8.1 (Berkeley) 06/10/93
 
 AS=	as ${DEBUG}
 CC=	cc ${DEBUG}
