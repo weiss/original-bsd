@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.43		09/08/82);
+SCCSID(@(#)savemail.c	3.44		09/24/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -41,7 +41,7 @@ savemail()
 
 	if (exclusive++)
 		return;
-	if (CurEnv->e_class <= PRI_JUNK)
+	if (CurEnv->e_class < 0)
 	{
 		message(Arpa_Info, "Dumping junk mail");
 		return;
