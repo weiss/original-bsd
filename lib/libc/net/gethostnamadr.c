@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.14 (Berkeley) 10/30/86";
+static char sccsid[] = "@(#)gethostnamadr.c	6.15 (Berkeley) 01/31/87";
 #endif LIBC_SCCS and not lint
 
 #include <sys/types.h>
@@ -144,11 +144,11 @@ getanswer(msg, msglen, iquery)
 		if ((n = dn_expand((char *)&answer, eom, cp, bp, buflen)) < 0)
 			break;
 		cp += n;
-		type = getshort(cp);
+		type = _getshort(cp);
  		cp += sizeof(u_short);
-		class = getshort(cp);
+		class = _getshort(cp);
  		cp += sizeof(u_short) + sizeof(u_long);
-		n = getshort(cp);
+		n = _getshort(cp);
 		cp += sizeof(u_short);
 		if (type == T_CNAME) {
 			cp += n;
