@@ -1,11 +1,14 @@
-#	@(#)Makefile	5.9 (Berkeley) 09/27/90
+#	@(#)Makefile	5.9.1.1 (Berkeley) 10/21/90
 
 PROG=	rlogind
-CFLAGS+=-DKERBEROS -DCRYPT
-SRCS=	rlogind.c des_rw.c
+SRCS=	rlogind.c
+#SRCS=	rlogind.c des_rw.c
+#CFLAGS+=-DKERBEROS -DCRYPT
 MAN8=	rlogind.0
-DPADD=	${LIBUTIL} ${LIBKRB} ${LIBDES}
-LDADD=	-lutil -lkrb -ldes
+#DPADD=	${LIBUTIL} ${LIBKRB} ${LIBDES}
+#LDADD=	-lutil -lkrb -ldes
+DPADD=	${LIBUTIL}
+LDADD=	-lutil
 .PATH: ${.CURDIR}/../../usr.bin/rlogin
 
 .include <bsd.prog.mk>
