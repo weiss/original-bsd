@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.14 (Berkeley) 11/29/93";
+static char sccsid[] = "@(#)headers.c	8.15 (Berkeley) 12/10/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -345,6 +345,11 @@ eatheader(e, full)
 	else
 		define('u', NULL, e);
 
+	/* full name of from person */
+	p = hvalue("full-name", e);
+	if (p != NULL)
+		define('x', p, e);
+
 	if (tTd(32, 1))
 		printf("----- collected header -----\n");
 	msgid = "<none>";
@@ -426,11 +431,6 @@ eatheader(e, full)
 		e->e_msgpriority = e->e_msgsize
 				 - e->e_class * WkClassFact
 				 + e->e_nrcpts * WkRecipFact;
-
-	/* full name of from person */
-	p = hvalue("full-name", e);
-	if (p != NULL)
-		define('x', p, e);
 
 	/* date message originated */
 	p = hvalue("posted-date", e);
