@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)telnet.1	6.12 (Berkeley) 07/28/90
+.\"     @(#)telnet.1	6.13 (Berkeley) 07/28/90
 .\"
 .Dd 
 .Dt TELNET 1
@@ -19,8 +19,11 @@ protocol
 .Op Fl a
 .Op Fl n Ar tracefile
 .Op Fl e Ar escapechar
+.Ob
 .Op Fl l Ar user
-.Op Ar host Op Ar port
+.Ar host
+.Op port
+.Oe
 .Sh DESCRIPTION
 The
 .Nm telnet
