@@ -3,15 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)vcmd.h	7.2 (Berkeley) 12/18/87
+ *	@(#)vcmd.h	7.3 (Berkeley) 02/05/91
  */
 
-#ifndef _IOCTL_
 #ifdef KERNEL
 #include "ioctl.h"
 #else
 #include <sys/ioctl.h>
-#endif
 #endif
 
 #define	VPRINT		0100

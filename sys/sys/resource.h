@@ -4,8 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)resource.h	7.3 (Berkeley) 06/28/90
+ *	@(#)resource.h	7.4 (Berkeley) 02/05/91
  */
+
+#ifndef _RESOURCE_H_
+#define	_RESOURCE_H_
 
 /*
  * Process priority specifications to get/setpriority.
@@ -63,3 +66,5 @@ struct rlimit {
 	long	rlim_cur;		/* current (soft) limit */
 	long	rlim_max;		/* maximum value for rlim_cur */
 };
+
+#endif	/* !_RESOURCE_H_ */

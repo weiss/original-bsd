@@ -4,8 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ioctl_compat.h	7.3 (Berkeley) 05/16/90
+ *	@(#)ioctl_compat.h	7.4 (Berkeley) 02/05/91
  */
+
+#ifndef _IOCTL_COMPAT_H_
+#define	_IOCTL_COMPAT_H_
 
 #ifdef KERNEL
 #include "ttychars.h"
@@ -134,3 +137,5 @@ struct sgttyb {
 #define	OTTYDISC	0
 #define	NETLDISC	1
 #define	NTTYDISC	2
+
+#endif /* !_IOCTL_COMPAT_H_ */
