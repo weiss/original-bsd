@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkfs.c	8.10 (Berkeley) 05/03/95";
+static char sccsid[] = "@(#)mkfs.c	8.11 (Berkeley) 05/03/95";
 #endif /* not lint */
 
 #include <unistd.h>
@@ -535,6 +535,7 @@ next:
 	sblock.fs_cstotal.cs_nffree = 0;
 	sblock.fs_fmod = 0;
 	sblock.fs_ronly = 0;
+	sblock.fs_clean = 1;
 	/*
 	 * Dump out summary information about file system.
 	 */
