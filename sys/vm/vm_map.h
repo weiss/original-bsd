@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_map.h	7.3 (Berkeley) 04/21/91
+ *	@(#)vm_map.h	7.4 (Berkeley) 02/19/92
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -152,6 +152,8 @@ void		vm_map_init();
 vm_map_t	vm_map_create();
 void		vm_map_deallocate();
 void		vm_map_reference();
+int		vm_map_findspace __P((vm_map_t, vm_offset_t, vm_size_t,
+				      vm_offset_t *));
 int		vm_map_find();
 int		vm_map_remove();
 int		vm_map_lookup();
