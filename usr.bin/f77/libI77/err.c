@@ -1,5 +1,5 @@
 /*
-char id_err[] = "@(#)err.c	1.11";
+char id_err[] = "@(#)err.c	1.12";
  *
  * file i/o error and initialization routines
  */
@@ -131,10 +131,11 @@ prnt_int()
 
 prnt_fmt(n) int n;
 {	int i; char *ep;
-	fprintf(stderr, "part of last format: ");
+	fprintf(stderr, "format: ");
 	if(n==F_ERFMT)
 	{	i = fmtptr - fmtbuf;
-		ep = fmtptr - (i<20?i:20);
+		ep = fmtptr - (i<25?i:25);
+		if(ep != fmtbuf) fprintf(stderr, "... ");
 		i = i + 5;
 	}
 	else
@@ -147,6 +148,7 @@ prnt_fmt(n) int n;
 		if(ep==fmtptr) fputc('|',stderr);
 		ep++; i--;
 	}
+	if(*ep) fprintf(stderr, " ...");
 	fputc('\n',stderr);
 }
 
