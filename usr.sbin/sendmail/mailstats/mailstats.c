@@ -14,10 +14,9 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mailstats.c	8.1 (Berkeley) 06/07/93";
+static char sccsid[] = "@(#)mailstats.c	8.2 (Berkeley) 07/27/93";
 #endif /* not lint */
 
-#include <sys/file.h>
 #include <sendmail.h>
 #include <mailstats.h>
 #include <pathnames.h>
