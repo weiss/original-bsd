@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)init.c	6.23 (Berkeley) 06/03/93";
+static char sccsid[] = "@(#)init.c	6.24 (Berkeley) 07/15/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -168,6 +168,13 @@ main(argc, argv)
 	 */
 	if (setsid() < 0)
 		warning("initial setsid() failed: %m");
+
+	/*
+	 * Establish an initial user so that programs running
+	 * single user do not freak out and die (like passwd).
+	 */
+	if (setlogin("root") < 0)
+		warning("setlogin() failed: %m");
 
 	/*
 	 * This code assumes that we always get arguments through flags,
