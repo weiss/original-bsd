@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)dbm.c	4.2 (Berkeley) 04/10/85";
+static char sccsid[] = "@(#)dbm.c	4.3 (Berkeley) 06/03/85";
 #endif
 
 #include	"dbm.h"
@@ -484,7 +484,7 @@ char buf[PBLKSIZ];
 	return;
 
 bad:
-	printf("bad block\n");
+	printf("dbm: bad block\n");
 	abort();
 	clrbuf(buf, PBLKSIZ);
 }
