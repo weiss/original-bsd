@@ -1,4 +1,4 @@
-/*	vfs_vnops.c	4.33	83/02/20	*/
+/*	vfs_vnops.c	4.34	83/03/31	*/
 
 #include "../machine/reg.h"
 
@@ -107,7 +107,8 @@ access(ip, mode)
 		m >>= 3;
 		if (u.u_gid == ip->i_gid)
 			goto found;
-		for (gp = u.u_groups; gp < &u.u_groups[NGROUPS]; gp++)
+		gp = u.u_groups;
+		for (; gp < &u.u_groups[NGROUPS] && *gp != NOGROUP; gp++)
 			if (ip->i_gid == *gp)
 				goto found;
 		m >>= 3;
