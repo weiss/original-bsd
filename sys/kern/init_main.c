@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.46 (Berkeley) 02/14/92
+ *	@(#)init_main.c	7.47 (Berkeley) 03/18/92
  */
 
 #include "param.h"
@@ -54,6 +54,7 @@ extern	int (*mountroot)();
 
 struct	vnode *rootvp, *swapdev_vp;
 int	boothowto;
+struct	timeval boottime;
 
 /*
  * System startup; initialize the world, create process 0,
