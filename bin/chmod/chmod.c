@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)chmod.c	8.5 (Berkeley) 03/31/94";
+static char sccsid[] = "@(#)chmod.c	8.6 (Berkeley) 03/31/94";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -165,6 +165,8 @@ done:	argv += optind;
 			rval = 1;
 		}
 	}
+	if (errno)
+		err(1, "fts_read");
 	exit(rval);
 }
 
