@@ -1,4 +1,3 @@
-# include <stdio.h>
 # include <pwd.h>
 # include "sendmail.h"
 
@@ -33,7 +32,7 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	3.18	08/18/81";
+static char SccsId[] = "@(#)conf.c	3.19	08/20/81";
 
 
 # include <whoami.h>		/* definitions of machine id's at berkeley */
