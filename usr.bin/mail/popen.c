@@ -5,7 +5,7 @@
 #define	RDR	0
 #define	WTR	1
 static	int	popen_pid[20];
-static	char	*sccsid = "@(#)popen.c	1.2.1.2 03/15/82";
+static	char	*sccsid = "@(#)popen.c	1.3 03/15/82";
 
 # ifndef VMUNIX
 # define vfork	fork
