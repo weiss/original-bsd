@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.31 (Berkeley) 03/29/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.32 (Berkeley) 03/29/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.31 (Berkeley) 03/29/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.32 (Berkeley) 03/29/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -474,7 +474,7 @@ smtp(e)
 
 			/* issue success if appropriate and reset */
 			if (Errors == 0 || HoldErrs)
-				message("250 %s OK", id);
+				message("250 %s Message accepted for delivery", id);
 			else
 				e->e_flags &= ~EF_FATALERRS;
 
