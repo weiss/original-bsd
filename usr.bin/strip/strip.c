@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)strip.c	8.2 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)strip.c	8.3 (Berkeley) 05/16/95";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -62,7 +62,7 @@ main(argc, argv)
 	argc -= optind;
 	argv += optind;
 
-	while ((fn = *argv++) != NULL) {
+	for (eval = 0; (fn = *argv++) != NULL;) {
 		if ((fd = open(fn, O_RDWR)) < 0) {
 			warn("%s", fn);
 			eval = 1;
