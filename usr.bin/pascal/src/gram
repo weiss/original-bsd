@@ -1,4 +1,4 @@
-"@(#)gram 1.6 08/18/83"
+"@(#)gram 1.7 08/18/83"
 /yyval/s/int/union semstack/
 s/ 0//
 /yypv/s/int/union semstack/
@@ -48,7 +48,10 @@ $a
 /yyr2/s/ {/ = {/
 /yygo/s/ {/ = {/
 /yypgo/s/ {/ = {/
-/static/s/static/\/\* &/
-s/$/ \*\//
+/static/i
+\#ifndef lint
+.
+/static/a
+\#endif
 w!
 q
