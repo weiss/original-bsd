@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)format.c	5.2 (Berkeley) 10/13/89";
+static char sccsid[] = "@(#)format.c	5.3 (Berkeley) 06/29/90";
 #endif
 
 /*
@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)format.c	5.2 (Berkeley) 10/13/89";
 
 #include "defs.h"
 #include <ctype.h>
-#include <cencode.h>
+#include <vis.h>
 
 extern char BADMOD[];
 extern char NOFORK[];
@@ -430,6 +430,8 @@ printesc(c)
 	register int c;
 
 {
+	char visbuf[5];
 
-	adbprintf("%s", cencode((char)c, isprint(c) ? 0 : CENC_GRAPH));
+	vis(visbuf, (char)c, VIS_TAB | VIS_NL | VIS_NOSLASH, 0);
+	adbprintf("%s", visbuf);
 }
