@@ -1,6 +1,8 @@
-(Version 6.1 of 12/21/92)
+(Version 6.2 of 01/20/93)
 
 Multi-token class matches.  IDA implementation is simple, but too
 stupid.
 
 RFC 931 validation.
+
+Database (keyed lookup) locking.
