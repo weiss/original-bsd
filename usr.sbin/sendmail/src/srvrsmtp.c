@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1983 Eric P. Allman
+ * Copyright (c) 1983, 1995 Eric P. Allman
  * Copyright (c) 1988, 1993
  *	The Regents of the University of California.  All rights reserved.
  *
@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.66 (Berkeley) 04/10/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.67 (Berkeley) 04/21/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.66 (Berkeley) 04/10/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.67 (Berkeley) 04/21/95 (without SMTP)";
 #endif
 #endif /* not lint */
 

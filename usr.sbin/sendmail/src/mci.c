@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1983 Eric P. Allman
+ * Copyright (c) 1983, 1995 Eric P. Allman
  * Copyright (c) 1988, 1993
  *	The Regents of the University of California.  All rights reserved.
  *
@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mci.c	8.15 (Berkeley) 08/17/94";
+static char sccsid[] = "@(#)mci.c	8.16 (Berkeley) 04/21/95";
 #endif /* not lint */
 
 #include "sendmail.h"

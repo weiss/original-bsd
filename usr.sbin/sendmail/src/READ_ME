@@ -1,10 +1,10 @@
-# Copyright (c) 1983 Eric P. Allman
+# Copyright (c) 1983, 1995 Eric P. Allman
 # Copyright (c) 1988 The Regents of the University of California.
 # All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)READ_ME	8.82 (Berkeley) 03/22/95
+#	@(#)READ_ME	8.83 (Berkeley) 04/21/95
 #
 
 This directory contains the source files for sendmail.
@@ -949,4 +949,4 @@ version.c	The version number and information about this
 
 Eric Allman
 
-(Version 8.82, last update 03/22/95 12:42:42)
+(Version 8.83, last update 04/21/95 09:56:37)
