@@ -1,11 +1,11 @@
 #ifndef lint
-static char *sccsid = "@(#)du.c	4.9 (Berkeley) 05/22/83";
+static char *sccsid = "@(#)du.c	4.10 (Berkeley) 06/30/83";
 #endif
 
 #include <stdio.h>
 #include <sys/param.h>
 #include <sys/stat.h>
-#include <dir.h>
+#include <sys/dir.h>
 
 char	path[BUFSIZ], name[BUFSIZ];
 int	aflg;
