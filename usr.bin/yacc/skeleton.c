@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)skeleton.c	5.2 (Berkeley) 02/15/90";
+static char sccsid[] = "@(#)skeleton.c	5.3 (Berkeley) 03/06/90";
 #endif /* not lint */
 
 #include "defs.h"
@@ -82,9 +82,7 @@ char *body[] =
     "    if (yys = getenv(\"YYDEBUG\"))",
     "    {",
     "        yyn = *yys;",
-    "        if (yyn == '0')",
-    "            yydebug = 0;",
-    "        else if (yyn >= '1' && yyn <= '9')",
+    "        if (yyn >= '0' && yyn <= '9')",
     "            yydebug = yyn - '0';",
     "    }",
     "#endif",
