@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)more.c	5.2 (Berkeley) 08/29/85";
+static char sccsid[] = "@(#)more.c	5.3 (Berkeley) 11/27/85";
 #endif not lint
 
 /*
@@ -1502,6 +1502,9 @@ retry:
 	       }
 	    }
 	    EodClr = tgetstr("cd", &clearptr);
+	    if ((chBS = tgetstr("bc", &clearptr)) == NULL)
+		chBS = "\b";
+
 	}
 	if ((shell = getenv("SHELL")) == NULL)
 	    shell = "/bin/sh";
