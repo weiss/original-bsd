@@ -1,5 +1,5 @@
 /*
- * @(#)tt.h	3.16 05/18/87
+ * @(#)tt.h	3.17 10/02/87
  */
 
 /*
@@ -59,7 +59,7 @@ struct tt_tab {
 	int tt_len;
 	int (*tt_func)();
 };
-struct tt_tab tt_tab[];
+extern struct tt_tab tt_tab[];
 
 /*
  * Clean interface to termcap routines.
