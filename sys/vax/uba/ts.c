@@ -1,6 +1,6 @@
-/*	ts.c	4.2	12/17/80	*/
+/*	ts.c	4.3	12/19/80	*/
 
-#include "../conf/ts.h"
+#include "ts.h"
 #if NTS > 0
 /*
  * TS11 tape driver
