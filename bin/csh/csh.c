@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)csh.c	4.21 (Berkeley) 01/16/85";
+static	char *sccsid = "@(#)csh.c	4.22 (Berkeley) 03/19/85";
 #endif
 
 #include "sh.h"
@@ -316,10 +316,10 @@ notty:
 		srccat(value("home"), "/.cshrc");
 		if (!fast && !arginp && !onelflg && !havhash)
 			dohash();
-		dosource(loadhist);
 		if (loginsh) {
 			srccat(value("home"), "/.login");
 		}
+		dosource(loadhist);
 	}
 
 	/*
