@@ -1,5 +1,6 @@
-/*	mba.c	4.1	11/09/80	*/
+/*	mba.c	4.2	12/17/80	*/
 
+#if VAX==780
 #include "../h/param.h"
 #include "../h/inode.h"
 #include "../h/pte.h"
@@ -60,3 +61,9 @@ mbainit(mbanum)
 	mbap->mba_cr = MBAINIT;
 	mbaact |= 1<<mbanum;
 }
+#else
+mbadummy()
+{
+	;
+}
+#endif
