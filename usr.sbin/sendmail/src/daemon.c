@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.38 (Berkeley) 09/03/91 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.39 (Berkeley) 10/05/91 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.38 (Berkeley) 09/03/91 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.39 (Berkeley) 10/05/91 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -482,8 +482,7 @@ myhostname(hostbuf, size)
 	else
 		return (NULL);
 }
-
-/*
+/*
  *  MAPHOSTNAME -- turn a hostname into canonical form
  *
  *	Parameters:
@@ -491,7 +490,8 @@ myhostname(hostbuf, size)
  *		hbsize -- the size of hbuf.
  *
  *	Returns:
- *		none.
+ *		TRUE if the host name was mapped.
+ *		FALSE otherwise.
  *
  *	Side Effects:
  *		Looks up the host specified in hbuf.  If it is not
@@ -499,6 +499,8 @@ myhostname(hostbuf, size)
  *		the canonical name.  If the name is unknown, or it
  *		is already the canonical name, leave it unchanged.
  */
+
+bool
 maphostname(hbuf, hbsize)
 	char *hbuf;
 	int hbsize;
@@ -514,20 +516,19 @@ maphostname(hbuf, hbsize)
 	 * strip the brackets and to preserve hbuf if address is
 	 * unknown.
 	 */
-	if (*hbuf != '[') {
-		getcanonname(hbuf, hbsize);
-		return;
-	}
+	if (*hbuf != '[')
+		return (getcanonname(hbuf, hbsize));
 	if ((cp = index(strcpy(ptr, hbuf), ']')) == NULL)
-		return;
+		return (FALSE);
 	*cp = '\0';
 	in_addr = inet_addr(&ptr[1]);
 	hp = gethostbyaddr((char *)&in_addr, sizeof(struct in_addr), AF_INET);
 	if (hp == NULL)
-		return;
+		return (FALSE);
 	if (strlen(hp->h_name) >= hbsize)
 		hp->h_name[hbsize - 1] = '\0';
 	(void)strcpy(hbuf, hp->h_name);
+	return (TRUE);
 }
 
 # else DAEMON
@@ -566,7 +567,8 @@ myhostname(hostbuf, size)
 **		hbsize -- the size of hbuf.
 **
 **	Returns:
-**		none.
+**		TRUE if the hostname was mapped.
+**		FALSE otherwise.
 **
 **	Side Effects:
 **		Looks up the host specified in hbuf.  If it is not
@@ -576,11 +578,12 @@ myhostname(hostbuf, size)
 */
 
 /*ARGSUSED*/
+bool
 maphostname(hbuf, hbsize)
 	char *hbuf;
 	int hbsize;
 {
-	return;
+	return (FALSE);
 }
 
 #endif DAEMON
