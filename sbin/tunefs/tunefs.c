@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)tunefs.c	5.7 (Berkeley) 09/12/88";
+static char sccsid[] = "@(#)tunefs.c	5.8 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 /*
@@ -32,9 +32,9 @@ static char sccsid[] = "@(#)tunefs.c	5.7 (Berkeley) 09/12/88";
 #include <sys/stat.h>
 #include <sys/fs.h>
 #include <sys/inode.h>
-
-#include <stdio.h>
 #include <fstab.h>
+#include <stdio.h>
+#include <paths.h>
 
 union {
 	struct	fs sb;
@@ -68,7 +68,7 @@ again:
 		if (*special != '/') {
 			if (*special == 'r')
 				special++;
-			(void)sprintf(device, "/dev/%s", special);
+			(void)sprintf(device, "%s/%s", _PATH_DEV, special);
 			special = device;
 			goto again;
 		}
