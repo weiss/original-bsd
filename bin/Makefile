@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.9	(Berkeley)	01/05/83
+#	@(#)Makefile	4.10	(Berkeley)	02/09/83
 #
 DESTDIR=
 CFLAGS=	-O
@@ -33,7 +33,7 @@ ${SUBDIR}: /tmp
 	cd $@; make ${MFLAGS}
 
 ${STD} cp mv:
-	cc ${CFLAGS} -o $@ $@.c
+	${CC} ${CFLAGS} -o $@ $@.c
 
 # take care with cp and mv, install uses them
 install:
