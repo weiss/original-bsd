@@ -1,8 +1,8 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)readdir.c 4.2 03/12/82";
+static char sccsid[] = "@(#)readdir.c 4.3 03/30/82";
 
-#include <sys/types.h>
+#include <sys/param.h>
 #include <ndir.h>
 
 /*
