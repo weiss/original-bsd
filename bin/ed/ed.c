@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)ed.c	4.3 (Berkeley) 08/11/83";
+static char sccsid[] = "@(#)ed.c	4.4 (Berkeley) 04/26/86";
 #endif
 
 /*
@@ -749,7 +749,6 @@ int (*f)();
 		if ((dol-zero)+1 >= nlall) {
 			int *ozero = zero;
 			nlall += 512;
-			free((char *)zero);
 			if ((zero = (int *)realloc((char *)zero, nlall*sizeof(int)))==NULL) {
 				lastc = '\n';
 				zero = ozero;
