@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tty.c	5.3 (Berkeley) 09/14/92";
+static char sccsid[] = "@(#)tty.c	5.4 (Berkeley) 12/22/92";
 #endif /* not lint */
 
 /*
@@ -30,7 +30,7 @@ int
 gettmode()
 {
 	if (tcgetattr(STDIN_FILENO, &origtermio))
-		return (OK);
+		return (ERR);
 
 	GT = (origtermio.c_oflag & OXTABS) == 0;
 	NONL = (origtermio.c_oflag & ONLCR) == 0;
