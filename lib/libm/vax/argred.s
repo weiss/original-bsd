@@ -13,7 +13,7 @@
 	.data
 	.align	2
 _sccsid:
-.asciz	"@(#)argred.s	1.1 (Berkeley) 8/21/85; 1.4 (ucb.elefunt) 03/21/86"
+.asciz	"@(#)argred.s	1.1 (Berkeley) 8/21/85; 5.1 (ucb.elefunt) 11/30/87"
 
 #  libm$argred implements Bob Corbett's argument reduction and
 #  libm$sincos implements Peter Tang's double precision sin/cos.
