@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)tcp_timer.c	7.14 (Berkeley) 06/29/88
+ *	@(#)tcp_timer.c	7.11.1.3 (Berkeley) 02/15/89
  */
 
 #include "param.h"
@@ -181,7 +181,9 @@ tcp_timers(tp, timer)
 		 * retransmit times until then.
 		 */
 		if (tp->t_rxtshift > TCP_MAXRXTSHIFT / 4) {
+#if BSD>=43
 			in_losing(tp->t_inpcb);
+#endif
 			tp->t_rttvar += (tp->t_srtt >> 2);
 			tp->t_srtt = 0;
 		}
