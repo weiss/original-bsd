@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.c	7.21 (Berkeley) 02/03/92
+ *	@(#)in.c	7.22 (Berkeley) 02/20/92
  */
 
 #include "param.h"
@@ -513,6 +513,7 @@ in_ifinit(ifp, ia, sin, scrub)
 	/*
 	 * Add route for the network.
 	 */
+	ia->ia_ifa.ifa_metric = ifp->if_metric;
 	if (ifp->if_flags & IFF_BROADCAST) {
 		ia->ia_broadaddr.sin_addr = 
 			in_makeaddr(ia->ia_subnet, INADDR_BROADCAST);
