@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.1 (Berkeley) 04/30/91
+#	@(#)Makefile	5.2 (Berkeley) 06/17/91
 
-MAN1=	intro.0
+MAN1=	cd.0 intro.0 wait.0
 
 .include <bsd.prog.mk>
 
