@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)tunefs.c	4.1 (Berkeley) 02/26/83";
+static	char *sccsid = "@(#)tunefs.c	4.2 (Berkeley) 02/26/83";
 #endif lint
 
 /*
@@ -197,7 +197,7 @@ fatal(fmt, arg1, arg2)
 	char *fmt, *arg1, *arg2;
 {
 
-	fprintf(stderr, "newfs: ");
+	fprintf(stderr, "tunefs: ");
 	fprintf(stderr, fmt, arg1, arg2);
 	putc('\n', stderr);
 	exit(10);
