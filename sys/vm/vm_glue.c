@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_glue.c	7.23 (Berkeley) 04/29/93
+ *	@(#)vm_glue.c	7.24 (Berkeley) 05/24/93
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -144,7 +144,7 @@ vsunlock(addr, len, dirtied)
 {
 #ifdef	lint
 	dirtied++;
-#endif	lint
+#endif
 	vm_map_pageable(&curproc->p_vmspace->vm_map, trunc_page(addr),
 			round_page(addr+len-1), TRUE);
 }

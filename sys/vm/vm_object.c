@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_object.c	7.13 (Berkeley) 10/07/92
+ *	@(#)vm_object.c	7.14 (Berkeley) 05/24/93
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -854,7 +854,7 @@ void vm_object_setpager(object, pager, paging_offset,
 {
 #ifdef	lint
 	read_only++;	/* No longer used */
-#endif	lint
+#endif
 
 	vm_object_lock(object);			/* XXX ? */
 	object->pager = pager;
@@ -1337,7 +1337,7 @@ boolean_t vm_object_coalesce(prev_object, next_object,
 
 #ifdef	lint
 	next_offset++;
-#endif	lint
+#endif
 
 	if (next_object != NULL) {
 		return(FALSE);

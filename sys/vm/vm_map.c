@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vm_map.c	7.8 (Berkeley) 03/09/93
+ *	@(#)vm_map.c	7.9 (Berkeley) 05/24/93
  *
  *
  * Copyright (c) 1987, 1990 Carnegie-Mellon University.
@@ -678,7 +678,7 @@ void vm_map_simplify_entry(map, entry)
 {
 #ifdef	lint
 	map++;
-#endif	lint
+#endif
 
 	/*
 	 *	If this entry corresponds to a sharing map, then
@@ -707,7 +707,7 @@ void vm_map_simplify_entry(map, entry)
 			 * Later.
 			 */
 		}
-#endif	0
+#endif
 	}
 	else {
 		/*
