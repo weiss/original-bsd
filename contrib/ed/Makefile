@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 03/01/93
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	ed
 SRCS=	a.c add_line.c address.c bang.c c.c d.c e.c edhup.c equal.c f.c \
