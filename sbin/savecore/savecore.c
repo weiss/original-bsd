@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.15 (Berkeley) 04/02/89";
+static char sccsid[] = "@(#)savecore.c	5.16 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 /*
@@ -38,7 +38,7 @@ static char sccsid[] = "@(#)savecore.c	5.15 (Berkeley) 04/02/89";
 #include <sys/syslog.h>
 #include <stdio.h>
 #include <nlist.h>
-#include "pathnames.h"
+#include <paths.h>
 
 #define	DAY	(60L*60L*24L)
 #define	LEEWAY	(3*DAY)
@@ -202,15 +202,15 @@ find_dev(dev, type)
 	register dev_t dev;
 	register int type;
 {
-	register DIR *dfd = opendir("/dev");
+	register DIR *dfd = opendir(_PATH_DEV);
 	struct direct *dir;
 	struct stat statb;
 	static char devname[MAXPATHLEN + 1];
 	char *dp;
 
-	strcpy(devname, "/dev/");
+	strcpy(devname, _PATH_DEV);
 	while ((dir = readdir(dfd))) {
-		strcpy(devname + 5, dir->d_name);
+		strcpy(devname + sizeof(_PATH_DEV) - 1, dir->d_name);
 		if (stat(devname, &statb)) {
 			perror(devname);
 			continue;
