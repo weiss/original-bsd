@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4 (Berkeley) 08/16/85";
+#	@(#)Makefile	5.5 (Berkeley) 09/17/85";
 #
 #	Makefile for Xerox Routing Information Protocol
 #	Daemon
@@ -11,16 +11,16 @@
 ALL=	XNSrouted
 OBJS=	af.o if.o input.o main.o output.o startup.o tables.o timer.o \
 	trace.o
-CFLAGS= -g
+CFLAGS=  -O
 C2=	/lib/c2
 ASMSCRIPT= /sys/machine/asm.sed
 DESTDIR=
-LDFLAGS= -g
+LDFLAGS=
 
 all:	${ALL}
 
 XNSrouted: ${OBJS}
-	${CC} -o XNSrouted ${LDFLAGS} ${OBJS}
+	${CC} -g -o XNSrouted ${LDFLAGS} ${OBJS}
 
 install: XNSrouted
 	install -s XNSrouted ${DESTDIR}/etc
