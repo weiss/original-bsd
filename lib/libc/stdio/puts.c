@@ -1,4 +1,7 @@
-/* @(#)puts.c	4.1 (Berkeley) 12/21/80 */
+#ifndef lint
+static char sccsid[] = "@(#)puts.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include	<stdio.h>
 
 puts(s)
