@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)stdio.h	5.15 (Berkeley) 03/09/91
+ *	@(#)stdio.h	5.16 (Berkeley) 04/15/91
  */
 
 #ifndef	_STDIO_H_
@@ -240,6 +240,8 @@ int	 setlinebuf __P((FILE *));
 char	*tempnam __P((const char *, const char *));
 int	 snprintf __P((char *, size_t, const char *, ...));
 int	 vsnprintf __P((char *, size_t, const char *, _VA_LIST_));
+int	 vscanf __P((const char *, _VA_LIST_));
+int	 vsscanf __P((const char *, const char *, _VA_LIST_));
 __END_DECLS
 
 /*
