@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)swapon.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)swapon.c	5.5 (Berkeley) 02/27/91";
 #endif /* not lint */
 
 #include <fstab.h>
@@ -59,7 +59,6 @@ main(argc, argv)
 	exit(stat);
 }
 
-static
 add(name, ignoreebusy)
 	char *name;
 	int ignoreebusy;
@@ -88,7 +87,6 @@ add(name, ignoreebusy)
 	return(0);
 }
 
-static
 usage()
 {
 	fprintf(stderr, "usage: swapon [-a] [special_file ...]\n");
