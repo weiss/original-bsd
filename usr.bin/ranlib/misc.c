@@ -9,12 +9,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.1 (Berkeley) 01/18/91";
+static char sccsid[] = "@(#)misc.c	5.2 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/signal.h>
-#include <sys/errno.h>
+#include <errno.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
