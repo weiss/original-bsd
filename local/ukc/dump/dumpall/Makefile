@@ -1,9 +1,9 @@
-#	Makefile	1.1	08/01/84
+#	Makefile	1.2	08/01/84
 
 SRC=doadump.sh dumpall.sh
 
 all:
-	echo use make install
+	@echo use make install
 
 install: $(SRC)
 	install -c -m 750 doadump.sh /etc/doadump
