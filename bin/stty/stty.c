@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)stty.c	5.15 (Berkeley) 06/26/90";
+static char sccsid[] = "@(#)stty.c	5.16 (Berkeley) 06/29/90";
 #endif not lint
 
 /*
@@ -191,7 +191,6 @@ struct {
 	u_char	def;
 } cchars[] = {
 	{{ "erase", "era" },		VERASE,	CERASE, },
-	{{ "erase2", "era2" },		VERASE2, _POSIX_VDISABLE, },
 	{{ "werase", "wera" },		VWERASE, CWERASE, },
 	{{ "kill", "kill" },		VKILL,	CKILL, },
 	{{ "intr", "int" },		VINTR,	CINTR, },
