@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)init.c	5.9 (Berkeley) 04/13/87";
+static char sccsid[] = "@(#)init.c	5.10 (Berkeley) 01/10/88";
 #endif not lint
 
 #include <signal.h>
@@ -247,6 +247,7 @@ runcom(oldhowto)
 	return (1);
 }
 
+int merge();
 struct	sigvec	mvec = { merge, sigmask(SIGTERM), 0 };
 /*
  * Multi-user.  Listen for users leaving, SIGHUP's
