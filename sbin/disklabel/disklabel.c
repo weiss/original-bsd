@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)disklabel.c	5.9 (Berkeley) 06/19/87";
+static char sccsid[] = "@(#)disklabel.c	5.10 (Berkeley) 09/10/87";
 /* from static char sccsid[] = "@(#)disklabel.c	1.2 (Symmetric) 11/28/85"; */
 #endif
 
@@ -419,6 +419,7 @@ display(f, lp)
 			fprintf(f, ")\n");
 		}
 	}
+	fflush(f);
 }
 
 edit(lp)
