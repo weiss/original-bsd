@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)Locore.c	7.4 (Berkeley) 12/16/90
+ *	@(#)Locore.c	7.5 (Berkeley) 09/21/93
  */
 
 #include "sys/param.h"
@@ -204,7 +204,7 @@ longjmp(lp) label_t *lp; { /*NOTREACHED*/ }
 savectx(lp) label_t *lp; { return (0); }
 
 /*ARGSUSED*/
-setrq(p) struct proc *p; { }
+setrunqueue(p) struct proc *p; { }
 
 /*ARGSUSED*/
 remrq(p) struct proc *p; { }
