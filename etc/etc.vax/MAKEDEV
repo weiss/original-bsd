@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)MAKEDEV	4.36 (Berkeley) 06/09/93
+#	@(#)MAKEDEV	8.1 (Berkeley) 06/09/93
 #
 
 # Device "make" file.  Valid arguments:
