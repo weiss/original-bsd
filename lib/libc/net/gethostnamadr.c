@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.41 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)gethostnamadr.c	6.42 (Berkeley) 02/21/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -93,9 +93,9 @@ getanswer(answer, anslen, iquery)
 			bp += n;
 			buflen -= n;
 		} else
-			cp += dn_skipname(cp, eom) + QFIXEDSZ;
+			cp += __dn_skipname(cp, eom) + QFIXEDSZ;
 		while (--qdcount > 0)
-			cp += dn_skipname(cp, eom) + QFIXEDSZ;
+			cp += __dn_skipname(cp, eom) + QFIXEDSZ;
 	} else if (iquery) {
 		if (hp->aa)
 			h_errno = HOST_NOT_FOUND;
