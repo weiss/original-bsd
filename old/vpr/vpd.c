@@ -1,20 +1,20 @@
 #define	CONSOLE		"/dev/console"
 #define	dprcons		if (debug) prcons
 /*
- * vpd.c						updated 11/18/82
+ * vpd.c						updated 11/04/87
  * Varian or Versatec printer daemon
  */
-char vpdSCCSid[] = "@(#)vpd.c	1.4\t11/18/82";
+char vpdSCCSid[] = "@(#)vpd.c	1.5\t11/04/87";
 
 #include <stdio.h>
 #include <sys/param.h>
-#include <dir.h>
+#include <sys/dir.h>
 #include <signal.h>
-#include <stat.h>
+#include <sys/stat.h>
 #include <sgtty.h>
 #include <errno.h>
 #include <sys/vcmd.h>
-#include <wait.h>
+#include <sys/wait.h>
 
 int	debug;
 extern	int errno;

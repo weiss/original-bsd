@@ -1,8 +1,8 @@
-static char vprmSCCSid[] = "@(#)vprm.c	1.3\t08/06/82";
+static char vprmSCCSid[] = "@(#)vprm.c	1.4\t11/04/87";
 
 #include <sys/param.h>
-#include <dir.h>
-#include <stat.h>
+#include <sys/dir.h>
+#include <sys/stat.h>
 #include <stdio.h>
 
 char *basename();
