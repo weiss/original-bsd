@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)umoddi3.c	5.3 (Berkeley) 06/02/92";
+static char sccsid[] = "@(#)umoddi3.c	5.4 (Berkeley) 06/19/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include "quad.h"
@@ -23,6 +23,6 @@ __umoddi3(u_quad a, u_quad b)
 {
 	u_quad r;
 
-	(void) __qdivmod(a, b, &r);
+	(void)__qdivrem(a, b, &r);
 	return (r);
 }
