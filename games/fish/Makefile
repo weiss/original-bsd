@@ -1,9 +1,10 @@
-#	@(#)Makefile	5.4 (Berkeley) 07/25/90
+#	@(#)Makefile	5.5 (Berkeley) 01/18/91
 
 PROG=	fish
 MAN6=	fish.0
-DPADD=	${LIBCOMPAT}
-LDADD=	-lcompat
 HIDEGAME=hidegame
+
+beforeinstall: 
+	install -c -o bin -g bin -m 444 ${.CURDIR}/fish.instr /usr/share/games
 
 .include <bsd.prog.mk>
