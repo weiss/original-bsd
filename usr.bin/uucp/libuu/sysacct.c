@@ -1,13 +1,11 @@
 #ifndef lint
-static char sccsid[] = "@(#)sysacct.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)sysacct.c	5.2 (Berkeley) 01/22/85";
 #endif
 
 #include <sys/types.h>
 
-/*******
- *	sysacct(bytes, time)	output accounting info
- *	time_t time;
- *	long bytes;
+/*
+ *	output accounting info
  */
 
 sysacct(bytes, time)
