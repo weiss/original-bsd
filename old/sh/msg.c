@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)msg.c	4.5 01/11/87";
+static char sccsid[] = "@(#)msg.c	4.6 05/08/89";
 #endif
 
 #
@@ -56,7 +56,6 @@ MSG	ps2name		= "PS2";
 /* string constants */
 MSG	nullstr		= "";
 MSG	sptbnl		= " \t\n";
-MSG	defpath		= ":/bin:/usr/bin";
 MSG	colon		= ": ";
 MSG	minus		= "-";
 MSG	endoffile	= "end of file";

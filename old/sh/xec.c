@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)xec.c	4.6 04/24/88";
+static char sccsid[] = "@(#)xec.c	4.7 05/08/89";
 #endif
 
 #
@@ -13,6 +13,7 @@ static char sccsid[] = "@(#)xec.c	4.6 04/24/88";
 
 #include	"defs.h"
 #include	"sym.h"
+#include	"pathnames.h"
 
 LOCAL INT	parent;
 
@@ -287,7 +288,7 @@ execute(argt, execflg, pf1, pf2)
 
 				/* default std input for & */
 				IF treeflgs&FINT ANDF ioset==0
-				THEN	rename(chkopen(devnull),0);
+				THEN	rename(chkopen(_PATH_DEVNULL),0);
 				FI
 
 				/* io redirection */
