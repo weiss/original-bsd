@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)bc	6.2 (Berkeley) 04/17/91
+.\"	@(#)bc	8.1 (Berkeley) 06/08/93
 .\"
 .EH 'USD:6-%''BC \- An Arbitrary Precision Desk-Calculator Language'
 .OH 'BC \- An Arbitrary Precision Desk-Calculator Language''USD:6-%'
