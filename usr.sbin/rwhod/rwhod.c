@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rwhod.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)rwhod.c	5.2 (Berkeley) 06/18/85";
 #endif not lint
 
 #include <sys/types.h>
@@ -31,7 +31,7 @@ static char sccsid[] = "@(#)rwhod.c	5.1 (Berkeley) 06/06/85";
 #include <ctype.h>
 #include <netdb.h>
 #include <syslog.h>
-#include "rwhod.h"
+#include <protocols/rwhod.h>
 
 /*
  * Alarm interval. Don't forget to change the down time check in ruptime
