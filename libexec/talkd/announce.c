@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)announce.c	5.11 (Berkeley) 08/01/91";
+static char sccsid[] = "@(#)announce.c	5.12 (Berkeley) 11/06/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -88,7 +88,7 @@ print_mesg(tty, tf, request, remote_machine)
 	sizes[i] = strlen(line_buf[i]);
 	max_size = max(max_size, sizes[i]);
 	i++;
-	(void)sprintf(line_buf[i], "talk: connection requested by %s@%s.",
+	(void)sprintf(line_buf[i], "talk: connection requested by %s@%s",
 		request->l_name, remote_machine);
 	sizes[i] = strlen(line_buf[i]);
 	max_size = max(max_size, sizes[i]);
