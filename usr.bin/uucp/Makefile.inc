@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.1 (Berkeley) 03/02/91
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/06/93
 
 BINDIR?=	/usr/bin
 BINOWN?=	uucp

@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.23 (Berkeley) 04/02/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 SUBDIR=	libacu libuu uucico acucntrl man5 uuclean uucp uulog uuname uupoll \
 	uuq uusend uusnap uux uuxqt
