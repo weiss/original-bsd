@@ -1,8 +1,9 @@
-.{" Copyright (c) 1985 Regents of the University of California.
-.\" All rights reserved.  The Berkeley software License Agreement
-.\" specifies the terms and conditions for redistribution.
+.\" Copyright (c) 1985 The Regents of the University of California.
+.\" All rights reserved.
 .\"
-.\"	@(#)5.t	1.2 (Berkeley) 08/11/85
+.\" %sccs.include.redist.roff%
+.\"
+.\"	@(#)5.t	1.3 (Berkeley) 10/14/90
 .\"
 .ds RH Functional Extensions
 .NH

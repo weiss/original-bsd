@@ -1,8 +1,9 @@
-.\" Copyright (c) 1985 Regents of the University of California.
-.\" All rights reserved.  The Berkeley software License Agreement
-.\" specifies the terms and conditions for redistribution.
+.\" Copyright (c) 1985 The Regents of the University of California.
+.\" All rights reserved.
 .\"
-.\"	@(#)a2.t	1.1 (Berkeley) 07/27/85
+.\" %sccs.include.redist.roff%
+.\"
+.\"	@(#)a2.t	1.2 (Berkeley) 10/14/90
 .\"
 .SH
 run (shell script)
