@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)in.h	6.7 (Berkeley) 08/09/85
+ *	@(#)in.h	6.8 (Berkeley) 09/16/85
  */
 
 /*
@@ -101,4 +101,5 @@ struct sockaddr_in {
 extern	struct domain inetdomain;
 extern	struct protosw inetsw[];
 struct	in_addr in_makeaddr();
+u_long	in_netof();
 #endif
