@@ -18,14 +18,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ttyin.c	5.2 (Berkeley) 07/25/88";
+static char sccsid[] = "@(#)ttyin.c	5.3 (Berkeley) 11/22/88";
 #endif /* not lint */
 
 /*
  * Routines dealing with getting input from the keyboard (i.e. from the user).
  */
 
-#include "less.h"
+#include <less.h>
 
 static int tty;
 
@@ -33,7 +33,6 @@ static int tty;
  * Open keyboard for input.
  * (Just use file descriptor 2.)
  */
-	public void
 open_getchr()
 {
 	tty = 2;
@@ -42,7 +41,6 @@ open_getchr()
 /*
  * Get a character from the keyboard.
  */
-	public int
 getchr()
 {
 	char c;
