@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_xxx.c	7.2 (Berkeley) 11/03/86
+ *	@(#)subr_xxx.c	7.3 (Berkeley) 12/15/86
  */
 
 #include "../machine/pte.h"
@@ -139,7 +139,7 @@ ffs(mask)
 #if !defined(vax)
 bcmp(s1, s2, len)
 	register char *s1, *s2;
-	register int len;
+	register unsigned len;
 {
 
 	while (len--)
