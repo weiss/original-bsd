@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.47		01/06/83);
+SCCSID(@(#)headers.c	3.48		01/15/83);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -698,7 +698,7 @@ commaize(h, p, fp, oldstyle, m)
 		*p = '\0';
 
 		/* translate the name to be relative */
-		name = remotename(name, m, bitset(H_FROM, h->h_flags));
+		name = remotename(name, m, bitset(H_FROM, h->h_flags), FALSE);
 		if (*name == '\0')
 		{
 			*p = savechar;
