@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)spline.c	4.4 (Berkeley) 05/02/87";
+static char *sccsid = "@(#)spline.c	4.5 (Berkeley) 12/02/87";
 #endif
 
 #include <stdio.h>
@@ -321,6 +321,7 @@ again:		switch(argv[0][0]) {
 	if(r==NULL||!spline()) for(i=0;i<n;i++){
 		printf("%f ",x.val[i]);
 		printf("%f\n",y.val[i]); }
+	exit(0);
 }
 numb(np,argcp,argvp)
 	int *argcp;
