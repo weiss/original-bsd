@@ -36,7 +36,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.46		05/22/82);
+SCCSID(@(#)conf.c	3.47		05/31/82);
 
 
 
@@ -285,7 +285,7 @@ getegid()
 
 getruid()
 {
-	if (Daemon)
+	if (Mode == MD_DAEMON)
 		return (RealUid);
 	else
 		return (getuid());
@@ -298,7 +298,7 @@ getruid()
 
 getrgid()
 {
-	if (Daemon)
+	if (Mode == MD_DAEMON)
 		return (RealGid);
 	else
 		return (getgid());
