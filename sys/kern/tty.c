@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.39 (Berkeley) 04/20/91
+ *	@(#)tty.c	7.40 (Berkeley) 05/05/91
  */
 
 #include "param.h"
@@ -1814,17 +1814,6 @@ proc_compare(p1, p2)
 	if (p2->p_flag&SSINTR && (p1->p_flag&SSINTR) == 0)
 		return (0);
 	return (p2->p_pid > p1->p_pid);		/* tie - return highest pid */
-}
-
-/* XXX move to subr_prf.c */
-#define TOTTY	0x2	/* XXX should be in header */
-/*VARARGS2*/
-ttyprintf(tp, fmt, x1)
-	struct tty *tp;
-	char *fmt;
-	unsigned x1;
-{
-	prf(fmt, &x1, TOTTY, (caddr_t)tp);
 }
 
 /*
