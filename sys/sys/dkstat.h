@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dkstat.h	7.2 (Berkeley) 05/21/88
+ *	@(#)dkstat.h	7.3 (Berkeley) 10/18/88
  */
 
 /*
@@ -29,5 +29,7 @@ long	dk_wds[DK_NDRIVE];
 float	dk_mspw[DK_NDRIVE];
 
 long	tk_nin;
+long	tk_cancc;
+long	tk_rawcc;
 long	tk_nout;
 #endif
