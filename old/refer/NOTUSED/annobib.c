@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char *sccsid = "@(#)annobib.c	4.1 (Berkeley) 05/06/83";
-#endif
+static char sccsid[] = "@(#)annobib.c	4.2 (Berkeley) 04/18/91";
+#endif /* not lint */
 
 /*
  * This program has been replaced by "refer -B" (bibliography mode),
