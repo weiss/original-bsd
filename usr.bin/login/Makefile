@@ -14,7 +14,7 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.2 (Berkeley) 02/07/89
+# @(#)Makefile	5.3 (Berkeley) 05/09/89
 #
 
 CFLAGS=	-O -DKERBEROS
@@ -38,7 +38,7 @@ depend: ${SRCS}
 	mkdep -p ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o root -g bin -m 4755 login ${DESTDIR}/bin/login
+	install -s -o root -g bin -m 4755 login ${DESTDIR}/usr/bin/login
 	install -c -o bin -g bin -m 444 login.0 ${DESTDIR}/usr/man/cat1
 
 lint: ${SRCS}
