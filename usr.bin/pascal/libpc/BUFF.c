@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)BUFF.c 1.1 10/30/80";
+static char sccsid[] = "@(#)BUFF.c 1.2 03/07/81";
 
 #include "h00vars.h"
 
@@ -8,7 +8,7 @@ extern char	_sobuf[];
 
 BUFF(amount)
 
-	int		amount;
+	long		amount;
 {
 	struct iorec	*curfile;
 
