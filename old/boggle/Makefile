@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.14 (Berkeley) 07/01/90
+#	@(#)Makefile	5.15 (Berkeley) 11/15/91
 
 PROG=	boggle
 MAN6=	boggle.0
@@ -7,7 +7,9 @@ LDADD=	-lcompat
 HIDEGAME=hidegame
 CLEANFILES=comp bogdict
 
-all: bogdict
+all: boggle
+
+boggle: bogdict
 
 bogdict: /usr/share/dict/words comp sfile
 	sed -f ${.CURDIR}/sfile /usr/share/dict/words | uniq | ./comp >bogdict
