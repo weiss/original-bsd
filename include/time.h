@@ -14,8 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)time.h	5.2 (Berkeley) 03/06/90
+ *	@(#)time.h	5.3 (Berkeley) 03/13/90
  */
+
+#include <sys/types.h>
 
 struct tm {
 	int	tm_sec;		/* seconds after the minute [0-60] */
