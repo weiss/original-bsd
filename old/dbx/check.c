@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)check.c 1.2 12/15/82";
+static char sccsid[] = "@(#)check.c 1.3 12/20/82";
 
 /*
  * Check a tree for semantic correctness.
@@ -93,7 +93,7 @@ Node p;
 	    chkaddr(place);
 	}
     } else {
-	if (exp->op != O_RVAL and exp->op != O_SYM) {
+	if (exp->op != O_RVAL and exp->op != O_SYM and exp->op != O_CALL) {
 	    error("can't trace expressions");
 	}
 	chkblock(place);
