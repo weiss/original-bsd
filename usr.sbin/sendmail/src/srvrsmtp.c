@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.5 (Berkeley) 06/17/85	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.6 (Berkeley) 07/31/85	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.5 (Berkeley) 06/17/85";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.6 (Berkeley) 07/31/85";
 # endif not lint
 
 /*
@@ -621,11 +621,9 @@ runinchild(label)
 		{
 			/* child */
 			InChild = TRUE;
+			clearenvelope(CurEnv);
 		}
 	}
-
-	/* child (or ONEX command specified) */
-	clearenvelope(CurEnv);
 
 	/* open alias database */
 	initaliases(AliasFile, FALSE);
