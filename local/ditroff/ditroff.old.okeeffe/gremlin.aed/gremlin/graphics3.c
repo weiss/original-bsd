@@ -1,4 +1,4 @@
-/* @(#)graphics3.c	1.3	04/18/83
+/* @(#)graphics3.c	1.4	05/29/84
  *
  * Copyright -C- 1982 Barry S. Roitblat
  *
@@ -10,7 +10,7 @@
 #include <sys/types.h>
 #include <sys/timeb.h>
 #include <signal.h>
-#include <time.h>
+#include <sys/time.h>
 
 /* imports from graphics1.c */
 
