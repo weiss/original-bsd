@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	6.13 (Berkeley) 02/23/93";
+static char sccsid[] = "@(#)envelope.c	6.14 (Berkeley) 02/24/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -24,6 +24,7 @@ static char sccsid[] = "@(#)envelope.c	6.13 (Berkeley) 02/23/93";
 **
 **	Parameters:
 **		e -- the new envelope to fill in.
+**		parent -- the envelope to be the parent of e.
 **
 **	Returns:
 **		e.
@@ -33,15 +34,14 @@ static char sccsid[] = "@(#)envelope.c	6.13 (Berkeley) 02/23/93";
 */
 
 ENVELOPE *
-newenvelope(e)
+newenvelope(e, parent)
 	register ENVELOPE *e;
-{
 	register ENVELOPE *parent;
+{
 	extern putheader(), putbody();
 	extern ENVELOPE BlankEnvelope;
 
-	parent = CurEnv;
-	if (e == CurEnv && e->e_parent != NULL)
+	if (e == parent && e->e_parent != NULL)
 		parent = e->e_parent;
 	clearenvelope(e, TRUE);
 	if (e == CurEnv)
