@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	5.14 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)lex.c	5.15 (Berkeley) 07/07/88";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -167,8 +167,7 @@ top:
 			printf(prompt);
 		}
 		fflush(stdout);
-		if (!sourcing)
-			sreset();
+		sreset();
 
 		/*
 		 * Read a line of commands from the current input
