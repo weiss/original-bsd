@@ -1,4 +1,4 @@
-#	@(#)bsd.lib.mk	5.26.1.1 (Berkeley) 12/02/91
+#	@(#)bsd.lib.mk	5.30 (Berkeley) 12/02/91
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -23,7 +23,7 @@ BINMODE?=	555
 .SUFFIXES: .out .o .po .s .c .f .y .l .8 .7 .6 .5 .4 .3 .2 .1 .0
 
 .8.0 .7.0 .6.0 .5.0 .4.0 .3.0 .2.0 .1.0:
-	/usr/old/bin/nroff -mandoc ${.IMPSRC} > ${.TARGET}
+	nroff -man ${.IMPSRC} > ${.TARGET}
 
 .c.o:
 	${CC} ${CFLAGS} -c ${.IMPSRC} 
@@ -56,6 +56,7 @@ NOPROFILE=1
 .endif
 
 MANALL=	${MAN1} ${MAN2} ${MAN3} ${MAN4} ${MAN5} ${MAN6} ${MAN7} ${MAN8}
+manpages: ${MANALL}
 
 .if !defined(NOPROFILE)
 _LIBS=lib${LIB}.a lib${LIB}_p.a
@@ -63,7 +64,10 @@ _LIBS=lib${LIB}.a lib${LIB}_p.a
 _LIBS=lib${LIB}.a
 .endif
 
-all: ${_LIBS} ${MANALL}# llib-l${LIB}.ln
+all: ${_LIBS} # llib-l${LIB}.ln
+.if !defined(NOMAN)
+all: ${MANALL}
+.endif
 
 OBJS+=	${SRCS:R:S/$/.o/g}
 
@@ -139,7 +143,10 @@ realinstall: beforeinstall
 .endif
 
 install: afterinstall
-afterinstall: realinstall maninstall
+afterinstall: realinstall
+.if !defined(NOMAN)
+afterinstall: maninstall
+.endif
 .endif
 
 .if !target(lint)
