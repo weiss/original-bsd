@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.48 02/04/84"
+SCCSID = "@(#)Makefile 1.49 02/08/84"
 
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
@@ -6,14 +6,14 @@ BINDIR = ../pc0
 SRCDIR = ../src
 WHOAMI = pc
 VERSION = 3.0
-DATE = 02/04/84
+DATE = 02/08/84
 
 MKSTR = /usr/ucb/mkstr
 EYACC = /usr/ucb/eyacc
 RM = -rm -f
 TOUCH = touch -f
 
-CFLAGS = -O -w
+CFLAGS = -O
 LDFLAGS = -z
 
 LIBDIR = ${DESTDIR}/usr/lib
