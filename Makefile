@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 06/12/93
+#	@(#)Makefile	5.9 (Berkeley) 06/19/93
 
 SUBDIR=	bin contrib games include kerberosIV lib libexec old sbin \
 	share usr.bin usr.sbin
@@ -10,7 +10,7 @@ build:
 	(cd include && make install)
 	make cleandir
 	(cd lib && make depend && make && make install)
-	(cd kerberosIV && make && make install)
+	(cd kerberosIV && make depend  && make && make install)
 	make depend && make && make install
 	
 .include <bsd.subdir.mk>
