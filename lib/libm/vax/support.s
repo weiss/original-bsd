@@ -2,29 +2,19 @@
  * Copyright (c) 1985 Regents of the University of California.
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms are permitted
- * provided that the above copyright notice and this paragraph are
- * duplicated in all such forms and that any documentation,
- * advertising materials, and other materials related to such
- * distribution and use acknowledge that the software was developed
- * by the University of California, Berkeley.  The name of the
- * University may not be used to endorse or promote products derived
- * from this software without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
- * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * %sccs.include.redist.c%
  *
  * All recipients should regard themselves as participants in an ongoing
  * research project and hence should feel obligated to report their
  * experiences (good or bad) with these elementary function codes, using
  * the sendbug(8) program, to the authors.
  *
- *	@(#)support.s	5.3 (Berkeley) 06/30/88
+ *	@(#)support.s	5.4 (Berkeley) 06/01/90
  */
 	.data
 	.align	2
 _sccsid:
-.asciz	"@(#)support.s	1.3 (Berkeley) 8/21/85; 5.3 (ucb.elefunt) 06/30/88"
+.asciz	"@(#)support.s	1.3 (Berkeley) 8/21/85; 5.4 (ucb.elefunt) 06/01/90"
 
 /*
  * copysign(x,y),
