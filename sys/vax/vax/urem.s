@@ -1,4 +1,5 @@
-/*	urem.s	6.2	84/08/01
+/*
+ *	@(#)urem.s	6.3 (Berkeley) 06/08/85
  *
  *	urem - unsigned remainder for vax-11
  *
