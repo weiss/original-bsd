@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)mbuf.h	7.3 (Berkeley) 09/11/86
+ *	@(#)mbuf.h	7.4 (Berkeley) 12/03/86
  */
 
 /*
@@ -15,7 +15,11 @@
 #define	MTAIL		4
 #define	MMAXOFF		(MSIZE-MTAIL)		/* offset where data ends */
 #define	MLEN		(MSIZE-MMINOFF-MTAIL)	/* mbuf data length */
+#ifdef GATEWAY
+#define	NMBCLUSTERS	512
+#else
 #define	NMBCLUSTERS	256
+#endif
 #define	NMBPCL		(CLBYTES/MSIZE)		/* # mbufs per cluster */
 
 /*
