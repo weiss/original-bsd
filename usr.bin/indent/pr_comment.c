@@ -8,8 +8,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pr_comment.c	5.11 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)pr_comment.c	5.12 (Berkeley) 02/26/91";
 #endif /* not lint */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "indent_globs.h"
 
 /*
  * NAME:
@@ -41,9 +45,6 @@ static char sccsid[] = "@(#)pr_comment.c	5.11 (Berkeley) 06/01/90";
  * from the last blank to the next comment line.  Blanks and tabs from the
  * beginning of the input line are removed
  */
-
-
-#include "indent_globs.h"
 
 
 pr_comment()

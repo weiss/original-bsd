@@ -8,7 +8,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)args.c	5.9 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)args.c	5.10 (Berkeley) 02/26/91";
 #endif /* not lint */
 
 /*
@@ -16,10 +16,11 @@ static char sccsid[] = "@(#)args.c	5.9 (Berkeley) 06/01/90";
  * here as well.
  */
 
-#include "indent_globs.h"
+#include <stdio.h>
 #include <ctype.h>
-
-char       *getenv(), *index();
+#include <stdlib.h>
+#include <string.h>
+#include "indent_globs.h"
 
 /* profile types */
 #define	PRO_SPECIAL	1	/* special case */
