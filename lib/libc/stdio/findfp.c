@@ -9,13 +9,14 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)findfp.c	5.9 (Berkeley) 02/01/91";
+static char sccsid[] = "@(#)findfp.c	5.10 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 #include "local.h"
 #include "glue.h"
 

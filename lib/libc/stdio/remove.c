@@ -9,9 +9,10 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)remove.c	5.2 (Berkeley) 02/05/91";
+static char sccsid[] = "@(#)remove.c	5.3 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
+#include <unistd.h>
 #include <stdio.h>
 
 remove(file)

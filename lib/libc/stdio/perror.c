@@ -6,24 +6,26 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)perror.c	5.10 (Berkeley) 11/28/90";
+static char sccsid[] = "@(#)perror.c	5.11 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
-#include <sys/errno.h>
 #include <sys/uio.h>
 #include <unistd.h>
+#include <errno.h>
+#include <stdio.h>
 #include <string.h>
 
+void
 perror(s)
-	char *s;
+	const char *s;
 {
 	register struct iovec *v;
 	struct iovec iov[4];
 
 	v = iov;
 	if (s && *s) {
-		v->iov_base = s;
+		v->iov_base = (char *)s;
 		v->iov_len = strlen(s);
 		v++;
 		v->iov_base = ": ";
