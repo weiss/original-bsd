@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)systm.h	7.2 (Berkeley) 10/13/86
+ *	@(#)systm.h	7.3 (Berkeley) 11/25/86
  */
 
 /*
@@ -76,6 +76,7 @@ int	noproc;			/* no one is running just now */
 char	*panicstr;
 int	wantin;
 int	boothowto;		/* reboot flags, from console subsystem */
+char	*bootesym;		/* end of symbol info from boot */
 int	selwait;
 
 extern	char vmmap[];		/* poor name! */
