@@ -4,7 +4,7 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)uucp.h	5.20 (Berkeley) 05/16/93
+ *	@(#)uucp.h	5.21 (Berkeley) 05/17/93
  */
 
 #include <stdio.h>
@@ -399,7 +399,9 @@ extern	char DLocal[], DLocalX[], *subfile(), *subdir();
 extern	char *ttyname(), *strcpy(), *strcat(), *index(), *rindex(),
 		*fgets(), *calloc(), *malloc(), *fdig(), *ttyname(),
 		*cfgets(), *getwd(), *strpbrk(), *strncpy();
+#ifndef lseek		/* XXX */
 extern	long lseek();
+#endif
 extern time_t time();
 
 extern char _FAILED[], CANTOPEN[], DEVNULL[];
