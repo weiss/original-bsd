@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_node.c	8.1 (Berkeley) 06/10/93
+ *	@(#)nfs_node.c	8.2 (Berkeley) 12/30/93
  */
 
 #include <sys/param.h>
@@ -89,7 +89,7 @@ loop:
 		    bcmp((caddr_t)fhp, (caddr_t)&np->n_fh, NFSX_FH))
 			continue;
 		vp = NFSTOV(np);
-		if (vget(vp))
+		if (vget(vp, 1))
 			goto loop;
 		*npp = np;
 		return(0);
