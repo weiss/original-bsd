@@ -1,4 +1,5 @@
-#	@(#)disktab	4.12 (Berkeley) 07/08/89
+#	@(#)disktab	5.1 (Berkeley) 04/08/91
+
 # Disk geometry and partition layout tables. 
 # Key:
 #	dt	controller type
