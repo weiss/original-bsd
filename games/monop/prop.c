@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)prop.c	5.1 (Berkeley) 10/22/87";
+static char sccsid[] = "@(#)prop.c	5.2 (Berkeley) 10/22/87";
 #endif not lint
 
 # include	"monop.ext"
@@ -130,7 +130,7 @@ bid() {
 		i = ++i % num_play;
 		if (in[i]) {
 			do {
-				sprintf(buf, "%s: ", name_list[i]);
+				(void)sprintf(buf, "%s: ", name_list[i]);
 				cur_bid = get_int(buf);
 				if (cur_bid == 0) {
 					in[i] = FALSE;
