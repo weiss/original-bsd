@@ -1,4 +1,8 @@
-/*	1.defs.h	4.2	83/08/11	*/
+/*-
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)1.defs.h	4.3 (Berkeley) 04/16/91
+ */
 
 #define snum 	145
 #define _s0	0

@@ -1,4 +1,8 @@
-/*	1.incl.h	4.2	83/08/11	*/
+/*-
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)1.incl.h	4.3 (Berkeley) 04/16/91
+ */
 
 #define maxlsw		10	/* max number of switches and labels per statement */
 #define implicit 0L		/* "label" of following line so all flow can be treated as jump to label */
