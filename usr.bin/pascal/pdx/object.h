@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)object.h	5.1 (Berkeley) 06/06/85
+ *	@(#)object.h	5.2 (Berkeley) 01/03/88
  */
 
 /*
@@ -26,5 +26,5 @@ struct {
 char *stringtab;	/* string table */
 char *dotpfile;		/* name of compiled file */
 
-readobj();		/* read in the object file */
-objfree();		/* release storage for object file information */
+int readobj();		/* read in the object file */
+int objfree();		/* release storage for object file information */
