@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)logger.c	6.3 (Berkeley) 10/27/86";
+static char sccsid[] = "@(#)logger.c	6.4 (Berkeley) 10/27/86";
 #endif not lint
 
 #include <stdio.h>
@@ -147,7 +147,6 @@ struct code	FacNames[] = {
 	"daemon",	LOG_DAEMON,
 	"auth",		LOG_AUTH,
 	"security",	LOG_AUTH,
-	"mark",		LOG_MARK,
 	"syslog",	LOG_SYSLOG,
 	"lpr",		LOG_LPR,
 	"news",		LOG_NEWS,
