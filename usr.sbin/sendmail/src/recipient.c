@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.13 (Berkeley) 08/07/93";
+static char sccsid[] = "@(#)recipient.c	8.14 (Berkeley) 08/08/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -161,6 +161,15 @@ recipient(a, sendq, e)
 	{
 		printf("\nrecipient: ");
 		printaddr(a, FALSE);
+	}
+
+	/* if this is primary, add it to the original recipient list */
+	if (a->q_alias == NULL)
+	{
+		if (e->e_origrcpt == NULL)
+			e->e_origrcpt = a->q_paddr;
+		else if (e->e_origrcpt != a->q_paddr)
+			e->e_origrcpt = "";
 	}
 
 	/* break aliasing loops */
