@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.2 (Berkeley) 04/27/91
+#	@(#)Makefile	5.3 (Berkeley) 02/15/93
 
 PROG=	kdump
-CFLAGS+=-I/sys -I${.CURDIR}/../ktrace
+CFLAGS+=-I${.CURDIR}/../ktrace
 SRCS=	kdump.c ioctl.c subr.c
 .PATH:	${.CURDIR}/../ktrace
 CLEANFILES+=ioctl.c
