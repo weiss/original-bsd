@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tset.c	5.7 (Berkeley) 03/29/86";
+static char sccsid[] = "@(#)tset.c	5.8 (Berkeley) 04/28/86";
 #endif not lint
 
 /*
@@ -604,9 +604,6 @@ char	*argv[];
 # ifndef V6
 #  ifdef UCB_NTTY
 		struct ltchars ltc;
-#ifdef TIOCLBIC
-		static int lclear = LMDMBUF|LLITOUT|LPASS8;
-#endif TIOCLBIC
 
 		if (ldisc == NTTYDISC)
 		{
@@ -629,9 +626,6 @@ char	*argv[];
 		tchar.t_eofc = CHK(tchar.t_eofc, CEOF);
 		/* brkc is left alone */
 		(void) ioctl(FILEDES, TIOCSETC, (char *)&tchar);
-#ifdef TIOCLBIC
-		(void) ioctl(FILEDES, TIOCLBIC, (char *)&lclear);
-#endif TIOCLBIC
 #   endif TIOCGETC
 		mode.sg_flags &= ~(RAW
 #   ifdef CBREAK
@@ -1176,6 +1170,8 @@ ask:
 				}
 			}
 		}
+		if (IsReset)
+			lmode &= ~(LMDMBUF|LLITOUT|LPASS8);
 		(void) ioctl(FILEDES, TIOCLSET, (char *)&lmode);
 # endif
 
