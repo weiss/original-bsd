@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_pcl.c	6.5 (Berkeley) 09/16/85
+ *	@(#)if_pcl.c	6.6 (Berkeley) 12/19/85
  */
 
 #include "pcl.h"
@@ -29,9 +29,6 @@
 #include "../net/netisr.h"
 #include "../net/route.h"
 
-#ifdef	BBNNET
-#define	INET
-#endif
 #include "../netinet/in.h"
 #include "../netinet/in_systm.h"
 #include "../netinet/ip.h"
