@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_subr.c	8.26 (Berkeley) 05/17/95
+ *	@(#)vfs_subr.c	8.27 (Berkeley) 05/18/95
  */
 
 /*
@@ -675,6 +675,7 @@ vget(vp, flags, p)
 	int flags;
 	struct proc *p;
 {
+	int error;
 
 	/*
 	 * If the vnode is in the process of being cleaned out for
@@ -696,8 +697,11 @@ vget(vp, flags, p)
 		simple_unlock(&vnode_free_list_slock);
 	}
 	vp->v_usecount++;
-	if (flags & LK_TYPE_MASK)
-		return (vn_lock(vp, flags | LK_INTERLOCK, p));
+	if (flags & LK_TYPE_MASK) {
+		if (error = vn_lock(vp, flags | LK_INTERLOCK, p))
+			vrele(vp);
+		return (error);
+	}
 	simple_unlock(&vp->v_interlock);
 	return (0);
 }
