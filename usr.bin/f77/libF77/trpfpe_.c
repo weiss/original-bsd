@@ -3,8 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)trpfpe_.c	5.1	06/07/85
- */
+ *	@(#)trpfpe_.c	5.2	06/07/85
+ *
  *
  *	Fortran floating-point error handler
  *
