@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.16 (Berkeley) 08/08/93";
+static char sccsid[] = "@(#)conf.c	8.17 (Berkeley) 08/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -787,6 +787,9 @@ refuseconnections()
 # ifdef BSD4_4
 #  include <machine/vmparam.h>
 #  include <sys/exec.h>
+#  ifdef __bsdi__
+#   undef PS_STRINGS	/* BSDI 1.0 doesn't do PS_STRINGS as we expect */
+#  endif
 #  ifdef PS_STRINGS
 #   define SETPROC_STATIC static
 #  endif
