@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)init_main.c	7.54 (Berkeley) 07/31/92
+ *	@(#)init_main.c	7.55 (Berkeley) 09/22/92
  */
 
 #include "param.h"
@@ -179,12 +179,8 @@ main()
 
 	/*
 	 * Initialize the file systems.
-	 *
-	 * Get vnodes for swapdev and rootdev.
 	 */
 	vfsinit();
-	if (bdevvp(swapdev, &swapdev_vp) || bdevvp(rootdev, &rootvp))
-		panic("can't setup bdevvp's");
 
 	/*
 	 * Start real time and statistics clocks.
