@@ -1,4 +1,4 @@
-/*	dinode.h	4.1	11/09/80	*/
+/*	dinode.h	4.2	01/27/81	*/
 
 /*
  * The I node is the focus of all
@@ -13,7 +13,7 @@
 
 #define	NADDR	13
 
-#define	NINDEX		15
+#define	NINDEX		6
 struct group
 {
 	short	g_state;
