@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)state.c	5.1 (Berkeley) 09/01/89";
+static char sccsid[] = "@(#)state.c	5.2 (Berkeley) 09/05/89";
 #endif /* not lint */
 
 #include "telnetd.h"
@@ -856,7 +856,7 @@ suboption()
     case TELOPT_TTYPE: {		/* Yaaaay! */
 	static char terminalname[5+41] = "TERM=";
 
-	if (hisopts[TELOPT_TSPEED] == OPT_NO)	/* Ignore if option disabled */
+	if (hisopts[TELOPT_TTYPE] == OPT_NO)	/* Ignore if option disabled */
 		break;
 	settimer(ttypesubopt);
 
