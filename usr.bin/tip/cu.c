@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)cu.c	4.5 (Berkeley) 06/25/83";
+static char sccsid[] = "@(#)cu.c	4.6 (Berkeley) 06/28/83";
 #endif
 
 #include "tip.h"
@@ -84,6 +84,7 @@ cumain(argc, argv)
 	setuid(getuid());
 	setgid(getgid());
 	vinit();
+	setparity("none");
 	boolean(value(VERBOSE)) = 0;
 	if (HW)
 		ttysetup(speed(BR));
