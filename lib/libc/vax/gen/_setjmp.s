@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-	.asciz	"@(#)_setjmp.s	5.3 (Berkeley) 01/09/86"
+	.asciz	"@(#)_setjmp.s	5.4 (Berkeley) 01/20/86"
 #endif not lint
 
 
@@ -70,3 +70,6 @@ done:
 botch:
 	calls	$0,_longjmperror
 	halt
+
+	.data
+reiins: rei
