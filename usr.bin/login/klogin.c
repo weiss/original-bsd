@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)klogin.c	5.9 (Berkeley) 06/02/91";
+static char sccsid[] = "@(#)klogin.c	5.10 (Berkeley) 06/29/92";
 #endif /* not lint */
 
 #ifdef KERBEROS
@@ -16,6 +16,9 @@ static char sccsid[] = "@(#)klogin.c	5.9 (Berkeley) 06/02/91";
 #include <kerberosIV/krb.h>
 #include <pwd.h>
 #include <netdb.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 #define	INITIAL_TICKET	"krbtgt"
 #define	VERIFY_SERVICE	"rcmd"
@@ -29,7 +32,7 @@ extern char *krbtkfile_env;
  * return 0 on success (will be logged in)
  *	  1 if Kerberos failed (try local password in login)
  */
-
+int
 klogin(pw, instance, localhost, password)
 	struct passwd *pw;
 	char *instance, *localhost, *password;
