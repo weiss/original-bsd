@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.1 (Berkeley) 06/26/92
+ *	@(#)extern.h	5.2 (Berkeley) 09/20/92
  */
 
 struct name *cat __P((struct name *, struct name *));
@@ -169,7 +169,7 @@ void	 quit __P((void));
 int	 quitcmd __P((void));
 int	 raise __P((int));
 int	 readline __P((FILE *, char *, int));
-void	 register_file __P((FILE *, int));
+void	 register_file __P((FILE *, int, int));
 void	 regret __P((int));
 void	 relsesigs __P((void));
 int	 respond __P((int *));
