@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	8.5 (Berkeley) 08/22/94
+ *	@(#)uipc_usrreq.c	8.6 (Berkeley) 01/09/95
  */
 
 #include <sys/param.h>
@@ -483,6 +483,7 @@ unp_connect2(so, so2)
 	return (0);
 }
 
+void
 unp_disconnect(unp)
 	struct unpcb *unp;
 {
@@ -528,6 +529,7 @@ unp_abort(unp)
 }
 #endif
 
+void
 unp_shutdown(unp)
 	struct unpcb *unp;
 {
@@ -538,6 +540,7 @@ unp_shutdown(unp)
 		socantrcvmore(so);
 }
 
+void
 unp_drop(unp, errno)
 	struct unpcb *unp;
 	int errno;
@@ -626,9 +629,9 @@ unp_internalize(control, p)
 }
 
 int	unp_defer, unp_gcing;
-int	unp_mark();
 extern	struct domain unixdomain;
 
+void
 unp_gc()
 {
 	register struct file *fp, *nextfp;
@@ -740,18 +743,19 @@ unp_gc()
 	unp_gcing = 0;
 }
 
+void
 unp_dispose(m)
 	struct mbuf *m;
 {
-	int unp_discard();
 
 	if (m)
 		unp_scan(m, unp_discard);
 }
 
+void
 unp_scan(m0, op)
 	register struct mbuf *m0;
-	int (*op)();
+	void (*op)();
 {
 	register struct mbuf *m;
 	register struct file **rp;
@@ -778,6 +782,7 @@ unp_scan(m0, op)
 	}
 }
 
+void
 unp_mark(fp)
 	struct file *fp;
 {
@@ -788,6 +793,7 @@ unp_mark(fp)
 	fp->f_flag |= (FMARK|FDEFER);
 }
 
+void
 unp_discard(fp)
 	struct file *fp;
 {

@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty_compat.c	8.1 (Berkeley) 06/10/93
+ *	@(#)tty_compat.c	8.2 (Berkeley) 01/09/95
  */
 
 /* 
@@ -52,7 +52,7 @@ static int compatspcodes[16] = {
 /*ARGSUSED*/
 ttcompat(tp, com, data, flag)
 	register struct tty *tp;
-	int com;
+	u_long com;
 	caddr_t data;
 	int flag;
 {
