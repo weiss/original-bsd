@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)cico.c	5.12 (Berkeley) 01/24/86";
+static char sccsid[] = "@(#)cico.c	5.13 (Berkeley) 02/12/86";
 #endif
 
 #include <signal.h>
@@ -99,6 +99,9 @@ register char *argv[];
 
 	strcpy(Progname, "uucico");
 
+#ifdef BSD4_2
+	sigsetmask(0);	/* in case we inherit blocked signals */
+#endif BSD4_2
 	signal(SIGINT, onintr);
 	signal(SIGHUP, onintr);
 	signal(SIGQUIT, onintr);
