@@ -6,10 +6,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getmntinfo.c	6.4 (Berkeley) 02/23/91";
+static char sccsid[] = "@(#)getmntinfo.c	6.5 (Berkeley) 11/19/91";
 #endif /* LIBC_SCCS and not lint */
 
-#include <sys/types.h>
+#include <sys/param.h>
+#include <sys/ucred.h>
 #include <sys/mount.h>
 #include <stdlib.h>
 
