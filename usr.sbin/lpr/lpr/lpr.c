@@ -1,4 +1,4 @@
-/*	lpr.c	4.17	83/05/18	*/
+/*	lpr.c	4.19	83/06/02	*/
 /*
  *      lpr -- off line print
  *
@@ -266,7 +266,7 @@ main(argc, argv)
 		unlink(tfname);
 		if (qflag)		/* just q things up */
 			exit(0);
-		if (!startdaemon())
+		if (!startdaemon(host))
 			printf("jobs queued, but cannot start daemon.\n");
 		exit(0);
 	}
