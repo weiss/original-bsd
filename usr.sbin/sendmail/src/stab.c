@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char SccsId[] = "@(#)stab.c	3.9	09/24/81";
+static char SccsId[] = "@(#)stab.c	3.10	09/29/81";
 
 /*
 **  STAB -- manage the symbol table
@@ -51,7 +51,7 @@ stab(name, type, op)
 
 	hfunc = type;
 	for (p = name; *p != '\0'; p++)
-		hfunc = ((hfunc << 7) | lower(*p)) % STABSIZE;
+		hfunc = (((hfunc << 7) | lower(*p)) & 077777) % STABSIZE;
 
 # ifdef DEBUG
 	if (Debug > 5)
