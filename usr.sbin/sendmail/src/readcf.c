@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.62 (Berkeley) 02/06/95";
+static char sccsid[] = "@(#)readcf.c	8.63 (Berkeley) 02/10/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1306,6 +1306,7 @@ setoption(opt, val, safe, sticky, e)
 	register char *p;
 	register struct optioninfo *o;
 	char *subopt;
+	int len;
 	extern bool atobool();
 	extern time_t convtime();
 	extern int QueueLA;
@@ -1675,7 +1676,10 @@ setoption(opt, val, safe, sticky, e)
 		break;
 
 	  case 'M':		/* define macro */
-		define(val[0], newstr(&val[1]), CurEnv);
+		p = newstr(&val[1]);
+		if (!safe)
+			cleanstrcpy(p, p, MAXNAME);
+		define(val[0], p, CurEnv);
 		sticky = FALSE;
 		break;
 
