@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)dbtest.c	8.5 (Berkeley) 09/07/93";
+static char sccsid[] = "@(#)dbtest.c	8.6 (Berkeley) 09/16/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -263,6 +263,10 @@ lkey:			switch(command) {
 			    p, lineno);
 		}
 	}
+#ifdef STATISTICS
+	if (type == DB_BTREE)
+		__bt_stat(dbp);
+#endif
 	if (dbp->close(dbp))
 		err("db->close: %s", strerror(errno));
 	(void)close(ofd);
