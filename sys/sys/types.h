@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)types.h	7.2 (Berkeley) 10/13/86
+ *	@(#)types.h	7.3 (Berkeley) 06/20/87
  */
 
 #ifndef _TYPES_
@@ -36,6 +36,7 @@ typedef	struct	label_t	{
 typedef	struct	_quad { long val[2]; } quad;
 typedef	long	daddr_t;
 typedef	char *	caddr_t;
+typedef	long *	qaddr_t;	/* should be typedef quad * qaddr_t; */
 typedef	u_long	ino_t;
 typedef	long	swblk_t;
 typedef	long	size_t;
