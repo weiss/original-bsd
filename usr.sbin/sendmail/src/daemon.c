@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.53 (Berkeley) 06/17/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.54 (Berkeley) 06/17/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.53 (Berkeley) 06/17/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.54 (Berkeley) 06/17/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -23,7 +23,6 @@ static char sccsid[] = "@(#)daemon.c	8.53 (Berkeley) 06/17/94 (without daemon mo
 # include <arpa/inet.h>
 
 #if NAMED_BIND
-# include <arpa/nameser.h>
 # include <resolv.h>
 #endif
 
@@ -710,7 +709,7 @@ gothostent:
 		  case AF_INET:
 			bcopy(hp->h_addr,
 				&addr.sin.sin_addr,
-				IPADDRSIZE);
+				INADDRSZ);
 			break;
 #endif
 
@@ -840,7 +839,7 @@ gothostent:
 			  case AF_INET:
 				bcopy(hp->h_addr_list[i++],
 				      &addr.sin.sin_addr,
-				      IPADDRSIZE);
+				      INADDRSZ);
 				break;
 #endif
 
@@ -1282,7 +1281,7 @@ host_map_lookup(map, name, av, statp)
 	in_addr.s_addr = inet_addr(&name[1]);
 
 	/* nope -- ask the name server */
-	hp = gethostbyaddr((char *)&in_addr, IPADDRSIZE, AF_INET);
+	hp = gethostbyaddr((char *)&in_addr, INADDRSZ, AF_INET);
 	s->s_namecanon.nc_errno = errno;
 #if NAMED_BIND
 	s->s_namecanon.nc_herrno = h_errno;
@@ -1391,7 +1390,7 @@ hostnamebyanyaddr(sap)
 #ifdef NETINET
 	  case AF_INET:
 		hp = gethostbyaddr((char *) &sap->sin.sin_addr,
-			IPADDRSIZE,
+			INADDRSZ,
 			AF_INET);
 		break;
 #endif
