@@ -1,4 +1,4 @@
-/*	lpr.c	4.21	83/06/17	*/
+/*	lpr.c	4.22	83/06/22	*/
 /*
  *      lpr -- off line print
  *
@@ -105,6 +105,7 @@ main(argc, argv)
 		case 'l':		/* literal output */
 		case 'p':		/* print using ``pr'' */
 		case 't':		/* print troff output (cat files) */
+		case 'n':		/* print ditroff output */
 		case 'd':		/* print tex output (dvi files) */
 		case 'g':		/* print graph(1G) output */
 		case 'c':		/* print cifplot output */
@@ -123,7 +124,6 @@ main(argc, argv)
 			if (argc > 1) {
 				argc--;
 				fonts[arg[1] - '1'] = *++argv;
-				format = 't';
 			}
 			break;
 
@@ -207,7 +207,7 @@ main(argc, argv)
 		card('I', itoa(indent));
 	if (mailflg)
 		card('M', person);
-	if (format == 't' || format == 'd')
+	if (format == 't' || format == 'n' || format == 'd')
 		for (i = 0; i < 4; i++)
 			if (fonts[i] != NULL)
 				card('1'+i, fonts[i]);
