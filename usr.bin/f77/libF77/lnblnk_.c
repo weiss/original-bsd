@@ -3,8 +3,8 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)lnblnk_.c	5.1	06/07/85
- */
+ *	@(#)lnblnk_.c	5.2	06/07/85
+ *
  * find last occurrence of a non-blank character in string
  *
  * calling sequence:
