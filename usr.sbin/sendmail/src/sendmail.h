@@ -7,7 +7,7 @@
 **  All rights reserved.  The Berkeley software License Agreement
 **  specifies the terms and conditions for redistribution.
 **
-**	@(#)sendmail.h	5.7 (Berkeley) 11/22/85
+**	@(#)sendmail.h	5.8 (Berkeley) 01/10/86
 */
 
 /*
@@ -19,7 +19,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.7		11/22/85";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.8		01/10/86";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -484,6 +484,7 @@ EXTERN bool	NoConnect;	/* don't connect to non-local mailers */
 EXTERN bool	SuperSafe;	/* be extra careful, even if expensive */
 EXTERN bool	ForkQueueRuns;	/* fork for each job when running the queue */
 EXTERN bool	AutoRebuild;	/* auto-rebuild the alias database as needed */
+EXTERN bool	CheckAliases;	/* parse addresses during newaliases */
 EXTERN int	SafeAlias;	/* minutes to wait until @:@ in alias file */
 EXTERN time_t	TimeOut;	/* time until timeout */
 EXTERN FILE	*InChannel;	/* input connection */
