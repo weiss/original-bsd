@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogind.c	5.50.1.1 (Berkeley) 10/21/90";
+static char sccsid[] = "@(#)rlogind.c	5.51 (Berkeley) 03/04/91";
 #endif /* not lint */
 
 #ifdef KERBEROS
@@ -44,24 +44,24 @@ static char sccsid[] = "@(#)rlogind.c	5.50.1.1 (Berkeley) 10/21/90";
 #define	FD_SETSIZE	16		/* don't need many bits for select */
 #include <sys/param.h>
 #include <sys/stat.h>
-#include <sys/socket.h>
-#include <sys/wait.h>
-#include <sys/file.h>
-#include <sys/signal.h>
 #include <sys/ioctl.h>
-#include <sys/termios.h>
+#include <signal.h>
+#include <termios.h>
 
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/in_systm.h>
 #include <netinet/ip.h>
-
-#include <errno.h>
-#include <pwd.h>
+#include <arpa/inet.h>
 #include <netdb.h>
+
+#include <pwd.h>
 #include <syslog.h>
-#include <string.h>
+#include <errno.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 #include "pathnames.h"
 
 #ifndef TIOCPKT_WINDOW
@@ -78,7 +78,7 @@ KTEXT		ticket;
 u_char		auth_buf[sizeof(AUTH_DAT)];
 u_char		tick_buf[sizeof(KTEXT_ST)];
 Key_schedule	schedule;
-int		encrypt = 0, retval, use_kerberos = 0, vacuous = 0;
+int		doencrypt, retval, use_kerberos, vacuous;
 
 #define		ARGSTR			"alnkvx"
 #else
@@ -93,10 +93,7 @@ static	char term[64] = "TERM=";
 int	keepalive = 1;
 int	check_all = 0;
 
-extern	int errno;
-int	reapchild();
-struct	passwd *getpwnam(), *pwd;
-char	*malloc();
+struct	passwd *pwd;
 
 main(argc, argv)
 	int argc;
@@ -129,6 +126,11 @@ main(argc, argv)
 		case 'v':
 			vacuous = 1;
 			break;
+#ifdef CRYPT
+		case 'x':
+			doencrypt = 1;
+			break;
+#endif
 #endif
 		case '?':
 		default:
@@ -145,7 +147,7 @@ main(argc, argv)
 	}
 #endif
 	fromlen = sizeof (from);
-	if (getpeername(0, &from, &fromlen) < 0) {
+	if (getpeername(0, (struct sockaddr *)&from, &fromlen) < 0) {
 		syslog(LOG_ERR,"Can't get peer name of remote host: %m");
 		fatal(STDERR_FILENO, "Can't get peer name of remote host", 1);
 	}
@@ -159,7 +161,7 @@ main(argc, argv)
 }
 
 int	child;
-int	cleanup();
+void	cleanup();
 int	netf;
 char	line[MAXPATHLEN];
 int	confirmed;
@@ -191,7 +193,7 @@ doit(f, fromp)
 
 	alarm(0);
 	fromp->sin_port = ntohs((u_short)fromp->sin_port);
-	hp = gethostbyaddr(&fromp->sin_addr, sizeof (struct in_addr),
+	hp = gethostbyaddr((char *)&fromp->sin_addr, sizeof(struct in_addr),
 		fromp->sin_family);
 	if (hp == 0) {
 		/*
@@ -224,7 +226,7 @@ doit(f, fromp)
 	if (use_kerberos) {
 		if (!hostok)
 			fatal(f, "rlogind: Host address mismatch.", 0);
-		retval = do_krb_login(hp->h_name, fromp, encrypt);
+		retval = do_krb_login(hp->h_name, fromp);
 		if (retval == 0)
 			authenticated++;
 		else if (retval > 0)
@@ -261,7 +263,7 @@ doit(f, fromp)
 			"Connection received using IP options (ignored):%s",
 			lbuf);
 		    if (setsockopt(0, ipproto, IP_OPTIONS,
-			(char *)NULL, &optsize) != 0) {
+			(char *)NULL, optsize) != 0) {
 			    syslog(LOG_ERR, "setsockopt IP_OPTIONS NULL: %m");
 			    exit(1);
 		    }
@@ -276,6 +278,10 @@ doit(f, fromp)
 		confirmed = 1;		/* we sent the null! */
 	}
 #ifdef	KERBEROS
+#ifdef	CRYPT
+	if (doencrypt)
+		(void) des_write(f, SECURE_MESSAGE, sizeof(SECURE_MESSAGE));
+#endif
 	if (use_kerberos == 0)
 #endif
 	   if (!authenticated && !hostok)
@@ -312,6 +318,16 @@ doit(f, fromp)
 		fatal(STDERR_FILENO, _PATH_LOGIN, 1);
 		/*NOTREACHED*/
 	}
+#ifdef	CRYPT
+#ifdef	KERBEROS
+	/*
+	 * If encrypted, don't turn on NBIO or the des read/write
+	 * routines will croak.
+	 */
+
+	if (!doencrypt)
+#endif
+#endif
 		ioctl(f, FIONBIO, &on);
 	ioctl(master, FIONBIO, &on);
 	ioctl(master, TIOCPKT, &on);
@@ -416,6 +432,13 @@ protocol(f, p)
 			}
 		}
 		if (FD_ISSET(f, &ibits)) {
+#ifdef	CRYPT
+#ifdef	KERBEROS
+			if (doencrypt)
+				fcc = des_read(f, fibuf, sizeof(fibuf));
+			else
+#endif
+#endif
 				fcc = read(f, fibuf, sizeof(fibuf));
 			if (fcc < 0 && errno == EWOULDBLOCK)
 				fcc = 0;
@@ -462,6 +485,11 @@ protocol(f, p)
 				break;
 			else if (pibuf[0] == 0) {
 				pbp++, pcc--;
+#ifdef	CRYPT
+#ifdef	KERBEROS
+				if (!doencrypt)
+#endif
+#endif
 					FD_SET(f, &obits);	/* try write */
 			} else {
 				if (pkcontrol(pibuf[0])) {
@@ -472,6 +500,13 @@ protocol(f, p)
 			}
 		}
 		if ((FD_ISSET(f, &obits)) && pcc > 0) {
+#ifdef	CRYPT
+#ifdef	KERBEROS
+			if (doencrypt)
+				cc = des_write(f, pbp, pcc);
+			else
+#endif
+#endif
 				cc = write(f, pbp, pcc);
 			if (cc < 0 && errno == EWOULDBLOCK) {
 				/*
@@ -491,6 +526,7 @@ protocol(f, p)
 	}
 }
 
+void
 cleanup()
 {
 	char *p;
@@ -498,10 +534,10 @@ cleanup()
 	p = line + sizeof(_PATH_DEV) - 1;
 	if (logout(p))
 		logwtmp(p, "", "");
-	(void)chmod(line, 0666);
+	(void)chmod(line, DEFFILEMODE);
 	(void)chown(line, 0, 0);
 	*p = 'p';
-	(void)chmod(line, 0666);
+	(void)chmod(line, DEFFILEMODE);
 	(void)chown(line, 0, 0);
 	shutdown(netf, 2);
 	exit(1);
@@ -614,10 +650,9 @@ setup_term(fd)
  * Return -1 on valid authentication, no authorization
  * Return >0 for error conditions
  */
-do_krb_login(host, dest, encrypt)
+do_krb_login(host, dest)
 	char *host;
 	struct sockaddr_in *dest;
-	int encrypt;
 {
 	int rc;
 	char instance[INST_SZ], version[VERSION_SIZE];
@@ -630,6 +665,21 @@ do_krb_login(host, dest, encrypt)
 	instance[0] = '*';
 	instance[1] = '\0';
 
+#ifdef	CRYPT
+	if (doencrypt) {
+		rc = sizeof(faddr);
+		if (getsockname(0, (struct sockaddr *)&faddr, &rc))
+			return(-1);
+		authopts = KOPT_DO_MUTUAL;
+		rc = krb_recvauth(
+			authopts, 0,
+			ticket, "rcmd",
+			instance, dest, &faddr,
+			kdata, "", schedule, version);
+		 des_set_key(kdata->session, schedule);
+
+	} else
+#endif
 		rc = krb_recvauth(
 			authopts, 0,
 			ticket, "rcmd",
