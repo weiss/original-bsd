@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)init_main.c	6.14 (Berkeley) 02/11/86
+ *	@(#)init_main.c	6.15 (Berkeley) 02/23/86
  */
 
 #include "../machine/pte.h"
@@ -163,7 +163,7 @@ main(firstaddr)
 	proc[0].p_szpt = CLSIZE;
 	if (newproc(0)) {
 		expand(clrnd((int)btoc(szicode)), 0);
-		(void) swpexpand(u.u_dsize, 0, &u.u_dmap, &u.u_smap);
+		(void) swpexpand(u.u_dsize, (size_t)0, &u.u_dmap, &u.u_smap);
 		(void) copyout((caddr_t)icode, (caddr_t)0, (unsigned)szicode);
 		/*
 		 * Return goes to loc. 0 of user init
