@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	5.8 (Berkeley) 11/20/91 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	5.9 (Berkeley) 11/20/91 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	5.8 (Berkeley) 11/20/91 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	5.9 (Berkeley) 11/20/91 (without USERDB)";
 #endif
 #endif
 
@@ -243,7 +243,7 @@ _udbx_init()
 
 	p = UdbSpec;
 	up = UdbEnts;
-	for (;;)
+	while (p != NULL)
 	{
 		char *spec;
 		auto int rcode;
