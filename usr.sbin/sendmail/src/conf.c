@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.45 (Berkeley) 04/18/93";
+static char sccsid[] = "@(#)conf.c	6.46 (Berkeley) 04/21/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -588,6 +588,7 @@ rlsesigs()
 #  endif
 #  if defined(hpux)
 #    define LA_TYPE		LA_FLOAT
+#    define LA_AVENRUN		"avenrun"
 #  endif
 
 #  ifndef LA_TYPE
@@ -681,6 +682,13 @@ getla()
 			if (tTd(3, 1))
 				printf("getla: nlist(%s): %s\n", _PATH_UNIX,
 					errstring(errno));
+			return (-1);
+		}
+		if (Nl[X_AVENRUN].n_value == 0)
+		{
+			if (tTd(3, 1))
+				printf("getla: nlist(%s, %s) ==> 0\n",
+					_PATH_UNIX, LA_AVENRUN);
 			return (-1);
 		}
 	}
