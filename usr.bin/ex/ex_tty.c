@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)ex_tty.c	7.11 (Berkeley) 03/09/87";
+static char *sccsid = "@(#)ex_tty.c	7.12 (Berkeley) 01/02/88";
 #endif not lint
 
 #include "ex.h"
@@ -112,10 +112,10 @@ setterm(type)
 		if (ldisc == NTTYDISC) {
 			sc[0] = olttyc.t_suspc;
 			sc[1] = 0;
-			if (olttyc.t_suspc == CTRL(z)) {
+			if (olttyc.t_suspc == CTRL('z')) {
 				for (i=0; i<=4; i++)
 					if (arrows[i].cap &&
-					    arrows[i].cap[0] == CTRL(z))
+					    arrows[i].cap[0] == CTRL('z'))
 						addmac(sc, (char *) NULL,
 							(char *) NULL, arrows);
 			} else
