@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)read.c	5.3 (Berkeley) 03/04/92";
+static char sccsid[] = "@(#)read.c	5.4 (Berkeley) 06/16/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -35,7 +35,7 @@ static char sccsid[] = "@(#)read.c	5.3 (Berkeley) 03/04/92";
 void
 bytes(fp, off)
 	register FILE *fp;
-	long off;
+	off_t off;
 {
 	register int ch, len, tlen;
 	register char *ep, *p, *t;
@@ -102,7 +102,7 @@ bytes(fp, off)
 void
 lines(fp, off)
 	register FILE *fp;
-	long off;
+	off_t off;
 {
 	struct {
 		u_int blen;
