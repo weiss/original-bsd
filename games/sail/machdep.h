@@ -1,8 +1,8 @@
 /*
- * sccsid = "@(#)machdep.h	1.1 03/17/83";
+ * sccsid = "@(#)machdep.h	1.2 03/18/83";
  */
-#define LOGFILE "/ya/staff/leres/etc/.shipslog"
-#define DRIVER "/ya/staff/leres/bin/.driver"
+#define LOGFILE "/usr/public/.shipslog"
+#define DRIVER "/usr/public/.driver"
 #define DRIVERNAME ".driver"
 #define UCBCORY
 #define SAILLOGDEF 0		/* don't look up usernames */
