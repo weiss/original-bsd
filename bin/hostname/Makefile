@@ -14,7 +14,7 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.1 (Berkeley) 09/20/88
+# @(#)Makefile	5.2 (Berkeley) 05/09/89
 #
 
 CFLAGS=	-O
@@ -38,7 +38,7 @@ depend: ${SRCS}
 	mkdep -p ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o bin -g bin -m 755 hostname ${DESTDIR}/bin/hostname
+	install -s -o bin -g bin -m 755 hostname ${DESTDIR}/bin
 	install -c -o bin -g bin -m 444 hostname.0 ${DESTDIR}/usr/man/cat1
 
 lint: ${SRCS}
