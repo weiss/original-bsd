@@ -1,4 +1,4 @@
-/*	vfs_bio.c	4.15	03/06/81	*/
+/*	vfs_bio.c	4.16	03/09/81	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -33,6 +33,9 @@
  *	bawrite
  *	brelse
  */
+
+struct	buf bfreelist[BQUEUES];
+struct	buf bswlist, *bclnlist;
 
 #define	BUFHSZ	63
 struct	bufhd bufhash[BUFHSZ];
