@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)dbopen.3	5.2 (Berkeley) 10/24/90
+.\"	@(#)dbopen.3	5.3 (Berkeley) 10/24/90
 .\"
 .TH DB 3  ""
 .UC 7
@@ -53,13 +53,11 @@ below.
 .PP
 The open routines return a pointer to a structure on success and NULL
 on error.
-This structure is defined as follows:
+This structure contains at least the following fields:
 .sp
 typedef struct {
 .RS
 void *private;
-.br
-int cachesize;
 .br
 int (*close)(), (*delete)(), (*get)(), (*put)(), (*seq)(), (*sync)();
 .RE
@@ -71,20 +69,14 @@ The elements of this structure are defined as follows:
 private
 A pointer to an internal structure private to the access method.
 .TP
-cachesize;
-A suggested maximum size of the memory cache used by the access method.
-Access methods are
-.B not
-constrained by this value.
-.TP
 close
 A pointer to a routine to flush any cached information to disk, free any
 allocated resources, and close the database file.
 Its function prototype is:
 .sp
-.in +5
+.RS
 close(const DB *db);
-.in -5
+.RE
 .sp
 Since key/data pairs may be cached in memory, failing to close the
 file with the
@@ -98,9 +90,9 @@ delete
 A pointer to a routine to remove key/data pairs from the database.
 Its function prototype is:
 .sp
-.in +5
+.RS
 delete(const DB *db, const VALUE *key);
-.in -5
+.RE
 .sp
 The
 .I delete
@@ -113,9 +105,9 @@ A pointer to a routine which is the interface for keyed retrieval from
 the database.
 Its function prototype is:
 .sp
-.in +5
+.RS
 get(const DB *db, const VALUE *key, VALUE *data);
-.in -5
+.RE
 .sp
 The address and length of the data associated with the specified
 .I key
@@ -131,15 +123,11 @@ put
 A pointer to a routine to store key/data pairs in the database.
 Its function prototype is:
 .sp
-.in +5
-put(const DB *db, const VALUE *key, const VALUE *data, u_long flag);
-.in -5
-.sp
-The parameter flag, if set, should be either R_APPEND or R_INSERT,
-optionally
-.IR or 'ed
-with R_NOOVERWRITE.
 .RS
+.RS
+put(const DB *db, const VALUE *key, const VALUE *data, u_long flag);
+.RE
+.sp
 .TP
 R_APPEND
 Append the data immediately after the data referenced by
@@ -147,7 +135,7 @@ Append the data immediately after the data referenced by
 creating a new record.
 (This implies that the access method is able to create new keys itself,
 i.e. the keys are ordered and independent, for example, record numbers.
-Currently applicable only to the recno access method.)
+Currently applicable only to the RECNO access method.)
 .TP
 R_INSERT
 Insert the data immediately before the data referenced by
@@ -155,7 +143,7 @@ Insert the data immediately before the data referenced by
 creating a new record.
 (This implies that the access method is able to create new keys itself,
 i.e. the keys are ordered and independent, for example, record numbers.
-Currently applicable only to the recno access method.)
+Currently applicable only to the RECNO access method.)
 .TP
 R_NOOVERWRITE
 Enter the new key/data pair only if the key does not previously exist.
@@ -173,9 +161,9 @@ A pointer to a routine which is the interface for sequential
 retrieval from the database.
 Its function prototype is:
 .sp
-.in +5
+.RS
 seq(const DB *db, VALUE *key, VALUE *data, int flag);
-.in -5
+.RE
 .sp
 The address and length of the key are returned in the structure
 referenced by
@@ -220,9 +208,9 @@ sync
 A pointer to a routine to flush any cached information to disk.
 Its function prototype is:
 .sp
-.in +5
+.RS
 sync(const DB *db);
-.in -5
+.RE
 .sp
 If the database is in memory only, the
 .I sync
@@ -256,38 +244,23 @@ The length of the byte string.
 One of the access methods is a btree: a sorted, balanced
 tree structure with associated key and data pairs.
 .PP
-<Mike fill this in?>
-.PP
 The private data structure provided to
 .I btree_open
 is as follows:
 .sp
 typedef struct {
 .RS
-u_long flags;
-.br
 int cachesize;
-.br
-int pagesize;
 .RE
 } BTREEINFO;
 .PP
 The elements of this structure are defined as follows:
-.TP
-flags
-The flag value is specified by
-.IR or 'ing
-the following values:
-.RS
-.TP
-R_SMALLCACHE
-A flag informing the routines that they are not expected to be
-the primary data cache, and to minimize any caching they do.
 .RE
 .TP
 cachesize
-.TP
-pagesize
+A suggested maximum size, in bytes, of the memory cache.
+Setting this value to zero specifies that an appropriate amount of memory
+should be used.
 .SH HASH
 One of the access methods is hashed access and storage.
 The private data structure provided to
@@ -296,9 +269,9 @@ is as follows:
 .sp
 typedef struct {
 .RS
-u_long flags;
-.br
 int bsize;
+.br
+int cachesize;
 .br
 int ffactor;
 .br
@@ -310,17 +283,6 @@ u_long (*hash)(const void *, const size_t);
 .PP
 The elements of this structure are defined as follows:
 .TP
-flags
-The flag value is specified by
-.IR or 'ing
-the following values:
-.RS
-.TP
-R_SMALLCACHE
-A flag informing the routines that they are not expected to be
-the primary cache, and to minimize any caching they do.
-.RE
-.TP
 bsize
 .I Bsize
 defines the hash table bucket size, and is, by default 1024, bytes.
@@ -328,6 +290,11 @@ For tables with large data items, it may be preferable to increase the
 page size, and, conversely, applications doing exclusively in-memory hashing
 may want to use a very small bucket size, for example, 256, to minimize
 hash chain collisions.
+.TP
+cachesize
+A suggested maximum size, in bytes, of the memory cache.
+Setting this value to zero specifies that an appropriate amount of memory
+should be used.
 .TP
 ffactor
 .I Ffactor
@@ -352,6 +319,9 @@ is an estimate of the final size of the hash table.
 If not set, the default value is 1.
 If not set or set too low, hash tables will expand gracefully as keys
 are entered, although a slight performance degradation may be noticed.
+.PP
+If the pointer to the private data structure is NULL, the open routine
+will use appropriate values.
 .PP
 If the hash table already exists, and the O_TRUNC flag is not
 specified to 
@@ -388,7 +358,7 @@ typedef struct {
 .RS
 u_long flags;
 .br
-u_int cachesize;
+int cachesize;
 .br
 size_t reclen;
 .br
@@ -411,15 +381,12 @@ The structure element
 specifies the length of the record, and the structure element
 .I bval
 is used as the pad character.
-.TP
-R_SMALLCACHE
-A flag informing the routines that they are not expected to be
-the primary cache, and to minimize any caching they do.
 .RE
 .TP
 cachesize
-The amount of memory to be used as a data cache, expressed as a number
-of bytes.
+A suggested maximum size, in bytes, of the memory cache.
+Setting this value to zero specifies that an appropriate amount of memory
+should be used.
 .TP
 reclen
 The length of a fixed-length record.
@@ -470,6 +437,10 @@ or the following:
 A parameter has been specified (hash function, pad byte etc.) that is
 incompatible with the current file specification or there is a mismatch
 between the version number of file and the software.
+.TP
+[EOPNOTSUPP]
+A file used by an open routine is incorrectly formatted, corrupted,
+or otherwise unusable.
 .PP
 The
 .I get
@@ -491,3 +462,6 @@ The
 routines may fail and set errno for any of the errors specified for the
 library routine
 .IR fsync (2).
+.SH BUGS
+The typedef DBT is a mnemonic for ``data base thang'', and was used
+because all of the reasonable names were taken.
