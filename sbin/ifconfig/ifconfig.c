@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ifconfig.c	4.29 (Berkeley) 06/12/90";
+static char sccsid[] = "@(#)ifconfig.c	4.30 (Berkeley) 06/14/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -630,7 +630,6 @@ register struct sockaddr_iso *s;
 {
 	if (s->siso_family == 0)
 		return;
-	s->siso_nlen -= nsellength;
 	s->siso_tlen = nsellength;
 }
 
