@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)hash_page.c	5.3 (Berkeley) 02/19/91";
+static char sccsid[] = "@(#)hash_page.c	5.4 (Berkeley) 02/21/91";
 #endif /* LIBC_SCCS and not lint */
 
 /******************************************************************************
@@ -781,7 +781,7 @@ static int
 open_temp()
 {
     sigset_t	set, oset;
-    char	*namestr = "_hashXXXXXX";
+    char	namestr[] = "_hashXXXXXX";
 
     /* Block signals; make sure file goes away at process exit. */
     sigemptyset(&set);
