@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.40 (Berkeley) 11/08/94";
+static char sccsid[] = "@(#)headers.c	8.41 (Berkeley) 11/11/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -527,8 +527,23 @@ logsender(e, msgid)
 	char *name;
 	register char *sbp;
 	register char *p;
+	int l;
 	char hbuf[MAXNAME];
 	char sbuf[MAXLINE];
+	char mbuf[MAXNAME];
+
+	/* don't allow newlines in the message-id */
+	if (msgid != NULL)
+	{
+		l = strlen(msgid);
+		if (l > sizeof mbuf - 1)
+			l = sizeof mbuf - 1;
+		bcopy(msgid, mbuf, l);
+		mbuf[l] = '\0';
+		p = mbuf;
+		while ((p = strchr(p, '\n')) != NULL)
+			*p++ = ' ';
+	}
 
 	if (bitset(EF_RESPONSE, e->e_flags))
 		name = "[RESPONSE]";
@@ -559,7 +574,7 @@ logsender(e, msgid)
 	sbp += strlen(sbp);
 	if (msgid != NULL)
 	{
-		sprintf(sbp, ", msgid=%.100s", msgid);
+		sprintf(sbp, ", msgid=%.100s", mbuf);
 		sbp += strlen(sbp);
 	}
 	if (e->e_bodytype != NULL)
@@ -582,7 +597,7 @@ logsender(e, msgid)
 		e->e_id, e->e_msgsize, e->e_class,
 		e->e_msgpriority, e->e_nrcpts);
 	if (msgid != NULL)
-		syslog(LOG_INFO, "%s: msgid=%s", e->e_id, msgid);
+		syslog(LOG_INFO, "%s: msgid=%s", e->e_id, mbuf);
 	sbp = sbuf;
 	sprintf(sbp, "%s:", e->e_id);
 	sbp += strlen(sbp);
