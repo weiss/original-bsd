@@ -1,4 +1,4 @@
-SCCSID = "@(#)Makefile 1.50 02/08/84"
+SCCSID = "@(#)Makefile 2.1 02/08/84"
 
 INSTALLDIR = $(DESTDIR)/usr/lib
 INSTALLNAME = ${INSTALLDIR}/pc0
