@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.13 (Berkeley) 10/17/93";
+static char sccsid[] = "@(#)parseaddr.c	8.14 (Berkeley) 10/22/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -617,6 +617,7 @@ rewrite(pvp, ruleset, e)
 	register struct rewrite *rwr;	/* pointer to current rewrite rule */
 	int ruleno;			/* current rule number */
 	int rstat = EX_OK;		/* return status */
+	int loopcount;
 	struct match mlist[MAXMATCH];	/* stores match on LHS */
 	char *npvp[MAXATOM+1];		/* temporary space for rebuild */
 
@@ -639,10 +640,9 @@ rewrite(pvp, ruleset, e)
 	*/
 
 	ruleno = 1;
+	loopcount = 0;
 	for (rwr = RewriteRules[ruleset]; rwr != NULL; )
 	{
-		int loopcount = 0;
-
 		if (tTd(21, 12))
 		{
 			printf("-----trying rule:");
@@ -852,6 +852,7 @@ rewrite(pvp, ruleset, e)
 				printf("----- rule fails\n");
 			rwr = rwr->r_next;
 			ruleno++;
+			loopcount = 0;
 			continue;
 		}
 
@@ -868,6 +869,7 @@ rewrite(pvp, ruleset, e)
 			rvp++;
 			rwr = rwr->r_next;
 			ruleno++;
+			loopcount = 0;
 		}
 		else if ((*rp & 0377) == CANONHOST)
 		{
