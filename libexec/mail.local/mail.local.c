@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	4.29 (Berkeley) 09/16/87";
+static char sccsid[] = "@(#)mail.local.c	4.30 (Berkeley) 10/22/87";
 #endif
 
 #include <sys/param.h>
@@ -579,9 +579,9 @@ skip:
 	}
 	setuid(getuid());
 	if (any('!', name+1))
-		sprintf(cmd, "uux - %s!rmail \\(%s\\)", rsys, name+1);
+		(void)sprintf(cmd, "uux - %s!rmail \\(%s\\)", rsys, name+1);
 	else
-		sprintf(cmd, "uux - %s!rmail %s", rsys, name+1);
+		(void)sprintf(cmd, "uux - %s!rmail %s", rsys, name+1);
 	if ((rmf=popen(cmd, "w")) == NULL)
 		exit(1);
 	copylet(n, rmf, REMOTE);
@@ -664,7 +664,7 @@ sendmail(n, name, fromaddr)
 		return(0);
 	}
 	fchown(fd, pw->pw_uid, pw->pw_gid);
-	sprintf(buf, "%s@%d\n", name, ftell(malf)); 
+	(void)sprintf(buf, "%s@%d\n", name, ftell(malf));
 	copylet(n, malf, ORDINARY);
 	fclose(malf);
 	notifybiff(buf);
