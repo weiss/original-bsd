@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	5.46 (Berkeley) 07/19/92 (with queueing)";
+static char sccsid[] = "@(#)queue.c	5.47 (Berkeley) 07/20/92 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	5.46 (Berkeley) 07/19/92 (without queueing)";
+static char sccsid[] = "@(#)queue.c	5.47 (Berkeley) 07/20/92 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -477,7 +477,8 @@ runqueue(forkflag)
 	}
 
 	/* exit without the usual cleanup */
-	exit(ExitStat);
+	e->e_id = NULL;
+	finis();
 }
 /*
 **  ORDERQ -- order the work queue.
