@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pigs.c	5.2 (Berkeley) 07/26/85";
+static char sccsid[] = "@(#)pigs.c	5.3 (Berkeley) 08/13/85";
 #endif not lint
 
 /*
@@ -73,12 +73,14 @@ showpigs()
                 ptptr++;
         }
 
-        pt[numprocs].pt_pctcpu = total / (1.0 - idle) * idle;
-	total += pt[numprocs].pt_pctcpu;
+        pt[numprocs].pt_pctcpu = idle;
+	total += idle;
         pt[numprocs].pt_uid = -1;
         pt[numprocs].pt_pid = -1;
         pt[numprocs].pt_pp = NULL;
 
+	if (total < 1.0)
+		total = 1.0;
         factor = 50.0/total;
 
         /* Find the top few by executing a "bubble pass" ten times. */
