@@ -7,7 +7,7 @@
 **  All rights reserved.  The Berkeley software License Agreement
 **  specifies the terms and conditions for redistribution.
 **
-**	@(#)conf.h	5.7 (Berkeley) 01/05/86
+**	@(#)conf.h	5.8 (Berkeley) 07/21/86
 */
 
 /*
@@ -33,6 +33,7 @@
 # define MAXTRUST	30		/* maximum number of trusted users */
 # define MAXUSERENVIRON	40		/* max # of items in user environ */
 # define QUEUESIZE	600		/* max # of jobs per queue run */
+# define MAXMXHOSTS	10		/* max # of MX records */
 
 /*
 **  Compilation options.
