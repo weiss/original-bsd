@@ -6,7 +6,7 @@
  */
 
 #include "defs.h"
-static	char sccsid[] = "@(#)expr.c 4.3 05/15/81";
+static	char sccsid[] = "@(#)expr.c 4.4 05/07/82";
 
 MSG		BADSYM;
 MSG		BADVAR;
@@ -28,7 +28,7 @@ CHAR		*lp;
 INT		radix;
 STRING		errflg;
 L_INT		localval;
-CHAR		isymbol[BSIZE];
+CHAR		isymbol[1024];
 
 CHAR		lastc,peekc;
 
