@@ -11,11 +11,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tn3270.c	1.8 (Berkeley) 05/15/88";
+static char sccsid[] = "@(#)tn3270.c	1.9 (Berkeley) 05/15/88";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <arpa/telnet.h>
+
+#include "general.h"
 
 #include "defines.h"
 #include "ring.h"
