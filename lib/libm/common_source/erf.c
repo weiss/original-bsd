@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)erf.c	5.7 (Berkeley) 12/16/92";
+static char sccsid[] = "@(#)erf.c	5.8 (Berkeley) 01/10/93";
 #endif /* not lint */
 
 /* Modified Nov 30, 1992 P. McILROY:
@@ -296,7 +296,7 @@ double erf(x)
 double erfc(x) 
 	double x;
 {
-	double R,S,P,Q,s,ax,y,z,r,fabs(),exp__D();
+	double R,S,P,Q,s,ax,y,z,r,fabs(),__exp__D();
 	if (!finite(x)) {
 		if (isnan(x))		/* erfc(NaN) = NaN */
 			return(x);
@@ -362,7 +362,7 @@ double erfc(x)
 	/* return exp(-x^2 - lsqrtPI_hi + R + y)/x;	*/
 	s = ((R + y) - lsqrtPI_hi) + z;
 	y = (((z-s) - lsqrtPI_hi) + R) + y;
-	r = exp__D(s, y)/x;
+	r = __exp__D(s, y)/x;
 	if (x>0)
 		return r;
 	else
