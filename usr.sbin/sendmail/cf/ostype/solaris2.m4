@@ -8,10 +8,10 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)solaris2.m4	8.1 (Berkeley) 08/07/93')
+VERSIONID(`@(#)solaris2.m4	8.2 (Berkeley) 01/23/94')
 divert(-1)
 
 define(`ALIAS_FILE', /etc/mail/aliases)
-define(`HELP_FILE', /var/lib/sendmail.hf)
+define(`HELP_FILE', /etc/mail/sendmail.hf)
 define(`STATUS_FILE', /etc/mail/sendmail.st)
 define(`LOCAL_MAILER_FLAGS', `fSn')
