@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)relocate.c	1.4 (Berkeley/CCI) 11/23/87";
+static char sccsid[] = "@(#)relocate.c	1.5 (Berkeley/CCI) 05/31/88";
 #endif
 
 #include	"vdfmt.h"
@@ -44,7 +44,8 @@ rel_help()
 	indent();
 	print("Relocation commands are in the following form:\n");
 	indent();
-	print("[a-h] (block)   -  UNIX file system block (frag) number.\n");
+	print("[a-h] (block)   -  UNIX file system block (%s-byte) number.\n",
+	    DEV_BSIZE);
 	print("SEctor (sector) -  Absolute sector number on disk.\n");
 	print("Track (track)   -  Absolute disk track number.\n");
 	print("(cylinder) (head) (offset) (length) - CDC flaw map format.\n");
