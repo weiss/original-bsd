@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.29 (Berkeley) 03/23/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.30 (Berkeley) 03/26/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.29 (Berkeley) 03/23/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.30 (Berkeley) 03/26/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -259,12 +259,16 @@ smtp(e)
 			if (!gothello)
 			{
 				if (bitset(PRIV_NEEDMAILHELO, PrivacyFlags))
+				{
 					message("503 Polite people say HELO first");
+					break;
+				}
 				else
+				{
 					auth_warning(e,
 						"Host %s didn't use HELO protocol",
 						RealHostName);
-				break;
+				}
 			}
 			if (gotmail)
 			{
