@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)code.c	1.3 (Berkeley) 02/12/86";
+static char sccsid[] = "@(#)code.c	1.4 (Berkeley) 07/02/87";
 #endif
 
 # include "pass1.h"
@@ -181,15 +181,6 @@ bfcode( a, n ) int a[]; {
 	/* routine prolog */
 
 	printf( "	.word	L%d\n", ftnno);
-	if (gdebug) {
-#ifdef STABDOT
-		pstabdot(N_SLINE, lineno);
-#else
-		pstab(NULLNAME, N_SLINE);
-		printf("0,%d,LL%d\n", lineno, labelno);
-		printf("LL%d:\n", labelno++);
-#endif
-	}
 	ftlab1 = getlab();
 	ftlab2 = getlab();
 	printf( "	jbr 	L%d\n", ftlab1);
@@ -240,6 +231,15 @@ bfcode( a, n ) int a[]; {
 			}
 
 		}
+	if (gdebug) {
+#ifdef STABDOT
+		pstabdot(N_SLINE, lineno);
+#else
+		pstab(NULLNAME, N_SLINE);
+		printf("0,%d,LL%d\n", lineno, labelno);
+		printf("LL%d:\n", labelno++);
+#endif
+	}
 	fdefflag = 1;
 	}
 
