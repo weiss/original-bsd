@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.108		09/06/82);
+SCCSID(@(#)deliver.c	3.109		09/06/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1061,7 +1061,7 @@ commaize(h, p, fp, oldstyle, m)
 			char *oldp;
 			extern bool isatword();
 
-			(void) prescan(name, oldstyle ? ' ' : ',');
+			(void) prescan(p, oldstyle ? ' ' : ',');
 			p = DelimChar;
 
 			/* look to see if we have an at sign */
