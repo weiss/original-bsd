@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.56 (Berkeley) 03/14/95";
+static char sccsid[] = "@(#)savemail.c	8.57 (Berkeley) 03/21/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -424,8 +424,6 @@ savemail(e, sendbody)
 **		mail.
 */
 
-static bool	SendBody;
-
 #define MAXRETURNS	6	/* max depth of returning messages */
 #define ERRORFUDGE	100	/* nominal size of error message text */
 
@@ -471,7 +469,6 @@ returntosender(msg, returnq, sendbody, e)
 		return (0);
 	}
 
-	SendBody = sendbody;
 	define('g', e->e_from.q_paddr, e);
 	define('u', NULL, e);
 
@@ -488,7 +485,7 @@ returntosender(msg, returnq, sendbody, e)
 		ee->e_flags &= ~EF_OLDSTYLE;
 	ee->e_sendqueue = returnq;
 	ee->e_msgsize = ERRORFUDGE;
-	if (!bitset(EF_NORETURN, e->e_flags))
+	if (sendbody)
 		ee->e_msgsize += e->e_msgsize;
 	initsys(ee);
 	for (q = returnq; q != NULL; q = q->q_next)
@@ -614,6 +611,7 @@ errbody(mci, e, separator)
 	char *p;
 	register ADDRESS *q;
 	bool printheader;
+	bool sendbody;
 	char buf[MAXLINE];
 	extern char *xtextify();
 
@@ -920,14 +918,14 @@ errbody(mci, e, separator)
 	**  Output text of original message
 	*/
 
-	if (bitset(EF_NORETURN, e->e_parent->e_flags))
-		SendBody = FALSE;
 	putline("", mci);
 	if (e->e_parent->e_df != NULL)
 	{
+		sendbody = !bitset(EF_NO_BODY_RETN, e->e_parent->e_flags);
+
 		if (e->e_msgboundary == NULL)
 		{
-			if (SendBody)
+			if (sendbody)
 				putline("   ----- Original message follows -----\n", mci);
 			else
 				putline("   ----- Message header follows -----\n", mci);
@@ -938,12 +936,12 @@ errbody(mci, e, separator)
 			(void) sprintf(buf, "--%s", e->e_msgboundary);
 			putline(buf, mci);
 			(void) sprintf(buf, "Content-Type: message/rfc822%s",
-				mci, SendBody ? "" : "-headers");
+				mci, sendbody ? "" : "-headers");
 			putline(buf, mci);
 		}
 		putline("", mci);
 		putheader(mci, e->e_parent->e_header, e->e_parent);
-		if (SendBody)
+		if (sendbody)
 			putbody(mci, e->e_parent, e->e_msgboundary);
 		else if (e->e_msgboundary == NULL)
 		{

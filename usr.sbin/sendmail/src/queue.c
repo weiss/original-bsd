@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.69 (Berkeley) 03/21/95 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.70 (Berkeley) 03/21/95 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.69 (Berkeley) 03/21/95 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.70 (Berkeley) 03/21/95 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -269,13 +269,6 @@ queueup(e, queueall, announce)
 				putc('F', tfp);
 			if (bitset(QPINGONDELAY, q->q_flags))
 				putc('D', tfp);
-			if (bitset(QHAS_RET_PARAM, q->q_flags))
-			{
-				if (bitset(QRET_HDRS, q->q_flags))
-					putc('N', tfp);
-				else
-					putc('B', tfp);
-			}
 			putc(':', tfp);
 			fprintf(tfp, "%s\n", denlstring(q->q_paddr, TRUE, FALSE));
 			if (announce)
@@ -1312,14 +1305,6 @@ readqf(e)
 
 					  case 'D':
 						qflags |= QPINGONDELAY;
-						break;
-
-					  case 'B':
-						qflags |= QHAS_RET_PARAM;
-						break;
-
-					  case 'N':
-						qflags |= QHAS_RET_PARAM|QRET_HDRS;
 						break;
 
 					  case 'P':
