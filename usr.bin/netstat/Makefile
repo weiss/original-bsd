@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4 (Berkeley) 01/11/86
+#	@(#)Makefile	5.5 (Berkeley) 01/18/86
 #
-OBJS=	host.o inet.o if.o main.o mbuf.o route.o unix.o ns.o bbnnet.o
+OBJS=	host.o inet.o if.o main.o mbuf.o route.o unix.o ns.o
 CFLAGS=-O
 DESTDIR=
 
