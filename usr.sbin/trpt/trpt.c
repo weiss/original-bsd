@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)trpt.c	5.11 (Berkeley) 07/17/89";
+static char sccsid[] = "@(#)trpt.c	5.12 (Berkeley) 04/11/90";
 #endif /* not lint */
 
 #include <machine/pte.h>
@@ -39,9 +39,9 @@ static char sccsid[] = "@(#)trpt.c	5.11 (Berkeley) 07/17/89";
 #include <net/if.h>
 
 #include <netinet/in.h>
-#include <netinet/in_pcb.h>
 #include <netinet/in_systm.h>
 #include <netinet/ip.h>
+#include <netinet/in_pcb.h>
 #include <netinet/ip_var.h>
 #include <netinet/tcp.h>
 #define TCPSTATES
