@@ -6,10 +6,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strerror.c	5.4 (Berkeley) 06/24/90";
+static char sccsid[] = "@(#)strerror.c	5.5 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <string.h>
+#include <stdio.h>
 
 char *
 strerror(errnum)

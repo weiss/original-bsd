@@ -6,14 +6,15 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strcat.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)strcat.c	5.6 (Berkeley) 02/24/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <string.h>
 
 char *
 strcat(s, append)
-	register char *s, *append;
+	register char *s;
+	register const char *append;
 {
 	char *save = s;
 
