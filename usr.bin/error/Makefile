@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 05/31/85
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 #
 #	error.h			error header file
@@ -45,3 +45,5 @@ psrcs:
 
 print:
 	print $(PHDRS) $(PSRCS)
+
+depend:
