@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ftp_var.h	5.7 (Berkeley) 05/26/89
+ *	@(#)ftp_var.h	5.8 (Berkeley) 10/03/89
  */
 
 /*
@@ -115,5 +115,3 @@ extern	char *strncpy();
 extern	char *strncat();
 extern	char *strcat();
 extern	char *strcpy();
-
-typedef int sig_t;
