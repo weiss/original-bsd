@@ -1,4 +1,7 @@
-/* @(#)scanf.c	4.2 (Berkeley) 10/05/82 */
+#ifndef lint
+static char sccsid[] = "@(#)scanf.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 #include	<stdio.h>
 
 scanf(fmt, args)
