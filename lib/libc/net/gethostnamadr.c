@@ -5,13 +5,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gethostnamadr.c	6.10 (Berkeley) 04/10/86";
+static char sccsid[] = "@(#)gethostnamadr.c	6.11 (Berkeley) 04/15/86";
 #endif LIBC_SCCS and not lint
 
-#include <sys/param.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <sys/types.h>
 #include <ctype.h>
 #include <netdb.h>
 #include <stdio.h>
