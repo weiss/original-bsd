@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)ulockf.c	5.6	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)ulockf.c	5.7	(Berkeley) 04/24/88";
 #endif
 
 #include "uucp.h"
@@ -12,6 +12,7 @@ static char sccsid[] = "@(#)ulockf.c	5.6	(Berkeley) 04/05/88";
 char *Lockfile[MAXLOCKS];
 char *LockDirectory = LOCKDIR;
 int Nlocks = 0;
+extern int errno;
 
 /*LINTLIBRARY*/
 
@@ -30,7 +31,6 @@ time_t atime;
 	static char tempfile[NAMESIZE];
 	char file[NAMESIZE];
 	static int pid = -1;
-	extern int errno;
 
 	if (pid < 0) {
 		pid = getpid();
