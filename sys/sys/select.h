@@ -4,10 +4,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)select.h	7.1 (Berkeley) 02/17/92
+ *	@(#)select.h	7.2 (Berkeley) 02/17/92
  */
 
-#ifdef KERNEL
 /*
  * Used to maintain information about processes that wish to be
  * notified when I/O becomes possible.
@@ -20,5 +19,3 @@ struct selinfo {
 
 void	selrecord __P((struct proc *selector, struct selinfo *));
 void	selwakeup __P((struct selinfo *));
-
-#endif	/* KERNEL */
