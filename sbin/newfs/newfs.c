@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)newfs.c	8.2 (Berkeley) 01/12/94";
+static char sccsid[] = "@(#)newfs.c	8.3 (Berkeley) 01/26/94";
 #endif /* not lint */
 
 #ifndef lint
@@ -297,7 +297,7 @@ main(argc, argv)
 	argc -= optind;
 	argv += optind;
 
-	if (argc != 2 && (!mfs || argc != 1))
+	if (argc != 2 && (mfs || argc != 1))
 		usage();
 
 	special = argv[0];
