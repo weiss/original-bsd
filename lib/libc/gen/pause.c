@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)pause.c	5.3 (Berkeley) 09/30/87";
+static char sccsid[] = "@(#)pause.c	5.4 (Berkeley) 02/27/88";
 #endif LIBC_SCCS and not lint
 
 /*
@@ -13,6 +13,7 @@ static char sccsid[] = "@(#)pause.c	5.3 (Berkeley) 09/30/87";
  */
 pause()
 {
+	long sigblock();
 
 	sigpause(sigblock(0L));
 }
