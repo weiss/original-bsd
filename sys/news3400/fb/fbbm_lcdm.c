@@ -9,7 +9,7 @@
  *
  * from: $Hdr: fbbm_lcdm.c,v 4.300 91/06/09 06:33:38 root Rel41 $ SONY
  *
- *	@(#)fbbm_lcdm.c	7.3 (Berkeley) 03/09/93
+ *	@(#)fbbm_lcdm.c	7.4 (Berkeley) 05/13/93
  */
 
 /*
@@ -46,6 +46,12 @@ extern unsigned int mfbrmask32[];
 #define	VRAM_START	(unsigned long *)(0x90200000)
 #define VRAM_WIDTH	(1120/32)
 #endif
+
+void
+lfbmattach(i)
+{
+	/* temporary hack for pseudo-device initialization */;
+}
 
 #ifdef news3200
 static caddr_t
