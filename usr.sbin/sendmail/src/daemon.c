@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.91 (Berkeley) 05/22/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.92 (Berkeley) 05/23/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.91 (Berkeley) 05/22/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.92 (Berkeley) 05/23/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1188,7 +1188,7 @@ postident:
 	if (RealHostAddr.sa.sa_family == AF_INET)
 	{
 		int ipoptlen, j;
-		char *q;
+		u_char *q;
 		u_char *o;
 		struct in_addr addr;
 		struct ipoption ipopt;
@@ -1199,7 +1199,7 @@ postident:
 			goto noipsr;
 		if (ipoptlen == 0)
 			goto noipsr;
-		o = (u_char *) &ipopt.ipopt_list;
+		o = (u_char *) ipopt.ipopt_list;
 		while (o != NULL && o < (u_char *) (&ipopt + ipoptlen))
 		{
 			switch (*o)
@@ -1228,10 +1228,11 @@ postident:
 				for ( ; j >= 0; j--)
 				{
 					memcpy(&addr, q, sizeof(addr));
-					p += sprintf(p, "%c%s",
+					sprintf(p, "%c%s",
 						     j ? '@' : ':',
 						     inet_ntoa(addr));
-					q+=sizeof(struct in_addr); 
+					p += strlen(p);
+					q += sizeof(struct in_addr); 
 				}
 				o += *o;
 				break;
