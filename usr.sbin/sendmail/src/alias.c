@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.17 (Berkeley) 10/15/93";
+static char sccsid[] = "@(#)alias.c	8.18 (Berkeley) 10/29/93";
 #endif /* not lint */
 
 
@@ -411,7 +411,7 @@ rebuildaliases(map, automatic)
 			(void) lockfile(fileno(af), map->map_file, NULL,
 					LOCK_EX);
 		}
-		(void) fclose(af);
+		(void) xfclose(af, "rebuildaliases1", map->map_file);
 		errno = 0;
 		return;
 	}
@@ -442,7 +442,7 @@ rebuildaliases(map, automatic)
 	}
 
 	/* close the file, thus releasing locks */
-	fclose(af);
+	xfclose(af, "rebuildaliases2", map->map_file);
 
 	/* add distinguished entries and close the database */
 	if (bitset(MF_OPEN, map->map_mflags))
