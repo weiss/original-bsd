@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)proc.c 1.1 08/27/80";
+static	char sccsid[] = "@(#)proc.c 1.2 10/03/80";
 
 #include "whoami.h"
 #ifdef OBJ
@@ -68,7 +68,7 @@ proc(r)
 		rvlist(r[3]);
 		return;
 	}
-	if (p->class != PROC) {
+	if (p->class != PROC && p->class != FPROC) {
 		error("Can't call %s, its %s not a procedure", p->symbol, classes[p->class]);
 		rvlist(r[3]);
 		return;
