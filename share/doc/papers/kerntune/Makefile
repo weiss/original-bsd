@@ -1,17 +1,10 @@
-#
-# Copyright (c) 1984 The Regents of the University of California.
-# All rights reserved.
-#
-# %sccs.include.redist.sh
-#
-#	@(#)Makefile	1.4 (Berkeley) 11/08/90
-#
+#	@(#)Makefile	1.5 (Berkeley) 06/08/93
 
 DIR=	papers/kerntune
 SRCS=	0.t 1.t 2.t 3.t 4.t
 MACROS=	-ms
 
-paper.${PRINTER}: ${SRCS}
+paper.ps: ${SRCS}
 	${SOELIM} ${SRCS} | ${PIC} | ${TBL} | ${EQN} | ${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
