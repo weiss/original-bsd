@@ -1,4 +1,4 @@
-#	@(#)bsd.subdir.mk	5.10 (Berkeley) 08/07/91
+#	@(#)bsd.subdir.mk	8.1 (Berkeley) 06/08/93
 
 .MAIN: all
 

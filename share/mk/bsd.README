@@ -1,4 +1,4 @@
-#	@(#)bsd.README	5.2 (Berkeley) 07/29/92
+#	@(#)bsd.README	8.1 (Berkeley) 06/08/93
 
 This is the README file for the new make "include" files for the BSD
 source tree.  The files are installed in /usr/share/mk, and are, by
