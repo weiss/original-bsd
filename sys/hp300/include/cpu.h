@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: cpu.h 1.16 91/03/25$
  *
- *	@(#)cpu.h	7.6 (Berkeley) 05/07/91
+ *	@(#)cpu.h	7.7 (Berkeley) 06/27/91
  */
 
 /*
@@ -35,6 +35,7 @@
 #undef	NEED_STRLEN		/* don't need strlen function */
 
 #define	cpu_exec(p)	/* nothing */
+#define	cpu_wait(p)	/* nothing */
 
 /*
  * Arguments to hardclock, softclock and gatherstats
