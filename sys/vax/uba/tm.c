@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tm.c	7.9 (Berkeley) 04/03/90
+ *	@(#)tm.c	7.10 (Berkeley) 04/12/90
  */
 
 #include "te.h"
@@ -23,6 +23,7 @@
 #include "buf.h"
 #include "conf.h"
 #include "user.h"
+#include "proc.h"
 #include "file.h"
 #include "map.h"
 #include "vm.h"
@@ -461,7 +462,6 @@ loop:
 			sc->sc_blkno = bdbtofsb(bp->b_blkno);
 			sc->sc_nxrec = sc->sc_blkno + 1;
 		}
-	} else {
 	} else {
 		/*
 		 * Handle boundary cases for operation
