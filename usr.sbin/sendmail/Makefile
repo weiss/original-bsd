@@ -1,7 +1,7 @@
 #
 #	Makefile for sendmail base directory
 #
-#		@(#)Makefile	3.6		02/09/83
+#		@(#)Makefile	3.7		02/09/83
 #
 
 ALL=	src/sendmail aux/syslog
@@ -54,6 +54,7 @@ $(DESTDIR)/usr/spool/mqueue:
 
 clean:
 	cd src; make clean
+	cd cf;  make clean
 	cd aux; make clean
 	cd lib; make clean
 	cd doc; make clean
