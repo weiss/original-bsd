@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)main.c 1.1 01/18/82";
+static char sccsid[] = "@(#)main.c 1.2 01/19/82";
 
 /*
  * Debugger main routine.
@@ -41,10 +41,6 @@ char **argv;
 			/* NOTREACHED */
 		} else {
 			option('r') = FALSE;
-			if (isinteractive()) {
-				printf("> ");
-				fflush(stdout);
-			}
 		}
 	} else {
 		start(NIL, NIL, NIL);
