@@ -1,4 +1,4 @@
-/* @(#)vs.c	7.4 (MIT) 02/08/90 */
+/* @(#)vs.c	7.5 (MIT) 02/17/90 */
  /****************************************************************************
  *									    *
  *  Copyright (c) 1983, 1984 by						    *
@@ -27,7 +27,6 @@
 #include "machine/pte.h"
 
 #include "param.h"
-#include "dir.h"
 #include "user.h"
 #include "buf.h"
 #include "systm.h"
