@@ -3,7 +3,7 @@
 /*
  *	This routine reads in a character from the window.
  *
- * 05/11/81 (Berkeley) @(#)getch.c	1.2
+ * @(#)getch.c	1.3 (Berkeley) 05/01/85
  */
 wgetch(win)
 reg WINDOW	*win; {
