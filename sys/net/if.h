@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.h	7.14 (Berkeley) 01/30/92
+ *	@(#)if.h	7.15 (Berkeley) 01/30/92
  */
 
 /*
@@ -39,6 +39,12 @@
 #endif
 #endif
 
+#ifdef __STDC__
+/*
+ * Forward structure declarations for function prototypes [sic].
+ */
+struct rtentry;	
+#endif
 /*
  * Structure defining a queue for a network interface.
  *
