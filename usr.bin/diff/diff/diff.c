@@ -1,13 +1,15 @@
-static	char sccsid[] = "@(#)diff.c 4.6 04/03/86";
+static	char sccsid[] = "@(#)diff.c 4.7 05/11/89";
 
 #include "diff.h"
+#include "pathnames.h"
+
 /*
  * diff - driver and subroutines
  */
 
-char	diff[] = DIFF;
-char	diffh[] = DIFFH;
-char	pr[] = PR;
+char	diff[] = _PATH_DIFF;
+char	diffh[] = _PATH_DIFFH;
+char	pr[] = _PATH_PR;
 
 main(argc, argv)
 	int argc;
