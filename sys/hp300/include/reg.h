@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: reg.h 1.1 90/07/09$
  *
- *	@(#)reg.h	7.2 (Berkeley) 11/03/90
+ *	@(#)reg.h	7.3 (Berkeley) 12/27/92
  */
 
 /*
@@ -41,9 +41,9 @@
 #define	PS	(16)
 
 #ifdef IPCREG
-#define	NIPCREG 17
+#define	NIPCREG 16
 int ipcreg[NIPCREG] =
-	{D0,D1,D2,D3,D4,D5,D6,D7,A0,A1,A2,A3,A4,A5,A6,A7,PC};
+	{D0,D1,D2,D3,D4,D5,D6,D7,A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
 
 #ifdef KERNEL
