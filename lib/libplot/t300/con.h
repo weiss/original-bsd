@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1983 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1983, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)con.h	4.2 (Berkeley) 04/22/91
+ *	@(#)con.h	8.1 (Berkeley) 06/04/93
  */
 
 #include <sgtty.h>
