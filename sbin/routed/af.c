@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)af.c	4.3 06/09/82";
+static char sccsid[] = "@(#)af.c	4.4 06/09/82";
 #endif
 
 #include <sys/types.h>
@@ -61,7 +61,7 @@ inet_portmatch(sin)
 #if vax || pdp11
 	port = ntohs(port);
 #endif
-	return (port == IPPORT_ROUTESERVER);
+	return (port == IPPORT_ROUTESERVER || port == IPPORT_ROUTESERVER+1);
 }
 
 /*
