@@ -1,13 +1,11 @@
 #ifndef lint
-static char sccsid[] = "@(#)fetch.c	1.4 (Lucasfilm) 08/09/84";
+static char sccsid[] = "@(#)fetch.c	1.5 (Berkeley) 05/01/85";
 #endif
 
 #include "systat.h"
-#include <sys/param.h>
 #include <sys/dir.h>
 #include <sys/user.h>
 #include <sys/proc.h>
-#include <sys/file.h>
 #include <sys/vmmac.h>
 #include <machine/pte.h>
 #include <pwd.h>
