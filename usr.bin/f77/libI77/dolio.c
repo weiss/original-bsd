@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dolio.c	5.2	07/30/85
+ *	@(#)dolio.c	5.3	02/25/90
  */
 
 /*
@@ -14,7 +14,7 @@
 #include "lio.h"
 
 
-c_le(a,flag) cilist *a;
+c_le(a,flg) cilist *a;
 {	int n;
 	lfname = NULL;
 	elist = NO;
@@ -24,7 +24,7 @@ c_le(a,flag) cilist *a;
 	lunit = a->ciunit;
 	if(not_legal(lunit)) err(errflag,F_ERUNIT,fmtbuf)
 	curunit = &units[lunit];
-	if(!curunit->ufd && (n=fk_open(flag,SEQ,FMT,(ftnint)lunit)))
+	if(!curunit->ufd && (n=fk_open(flg,SEQ,FMT,(ftnint)lunit)))
 		err(errflag,n,fmtbuf)
 	cf = curunit->ufd;
 	elist = YES;
