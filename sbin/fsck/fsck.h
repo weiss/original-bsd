@@ -1,4 +1,10 @@
-/* @(#)fsck.h	3.6 (Berkeley) 06/02/85 */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)fsck.h	5.1 (Berkeley) 06/05/85
+ */
 
 #define	MAXDUP		10	/* limit on dup blks (per inode) */
 #define	MAXBAD		10	/* limit on bad blks (per inode) */
