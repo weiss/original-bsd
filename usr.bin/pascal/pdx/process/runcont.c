@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)runcont.c 1.4 03/08/82";
+static char sccsid[] = "@(#)runcont.c 1.5 03/15/82";
 
 /*
  * Execution management.
@@ -26,6 +26,7 @@ LOCAL String argv[MAXNARGS];
 LOCAL String infile;
 LOCAL String outfile;
 LOCAL PROCESS pbuf;
+PROCESS *process = &pbuf;
 
 /*
  * This is a px-related kludge to deal with the possibility
@@ -114,7 +115,6 @@ initstart()
 {
     arginit();
     argv[argc] = NIL;
-    process = &pbuf;
     initcache(process);
     start(argv, infile, outfile);
     if (process->status != STOPPED) {
