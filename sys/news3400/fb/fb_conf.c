@@ -9,10 +9,8 @@
  *
  * from: $Hdr: fb_conf.c,v 4.300 91/06/09 06:32:46 root Rel41 $ SONY
  *
- *	@(#)fb_conf.c	7.2 (Berkeley) 12/17/92
+ *	@(#)fb_conf.c	7.3 (Berkeley) 03/09/93
  */
-
-#include <machine/fix_machine_type.h>
 
 #include "nwb512.h"
 #include "nwb514.h"
