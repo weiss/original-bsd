@@ -1,11 +1,4 @@
-#
-# Copyright (c) 1991 The Regents of the University of California.
-# All rights reserved.
-#
-# %sccs.include.redist.sh
-#
-#	@(#)Makefile	7.1 (Berkeley) 05/09/91
-#
+#	@(#)Makefile	7.2 (Berkeley) 05/09/91
 
 # Makefile for vax tags file
 
