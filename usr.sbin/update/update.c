@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)update.c	4.3 (Berkeley) 03/28/87";
+static char sccsid[] = "@(#)update.c	4.4 (Berkeley) 05/11/89";
 #endif
 
 /*
@@ -18,16 +18,7 @@ static char sccsid[] = "@(#)update.c	4.3 (Berkeley) 03/28/87";
 #include <sys/signal.h>
 #include <syslog.h>
 #include <stdio.h>
-
-char *fillst[] = {
-	"/bin",
-	"/lib",
-	"/usr",
-	"/usr/bin",
-	"/usr/lib",
-	"/usr/ucb",
-	0,
-};
+#include "pathnames.h"
 
 main()
 {
