@@ -1,4 +1,6 @@
-/*	pile.c	4.2	83/02/12	*/
+#ifndef lint
+static char sccsid[] = "@(#)pile.c	4.3 08/11/83";
+#endif
 
 # include "e.h"
 

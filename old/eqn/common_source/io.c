@@ -1,4 +1,6 @@
-/*	io.c	4.2	83/02/12	*/
+#ifndef lint
+static char sccsid[] = "@(#)io.c	4.3 08/11/83";
+#endif
 
 # include "e.h"
 #define	MAXLINE	1200	/* maximum input line */

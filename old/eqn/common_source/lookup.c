@@ -1,4 +1,6 @@
-/*	lookup.c	4.1	83/02/11	*/
+#ifndef lint
+static char sccsid[] = "@(#)lookup.c	4.2 08/11/83";
+#endif
 
 # include "e.h"
 #include "e.def"
