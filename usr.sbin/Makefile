@@ -1,6 +1,5 @@
-#	@(#)Makefile	5.3 (Berkeley) 06/25/90
+#	@(#)Makefile	5.4 (Berkeley) 08/07/90
 
-# not working:	gated
 SUBDIR=	ac accton arp chown chroot config cron diskpart edquota gettable \
 	htable implog implogd inetd kgmon kvm_mkdb lpr mkhosts mkpasswd \
 	mkproto mtree named pstat quot quotaon repquota rmt rwhod sa \
