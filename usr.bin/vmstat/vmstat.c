@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)vmstat.c	4.9 (Berkeley) 02/09/83";
+static	char *sccsid = "@(#)vmstat.c	4.10 (Berkeley) 05/30/83";
 #endif
 
 #include <stdio.h>
@@ -287,7 +287,8 @@ dosum()
 	printf("%9d pages paged in\n", sum.v_pgpgin);
 	printf("%9d pages paged out\n", sum.v_pgpgout);
 	printf("%9d sequential process pages freed\n", sum.v_seqfree);
-	printf("%9d total reclaims\n", sum.v_pgrec);
+	printf("%9d total reclaims (%d%% fast)\n", sum.v_pgrec,
+	    (sum.v_fastpgrec * 100) / (sum.v_pgrec == 0 ? 1 : sum.v_pgrec));
 	printf("%9d reclaims from free list\n", sum.v_pgfrec);
 	printf("%9d intransit blocking page faults\n", sum.v_intrans);
 	printf("%9d zero fill pages created\n", sum.v_nzfod / CLSIZE);
