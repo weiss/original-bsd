@@ -1,6 +1,6 @@
-/*	up.c	4.6	12/19/80	*/
+/*	up.c	4.7	12/19/80	*/
 
-#include "../conf/up.h"
+#include "up.h"
 #if NUP > 0
 #if SC11 > 0
 #include "../dev/up.c.SC11"
