@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ts.c	6.8 (Berkeley) 02/11/86
+ *	@(#)ts.c	6.9 (Berkeley) 02/20/86
  */
 
 #include "ts.h"
@@ -650,7 +650,7 @@ ignoreerr:
 		 * For forward/backward space record update current position.
 		 */
 		if (bp == &ctsbuf[TSUNIT(bp->b_dev)])
-		switch (bp->b_command) {
+		switch ((int)bp->b_command) {
 
 		case TS_SFORW:
 			sc->sc_blkno += bp->b_repcnt;
