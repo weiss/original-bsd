@@ -9,21 +9,21 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)tmpnam.c	5.1 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)tmpnam.c	5.2 (Berkeley) 02/22/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
+#include <unistd.h>
 #include <stdio.h>
 
 char *
 tmpnam(s)
 	char *s;
 {
-	static char buf[MAXPATHLEN];
-	char *mktemp();
+	static char buf[L_tmpnam];
 
 	if (s == NULL)
 		s = buf;
-	(void) sprintf(s, "%s/XXXXXX", P_tmpdir);
-	return (mktemp(s));
+	(void)snprintf(s, L_tmpnam, "%s/tmp.XXXXXX", P_tmpdir);
+	return(mktemp(s));
 }
