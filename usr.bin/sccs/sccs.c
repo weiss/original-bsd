@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)sccs.c	5.6 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)sccs.c	5.7 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 # include <stdio.h>
@@ -33,6 +33,7 @@ static char sccsid[] = "@(#)sccs.c	5.6 (Berkeley) 06/29/88";
 # include <signal.h>
 # include <sysexits.h>
 # include <pwd.h>
+# include "pathnames.h"
 
 /*
 **  SCCS.C -- human-oriented front end to the SCCS system.
@@ -137,10 +138,6 @@ static char sccsid[] = "@(#)sccs.c	5.6 (Berkeley) 06/29/88";
 # ifndef MYNAME
 # define MYNAME		"sccs"	/* name used for printing errors */
 # endif NOT MYNAME
-
-# ifndef PROGPATH
-# define PROGPATH(name)	"/usr/local/name"	/* place to find binaries */
-# endif PROGPATH
 
 /****************  End of Configuration Information  ****************/
 
@@ -482,7 +479,7 @@ command(argv, forkflag, arg0)
 	  case SHELL:		/* call a shell file */
 		*ap = cmd->sccspath;
 		*--ap = "sh";
-		rval = callprog("/bin/sh", cmd->sccsflags, ap, forkflag);
+		rval = callprog(_PATH_BSHELL, cmd->sccsflags, ap, forkflag);
 		break;
 
 	  case PROG:		/* call an sccs prog */
@@ -1159,7 +1156,7 @@ unedit(fn)
 {
 	register FILE *pfp;
 	char *cp, *pfn;
-	static char tfn[] = "/tmp/sccsXXXXX";
+	static char tfn[] = _PATH_TMP;
 	FILE *tfp;
 	register char *q;
 	bool delete = FALSE;
