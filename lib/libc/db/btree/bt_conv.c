@@ -9,12 +9,14 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)bt_conv.c	5.4 (Berkeley) 12/16/91";
+static char sccsid[] = "@(#)bt_conv.c	5.5 (Berkeley) 11/13/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
+
 #include <db.h>
 #include <stdio.h>
+
 #include "btree.h"
 
 static void kdswap __P((PAGE *));
