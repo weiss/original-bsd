@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)telnet.c	4.18 (Berkeley) 03/29/83";
+static char sccsid[] = "@(#)telnet.c	4.19 (Berkeley) 05/03/83";
 #endif
 
 /*
@@ -11,15 +11,15 @@ static char sccsid[] = "@(#)telnet.c	4.18 (Berkeley) 03/29/83";
 
 #include <netinet/in.h>
 
+#define	TELOPTS
+#include <arpa/telnet.h>
+
 #include <stdio.h>
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
 #include <setjmp.h>
 #include <netdb.h>
-
-#define	TELOPTS
-#include "telnet.h"
 
 #define	strip(x)	((x)&0177)
 
