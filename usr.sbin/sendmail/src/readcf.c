@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.91 (Berkeley) 05/15/95";
+static char sccsid[] = "@(#)readcf.c	8.92 (Berkeley) 05/25/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -113,7 +113,7 @@ readcf(cfname, safe, e)
 
 	if (OpMode != MD_TEST && bitset(S_IWGRP|S_IWOTH, statb.st_mode))
 	{
-		if (OpMode == MD_DAEMON || OpMode == MD_FREEZE)
+		if (OpMode == MD_DAEMON || OpMode == MD_INITALIAS)
 			fprintf(stderr, "%s: WARNING: dangerous write permissions\n",
 				FileName);
 #ifdef LOG
