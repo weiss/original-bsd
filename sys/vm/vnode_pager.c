@@ -9,9 +9,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vnode_pager.c	8.7 (Berkeley) 02/13/94
+ *	@(#)vnode_pager.c	8.8 (Berkeley) 02/13/94
  */
 
+/*
  * Page to/from files (vnodes).
  *
  * TODO:
