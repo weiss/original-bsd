@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-static	char sccsid[] = "@(#)asparse.c 4.2 08/15/80";
+static	char sccsid[] = "@(#)asparse.c 4.3 08/16/80";
 #include <stdio.h>
 #include "as.h"
 #include "asexpr.h"
@@ -905,6 +905,7 @@ restlab:
 	break;
 
    case IFLOAT:	curlen = 4;	goto floatlist;
+   case IQUAD:
    case IDOUBLE: 
 	curlen = 8;
       floatlist:	
