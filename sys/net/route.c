@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)route.c	7.27 (Berkeley) 01/30/92
+ *	@(#)route.c	7.28 (Berkeley) 02/03/92
  */
 #include "param.h"
 #include "systm.h"
@@ -149,7 +149,7 @@ rtredirect(dst, gateway, netmask, flags, src, rtp)
 	/* verify the gateway is directly reachable */
 	if (ifa_ifwithnet(gateway) == 0) {
 		error = ENETUNREACH;
-		goto done;
+		goto out;
 	}
 	rt = rtalloc1(dst, 0);
 	/*
@@ -208,10 +208,11 @@ done:
 		else
 			rtfree(rt);
 	}
+out:
 	if (error)
 		rtstat.rts_badredirect++;
-	else
-		(stat && (*stat)++);
+	else if (stat != NULL)
+		(*stat)++;
 	rt_missmsg(RTM_REDIRECT, dst, gateway, netmask, src, flags, error);
 }
 
