@@ -1,5 +1,5 @@
 #ifndef lint
-    static	char *sccsid = "@(#)gprof.c	1.23 (Berkeley) 01/30/84";
+    static	char *sccsid = "@(#)gprof.c	1.24 (Berkeley) 08/07/84";
 #endif lint
 
 #include "gprof.h"
@@ -16,6 +16,7 @@ main(argc, argv)
     char **argv;
 {
     char	**sp;
+    nltype	**timesortnlp;
 
     --argc;
     argv++;
@@ -129,13 +130,21 @@ main(argc, argv)
 	 */
     asgnsamples();
 	/*
-	 *	print the usual profile
+	 *	assemble the dynamic profile
+	 */
+    timesortnlp = doarcs();
+	/*
+	 *	print the dynamic profile
+	 */
+    printgprof( timesortnlp );	
+	/*
+	 *	print the flat profile
 	 */
     printprof();	
 	/*
-	 *	assemble and print the dynamic profile
+	 *	print the index
 	 */
-    doarcs();
+    printindex();	
     done();
 }
 
