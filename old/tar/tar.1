@@ -1,4 +1,4 @@
-.\"	@(#)tar.1	6.5 (Berkeley) 05/12/86
+.\"	@(#)tar.1	6.6 (Berkeley) 05/23/88
 .\"
 .TH TAR 1 ""
 .AT 3
@@ -115,6 +115,9 @@ tape archives (See
 .B f
 above).  The block size is determined automatically
 when reading tapes (key letters `x' and `t').
+.TP 10
+.B s
+tells tar to strip off any leading slashes from pathnames.
 .TP 10
 .B l
 tells 
