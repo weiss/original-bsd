@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.1 (Berkeley) 07/13/92
+#	@(#)Makefile	8.1 (Berkeley) 06/11/93
 
 sun_sysent.c sun_syscalls.c sun_syscall.h: makesyscalls.sh syscalls.master
 	-mv -f sun_sysent.c sun_sysent.c.bak
