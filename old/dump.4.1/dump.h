@@ -1,6 +1,5 @@
-/*
- * "@(#)dump.h	1.3 (Berkeley) 06/12/83"
- */
+/*	dump.h	1.4	83/08/11	*/
+
 #define	NI	16
 #define	DIRPB	(BSIZE/sizeof(struct direct))
 
