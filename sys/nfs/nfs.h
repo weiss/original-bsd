@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs.h	7.11 (Berkeley) 04/19/91
+ *	@(#)nfs.h	7.12 (Berkeley) 12/15/91
  */
 
 /*
@@ -89,7 +89,7 @@ struct sillyrename {
 	nfsv2fh_t s_fh;
 	struct	ucred *s_cred;
 	struct	vnode *s_dvp;
-	u_short	s_namlen;
+	long	s_namlen;
 	char	s_name[20];
 };
 
