@@ -1,7 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)fdec.c 2.1 02/08/84";
+static char sccsid[] = "@(#)fdec.c 2.2 03/20/85";
 #endif
 
 #include "whoami.h"
@@ -21,7 +21,7 @@ int	bodycnts[ DSPLYSZ ];
 
 #ifdef PC
 #   include "pc.h"
-#   include "pcops.h"
+#   include <pcc.h>
 #endif PC
 
 #ifdef OBJ
