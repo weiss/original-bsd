@@ -1,6 +1,7 @@
-/*	up.c	4.2	11/09/80	*/
+/*	up.c	4.3	11/13/80	*/
 
 #include "../conf/up.h"
+#if NUP > 0
 /*
  * UNIBUS disk driver with overlapped seeks and ECC recovery.
  */
@@ -762,3 +763,4 @@ active:
 		printf("\n");
 	}
 }
+#endif
