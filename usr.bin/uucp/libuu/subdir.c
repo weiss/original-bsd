@@ -1,8 +1,11 @@
 #ifndef lint
-static char sccsid[] = "@(#)subdir.c	5.3 (Berkeley) 04/10/85";
+static char sccsid[] = "@(#)subdir.c	5.4 (Berkeley) 06/23/85";
 #endif
 
 #include "uucp.h"
+
+/*LINTLIBRARY*/
+
 /*
  * By Tom Truscott, March 1983
  *
@@ -16,7 +19,7 @@ static char sccsid[] = "@(#)subdir.c	5.3 (Berkeley) 04/10/85";
  * and check them manually every now and then.  Beware complacency!
  */
 
-static char *prefix[] = {
+static char *dprefix[] = {
 	DLocalX,	/* Outbound 'xqt' request files */
 	DLocal,		/* Outbound data files */
 	"D.",		/* Other "D." files (remember the "."!) */
@@ -68,7 +71,7 @@ char *as;
 			return as;
 
 	/* look for first prefix which matches, and make subdirectory */
-	for (p = &prefix[0]; *p; p++) {
+	for (p = &dprefix[0]; *p; p++) {
 		if (strncmp(s, *p, n = strlen(*p))==0 && s[n] && s[n] != '/') {
 			strcat(tptr, *p);
 			strcat(tptr, "/");
