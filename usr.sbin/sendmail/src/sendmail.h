@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.71.1.1		06/06/82";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.72		06/06/82";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -173,8 +173,8 @@ struct envelope
 	char		*e_origfrom;	/* the From: line first read */
 	char		*e_to;		/* the target person */
 	ADDRESS		e_from;		/* the person it is from */
-	ADDRESS		*e_returnto;	/* place to return the message to */
 	ADDRESS		*e_sendqueue;	/* list of message recipients */
+	ADDRESS		*e_errorqueue;	/* the queue for error responses */
 	long		e_msgsize;	/* size of the message in bytes */
 	short		e_class;	/* msg class (priority, junk, etc.) */
 	int		(*e_puthdr)();	/* function to put header of message */
