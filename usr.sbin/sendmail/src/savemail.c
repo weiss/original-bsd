@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.36		06/26/82);
+SCCSID(@(#)savemail.c	3.37		06/26/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -209,6 +209,16 @@ returntosender(msg, returnto, sendbody)
 	extern ENVELOPE *newenvelope();
 	ENVELOPE errenvelope;
 	static int returndepth;
+
+# ifdef DEBUG
+	if (Debug > 0)
+	{
+		printf("Return To Sender: msg=\"%s\", depth=%d, CurEnv=%x,\n",
+		       msg, returndepth, CurEnv);
+		printf("\treturnto=");
+		printaddr(returnto, FALSE);
+	}
+# endif DEBUG
 
 	if (++returndepth >= MAXRETURNS)
 	{
