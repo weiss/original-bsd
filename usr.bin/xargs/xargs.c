@@ -15,14 +15,14 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)xargs.c	5.2 (Berkeley) 04/18/90";
+static char sccsid[] = "@(#)xargs.c	5.3 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include <limits.h>
 #include "pathnames.h"
 

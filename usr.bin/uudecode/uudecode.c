@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)uudecode.c	5.8 (Berkeley) 08/22/89";
+static char sccsid[] = "@(#)uudecode.c	5.9 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 /*
@@ -29,7 +29,7 @@ static char sccsid[] = "@(#)uudecode.c	5.8 (Berkeley) 08/22/89";
 #include <sys/stat.h>
 #include <pwd.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 char *filename;
 
