@@ -16,14 +16,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)create.c	5.4 (Berkeley) 03/05/90";
+static char sccsid[] = "@(#)create.c	5.5 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "mtree.h"
 
 cwalk(parent, tail)

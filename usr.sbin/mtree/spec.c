@@ -16,13 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)spec.c	5.2 (Berkeley) 09/06/89";
+static char sccsid[] = "@(#)spec.c	5.3 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <ctype.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "mtree.h"
 
 extern ENTRY *root;			/* root of the tree */

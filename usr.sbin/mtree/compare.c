@@ -16,13 +16,13 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)compare.c	5.1 (Berkeley) 09/04/89";
+static char sccsid[] = "@(#)compare.c	5.2 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "mtree.h"
 
 #define	LABEL { \

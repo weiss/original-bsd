@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.1 (Berkeley) 09/04/89";
+static char sccsid[] = "@(#)util.c	5.2 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -25,7 +25,7 @@ static char sccsid[] = "@(#)util.c	5.1 (Berkeley) 09/04/89";
 #include <grp.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <strings.h>
+#include <string.h>
 #include "mtree.h"
 
 set(p, ip, override)
