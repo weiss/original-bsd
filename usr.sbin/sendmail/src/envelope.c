@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	8.20 (Berkeley) 12/02/93";
+static char sccsid[] = "@(#)envelope.c	8.21 (Berkeley) 12/04/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -686,6 +686,7 @@ setsender(from, e, delimptr, internal)
 			/* extract user and group id */
 			e->e_from.q_uid = pw->pw_uid;
 			e->e_from.q_gid = pw->pw_gid;
+			e->e_from.q_flags |= QGOODUID;
 
 			/* extract full name from passwd file */
 			if (FullName == NULL && pw->pw_gecos != NULL &&
@@ -706,6 +707,7 @@ setsender(from, e, delimptr, internal)
 			e->e_from.q_home = getenv("HOME");
 		e->e_from.q_uid = RealUid;
 		e->e_from.q_gid = RealGid;
+		e->e_from.q_flags |= QGOODUID;
 	}
 
 	/*
