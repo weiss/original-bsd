@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cards.c	5.4 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)cards.c	5.5 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 #include	<stdio.h>
@@ -96,7 +96,7 @@ isone( a, b, n )
  * remove the card a from the deck d of n cards
  */
 
-remove( a, d, n )
+cremove( a, d, n )
 
     CARD		a, d[];
     int			n;

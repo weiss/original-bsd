@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)io.c	5.7 (Berkeley) 02/04/91";
+static char sccsid[] = "@(#)io.c	5.8 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 # include	<curses.h>
@@ -354,7 +354,7 @@ msg(fmt)
 	va_list ap;
 
 	va_start(ap, fmt);
-	(void)vsprintf(Msgbuf[Newpos], fmt, ap);
+	(void)vsprintf(&Msgbuf[Newpos], fmt, ap);
 	va_end(ap);
 	endmsg();
 }
@@ -370,7 +370,7 @@ addmsg(fmt)
 	va_list ap;
 
 	va_start(ap, fmt);
-	(void)vsprintf(Msgbuf[Newpos], fmt, ap);
+	(void)vsprintf(&Msgbuf[Newpos], fmt, ap);
 	va_end(ap);
 }
 
