@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ld.c	5.8 (Berkeley) 04/06/87";
+static char sccsid[] = "@(#)ld.c	5.9 (Berkeley) 04/07/87";
 #endif not lint
 
 /*
@@ -1562,7 +1562,7 @@ char *s;
 	if (sflag || xflag)
 		return;
 	cursym.n_un.n_name = s;
-	cursym.n_type = N_TEXT;
+	cursym.n_type = N_EXT | N_FN;
 	cursym.n_value = torigin;
 	symwrite(&cursym, sout);
 }
