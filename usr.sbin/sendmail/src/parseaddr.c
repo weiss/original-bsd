@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.40 (Berkeley) 11/20/94";
+static char sccsid[] = "@(#)parseaddr.c	8.41 (Berkeley) 11/21/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1251,7 +1251,7 @@ buildaddr(tv, a, flags, e)
 	bzero((char *) a, sizeof *a);
 
 	/* set up default error return flags */
-	a->q_flags |= QPINGONFAILURE;
+	a->q_flags |= QPINGONFAILURE|QPINGONDELAY;
 
 	/* figure out what net/mailer to use */
 	if (*tv == NULL || (**tv & 0377) != CANONNET)
