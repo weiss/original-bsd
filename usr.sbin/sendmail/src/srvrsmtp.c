@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	5.28 (Berkeley) 06/01/90 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.29 (Berkeley) 03/02/91 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	5.28 (Berkeley) 06/01/90 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.29 (Berkeley) 03/02/91 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -91,7 +91,7 @@ smtp()
 	register char *p;
 	register struct cmd *c;
 	char *cmd;
-	extern char *skipword();
+	static char *skipword();
 	bool hasmail;			/* mail command received */
 	auto ADDRESS *vrfyqueue;
 	ADDRESS *a;

@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.36 (Berkeley) 06/01/90 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.37 (Berkeley) 03/02/91 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.36 (Berkeley) 06/01/90 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.37 (Berkeley) 03/02/91 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -85,7 +85,7 @@ getrequests()
 	int t;
 	register struct servent *sp;
 	int on = 1;
-	extern reapchild();
+	extern void reapchild();
 
 	/*
 	**  Set up the address for the mailer.
@@ -129,7 +129,8 @@ getrequests()
 	(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_REUSEADDR, (char *)&on, sizeof on);
 	(void) setsockopt(DaemonSocket, SOL_SOCKET, SO_KEEPALIVE, (char *)&on, sizeof on);
 
-	if (bind(DaemonSocket, &SendmailAddress, sizeof SendmailAddress) < 0)
+	if (bind(DaemonSocket,
+	    (struct sockaddr *)&SendmailAddress, sizeof SendmailAddress) < 0)
 	{
 		syserr("getrequests: cannot bind");
 		(void) close(DaemonSocket);
@@ -166,7 +167,8 @@ getrequests()
 		{
 			errno = 0;
 			lotherend = sizeof RealHostAddr;
-			t = accept(DaemonSocket, &RealHostAddr, &lotherend);
+			t = accept(DaemonSocket,
+			    (struct sockaddr *)&RealHostAddr, &lotherend);
 		} while (t < 0 && errno == EINTR);
 		if (t < 0)
 		{
@@ -391,7 +393,8 @@ again:
 		(void) fflush(CurEnv->e_xfp);		/* for debugging */
 	errno = 0;					/* for debugging */
 	SendmailAddress.sin_family = AF_INET;
-	if (connect(s, &SendmailAddress, sizeof SendmailAddress) < 0)
+	if (connect(s,
+	    (struct sockaddr *)&SendmailAddress, sizeof SendmailAddress) < 0)
 	{
 		sav_errno = errno;
 		(void) close(s);

@@ -8,9 +8,9 @@
 
 #ifndef lint
 #ifdef DBM
-static char sccsid[] = "@(#)alias.c	5.21 (Berkeley) 06/01/90 (with DBM)";
+static char sccsid[] = "@(#)alias.c	5.22 (Berkeley) 03/02/91 (with DBM)";
 #else
-static char sccsid[] = "@(#)alias.c	5.21 (Berkeley) 06/01/90 (without DBM)";
+static char sccsid[] = "@(#)alias.c	5.22 (Berkeley) 03/02/91 (without DBM)";
 #endif
 #endif /* not lint */
 
@@ -169,6 +169,7 @@ initaliases(aliasfile, init)
 #endif DBM
 	struct stat stb;
 	static bool initialized = FALSE;
+	static int readaliases();
 
 	if (initialized)
 		return;
