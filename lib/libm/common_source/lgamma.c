@@ -1,6 +1,6 @@
 #ifndef lint
 static char sccsid[] =
-"@(#)lgamma.c	4.4 (Berkeley) 9/11/85; 1.2 (ucb.elefunt) 09/11/85";
+"@(#)lgamma.c	4.4 (Berkeley) 9/11/85; 1.3 (ucb.elefunt) 07/07/87";
 #endif not lint
 
 /*
@@ -19,7 +19,7 @@ static char sccsid[] =
 */
 
 #include <math.h>
-#ifdef VAX
+#if defined(VAX)
 #include <errno.h>
 #endif
 int	signgam = 0;
@@ -105,7 +105,7 @@ double arg;
 	t = floor(arg);
 	if (arg - t  > 0.5e0)
 	    t += 1.e0;				/* t := integer nearest arg */
-#ifdef VAX
+#if defined(VAX)
 	if (arg == t) {
 	    extern double infnan();
 	    return(infnan(ERANGE));		/* +INF */

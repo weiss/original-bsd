@@ -13,7 +13,7 @@
 
 #ifndef lint
 static char sccsid[] =
-"@(#)asincos.c	1.1 (Berkeley) 8/21/85; 1.2 (ucb.elefunt) 09/11/85";
+"@(#)asincos.c	1.1 (Berkeley) 8/21/85; 1.3 (ucb.elefunt) 07/07/87";
 #endif not lint
 
 /* ASIN(X)
@@ -72,7 +72,7 @@ double asin(x)
 double x;
 {
 	double s,t,copysign(),atan2(),sqrt(),one=1.0;
-#ifndef VAX
+#if (!defined(VAX)&&!defined(TAHOE))
 	if(x!=x) return(x);	/* x is NaN */
 #endif
 	s=copysign(x,one);
@@ -139,7 +139,7 @@ double acos(x)
 double x;
 {
 	double t,copysign(),atan2(),sqrt(),one=1.0;
-#ifndef VAX
+#if (!defined(VAX)&&!defined(TAHOE))
 	if(x!=x) return(x);
 #endif
 	if( x != -1.0)
