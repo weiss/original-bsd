@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hd_subr.c	7.2 (Berkeley) 05/11/90
+ *	@(#)hd_subr.c	7.3 (Berkeley) 06/21/90
  */
 
 #include "../h/param.h"
@@ -260,9 +260,7 @@ register int frametype, pf;
 		uframe -> pf = pf;
 
 	hd_trace (hdp, TX, frame);
-	(*hdp -> hd_ifp -> if_output) (hdp -> hd_ifp, buf,
-		(struct sockaddr *)hdp->hd_xcp);
-
+	(*hdp->hd_output)(hdp, buf);
 }
 
 struct mbuf *
