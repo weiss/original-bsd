@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)rwhod.c	5.3 (Berkeley) 06/19/85";
+static char sccsid[] = "@(#)rwhod.c	5.4 (Berkeley) 09/15/85";
 #endif not lint
 
 #include <sys/types.h>
@@ -87,6 +87,8 @@ main()
 	char path[64];
 	int addr, on = 1;
 	struct hostent *hp;
+	char *cp;
+	extern char *index();
 
 	if (getuid()) {
 		fprintf(stderr, "rwhod: not super user\n");
@@ -123,6 +125,8 @@ main()
 		syslog(LOG_ERR, "gethostname: %m");
 		exit(1);
 	}
+	if ((cp = index(myname, '.')) != NULL)
+		*cp = '\0';
 	strncpy(mywd.wd_hostname, myname, sizeof (myname) - 1);
 	utmpf = open("/etc/utmp", O_RDONLY);
 	if (utmpf < 0) {
