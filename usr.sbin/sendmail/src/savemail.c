@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.47		11/17/82);
+SCCSID(@(#)savemail.c	3.48		11/24/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -12,7 +12,7 @@ SCCSID(@(#)savemail.c	3.47		11/17/82);
 **	this machine).
 **
 **	Parameters:
-**		none
+**		e -- the envelope containing the message in error.
 **
 **	Returns:
 **		none
@@ -23,7 +23,8 @@ SCCSID(@(#)savemail.c	3.47		11/17/82);
 **		directory.
 */
 
-savemail()
+savemail(e)
+	register ENVELOPE *e;
 {
 	register struct passwd *pw;
 	register FILE *xfile;
@@ -41,29 +42,29 @@ savemail()
 
 	if (exclusive++)
 		return;
-	if (CurEnv->e_class < 0)
+	if (e->e_class < 0)
 	{
 		message(Arpa_Info, "Dumping junk mail");
 		return;
 	}
 	ForceMail = TRUE;
-	FatalErrors = FALSE;
+	e->e_flags &= ~EF_FATALERRS;
 
 	/*
 	**  In the unhappy event we don't know who to return the mail
 	**  to, make someone up.
 	*/
 
-	if (CurEnv->e_from.q_paddr == NULL)
+	if (e->e_from.q_paddr == NULL)
 	{
-		if (parse("root", &CurEnv->e_from, 0) == NULL)
+		if (parse("root", &e->e_from, 0) == NULL)
 		{
 			syserr("Cannot parse root!");
 			ExitStat = EX_SOFTWARE;
 			finis();
 		}
 	}
-	CurEnv->e_to = NULL;
+	e->e_to = NULL;
 
 	/*
 	**  If called from Eric Schmidt's network, do special mailback.
@@ -78,7 +79,7 @@ savemail()
 		ExitStat = EX_OK;
 		MailBack = TRUE;
 	}
-	if (!bitset(M_LOCAL, CurEnv->e_from.q_mailer->m_flags))
+	if (!bitset(M_LOCAL, e->e_from.q_mailer->m_flags))
 		MailBack = TRUE;
 
 	/*
@@ -99,11 +100,12 @@ savemail()
 		}
 		else
 		{
-			(void) fflush(Xscript);
-			xfile = fopen(Transcript, "r");
+			if (Xscript != NULL)
+				(void) fflush(Xscript);
+			xfile = fopen(queuename(e, 'x'), "r");
 			if (xfile == NULL)
-				syserr("Cannot open %s", Transcript);
-			expand("$n", buf, &buf[sizeof buf - 1], CurEnv);
+				syserr("Cannot open %s", queuename(e, 'x'));
+			expand("$n", buf, &buf[sizeof buf - 1], e);
 			printf("\r\nMessage from %s...\r\n", buf);
 			printf("Errors occurred while sending mail; transcript follows:\r\n");
 			while (fgets(buf, sizeof buf, xfile) != NULL && !ferror(stdout))
@@ -127,11 +129,11 @@ savemail()
 
 	if (MailBack)
 	{
-		if (CurEnv->e_errorqueue == NULL)
-			sendto(CurEnv->e_from.q_paddr, (ADDRESS *) NULL,
-			       &CurEnv->e_errorqueue);
+		if (e->e_errorqueue == NULL)
+			sendto(e->e_from.q_paddr, (ADDRESS *) NULL,
+			       &e->e_errorqueue);
 		if (returntosender("Unable to deliver mail",
-				   CurEnv->e_errorqueue, TRUE) == 0)
+				   e->e_errorqueue, TRUE) == 0)
 			return;
 	}
 
@@ -149,16 +151,16 @@ savemail()
 	if (OpMode == MD_ARPAFTP || OpMode == MD_SMTP)
 		return;
 	p = NULL;
-	if (CurEnv->e_from.q_mailer == LocalMailer)
+	if (e->e_from.q_mailer == LocalMailer)
 	{
-		if (CurEnv->e_from.q_home != NULL)
-			p = CurEnv->e_from.q_home;
-		else if ((pw = getpwnam(CurEnv->e_from.q_user)) != NULL)
+		if (e->e_from.q_home != NULL)
+			p = e->e_from.q_home;
+		else if ((pw = getpwnam(e->e_from.q_user)) != NULL)
 			p = pw->pw_dir;
 	}
 	if (p == NULL)
 	{
-		syserr("Can't return mail to %s", CurEnv->e_from.q_paddr);
+		syserr("Can't return mail to %s", e->e_from.q_paddr);
 # ifdef DEBUG
 		p = "/usr/tmp";
 # endif
@@ -173,8 +175,8 @@ savemail()
 		message(Arpa_Info, "Saving message in dead.letter");
 		Verbose = oldverb;
 		define('z', p);
-		expand("$z/dead.letter", buf, &buf[sizeof buf - 1], CurEnv);
-		CurEnv->e_to = buf;
+		expand("$z/dead.letter", buf, &buf[sizeof buf - 1], e);
+		e->e_to = buf;
 		q = NULL;
 		sendto(buf, (ADDRESS *) NULL, &q);
 		(void) deliver(q);
@@ -303,21 +305,24 @@ errbody(fp, m, xdot)
 	register FILE *xfile;
 	char buf[MAXLINE];
 	bool fullsmtp = bitset(M_FULLSMTP, m->m_flags);
+	char *p;
 
 	/*
 	**  Output transcript of errors
 	*/
 
 	(void) fflush(stdout);
-	if ((xfile = fopen(Transcript, "r")) == NULL)
+	p = queuename(CurEnv->e_parent, 'x');
+	if ((xfile = fopen(p, "r")) == NULL)
 	{
-		syserr("Cannot open %s", Transcript);
+		syserr("Cannot open %s", p);
 		fprintf(fp, "  ----- Transcript of session is unavailable -----\n");
 	}
 	else
 	{
 		fprintf(fp, "   ----- Transcript of session follows -----\n");
-		(void) fflush(Xscript);
+		if (Xscript != NULL)
+			(void) fflush(Xscript);
 		while (fgets(buf, sizeof buf, xfile) != NULL)
 			putline(buf, fp, fullsmtp);
 		(void) fclose(xfile);
