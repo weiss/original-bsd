@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)udp_usrreq.c	7.22 (Berkeley) 10/02/91
+ *	@(#)udp_usrreq.c	7.23 (Berkeley) 03/15/92
  */
 
 #include "param.h"
@@ -228,6 +228,7 @@ udp_saveopt(p, size, type)
  */
 udp_notify(inp, errno)
 	register struct inpcb *inp;
+	int errno;
 {
 
 	inp->inp_socket->so_error = errno;
