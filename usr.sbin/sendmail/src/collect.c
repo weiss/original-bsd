@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)collect.c	3.38.1.1		05/29/82);
+SCCSID(@(#)collect.c	3.39		05/31/82);
 
 /*
 **  COLLECT -- read & parse message header & make temp file.
@@ -56,7 +56,7 @@ collect(sayok)
 		finis();
 	}
 	chmod(tempfname, 0600);
-	InFileName = tempfname;
+	CurEnv->e_df = tempfname;
 
 	/*
 	**  Create the Mail-From line if we want to.
@@ -190,12 +190,12 @@ collect(sayok)
 		{
 			if (errno == ENOSPC)
 			{
-				(void) freopen(InFileName, "w", tf);
+				(void) freopen(CurEnv->e_df, "w", tf);
 				fputs("\nMAIL DELETED BECAUSE OF LACK OF DISK SPACE\n\n", tf);
 				usrerr("452 Out of disk space for temp file");
 			}
 			else
-				syserr("collect: Cannot write %s", InFileName);
+				syserr("collect: Cannot write %s", CurEnv->e_df);
 			(void) freopen("/dev/null", "w", tf);
 		}
 	}
@@ -269,8 +269,8 @@ collect(sayok)
 		.... so we will ignore the problem for the time being */
 	}
 
-	if ((TempFile = fopen(InFileName, "r")) == NULL)
-		syserr("Cannot reopen %s", InFileName);
+	if ((TempFile = fopen(CurEnv->e_df, "r")) == NULL)
+		syserr("Cannot reopen %s", CurEnv->e_df);
 
 # ifdef DEBUG
 	if (Debug)
