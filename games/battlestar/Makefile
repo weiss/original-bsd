@@ -4,7 +4,7 @@
 # the terms of the Berkeley Software License Agreement.
 #
 
-# @(#)Makefile	1.7 04/25/85
+# @(#)Makefile	1.8 05/31/87
 
 CFLAGS=		-O
 OBJS=		battlestar.o com1.o com2.o com3.o com4.o com5.o com6.o com7.o \
@@ -40,3 +40,5 @@ man $(MAN):
 
 clean:
 	rm -f $(OBJS) $(JUNKFILES)
+
+depend:
