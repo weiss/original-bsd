@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)move.c	5.6 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)move.c	5.7 (Berkeley) 08/31/92";
 #endif /* not lint */
 
 #include "back.h"
@@ -323,11 +323,11 @@ nextfree ()  {
 			getout();
 		}
 		new->b_next = 0;
-		return (new);
+	} else {
+		new = freeq;
+		freeq = freeq->b_next;
 	}
-
-	new = freeq;
-	freeq = freeq->b_next;
+	return (new);
 }
 
 pickmove ()  {
