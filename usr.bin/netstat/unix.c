@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)unix.c	5.9 (Berkeley) 06/18/90";
+static char sccsid[] = "@(#)unix.c	5.10 (Berkeley) 04/27/91";
 #endif /* not lint */
 
 /*
@@ -19,7 +19,8 @@ static char sccsid[] = "@(#)unix.c	5.9 (Berkeley) 06/18/90";
 #include <sys/mbuf.h>
 #include <sys/un.h>
 #include <sys/unpcb.h>
-#define	KERNEL
+#define KERNEL
+struct uio;
 #include <sys/file.h>
 
 int	Aflag;
