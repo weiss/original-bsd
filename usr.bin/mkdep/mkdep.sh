@@ -1,9 +1,10 @@
 #! /bin/sh
 #
-#	@(#)mkdep.sh	5.6	(Berkeley)	09/11/87
+#	@(#)mkdep.sh	5.7	(Berkeley)	10/13/87
 #
 
-PATH=:/bin:/usr/bin:/usr/ucb
+PATH=/bin:/usr/bin:/usr/ucb
+export PATH
 
 if [ $# = 0 ] ; then
 	echo 'usage: mkdep [-p] [-f makefile] [flags] file ...'
