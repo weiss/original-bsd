@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lookup.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)lookup.c	5.2 (Berkeley) 10/22/87";
 #endif not lint
 
 #include "defs.h"
@@ -113,7 +113,7 @@ lookup(name, action, value)
 			continue;
 		if (action != LOOKUP) {
 			if (action != INSERT || s->s_type != CONST) {
-				sprintf(buf, "%s redefined", name);
+				(void)sprintf(buf, "%s redefined", name);
 				yyerror(buf);
 			}
 		}
@@ -121,7 +121,8 @@ lookup(name, action, value)
 	}
 
 	if (action == LOOKUP) {
-		yyerror(sprintf(buf, "%s undefined", name));
+		(void)sprintf(buf, "%s undefined", name);
+		yyerror(buf);
 		return(NULL);
 	}
 
