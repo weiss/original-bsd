@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)mktemp.c	5.10 (Berkeley) 02/24/91";
+static char sccsid[] = "@(#)mktemp.c	5.11 (Berkeley) 07/12/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -14,6 +14,7 @@ static char sccsid[] = "@(#)mktemp.c	5.10 (Berkeley) 02/24/91";
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
+#include <ctype.h>
 
 static int _gettemp();
 
