@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.86 (Berkeley) 05/15/95 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.87 (Berkeley) 05/16/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.86 (Berkeley) 05/15/95 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.87 (Berkeley) 05/16/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -1221,7 +1221,10 @@ host_map_lookup(map, name, av, statp)
 	{
 		if (tTd(9, 1))
 			printf("host_map_lookup(%s) => CACHE %s\n",
-				name, s->s_namecanon.nc_cname);
+			       name,
+			       s->s_namecanon.nc_cname == NULL
+					? "NULL"
+					: s->s_namecanon.nc_name);
 		errno = s->s_namecanon.nc_errno;
 #if NAMED_BIND
 		h_errno = s->s_namecanon.nc_herrno;
