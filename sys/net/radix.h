@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)radix.h	8.1.2.1 (Berkeley) 10/09/94
+ *	@(#)radix.h	8.2 (Berkeley) 10/31/94
  */
 
 #ifndef _RADIX_H_
