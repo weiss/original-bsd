@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 1988 University of Utah.
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * the Systems Programming Group of the University of Utah Computer
@@ -12,7 +12,7 @@
  *
  * from: Utah $Hdr: ite_hy.c 1.1 92/01/22$
  *
- *	@(#)ite_hy.c	7.4 (Berkeley) 06/01/93
+ *	@(#)ite_hy.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <hp300/stand/samachdep.h>

@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1982, 1986, 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.c	7.6 (Berkeley) 05/24/93
+ *	@(#)conf.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
