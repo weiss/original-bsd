@@ -1,11 +1,11 @@
-#	@(#)Makefile	1.3	(Berkeley)	04/17/83
+#	@(#)Makefile	1.4	(Berkeley)	06/04/85
 #
 DESTDIR=
 CFLAGS=	-O
 
 # Programs that live in subdirectories, and have makefiles of their own.
 #
-SUBDIR=	pi pc0 px pxp pdx utilities
+SUBDIR=	eyacc pi pc0 px pxp pdx utilities
 
 all:	${SUBDIR}
 
