@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)refresh.c	5.32 (Berkeley) 02/18/93";
+static char sccsid[] = "@(#)refresh.c	5.33 (Berkeley) 02/18/93";
 #endif /* not lint */
 
 #include <curses.h>
@@ -527,7 +527,7 @@ quickch(win)
 		           (n < 0 && target <= bot && target > bot + n)) {
 			if (clp->hash != blank_hash ||  memcmp(clp->line, 
 			    buf, win->maxx * __LDATASIZE) !=0) {
-				(void)bcopy(buf, clp->line,  
+				(void)memcpy(clp->line,  buf,
 				    win->maxx * __LDATASIZE);
 #ifdef DEBUG
 				__TRACE("-- blanked out: dirty");

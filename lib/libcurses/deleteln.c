@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deleteln.c	5.15 (Berkeley) 01/11/93";
+static char sccsid[] = "@(#)deleteln.c	5.16 (Berkeley) 02/18/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -33,8 +33,9 @@ wdeleteln(win)
 		if (win->orig == NULL)
 			win->lines[y] = win->lines[y + 1];
 		else
-			bcopy(win->lines[y + 1]->line, win->lines[y]->line, 
-			      win->maxx * __LDATASIZE);
+			(void) memcpy(win->lines[y]->line, 
+			    win->lines[y + 1]->line, 
+			    win->maxx * __LDATASIZE);
 		__touchline(win, y, 0, win->maxx - 1, 0);
 	}
 
