@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)sym.c	1.1 (Berkeley) 02/25/86";
+static	char sccsid[] = "@(#)sym.c	1.2 (Berkeley) 04/27/87";
 #endif
 
 /*
@@ -43,7 +43,8 @@ findsym(val, type)
 	if (type == NSYM || symtab == 0)
 		return (diff);
 	for (sp = symtab; sp < esymtab; sp++) {
-		if (sp->n_type&N_STAB || (sp->n_type&N_EXT)==0)
+		if (sp->n_type & N_STAB || !(sp->n_type & N_EXT)
+		    || sp->n_type == (N_FN|N_EXT))
 			continue;
 		if (val - sp->n_value < diff && val >= sp->n_value) {
 			diff = val - sp->n_value;
