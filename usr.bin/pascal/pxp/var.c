@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)var.c	1.1 (Berkeley) 03/02/81";
+static	char *sccsid = "@(#)var.c	1.2 (Berkeley) 03/07/81";
 /* Copyright (c) 1979 Regents of the University of California */
 #
 /*
@@ -11,7 +11,7 @@ static	char *sccsid = "@(#)var.c	1.1 (Berkeley) 03/02/81";
 #include "0.h"
 #include "tree.h"
 
-STATIC	int varcnt -1;
+STATIC	int varcnt = -1;
 /*
  * Var declaration part
  */
