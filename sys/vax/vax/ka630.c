@@ -1,9 +1,10 @@
-/*
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1988 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)ka630.c	7.7 (Berkeley) 12/16/90
+ * %sccs.include.redist.c%
+ *
+ *	@(#)ka630.c	7.8 (Berkeley) 05/09/91
  */
 
 #ifdef VAX630
