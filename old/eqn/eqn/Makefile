@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 01/14/91
+#	@(#)Makefile	5.8 (Berkeley) 07/18/92
 
 PROG=	eqn
 CFLAGS+=-I. -I${.CURDIR}/../common_source
@@ -20,7 +20,7 @@ e.def: e.c
 .depend: e.def
 
 eqn.0:
-	eqn ${.CURDIR}/eqn.1 | nroff -h -man > ${.TARGET}
+	eqn ${.CURDIR}/eqn.1 | nroff -man > ${.TARGET}
 
 .include "../../Makefile.inc"
 .include <bsd.prog.mk>
