@@ -1,4 +1,4 @@
 /*
  * Just keep track of the date/sid of this version of Mail.
  */
-char	*version = "2.3 10/20/81";
+char	*version = "2.4 12/10/81";
