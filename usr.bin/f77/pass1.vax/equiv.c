@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid[] = "@(#)equiv.c	5.1 (Berkeley) 06/07/85";
+static char *sccsid[] = "@(#)equiv.c	5.2 (Berkeley) 01/03/88";
 #endif not lint
 
 /*
@@ -83,7 +83,7 @@ for(i = 0 ; i < nequiv ; ++i)
 
 			offp = suboffset(itemp);
 			if(ISICON(offp))
-				offset = offp->constblock.const.ci;
+				offset = offp->constblock.constant.ci;
 			else	{
 				dclerr("illegal subscript in equivalence ",
 					np);
