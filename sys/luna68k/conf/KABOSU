@@ -1,4 +1,4 @@
-#	@(#)KABOSU	7.3 (Berkeley) 12/06/93
+#	@(#)KABOSU	7.4 (Berkeley) 12/07/93
 #
 
 machine		"luna68k"
@@ -17,6 +17,7 @@ options		LOFS,KERNFS,FDESC,PORTAL,NULLFS,UMAPFS
 options		"COMPAT_43"
 options		"TCP_COMPAT_42"
 options		SWAPPAGER,VNODEPAGER,DEVPAGER
+options		GATEWAY
 
 options		DEBUG
 options		DIAGNOSTIC
