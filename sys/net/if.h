@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if.h	6.8 (Berkeley) 09/16/85
+ *	@(#)if.h	6.9 (Berkeley) 12/19/85
  */
 
 /*
@@ -212,7 +212,7 @@ struct arpreq {
 #define	ATF_PUBL	8	/* publish entry (respond for other host) */
 
 #ifdef KERNEL
-#if defined(INET) || defined(BBNNET)
+#ifdef INET
 struct	ifqueue	ipintrq;		/* ip packet input queue */
 #endif
 struct	ifqueue rawintrq;		/* raw packet input queue */
