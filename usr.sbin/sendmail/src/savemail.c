@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.29 (Berkeley) 05/10/94";
+static char sccsid[] = "@(#)savemail.c	8.30 (Berkeley) 05/29/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -495,8 +495,16 @@ returntosender(msg, returnq, sendbody, e)
 			e->e_id, ee->e_id, msg);
 # endif
 
-	(void) sprintf(buf, "Returned mail: %.*s", sizeof buf - 20, msg);
-	addheader("Subject", buf, ee);
+	if (strncmp(msg, "Warning:", 8) == 0 ||
+	    strcmp(msg, "Return receipt") == 0)
+	{
+		addheader("Subject", msg, ee);
+	}
+	else
+	{
+		sprintf(buf, "Returned mail: %.*s", sizeof buf - 20, msg);
+		addheader("Subject", buf, ee);
+	}
 	if (SendMIMEErrors)
 	{
 		addheader("MIME-Version", "1.0", ee);

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)envelope.c	8.34 (Berkeley) 04/14/94";
+static char sccsid[] = "@(#)envelope.c	8.35 (Berkeley) 05/29/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -159,7 +159,7 @@ dropenvelope(e)
 		    strcmp(e->e_from.q_paddr, "<>") != 0)
 		{
 			(void) sprintf(buf,
-				"warning: cannot send message for %s",
+				"Warning: cannot send message for %s",
 				pintvl(TimeOuts.to_q_warning, FALSE));
 			if (e->e_message != NULL)
 				free(e->e_message);
