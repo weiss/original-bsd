@@ -1,4 +1,4 @@
-/*	route.c	4.14	82/12/14	*/
+/*	route.c	4.15	83/02/02	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -20,7 +20,8 @@ rtalloc(ro)
 {
 	register struct rtentry *rt, *rtmin;
 	register struct mbuf *m;
-	register int hash, (*match)();
+	register unsigned hash;
+	register int (*match)();
 	struct afhash h;
 	struct sockaddr *dst = &ro->ro_dst;
 	int af = dst->sa_family;
