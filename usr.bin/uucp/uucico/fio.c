@@ -1,6 +1,16 @@
+/*-
+ * Copyright (c) 1985 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Rick Adams.
+ *
+ * %sccs.include.redist.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)fio.c	5.7	(Berkeley) 03/02/91";
-#endif
+static char sccsid[] = "@(#)fio.c	5.8 (Berkeley) 03/15/91";
+#endif /* not lint */
 
 /*
  * flow control protocol.
