@@ -1,4 +1,4 @@
-/*	vmparam.h	4.3	83/06/14	*/
+/*	vmparam.h	4.4	83/06/14	*/
 
 /*
  * Machine dependent constants for VAX
@@ -113,3 +113,9 @@
  * swapping area is desirable.
  */
 #define	LOTSOFMEM	2
+
+/*
+ * BEWARE THIS DEFINITION WORKS ONLY WITH COUNT OF 1
+ */
+#define	mapin(pte, v, pfnum, count, prot) \
+	(*(int *)(pte) = (pfnum) | (prot), mtpr(TBIS, ptob(v)))
