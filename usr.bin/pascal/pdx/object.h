@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-/* static char sccsid[] = "@(#)object.h 1.2 01/18/82"; */
+/* static char sccsid[] = "@(#)object.h 1.3 01/19/82"; */
 
 /*
  * Object module definitions.
@@ -21,9 +21,6 @@ struct {
 
 char *stringtab;	/* string table */
 char *dotpfile;		/* name of compiled file */
-
-#define SIZELOC 1016	/* location of objsize in obj file */
-#define BASEADDR 1024	/* beginning of object code */
 
 readobj();		/* read in the object file */
 objfree();		/* release storage for object file information */
