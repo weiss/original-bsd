@@ -1,4 +1,4 @@
-/*	ed.c	4.1	82/05/07	*/
+/*	ed.c	4.2	82/12/24	*/
 
 /*
  * Editor
@@ -6,6 +6,7 @@
 
 #include <signal.h>
 #include <sgtty.h>
+#undef CEOF
 #include <setjmp.h>
 #define	NULL	0
 #define	FNSIZE	64
