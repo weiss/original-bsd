@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)closedir.c 1.1 02/11/82";
+static char sccsid[] = "@(#)closedir.c 4.1 02/21/82";
 
 #include <sys/types.h>
 #include <ndir.h>
