@@ -7,14 +7,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pcb.h	5.10 (Berkeley) 05/12/91
+ *	@(#)pcb.h	5.11 (Berkeley) 10/11/92
  */
 
 /*
  * Intel 386 process control block
  */
-#include "machine/tss.h"
-#include "machine/npx.h"
+#include <machine/tss.h>
+#include <machine/npx.h>
 
 struct pcb {
 	struct	i386tss pcb_tss;
