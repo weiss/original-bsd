@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.12 (Berkeley) 03/29/87";
+static char sccsid[] = "@(#)savecore.c	5.13 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -398,7 +398,7 @@ save_core()
 	}
 	bounds = read_number("bounds");
 	ifd = Open(system?system:"/vmunix", O_RDONLY);
-	sprintf(cp, "vmunix.%d", bounds);
+	(void)sprintf(cp, "vmunix.%d", bounds);
 	ofd = Create(path(cp), 0644);
 	while((n = Read(ifd, cp, BUFSIZ)) > 0)
 		Write(ofd, cp, n);
@@ -407,7 +407,7 @@ save_core()
 	ifd = Open(ddname, O_RDONLY);
 	Lseek(ifd, (off_t)(dumplo + ok(dump_nl[X_DUMPSIZE].n_value)), L_SET);
 	Read(ifd, (char *)&dumpsize, sizeof (dumpsize));
-	sprintf(cp, "vmcore.%d", bounds);
+	(void)sprintf(cp, "vmcore.%d", bounds);
 	ofd = Create(path(cp), 0644);
 	Lseek(ifd, (off_t)dumplo, L_SET);
 	log(LOG_NOTICE, "Saving %d bytes of image in vmcore.%d\n",
