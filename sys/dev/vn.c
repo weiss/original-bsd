@@ -11,9 +11,13 @@
  *
  * from: Utah $Hdr: fd.c 1.1 90/07/09$
  *
- *	@(#)vn.c	7.3 (Berkeley) 12/16/90
+ *	@(#)vn.c	7.4 (Berkeley) 05/04/91
  */
 
+/*
+ * CURRENTLY BROKEN; the name "fd" collides with /dev/fd/xxx.
+ * This would need to be converted to the new proc/user layout as well.
+ */
 /*
  * File (vnode) disk driver.
  *
