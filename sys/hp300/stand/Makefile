@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.10 (Berkeley) 06/18/92
+#	@(#)Makefile	7.11 (Berkeley) 06/18/92
 
 DESTDIR=
 STAND=	../../stand
@@ -132,5 +132,5 @@ install: mkboot installboot ${ALL}
 #	mv diskboot.lif ndiskboot.lif tapeboot.lif ${DESTDIR}/sys/hpdist/tp
 
 depend: ${SRCS}
-	mkdep ${INCPATH} ${DEFS} ${SRCS} mkboot.c installboot.c
+	mkdep ${INCPATH} ${DEFS} ${SRCS}
 	mkdep -a -p ${INCPATH} ${DEFS} mkboot.c installboot.c
