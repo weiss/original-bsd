@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uio.h	7.6 (Berkeley) 02/05/91
+ *	@(#)uio.h	7.7 (Berkeley) 03/07/91
  */
 
 #ifndef _UIO_H_
@@ -40,5 +40,16 @@ struct uio {
   */
 #define UIO_MAXIOV	1024		/* max 1K of iov's */
 #define UIO_SMALLIOV	8		/* 8 on stack, else malloc */
+
+#ifndef	KERNEL
+
+#include <sys/cdefs.h>
+
+__BEGIN_DECLS
+int	readv __P((int, const struct iovec *, int));
+int	writev __P((int, const struct iovec *, int));
+__END_DECLS
+
+#endif	/* !KERNEL */
 
 #endif /* !_UIO_H_ */
