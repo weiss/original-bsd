@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.102		11/28/82";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.103		12/05/82";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -171,7 +171,9 @@ struct envelope
 	struct envelope	*e_parent;	/* the message this one encloses */
 	struct envelope *e_sibling;	/* the next envelope of interest */
 	char		*e_df;		/* location of temp file */
+	FILE		*e_dfp;		/* temporary file */
 	char		*e_id;		/* code for this entry in queue */
+	FILE		*e_xfp;		/* transcript file */
 	char		*e_macro[128];	/* macro definitions */
 };
 
@@ -378,8 +380,6 @@ EXTERN bool	AutoRebuild;	/* auto-rebuild the alias database as needed */
 EXTERN time_t	TimeOut;	/* time until timeout */
 EXTERN FILE	*InChannel;	/* input connection */
 EXTERN FILE	*OutChannel;	/* output connection */
-EXTERN FILE	*TempFile;	/* mail temp file */
-EXTERN FILE	*Xscript;	/* mail transcript file */
 EXTERN int	RealUid;	/* when Daemon, real uid of caller */
 EXTERN int	RealGid;	/* when Daemon, real gid of caller */
 EXTERN int	DefUid;		/* default uid to run as */
