@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.4 (Berkeley) 01/11/86
+#	@(#)Makefile	5.5 (Berkeley) 05/31/87
 #
 DESTDIR=
 CFLAGS= -O -DV7 -w
@@ -48,3 +48,5 @@ install:
 
 clean:
 	rm -f ${OBJS} ${TOBJS} backgammon teachgammon backgammon.doc errs
+
+depend:
