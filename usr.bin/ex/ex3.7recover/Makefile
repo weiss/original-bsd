@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 07/25/90
+#	@(#)Makefile	8.1 (Berkeley) 06/09/93
 
 PROG=	ex3.7recover
 SRCS=	ex3.7recover.c ex_extern.c
