@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	1.1 (Berkeley) 07/09/92
+ *	@(#)pathnames.h	5.1 (Berkeley) 07/13/92
  *
  * $Id: pathnames.h,v 1.2 1992/05/27 07:09:27 jsp Exp jsp $
  */

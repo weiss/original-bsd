@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)portald.h	1.2 (Berkeley) 07/13/92
+ *	@(#)portald.h	5.1 (Berkeley) 07/13/92
  *
  * $Id: portald.h,v 1.1 1992/05/25 21:43:09 jsp Exp jsp $
  */

@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pt_file.c	1.2 (Berkeley) 07/12/92
+ *	@(#)pt_file.c	5.1 (Berkeley) 07/13/92
  *
  * $Id: pt_file.c,v 1.1 1992/05/25 21:43:09 jsp Exp jsp $
  */
