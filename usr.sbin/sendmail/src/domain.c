@@ -12,12 +12,12 @@
 
 #ifndef MXDOMAIN
 #ifndef lint
-static char	SccsId[] = "@(#)domain.c	5.4 (Berkeley) 07/25/86 (no MXDOMAIN)";
+static char	SccsId[] = "@(#)domain.c	5.5 (Berkeley) 02/03/87 (no MXDOMAIN)";
 #endif not lint
 #else MXDOMAIN
 
 #ifndef lint
-static char	SccsId[] = "@(#)domain.c	5.4 (Berkeley) 07/25/86";
+static char	SccsId[] = "@(#)domain.c	5.5 (Berkeley) 02/03/87";
 #endif not lint
 
 # include <sys/param.h>
@@ -30,9 +30,10 @@ typedef union {
 	char qb2[PACKETSZ];
 } querybuf;
 
-static char hostbuf[BUFSIZ];
+static char	hostbuf[BUFSIZ];
+int		h_errno;
 
-int h_errno;
+# define getshort	_getshort	/* XXX hack attack! */
 
 getmxrr(host, mxhosts, maxmx, localhost)
 	char *host, **mxhosts;
