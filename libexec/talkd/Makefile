@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.11 (Berkeley) 08/01/91
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 PROG=	ntalkd
 SRCS=	talkd.c announce.c process.c table.c print.c ttymsg.c
