@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)scandir.c	5.7 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)scandir.c	5.8 (Berkeley) 06/23/90";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -32,7 +32,7 @@ static char sccsid[] = "@(#)scandir.c	5.7 (Berkeley) 06/01/90";
 
 scandir(dirname, namelist, select, dcomp)
 	char *dirname;
-	struct dirent *(*namelist[]);
+	struct dirent ***namelist;
 	int (*select)(), (*dcomp)();
 {
 	register struct dirent *d, *p, **names;
