@@ -6,7 +6,7 @@
 #  All rights reserved.  The Berkeley software License Agreement
 #  specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.4 (Berkeley) 07/30/89
+#	@(#)Makefile	4.5 (Berkeley) 07/30/89
 #
 DESTDIR =
 
@@ -36,8 +36,11 @@ ${FP_SYSO}:	specials.l fpMacs.o
 install:
 	install -s -o bin -g bin -m 755 fp ${DESTDIR}/usr/bin
 
-clean:		
+clean:
 		rm -f core *.[ox] junk.fp
+
+cleandir: clean
+	rm -f ${MAN} tags .depend
 
 
 listings:	${FP_SYS}
