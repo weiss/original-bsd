@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ptrace.h	8.1 (Berkeley) 06/02/93
+ *	@(#)ptrace.h	8.2 (Berkeley) 01/04/94
  */
 
-#ifndef	_PTRACE_H_
-#define	_PTRACE_H_
+#ifndef	_SYS_PTRACE_H_
+#define	_SYS_PTRACE_H_
 
 #define	PT_TRACE_ME	0	/* child declares it's being traced */
 #define	PT_READ_I	1	/* read word in child's I space */
@@ -38,4 +38,4 @@ __END_DECLS
 
 #endif /* !KERNEL */
 
-#endif	/* !_PTRACE_H_ */
+#endif	/* !_SYS_PTRACE_H_ */

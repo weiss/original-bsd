@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)namei.h	8.1 (Berkeley) 06/02/93
+ *	@(#)namei.h	8.2 (Berkeley) 01/04/94
  */
 
-#ifndef _NAMEI_H_
-#define	_NAMEI_H_
+#ifndef _SYS_NAMEI_H_
+#define	_SYS_NAMEI_H_
 
 /*
  * Encapsulation of namei parameters.
@@ -159,4 +159,4 @@ struct	nchstats {
 	long	ncs_pass2;		/* names found with passes == 2 */
 	long	ncs_2passes;		/* number of times we attempt it */
 };
-#endif /* !_NAMEI_H_ */
+#endif /* !_SYS_NAMEI_H_ */

@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tablet.h	8.2 (Berkeley) 12/29/93
+ *	@(#)tablet.h	8.3 (Berkeley) 01/04/94
  */
 
-#ifndef _TABLET_H_
-#define	_TABLET_H_
+#ifndef _SYS_TABLET_H_
+#define	_SYS_TABLET_H_
 
 /*
  * Tablet line discipline.
@@ -65,4 +65,4 @@ struct	polpos {
 #define BIOSTYPE	_IOW('b', 3, int)	/* set tablet type */
 #define BIOGTYPE	_IOR('b', 4, int)	/* get tablet type*/
 
-#endif /* !_TABLET_H_ */
+#endif /* !_SYS_TABLET_H_ */

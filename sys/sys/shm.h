@@ -9,14 +9,14 @@
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)shm.h	8.2 (Berkeley) 09/22/93
+ *	@(#)shm.h	8.3 (Berkeley) 01/04/94
  */
 
 /*
  * SVID compatible shm.h file
  */
-#ifndef _SHM_H_
-#define _SHM_H_
+#ifndef _SYS_SHM_H_
+#define _SYS_SHM_H_
 
 #ifdef KERNEL
 #include "ipc.h"
@@ -65,4 +65,4 @@ struct	shmid_ds	*shmsegs;
 struct	shminfo		shminfo;
 #endif
 
-#endif /* !_SHM_H_ */
+#endif /* !_SYS_SHM_H_ */

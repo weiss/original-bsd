@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)socket.h	8.1 (Berkeley) 06/02/93
+ *	@(#)socket.h	8.2 (Berkeley) 01/04/94
  */
 
-#ifndef _SOCKET_H_
-#define	_SOCKET_H_
+#ifndef _SYS_SOCKET_H_
+#define	_SYS_SOCKET_H_
 
 /*
  * Definitions related to sockets: types, address families, options.
@@ -308,4 +308,4 @@ int	socketpair __P((int, int, int, int *));
 __END_DECLS
 
 #endif	/* !KERNEL */
-#endif /* !_SOCKET_H_ */
+#endif /* !_SYS_SOCKET_H_ */
