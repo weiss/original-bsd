@@ -11,7 +11,7 @@
 # using "sendbug 4bsd-bugs@BERKELEY", to the authors.
 #
 
-# @(#)support.s	1.1 (Berkeley) 05/23/85
+# @(#)support.s	1.2 (Berkeley) 06/17/85
 
 # copysign(x,y),
 # logb(x),
@@ -89,7 +89,7 @@ _scalb:
 	addl2	r2,r0
 	ret
 ovfl:	movl	$ERANGE, _errno
-	movl	$0x8000,r0
+	movq	$0x8000,r0	# return reserve operand
 	ret
 unfl:	movq	$0,r0
 ret1:	ret
@@ -179,8 +179,7 @@ nonpos:
 	ret			# argument and root are zero
 negarg:
 	movl	$EDOM,_errno
-	bicw2	$0x7f80,r0	# clear exponent field of r0 to force a
-				# 	reserved operand to be produced
+	movq	$0x8000,r0	# return reserve operand
 	ret
 
 
@@ -269,7 +268,6 @@ C5:
 	ret
 Rop:					#Reserved operand
 	movl	$EDOM,_errno
-	movl	$0x8000,r0
-	clrl	r1
+	movq	$0x8000,r0		# return reserve operand
 	ret
 
