@@ -1,6 +1,8 @@
 /* Copyright (c) 1980 Regents of the University of California */
 
-static	char sccsid[] = "@(#)stab.c 1.9.1.1 03/15/85";
+#ifndef lint
+static	char sccsid[] = "@(#)stab.c 2.3 03/15/85";
+#endif
 
     /*
      *	Procedures to put out symbol table information
@@ -34,6 +36,7 @@ int oldway = 0;
      *	absolute value: line numbers are negative if error recovery.
      */
 #define	ABS( x )	( x < 0 ? -x : x )
+long checksum();
 
 /*
  * Generate information about variables.
@@ -74,6 +77,7 @@ int offset, length;
     /*
      *	global variables
      */
+/*ARGSUSED*/
 oldstabgvar( name , type , offset , length , line )
     char	*name;
     int		type;
@@ -85,16 +89,17 @@ oldstabgvar( name , type , offset , length , line )
 		return;
 	}
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
+	putprintf( NAMEFORMAT , 1 , (int) name );
 	putprintf( "\",0x%x,0,0x%x,0" , 0 , N_GSYM , type );
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
+	putprintf( NAMEFORMAT , 1 , (int) name );
 	putprintf( "\",0x%x,0,0,0x%x" , 0 , N_LENG , length );
 }
 
     /*
      *	local variables
      */
+/*ARGSUSED*/
 oldstablvar( name , type , level , offset , length )
     char	*name;
     int		type;
@@ -107,10 +112,10 @@ oldstablvar( name , type , level , offset , length )
 		return;
 	}
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
+	putprintf( NAMEFORMAT , 1 , (int) name );
 	putprintf( "\",0x%x,0,0x%x,0x%x" , 0 , N_LSYM , type , -offset );
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
+	putprintf( NAMEFORMAT , 1 , (int) name );
 	putprintf( "\",0x%x,0,0,0x%x" , 0 , N_LENG , length );
 }
 
@@ -147,33 +152,16 @@ oldstabparam( name , type , offset , length )
 		return;
 	}
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
+	putprintf( NAMEFORMAT , 1 , (int) name );
 	putprintf( "\",0x%x,0,0x%x,0x%x" , 0 , N_PSYM , type , offset );
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
+	putprintf( NAMEFORMAT , 1 , (int) name );
 	putprintf( "\",0x%x,0,0,0x%x" , 0 , N_LENG , length );
     }
 
     /*
      *	fields
      */
-stabfield( name , type , offset , length )
-    char	*name;
-    int		type;
-    int		offset;
-    int		length;
-    {
-	
-	if ( ! opt('g') ) {
-		return;
-	}
-	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
-	putprintf( "\",0x%x,0,0x%x,0x%x" , 0 , N_SSYM , type , offset );
-	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
-	putprintf( "\",0x%x,0,0,0x%x" , 0 , N_LENG , length );
-    }
 
     /*
      *	left brackets
@@ -273,8 +261,6 @@ oldstabfunc( name , typeclass , line , level )
     int		line;
     long	level;
     {
-	int	type;
-	long	i;
 	char	extname[ BUFSIZ ];
 
 	    /*
@@ -284,9 +270,9 @@ oldstabfunc( name , typeclass , line , level )
 		return;
 	}
 	putprintf( "	.stabs	\"" , 1 );
-	putprintf( NAMEFORMAT , 1 , name );
-	sextname( extname , name , level );
-	putprintf( "\",0x%x,0,0x%x,%s" , 0 , N_FUN , line , extname );
+	putprintf( NAMEFORMAT , 1 , (int) name );
+	sextname( extname , name , (int) level );
+	putprintf( "\",0x%x,0,0x%x,%s" , 0 , N_FUN , line , (int) extname );
     }
 
     /*
@@ -316,7 +302,7 @@ stabsource(filename, firsttime)
 	 *	for separate compilation
 	 */
     putprintf("	.stabs	\"%s\",0x%x,0,0x%x,0x%x", 0,
-	    filename, N_PC, N_PSO, N_FLAGCHECKSUM);
+	    (int) filename, N_PC, N_PSO, N_FLAGCHECKSUM);
 	/*
 	 *	for debugger
 	 */
@@ -324,7 +310,7 @@ stabsource(filename, firsttime)
 	    return;
     }
     if (oldway != 0) {
-	label = getlab();
+	label = (int) getlab();
 	putprintf( "	.stabs	\"" , 1 );
 	putprintf( NAMEFORMAT , 1 , filename );
 	putprintf( "\",0x%x,0,0," , 1 , N_SO );
@@ -349,7 +335,7 @@ stabinclude(filename, firsttime)
     char	*filename;
     bool	firsttime;
 {
-    int	label;
+    int		label;
     long	check;
     
 	/*
@@ -361,7 +347,7 @@ stabinclude(filename, firsttime)
 	check = N_FLAGCHECKSUM;
     }
     putprintf("	.stabs	\"%s\",0x%x,0,0x%x,0x%x", 0,
-	    filename, N_PC, N_PSOL, check);
+	    (int) filename, N_PC, N_PSOL, check);
 	/*
 	 *	for sdb
 	 */
@@ -369,7 +355,7 @@ stabinclude(filename, firsttime)
 	    return;
     }
     if (oldway != 0) {
-	label = getlab();
+	label = (int) getlab();
 	putprintf( "	.stabs	\"" , 1 );
 	putprintf( NAMEFORMAT , 1 , filename );
 	putprintf( "\",0x%x,0,0," , 1 , N_SOL );
@@ -409,7 +395,7 @@ checksum(filename)
 	}
 	check ^= input;
     }
-    fclose(filep);
+    (void) fclose(filep);
     if ((unsigned) check <= N_FLAGCHECKSUM) {
 	return N_FLAGCHECKSUM + 1;
     } else {
@@ -433,7 +419,7 @@ stabglabel( label , line )
     {
 
 	putprintf( "	.stabs	\"%s\",0x%x,0,0x%x,0x%x" , 0 
-		    , label , N_PC , N_PGLABEL , ABS( line ) );
+		    , (int) label , N_PC , N_PGLABEL , ABS( line ) );
     }
 
     /*
@@ -445,7 +431,7 @@ stabgconst( const , line )
     {
 
 	    putprintf( "	.stabs	\"%s\",0x%x,0,0x%x,0x%x" , 0 
-			, const , N_PC , N_PGCONST , ABS( line ) );
+			, (int) const , N_PC , N_PGCONST , ABS( line ) );
     }
 
 /*
@@ -516,7 +502,7 @@ stabefunc( name , typeclass , line )
 	    return;
 	}
 	putprintf( "	.stabs	\"%s\",0x%x,0,0x%x,0x%x" , 0 
-		    , name , N_PC , type , ABS( line ) );
+		    , (int) name , N_PC , type , ABS( line ) );
     }
 
 /*
