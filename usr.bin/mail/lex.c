@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	2.15 (Berkeley) 08/03/84";
+static char sccsid[] = "@(#)lex.c	2.16 (Berkeley) 08/08/84";
 #endif
 
 #include "rcv.h"
@@ -132,12 +132,12 @@ commands()
 top:
 		if (shudprompt) {
 			printf(prompt);
-			flush();
+			fflush(stdout);
 # ifdef VMUNIX
 			sigset(SIGCONT, contin);
 # endif VMUNIX
 		} else
-			flush();
+			fflush(stdout);
 		sreset();
 
 		/*
@@ -531,8 +531,7 @@ stop(s)
 		close(image);
 		image = -1;
 	}
-	clrbuf(stdout);
-	printf("Interrupt\n");
+	fprintf(stderr, "Interrupt\n");
 # ifndef VMUNIX
 	signal(s, stop);
 # endif
