@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.4 (Berkeley) 02/03/86";
+static char sccsid[] = "@(#)main.c	5.5 (Berkeley) 02/05/86";
 #endif not lint
 
 /*
@@ -207,12 +207,8 @@ cmdscanner(top)
 			fflush(stdout);
 		}
 		if (gets(line) == 0) {
-			if (feof(stdin)) {
-				if (!fromatty)
-					quit();
-				clearerr(stdin);
-				putchar('\n');
-			}
+			if (feof(stdin))
+				quit();
 			break;
 		}
 		if (line[0] == 0)
