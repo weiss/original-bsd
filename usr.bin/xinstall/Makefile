@@ -1,13 +1,12 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/24/90
+#	@(#)Makefile	5.6 (Berkeley) 03/03/93
 
 PROG=	xinstall
+SRCS=	stat_flags.c xinstall.c
 MAN1=	install.0
-CLEANFILES=xinstall
+.PATH:	${.CURDIR}/../../bin/ls
 
 install: maninstall
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
 	    ${PROG} ${DESTDIR}${BINDIR}/install
 
 .include <bsd.prog.mk>
-
-
