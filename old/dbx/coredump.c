@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)coredump.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)coredump.c	5.6 (Berkeley) 06/29/90";
 #endif /* not lint */
 
 /*
@@ -108,7 +108,7 @@ short *signo;
 	    *mask = savreg[PS];
 #       endif
 	copyregs(savreg, reg);
-	*signo = up->u_arg[0];
+	*signo = up->u_sig;
 	datamap.seekaddr = ctob(UPAGES);
 	stkmap.begin = USRSTACK - ctob(up->u_ssize);
 	stkmap.end = USRSTACK;
