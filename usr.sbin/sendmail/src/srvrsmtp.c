@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.51 (Berkeley) 05/05/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.52 (Berkeley) 05/05/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.51 (Berkeley) 05/05/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.52 (Berkeley) 05/05/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -107,6 +107,7 @@ smtp(e)
 	long msize;			/* approximate maximum message size */
 	auto char *delimptr;
 	char *id;
+	int nrcpts;			/* number of RCPT commands */
 	char inp[MAXLINE];
 	char cmdbuf[MAXLINE];
 	extern char Version[];
@@ -286,6 +287,7 @@ smtp(e)
 			define('r', protocol, e);
 			define('s', sendinghost, e);
 			initsys(e);
+			nrcpts = 0;
 			setproctitle("%s %s: %s", e->e_id, CurHostName, inp);
 
 			/* child -- go do the processing */
@@ -437,7 +439,10 @@ smtp(e)
 			/* no errors during parsing, but might be a duplicate */
 			e->e_to = p;
 			if (!bitset(QBADADDR, a->q_flags))
+			{
 				message("250 Recipient ok");
+				nrcpts++;
+			}
 			else
 			{
 				/* punt -- should keep message in ADDRESS.... */
@@ -471,7 +476,7 @@ smtp(e)
 			collect(TRUE, a != NULL, e);
 			e->e_flags &= ~EF_FATALERRS;
 			if (Errors != 0)
-				break;
+				goto abortmessage;
 
 			/*
 			**  Arrange to send to everyone.
@@ -492,7 +497,7 @@ smtp(e)
 			*/
 
 			SmtpPhase = "delivery";
-			if (e->e_nrcpts != 1)
+			if (nrcpts != 1 && a == NULL)
 			{
 				HoldErrs = TRUE;
 				e->e_errormode = EM_MAIL;
@@ -510,13 +515,19 @@ smtp(e)
 			/* issue success if appropriate and reset */
 			if (Errors == 0 || HoldErrs)
 				message("250 %s Message accepted for delivery", id);
-			if (bitset(EF_FATALERRS, e->e_flags))
+
+			if (bitset(EF_FATALERRS, e->e_flags) && !HoldErrs)
 			{
 				/* avoid sending back an extra message */
 				e->e_flags &= ~EF_FATALERRS;
+				e->e_flags |= EF_CLRQUEUE;
 			}
 			else
 			{
+				/* from now on, we have to operate silently */
+				HoldErrs = TRUE;
+				e->e_errormode = EM_MAIL;
+
 				/* if we just queued, poke it */
 				if (a != NULL && e->e_sendmode != SM_QUEUE)
 				{
@@ -526,6 +537,7 @@ smtp(e)
 				}
 			}
 
+  abortmessage:
 			/* if in a child, pop back to our parent */
 			if (InChild)
 				finis();
