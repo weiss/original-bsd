@@ -17,12 +17,12 @@
 
 # ifndef QUEUE
 # ifndef lint
-static char	SccsId[] = "@(#)queue.c	5.8 (Berkeley) 09/19/85	(no queueing)";
+static char	SccsId[] = "@(#)queue.c	5.9 (Berkeley) 09/19/85	(no queueing)";
 # endif not lint
 # else QUEUE
 
 # ifndef lint
-static char	SccsId[] = "@(#)queue.c	5.8 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)queue.c	5.9 (Berkeley) 09/19/85";
 # endif not lint
 
 /*
@@ -536,7 +536,7 @@ dowork(w)
 	if (shouldqueue(w->w_pri))
 	{
 		if (Verbose)
-			printf("\nSkipping %s\n", w->w_name);
+			printf("\nSkipping %s\n", w->w_name + 2);
 		return;
 	}
 
