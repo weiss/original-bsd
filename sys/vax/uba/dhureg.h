@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dhureg.h	7.1 (Berkeley) 06/05/86
+ *	@(#)dhureg.h	7.2 (Berkeley) 11/08/88
  */
 
 /* 
@@ -92,7 +92,7 @@ struct dhudevice {
 #define	DHU_ST_DSR	0x80		/* data set ready */
 #define	DHU_ST_RI	0x20		/* ring indicator */
 #define	DHU_ST_DCD	0x10		/* carrier detect */
-#define	DHU_ST_CTS	0x04		/* clear to send */
+#define	DHU_ST_CTS	0x08		/* clear to send */
 #define	DHU_ST_DHU	0x01		/* always one on a dhu, zero on dhv */
 
 /* Bits in dhulcr */
