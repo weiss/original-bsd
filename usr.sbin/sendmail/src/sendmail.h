@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.68 (Berkeley) 05/27/93
+ *	@(#)sendmail.h	6.69 (Berkeley) 05/27/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.68		05/27/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.69		05/27/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -568,7 +568,7 @@ typedef struct symtab	STAB;
 # define s_namecanon	s_value.sv_namecanon
 
 extern STAB		*stab __P((char *, int, int));
-extern void		stabapply __P((void (*)(STAB *, int)));
+extern void		stabapply __P((void (*)(STAB *, int), int));
 
 /* opcodes to stab */
 # define ST_FIND	0	/* find entry */
