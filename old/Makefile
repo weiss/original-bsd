@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.28 (Berkeley) 10/17/92
+#	@(#)Makefile	5.29 (Berkeley) 11/06/92
 
 SUBDIR=	awk compact cpp crypt dbconv eqn groups hostid ld lex make \
 	mkpasswd more ms od refer roff sed sh sum symorder tbl \
-	tmac whereis which whoami yacc
+	test tmac whereis which whoami yacc
 
 .if   (${MACHINE} == "hp300")
 SUBDIR+=as.hpux
