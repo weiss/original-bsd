@@ -1,7 +1,10 @@
-#! /bin/sh
+#!/bin/sh -
 #
-#	@(#)indxbib.sh	4.2	(Berkeley)	89/04/28
+# %sccs.include.proprietary.sh%
 #
+#	@(#)indxbib.sh	4.3 (Berkeley) 04/18/91
+#
+
 #	indxbib sh script
 #
 if test $1
