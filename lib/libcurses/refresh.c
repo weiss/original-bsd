@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)refresh.c	5.34 (Berkeley) 02/18/93";
+static char sccsid[] = "@(#)refresh.c	5.35 (Berkeley) 02/24/93";
 #endif /* not lint */
 
 #include <curses.h>
@@ -48,7 +48,7 @@ wrefresh(win)
 			wlp = win->lines[wy];
 			if (wlp->flags & __ISDIRTY)
 				wlp->hash = 
-				   __hash(wlp->line, win->maxx * __LDATASIZE);
+				   __hash((char *) wlp->line, win->maxx * __LDATASIZE);
 		}
 
 	if (win->flags & __CLEAROK || curscr->flags & __CLEAROK || curwin) {
@@ -469,7 +469,7 @@ quickch(win)
 		buf[i].ch = ' ';
 		buf[i].attr = 0;
 	}
-	blank_hash = __hash(buf, win->maxx * __LDATASIZE);
+	blank_hash = __hash((char *) buf, win->maxx * __LDATASIZE);
 
 	/*
 	 * Perform the rotation to maintain the consistency of curscr.
