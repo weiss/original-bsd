@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ip_input.c	6.17 (Berkeley) 02/19/86
+ *	@(#)ip_input.c	6.18 (Berkeley) 02/19/86
  */
 
 #include "param.h"
@@ -593,7 +593,7 @@ ip_dooptions(ip, ifp)
 			off--;			/* 0 origin */
 			if (off > optlen - sizeof(struct in_addr))
 				break;
-			bcopy(cp + off, (caddr_t)ipaddr.sin_addr,
+			bcopy(cp + off, (caddr_t)&ipaddr.sin_addr,
 			    sizeof(ipaddr.sin_addr));
 			/*
 			 * locate outgoing interface
