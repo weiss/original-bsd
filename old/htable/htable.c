@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)htable.c	5.9 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)htable.c	5.10 (Berkeley) 02/06/91";
 #endif /* not lint */
 
 /*
@@ -28,6 +28,7 @@ static char sccsid[] = "@(#)htable.c	5.9 (Berkeley) 06/01/90";
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <stdlib.h>
 
 #define	DATELINES	3	/* these lines usually contain the date */
 #define	MAXNETS		30	/* array size for local, connected nets */
