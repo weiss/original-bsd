@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)sysctl.c	8.3 (Berkeley) 04/27/95";
+static char sccsid[] = "@(#)sysctl.c	8.4 (Berkeley) 04/27/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -451,7 +451,8 @@ parse(string, flags)
  */
 debuginit()
 {
-	int mib[3], size, loc, i;
+	int mib[3], loc, i;
+	size_t size;
 
 	if (secondlevel[CTL_DEBUG].list != 0)
 		return;
