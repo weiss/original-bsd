@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)assign.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)assign.c	5.2 (Berkeley) 04/07/87";
 #endif not lint
 
 /*
@@ -17,6 +17,8 @@ static char sccsid[] = "@(#)assign.c	5.1 (Berkeley) 06/06/85";
 #include "sym.h"
 #include "process.h"
 #include "tree.rep"
+#include "process/process.rep"
+#include "process/pxinfo.h"
 
 assign(var, exp)
 NODE *var;
@@ -48,10 +50,17 @@ NODE *exp;
 				break;
 
 			default:
+				goto othersize;
+				/*
 				panic("bad size %d", varsize);
+				*/
 		}
 	} else {
+	    othersize:
 		sp -= varsize;
 		dwrite(sp, addr, varsize);
+#ifdef tahoe
+		downalignstack();
+#endif
 	}
 }
