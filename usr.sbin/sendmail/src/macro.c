@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)macro.c	3.17		09/12/82);
+SCCSID(@(#)macro.c	3.18		11/28/82);
 
 /*
 **  EXPAND -- macro expand a string using $x escapes.
@@ -13,10 +13,15 @@ SCCSID(@(#)macro.c	3.17		09/12/82);
 **		e -- envelope in which to work.
 **
 **	Returns:
-**		End of interpolated output.
+**		none.
 **
 **	Side Effects:
 **		none.
+**
+**	Bugs:
+**		The handling of $$ (to get one dollar) is rather bizarre,
+**			especially if there should be another macro
+**			expansion in the same string.
 */
 
 expand(s, buf, buflim, e)
@@ -25,24 +30,11 @@ expand(s, buf, buflim, e)
 	char *buflim;
 	register ENVELOPE *e;
 {
-	extern char *expand2();
-
-	(void) expand2(s, buf, buflim, e);
-}
-
-
-char *
-expand2(s, buf, buflim, e)
-	register char *s;
-	register char *buf;
-	char *buflim;
-	register ENVELOPE *e;
-{
 	register char *q;
-	char xbuf[BUFSIZ];
-	register char *xp = xbuf;
 	bool skipping;		/* set if conditionally skipping output */
 	bool gotone = FALSE;	/* set if any expansion done */
+	char xbuf[BUFSIZ];
+	register char *xp = xbuf;
 	extern char *macvalue();
 
 # ifdef DEBUG
@@ -85,8 +77,10 @@ expand2(s, buf, buflim, e)
 
 		  case '$':		/* macro interpolation */
 			c = *++s;
+			if (c == '$')
+				break;
 			q = macvalue(c & 0177, e);
-			if (q == NULL && c != '$')
+			if (q == NULL)
 				continue;
 			gotone = TRUE;
 			break;
@@ -105,7 +99,7 @@ expand2(s, buf, buflim, e)
 				*xp++ = c;
 				break;
 			}
-			if (*q == NULL)
+			if (*q == '\0')
 				break;
 			*xp++ = *q++;
 		}
@@ -123,14 +117,15 @@ expand2(s, buf, buflim, e)
 
 	/* recurse as appropriate */
 	if (gotone)
-		return (expand2(xbuf, buf, buflim, e));
+	{
+		expand(xbuf, buf, buflim, e);
+		return;
+	}
 
 	/* copy results out */
 	for (q = buf, xp = xbuf; xp != '\0' && q < buflim-1; )
 		*q++ = *xp++;
 	*q = '\0';
-
-	return (q);
 }
 /*
 **  DEFINE -- define a macro.
@@ -140,12 +135,13 @@ expand2(s, buf, buflim, e)
 **	Parameters:
 **		n -- the macro name.
 **		v -- the macro value.
+**		e -- the envelope to store the definition in.
 **
 **	Returns:
 **		none.
 **
 **	Side Effects:
-**		CurEnv->e_macro[n] is defined.
+**		e->e_macro[n] is defined.
 **
 **	Notes:
 **		There is one macro for each ASCII character,
@@ -189,9 +185,10 @@ expand2(s, buf, buflim, e)
 **		are available.
 */
 
-define(n, v)
+define(n, v, e)
 	char n;
 	char *v;
+	register ENVELOPE *e;
 {
 # ifdef DEBUG
 	if (tTd(35, 3))
@@ -201,7 +198,7 @@ define(n, v)
 		printf(")\n");
 	}
 # endif DEBUG
-	CurEnv->e_macro[n & 0177] = v;
+	e->e_macro[n & 0177] = v;
 }
 /*
 **  MACVALUE -- return uninterpreted value of a macro.
