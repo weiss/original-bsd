@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)random.c	8.2 (Berkeley) 03/31/94";
+static char sccsid[] = "@(#)random.c	8.3 (Berkeley) 03/31/94";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -116,6 +116,6 @@ main(argc, argv)
 void
 usage()
 {
-	(void)fprintf(stderr, "usage: random [-er] [divisor]\n");
+	(void)fprintf(stderr, "usage: random [-er] [denominator]\n");
 	exit(1);
 }
