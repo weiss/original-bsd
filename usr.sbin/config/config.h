@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)config.h	5.4 (Berkeley) 10/13/86
+ *	@(#)config.h	5.5 (Berkeley) 10/22/87
  */
 
 /*
@@ -134,7 +134,6 @@ char	*rindex();
 char	*malloc();
 char	*strcpy();
 char	*strcat();
-char	*sprintf();
 
 #if MACHINE_VAX
 int	seen_mba, seen_uba;
