@@ -14,11 +14,12 @@
  * If you don't run uucp you don't even need any rmail.
  */
 
-static char	SccsId[] =	"@(#)rmail.c	3.3	09/06/81";
+static char	SccsId[] =	"@(#)rmail.c	3.3.1.1	09/23/81";
 
 # include <stdio.h>
 # include <sysexits.h>
 # include "useful.h"
+# include "conf.h"
 
 extern FILE *popen();
 extern char *index();
