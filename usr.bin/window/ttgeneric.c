@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ttgeneric.c	3.40 (Berkeley) 08/23/89";
+static char sccsid[] = "@(#)ttgeneric.c	3.41 (Berkeley) 10/13/89";
 #endif /* not lint */
 
 #include "ww.h"
@@ -221,7 +221,7 @@ register int row, col;
 	if (!gen_MS && tt.tt_modes)
 		gen_setmodes(0);
 	if (row < tt.tt_scroll_top || row > tt.tt_scroll_bot)
-		gen_setscroll(tt.tt_nrow - 1, 0);
+		gen_setscroll(0, tt.tt_nrow - 1);
 	if (tt.tt_row == row) {
 		if (col == 0) {
 			ttxputs(gen_CR);
