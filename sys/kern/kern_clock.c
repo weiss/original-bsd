@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_clock.c	6.13 (Berkeley) 06/08/85
+ *	@(#)kern_clock.c	6.14 (Berkeley) 09/04/85
  */
 
 #include "../machine/reg.h"
@@ -87,7 +87,7 @@ hardclock(pc, ps)
 {
 	register struct callout *p1;
 	register struct proc *p;
-	register int s, cpstate;
+	register int s;
 	int needsoft = 0;
 	extern int adjtimedelta, tickadj;
 
@@ -129,27 +129,11 @@ hardclock(pc, ps)
 		if (timerisset(&u.u_timer[ITIMER_VIRTUAL].it_value) &&
 		    itimerdecr(&u.u_timer[ITIMER_VIRTUAL], tick) == 0)
 			psignal(u.u_procp, SIGVTALRM);
-		if (u.u_procp->p_nice > NZERO)
-			cpstate = CP_NICE;
-		else
-			cpstate = CP_USER;
 	} else {
 		/*
-		 * CPU was in system state.  If profiling kernel
-		 * increment a counter.  If no process is running
-		 * then this is a system tick if we were running
-		 * at a non-zero IPL (in a driver).  If a process is running,
-		 * then we charge it with system time even if we were
-		 * at a non-zero IPL, since the system often runs
-		 * this way during processing of system calls.
-		 * This is approximate, but the lack of true interval
-		 * timers makes doing anything else difficult.
+		 * CPU was in system state.
 		 */
-		cpstate = CP_SYS;
-		if (noproc) {
-			if (BASEPRI(ps))
-				cpstate = CP_IDLE;
-		} else {
+		if (! noproc) {
 			BUMPTIME(&u.u_ru.ru_stime, tick);
 		}
 	}
@@ -281,7 +265,14 @@ gatherstats(pc, ps)
 	} else {
 		/*
 		 * CPU was in system state.  If profiling kernel
-		 * increment a counter.
+		 * increment a counter.  If no process is running
+		 * then this is a system tick if we were running
+		 * at a non-zero IPL (in a driver).  If a process is running,
+		 * then we charge it with system time even if we were
+		 * at a non-zero IPL, since the system often runs
+		 * this way during processing of system calls.
+		 * This is approximate, but the lack of true interval
+		 * timers makes doing anything else difficult.
 		 */
 		cpstate = CP_SYS;
 		if (noproc && BASEPRI(ps))
