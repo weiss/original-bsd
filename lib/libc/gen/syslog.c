@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)syslog.c	5.31 (Berkeley) 10/29/90";
+static char sccsid[] = "@(#)syslog.c	5.32 (Berkeley) 11/28/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -108,7 +108,7 @@ vsyslog(pri, fmt, ap)
 		++v;
 		v->iov_base = "\n";
 		v->iov_len = 1;
-		(void)writev(2, iov, 2);
+		(void)writev(STDERR_FILENO, iov, 2);
 	}
 
 	/* get connected, output the message to the local logger */
