@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwupdate.c	3.21 (Berkeley) 08/04/88";
+static char sccsid[] = "@(#)wwupdate.c	3.22 (Berkeley) 08/08/88";
 #endif /* not lint */
 
 #include "ww.h"
@@ -91,7 +91,7 @@ wwupdate1(top, bot)
 				best_gain--;
 			if (ns->c_w == ' ')
 				gain++;
-			if (gain >= best_gain) {
+			if (gain > best_gain) {
 				best_col = j;
 				best_gain = gain;
 			}
