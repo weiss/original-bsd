@@ -3,10 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)r_atn2.c	5.1	06/07/85
+ *	@(#)r_atn2.c	5.2	07/08/85
  */
 
-double r_atn2(x,y)
+float r_atn2(x,y)
 float *x, *y;
 {
 double atan2();

@@ -3,10 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)r_asin.c	5.1	06/07/85
+ *	@(#)r_asin.c	5.2	07/08/85
  */
 
-double r_asin(x)
+float r_asin(x)
 float *x;
 {
 double asin();

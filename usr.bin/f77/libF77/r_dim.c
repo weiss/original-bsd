@@ -3,10 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)r_dim.c	5.1	06/07/85
+ *	@(#)r_dim.c	5.2	07/08/85
  */
 
-double r_dim(a,b)
+float r_dim(a,b)
 float *a, *b;
 {
 return( *a > *b ? *a - *b : 0);

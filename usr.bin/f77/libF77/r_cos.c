@@ -3,10 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)r_cos.c	5.1	06/07/85
+ *	@(#)r_cos.c	5.2	07/08/85
  */
 
-double r_cos(x)
+float r_cos(x)
 float *x;
 {
 double cos();

@@ -3,10 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)r_int.c	5.1	06/07/85
+ *	@(#)r_int.c	5.2	07/08/85
  */
 
-double r_int(x)
+float r_int(x)
 float *x;
 {
 double floor();
