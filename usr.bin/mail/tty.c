@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)tty.c	5.3 (Berkeley) 05/18/87";
+static char *sccsid = "@(#)tty.c	5.4 (Berkeley) 01/02/88";
 #endif not lint
 
 /*
@@ -32,7 +32,6 @@ grabh(hp, gflags)
 	struct header *hp;
 {
 	struct sgttyb ttybuf;
-	int ttycont();
 #ifndef TIOCSTI
 	int (*saveint)(), (*savequit)();
 #endif
@@ -120,6 +119,7 @@ readtty(pr, src)
 	char ch, canonb[BUFSIZ];
 	int c;
 	register char *cp, *cp2;
+	int ttycont();
 
 	fputs(pr, stdout);
 	fflush(stdout);
@@ -213,7 +213,6 @@ redo:
 /*ARGSUSED*/
 ttycont(s)
 {
-
 	hadcont++;
 	longjmp(rewrite, 1);
 }
