@@ -1,7 +1,8 @@
-#	@(#)Makefile	8.3 (Berkeley) 05/08/95
+#	@(#)Makefile	8.4 (Berkeley) 06/22/95
 
 PROG=	umount
 SRCS=	umount.c vfslist.c
+MAN8=	umount.0
 DPADD=	${LIBRPC}
 LDADD=	-lrpc
 
