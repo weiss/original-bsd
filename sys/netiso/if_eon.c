@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_eon.c	7.14 (Berkeley) 05/09/91
+ *	@(#)if_eon.c	7.15 (Berkeley) 05/09/91
  */
 
 /***********************************************************
@@ -288,7 +288,7 @@ register struct sockaddr *gate;
 	el->el_flags |= RTF_UP;
 	eoniphdr(&el->el_ei, ipaddrloc, &el->el_iproute, EON_NORMAL_ADDR, 0);
 	if (el->el_iproute.ro_rt)
-		rt->rt_rmx.rmx_mtu = el->el_iproute.ro_rt->rt_rmx_mtu
+		rt->rt_rmx.rmx_mtu = el->el_iproute.ro_rt->rt_rmx.rmx_mtu
 							- sizeof(el->el_ei);
 }
 
