@@ -1,7 +1,7 @@
 /*
 **  SENDMAIL.H -- Global definitions for sendmail.
 **
-**	@(#)sendmail.h	3.15	08/08/81
+**	@(#)sendmail.h	3.16	08/08/81
 */
 
 
@@ -45,6 +45,8 @@ struct address
 typedef struct address ADDRESS;
 
 # define QDONTSEND	000001	/* don't send to this address */
+# define QBADADDR	000002	/* this address is verified bad */
+# define QGOODADDR	000004	/* this address is verified good */
 
 
 
