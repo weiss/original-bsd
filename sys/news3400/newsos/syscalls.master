@@ -1,4 +1,4 @@
-	@(#)syscalls.master	7.4 (Berkeley) 05/30/93
+	@(#)syscalls.master	8.1 (Berkeley) 06/11/93
 ; System call name/number master file (or rather, slave, from NEWS-OS).
 ; Processed to created news_sysent.c, news_syscalls.c and news_syscall.h.
 
