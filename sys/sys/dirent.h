@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dirent.h	7.3 (Berkeley) 06/25/92
+ *	@(#)dirent.h	7.4 (Berkeley) 02/10/93
  */
 
 /*
@@ -19,10 +19,10 @@
  */
 
 struct dirent {
-	u_long	d_fileno;		/* file number of entry */
-	u_short	d_reclen;		/* length of this record */
-	u_char	d_type; 		/* file type, see below */
-	u_char	d_namlen;		/* length of string in d_name */
+	unsigned long	d_fileno;	/* file number of entry */
+	unsigned short	d_reclen;	/* length of this record */
+	unsigned char	d_type; 	/* file type, see below */
+	unsigned char	d_namlen;	/* length of string in d_name */
 #ifdef _POSIX_SOURCE
 	char	d_name[255 + 1];	/* name must be no longer than this */
 #else
