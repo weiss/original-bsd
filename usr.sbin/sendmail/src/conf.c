@@ -36,7 +36,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.43		02/20/82);
+SCCSID(@(#)conf.c	3.44		03/22/82);
 
 
 # include <whoami.h>		/* definitions of machine id's at berkeley */
@@ -110,7 +110,7 @@ char	*XcriptFile =	"/tmp/mailxXXXXXX";	/* template for transcript */
 
 int	DefUid = 1;		/* the uid to execute mailers as */
 int	DefGid = 1;		/* ditto for gid */
-time_t	TimeOut = 3*24*60*60;	/* default timeout for queue files */
+time_t	TimeOut = 3*24*60*60L;	/* default timeout for queue files */
 
 
 
