@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.69		01/08/83	(no queueing));
+SCCSID(@(#)queue.c	3.70		01/17/83	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.69		01/08/83);
+SCCSID(@(#)queue.c	3.70		01/17/83);
 
 /*
 **  Work queue.
@@ -152,6 +152,7 @@ queueup(e, queueall, announce)
 
 	bzero(&nullmailer, sizeof nullmailer);
 	nullmailer.m_r_rwset = nullmailer.m_s_rwset = -1;
+	nullmailer.m_eol = "\n";
 
 	define('g', "$f", e);
 	for (h = e->e_header; h != NULL; h = h->h_link)
