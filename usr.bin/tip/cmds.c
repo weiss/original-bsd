@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmds.c	5.2 (Berkeley) 11/29/85";
+static char sccsid[] = "@(#)cmds.c	5.3 (Berkeley) 01/13/86";
 #endif not lint
 
 #include "tip.h"
@@ -599,6 +599,8 @@ abort(msg)
 {
 
 	kill(pid, SIGTERM);
+	setreuid(euid, euid);
+	setregid(egid, egid);
 	disconnect(msg);
 	if (msg != NOSTR)
 		printf("\r\n%s", msg);
