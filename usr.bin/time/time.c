@@ -1,4 +1,6 @@
-static	char *sccsid = "@(#)time.c	4.3 (Berkeley) 11/14/82";
+#ifndef lint
+static	char *sccsid = "@(#)time.c	4.4 (Berkeley) 06/02/83";
+#endif
 
 /*
  * time
