@@ -1,4 +1,4 @@
-#	@(#)SPARC	8.1 (Berkeley) 06/29/93
+#	@(#)SPARC	8.2 (Berkeley) 12/12/93
 #
 # SPARCstation 1, 1+, 2, etc.
 
@@ -48,6 +48,7 @@ sd*	at tg? drive ?
 
 bwtwo*	at sbus? slot ? offset ?
 cgthree* at sbus? slot ? offset ?
+cgsix*	at sbus? slot ? offset ?
 
 le*	at sbus? slot ? offset ?
 
