@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)file.c	5.22 (Berkeley) 11/12/91";
+static char sccsid[] = "@(#)file.c	5.23 (Berkeley) 02/05/92";
 #endif /* not lint */
 
 #ifdef FILEC
@@ -491,7 +491,8 @@ again:				/* search for matches */
 	return (numitems);
     }
     else {			/* LIST */
-	qsort((ptr_t) items, numitems, sizeof(items[0]), sortscmp);
+	qsort((ptr_t) items, numitems, sizeof(items[0]), 
+		(int (*) __P((const void *, const void *))) sortscmp);
 	print_by_column(looking_for_lognames ? NULL : tilded_dir,
 			items, numitems);
 	if (items != NULL)
