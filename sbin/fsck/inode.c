@@ -5,14 +5,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inode.c	5.6 (Berkeley) 05/07/88";
+static char sccsid[] = "@(#)inode.c	5.7 (Berkeley) 03/05/89";
 #endif not lint
 
-#include <pwd.h>
 #include <sys/param.h>
 #include <sys/inode.h>
 #include <sys/fs.h>
 #include <sys/dir.h>
+#include <pwd.h>
 #include "fsck.h"
 
 BUFAREA *pbp = 0;
