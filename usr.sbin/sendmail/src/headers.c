@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.53		03/06/83);
+SCCSID(@(#)headers.c	3.54		03/12/83);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -101,7 +101,7 @@ chompheader(line, def)
 		return (hi->hi_flags);
 
 	/* drop explicit From: if same as what we would generate -- for MH */
-	if (!def && strcmp(fvalue, CurEnv->e_from.q_paddr) == 0)
+	if (!def && !QueueRun && strcmp(fvalue, CurEnv->e_from.q_paddr) == 0)
 	{
 		p = "resent-from";
 		if (!bitset(EF_RESENT, CurEnv->e_flags))
