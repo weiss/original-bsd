@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)deliver.c	5.5 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)deliver.c	5.6 (Berkeley) 09/24/85";
 #endif not lint
 
 # include <signal.h>
@@ -849,7 +849,7 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 #endif FIOCLEX
 
 		/* try to execute the mailer */
-		execv(m->m_mailer, pvp);
+		execve(m->m_mailer, pvp, UserEnviron);
 
 #ifdef FIOCLEX
 		syserr("Cannot exec %s", m->m_mailer);
