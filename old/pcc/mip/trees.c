@@ -1,4 +1,4 @@
-static char *sccsid ="@(#)trees.c	4.4 (Berkeley) 09/20/84";
+static char *sccsid ="@(#)trees.c	4.5 (Berkeley) 10/03/84";
 # include "mfile1"
 
 	    /* corrections when in violation of lint */
@@ -1061,7 +1061,7 @@ makety( p, t, d, s ) register NODE *p; TWORD t; {
 
 	if( t & TMASK ){
 		/* non-simple type */
-		return( clocal( block( PCONV, p, NIL, t, d, s ) ) );
+		return( block( PCONV, p, NIL, t, d, s ) );
 		}
 
 	if( p->in.op == ICON ){
