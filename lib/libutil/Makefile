@@ -14,7 +14,7 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.1 (Berkeley) 08/31/88
+# @(#)Makefile	5.2 (Berkeley) 09/20/88
 #
 
 DEFS=	-DLIBC_SCCS
@@ -43,6 +43,9 @@ tags:
 
 clean:
 	rm -f ${OBJS} profiled/*.o libutil libutil_p
+
+cleandir: clean
+	rm -f .depend
 
 depend:
 	mkdep ${CFLAGS} ${SRCS}
