@@ -1,8 +1,8 @@
 #! /bin/sh
-#	@(#)buildmini	4.3	02/18/83
+#	@(#)buildmini	4.4	07/09/83
 #
-miniroot=hp1a
-minitype=eagle
+miniroot=hp0g
+minitype=rm80
 #
 date
 umount /dev/${miniroot}
