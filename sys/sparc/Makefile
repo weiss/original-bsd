@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.3 (Berkeley) 06/11/93
+#	@(#)Makefile	8.1 (Berkeley) 06/11/93
 
 # Makefile for sparc links, tags file
 
