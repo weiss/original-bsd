@@ -1,6 +1,6 @@
 # include	"../hdr/defines.h"
 
-SCCSID(@(#)dolist.c	4.1);
+SCCSID(@(#)dolist.c	4.2);
 
 static char br[] "bad range (co12)";
 
@@ -27,7 +27,9 @@ char ch;
 				sid.s_br = sid.s_seq = 0;
 				for (sid.s_rel = lowsid.s_rel; sid.s_rel <= highsid.s_rel; sid.s_rel++) {
 					sid.s_lev = (sid.s_rel == lowsid.s_rel ? lowsid.s_lev : 1);
-					for ( ; n = sidtoser(&sid,pkt); sid.s_lev++)
+					for ( ; (sid.s_rel < highsid.s_rel ||
+						 sid.s_lev <= highsid.s_lev) &&
+						(n = sidtoser(&sid,pkt)); sid.s_lev++)
 						enter(pkt,ch,n,&sid);
 				}
 			}
