@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)code.c	1.5 (Berkeley) 12/10/87";
+static char sccsid[] = "@(#)code.c	1.6 (Berkeley) 05/31/88";
 #endif
 
 # include "pass1.h"
@@ -91,12 +91,11 @@ locctr( l ){
 	return( temp );
 	}
 
-#ifndef deflab
 deflab( n ){
 	/* output something to define the current position as label n */
+	if (nerrors) return;
 	printf( "L%d:\n", n );
 	}
-#endif
 
 int crslab = 10;
 
