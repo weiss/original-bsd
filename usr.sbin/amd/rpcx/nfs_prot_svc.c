@@ -1,5 +1,5 @@
 /*
- * $Id: nfs_prot_svc.c,v 5.2 90/06/23 22:20:25 jsp Rel $
+ * $Id: nfs_prot_svc.c,v 5.2.1.1 90/10/21 22:30:25 jsp Exp $
  *
  * Copyright (c) 1989 Jan-Simon Pendry
  * Copyright (c) 1989 Imperial College of Science, Technology & Medicine
@@ -11,7 +11,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_prot_svc.c	5.1 (Berkeley) 07/19/90
+ *	@(#)nfs_prot_svc.c	5.2 (Berkeley) 03/17/91
  */
 
 #include "am.h"

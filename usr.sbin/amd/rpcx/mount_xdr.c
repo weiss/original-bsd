@@ -1,5 +1,5 @@
 /*
- * $Id: mount_xdr.c,v 5.2 90/06/23 22:20:21 jsp Rel $
+ * $Id: mount_xdr.c,v 5.2.1.1 90/10/21 22:30:21 jsp Exp $
  *
  * Copyright (c) 1989 Jan-Simon Pendry
  * Copyright (c) 1989 Imperial College of Science, Technology & Medicine
@@ -11,7 +11,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mount_xdr.c	5.1 (Berkeley) 07/19/90
+ *	@(#)mount_xdr.c	5.2 (Berkeley) 03/17/91
  */
 
 #include "am.h"
