@@ -8,9 +8,9 @@
 #include <setjmp.h>
 #include <sysexits.h>
 
-static char SccsId[] = "@(#)mail.local.c	4.9	11/14/82";
+static char SccsId[] = "@(#)mail.local.c	4.10	12/26/82";
 
-#define DELIVERMAIL	"/etc/delivermail"
+#define SENDMAIL	"/usr/lib/sendmail"
 
 
 /*copylet flags */
@@ -411,15 +411,15 @@ char **argv;
 	}
 	if (!dflag)
 	{
-		/* give it to delivermail, rah rah! */
+		/* give it to sendmail, rah rah! */
 		unlink(lettmp);
 		ap = newargv+1;
 		if (rmail)
 			*ap-- = "-s";
-		*ap = "-delivermail";
+		*ap = "-sendmail";
 		setuid(getuid());
-		execv(DELIVERMAIL, ap);
-		perror(DELIVERMAIL);
+		execv(SENDMAIL, ap);
+		perror(SENDMAIL);
 		exit(EX_UNAVAILABLE);
 	}
 
