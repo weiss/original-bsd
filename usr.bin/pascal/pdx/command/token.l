@@ -1,7 +1,13 @@
 %{
-/* Copyright (c) 1982 Regents of the University of California */
+/*
+ * Copyright (c) 1982 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
 
-static char sccsid[] = "@(#)token.l 1.3 01/25/82";
+#ifndef lint
+static char sccsid[] = "@(#)token.l	5.1 (Berkeley) 06/07/85";
+#endif not lint
 
 /*
  * Token definitions for pdx scanner.
