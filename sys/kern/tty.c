@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	8.2 (Berkeley) 09/05/93
+ *	@(#)tty.c	8.3 (Berkeley) 09/21/93
  */
 
 #include <sys/param.h>
@@ -454,7 +454,7 @@ parmrk:				putc(0377 | TTY_QUOTE, &tp->t_rawq);
 			catq(&tp->t_rawq, &tp->t_canq);
 			ttwakeup(tp);
 		} else if (tp->t_rocount++ == 0)
-			tp->t_rocol = tp->t_col;
+			tp->t_rocol = tp->t_column;
 		if (ISSET(tp->t_state, TS_ERASE)) {
 			/*
 			 * end of prterase \.../
@@ -462,13 +462,13 @@ parmrk:				putc(0377 | TTY_QUOTE, &tp->t_rawq);
 			CLR(tp->t_state, TS_ERASE);
 			(void)ttyoutput('/', tp);
 		}
-		i = tp->t_col;
+		i = tp->t_column;
 		ttyecho(c, tp);
 		if (CCEQ(cc[VEOF], c) && ISSET(lflag, ECHO)) {
 			/*
 			 * Place the cursor over the '^' of the ^D.
 			 */
-			i = min(2, tp->t_col - i);
+			i = min(2, tp->t_column - i);
 			while (i > 0) {
 				(void)ttyoutput('\b', tp);
 				i--;
@@ -522,7 +522,7 @@ ttyoutput(c, tp)
 	c &= TTY_CHARMASK;
 	if (c == '\t' &&
 	    ISSET(oflag, OXTABS) && !ISSET(tp->t_lflag, EXTPROC)) {
-		c = 8 - (tp->t_col & 7);
+		c = 8 - (tp->t_column & 7);
 		if (!ISSET(tp->t_lflag, FLUSHO)) {
 			s = spltty();		/* Don't interrupt tabs. */
 			c -= b_to_q("        ", c, &tp->t_outq);
@@ -530,7 +530,7 @@ ttyoutput(c, tp)
 			tp->t_outcc += c;
 			splx(s);
 		}
-		tp->t_col += c;
+		tp->t_column += c;
 		return (c ? -1 : '\t');
 	}
 	if (c == CEOT && ISSET(oflag, ONOEOT))
@@ -547,7 +547,7 @@ ttyoutput(c, tp)
 	if (!ISSET(tp->t_lflag, FLUSHO) && putc(c, &tp->t_outq))
 		return (c);
 
-	col = tp->t_col;
+	col = tp->t_column;
 	switch (CCLASS(c)) {
 	case BACKSPACE:
 		if (col > 0)
@@ -566,7 +566,7 @@ ttyoutput(c, tp)
 		col = (col + 8) & ~7;
 		break;
 	}
-	tp->t_col = col;
+	tp->t_column = col;
 	return (-1);
 }
 
@@ -1438,7 +1438,7 @@ loop:
 			tp->t_rocount = 0;
 			i = b_to_q(cp, ce, &tp->t_outq);
 			ce -= i;
-			tp->t_col += ce;
+			tp->t_column += ce;
 			cp += ce, cc -= ce, tk_nout += ce;
 			tp->t_outcc += ce;
 			if (i > 0) {
@@ -1532,10 +1532,10 @@ ttyrub(c, tp)
 				return;
 			}
 			s = spltty();
-			savecol = tp->t_col;
+			savecol = tp->t_column;
 			SET(tp->t_state, TS_CNTTB);
 			SET(tp->t_lflag, FLUSHO);
-			tp->t_col = tp->t_rocol;
+			tp->t_column = tp->t_rocol;
 			cp = tp->t_rawq.c_cf;
 			if (cp)
 				tabc = *cp;	/* XXX FIX NEXTC */
@@ -1546,8 +1546,8 @@ ttyrub(c, tp)
 			splx(s);
 
 			/* savecol will now be length of the tab. */
-			savecol -= tp->t_col;
-			tp->t_col += savecol;
+			savecol -= tp->t_column;
+			tp->t_column += savecol;
 			if (savecol > 8)
 				savecol = 8;		/* overflow screw */
 			while (--savecol >= 0)
