@@ -12,7 +12,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)cy.c	1.17 (Berkeley) 05/26/88
+ *	@(#)cy.c	7.1 (Berkeley) 05/31/88
  */
 
 #include "yc.h"
