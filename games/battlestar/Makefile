@@ -1,4 +1,10 @@
-# @(#)Makefile	1.5 04/23/85
+#
+# Copyright (c) 1983 Regents of the University of California,
+# All rights reserved.  Redistribution permitted subject to
+# the terms of the Berkeley Software License Agreement.
+#
+
+# @(#)Makefile	1.6 04/24/85
 
 CFLAGS=		-O
 OBJS=		battlestar.o com1.o com2.o com3.o com4.o com5.o com6.o com7.o \
