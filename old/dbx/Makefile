@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.7 (Berkeley) 01/03/84
+#	@(#)Makefile	4.8 (Berkeley) 06/23/84
 #
 # make file for debugger "dbx"
 #
@@ -47,6 +47,7 @@ OBJ = \
     pascal.o \
     printsym.o \
     process.o \
+    re.o \
     runtime.o \
     scanner.o \
     source.o \
@@ -74,6 +75,7 @@ HDR = \
     pascal.h \
     printsym.h \
     process.h \
+    re.h \
     runtime.h \
     source.h \
     scanner.h \
@@ -106,6 +108,7 @@ SRC = \
     pascal.c \
     printsym.c \
     process.c \
+    re.c \
     runtime.c \
     scanner.c \
     source.c \
