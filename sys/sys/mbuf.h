@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)mbuf.h	7.8.1.2 (Berkeley) 02/08/88
+ *	@(#)mbuf.h	7.10 (Berkeley) 02/08/88
  */
 
 /*
@@ -71,7 +71,6 @@ struct mbuf {
 #define	MT_HTABLE	6	/* IMP host tables */
 #define	MT_ATABLE	7	/* address resolution tables */
 #define	MT_SONAME	8	/* socket name */
-#define	MT_ZOMBIE	9	/* zombie proc status */
 #define	MT_SOOPTS	10	/* socket options */
 #define	MT_FTABLE	11	/* fragment reassembly header */
 #define	MT_RIGHTS	12	/* access rights */
@@ -84,7 +83,6 @@ struct mbuf {
 /* flags to m_pgalloc */
 #define	MPG_MBUFS	0		/* put new mbufs on free list */
 #define	MPG_CLUSTERS	1		/* put new clusters on free list */
-#define	MPG_SPACE	2		/* don't free; caller wants space */
 
 /* length to m_copy to copy all */
 #define	M_COPYALL	1000000000
@@ -160,7 +158,7 @@ struct mbuf {
 struct mbstat {
 	u_long	m_mbufs;	/* mbufs obtained from page pool */
 	u_long	m_clusters;	/* clusters obtained from page pool */
-	u_long	m_space;	/* interface pages obtained from page pool */
+	u_long	m_spare;	/* spare field */
 	u_long	m_clfree;	/* free clusters */
 	u_long	m_drops;	/* times failed to find space */
 	u_long	m_wait;		/* times waited for space */
