@@ -3,10 +3,10 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 06/18/85
+#	@(#)Makefile	5.3 (Berkeley) 10/15/85
 #
 #	dump.h			header file
-#	dumpitime.c		reads /etc/ddate
+#	dumpitime.c		reads /etc/dumpdates
 #	dumpmain.c		driver
 #	dumpoptr.c		operator interface
 #	dumptape.c		handles the mag tape and opening/closing
