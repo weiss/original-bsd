@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.56 (Berkeley) 06/18/95 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.57 (Berkeley) 06/19/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.56 (Berkeley) 06/18/95 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.57 (Berkeley) 06/19/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -238,7 +238,7 @@ esmtp_check(line, firstline, m, mci, e)
 {
 	if (strstr(line, "ESMTP ") != NULL)
 		mci->mci_flags |= MCIF_ESMTP;
-	if (strstr(line, "8BIT OK") != NULL)
+	if (strstr(line, "8BIT-OK") != NULL)
 		mci->mci_flags |= MCIF_8BITOK;
 }
 /*
@@ -336,7 +336,8 @@ smtpmailfrom(m, mci, e)
 		}
 	}
 	else if (bitnset(M_8BITS, m->m_flags) ||
-		 !bitset(EF_HAS8BIT, e->e_flags))
+		 !bitset(EF_HAS8BIT, e->e_flags) ||
+		 bitset(MCIF_8BITOK, mci->mci_flags))
 	{
 		/* just pass it through */
 	}
