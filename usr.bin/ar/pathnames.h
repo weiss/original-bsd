@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Hugh Smith at The University of Guelph.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.4 (Berkeley) 04/12/91
+ *	@(#)pathnames.h	8.1 (Berkeley) 06/06/93
  */
 
 #define	_NAME_ARTMP	"ar.XXXXXX"
