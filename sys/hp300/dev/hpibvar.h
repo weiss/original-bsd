@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hpibvar.h	7.3 (Berkeley) 05/07/91
+ *	@(#)hpibvar.h	7.4 (Berkeley) 07/07/92
  */
 
 #define	HPIB_IPL(x)	((((x) >> 4) & 0x3) + 3)
@@ -56,4 +56,6 @@ extern	struct hpib_softc hpib_softc[];
 extern	caddr_t internalhpib;
 extern	int hpibtimeout;
 extern	int hpibdmathresh;
+void	fhpibppwatch __P((void *arg));
+void	nhpibppwatch __P((void *arg));
 #endif
