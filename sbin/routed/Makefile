@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.17 (Berkeley) 04/27/93
+#	@(#)Makefile	5.18 (Berkeley) 06/19/93
 
 PROG=	routed
 SRCS=	af.c if.c input.c main.c output.c startup.c tables.c timer.c \
 	trace.c inet.c
 MAN8=	routed.0
-SUBDIR=	query trace
+#SUBDIR=	query trace
 DPADD=	${LIBCOMPAT}
 LDADD=	-lcompat
 
