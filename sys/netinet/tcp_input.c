@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_input.c	8.11 (Berkeley) 05/24/95
+ *	@(#)tcp_input.c	8.12 (Berkeley) 05/24/95
  */
 
 #ifndef TUBA_INCLUDE
@@ -776,7 +776,7 @@ trimthenstep6:
 			if (tiflags & TH_SYN &&
 			    tp->t_state == TCPS_TIME_WAIT &&
 			    SEQ_GT(ti->ti_seq, tp->rcv_nxt)) {
-				iss = tp->rcv_nxt + TCP_ISSINCR;
+				iss = tp->snd_nxt + TCP_ISSINCR;
 				tp = tcp_close(tp);
 				goto findpcb;
 			}
