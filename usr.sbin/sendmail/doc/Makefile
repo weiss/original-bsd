@@ -1,5 +1,5 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/07/93
+#	@(#)Makefile	8.2 (Berkeley) 02/10/95
 
-SUBDIR=	op intro usenix
+SUBDIR=	op intro usenix changes
 
 .include <bsd.subdir.mk>
