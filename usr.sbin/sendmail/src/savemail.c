@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.47 (Berkeley) 11/28/94";
+static char sccsid[] = "@(#)savemail.c	8.48 (Berkeley) 12/03/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -510,7 +510,11 @@ returntosender(msg, returnq, sendbody, e)
 			ee->e_id, curtime(), MyHostName);
 		ee->e_msgboundary = newstr(buf);
 		(void) sprintf(buf,
+#ifdef DSN
 			"multipart/report; report-type=delivery-status; boundary=\"%s\"",
+#else
+			"multipart/mixed; boundary=\"%s\"",
+#endif
 			ee->e_msgboundary);
 		addheader("Content-Type", buf, &ee->e_header);
 	}
@@ -732,6 +736,7 @@ errbody(mci, e, separator, flags)
 	}
 	errno = 0;
 
+#ifdef DSN
 	/*
 	**  Output machine-readable version.
 	*/
@@ -930,6 +935,7 @@ errbody(mci, e, separator, flags)
 			}
 		}
 	}
+#endif
 
 	/*
 	**  Output text of original message

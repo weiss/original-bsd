@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.50 (Berkeley) 11/25/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.51 (Berkeley) 12/03/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.50 (Berkeley) 11/25/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.51 (Berkeley) 12/03/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -307,7 +307,9 @@ smtp(e)
 				message("250-SIZE %ld", MaxMessageSize);
 			else
 				message("250-SIZE");
+#ifdef DSN
 			message("250-X-DSN-1");
+#endif
 			message("250 HELP");
 			break;
 
