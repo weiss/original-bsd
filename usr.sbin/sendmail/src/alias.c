@@ -29,15 +29,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.10 (Berkeley) 02/16/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.10 (Berkeley) 02/16/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.10 (Berkeley) 02/16/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.10 (Berkeley) 02/16/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -617,7 +617,8 @@ readaliases(aliasfile, init, e)
 				{
 					extern char *DelimChar;
 
-					while (isspace(*p) || *p == ',')
+					while ((isascii(*p) && isspace(*p)) ||
+								*p == ',')
 						p++;
 					if (*p == '\0')
 						break;
@@ -811,7 +812,7 @@ forward(user, sendq, e)
 	define('u', user->q_user, e);
 	define('h', user->q_host, e);
 	if (ForwardPath == NULL)
-		ForwardPath = newstr("\001z/.forward");
+		ForwardPath = newstr("\201z/.forward");
 
 	for (pp = ForwardPath; pp != NULL; pp = ep)
 	{

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	6.9 (Berkeley) 02/16/93";
+static char sccsid[] = "@(#)recipient.c	6.10 (Berkeley) 02/18/93";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -77,7 +77,7 @@ sendtolist(list, ctladdr, sendq, e)
 		extern char *DelimChar;		/* defined in prescan */
 
 		/* parse the address */
-		while (isspace(*p) || *p == ',')
+		while ((isascii(*p) && isspace(*p)) || *p == ',')
 			p++;
 		a = parseaddr(p, (ADDRESS *) NULL, 1, delimiter, e);
 		p = DelimChar;
