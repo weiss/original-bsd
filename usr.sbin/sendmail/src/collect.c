@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-static char	SccsId[] = "@(#)collect.c	3.20	09/07/81";
+static char	SccsId[] = "@(#)collect.c	3.21	09/07/81";
 
 /*
 **  COLLECT -- read & parse message header & make temp file.
@@ -54,13 +54,24 @@ collect()
 	}
 
 	/*
+	**  Tell ARPANET to go ahead.
+	*/
+
+	if (ArpaMode == ARPA_MAIL)
+	{
+		extern char Arpa_Enter[];
+
+		message(Arpa_Enter, "Enter mail, end with \".\" on a line by itself");
+	}
+
+	/*
 	**  Try to read a UNIX-style From line
 	*/
 
 	if (fgets(buf, sizeof buf, stdin) == NULL)
 		return;
 # ifndef NOTUNIX
-	if (strncmp(buf, "From ", 5) == 0)
+	if (!SaveFrom && strncmp(buf, "From ", 5) == 0)
 	{
 		eatfrom(buf);
 		(void) fgets(buf, sizeof buf, stdin);
