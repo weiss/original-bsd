@@ -16,10 +16,10 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)getgroups.s	5.5 (Berkeley) 06/27/88"
+	.asciz "@(#)getgroups.s	5.6 (Berkeley) 05/12/90"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
 
 SYSCALL(getgroups)
-	ret		# ngroups = getgroups(gidsetsize, gidset)
+	ret		/* ngroups = getgroups(gidsetsize, gidset) */
