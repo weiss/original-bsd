@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-/* sccs id:	@(#)ex_tty.h	5.1 08/20/80  */
+/* sccs id:	@(#)ex_tty.h	6.1 10/19/80  */
 /*
  * Capabilities from termcap
  *
@@ -148,7 +148,9 @@ ttymode ostart(), setty(), unixex();
 short	WBOT;
 short	WECHO;
 
-short	costCM;
+short	costCM;	/* # chars to output a typical CM, with padding etc. */
+short	costSR;	/* likewise */
+short	costAL;
 
 #ifdef VMUNIX
 # define MAXNOMACS	128	/* max number of macros of each kind */

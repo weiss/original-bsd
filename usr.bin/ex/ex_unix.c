@@ -1,5 +1,5 @@
 /* Copyright (c) 1979 Regents of the University of California */
-static char *sccsid = "@(#)ex_unix.c	5.2 09/12/80";
+static char *sccsid = "@(#)ex_unix.c	6.1 10/19/80";
 #include "ex.h"
 #include "ex_temp.h"
 #include "ex_tty.h"
@@ -267,6 +267,10 @@ filter(mode)
 		if(FIXUNDO)
 			undap1 = undap2 = addr2+1;
 		ignore(append(getfile, addr2));
+#ifdef TRACE
+		if (trace)
+			vudump("after append in filter");
+#endif
 	}
 	close(io);
 	io = -1;

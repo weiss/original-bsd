@@ -1,5 +1,5 @@
 /* Copyright (c) 1980 Regents of the University of California */
-/* sccs id:	@(#)ex_temp.h	5.1 08/20/80  */
+/* sccs id:	@(#)ex_temp.h	6.1 10/19/80  */
 /*
  * The editor uses a temporary file for files being edited, in a structure
  * similar to that of ed.  The first block of the file is used for a header
