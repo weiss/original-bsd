@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty_pty.c	7.15 (Berkeley) 06/28/90
+ *	@(#)tty_pty.c	7.16 (Berkeley) 09/11/90
  */
 
 /*
@@ -595,7 +595,10 @@ ptyioctl(dev, cmd, data, flag)
 				return(EINVAL);
 			if ((tp->t_lflag&NOFLSH) == 0)
 				ttyflush(tp, FREAD|FWRITE);
-			pgsignal(tp->t_pgrp, *(unsigned int *)data);
+			pgsignal(tp->t_pgrp, *(unsigned int *)data, 1);
+			if ((*(unsigned int *)data == SIGINFO) &&
+			    ((tp->t_lflag&NOKERNINFO) == 0))
+				ttyinfo(tp);
 			return(0);
 		}
 	error = (*linesw[tp->t_line].l_ioctl)(tp, cmd, data, flag);
