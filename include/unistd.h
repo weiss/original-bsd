@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)unistd.h	8.3 (Berkeley) 01/03/94
+ *	@(#)unistd.h	8.4 (Berkeley) 01/04/94
  */
 
 #ifndef _UNISTD_H_
@@ -45,7 +45,7 @@ char	*getcwd __P((char *, size_t));
 gid_t	 getegid __P((void));
 uid_t	 geteuid __P((void));
 gid_t	 getgid __P((void));
-int	 getgroups __P((int, int *));		/* XXX (gid_t *) */
+int	 getgroups __P((int, gid_t []));
 char	*getlogin __P((void));
 pid_t	 getpgrp __P((void));
 pid_t	 getpid __P((void));
