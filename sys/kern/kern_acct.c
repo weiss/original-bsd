@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_acct.c	7.8 (Berkeley) 04/05/90
+ *	@(#)kern_acct.c	7.9 (Berkeley) 05/04/90
  */
 
 #include "param.h"
@@ -72,7 +72,7 @@ sysacct()
 		vrele(vp);
 		return;
 	}
-	if (vp->v_mount->m_flag & M_RDONLY) {
+	if (vp->v_mount->mnt_flag & MNT_RDONLY) {
 		u.u_error = EROFS;
 		vrele(vp);
 		return;
