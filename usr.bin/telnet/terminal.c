@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)terminal.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)terminal.c	8.2 (Berkeley) 02/16/95";
 #endif /* not lint */
 
 #include <arpa/telnet.h>
@@ -114,7 +114,8 @@ ttyflush(drop)
 		n1 = n0 - n;
 		if (!drop)
 			n1 = TerminalWrite(ttyoring.bottom, n1);
-		n += n1;
+		if (n1 > 0)
+			n += n1;
 	}
 	ring_consumed(&ttyoring, n);
     }
