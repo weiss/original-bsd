@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.22 (Berkeley) 11/08/93";
+static char sccsid[] = "@(#)recipient.c	8.23 (Berkeley) 11/14/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -645,9 +645,9 @@ include(fname, forwarding, ctladdr, sendq, e)
 	ca = getctladdr(ctladdr);
 	if (ca == NULL)
 	{
-		uid = 0;
-		gid = 0;
-		uname = NULL;
+		uid = DefUid;
+		gid = DefGid;
+		uname = DefUser;
 		saveduid = -1;
 	}
 	else
