@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.51		12/05/82);
+SCCSID(@(#)savemail.c	3.52		12/13/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -140,7 +140,7 @@ savemail(e)
 	if (ErrorMode == EM_MAIL)
 	{
 		if (e->e_errorqueue == NULL)
-			sendto(e->e_from.q_paddr, (ADDRESS *) NULL,
+			sendtolist(e->e_from.q_paddr, (ADDRESS *) NULL,
 			       &e->e_errorqueue);
 		if (returntosender("Unable to deliver mail",
 				   e->e_errorqueue, TRUE) == 0)
@@ -183,7 +183,7 @@ savemail(e)
 		Verbose = oldverb;
 		e->e_to = buf;
 		q = NULL;
-		sendto(buf, (ADDRESS *) NULL, &q);
+		sendtolist(buf, (ADDRESS *) NULL, &q);
 		(void) deliver(e, q);
 	}
 
