@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)win.c	3.20 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)win.c	3.21 (Berkeley) 08/04/88";
 #endif /* not lint */
 
 #include "defs.h"
@@ -76,8 +76,6 @@ char *shf, **sh;
 	setselwin((struct ww *)0);
 	addwin(w, 0);
 	setselwin(w);
-	wwupdate();
-	wwflush();
 	if (wwspawn(w, shf, sh) < 0) {
 		error("Can't execute %s: %s.", shf, wwerror());
 		closewin(w);
@@ -167,7 +165,6 @@ char *label;
 	(void) setlabel(w, label);
 	addwin(w, 1);
 	reframe();
-	wwupdate();
 	return w;
 }
 

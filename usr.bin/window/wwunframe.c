@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwunframe.c	3.17 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)wwunframe.c	3.18 (Berkeley) 08/04/88";
 #endif /* not lint */
 
 #include "ww.h"
@@ -46,9 +46,7 @@ register struct ww *w;
 				nchanged++;
 			}
 		}
-		if (nchanged > 4)
-			wwtouched[i] |= WWU_MAJOR|WWU_TOUCHED;
-		else if (nchanged > 0)
+		if (nchanged > 0)
 			wwtouched[i] |= WWU_TOUCHED;
 		w->ww_nvis[i] = 0;
 	}

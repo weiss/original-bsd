@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwinit.c	3.31 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)wwinit.c	3.32 (Berkeley) 08/04/88";
 #endif /* not lint */
 
 #include "ww.h"
@@ -122,6 +122,12 @@ wwinit()
 	}
 	for (i = 0; i < wwnrow; i++)
 		wwtouched[i] = 0;
+
+	wwupd = (struct ww_update *) malloc((unsigned) wwnrow * sizeof *wwupd);
+	if (wwupd == 0) {
+		wwerrno = WWE_NOMEM;
+		goto bad;
+	}
 
 	wwindex[WWX_NOBODY] = &wwnobody;
 	wwnobody.ww_order = NWW;
