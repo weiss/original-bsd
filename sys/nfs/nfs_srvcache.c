@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_srvcache.c	7.3 (Berkeley) 02/16/90
+ *	@(#)nfs_srvcache.c	7.4 (Berkeley) 02/17/90
  */
 
 #include "param.h"
@@ -29,7 +29,7 @@
 #include "mbuf.h"
 #include "socket.h"
 #include "socketvar.h"
-#include "netinet/in.h"
+#include "../netinet/in.h"
 #include "nfsm_subs.h"
 #include "nfsv2.h"
 #include "nfsrvcache.h"
