@@ -1,17 +1,17 @@
-#	@(#)Makefile	6.3 (Berkeley) 06/30/90
+#	@(#)Makefile	6.4 (Berkeley) 06/05/93
 
-DIR=	usd/15.vi
+DIR=	usd/12.vi
 SRCS=	vi.in vi.chars
 MACROS=	-msU
 CLEANFILES+=summary.* viapwh.*
 
-paper.${PRINTER}: ${SRCS} summary.${PRINTER} viapwh.${PRINTER}
+paper.ps: ${SRCS} summary.${PRINTER} viapwh.${PRINTER}
 	${TBL} ${SRCS} | ${ROFF} > ${.TARGET}
 
-summary.${PRINTER}: vi.summary
+summary.ps: vi.summary
 	${TBL} vi.summary | ${ROFF}  > ${.TARGET}
 
-viapwh.${PRINTER}: vi.apwh.ms
+viapwh.ps: vi.apwh.ms
 	${ROFF} vi.viapwh > ${.TARGET}
 
 .include <bsd.doc.mk>
