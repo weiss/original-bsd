@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ftp.c	5.24.1.2 (Berkeley) 03/01/89";
+static char sccsid[] = "@(#)ftp.c	5.25 (Berkeley) 03/01/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -47,6 +47,7 @@ int	ptflag = 0;
 int	connected;
 struct	sockaddr_in myctladdr;
 uid_t	getuid();
+off_t	restart_point = 0;
 
 FILE	*cin, *cout;
 FILE	*dataconn();
@@ -465,6 +466,25 @@ sendrequest(cmd, local, remote)
 	if (setjmp(sendabort))
 		goto abort;
 
+	if (restart_point &&
+	    (strcmp(cmd, "STOR") == 0 || strcmp(cmd, "APPE") == 0)) {
+		if (fseek(fin, (long) restart_point, 0) < 0) {
+			perror(local);
+			restart_point = 0;
+			if (closefunc != NULL)
+				(*closefunc)(fin);
+			return;
+		}
+		if (command("REST %ld", (long) restart_point)
+			!= CONTINUE) {
+			restart_point = 0;
+			if (closefunc != NULL)
+				(*closefunc)(fin);
+			return;
+		}
+		restart_point = 0;
+		mode = "r+w";
+	}
 	if (remote) {
 		if (command("%s %s", cmd, remote) != PRELIM) {
 			(void) signal(SIGINT, oldintr);
@@ -610,7 +630,8 @@ recvrequest(cmd, local, remote, mode)
 	FILE *fout, *din = 0, *popen();
 	int (*closefunc)(), pclose(), fclose(), (*oldintr)(), (*oldintp)(); 
 	int abortrecv(), oldverbose, oldtype = 0, is_retr, tcrflag, nfnd;
-	char *buf, *bufp, *gunique(), msg;
+	char *bufp, *gunique(), msg;
+	static char *buf;
 	static int bufsize;
 	long bytes = 0, hashbytes = HASHBYTES;
 	struct fd_set mask;
@@ -699,6 +720,9 @@ recvrequest(cmd, local, remote, mode)
 			setascii();
 			verbose = oldverbose;
 		}
+	} else if (restart_point) {
+		if (command("REST %ld", (long) restart_point) != CONTINUE)
+			return;
 	}
 	if (remote) {
 		if (command("%s %s", cmd, remote) != PRELIM) {
@@ -772,6 +796,7 @@ recvrequest(cmd, local, remote, mode)
 		buf = malloc(st.st_blksize);
 		if (buf == NULL) {
 			perror("malloc");
+			bufsize = 0;
 			goto abort;
 		}
 		bufsize = st.st_blksize;
@@ -781,9 +806,16 @@ recvrequest(cmd, local, remote, mode)
 
 	case TYPE_I:
 	case TYPE_L:
+		if (restart_point &&
+		    lseek(fileno(fout), (long) restart_point, L_SET) < 0) {
+			perror(local);
+			if (closefunc != NULL)
+				(*closefunc)(fout);
+			return;
+		}
 		errno = d = 0;
 		while ((c = read(fileno(din), buf, bufsize)) > 0) {
-			if ((d = write(fileno(fout), bufp, c)) != c)
+			if ((d = write(fileno(fout), buf, c)) != c)
 				break;
 			bytes += c;
 			if (hash) {
@@ -814,6 +846,27 @@ recvrequest(cmd, local, remote, mode)
 		break;
 
 	case TYPE_A:
+		if (restart_point) {
+			register int i, n, c;
+
+			if (fseek(fout, 0L, L_SET) < 0)
+				goto done;
+			n = restart_point;
+			i = 0;
+			while (i++ < n) {
+				if ((c=getc(fout)) == EOF)
+					goto done;
+				if (c == '\n')
+					i++;
+			}
+			if (fseek(fout, 0L, L_INCR) < 0) {
+done:
+				perror(local);
+				if (closefunc != NULL)
+					(*closefunc)(fout);
+				return;
+			}
+		}
 		while ((c = getc(din)) != EOF) {
 			while (c == '\r') {
 				while (hash && (bytes >= hashbytes)) {
@@ -845,13 +898,13 @@ break2:
 			(void) putchar('\n');
 			(void) fflush(stdout);
 		}
-		if (ferror(din)){
+		if (ferror(din)) {
 			if (errno != EPIPE)
-				perror ("netin");
+				perror("netin");
 			bytes = -1;
 		}
 		if (ferror(fout))
-			perror (local);
+			perror(local);
 		break;
 	}
 	if (closefunc != NULL)
