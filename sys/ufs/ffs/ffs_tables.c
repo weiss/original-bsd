@@ -1,6 +1,6 @@
 /* Copyright (c) 1981 Regents of the University of California */
 
-/* @(#)ffs_tables.c 1.4 03/23/82 */
+/* @(#)ffs_tables.c 2.1 03/25/82 */
 
 #include "../h/param.h"
 
