@@ -8,7 +8,7 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)mail.cs.mc	6.5 (Berkeley) 03/06/93')
+VERSIONID(`@(#)mail.cs.mc	6.6 (Berkeley) 03/07/93')
 OSTYPE(ultrix4.1)dnl
 DOMAIN(cs.exposed)dnl
 FEATURE(notsticky)dnl
@@ -19,7 +19,7 @@ DDBerkeley.EDU
 
 # hosts for which we accept and forward mail (must be in .Berkeley.EDU)
 CF CS
-CF/etc/sendmail.cw
+FF/etc/sendmail.cw
 
 LOCAL_RULE_0
 R< @ $=F . $D . > : $*		$@ $>7 $2		@here:... -> ...
