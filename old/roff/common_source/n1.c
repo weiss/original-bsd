@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)n1.c	4.5 06/30/83";
+static char sccsid[] = "@(#)n1.c	4.6 01/09/85";
 #endif lint
 
 #include "tdef.h"
@@ -420,7 +420,7 @@ char *a;
 	register i;
 
 	ibufp = a;
-	eibuf = MAXPTR;
+	eibuf = (char *) MAXPTR;
 	i = atoi();
 	ch = 0;
 	return(i);
@@ -735,7 +735,7 @@ again:
 		else i = rbf();
 	}else{
 		if(donef)done(0);
-		if(nx || ((ibufp >= eibuf) && (ibufp != MAXPTR))){
+		if(nx || ((ibufp >= eibuf) && (ibufp != (char *) MAXPTR))){
 			if(nfo)goto g1;
 		g0:
 			if(nextfile()){
@@ -939,7 +939,7 @@ char *a;
 	if((*a & 0177) == 0)return;
 	neg = 0;
 	ibufp = a;
-	eibuf = MAXPTR;
+	eibuf = (char *) MAXPTR;
 	noscale++;
 	while((i = getch() & CMASK) != 0)switch(i){
 		case '+':
