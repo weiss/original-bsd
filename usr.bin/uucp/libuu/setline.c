@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)setline.c	5.2 (Berkeley) 01/22/85";
+static char sccsid[] = "@(#)setline.c	5.3 (Berkeley) 06/20/85";
 #endif
 
 #include "uucp.h"
@@ -12,12 +12,15 @@ static char sccsid[] = "@(#)setline.c	5.2 (Berkeley) 01/22/85";
 #define RCVFILE 'R'
 #define RESET	'X'
 
+/*LINTLIBRARY*/
+
 /*
  *	optimize line setting for sending or receiving files
  *
  *	return code - none
  */
-setline(type)
+/*ARGSUSED*/
+setupline(type)
 char type;
 {
 #ifdef	USG
