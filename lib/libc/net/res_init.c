@@ -5,15 +5,15 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)res_init.c	5.2 (Berkeley) 07/16/85";
+static char sccsid[] = "@(#)res_init.c	5.3 (Berkeley) 07/29/85";
 #endif not lint
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdio.h>
-#include <nameser.h>
-#include <resolv.h>
+#include <arpa/nameser.h>
+#include <arpa/resolv.h>
 
 /*
  * Resolver state default settings
