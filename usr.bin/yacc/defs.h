@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)defs.h	5.1 (Berkeley) 12/25/89
+ *	@(#)defs.h	5.2 (Berkeley) 02/15/90
  */
 
 #include <assert.h>
@@ -123,7 +123,6 @@
 
 /*  storage allocation macros  */
 
-#define CALLOC(k,n)	(calloc((unsigned)(k),(unsigned)(n)))
 #define	FREE(x)		(free((char*)(x)))
 #define MALLOC(n)	(malloc((unsigned)(n)))
 #define	NEW(t)		((t*)allocate(sizeof(t)))
@@ -240,6 +239,7 @@ extern int nrules;
 extern int nsyms;
 extern int ntokens;
 extern int nvars;
+extern int ntags;
 
 extern char unionized;
 extern char line_format[];
