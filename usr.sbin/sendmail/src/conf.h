@@ -1,7 +1,7 @@
 /*
 **  CONF.H -- All user-configurable parameters for sendmail
 **
-**	@(#)conf.h	3.2		11/13/82
+**	@(#)conf.h	4.1		07/25/83
 */
 
 

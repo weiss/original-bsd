@@ -1,7 +1,7 @@
 # include <ctype.h>
 # include "useful.h"
 
-SCCSID(@(#)convtime.c	3.4		04/19/83);
+SCCSID(@(#)convtime.c	4.1		07/25/83);
 
 /*
 **  CONVTIME -- convert time

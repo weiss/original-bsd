@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)stab.c	3.14		02/02/83);
+SCCSID(@(#)stab.c	4.1		07/25/83);
 
 /*
 **  STAB -- manage the symbol table
