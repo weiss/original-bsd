@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)PRED.c 1.4 06/10/81";
+static char sccsid[] = "@(#)PRED.c 1.5 01/09/89";
 
 
 long
@@ -12,12 +12,10 @@ PRED(value, lower, upper)
 {
 	if (value == lower) {
 		ERROR("Cannot take pred of first element of a range\n");
-		return;
 	}
 	value--;
 	if (value < lower || value > upper) {
 		ERROR("Value of %D is out of range\n", value);
-		return;
 	}
 	return	value;
 }

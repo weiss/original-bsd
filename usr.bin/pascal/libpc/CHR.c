@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)CHR.c 1.4 11/12/82";
+static char sccsid[] = "@(#)CHR.c 1.5 01/09/89";
 
 char ECHR[] = "Argument to chr of %D is out of range\n";
 
@@ -10,7 +10,6 @@ CHR(value)
 {
 	if (value > 127) {
 		ERROR(ECHR, value);
-		return;
 	}
 	return (char)value;
 }

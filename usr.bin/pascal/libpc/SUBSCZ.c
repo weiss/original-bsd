@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)SUBSCZ.c 1.4 11/12/82";
+static char sccsid[] = "@(#)SUBSCZ.c 1.5 01/09/89";
 
 extern char ESUBSC[];	/* ESUBSC is defined in SUBSCZ.c */
 
@@ -11,7 +11,6 @@ SUBSCZ(value, upper)
 {
 	if (value > upper) {
 		ERROR(ESUBSC, value);
-		return;
 	}
 	return value;
 }
