@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nqnfs.h	7.2 (Berkeley) 03/09/92
+ *	@(#)nqnfs.h	7.3 (Berkeley) 03/13/92
  */
 
 /*
@@ -23,7 +23,7 @@
 #define	NQ_RENEWAL	3	/* Time before expiry (sec) to renew */
 #define	NQ_TRYLATERDEL	15	/* Initial try later delay (sec) */
 #define	NQ_MAXNUMLEASE	2048	/* Upper bound on number of server leases */
-#define	NQ_DEADTHRESH	2	/* Default nm_deadthresh */
+#define	NQ_DEADTHRESH	5	/* Default nm_deadthresh */
 #define	NQ_NEVERDEAD	9	/* Greater than max. nm_timeouts */
 #define	NQLCHSZ		256	/* Server hash table size */
 
