@@ -14,9 +14,9 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 05/11/89
+ *	@(#)pathnames.h	5.2 (Berkeley) 06/25/90
  */
 
-#define	_PATH_MAIL		"/bin/mail"
+#define	_PATH_MAIL		"/usr/libexec/delivermail"
 #define	_PATH_MAKEKEY		"/usr/libexec/makekey"
 #define	_PATH_SECRETMAIL	"/var/spool/secretmail"
