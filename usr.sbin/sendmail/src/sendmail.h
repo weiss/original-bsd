@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.136 (Berkeley) 05/28/95
+ *	@(#)sendmail.h	8.137 (Berkeley) 05/29/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.136		05/28/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.137		05/29/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -657,6 +657,7 @@ MAPCLASS
 
 /* functions */
 extern char	*map_rewrite __P((MAP *, char *, int, char **));
+extern MAP	*makemapentry __P((char *));
 /*
 **  Symbol table definitions
 */
@@ -1142,7 +1143,6 @@ extern void	setuserenv __P((const char *, const char *));
 extern void	disconnect __P((int, ENVELOPE *));
 extern void	putxline __P((char *, MCI *, int));
 extern void	dumpfd __P((int, bool, bool));
-extern void	makemapentry __P((char *));
 extern void	makemailer __P((char *));
 extern void	putfromline __P((MCI *, ENVELOPE *));
 extern void	setoption __P((int, char *, bool, bool, ENVELOPE *));
