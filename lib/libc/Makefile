@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.22 (Berkeley) 03/18/87
+#	@(#)Makefile	4.23 (Berkeley) 04/03/87
 #
 #
 # The system has two monitoring schemes, utilizing either ``prof''
@@ -85,7 +85,9 @@ tags:
 	for i in ${ALL}; do \
 		(cd $$i; make ${MFLAGS} TAGSFILE=../${TAGSFILE} tags); \
 	done
-	/usr/bin/sort -o ${TAGSFILE} ${TAGSFILE}
+	cd net/${HOSTLOOKUP}; \
+		make ${MFLAGS} TAGSFILE=../../${TAGSFILE} tags
+	sort -o ${TAGSFILE} ${TAGSFILE}
 
 clean:
 	for i in ${MACHINE}/csu ${ALL} net/hosttable net/named; \
