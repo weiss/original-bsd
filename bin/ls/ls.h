@@ -4,8 +4,10 @@
  *
  * This code is derived from software contributed to Berkeley by
  * Michael Fischbein.
-%copyright%
- *	@(#)ls.h	5.9 (Berkeley) 04/06/90
+ *
+%sccs.include.redist.c%
+ *
+ *	@(#)ls.h	5.10 (Berkeley) 04/08/90
  */
 
 typedef struct _lsstruct {
