@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)send.c	5.21 (Berkeley) 06/25/90";
+static char sccsid[] = "@(#)send.c	5.22 (Berkeley) 07/03/90";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -42,11 +42,13 @@ send(mp, obuf, doign, prefix)
 	/*
 	 * Compute the prefix string, without trailing whitespace
 	 */
-	cp2 = 0;
-	for (cp = prefix; *cp; cp++)
-		if (*cp != ' ' && *cp != '\t')
-			cp2 = cp;
-	prefixlen = cp2 == 0 ? 0 : cp2 - prefix + 1;
+	if (prefix != NOSTR) {
+		cp2 = 0;
+		for (cp = prefix; *cp; cp++)
+			if (*cp != ' ' && *cp != '\t')
+				cp2 = cp;
+		prefixlen = cp2 == 0 ? 0 : cp2 - prefix + 1;
+	}
 	ibuf = setinput(mp);
 	count = mp->m_size;
 	ishead = 1;
