@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1982 Regents of the University of California.
+ * Copyright (c) 1982, 1986 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)signal.h	6.9 (Berkeley) 02/20/86
+ *	@(#)signal.h	7.1 (Berkeley) 06/04/86
  */
 
 #ifndef	NSIG
