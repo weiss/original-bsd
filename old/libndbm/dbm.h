@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)dbm.h	5.2 (Berkeley) 05/24/89
+ *	@(#)dbm.h	5.3 (Berkeley) 07/25/89
  */
 
 #ifndef NULL
@@ -25,6 +25,12 @@
  */
 #define	NULL	((char *) 0)
 #endif
+
+/*
+ * Pre-define the page block size to be the old dbm size.
+ */
+
+#define PBLKSIZ 1024
 
 #include <ndbm.h>
 
