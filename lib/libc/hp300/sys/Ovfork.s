@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)Ovfork.s	5.1 (Berkeley) 05/12/90"
+	.asciz "@(#)Ovfork.s	5.2 (Berkeley) 06/07/93"
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -30,9 +30,7 @@
  */
 
 	vfork = 66
-.globl	_vfork
-
-_vfork:
+ENTRY(vfork)
 	movl	sp@+,a0
 	movl	#vfork,d0
 	trap	#0
