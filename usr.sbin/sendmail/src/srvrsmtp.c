@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.52 (Berkeley) 12/05/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.53 (Berkeley) 02/05/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.52 (Berkeley) 12/05/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.53 (Berkeley) 02/05/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -308,7 +308,7 @@ smtp(e)
 			else
 				message("250-SIZE");
 #ifdef DSN
-			message("250-X-DSN-1");
+			message("250-X-DSN-2 (Unpublished draft as of Sat, 04 Feb 1995)");
 #endif
 			message("250 HELP");
 			break;
@@ -485,15 +485,6 @@ smtp(e)
 						/* NOTREACHED */
 					}
 					e->e_envid = newstr(vp);
-				}
-				else if (strcasecmp(kp, "omts") == 0)
-				{
-					if (vp == NULL)
-					{
-						usrerr("501 OMTS requires a value");
-						/* NOTREACHED */
-					}
-					e->e_omts = newstr(vp);
 				}
 				else
 				{

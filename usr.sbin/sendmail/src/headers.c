@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.45 (Berkeley) 12/05/94";
+static char sccsid[] = "@(#)headers.c	8.46 (Berkeley) 02/05/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -912,7 +912,6 @@ crackaddr(addr)
 **		mci -- the connection information.
 **		h -- the header to put.
 **		e -- envelope to use.
-**		flags -- to modify the behaviour.
 **
 **	Returns:
 **		none.
@@ -928,11 +927,10 @@ crackaddr(addr)
 # define MAX(a,b) (((a)>(b))?(a):(b))
 #endif
 
-putheader(mci, h, e, flags)
+putheader(mci, h, e)
 	register MCI *mci;
 	register HDR *h;
 	register ENVELOPE *e;
-	int flags;
 {
 	char buf[MAX(MAXLINE,BUFSIZ)];
 	char obuf[MAXLINE];
@@ -978,19 +976,9 @@ putheader(mci, h, e, flags)
 			continue;
 		}
 
-		/* suppress Content-Type: if we are not including the body */
-		if (bitset(PF_DELETEMIMEHDRS, flags) &&
-		    bitset(H_CTYPE, h->h_flags))
-		{
-			if (tTd(34, 11))
-				printf(" (skipped (content-type))\n");
-			continue;
-		}
-
 		/* suppress Content-Transfer-Encoding: if we are MIMEing */
 		if (bitset(H_CTE, h->h_flags) &&
-		    (bitset(MCIF_CVT8TO7, mci->mci_flags) ||
-		     bitset(PF_DELETEMIMEHDRS, flags)))
+		    bitset(MCIF_CVT8TO7, mci->mci_flags))
 		{
 			if (tTd(34, 11))
 				printf(" (skipped (content-transfer-encoding))\n");

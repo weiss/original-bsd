@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.48 (Berkeley) 01/24/95";
+static char sccsid[] = "@(#)parseaddr.c	8.49 (Berkeley) 02/05/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1648,10 +1648,9 @@ printaddr(a, follow)
 		       a->q_owner == NULL ? "(none)" : a->q_owner,
 		       a->q_home == NULL ? "(none)" : a->q_home,
 		       a->q_fullname == NULL ? "(none)" : a->q_fullname);
-		printf("\torcpt=\"%s\", statmta=%s, fstatus=%s, rstatus=%s\n",
+		printf("\torcpt=\"%s\", statmta=%s, rstatus=%s\n",
 		       a->q_orcpt == NULL ? "(none)" : a->q_orcpt,
 		       a->q_statmta == NULL ? "(none)" : a->q_statmta,
-		       a->q_fstatus == NULL ? "(none)" : a->q_fstatus,
 		       a->q_rstatus == NULL ? "(none)" : a->q_rstatus);
 
 		if (!follow)

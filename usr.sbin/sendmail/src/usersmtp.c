@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.33 (Berkeley) 12/28/94 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.34 (Berkeley) 02/05/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.33 (Berkeley) 12/28/94 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.34 (Berkeley) 02/05/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -366,11 +366,6 @@ smtpmailfrom(m, mci, e)
 			strcat(optbuf, " ENVID=");
 			strcat(optbuf, e->e_envid);
 		}
-		if (e->e_omts != NULL)
-		{
-			strcat(optbuf, " OMTS=");
-			strcat(optbuf, e->e_omts);
-		}
 	}
 
 	/*
@@ -635,8 +630,8 @@ smtpdata(m, mci, e)
 	**  Output the actual message.
 	*/
 
-	(*e->e_puthdr)(mci, e->e_header, e, 0);
-	(*e->e_putbody)(mci, e, NULL, 0);
+	(*e->e_puthdr)(mci, e->e_header, e);
+	(*e->e_putbody)(mci, e, NULL);
 
 	/*
 	**  Cleanup after sending message.
