@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1988 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Timothy C. Stoehr.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)score.c	5.6 (Berkeley) 07/29/92";
+static char sccsid[] = "@(#)score.c	8.1 (Berkeley) 05/31/93";
 #endif /* not lint */
 
 /*
