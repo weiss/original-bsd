@@ -20,9 +20,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	5.22 (Berkeley) 06/30/88 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.23 (Berkeley) 11/03/88 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	5.22 (Berkeley) 06/30/88 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.23 (Berkeley) 11/03/88 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -85,8 +85,10 @@ static struct cmd	CmdTab[] =
 	"onex",		CMDONEX,
 # ifdef DEBUG
 	"showq",	CMDDBGQSHOW,
-	"debug",	CMDDBGDEBUG,
 # endif DEBUG
+# ifdef notdef
+	"debug",	CMDDBGDEBUG,
+# endif notdef
 # ifdef WIZ
 	"kill",		CMDDBGKILL,
 # endif WIZ
