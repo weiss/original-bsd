@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vnode.h	8.8 (Berkeley) 07/28/94
+ *	@(#)vnode.h	8.9 (Berkeley) 08/10/94
  */
 
 #include <sys/queue.h>
@@ -197,13 +197,9 @@ extern	struct vattr va_null;		/* predefined null vattr structure */
 #define	LEASE_WRITE	0x2		/* Check lease for modifiers */
 
 #ifdef NFS
-void	lease_check __P((struct vnode *vp, struct proc *p,
-	    struct ucred *ucred, int flag));
 void	lease_updatetime __P((int deltat));
-#define	LEASE_CHECK(vp, p, cred, flag)	lease_check((vp), (p), (cred), (flag))
 #define	LEASE_UPDATETIME(dt)		lease_updatetime(dt)
 #else
-#define	LEASE_CHECK(vp, p, cred, flag)
 #define	LEASE_UPDATETIME(dt)
 #endif /* NFS */
 #endif /* KERNEL */
