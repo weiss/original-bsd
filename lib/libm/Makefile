@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 06/16/90
+#	@(#)Makefile	5.4 (Berkeley) 06/23/90
 #
 # ieee		- for most IEEE machines, we hope.
 # mc68881	- the, ahem, mc68881.
@@ -99,7 +99,8 @@ MLINKS+=sinh.3 cosh.3
 # are using '#' as a comment indicator and cpp thinks it's an undefined
 # control.
 
-depend: ${SRCS}
+depend: .depend
+.depend: ${SRCS}
 	mkdep ${CFLAGS:M-[ID]*} ${.ALLSRC:M*.c}
 
 .include <bsd.lib.mk>
