@@ -6,10 +6,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pl_7.c	5.7 (Berkeley) 02/28/91";
+static char sccsid[] = "@(#)pl_7.c	5.8 (Berkeley) 08/28/92";
 #endif /* not lint */
 
+#include <sys/ttydefaults.h>
 #include "player.h"
+
 
 /*
  * Display interface
@@ -448,7 +450,7 @@ void
 susp()
 {
 	blockalarm();
-	tstp();
+	tstp(SIGTSTP);
 	(void) signal(SIGTSTP, susp);
 	unblockalarm();
 }
