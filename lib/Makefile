@@ -1,11 +1,9 @@
-#	@(#)Makefile	5.19 (Berkeley) 06/25/90
+#	@(#)Makefile	5.20 (Berkeley) 07/03/90
 
 SUBDIR=	libF77 libI77 libc libcurses libcompat libdbm libm libmp \
 	libpc libplot libresolv librpc libterm libutil liby
 
-.if   make(clean) || make(cleandir)
-SUBDIR+=libU77
-.elif ${MACHINE} == "tahoe"
+.if ${MACHINE} == "tahoe"
 SUBDIR+=csu libU77
 .elif ${MACHINE} == "vax"
 SUBDIR+=csu libU77
