@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)init.c	5.8 (Berkeley) 02/17/87";
+static char sccsid[] = "@(#)init.c	5.9 (Berkeley) 04/13/87";
 #endif not lint
 
 #include <signal.h>
@@ -450,8 +450,8 @@ rmut(p)
 			nutmp = read(f, utmp, statbf.st_size);
 			nutmp /= sizeof(struct utmp);
 			for (u = utmp ; u < &utmp[nutmp] ; u++) {
-				if (SCMPN(u->ut_line, p->line) ||
-				    u->ut_name[0]==0)
+				if (u->ut_name[0] == 0 ||
+				    SCMPN(u->ut_line, p->line))
 					continue;
 				lseek(f, ((long)u)-((long)utmp), L_SET);
 				SCPYN(u->ut_name, "");
