@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	3.42 (Berkeley) 08/12/90";
+static char sccsid[] = "@(#)main.c	3.43 (Berkeley) 08/16/92";
 #endif /* not lint */
 
 #include "defs.h"
@@ -158,7 +158,7 @@ char **argv;
 	mloop();
 
 bad:
-	wwend();
+	wwend(1);
 	return 0;
 }
 

@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmd.c	3.40 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)cmd.c	3.41 (Berkeley) 08/16/92";
 #endif /* not lint */
 
 #include "defs.h"
@@ -40,6 +40,7 @@ docmd()
 			if (c != escapec)
 				break;
 		case 'h': case 'j': case 'k': case 'l':
+		case 'y': case 'p':
 		case ctrl('y'):
 		case ctrl('e'):
 		case ctrl('u'):
@@ -99,6 +100,12 @@ docmd()
 		case 'S':
 			if ((w = getwin()) != 0)
 				sizewin(w, w->ww_alt.nr, w->ww_alt.nc);
+			break;
+		case 'y':
+			c_yank();
+			break;
+		case 'p':
+			c_put();
 			break;
 		case ':':
 			c_colon();
