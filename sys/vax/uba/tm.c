@@ -1,4 +1,4 @@
-/*	tm.c	6.1	83/07/29	*/
+/*	tm.c	6.2	83/09/08	*/
 
 #include "te.h"
 #include "ts.h"
@@ -678,7 +678,13 @@ opdone:
 	 */
 	um->um_tab.b_errcnt = 0;
 	dp->b_actf = bp->av_forw;
-	bp->b_resid = -addr->tmbc;
+	/*
+	 * Check resid; watch out for resid >32767 (tmbc not negative).
+	 */
+	if (addr->tmbc <= 0)
+		bp->b_resid = -addr->tmbc;
+	else
+		bp->b_resid = 0x10000 - ((long)(u_short) addr->tmbc);
 	ubadone(um);
 	iodone(bp);
 	/*
