@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	5.25 (Berkeley) 10/27/91";
+static char sccsid[] = "@(#)cp.c	5.26 (Berkeley) 10/27/91";
 #endif /* not lint */
 
 /*
@@ -235,7 +235,7 @@ copy()
 				return;
 			}
 		}
-		else if (!S_ISDIR(to_stat.st_mode) != S_IFDIR) {
+		else if (!S_ISDIR(to_stat.st_mode)) {
 			(void)fprintf(stderr, "%s: %s: not a directory.\n",
 			    progname, to.p_path);
 			return;
