@@ -1,12 +1,10 @@
-/* Copyright (c) 1982 Regents of the University of California */
-
-static char sccsid[] = "@(#)unifdef.c	4.3	(Berkeley)	07/02/83";
-
-#ifdef COMMENT
-
-    unifdef - remove ifdef'ed lines
-
+#ifndef lint
+static char sccsid[] = "@(#)unifdef.c	4.4 (Berkeley) 08/11/83";
 #endif
+
+/*
+ * unifdef - remove ifdef'ed lines
+ */
 
 #include <stdio.h>
 #include <ctype.h>
