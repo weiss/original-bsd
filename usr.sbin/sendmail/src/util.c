@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	8.30 (Berkeley) 02/05/94";
+static char sccsid[] = "@(#)util.c	8.31 (Berkeley) 02/06/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -618,8 +618,19 @@ dfopen(filename, omode, cmode)
 		fd = open(filename, omode, cmode);
 		if (fd >= 0)
 			break;
-		if (errno != ENFILE && errno != EINTR)
+		switch (errno)
+		{
+		  case ENFILE:		/* system file table full */
+		  case EINTR:		/* interrupted syscall */
+#ifdef ETXTBSY
+		  case ETXTBSY:		/* Apollo: net file locked */
+#endif
 			break;
+
+		  default:
+			continue;
+		}
+		break;
 	}
 	if (fd >= 0 && fstat(fd, &st) >= 0 && S_ISREG(st.st_mode))
 	{
