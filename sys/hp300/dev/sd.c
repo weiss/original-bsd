@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sd.c	7.17 (Berkeley) 12/27/92
+ *	@(#)sd.c	7.18 (Berkeley) 02/18/93
  */
 
 /*
@@ -311,9 +311,13 @@ sdgetinfo(dev)
 	lp->d_secsize = DEV_BSIZE;
 	lp->d_nsectors = 32;
 	lp->d_ntracks = 20;
+	lp->d_ncylinders = 1;
 	lp->d_secpercyl = 32*20;
 	lp->d_npartitions = 3;
 	lp->d_partitions[2].p_offset = 0;
+	/* XXX we can open a device even without SDF_ALIVE */
+	if (sc->sc_blksize == 0)
+		sc->sc_blksize = DEV_BSIZE;
 	/* XXX ensure size is at least one device block */
 	lp->d_partitions[2].p_size =
 		roundup(LABELSECTOR+1, btodb(sc->sc_blksize));
