@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex_subr.c	7.2	07/26/81";
+static char *sccsid = "@(#)ex_subr.c	7.3	06/10/83";
 #include "ex.h"
 #include "ex_re.h"
 #include "ex_tty.h"
@@ -697,7 +697,6 @@ syserror()
 
 	dirtcnt = 0;
 	putchar(' ');
-	edited = 0;	/* for temp file errors, for example */
 	if (e >= 0 && errno <= std_nerrs)
 		error(std_errlist[e]);
 	else
