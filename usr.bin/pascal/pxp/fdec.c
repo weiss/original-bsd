@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 #
-static	char *sccsid = "@(#)fdec.c	1.2 (Berkeley) 08/11/82";
+static	char *sccsid = "@(#)fdec.c	1.3 (Berkeley) 08/12/82";
 /*
  * pxp - Pascal execution profiler
  *
@@ -244,7 +244,9 @@ ppsname(fp)
 segend()
 {
 
-	error("Missing program statement and program body");
+	if ( profile ) {
+	    error("Missing program statement and program body");
+	}
 }
 
 /*
