@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.4	07/06/83
+#	@(#)Makefile	6.1	07/29/83
 #
 ALL=	hkboot hpboot htboot mtboot noboot raboot rlboot \
 	upboot utboot tmboot tsboot tuboot \
