@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)1.7.t	6.2 (Berkeley) 05/12/86
+.\"	@(#)1.7.t	6.3 (Berkeley) 05/12/86
 .\"
 .sh "System operation support
 .PP
@@ -48,7 +48,7 @@ The call
 sync();
 .DE
 schedules input/output to clean all system buffer caches.
-(This call does not require priveleged status.)
+(This call does not require privileged status.)
 .PP
 The call
 .DS
