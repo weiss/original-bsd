@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 1982 Regents of the University of California.
+ * Copyright (c) 1982, 1986 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tcp_output.c	6.18 (Berkeley) 04/13/86
+ *	@(#)tcp_output.c	7.1 (Berkeley) 06/05/86
  */
 
 #include "param.h"
