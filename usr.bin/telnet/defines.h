@@ -14,15 +14,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)defines.h	1.6 (Berkeley) 06/29/88
+ *	@(#)defines.h	1.7 (Berkeley) 11/30/88
  */
 
 #define	settimer(x)	clocks.x = clocks.system++
 
 #if	!defined(TN3270)
 
-#define	ExitString(s,r)	{ fprintf(stderr, s); exit(r); }
-#define	Exit(x)			exit(x)
 #define	SetIn3270()
 
 #endif	/* !defined(TN3270) */
