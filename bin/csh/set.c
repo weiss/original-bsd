@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)set.c	5.11 (Berkeley) 06/08/91";
+static char sccsid[] = "@(#)set.c	5.12 (Berkeley) 06/14/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -586,7 +586,7 @@ void
 setNS(cp)
     Char   *cp;
 {
-    set(cp, STRNULL);
+    set(cp, Strsave(STRNULL));
 }
 
 void
