@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.8 (Berkeley) 05/11/89
+#	@(#)Makefile	5.9 (Berkeley) 07/30/89
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -25,7 +25,7 @@ MAN=	more.0
 all: more
 
 more: ${LIBC}
-	${CC} -o $@ $@.c ${CFLAGS} -ltermcap
+	${CC} -o $@ $@.c ${CFLAGS} -ltermcap -lcompat
 
 clean:
 	rm -f ${OBJS} core more
