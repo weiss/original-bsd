@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)list.c	2.3 (Berkeley) 08/11/83";
+#endif
 
 #include "rcv.h"
 #include <ctype.h>
@@ -8,8 +10,6 @@
  *
  * Message list handling.
  */
-
-static char *SccsId = "@(#)list.c	2.2 01/22/83";
 
 /*
  * Convert the user string of message numbers and
