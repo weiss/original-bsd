@@ -1,4 +1,4 @@
-"@(#)gram 1.5 08/18/83"
+"@(#)gram 1.6 08/18/83"
 /yyval/s/int/union semstack/
 s/ 0//
 /yypv/s/int/union semstack/
