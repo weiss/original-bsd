@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)subr_prf.c	7.27 (Berkeley) 05/28/91
+ *	@(#)subr_prf.c	7.28 (Berkeley) 05/28/91
  */
 
 #include "param.h"
@@ -326,13 +326,13 @@ kprintf(fmt, flags, tp, ap)
 	for (;;) {
 		padc = ' ';
 		width = 0;
-		while ((ch = *fmt++) != '%') {
+		while ((ch = *(u_char *)fmt++) != '%') {
 			if (ch == '\0')
 				return;
 			putchar(ch, flags, tp);
 		}
 		lflag = 0;
-reswitch:	switch (ch = *fmt++) {
+reswitch:	switch (ch = *(u_char *)fmt++) {
 		case '0':
 			padc = '0';
 			goto reswitch;
@@ -464,25 +464,27 @@ putchar(c, flags, tp)
  * Scaled down version of sprintf(3).
  */
 #ifdef __STDC__
-sprintf(char *buf, const char *fmt, ...)
+sprintf(char *buf, const char *cfmt, ...)
 #else
-sprintf(buf, fmt /*, va_alist */)
-	char *buf, *fmt;
+sprintf(buf, cfmt /*, va_alist */)
+	char *buf, *cfmt;
 #endif
 {
+	register const char *fmt = cfmt;
 	register char *p, *bp;
 	register int ch, base;
 	u_long ul;
 	int lflag;
 	va_list ap;
 
-	va_start(ap, fmt);
-	for (bp = buf;;) {
-		while ((ch = *fmt++) != '%')
+	va_start(ap, cfmt);
+	for (bp = buf; ; ) {
+		while ((ch = *(u_char *)fmt++) != '%')
 			if ((*bp++ = ch) == '\0')
-				return((bp - buf) - 1);
+				return ((bp - buf) - 1);
+
 		lflag = 0;
-reswitch:	switch (ch = *fmt++) {
+reswitch:	switch (ch = *(u_char *)fmt++) {
 		case 'l':
 			lflag = 1;
 			goto reswitch;
@@ -491,7 +493,8 @@ reswitch:	switch (ch = *fmt++) {
 			break;
 		case 's':
 			p = va_arg(ap, char *);
-			while (*bp++ = *p++);
+			while (*bp++ = *p++)
+				;
 			--bp;
 			break;
 		case 'd':
@@ -550,5 +553,5 @@ ksprintn(ul, base, lenp)
 	} while (ul /= base);
 	if (lenp)
 		*lenp = p - buf;
-	return(p);
+	return (p);
 }
