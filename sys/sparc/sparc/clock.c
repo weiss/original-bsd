@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This software was developed by the Computer Systems Engineering group
  * at Lawrence Berkeley Laboratory under DARPA contract BG 91-66 and
@@ -13,7 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clock.c	7.4 (Berkeley) 04/20/93
+ *	@(#)clock.c	8.1 (Berkeley) 06/11/93
  *
  * from: $Header: clock.c,v 1.17 92/11/26 03:04:47 torek Exp $ (LBL)
  */
