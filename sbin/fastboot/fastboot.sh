@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1985 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1985, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)fastboot.sh	5.6 (Berkeley) 04/16/91
+#	@(#)fastboot.sh	8.1 (Berkeley) 06/05/93
 #
 
 cp /dev/null /fastboot
