@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)vmstat.c	5.30 (Berkeley) 06/20/91";
+static char sccsid[] = "@(#)vmstat.c	5.31 (Berkeley) 07/02/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -729,7 +729,6 @@ domem()
 			kp->kb_totalfree, kp->kb_calls,
 			kp->kb_highwat, kp->kb_couldfree);
 		totfree += size * kp->kb_totalfree;
-		totuse += size * (kp->kb_total - kp->kb_totalfree);
 	}
 
 	kread(X_KMEMSTAT, kmemstats, sizeof(kmemstats));
