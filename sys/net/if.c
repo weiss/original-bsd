@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.c	7.17 (Berkeley) 02/18/92
+ *	@(#)if.c	7.18 (Berkeley) 03/11/92
  */
 
 #include "param.h"
@@ -567,7 +567,7 @@ ifconf(cmd, data)
 	for (; space > sizeof (ifr) && ifp; ifp = ifp->if_next) {
 		bcopy(ifp->if_name, ifr.ifr_name, sizeof (ifr.ifr_name) - 2);
 		for (cp = ifr.ifr_name; cp < ep && *cp; cp++)
-			;
+			continue;
 		*cp++ = '0' + ifp->if_unit; *cp = '\0';
 		if ((ifa = ifp->if_addrlist) == 0) {
 			bzero((caddr_t)&ifr.ifr_addr, sizeof(ifr.ifr_addr));
