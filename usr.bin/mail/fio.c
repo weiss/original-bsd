@@ -10,7 +10,7 @@
  * File I/O.
  */
 
-static char *SccsId = "@(#)fio.c	2.10 07/28/82";
+static char *SccsId = "@(#)fio.c	2.11 10/21/82";
 
 /*
  * Set up the input pointers while copying the mail file into
@@ -400,7 +400,13 @@ holdsigs()
 	register int i;
 
 	for (i = SIGHUP; i <= SIGQUIT; i++)
-		sighold(i);
+		/*
+		 * This cannot be changed to ``sighold(i)'' because
+		 * of a bug in the jobs library.  Sighold does not
+		 * record that one is using the new signal mechanisms
+		 * so an eventual sigrelse() will fail.
+		 */
+		sigset(i, SIG_HOLD);
 }
 
 /*
