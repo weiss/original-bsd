@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)win.c	3.14 04/24/85";
+static char sccsid[] = "@(#)win.c	3.15 08/04/86";
 #endif
 
 /*
@@ -288,7 +288,7 @@ char *prompt;
 
 	w->ww_unctrl = 0;
 	front(w, 0);
-	wwprintf(w, "\033Y%c%c\033p%s\033q ",
+	wwprintf(w, "\033Y%c%c\033sA%s\033rA ",
 		w->ww_w.nr - 1 + ' ', ' ', prompt);	/* print on last line */
 	wwcurtowin(w);
 	while (wwpeekc() < 0)
