@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.c	1.16.1.1 (Berkeley) 11/24/87
+ *	@(#)machdep.c	1.17 (Berkeley) 05/02/88
  */
 
 #include "param.h"
@@ -23,6 +23,7 @@
 #include "clist.h"
 #include "callout.h"
 #include "cmap.h"
+#include "malloc.h"
 #include "mbuf.h"
 #include "msgbuf.h"
 #include "quota.h"
@@ -55,6 +56,7 @@ int	bufpages = 0;
 #if NCY > 0
 #include "../tahoevba/cyreg.h"
 #endif
+int	msgbufmapped;		/* set when safe to use msgbuf */
 
 /*
  * Machine-dependent startup code
@@ -77,6 +79,7 @@ startup(firstaddr)
 	for (i = 0; i < btoc(sizeof (struct msgbuf)); i++)
 		*(int *)pte++ = PG_V | PG_KW | (maxmem + i);
 	mtpr(TBIA, 1);
+	msgbufmapped = 1;
 #ifdef KDB
 	kdb_init();			/* startup kernel debugger */
 #endif
@@ -119,6 +122,8 @@ startup(firstaddr)
 	valloc(kernelmap, struct map, nproc);
 	valloc(mbmap, struct map, nmbclusters/4);
 	valloc(namecache, struct namecache, nchsize);
+	valloc(kmemmap, struct map, ekmempt - kmempt);
+	valloc(kmemusage, struct kmemusage, ekmempt - kmempt);
 #ifdef QUOTA
 	valloclim(quota, struct quota, nquota, quotaNQUOTA);
 	valloclim(dquot, struct dquot, ndquot, dquotNDQUOT);
@@ -244,6 +249,7 @@ startup(firstaddr)
 	    "usrpt", nproc);
 	rminit(mbmap, (long)(nmbclusters * CLSIZE), (long)CLSIZE,
 	    "mbclusters", nmbclusters/4);
+	kmeminit();		/* now safe to do malloc/free */
 	intenable = 1;		/* Enable interrupts from now on */
 
 	/*
@@ -639,22 +645,6 @@ microtime(tvp)
 		tvp->tv_sec++;
 		tvp->tv_usec -= 1000000;
 	}
-	splx(s);
-}
-
-physstrat(bp, strat, prio)
-	struct buf *bp;
-	int (*strat)(), prio;
-{
-	int s;
-
-	(*strat)(bp);
-	/* pageout daemon doesn't wait for pushed pages */
-	if (bp->b_flags & B_DIRTY)
-		return;
-	s = spl8();
-	while ((bp->b_flags & B_DONE) == 0)
-		sleep((caddr_t)bp, prio);
 	splx(s);
 }
 
