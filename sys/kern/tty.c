@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.28 (Berkeley) 06/05/90
+ *	@(#)tty.c	7.29 (Berkeley) 06/14/90
  */
 
 #include "param.h"
@@ -120,8 +120,9 @@ ttywait(tp)
 	    tp->t_oproc) {
 		(*tp->t_oproc)(tp);
 		tp->t_state |= TS_ASLEEP;
-		if (error = tsleep((caddr_t)&tp->t_outq, TTOPRI | PCATCH,
-		    ttyout, 0))
+		if ((error = tsleep((caddr_t)&tp->t_outq, TTOPRI | PCATCH,
+				    ttyout, 0)) ||
+		    (error = ttclosed(tp)))
 			break;
 	}
 	splx(s);
@@ -264,8 +265,9 @@ ttioctl(tp, com, data, flag)
 		   (u.u_procp->p_sigignore & sigmask(SIGTTOU)) == 0 &&
 		   (u.u_procp->p_sigmask & sigmask(SIGTTOU)) == 0) {
 			pgsignal(u.u_procp->p_pgrp, SIGTTOU, 1);
-			if (error = tsleep((caddr_t)&lbolt, TTOPRI | PCATCH,
-			    ttybg, 0))
+			if ((error = tsleep((caddr_t)&lbolt, TTOPRI | PCATCH,
+					    ttybg, 0)) ||
+			    (error = ttclosed(tp)))
 				return (error);
 		}
 		break;
@@ -615,6 +617,8 @@ ttyopen(dev, tp)
 
 	tp->t_dev = dev;
 
+	if (ttclosed(tp))	/* XXX is this still needed? (drivers do it) */
+		return (ERESTART);
 	tp->t_state &= ~TS_WOPEN;
 	if ((tp->t_state & TS_ISOPEN) == 0) {
 		tp->t_state |= TS_ISOPEN;
@@ -1230,7 +1234,9 @@ loop:
 		    u.u_procp->p_flag&SVFORK || u.u_procp->p_pgrp->pg_jobc == 0)
 			return (EIO);
 		pgsignal(u.u_procp->p_pgrp, SIGTTIN, 1);
-		if (error = tsleep((caddr_t)&lbolt, TTIPRI | PCATCH, ttybg, 0))
+		if ((error = tsleep((caddr_t)&lbolt, TTIPRI | PCATCH, 
+				    ttybg, 0)) ||
+		    (error = ttclosed(tp)))
 			return (error);
 		goto loop;
 	}
@@ -1265,7 +1271,7 @@ loop:
 		error = tsleep((caddr_t)&tp->t_rawq, TTIPRI | PCATCH,
 		    carrier ? ttyin : ttopen, 0);
 		splx(s);
-		if (error)
+		if (error || (error = ttclosed(tp)))
 			return (error);
 		goto loop;
 	}
@@ -1282,8 +1288,9 @@ loop:
 		if (CCEQ(cc[VDSUSP], c) && lflag&ISIG) {
 			pgsignal(tp->t_pgrp, SIGTSTP, 1);
 			if (first) {
-				if (error = tsleep((caddr_t)&lbolt,
-				    TTIPRI | PCATCH, ttybg, 0))
+				if ((error = tsleep((caddr_t)&lbolt,
+					    TTIPRI | PCATCH, ttybg, 0)) ||
+				    (error = ttclosed(tp)))
 					break;
 				goto loop;
 			}
@@ -1389,7 +1396,7 @@ loop:
 			error = tsleep((caddr_t)&tp->t_rawq, TTIPRI | PCATCH,
 			    ttopen, 0);
 			splx(s);
-			if (error)
+			if (error || (error = ttclosed(tp)))
 				goto out;
 			goto loop;
 		}
@@ -1404,7 +1411,9 @@ loop:
 	    (u.u_procp->p_sigmask & sigmask(SIGTTOU)) == 0 &&
 	     u.u_procp->p_pgrp->pg_jobc) {
 		pgsignal(u.u_procp->p_pgrp, SIGTTOU, 1);
-		if (error = tsleep((caddr_t)&lbolt, TTIPRI | PCATCH, ttybg, 0))
+		if ((error = tsleep((caddr_t)&lbolt, TTIPRI | PCATCH, 
+				     ttybg, 0)) ||
+		    (error = ttclosed(tp)))
 			goto out;
 		goto loop;
 	}
@@ -1458,8 +1467,9 @@ loop:
 					if (ttyoutput(*cp, tp) >= 0) {
 					    /* no c-lists, wait a bit */
 					    ttstart(tp);
-					    if (error = tsleep((caddr_t)&lbolt,
-						TTOPRI | PCATCH, ttybuf, 0))
+					    if ((error = tsleep((caddr_t)&lbolt,
+						TTOPRI | PCATCH, ttybuf, 0)) ||
+						(error = ttclosed(tp)))
 						    break;
 					    goto loop;
 					}
@@ -1487,8 +1497,9 @@ loop:
 			if (i > 0) {
 				/* out of c-lists, wait a bit */
 				ttstart(tp);
-				if (error = tsleep((caddr_t)&lbolt,
-				    TTOPRI | PCATCH, ttybuf, 0))
+				if ((error = tsleep((caddr_t)&lbolt,
+					    TTOPRI | PCATCH, ttybuf, 0)) ||
+				    (error = ttclosed(tp)))
 					break;
 				goto loop;
 			}
@@ -1528,7 +1539,7 @@ ovhiwat:
 	tp->t_state |= TS_ASLEEP;
 	error = tsleep((caddr_t)&tp->t_outq, TTOPRI | PCATCH, ttyout, 0);
 	splx(s);
-	if (error)
+	if (error || (error = ttclosed(tp)))
 		goto out;
 	goto loop;
 }
