@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.8 (Berkeley) 05/31/90
+#	@(#)Makefile	4.9 (Berkeley) 06/08/90
 
 SUBDIR=	compact uncompact
 
@@ -7,5 +7,4 @@ beforeinstall:
 	    ${DESTDIR}${BINDIR}/ccat
 
 .include "../Makefile.inc"
-.include <bsd.own.mk>
 .include <bsd.subdir.mk>
