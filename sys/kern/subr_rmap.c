@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1982, 1986 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)subr_rmap.c	7.11 (Berkeley) 10/11/92
+ *	@(#)subr_rmap.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
