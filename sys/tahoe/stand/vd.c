@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vd.c	7.16 (Berkeley) 06/30/90
+ *	@(#)vd.c	7.17 (Berkeley) 12/16/90
  */
 
 /*
@@ -19,10 +19,10 @@
 #include "sys/time.h"
 #include "sys/buf.h"
 #include "sys/disklabel.h"
-#include "saio.h"
+#include "stand/saio.h"
 
-#include "tahoevba/vdreg.h"
-#include "tahoevba/vbaparam.h"
+#include "../vba/vdreg.h"
+#include "../vba/vbaparam.h"
 
 #define	COMPAT_42	1
 

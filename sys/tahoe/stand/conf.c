@@ -4,12 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.c	1.10 (Berkeley) 06/30/90
+ *	@(#)conf.c	1.11 (Berkeley) 12/16/90
  */
 
 #include "sys/param.h"
 #include "sys/time.h"
-#include "saio.h"
+#include "stand/saio.h"
 
 extern int	nullsys(), nodev(), noioctl();
 
