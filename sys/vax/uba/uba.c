@@ -1,4 +1,4 @@
-/*	uba.c	4.1	11/09/80	*/
+/*	uba.c	4.2	11/09/80	*/
 
 #include "../h/param.h"
 #include "../h/map.h"
@@ -137,7 +137,7 @@ ubareset()
 {
 	struct uba_regs *up = (struct uba_regs *)UBA0;
 	register struct cdevsw *cdp;
-	int i, s;
+	int s;
 
 	s = spl6();
 	printf("UBA RESET:");
