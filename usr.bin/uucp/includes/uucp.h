@@ -1,4 +1,11 @@
-/*	@(#)uucp.h	5.18	03/05/91	*/
+/*-
+ * Copyright (c) 1985 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)uucp.h	5.19 (Berkeley) 04/24/91
+ */
 
 #include <stdio.h>
 
