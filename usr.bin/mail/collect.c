@@ -7,7 +7,7 @@
  * ~ escapes.
  */
 
-static char *SccsId = "@(#)collect.c	2.4 09/19/81";
+static char *SccsId = "@(#)collect.c	2.5 10/21/81";
 
 #include "rcv.h"
 #include <sys/stat.h>
@@ -797,7 +797,6 @@ done:
 intack(s)
 {
 	
-	sigrelse(SIGCONT);
 	puts("@");
 	fflush(stdout);
 	clearerr(stdin);
