@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.61 (Berkeley) 01/05/94";
+static char sccsid[] = "@(#)conf.c	8.62 (Berkeley) 01/09/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1356,14 +1356,29 @@ vsprintf(s, fmt, ap)
 **		FALSE -- if the shell is restricted.
 */
 
-#ifndef _PATH_SHELLS
-# define _PATH_SHELLS	"/etc/shells"
+#if !HASGETUSERSHELL
+
+# ifndef _PATH_SHELLS
+#  define _PATH_SHELLS	"/etc/shells"
+# endif
+
+char	*DefaultUserShells[] =
+{
+	"/bin/sh",
+	"/usr/bin/sh",
+	"/bin/csh",
+	"/usr/bin/csh",
+#ifdef __hpux
+	"/bin/rsh",
+	"/bin/ksh",
+	"/bin/rksh",
+	"/bin/pam",
+	"/usr/bin/keysh",
+	"/bin/posix/sh",
 #endif
-#ifndef _PATH_BSHELL
-# define _PATH_BSHELL	"/bin/sh"
-#endif
-#ifndef _PATH_CSHELL
-# define _PATH_CSHELL	"/bin/csh"
+	NULL
+};
+
 #endif
 
 bool
@@ -1388,8 +1403,14 @@ usershellok(shell)
 	if (shellf == NULL)
 	{
 		/* no /etc/shells; see if it is one of the std shells */
-		return (strcmp(shell, _PATH_CSHELL) == 0 ||
-			strcmp(shell, _PATH_BSHELL) == 0);
+		char **d;
+
+		for (d = DefaultUserShells; *d != NULL; d++)
+		{
+			if (strcmp(shell, *d) == 0)
+				return TRUE;
+		}
+		return FALSE;
 	}
 
 	while (fgets(buf, sizeof buf, shellf) != NULL)
