@@ -1,7 +1,7 @@
 # include <pwd.h>
 # include "sendmail.h"
 
-SCCSID(@(#)savemail.c	3.38		07/05/82);
+SCCSID(@(#)savemail.c	3.39		07/05/82);
 
 /*
 **  SAVEMAIL -- Save mail on error
@@ -48,6 +48,7 @@ savemail()
 		return;
 	}
 	ForceMail = TRUE;
+	FatalErrors = FALSE;
 
 	/*
 	**  In the unhappy event we don't know who to return the mail
