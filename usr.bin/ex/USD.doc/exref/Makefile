@@ -1,7 +1,7 @@
-#	@(#)Makefile	8.3 (Berkeley) 05/17/94
+#	@(#)Makefile	8.4 (Berkeley) 05/23/94
 
 DIR=	usd/12.exref
-SRCS=	ex.rm ex.summary
+SRCS=	ex.rm
 MACROS=	-ms
 CLEANFILES=summary.*
 
