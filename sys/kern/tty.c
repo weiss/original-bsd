@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tty.c	7.49 (Berkeley) 02/15/92
+ *	@(#)tty.c	7.50 (Berkeley) 02/25/92
  */
 
 #include "param.h"
@@ -1728,7 +1728,7 @@ ttyinfo(tp)
 		return;
 
 	/* Print load average. */
-	tmp = (averunnable[0] * 100 + FSCALE / 2) >> FSHIFT;
+	tmp = (averunnable.ldavg[0] * 100 + FSCALE / 2) >> FSHIFT;
 	ttyprintf(tp, "load: %d.%02d ", tmp / 100, tmp % 100);
 
 	if (tp->t_session == NULL)
