@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	7.27 (Berkeley) 12/19/91
+ *	@(#)uipc_usrreq.c	7.28 (Berkeley) 01/14/92
  */
 
 #include "param.h"
@@ -376,6 +376,7 @@ unp_bind(unp, nam, p)
 	VATTR_NULL(&vattr);
 	vattr.va_type = VSOCK;
 	vattr.va_mode = 0777;
+	LEASE_CHECK(ndp->ni_dvp, p, p->p_ucred, LEASE_WRITE);
 	if (error = VOP_CREATE(ndp, &vattr, p))
 		return (error);
 	vp = ndp->ni_vp;
