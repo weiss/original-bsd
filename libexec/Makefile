@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 09/02/92
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 SUBDIR=	bugfiler comsat fingerd ftpd getNAME getty kpasswdd lfs_cleanerd \
 	mail.local makekey rexecd rlogind rshd talkd telnetd tftpd uucpd
