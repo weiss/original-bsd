@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwiomux.c	3.11 05/23/84";
+static char sccsid[] = "@(#)wwiomux.c	3.12 02/27/85";
 #endif
 
 #include "ww.h"
@@ -81,9 +81,10 @@ loop:
 				wwnwreade++;
 				(void) close(w->ww_pty);
 				w->ww_pty = -1;
-				continue;
 			} else if (n == 0) {
 				wwnwreadz++;
+				(void) close(w->ww_pty);
+				w->ww_pty = -1;
 			} else if (!w->ww_ispty) {
 				wwnwreadd++;
 				wwnwreadc += n;
