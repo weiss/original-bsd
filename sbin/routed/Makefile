@@ -1,10 +1,11 @@
-#	@(#)Makefile	5.13 (Berkeley) 05/20/90
+#	@(#)Makefile	5.14 (Berkeley) 06/29/90
 
 PROG=	routed
 SRCS=	af.c if.c input.c main.c output.c startup.c tables.c timer.c \
 	trace.c inet.c
 MAN8=	routed.0
 SUBDIR=	query trace
+LDADD=	-lutil
 
 .include <bsd.prog.mk>
 
