@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.2 (Berkeley) 02/01/93
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 # machine-dependent stdlib sources
 SRCS+=	abs.s
