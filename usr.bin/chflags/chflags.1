@@ -6,7 +6,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)chflags.1	5.6 (Berkeley) 05/30/93
+.\"	@(#)chflags.1	5.7 (Berkeley) 06/29/93
 .\"
 .Dd 
 .Dt CHFLAGS 1
@@ -61,11 +61,11 @@ For example:
 nodump	the file should never be dumped
 .Ed
 .Pp
-The flags of a symbolic link are immutable, so that unless the
+The flags of a symbolic link are immutable, so unless the
 .Fl h
 or
 .Fl H
-flags are set,
+flag is set,
 .Nm chflags
 on a symbolic link always succeeds and has no effect.
 .Pp
