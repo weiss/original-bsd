@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inet.c	8.2 (Berkeley) 08/14/93";
+static char sccsid[] = "@(#)inet.c	8.3 (Berkeley) 12/30/94";
 #endif /* not lint */
 
 /*
@@ -117,9 +117,9 @@ inet_maskof(inaddr)
 	} else if (IN_CLASSA(i)) {
 		mask = IN_CLASSA_NET;
 	} else if (IN_CLASSB(i)) {
-		mask = i & IN_CLASSB_NET;
+		mask = IN_CLASSB_NET;
 	} else
-		mask = i & IN_CLASSC_NET;
+		mask = IN_CLASSC_NET;
 
 	/*
 	 * Check whether network is a subnet;
