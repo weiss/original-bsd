@@ -4,12 +4,12 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)spec_vnops.c	7.31 (Berkeley) 03/17/91
+ *	@(#)spec_vnops.c	7.32 (Berkeley) 03/24/91
  */
 
 #include "param.h"
+#include "proc.h"
 #include "systm.h"
-#include "user.h"
 #include "kernel.h"
 #include "conf.h"
 #include "buf.h"
