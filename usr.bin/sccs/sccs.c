@@ -3,7 +3,7 @@
 # include <sys/stat.h>
 # include <sysexits.h>
 
-static char SccsId[] = "@(#)sccs.c 1.4 delta 05/13/80 11:18:42 get 10/14/12 16:33:33";
+static char SccsId[] = "@(#)sccs.c 1.5 delta 05/13/80 11:32:24 get 10/14/12 16:33:33";
 
 # define bitset(bit, word)	((bit) & (word))
 
@@ -77,6 +77,8 @@ main(argc, argv)
 			break;
 		}
 	}
+	if (SccsPath[0] == '\0')
+		SccsPath = ".";
 
 	/*
 	**  See if this user is an administrator.
@@ -101,6 +103,11 @@ main(argc, argv)
 			}
 		}
 		fclose(fp);
+	}
+	else
+	{
+		/* no ADMINFILE -- take some defaults */
+		IsAdmin++;
 	}
 
 	/*
