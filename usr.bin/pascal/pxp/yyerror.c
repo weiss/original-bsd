@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)yyerror.c	1.1 (Berkeley) 03/02/81";
+static	char *sccsid = "@(#)yyerror.c	1.2 (Berkeley) 05/11/83";
 /* Copyright (c) 1979 Regents of the University of California */
 /*
  * pi - Pascal interpreter code translator
@@ -13,6 +13,7 @@ static	char *sccsid = "@(#)yyerror.c	1.1 (Berkeley) 03/02/81";
  * Version 1.2 January 1979
  */
 
+#include "whoami.h"
 #include "0.h"
 #include "yy.h"
 
