@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.25 (Berkeley) 04/07/91";
+static char sccsid[] = "@(#)savecore.c	5.26 (Berkeley) 04/08/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -139,8 +139,7 @@ main(argc, argv)
 
 	read_kmem();
 	if (!dump_exists()) {
-		if (!verbose)
-			(void)fprintf(stderr, "savecore: no dump exists\n");
+		(void)fprintf(stderr, "savecore: no core dump\n");
 		if (!force)
 			exit(0);
 	}
