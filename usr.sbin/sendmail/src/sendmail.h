@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.69 (Berkeley) 11/13/94
+ *	@(#)sendmail.h	8.70 (Berkeley) 11/13/94
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.69		11/13/94";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.70		11/13/94";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -592,6 +592,7 @@ MAPCLASS
 #define MCF_ALIASOK	0x0001		/* can be used for aliases */
 #define MCF_ALIASONLY	0x0002		/* usable only for aliases */
 #define MCF_REBUILDABLE	0x0004		/* can rebuild alias files */
+#define MCF_OPTFILE	0x0008		/* file name is optional */
 /*
 **  Symbol table definitions
 */
