@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 11/15/85
+#	@(#)Makefile	5.3 (Berkeley) 03/29/86
 #
 # $Header: Makefile,v 1.3 85/03/26 15:03:26 lwall Exp $
 
@@ -7,7 +7,7 @@ BINDIR = $(DESTDIR)/usr/new
 patch: patch.c
 	cc patch.c -O -o patch
 
-install:
+install: patch
 	install -s patch $(BINDIR)
 	install -c -m 444 patch.n ${DESTDIR}/usr/man/mann/patch.n
 
