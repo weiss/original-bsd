@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_subr.c	7.25 (Berkeley) 01/19/90
+ *	@(#)vfs_subr.c	7.26 (Berkeley) 02/09/90
  */
 
 /*
@@ -627,7 +627,8 @@ void vgoneall(vp)
 
 	while (vp->v_flag & VALIASED) {
 		for (vq = *vp->v_hashchain; vq; vq = vq->v_specnext) {
-			if (vq->v_rdev != vp->v_rdev || vp == vq)
+			if (vq->v_rdev != vp->v_rdev ||
+			    vq->v_type != vp->v_type || vp == vq)
 				continue;
 			vgone(vq);
 			break;
