@@ -1,4 +1,4 @@
-.\"	@(#)p.mac	5.1 (Berkeley) 04/24/86
+.\"	@(#)p.mac	6.1 (Berkeley) 04/24/86
 .\"
 .de P1
 .DS
