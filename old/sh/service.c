@@ -1,6 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)service.c	4.8 04/14/90";
+static char sccsid[] = "@(#)service.c	4.9 05/21/93";
 #endif
+
+#include <unistd.h>
 
 #
 /*
