@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.60		10/09/82);
+SCCSID(@(#)parseaddr.c	3.61		10/13/82);
 
 /*
 **  PARSE -- Parse an address
@@ -279,6 +279,10 @@ prescan(addr, delim)
 			{
 				bslashmode = TRUE;
 				c = NOCHAR;
+			}
+			else if (state == QST)
+			{
+				/* do nothing, just avoid next clauses */
 			}
 			else if (c == '(')
 			{
