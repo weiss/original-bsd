@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwgets.c	3.15 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)wwgets.c	3.16 (Berkeley) 08/12/90";
 #endif /* not lint */
 
 #include "ww.h"
@@ -29,7 +29,7 @@ register struct ww *w;
 		wwcurtowin(w);
 		while ((c = wwgetc()) < 0)
 			wwiomux();
-#ifndef POSIX_TTY
+#ifdef OLD_TTY
 		if (c == wwoldtty.ww_sgttyb.sg_erase)
 #else
 		if (c == wwoldtty.ww_termios.c_cc[VERASE])
@@ -38,7 +38,7 @@ register struct ww *w;
 			if (p > buf)
 				rub(*--p, w);
 		} else
-#ifndef POSIX_TTY
+#ifdef OLD_TTY
 		if (c == wwoldtty.ww_sgttyb.sg_kill)
 #else
 		if (c == wwoldtty.ww_termios.c_cc[VKILL])
@@ -47,7 +47,7 @@ register struct ww *w;
 			while (p > buf)
 				rub(*--p, w);
 		} else
-#ifndef POSIX_TTY
+#ifdef OLD_TTY
 		if (c == wwoldtty.ww_ltchars.t_werasc)
 #else
 		if (c == wwoldtty.ww_termios.c_cc[VWERASE])

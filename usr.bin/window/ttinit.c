@@ -9,14 +9,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ttinit.c	3.26 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)ttinit.c	3.27 (Berkeley) 08/12/90";
 #endif /* not lint */
 
 #include "ww.h"
 #include "tt.h"
-#ifdef POSIX_TTY
-#include <sys/ioctl.h>
-#endif
 
 int tt_h19();
 int tt_h29();
@@ -47,7 +44,6 @@ ttinit()
 	register struct tt_tab *tp;
 	register char *p, *q;
 	register char *t;
-	struct winsize winsize;
 	int ttflush();
 
 	tt_strp = tt_strings;
@@ -90,12 +86,8 @@ ttinit()
 		wwerrno = WWE_CANTDO;
 		return -1;
 	}
-	if (ioctl(0, TIOCGWINSZ, (char *)&winsize) >= 0) {
-		if (winsize.ws_row != 0)
-			tt.tt_nrow = winsize.ws_row;
-		if (winsize.ws_col != 0)
-			tt.tt_ncol = winsize.ws_col;
-	}
+	if (wwgetttysize(0, &tt.tt_nrow, &tt.tt_ncol) < 0)
+		return -1;
 	tt.tt_scroll_top = 0;
 	tt.tt_scroll_bot = tt.tt_nrow - 1;
 	tt.tt_flush = ttflush;

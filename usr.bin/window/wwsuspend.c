@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwsuspend.c	3.13 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)wwsuspend.c	3.14 (Berkeley) 08/12/90";
 #endif /* not lint */
 
 #include "ww.h"
@@ -25,7 +25,7 @@ wwsuspend()
 	(void) signal(SIGTSTP, SIG_DFL);
 	(void) kill(0, SIGTSTP);
 	(void) signal(SIGTSTP, SIG_IGN);
-	(void) wwsettty(0, &wwnewtty, &wwoldtty);
+	(void) wwsettty(0, &wwnewtty);
 	xxstart();
 	wwredraw();		/* XXX, clears the screen twice */
 	(void) signal(SIGTSTP, oldsig);

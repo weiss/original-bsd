@@ -9,26 +9,5 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwdata.c	3.18 (Berkeley) 06/06/90";
+static char sccsid[] = "@(#)wwdata.c	3.19 (Berkeley) 08/12/90";
 #endif /* not lint */
-
-#include "ww.h"
-
-int wwbaudmap[] = {
-	0,
-	50,
-	75,
-	110,
-	134,
-	150,
-	200,
-	300,
-	600,
-	1200,
-	1800,
-	2400,
-	4800,
-	9600,
-	19200,
-	38400
-};
