@@ -1,14 +1,9 @@
-# @(#)Makefile	4.2 10/21/82
+# @(#)Makefile	4.3 12/25/82
 ALL=	implog implogd
 DESTDIR=
 CFLAGS=-O
 
 all:	${ALL}
-
-.c.o:
-	${CC} -S ${CFLAGS} $*.c
-	sed -f ../asm.sed $*.s | as -o $*.o
-	rm -f $*.s
 
 implog:	implog.o
 	${CC} implog.o -o implog -ljobs
