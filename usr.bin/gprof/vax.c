@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-    static	char *sccsid = "@(#)vax.c	1.4 (Berkeley) 03/30/83";
+static char sccsid[] = "@(#)vax.c	5.1 (Berkeley) 06/04/85";
 #endif not lint
 
 #include	"gprof.h"
