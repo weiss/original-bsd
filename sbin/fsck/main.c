@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.27 (Berkeley) 08/07/90";
+static char sccsid[] = "@(#)main.c	5.28 (Berkeley) 10/09/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -236,6 +236,7 @@ checkfilesys(filesys, mntpt, auxdata, child)
 	}
 	zlnhead = (struct zlncnt *)0;
 	duplist = (struct dups *)0;
+	muldup = (struct dups *)0;
 	inocleanup();
 	if (fsmodified) {
 		(void)time(&sblock.fs_time);
