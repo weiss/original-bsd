@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)traverse.c	5.23 (Berkeley) 01/25/93";
+static char sccsid[] = "@(#)traverse.c	5.24 (Berkeley) 03/11/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -110,7 +110,7 @@ mapfiles(maxino, tapesize)
 #ifdef FS_44INODEFMT
 		    (dp->di_mtime.ts_sec >= spcl.c_ddate ||
 		     dp->di_ctime.ts_sec >= spcl.c_ddate)
-		    && (dp->di_flags & NODUMP) != NODUMP
+		    && (dp->di_flags & UF_NODUMP) != UF_NODUMP
 #else
 		    dp->di_mtime >= spcl.c_ddate ||
 		     dp->di_ctime >= spcl.c_ddate
