@@ -1,5 +1,5 @@
 #ifndef lint
-static char version[] = "@(#)pass3.c	3.3 (Berkeley) 02/11/85";
+static char version[] = "@(#)pass3.c	3.4 (Berkeley) 02/15/85";
 #endif
 
 #include <sys/param.h>
@@ -33,7 +33,6 @@ pass3()
 					break;
 				dp = ginode(orphan);
 				idesc.id_parent = 0;
-				idesc.id_filesize = dp->di_size;
 				idesc.id_number = orphan;
 				(void)ckinode(dp, &idesc);
 				if (idesc.id_parent == 0)
