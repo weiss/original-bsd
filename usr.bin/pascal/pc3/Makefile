@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/29/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	pc3
 CFLAGS=	-I${.CURDIR}/../src
