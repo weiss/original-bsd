@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)READ4.c 1.6 04/09/82";
+static char sccsid[] = "@(#)READ4.c 1.7 10/01/83";
 
 #include "h00vars.h"
 #include <errno.h>
@@ -35,7 +35,7 @@ READ4(curfile)
 		return;
 	}
 	if (errno != 0) {
-		PERROR(curfile->pfname);
+		PERROR("Error encountered on integer read ", curfile->pfname);
 		return;
 	}
 	curfile->funit &= ~EOLN;
