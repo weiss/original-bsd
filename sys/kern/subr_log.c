@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_log.c	7.7 (Berkeley) 06/24/90
+ *	@(#)subr_log.c	7.8 (Berkeley) 06/24/90
  */
 
 /*
@@ -13,6 +13,7 @@
 #include "param.h"
 #include "user.h"
 #include "proc.h"
+#include "vnode.h"
 #include "ioctl.h"
 #include "msgbuf.h"
 #include "file.h"
