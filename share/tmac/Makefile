@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.15 (Berkeley) 07/14/92
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 FILES=	tmac.r tmac.andoc tmac.s tmac.e
 MSRCS=  doc doc-ditroff doc-common doc-nroff doc-syms
