@@ -3,16 +3,11 @@
  * All rights reserved.
  *
  * %sccs.include.redist.c%
- *
- * All recipients should regard themselves as participants in an ongoing
- * research project and hence should feel obligated to report their
- * experiences (good or bad) with these elementary function codes, using
- * the sendbug(8) program, to the authors.
  */
 	.data
 	.align	2
 _sccsid:
-	.asciz	"@(#)support.s	5.5	(ucb.elefunt)	06/01/90"
+	.asciz	"@(#)support.s	5.6	(ucb.elefunt)	10/09/90"
 /*
  * copysign(x,y),
  * logb(x),
