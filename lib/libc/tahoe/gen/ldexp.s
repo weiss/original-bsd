@@ -2,14 +2,14 @@
  * Copyright (c) 1988 Regents of the University of California.
  * All rights reserved.
  *
- * %sccs.include.redist.c%
- *
  * This code is derived from software contributed to Berkeley by
  * Computer Consoles Inc.
+ *
+ * %sccs.include.redist.c%
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)ldexp.s	5.3 (Berkeley) 01/14/91"
+	.asciz "@(#)ldexp.s	5.4 (Berkeley) 01/30/91"
 #endif /* LIBC_SCCS and not lint */
 
 /*
