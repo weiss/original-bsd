@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1987, 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1987, 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_malloc.c	7.38 (Berkeley) 01/21/93
+ *	@(#)kern_malloc.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
