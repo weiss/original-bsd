@@ -28,15 +28,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.21 (Berkeley) 03/01/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.21 (Berkeley) 03/01/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.21 (Berkeley) 03/01/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.21 (Berkeley) 03/01/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.22 (Berkeley) 03/07/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -906,7 +906,6 @@ forward(user, sendq, e)
 	{
 		int err;
 		char buf[MAXPATHLEN+1];
-		extern bool transienterror();
 
 		ep = strchr(pp, ':');
 		if (ep != NULL)
