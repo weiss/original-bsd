@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kernfs_vnops.c	7.8 (Berkeley) 04/29/93
+ *	@(#)kernfs_vnops.c	7.9 (Berkeley) 05/30/93
  */
 
 /*
@@ -557,7 +557,9 @@ kernfs_reclaim(ap)
 	} */ *ap;
 {
 	struct vnode *vp = ap->a_vp;
+#ifdef KERNFS_DIAGNOSTIC
 	printf("kernfs_reclaim(%x)\n", vp);
+#endif
 	if (vp->v_data) {
 		FREE(vp->v_data, M_TEMP);
 		vp->v_data = 0;
