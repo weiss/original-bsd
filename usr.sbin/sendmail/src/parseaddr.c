@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] = "@(#)parseaddr.c	3.23	09/06/81";
+static char	SccsId[] = "@(#)parseaddr.c	3.24	09/12/81";
 
 /*
 **  PARSE -- Parse an address
@@ -39,7 +39,6 @@ static char	SccsId[] = "@(#)parseaddr.c	3.23	09/06/81";
 */
 
 # define DELIMCHARS	"$()<>,;\\\"\r\n"	/* word delimiters */
-# define SPACESUB	('.'|0200)		/* substitution for <lwsp> */
 
 ADDRESS *
 parse(addr, a, copyf)
