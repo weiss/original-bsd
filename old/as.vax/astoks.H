@@ -1,5 +1,11 @@
-/* Copyright (c) 1980 Regents of the University of California */
-/* "@(#)astoks.H 4.4 06/30/83" */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)astoks.H	5.1 (Berkeley) 04/30/85
+ */
+
 /*
  *	Message to the wary:  The order of tokens has been
  *	hand optimized and assigned to that all switch statements
