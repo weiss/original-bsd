@@ -1,7 +1,7 @@
-#	@(#)Makefile	6.2 (Berkeley) 06/30/90
+#	@(#)Makefile	5.1 (Berkeley) 06/30/90
 
-DIR=	usd/21.msdiffs
-SRCS=	ms.diffs
+DIR=	usd/18.sed
+SRCS=	sed
 MACROS=	-msU
 
 paper.${PRINTER}: ${SRCS}
