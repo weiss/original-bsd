@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)endian.h	7.3 (Berkeley) 06/29/88
+ *	@(#)endian.h	7.4 (Berkeley) 03/23/90
  */
 
 /*
@@ -35,7 +35,19 @@
 #define	ntohs(x)	(x)
 #define	htonl(x)	(x)
 #define	htons(x)	(x)
+
+#define	NTOHL(x)	(x)
+#define	NTOHS(x)	(x)
+#define	HTONL(x)	(x)
+#define	HTONS(x)	(x)
+
 #else
+
 unsigned short	ntohs(), htons();
 unsigned long	ntohl(), htonl();
+
+#define	NTOHL(x)	(x) = ntohl(x)
+#define	NTOHS(x)	(x) = ntohs(x)
+#define	HTONL(x)	(x) = htonl(x)
+#define	HTONS(x)	(x) = htons(x)
 #endif
