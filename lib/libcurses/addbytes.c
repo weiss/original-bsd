@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)addbytes.c	5.19 (Berkeley) 02/12/93";
+static char sccsid[] = "@(#)addbytes.c	5.20 (Berkeley) 02/13/93";
 #endif	/* not lint */
 
 #include <curses.h>
@@ -14,15 +14,6 @@ static char sccsid[] = "@(#)addbytes.c	5.19 (Berkeley) 02/12/93";
 
 #define	SYNCH_IN	{y = win->cury; x = win->curx;}
 #define	SYNCH_OUT	{win->cury = y; win->curx = x;}
-
-int
-waddbytes(win, bytes, count)
-	WINDOW *win;
-	const char *bytes;
-	int count;
-{
-	__waddbytes(win, bytes, count, 0);
-}
 
 /*
  * waddbytes --
