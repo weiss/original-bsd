@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 DIR=	usd/22.trofftut
 SRCS=	tt.mac tt00 tt01 tt02 tt03 tt04 tt05 tt06 tt07 tt08 tt09 tt10 \
