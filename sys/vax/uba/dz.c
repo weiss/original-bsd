@@ -1,4 +1,4 @@
-/*	dz.c	4.2	11/09/80	*/
+/*	dz.c	4.3	11/10/80	*/
 
 #include "../conf/dz.h"
 #if NDZ11 > 0
@@ -60,7 +60,6 @@ int	ttrstrt();
 struct	tty dz_tty[NDZ];
 int	dz_cnt = { NDZ };
 int	dzact;
-int	dzinit;
 
 struct device {
 	short	dzcsr;
