@@ -7,6 +7,6 @@ divert(-1)
 # %sccs.include.redist.sh%
 #
 divert(0)
-VERSIONID(`@(#)S2K.Berkeley.EDU.m4	2.1 (Berkeley) 11/14/92')
+VERSIONID(`@(#)S2K.Berkeley.EDU.m4	2.2 (Berkeley) 12/20/92')
 DOMAIN(cs.exposed)dnl
-define(`MASQUERADE_NAME', `postgres.Berkeley.EDU')dnl
+MASQUERADE_AS(postgres.Berkeley.EDU)dnl
