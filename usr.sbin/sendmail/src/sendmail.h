@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.93 (Berkeley) 03/05/95
+ *	@(#)sendmail.h	8.94 (Berkeley) 03/05/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.93		03/05/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.94		03/05/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -934,6 +934,7 @@ EXTERN long	MaxMessageSize;	/* advertised max size we will accept */
 EXTERN time_t	MaxHostStatAge;	/* max age of cached host status info */
 EXTERN time_t	MinQueueAge;	/* min delivery interval */
 EXTERN time_t	DialDelay;	/* delay between dial-on-demand tries */
+EXTERN char	*SafeFileEnv;	/* chroot location for file delivery */
 EXTERN char	*ServiceSwitchFile;	/* backup service switch */
 EXTERN char	*DefaultCharSet;	/* default character set for MIME */
 EXTERN int	DeliveryNiceness;	/* how nice to be during delivery */
