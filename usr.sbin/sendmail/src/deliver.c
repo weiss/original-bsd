@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)deliver.c	5.12 (Berkeley) 10/14/86";
+static char	SccsId[] = "@(#)deliver.c	5.13 (Berkeley) 10/23/86";
 #endif not lint
 
 # include <signal.h>
@@ -228,8 +228,8 @@ deliver(e, firstto)
 
 		if (m->m_maxsize != 0 && e->e_msgsize > m->m_maxsize)
 		{
-			usrerr("Message is too large; %ld bytes max", m->m_maxsize);
 			NoReturn = TRUE;
+			usrerr("Message is too large; %ld bytes max", m->m_maxsize);
 			giveresponse(EX_UNAVAILABLE, m, e);
 			continue;
 		}
