@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1983 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)move.c	4.1 (Berkeley) 06/27/83";
-#endif
+static char sccsid[] = "@(#)move.c	4.2 (Berkeley) 04/22/91";
+#endif /* not lint */
 
 move(xi,yi){
 		movep(xconv(xsc(xi)),yconv(ysc(yi)));
