@@ -1,4 +1,4 @@
-/*	10/14/12	3.18	07/12/80	*/
+/*	up.c	3.19	07/19/80	*/
 
 /*
  * Emulex UNIBUS disk driver with overlapped seeks and ECC recovery.
@@ -544,9 +544,7 @@ upintr()
 	int oupsoftas;
 	int needie = 1;
 
-#ifdef OLDUCODE
 	(void) spl6();
-#endif
 	up_wticks = 0;
 	if (uptab.b_active) {
 		/*
