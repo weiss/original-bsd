@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)cc.c 4.8 03/24/84";
+static	char sccsid[] = "@(#)cc.c 4.9 08/30/84";
 /*
  * cc - front end for C compiler
  */
@@ -107,6 +107,9 @@ main(argc, argv)
 		case 'U':
 		case 'C':
 			plist[np++] = argv[i];
+			continue;
+		case 'L':
+			llist[nl++] = argv[i];
 			continue;
 		case 't':
 			if (chpass)
