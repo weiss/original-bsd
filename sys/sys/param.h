@@ -1,4 +1,4 @@
-/*	param.h	3.3	10/14/12	*/
+/*	param.h	3.4	10/14/12	*/
 
 /*
  * tunable variables
@@ -214,12 +214,3 @@ typedef	int		off_t;
 #define	USERMODE(ps)	(((ps) & UMODE) == UMODE)
 
 #define	BASEPRI(ps)	(((ps) & PSL_IPL) != 0)
-
-#ifdef KERNEL
-#ifdef lint
-int	__void__;
-#define	VOID	__void__ = (int)
-#else
-#define	VOID
-#endif
-#endif
