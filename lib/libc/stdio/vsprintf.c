@@ -1,29 +1,32 @@
-/*
- * Copyright (c) 1988 Regents of the University of California.
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
  * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Chris Torek.
  *
  * %sccs.include.redist.c%
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)vsprintf.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)vsprintf.c	5.4 (Berkeley) 01/20/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
-#include <varargs.h>
+#include <limits.h>
 
-int
 vsprintf(str, fmt, ap)
-	char *str, *fmt;
-	va_list ap;
+	char *str;
+	char *fmt;
+	_VA_LIST_ ap;
 {
+	int ret;
 	FILE f;
-	int len;
 
-	f._flag = _IOWRT+_IOSTRG;
-	f._ptr = str;
-	f._cnt = 32767;
-	len = _doprnt(fmt, ap, &f);
-	*f._ptr = 0;
-	return (len);
+	f._flags = __SWR | __SSTR;
+	f._bf._base = f._p = (unsigned char *)str;
+	f._bf._size = f._w = INT_MAX;
+	ret = vfprintf(&f, fmt, ap);
+	*f._p = 0;
+	return (ret);
 }
