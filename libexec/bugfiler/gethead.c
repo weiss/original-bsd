@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)gethead.c	5.9 (Berkeley) 02/25/91";
+static char sccsid[] = "@(#)gethead.c	5.10 (Berkeley) 03/07/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -53,11 +53,12 @@ gethead(redist)
 		int	fd;
 		char	*distf;
 
-		distf = _PATH_TMP;
+		distf = strdup(_PATH_TMP);
 		if (!(fd = mkstemp(distf)) || !(dfp = fdopen(fd, "w+")))
 			error("can't create redistribution file %s.", distf);
 		/* disappear after last reference is closed */
 		(void)unlink(distf);
+		free(distf);
 	}
 	if (!freopen(tmpname, "r", stdin))
 		error("can't read temporary bug file %s.", tmpname);
