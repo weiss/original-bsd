@@ -13,7 +13,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)startslip.c	5.6 (Berkeley) 03/16/92";
+static char sccsid[] = "@(#)startslip.c	5.7 (Berkeley) 02/27/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -355,6 +355,7 @@ getline(buf, size, fd)
 
 usage()
 {
-	fprintf(stderr, "usage: startslip [-d] [-s string] dev user passwd\n");
+	(void)fprintf(stderr,
+	    "usage: startslip [-d] [-b speed] [-s string] dev user passwd\n");
 	exit(1);
 }
