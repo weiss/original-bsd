@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)stty.c	5.2 (Berkeley) 08/13/85";
+static char sccsid[] = "@(#)stty.c	5.3 (Berkeley) 01/09/86";
 #endif not lint
 
 /*
@@ -286,6 +286,11 @@ char	**iargv;
 			if (--argc == 0)
 				goto done;
 			win.ws_col = atoi(*++argv);
+		}
+		if (eq("size")) {
+			ioctl(open("/dev/tty", 0), TIOCGWINSZ, &win);
+			printf("%d %d\n", win.ws_row, win.ws_col);
+			exit(0);
 		}
 		for(i=0; speeds[i].string; i++)
 			if(eq(speeds[i].string)) {
