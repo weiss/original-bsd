@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ns.c	5.7 (Berkeley) 03/03/88";
+static char sccsid[] = "@(#)ns.c	5.8 (Berkeley) 03/29/88";
 #endif not lint
 
 #include <stdio.h>
@@ -28,7 +28,6 @@ static char sccsid[] = "@(#)ns.c	5.7 (Berkeley) 03/03/88";
 #include <net/if.h>
 
 #include <netinet/tcp_fsm.h>
-#include <netinet/tcp_timer.h>
 
 #include <netns/ns.h>
 #include <netns/ns_pcb.h>
@@ -37,6 +36,7 @@ static char sccsid[] = "@(#)ns.c	5.7 (Berkeley) 03/03/88";
 #include <netns/ns_error.h>
 #include <netns/sp.h>
 #include <netns/spidp.h>
+#include <netns/spp_timer.h>
 #include <netns/spp_var.h>
 #define SANAMES
 #include <netns/spp_debug.h>
