@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm.c	5.31 (Berkeley) 05/28/92";
+static char sccsid[] = "@(#)kvm.c	5.32 (Berkeley) 10/17/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -112,9 +112,10 @@ _kvm_syserr(kd, program, fmt, va_alist)
 	} else {
 		register char *cp = kd->errbuf;
 
-		n = vsnprintf(cp, sizeof(kd->errbuf), (char *)fmt, ap);
+		(void)vsnprintf(cp, sizeof(kd->errbuf), (char *)fmt, ap);
+		n = strlen(cp);
 		(void)snprintf(&cp[n], sizeof(kd->errbuf) - n, ": %s",
-			 strerror(errno));
+		    strerror(errno));
 	}
 	va_end(ap);
 }
