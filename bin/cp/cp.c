@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	5.8 (Berkeley) 08/24/89";
+static char sccsid[] = "@(#)cp.c	5.9 (Berkeley) 08/29/89";
 #endif /* not lint */
 
 /*
@@ -405,12 +405,14 @@ done:		dir_list[i] = NULL;
 copy_link(exists)
 	int exists;
 {
+	int len;
 	char link[MAXPATHLEN];
 
-	if (readlink(from.p_path, link, sizeof(link)) == -1) {
+	if ((len = readlink(from.p_path, link, sizeof(link))) == -1) {
 		error(from.p_path);
 		return;
 	}
+	link[len] = '\0';
 	if (exists && unlink(to.p_path)) {
 		error(to.p_path);
 		return;
