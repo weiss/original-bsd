@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.23 (Berkeley) 11/30/93')
+VERSIONID(`@(#)proto.m4	8.24 (Berkeley) 12/10/93')
 
 MAILER(local)dnl
 
@@ -515,6 +515,7 @@ S0
 
 R<@>			$#_LOCAL_ $: <>			special case error msgs
 R$*:;<@>		$#error $@ USAGE $: "list:; syntax illegal for recipient addresses"
+R<@ $+>			$#error $@ USAGE $: "user address required"
 
 ifdef(`_MAILER_smtp_',
 `# handle numeric address spec
