@@ -1,9 +1,9 @@
-.\" Copyright (c) 1983 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1983, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)3.t	6.4 (Berkeley) 06/06/93
+.\"	@(#)3.t	8.1 (Berkeley) 06/08/93
 .\"
 .\".ds RH "System Building Process
 .ne 2i

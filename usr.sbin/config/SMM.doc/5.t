@@ -1,9 +1,9 @@
-.\" Copyright (c) 1983 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1983, 1993
+.\"	The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)5.t	6.3 (Berkeley) 04/17/91
+.\"	@(#)5.t	8.1 (Berkeley) 06/08/93
 .\"
 .\".ds RH "Sample Configuration Files
 .ne 2i
