@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 06/08/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 SUBDIR=	XNSrouted badsect clri disklabel dmesg dump dumpfs dumplfs fastboot \
 	fsck fsdb icheck ifconfig init mknod mount mount_fdesc mount_kernfs \
