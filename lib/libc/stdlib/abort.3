@@ -3,12 +3,21 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)abort.3	6.4 (Berkeley) 05/16/90
+.\"	@(#)abort.3	6.5 (Berkeley) 05/17/90
 .\"
 .TH ABORT 3 ""
 .AT 3
 .SH NAME
 abort \- cause abnormal program termination
+.SH SYNOPSIS
+.nf
+.ft B
+#include <stdlib.h>
+
+void
+abort(void);
+.ft R
+.fi
 .SH DESCRIPTION
 The
 .I abort
