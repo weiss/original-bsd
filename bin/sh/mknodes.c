@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mknodes.c	5.1 (Berkeley) 03/07/91";
+static char sccsid[] = "@(#)mknodes.c	5.2 (Berkeley) 07/27/91";
 #endif /* not lint */
 
 /*
@@ -86,6 +86,7 @@ main(argc, argv)
 			parsenode();
 	}
 	output(argv[2]);
+	exit(0);
 }
 
 
