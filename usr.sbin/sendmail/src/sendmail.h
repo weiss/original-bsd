@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	4.2		08/28/83";
+static char SmailSccsId[] =	"@(#)sendmail.h	4.3		03/11/84";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -429,7 +429,7 @@ EXTERN int	ExitStat;	/* exit status code */
 EXTERN int	AliasLevel;	/* depth of aliasing */
 EXTERN int	MotherPid;	/* proc id of parent process */
 EXTERN int	LineNumber;	/* line number in current input */
-EXTERN int	ReadTimeout;	/* timeout on reads */
+EXTERN time_t	ReadTimeout;	/* timeout on reads */
 EXTERN int	LogLevel;	/* level of logging to perform */
 EXTERN int	FileMode;	/* mode on files */
 EXTERN time_t	QueueIntvl;	/* intervals between running the queue */
