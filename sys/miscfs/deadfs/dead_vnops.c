@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dead_vnops.c	7.10 (Berkeley) 06/28/90
+ *	@(#)dead_vnops.c	7.11 (Berkeley) 08/24/90
  */
 
 #include "param.h"
@@ -201,6 +201,7 @@ dead_bmap(vp, bn, vpp, bnp)
 /*
  * Print out the contents of a dead vnode.
  */
+/* ARGSUSED */
 dead_print(vp)
 	struct vnode *vp;
 {
