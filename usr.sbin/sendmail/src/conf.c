@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.190 (Berkeley) 06/10/95";
+static char sccsid[] = "@(#)conf.c	8.191 (Berkeley) 06/10/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1532,21 +1532,38 @@ shouldqueue(pri, ctime)
 **		FALSE if we should accept new work.
 **
 **	Side Effects:
-**		none.
+**		Sets process title when it is rejecting connections.
 */
 
 bool
 refuseconnections()
 {
 	extern bool enoughdiskspace();
+	extern void setproctitle();
 
 #ifdef XLA
 	if (!xla_smtp_ok())
 		return TRUE;
 #endif
 
-	/* this is probably too simplistic */
-	return CurrentLA >= RefuseLA || !enoughdiskspace(MinBlocksFree + 1);
+	if (CurrentLA >= RefuseLA)
+	{
+		setproctitle("rejecting connections: load average: %d",
+			CurrentLA);
+	}
+	else if (!enoughdiskspace(MinBlocksFree + 1))
+	{
+		setproctitle("rejecting connections: min free: %d",
+			MinBlocksFree);
+	}
+	else if (MaxChildren > 0 && CurChildren >= MaxChildren)
+	{
+		setproctitle("rejecting connections: maximum children: %d",
+			CurChildren);
+	}
+	else
+		return FALSE;
+	return TRUE;
 }
 /*
 **  SETPROCTITLE -- set process title for ps
@@ -1709,18 +1726,19 @@ reapchild(sig)
 #endif
 			break;
 		}
+		CurChildren--;
 	}
 # else
 # ifdef WNOHANG
 	union wait status;
 
 	while (wait3(&status, WNOHANG, (struct rusage *) NULL) > 0)
-		continue;
+		CurChildren--;
 # else /* WNOHANG */
 	auto int status;
 
 	while (wait(&status) > 0)
-		continue;
+		CurChildren--;
 # endif /* WNOHANG */
 # endif
 # ifdef SYS5SIGNALS
