@@ -1,5 +1,7 @@
 # include <sysexits.h>
 
+static char	SccsId[] = "@(#)sysexits.c	1.2	07/25/80";
+
 
 char	*SysExMsg[] =
 {
