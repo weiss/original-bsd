@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.c	8.1 (Berkeley) 06/29/93
+ *	@(#)if.c	8.2 (Berkeley) 11/16/93
  */
 
 #include <sys/param.h>
@@ -18,7 +18,6 @@
 #include <sys/ioctl.h>
 
 #include <net/if.h>
-#include <net/af.h>
 #include <net/if_dl.h>
 #include <net/if_types.h>
 
