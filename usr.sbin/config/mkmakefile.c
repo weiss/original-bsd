@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkmakefile.c	5.18 (Berkeley) 09/04/87";
+static char sccsid[] = "@(#)mkmakefile.c	5.19 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -388,7 +388,7 @@ do_objs(fp)
 		for (fl = conf_list; fl; fl = fl->f_next) {
 			if (fl->f_type != SWAPSPEC)
 				continue;
-			sprintf(swapname, "swap%s.c", fl->f_fn);
+			(void) sprintf(swapname, "swap%s.c", fl->f_fn);
 			if (eq(sp, swapname))
 				goto cont;
 		}
@@ -432,7 +432,7 @@ do_cfiles(fp)
 		}
 	for (fl = conf_list; fl; fl = fl->f_next)
 		if (fl->f_type == SYSTEMSPEC) {
-			sprintf(swapname, "swap%s.c", fl->f_fn);
+			(void) sprintf(swapname, "swap%s.c", fl->f_fn);
 			if ((len = 3 + strlen(swapname)) + lpos > 72) {
 				lpos = 8;
 				fputs("\\\n\t", fp);
