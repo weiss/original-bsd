@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.22 (Berkeley) 08/15/93
+ *	@(#)conf.h	8.23 (Berkeley) 08/19/93
  */
 
 /*
@@ -200,7 +200,9 @@
 # define NEEDGETOPT	1	/* need a replacement for getopt(3) */
 # define sleep		sleepX
 # define setpgid	setpgrp
-# define LA_TYPE	LA_ZERO
+# ifndef LA_TYPE
+#  define LA_TYPE	LA_MACH
+# endif
 typedef int		pid_t;
 # ifndef _PATH_SENDMAILCF
 #  define _PATH_SENDMAILCF	"/etc/sendmail/sendmail.cf"
