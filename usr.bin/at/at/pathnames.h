@@ -14,12 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 05/11/89
+ *	@(#)pathnames.h	5.2 (Berkeley) 07/28/89
  */
 
 #include <paths.h>
 
-#define	_PATH_ATDIR	"/var/spool/at"
-#define	_PATH_LASTFILE	"/var/spool/at/lasttimedone"
+#define	_PATH_ATDIR	"/var/at"
+#define	_PATH_LASTFILE	"/var/at/lasttimedone"
 #define	_PATH_MAIL	"/bin/mail"
-#define	_PATH_PAST	"/var/spool/at/past"
+#define	_PATH_PAST	"/var/at/past"
