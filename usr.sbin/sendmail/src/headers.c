@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.8 (Berkeley) 08/08/93";
+static char sccsid[] = "@(#)headers.c	8.9 (Berkeley) 08/08/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -306,8 +306,15 @@ eatheader(e, full)
 	msgid = "<none>";
 	for (h = e->e_header; h != NULL; h = h->h_link)
 	{
+		if (h->h_value == NULL)
+		{
+			if (tTd(32, 1))
+				printf("%s: <NULL>\n", h->h_field);
+			continue;
+		}
+
 		/* do early binding */
-		if (bitset(H_DEFAULT, h->h_flags) && h->h_value != NULL)
+		if (bitset(H_DEFAULT, h->h_flags))
 		{
 			expand(h->h_value, buf, &buf[sizeof buf], e);
 			if (buf[0] != '\0')
@@ -340,8 +347,7 @@ eatheader(e, full)
 		}
 
 		/* save the message-id for logging */
-		if (full && h->h_value != NULL &&
-		    strcasecmp(h->h_field, "message-id") == 0)
+		if (full && strcasecmp(h->h_field, "message-id") == 0)
 		{
 			msgid = h->h_value;
 			while (isascii(*msgid) && isspace(*msgid))
