@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.195 (Berkeley) 06/20/95
+ *	@(#)conf.h	8.196 (Berkeley) 06/21/95
  */
 
 /*
@@ -662,8 +662,6 @@ extern int		errno;
 # ifndef _PATH_SENDMAILPID
 #  define _PATH_SENDMAILPID	"/etc/sendmail.pid"
 # endif
-
-typedef short		pid_t;
 
 #endif
 
