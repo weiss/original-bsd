@@ -1,15 +1,15 @@
 /*
  * Copyright (c) 1989 Jan-Simon Pendry
  * Copyright (c) 1989 Imperial College of Science, Technology & Medicine
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Jan-Simon Pendry at Imperial College, London.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uwait.h	5.4 (Berkeley) 02/09/92
+ *	@(#)uwait.h	8.1 (Berkeley) 06/06/93
  *
  * $Id: uwait.h,v 5.2.2.1 1992/02/09 15:10:01 jsp beta $
  *
