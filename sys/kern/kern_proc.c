@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_proc.c	7.17 (Berkeley) 11/01/91
+ *	@(#)kern_proc.c	7.18 (Berkeley) 11/19/91
  */
 
 #include <sys/param.h>
@@ -13,7 +13,6 @@
 #include <sys/kernel.h>
 #include <sys/proc.h>
 #include <sys/buf.h>
-#include <sys/seg.h>
 #include <sys/acct.h>
 #include <sys/wait.h>
 #include <sys/file.h>
