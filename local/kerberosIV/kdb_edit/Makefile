@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 02/14/91
+#	@(#)Makefile	8.1 (Berkeley) 06/01/93
 
 PROG=	kdb_edit
 CFLAGS+=-DKERBEROS -DDEBUG -I. -I${.CURDIR}/../include
