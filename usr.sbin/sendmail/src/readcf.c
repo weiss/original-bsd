@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	6.20 (Berkeley) 03/23/93";
+static char sccsid[] = "@(#)readcf.c	6.21 (Berkeley) 03/23/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1174,7 +1174,7 @@ setoption(opt, val, safe, sticky, e)
 		break;
 
 	  case 'K':		/* connection cache timeout */
-		MciCacheTimeout = convtime(val);
+		MciCacheTimeout = convtime(val, 'm');
 		break;
 
 	  case 'L':		/* log level */
@@ -1268,9 +1268,9 @@ setoption(opt, val, safe, sticky, e)
 		if (p != NULL)
 		{
 			*p++ = '\0';
-			TimeOuts.to_q_warning = convtime(p);
+			TimeOuts.to_q_warning = convtime(p, 'd');
 		}
-		TimeOuts.to_q_return = convtime(val);
+		TimeOuts.to_q_return = convtime(val, 'h');
 		break;
 
 	  case 't':		/* time zone name */
@@ -1466,7 +1466,7 @@ settimeouts(val)
 		if (isascii(*val) && isdigit(*val))
 		{
 			/* old syntax -- set everything */
-			TimeOuts.to_mail = convtime(val);
+			TimeOuts.to_mail = convtime(val, 'm');
 			TimeOuts.to_rcpt = TimeOuts.to_mail;
 			TimeOuts.to_datainit = TimeOuts.to_mail;
 			TimeOuts.to_datablock = TimeOuts.to_mail;
@@ -1485,7 +1485,7 @@ settimeouts(val)
 				continue;
 			}
 			*q++ = '\0';
-			to = convtime(q);
+			to = convtime(q, 'm');
 
 			if (strcasecmp(val, "initial") == 0)
 				TimeOuts.to_initial = to;

@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	6.12 (Berkeley) 03/13/93 (with name server)";
+static char sccsid[] = "@(#)domain.c	6.13 (Berkeley) 03/23/93 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	6.12 (Berkeley) 03/13/93 (without name server)";
+static char sccsid[] = "@(#)domain.c	6.13 (Berkeley) 03/23/93 (without name server)";
 #endif
 #endif /* not lint */
 
@@ -368,7 +368,7 @@ getcanonname(host, hbsize)
 				      &answer, sizeof(answer));
 		if (ret <= 0)
 		{
-			if (tTd(8, 8))
+			if (tTd(8, 7))
 				printf("\tNO: errno=%d, h_errno=%d\n",
 					errno, h_errno);
 
@@ -405,7 +405,7 @@ getcanonname(host, hbsize)
 			qtype = T_ANY;
 			continue;
 		}
-		else if (tTd(8, 8))
+		else if (tTd(8, 7))
 			printf("\tYES\n");
 
 		/*
