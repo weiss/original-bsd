@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)telnet.c	5.4 (Berkeley) 01/10/86";
+static char sccsid[] = "@(#)telnet.c	5.5 (Berkeley) 03/11/86";
 #endif not lint
 
 /*
@@ -234,6 +234,12 @@ tn(argc, argv)
 				host->h_length);
 			fprintf(stderr, "Trying %s...\n",
 				inet_ntoa(sin.sin_addr));
+			(void) close(net);
+			net = socket(AF_INET, SOCK_STREAM, 0);
+			if (net < 0) {
+				perror("telnet: socket");
+				return;
+			}
 			continue;
 		}
 		perror("telnet: connect");
