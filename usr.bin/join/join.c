@@ -16,7 +16,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)join.c	5.4 (Berkeley) 04/06/92";
+static char sccsid[] = "@(#)join.c	5.5 (Berkeley) 10/16/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -52,8 +52,8 @@ typedef struct {
 	u_long setcnt;		/* set count */
 	u_long setalloc;	/* set allocated count */
 } INPUT;
-INPUT input1 = { NULL, 0, 0, 1, NULL, -1, 0, 0, },
-      input2 = { NULL, 0, 0, 1, NULL, -1, 0, 0, };
+INPUT input1 = { NULL, 0, 0, 1, NULL, 0, 0, 0, },
+      input2 = { NULL, 0, 0, 2, NULL, 0, 0, 0, };
 
 typedef struct {
 	u_long	filenum;	/* file number */
