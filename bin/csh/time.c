@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)time.c	5.11 (Berkeley) 06/07/91";
+static char sccsid[] = "@(#)time.c	5.12 (Berkeley) 06/07/91";
 #endif /* not lint */
 
 #include "csh.h"
@@ -15,7 +15,7 @@ static char sccsid[] = "@(#)time.c	5.11 (Berkeley) 06/07/91";
 /*
  * C Shell - routines handling process timing and niceing
  */
-static void	pdeltat __P((struct timeval *, struct timevail *));
+static void	pdeltat __P((struct timeval *, struct timeval *));
 
 void
 settimes()

@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)set.c	5.8 (Berkeley) 06/07/91";
+static char sccsid[] = "@(#)set.c	5.9 (Berkeley) 06/07/91";
 #endif /* not lint */
 
 #include "csh.h"
@@ -15,7 +15,7 @@ static char sccsid[] = "@(#)set.c	5.8 (Berkeley) 06/07/91";
 static Char	*getinx __P((Char *, int *));
 static void	 asx __P((Char *, int, Char *));
 static struct varent 
-		*getvx __P((char *, int));
+		*getvx __P((Char *, int));
 static Char	*xset __P((Char *, Char ***));
 static Char	*operate __P((int, Char *, Char *));
 static void	 putn1 __P((int));
