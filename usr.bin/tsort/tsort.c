@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)tsort.c	5.7 (Berkeley) 06/23/92";
+static char sccsid[] = "@(#)tsort.c	5.8 (Berkeley) 10/13/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -214,7 +214,8 @@ get_node(name)
 
 	switch((*db->get)(db, &key, &data, 0)) {
 	case 0:
-		return (*(NODE **)data.data);
+		bcopy(data.data, &n, sizeof(n));
+		return (n);
 	case 1:
 		break;
 	default:
