@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.62 (Berkeley) 12/05/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.63 (Berkeley) 12/05/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.62 (Berkeley) 12/05/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.63 (Berkeley) 12/05/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -926,9 +926,7 @@ myhostname(hostbuf, size)
 	}
 	hp = gethostbyname(hostbuf);
 	if (hp == NULL)
-	{
-		syserr("!My host name (%s) does not seem to exist!", hostbuf);
-	}
+		return NULL;
 	if (strchr(hp->h_name, '.') != NULL || strchr(hostbuf, '.') == NULL)
 	{
 		(void) strncpy(hostbuf, hp->h_name, size - 1);
