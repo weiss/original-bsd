@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)fstat.c	5.33 (Berkeley) 08/09/91";
+static char sccsid[] = "@(#)fstat.c	5.34 (Berkeley) 11/04/91";
 #endif /* not lint */
 
 /*
@@ -42,8 +42,8 @@ static char sccsid[] = "@(#)fstat.c	5.33 (Berkeley) 08/09/91";
 #define NFS
 #include <sys/file.h>
 #include <sys/mount.h>
-#include <ufs/quota.h>
-#include <ufs/inode.h>
+#include <ufs/ufs/quota.h>
+#include <ufs/ufs/inode.h>
 #include <nfs/nfsv2.h>
 #include <nfs/nfs.h>
 #include <nfs/nfsnode.h>
