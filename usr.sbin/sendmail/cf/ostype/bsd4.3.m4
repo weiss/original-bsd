@@ -8,5 +8,5 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)bsd4.3.m4	2.4 (Berkeley) 11/14/92')
+VERSIONID(`@(#)bsd4.3.m4	6.1 (Berkeley) 12/21/92')
 define(`QUEUE_DIR', /usr/spool/mqueue)dnl

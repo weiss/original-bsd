@@ -8,4 +8,4 @@ divert(-1)
 #
 
 divert(0)
-VERSIONID(`@(#)riscos4.5.m4	2.4 (Berkeley) 11/14/92')
+VERSIONID(`@(#)riscos4.5.m4	6.1 (Berkeley) 12/21/92')
