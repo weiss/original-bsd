@@ -1,9 +1,9 @@
-| Copyright (c) 1988 Regents of the University of California.
-| All rights reserved.
+| Copyright (c) 1988, 1993
+|	Regents of the University of California.  All rights reserved.
 |
 | %sccs.include.redist.gas%
 |
-|	@(#)oc_cksum.s	7.2 (Berkeley) 11/03/90
+|	@(#)oc_cksum.s	7.3 (Berkeley) 06/10/93
 |
 |
 | oc_cksum: ones complement 16 bit checksum for MC68020.
