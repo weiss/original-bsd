@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.143 (Berkeley) 03/31/95";
+static char sccsid[] = "@(#)conf.c	8.144 (Berkeley) 03/31/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -2137,11 +2137,11 @@ freespace(dir, bsize)
 	struct ustat fs;
 	struct stat statbuf;
 #  define FSBLOCKSIZE	DEV_BSIZE
-#  define FSF_BAVAIL	f_tfree
+#  define SFS_BAVAIL	f_tfree
 # else
 #  if defined(ultrix)
 	struct fs_data fs;
-#   define FSF_BAVAIL	fd_bfreen
+#   define SFS_BAVAIL	fd_bfreen
 #   define FSBLOCKSIZE	1024L
 #  else
 #   if SFS_TYPE == SFS_STATVFS
@@ -2153,8 +2153,8 @@ freespace(dir, bsize)
 #   endif
 #  endif
 # endif
-# ifndef FSF_BAVAIL
-#  define FSF_BAVAIL f_bavail
+# ifndef SFS_BAVAIL
+#  define SFS_BAVAIL f_bavail
 # endif
 
 # if SFS_TYPE == SFS_USTAT
@@ -2177,7 +2177,7 @@ freespace(dir, bsize)
 	{
 		if (bsize != NULL)
 			*bsize = FSBLOCKSIZE;
-		return (fs.FSF_BAVAIL);
+		return (fs.SFS_BAVAIL);
 	}
 #endif
 	return (-1);
@@ -2794,8 +2794,6 @@ struct passwd *
 sm_getpwnam(user)
 	const char *user;
 {
-	extern struct passwd *getpwnam();
-
 	return getpwnam(user);
 }
 
@@ -2803,8 +2801,6 @@ struct passwd *
 sm_getpwuid(uid)
 	uid_t uid;
 {
-	extern struct passwd *getpwuid();
-
 	return getpwuid(uid);
 }
 /*
