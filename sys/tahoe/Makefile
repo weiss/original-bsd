@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.2 (Berkeley) 05/09/91
+#	@(#)Makefile	7.3 (Berkeley) 06/09/91
 
 # Makefile for tahoe tags file
 
@@ -12,7 +12,7 @@ ATAHOE=	../tahoe/tahoe/*.s ../tahoe/math/*.s
 
 
 # Directories in which to place tahoe tags links
-DTAHOE=	if vba align math include tahoe
+DTAHOE=	if vba align math include
 
 tags:
 	-ctags -dtf ${TTAHOE} ${COMM} ${STAHOE}
