@@ -1,4 +1,4 @@
-/*	hp.c	3.6	06/28/80	*/
+/*	hp.c	3.7	07/02/80	*/
 
 /*
  * RP04/RP06/RM03 disk driver
@@ -40,7 +40,7 @@ struct	device
 };
 
 #define	HPADDR	((struct device *)(MBA0 + MBA_ERB))
-#define	NHP	1
+#define	NHP	2
 #define	RP	022
 #define	RM	024
 #define	NSECT	22
