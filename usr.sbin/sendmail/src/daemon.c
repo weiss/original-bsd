@@ -14,7 +14,7 @@
 
 # ifndef DAEMON
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.6 (Berkeley) 08/07/85	(w/o daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.7 (Berkeley) 09/17/85	(w/o daemon mode)";
 # endif not lint
 # else
 
@@ -26,7 +26,7 @@ static char	SccsId[] = "@(#)daemon.c	5.6 (Berkeley) 08/07/85	(w/o daemon mode)";
 # include <sys/resource.h>
 
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.6 (Berkeley) 08/07/85 (with daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.7 (Berkeley) 09/17/85 (with daemon mode)";
 # endif not lint
 
 /*
@@ -119,7 +119,7 @@ getrequests()
 	  severe:
 # ifdef LOG
 		if (LogLevel > 0)
-			syslog(LOG_SALERT, "cannot get connection");
+			syslog(LOG_ALERT, "cannot get connection");
 # endif LOG
 		finis();
 	}
