@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)lpr.c	5.8 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)lpr.c	5.9 (Berkeley) 03/02/91";
 #endif /* not lint */
 /*
  *      lpr -- off line print
@@ -72,14 +72,13 @@ short	SC;			/* suppress multiple copies */
 char	*getenv();
 char	*rindex();
 char	*linked();
-int	cleanup();
+void	cleanup();
 
 /*ARGSUSED*/
 main(argc, argv)
 	int argc;
 	char *argv[];
 {
-	extern struct passwd *getpwuid();
 	struct passwd *pw;
 	struct group *gptr;
 	extern char *itoa();
@@ -482,6 +481,7 @@ nfile(n)
 /*
  * Cleanup after interrupts and errors.
  */
+void
 cleanup()
 {
 	register i;
@@ -633,7 +633,7 @@ mktemps()
 	register int c, len, fd, n;
 	register char *cp;
 	char buf[BUFSIZ];
-	char *mktemp();
+	char *lmktemp();
 
 	(void) sprintf(buf, "%s/.seq", SD);
 	if ((fd = open(buf, O_RDWR|O_CREAT, 0661)) < 0) {
@@ -653,9 +653,9 @@ mktemps()
 		}
 	}
 	len = strlen(SD) + strlen(host) + 8;
-	tfname = mktemp("tf", n, len);
-	cfname = mktemp("cf", n, len);
-	dfname = mktemp("df", n, len);
+	tfname = lmktemp("tf", n, len);
+	cfname = lmktemp("cf", n, len);
+	dfname = lmktemp("df", n, len);
 	inchar = strlen(SD) + 3;
 	n = (n + 1) % 1000;
 	(void) lseek(fd, 0L, 0);
@@ -668,7 +668,7 @@ mktemps()
  * Make a temp file name.
  */
 char *
-mktemp(id, num, len)
+lmktemp(id, num, len)
 	char	*id;
 	int	num, len;
 {
