@@ -5,10 +5,10 @@
  */
  
 /*
- * Sccs Id = "@(#)pathnames.h	1.2 10/10/80";
+ * Sccs Id = "@(#)pathnames.h	1.3 04/01/81";
  */
 
-#define	LOCAL		'v'		/* Local machine id */
+#define	LOCAL		'j'		/* Local machine id */
 #define	MAIL		"/bin/mail"	/* Name of mail sender */
 #define DELIVERMAIL	"/etc/delivermail"
 					/* Name of classy mail deliverer */
