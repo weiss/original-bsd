@@ -1,6 +1,13 @@
 /*
- * sccsid = "@(#)player.h	2.7 02/23/84";
+ * Copyright (c) 1983 Regents of the University of California,
+ * All rights reserved.  Redistribution permitted subject to
+ * the terms of the Berkeley Software License Agreement.
  */
+
+/*
+ * @(#)player.h	2.8 04/23/85
+ */
+
 #include <curses.h>
 #include "externs.h"
 
