@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)order.c	1.4 (Berkeley) 12/10/87";
+static char sccsid[] = "@(#)order.c	1.5 (Berkeley) 12/10/87";
 #endif
 
 # include "pass2.h"
@@ -95,7 +95,7 @@ sucomp( p ) register NODE *p; {
 		    p->in.type==FLOAT ||
 		    p->in.type==DOUBLE ||
 		    ISPTR(p->in.type) ||
-		    ISARY(p->in.type) )
+		    ISARY(p->in.type)) )
 			p->in.su = 0;
 		return;
 		}
