@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	6.45 (Berkeley) 04/26/93 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.46 (Berkeley) 04/26/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	6.45 (Berkeley) 04/26/93 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	6.46 (Berkeley) 04/26/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -387,6 +387,13 @@ smtp(e)
 					usrerr("501 %s parameter unrecognized", kp);
 					/* NOTREACHED */
 				}
+			}
+
+			if (MaxMessageSize > 0 && msize > MaxMessageSize)
+			{
+				usrerr("552 Message size exceeds fixed maximum message size (%ld)",
+					MaxMessageSize);
+				/* NOTREACHED */
 			}
 				
 			if (!enoughspace(msize))
