@@ -1,7 +1,7 @@
-#	@(#)TEST.csh	5.1 (Berkeley) 06/08/92
+#	@(#)TEST.csh	5.2 (Berkeley) 04/30/93
 
-alias t '/usr/src/bin/test/obj/test \!*; echo $status'
-#alias t 'test \!*; echo $status'
+#alias t '/usr/src/bin/test/obj/test \!*; echo $status'
+alias t '/bin/test \!*; echo $status'
 
 echo 't -b /dev/ttyp2'
 t -b /dev/ttyp2
