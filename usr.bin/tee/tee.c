@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)tee.c	4.3 (Berkeley) 05/22/83";
+static char *sccsid = "@(#)tee.c	4.4 (Berkeley) 08/19/83";
 #endif
 /*
  * tee-- pipe fitting
@@ -72,7 +72,7 @@ char **argv;
 				r = 0;
 				if(w<=0) {
 					stash(p);
-					return;
+					exit(0);
 				}
 			}
 			out[p++] = in[r++];
