@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfsmount.h	7.2 (Berkeley) 02/16/90
+ *	@(#)nfsmount.h	7.3 (Berkeley) 03/06/90
  */
 
 /*
@@ -39,8 +39,6 @@ struct	nfsmount {
 	short	nm_rttvar;		/* RTT variance */
 	int	nm_rsize;		/* Max size of read rpc */
 	int	nm_wsize;		/* Max size of write rpc */
-	char	nm_host[MNAMELEN];	/* Remote host name */
-	char	nm_path[MNAMELEN];	/* Path mounted on */
 };
 
 /*
