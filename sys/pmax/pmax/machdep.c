@@ -10,7 +10,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)machdep.c	7.18 (Berkeley) 03/23/93
+ *	@(#)machdep.c	7.19 (Berkeley) 04/05/93
  */
 
 /* from: Utah $Hdr: machdep.c 1.63 91/04/24$ */
@@ -1116,9 +1116,8 @@ boot(howto)
 		stacktrace();
 #endif
 
-	howto |= RB_HALT; /* XXX */
 	boothowto = howto;
-	if ((howto&RB_NOSYNC) == 0 && waittime < 0) {
+	if ((howto & RB_NOSYNC) == 0 && waittime < 0) {
 		register struct buf *bp;
 		int iter, nbusy;
 
