@@ -1,4 +1,4 @@
-/*	lpr.c	4.19	83/06/02	*/
+/*	lpr.c	4.20	83/06/15	*/
 /*
  *      lpr -- off line print
  *
@@ -231,7 +231,7 @@ main(argc, argv)
 		}
 		if (sflag)
 			printf("%s: %s: not linked, copying instead\n", name, arg);
-		if ((i = open(arg, 0)) < 0) {
+		if ((i = open(arg, O_RDONLY)) < 0) {
 			printf("%s: cannot open %s\n", name, arg);
 			continue;
 		}
@@ -247,7 +247,7 @@ main(argc, argv)
 		/*
 		 * Touch the control file to fix position in the queue.
 		 */
-		if ((tfd = open(tfname, 2)) >= 0) {
+		if ((tfd = open(tfname, O_RDWR)) >= 0) {
 			char c;
 
 			if (read(tfd, &c, 1) == 1 && lseek(tfd, 0L, 0) == 0 &&
@@ -447,7 +447,7 @@ test(file)
 		printf("%s: %s is a directory\n", name, file);
 		return(-1);
 	}
-	if ((fd = open(file, 0)) < 0) {
+	if ((fd = open(file, O_RDONLY)) < 0) {
 		printf("%s: cannot open %s\n", name, file);
 		return(-1);
 	}
@@ -547,7 +547,7 @@ mktemps()
 		n = 0;
 	} else {
 		setbuf(fp, buf);
-		if (flock(fileno(fp), FEXLOCK)) {
+		if (flock(fileno(fp), LOCK_EX)) {
 			printf("%s: cannot lock %s\n", name, buf);
 			exit(1);
 		}
