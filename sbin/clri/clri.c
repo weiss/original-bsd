@@ -1,4 +1,4 @@
-static char sccsid[] = "@(#)clri.c 2.5 07/30/89";
+static char sccsid[] = "@(#)clri.c 2.6 05/04/90";
 
 /* static char *sccsid = "@(#)clri.c	4.1 (Berkeley) 10/1/80"; */
 
@@ -7,9 +7,7 @@ static char sccsid[] = "@(#)clri.c 2.5 07/30/89";
  */
 
 #include <sys/param.h>
-#include <sys/time.h>
-#include <sys/vnode.h>
-#include <ufs/inode.h>
+#include <ufs/dinode.h>
 #include <ufs/fs.h>
 
 #define ISIZE	(sizeof(struct dinode))
