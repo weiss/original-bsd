@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)enc_des.c	8.1 (Berkeley) 06/04/93";
+static char sccsid[] = "@(#)enc_des.c	8.2 (Berkeley) 12/15/93";
 #endif /* not lint */
 
 #ifdef	ENCRYPTION
@@ -344,7 +344,7 @@ fb64_reply(data, cnt, fbp)
 		if (state == FAILED)
 			state = IN_PROGRESS;
 		state &= ~NO_RECV_IV;
-		encrypt_send_keyid(DIR_ENCRYPT, "\0", 1, 1);
+		encrypt_send_keyid(DIR_ENCRYPT, (unsigned char *)"\0", 1, 1);
 		break;
 
 	case FB64_IV_BAD:
