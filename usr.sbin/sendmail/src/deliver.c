@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.155 (Berkeley) 05/31/95";
+static char sccsid[] = "@(#)deliver.c	8.156 (Berkeley) 06/10/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1067,7 +1067,18 @@ deliver(e, firstto)
 			goto give_up;
 		}
 		if (pv[2] != NULL)
-			port = atoi(pv[2]);
+		{
+			port = htons(atoi(pv[2]));
+			if (port == 0)
+			{
+				struct servent *sp = getservbyname(pv[2], "tcp");
+
+				if (sp == NULL)
+					syserr("Service %s unknown", pv[2]);
+				else
+					port = sp->s_port;
+			}
+		}
 tryhost:
 		while (*curhost != '\0')
 		{
