@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)commands.c	1.21 (Berkeley) 09/01/89";
+static char sccsid[] = "@(#)commands.c	1.22 (Berkeley) 09/02/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -604,6 +604,11 @@ static struct togglelist Togglelist[] = {
 		    "recognize certain control characters" },
     { " ", "", 0 },		/* empty line */
 #if	defined(unix) && defined(TN3270)
+    { "apitrace",
+	"(debugging) toggle tracing of API transactions",
+	    0,
+		&apitrace,
+		    "trace API transactions" },
     { "cursesdata",
 	"(debugging) toggle printing of hexadecimal curses data",
 	    0,

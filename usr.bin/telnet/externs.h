@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)externs.h	1.18 (Berkeley) 09/01/89
+ *	@(#)externs.h	1.19 (Berkeley) 09/02/89
  */
 
 #ifdef	CRAY
@@ -63,6 +63,7 @@ extern int
 #if	defined(unix)
 #if	defined(TN3270)
     cursesdata,		/* Print out curses data flow */
+    apitrace,		/* Trace API transactions */
 #endif	/* defined(TN3270) */
     termdata,		/* Print out terminal data flow */
 #endif	/* defined(unix) */
