@@ -5,9 +5,9 @@
  * This code is derived from software contributed to Berkeley by
  * William Jolitz.
  *
- * %sccs.include.noredist.c%
+ * %sccs.include.redist.c%
  *
- *	@(#)prf.c	7.2 (Berkeley) 04/28/91
+ *	@(#)prf.c	7.3 (Berkeley) 04/28/91
  */
 
 #include "types.h"
