@@ -1,4 +1,4 @@
-/*	kern_proc.c	3.16	07/12/80	*/
+/*	kern_proc.c	3.17	07/12/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -685,7 +685,7 @@ sbreak()
 	if (n < 0)
 		n = 0;
 	d = clrnd(n - u.u_dsize);
-	if (u.u_dsize+d > u.u_limit[LIM_DATA]) {
+	if (ctob(u.u_dsize+d) > u.u_limit[LIM_DATA]) {
 		u.u_error = ENOMEM;
 		return;
 	}
