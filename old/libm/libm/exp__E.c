@@ -12,7 +12,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)exp__E.c	1.1 (Berkeley) 05/23/85";
+static char sccsid[] = "@(#)exp__E.c	1.2 (Berkeley) 08/21/85";
 #endif not lint
 
 /* exp__E(x,c)
@@ -25,7 +25,7 @@ static char sccsid[] = "@(#)exp__E.c	1.1 (Berkeley) 05/23/85";
  *			 \  0 ,  |x| < 1E-19.
  *
  * DOUBLE PRECISION (IEEE 53 bits, VAX D FORMAT 56 BITS)
- * KERNEL FUNCTION OF EXP, E, POW FUNCTIONS
+ * KERNEL FUNCTION OF EXP, EXPM1, POW FUNCTIONS
  * CODED IN C BY K.C. NG, 1/31/85;
  * REVISED BY K.C. NG on 3/16/85, 4/16/85.
  *
@@ -83,7 +83,7 @@ static long        q3x[] = { 0x9eb436c9, 0xc395604a};
 #define       q1    (*(double*)q1x)
 #define       q2    (*(double*)q2x)
 #define       q3    (*(double*)q3x)
-#else		/* IEEE double format */
+#else	/* IEEE double */
 static double 
 p1     =  1.3887401997267371720E-2    , /*Hex  2^ -7   *  1.C70FF8B3CC2CF */
 p2     =  3.3044019718331897649E-5    , /*Hex  2^-15   *  1.15317DF4526C4 */
@@ -101,7 +101,7 @@ double x,c;
 	   p = z*( p1 +z* p2 );
 #ifdef VAX
            q = z*( q1 +z*( q2 +z* q3 ));
-#else
+#else	/* IEEE double */
            q = z*( q1 +z*  q2 );
 #endif
            xp= x*p     ; 
