@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	8.8 (Berkeley) 08/05/94";
+static char sccsid[] = "@(#)function.c	8.9 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -347,18 +347,15 @@ f_fstype(plan, entry)
 		}
 
 		first = 0;
-		switch (plan->flags) {
-		case F_MTFLAG:
-			val = sb.f_flags;
-			break;
-		case F_MTTYPE:
-			val = sb.f_type;
-			break;
-		default:
-			abort();
-		}
+
+		/*
+		 * Further tests may need both of these values, so
+		 * always copy both of them.
+		 */
+		val = sb.f_flags;
+		val = sb.f_type;
 	}
-	switch(plan->flags) {
+	switch (plan->flags) {
 	case F_MTFLAG:
 		return (val & plan->mt_data);	
 	case F_MTTYPE:
