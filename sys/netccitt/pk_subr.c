@@ -12,7 +12,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk_subr.c	7.23 (Berkeley) 12/08/92
+ *	@(#)pk_subr.c	7.24 (Berkeley) 12/08/92
  */
 
 #include <sys/param.h>
@@ -26,6 +26,7 @@
 #include <sys/kernel.h>
 
 #include <net/if.h>
+#include <net/route.h>
 
 #include <netccitt/dll.h>
 #include <netccitt/x25.h>
