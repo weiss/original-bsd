@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)getinp.c	5.3 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)getinp.c	5.4 (Berkeley) 02/28/91";
 #endif /* not lint */
 
 # include	<stdio.h>
@@ -24,7 +24,7 @@ char	*prompt, *list[]; {
 	reg int	i, n_match, match;
 	char	*sp;
 	int	plen;
-
+	static int comp();
 
 	for (;;) {
 inter:
