@@ -1,9 +1,9 @@
 .\" Copyright (c) 1986 The Regents of the University of California.
 .\" All rights reserved.
 .\"
-.\" %sccs.include.redist.man%
+.\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)Title	6.2 (Berkeley) 06/07/90
+.\"	@(#)Title	6.3 (Berkeley) 04/17/91
 .\"
 .ps 18
 .vs 22
