@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)qv.c	1.15 (Berkeley) 12/16/90
+ *	@(#)qv.c	1.16 (Berkeley) 05/16/91
  */
 
 /*
@@ -391,9 +391,10 @@ qvopen(dev, flag)
  * Close a QVSS line.
  */
 /*ARGSUSED*/
-qvclose(dev, flag)
+qvclose(dev, flag, mode, p)
 	dev_t dev;
-	int flag;
+	int flag, mode;
+	struct proc *p;
 {
 	register struct tty *tp;
 	register unit;
@@ -416,7 +417,7 @@ qvclose(dev, flag)
 	 * otherwise clear the state flag, and put the keyboard into down/up.
 	 */
 	if (QVCHAN(unit) != QVMOUSECHAN) {
-		(*linesw[tp->t_line].l_close)(tp);
+		(*linesw[tp->t_line].l_close)(tp, flag);
 		error = ttyclose(tp);
 	} else {
 		mouseon = 0;

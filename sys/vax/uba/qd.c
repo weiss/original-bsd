@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)qd.c	1.17 (Berkeley) 12/16/90
+ *	@(#)qd.c	1.18 (Berkeley) 05/16/91
  */
 
 /************************************************************************
@@ -711,9 +711,10 @@ qdopen(dev, flag)
 } /* qdopen */
 
 /*ARGSUSED*/
-qdclose(dev, flag)
+qdclose(dev, flag, mode, p)
 	dev_t dev;
-	int flag;
+	int flag, mode;
+	struct proc *p;
 {
 	register struct tty *tp;
 	register struct qdmap *qd;
@@ -878,7 +879,7 @@ qdclose(dev, flag)
 		* this is the console 
 		*/
 		tp = &qd_tty[minor_dev];
-		(*linesw[tp->t_line].l_close)(tp);
+		(*linesw[tp->t_line].l_close)(tp, flag);
 		ttyclose(tp);
 		tp->t_state = 0;
 		qdflags[unit].inuse &= ~CONS_DEV;
