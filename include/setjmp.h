@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)setjmp.h	5.7 (Berkeley) 06/19/92
+ *	@(#)setjmp.h	5.8 (Berkeley) 06/27/92
  */
 
 #ifndef _SETJMP_H_
@@ -20,6 +20,10 @@
 
 #if defined(mips) || defined(__mips__)
 #define _JBLEN	83
+#endif
+
+#if defined(sparc) || defined(__sparc__)
+#define _JBLEN	10
 #endif
 
 #if defined(tahoe) || defined(__tahoe__)
