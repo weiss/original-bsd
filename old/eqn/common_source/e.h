@@ -1,4 +1,11 @@
-/*	e.h	4.2	83/02/12	*/
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)e.h	4.3 (Berkeley) 04/17/91
+ */
 
 #include <stdio.h>
 
