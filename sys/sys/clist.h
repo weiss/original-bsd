@@ -1,4 +1,4 @@
-/*	clist.h	3.1	10/08/80	*/
+/*	clist.h	4.1	11/09/80	*/
 
 /*
  * Raw structures for the character list routines.
