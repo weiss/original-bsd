@@ -11,7 +11,7 @@ char copyright[] =
 #endif /* !lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)fstat.c	5.6 (Berkeley) 11/06/87";
+static char sccsid[] = "@(#)fstat.c	5.7 (Berkeley) 11/17/87";
 #endif /* !lint */
 
 /*
@@ -39,6 +39,7 @@ static char sccsid[] = "@(#)fstat.c	5.6 (Berkeley) 11/06/87";
 #include <netinet/in.h>
 #include <netinet/in_pcb.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <nlist.h>
 #include <pwd.h>
 
@@ -114,9 +115,11 @@ main(argc, argv)
 	while ((ch = getopt(argc, argv, "p:u:v")) != EOF)
 		switch((char)ch) {
 		case 'p':
-			if (pflg++) {
+			if (pflg++)
 				usage();
-				exit(1);
+			if (!isdigit(*optarg)) {
+				fputs("fstat: -p option requires a process id.\n", stderr);
+				usage();
 			}
 			pid = atoi(optarg);
 			break;
