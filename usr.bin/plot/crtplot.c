@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
+static char sccsid[] = "@(#)crtplot.c	4.2 (Berkeley) 03/01/91";
 #endif
 
 /*
@@ -69,7 +69,7 @@ char ch;
 openpl()
 {
 char *sp;
-int closepl();
+void closepl();
 
 gettmode();
 if (sp=getenv("TERM"))
@@ -81,6 +81,7 @@ signal(SIGINT, closepl);
 
 
 
+void
 closepl()
 {
 signal(SIGINT, SIG_IGN);
