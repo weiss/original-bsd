@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)SIN.c 1.1 02/08/82";
+static char sccsid[] = "@(#)SIN.c 1.2 01/09/89";
 
 #include <math.h>
 extern int errno;
@@ -15,7 +15,6 @@ SIN(value)
 	result = sin(value);
 	if (errno != 0) {
 		ERROR("Cannot compute sin(%e)\n", value);
-		return;
 	}
 	return result;
 }
