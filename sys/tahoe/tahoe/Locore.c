@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)Locore.c	1.6 (Berkeley) 05/26/88
+ *	@(#)Locore.c	7.1 (Berkeley) 05/26/88
  */
 
 #include "param.h"

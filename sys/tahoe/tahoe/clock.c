@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)clock.c	1.5 (Berkeley) 05/26/88
+ *	@(#)clock.c	7.1 (Berkeley) 05/26/88
  */
 
 #include "param.h"
