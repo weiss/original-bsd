@@ -2,7 +2,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.16 (Berkeley) 10/08/85
+#	@(#)Makefile	1.17 (Berkeley) 04/25/86
 #
 # make file for pdx
 #
@@ -177,7 +177,7 @@ install: a.out
 	install -s a.out ${INSTALL}
 
 clean:
-	${RM} a.out */*.o
+	${RM} a.out *.o */*.o
 
 #
 # Warning:  This will produce a very long listing.  You would be better
