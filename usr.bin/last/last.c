@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)last.c	4.5 (Berkeley) 05/22/83";
+static	char *sccsid = "@(#)last.c	4.6 (Berkeley) 07/01/83";
 #endif
 
 /*
@@ -8,7 +8,7 @@ static	char *sccsid = "@(#)last.c	4.5 (Berkeley) 05/22/83";
 #include <sys/types.h>
 #include <stdio.h>
 #include <signal.h>
-#include <stat.h>
+#include <sys/stat.h>
 #include <utmp.h>
 
 #define NMAX	sizeof(buf[0].ut_name)
