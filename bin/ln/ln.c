@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)ln.c 4.5 06/30/83";
+static	char sccsid[] = "@(#)ln.c 4.6 11/15/85";
 /*
  * ln
  */
@@ -77,7 +77,7 @@ linkit(from, to)
 		to = name;
 	}
 	if ((*linkf)(from, to) < 0) {
-		if (errno == EEXIST)
+		if (errno == EEXIST || sflag)
 			perror(to);
 		else if (access(from, 0) < 0)
 			perror(from);
