@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.c	7.22 (Berkeley) 02/20/92
+ *	@(#)in.c	7.23 (Berkeley) 02/20/92
  */
 
 #include "param.h"
@@ -334,8 +334,8 @@ in_control(so, cmd, data, ifp)
 			return (EINVAL);
 		oldaddr = ia->ia_dstaddr;
 		ia->ia_dstaddr = *(struct sockaddr_in *)&ifr->ifr_dstaddr;
-		if (ifp->if_ioctl &&
-		    (error = (*ifp->if_ioctl)(ifp, SIOCSIFDSTADDR, ia))) {
+		if (ifp->if_ioctl && (error = (*ifp->if_ioctl)
+					(ifp, SIOCSIFDSTADDR, (caddr_t)ia))) {
 			ia->ia_dstaddr = oldaddr;
 			return (error);
 		}
