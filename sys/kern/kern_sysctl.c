@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_sysctl.c	8.8 (Berkeley) 03/30/95
+ *	@(#)kern_sysctl.c	8.9 (Berkeley) 05/20/95
  */
 
 /*
@@ -215,7 +215,7 @@ kern_sysctl(name, namelen, oldp, oldlenp, newp, newlen, p)
 		return (sysctl_rdstruct(oldp, oldlenp, newp, &boottime,
 		    sizeof(struct timeval)));
 	case KERN_VNODE:
-		return (sysctl_vnode(oldp, oldlenp));
+		return (sysctl_vnode(oldp, oldlenp, p));
 	case KERN_PROC:
 		return (sysctl_doproc(name + 1, namelen - 1, oldp, oldlenp));
 	case KERN_FILE:
