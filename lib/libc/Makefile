@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 07/06/92
+#	@(#)Makefile	5.7 (Berkeley) 07/10/92
 #
 # All library objects contain sccsid strings by default; they may be
 # excluded as a space-saving measure.  To produce a library that does
@@ -12,6 +12,7 @@ AINC=	-I${.CURDIR}/${MACHINE}
 .include "${.CURDIR}/db/Makefile.inc"
 .include "${.CURDIR}/compat-43/Makefile.inc"
 .include "${.CURDIR}/gen/Makefile.inc"
+.include "${.CURDIR}/gmon/Makefile.inc"
 .include "${.CURDIR}/locale/Makefile.inc"
 .include "${.CURDIR}/net/Makefile.inc"
 .include "${.CURDIR}/quad/Makefile.inc"
@@ -23,7 +24,8 @@ AINC=	-I${.CURDIR}/${MACHINE}
 KQSRCS=	adddi3.c anddi3.c ashldi3.c ashrdi3.c cmpdi2.c divdi3.c iordi3.c \
 	lshldi3.c lshrdi3.c moddi3.c muldi3.c negdi2.c notdi2.c qdivrem.c \
 	subdi3.c ucmpdi2.c udivdi3.c umoddi3.c xordi3.c
-KSRCS=	bcmp.c ffs.c strcat.c strcmp.c strcpy.c strlen.c strncpy.c
+
+KSRCS=	bcmp.c ffs.c mcount.c strcat.c strcmp.c strcpy.c strlen.c strncpy.c
 
 libkern: ${KQSRCS} ${KSRCS}
 	cp -p ${.CURDIR}/quad/quad.h ${.ALLSRC} /sys/libkern
