@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.1 (Berkeley) 02/18/92
+#	@(#)Makefile	5.2 (Berkeley) 10/20/92
 
 OBJ1=	bt_close.o bt_conv.o bt_debug.o bt_delete.o bt_get.o bt_open.o \
-	bt_overflow.o bt_put.o bt_search.o bt_seq.o bt_split.o bt_stack.o \
-	bt_utils.o
+	bt_overflow.o bt_page.o bt_put.o bt_search.o bt_seq.o bt_split.o \
+	bt_stack.o bt_utils.o
 OBJ2=	db.o
 OBJ3=	hash.o hash_bigkey.o hash_buf.o hash_func.o hash_log2.o hash_page.o \
 	hsearch.o ndbm.o
