@@ -7,8 +7,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)bitstring.h	5.4 (Berkeley) 06/01/90
+ *	@(#)bitstring.h	5.5 (Berkeley) 04/03/91
  */
+
+#ifndef _BITSTRING_H_
+#define	_BITSTRING_H_
 
 typedef	unsigned char bitstr_t;
 
@@ -100,3 +103,5 @@ typedef	unsigned char bitstr_t;
 		} \
 	*(value) = _value; \
 }
+
+#endif /* !_BITSTRING_H_ */
