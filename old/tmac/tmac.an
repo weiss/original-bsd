@@ -2,7 +2,7 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)tmac.an	6.5 (Berkeley) 07/05/88
+.\"	@(#)tmac.an	6.6 (Berkeley) 06/02/90
 .\"
 '	DT, PD, SM, and B macros invoked internally.
 '	# month name
