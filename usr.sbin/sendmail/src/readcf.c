@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.28 (Berkeley) 08/07/94";
+static char sccsid[] = "@(#)readcf.c	8.29 (Berkeley) 08/07/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -833,7 +833,6 @@ makemailer(line)
 			{
 				m->m_gid = strtol(p, NULL, 0);
 			}
-			setbitn(M_SPECIFIC_UID, m->m_flags);
 			break;
 		}
 
