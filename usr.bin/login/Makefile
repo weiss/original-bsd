@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.5 (Berkeley) 05/11/90
+#	@(#)Makefile	5.6 (Berkeley) 06/24/90
 
 CFLAGS+=-DKERBEROS
 PROG=	login
+SRCS=	klogin.c login.c
 DPADD=	${LIBUTIL} ${LIBKRB} ${LIBDES}
 LDADD=	-lutil -lkrb -ldes
 BINOWN=	root
