@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)misc.c	5.1 (Berkeley) 10/27/91";
+static char sccsid[] = "@(#)misc.c	5.2 (Berkeley) 06/21/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@ diffmsg(file1, file2, byte, line)
 	off_t byte, line;
 {
 	if (!sflag)
-		(void)printf("%s %s differ: char %ld, line %ld\n",
+		(void)printf("%s %s differ: char %qd, line %qd\n",
 		    file1, file2, byte, line);
 	exit(1);
 }
