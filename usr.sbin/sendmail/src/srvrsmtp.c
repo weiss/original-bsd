@@ -15,12 +15,12 @@
 
 # ifndef SMTP
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.19 (Berkeley) 02/03/87	(no SMTP)";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.20 (Berkeley) 03/13/88	(no SMTP)";
 # endif not lint
 # else SMTP
 
 # ifndef lint
-static char	SccsId[] = "@(#)srvrsmtp.c	5.19 (Berkeley) 02/03/87";
+static char	SccsId[] = "@(#)srvrsmtp.c	5.20 (Berkeley) 03/13/88";
 # endif not lint
 
 /*
@@ -101,7 +101,6 @@ smtp()
 	register struct cmd *c;
 	char *cmd;
 	extern char *skipword();
-	extern bool sameword();
 	bool hasmail;			/* mail command received */
 	auto ADDRESS *vrfyqueue;
 	ADDRESS *a;
@@ -186,7 +185,7 @@ smtp()
 		/* decode command */
 		for (c = CmdTab; c->cmdname != NULL; c++)
 		{
-			if (sameword(c->cmdname, cmdbuf))
+			if (!strcasecmp(c->cmdname, cmdbuf))
 				break;
 		}
 
@@ -196,14 +195,14 @@ smtp()
 		  case CMDHELO:		/* hello -- introduce yourself */
 			SmtpPhase = "HELO";
 			setproctitle("%s: %s", CurHostName, inp);
-			if (sameword(p, MyHostName))
+			if (!strcasecmp(p, MyHostName))
 			{
 				/* connected to an echo server */
 				message("553", "%s I refuse to talk to myself",
 					MyHostName);
 				break;
 			}
-			if (RealHostName != NULL && !sameword(p, RealHostName))
+			if (RealHostName != NULL && strcasecmp(p, RealHostName))
 			{
 				char hostbuf[MAXNAME];
 
@@ -513,7 +512,6 @@ skipword(p, w)
 	char *w;
 {
 	register char *q;
-	extern bool sameword();
 
 	/* find beginning of word */
 	while (isspace(*p))
@@ -537,7 +535,7 @@ skipword(p, w)
 		p++;
 
 	/* see if the input word matches desired word */
-	if (!sameword(q, w))
+	if (strcasecmp(q, w))
 		goto syntax;
 
 	return (p);

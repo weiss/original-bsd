@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)headers.c	5.7 (Berkeley) 09/21/85";
+static char	SccsId[] = "@(#)headers.c	5.8 (Berkeley) 03/13/88";
 #endif not lint
 
 # include <errno.h>
@@ -411,11 +411,10 @@ priencode(p)
 	char *p;
 {
 	register int i;
-	extern bool sameword();
 
 	for (i = 0; i < NumPriorities; i++)
 	{
-		if (sameword(p, Priorities[i].pri_name))
+		if (!strcasecmp(p, Priorities[i].pri_name))
 			return (Priorities[i].pri_val);
 	}
 
