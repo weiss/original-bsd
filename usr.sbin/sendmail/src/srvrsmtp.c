@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.68 (Berkeley) 04/22/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.69 (Berkeley) 04/25/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.68 (Berkeley) 04/22/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.69 (Berkeley) 04/25/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -912,6 +912,7 @@ mail_esmtp_args(kp, vp, e)
 		if (strcasecmp(vp, "8bitmime") == 0)
 		{
 			SevenBitInput = FALSE;
+			e->e_flags |= EF_NL_NOT_EOL;
 		}
 		else if (strcasecmp(vp, "7bit") == 0)
 		{
