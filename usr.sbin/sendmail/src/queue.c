@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.14		05/31/82	(no queueing));
+SCCSID(@(#)queue.c	3.15		05/31/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.14		05/31/82);
+SCCSID(@(#)queue.c	3.15		05/31/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -18,6 +18,8 @@ SCCSID(@(#)queue.c	3.14		05/31/82);
 **
 **	Parameters:
 **		e -- the envelope to queue up.
+**		queueall -- if TRUE, queue all addresses, rather than
+**			just those with the QQUEUEUP flag set.
 **
 **	Returns:
 **		none.
@@ -27,8 +29,9 @@ SCCSID(@(#)queue.c	3.14		05/31/82);
 **			are saved in a control file.
 */
 
-queueup(e)
+queueup(e, queueall)
 	register ENVELOPE *e;
+	bool queueall;
 {
 	char cf[MAXNAME];
 	char buf[MAXNAME];
@@ -117,7 +120,7 @@ queueup(e)
 			printaddr(q, FALSE);
 		}
 # endif DEBUG
-		if (bitset(QQUEUEUP, q->q_flags))
+		if (queueall || bitset(QQUEUEUP, q->q_flags))
 			fprintf(cfp, "R%s\n", q->q_paddr);
 	}
 
