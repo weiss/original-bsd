@@ -1,4 +1,4 @@
-static char *sccsid ="@(#)table.c	1.2 (Berkeley) 03/14/84";
+static char *sccsid ="@(#)table.c	1.3 (Berkeley) 04/27/84";
 # include "mfile2"
 
 # define WPTR TPTRTO|TINT|TLONG|TFLOAT|TDOUBLE|TPOINT|TUNSIGNED|TULONG
@@ -108,12 +108,6 @@ GOTO,	FOREFF,
 STARG,	FORARG,
 	SCON|SOREG,	TANY,
 	SANY,	TANY,
-		NTEMP+2*NAREG,	RESC3,
-		"ZS",
-
-STASG,	FORARG,
-	SNAME|SOREG,	TANY,
-	SCON|SAREG,	TANY,
 		0,	RNULL,
 		"	subl2	ZT,sp\nZS",
 
