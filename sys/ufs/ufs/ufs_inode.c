@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ufs_inode.c	7.9 (Berkeley) 06/27/89
+ *	@(#)ufs_inode.c	7.10 (Berkeley) 07/16/89
  */
 
 #include "param.h"
@@ -460,6 +460,11 @@ ufs_inactive(vp)
 
 	if (ITOV(ip)->v_count != 0)
 		panic("ufs_inactive: not inactive");
+	/*
+	 * Get rid of inodes related to stale file handles.
+	 */
+	if (ip->i_mode == 0)
+		goto freeit;
 	ILOCK(ip);
 	if (ip->i_nlink <= 0 && (ITOV(ip)->v_mount->m_flag&M_RDONLY) == 0) {
 		error = itrunc(ip, (u_long)0);
@@ -476,6 +481,7 @@ ufs_inactive(vp)
 	}
 	IUPDAT(ip, &time, &time, 0);
 	IUNLOCK(ip);
+freeit:
 	ip->i_flag = 0;
 	/*
 	 * Put the inode on the end of the free list.
