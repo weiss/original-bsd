@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.c	8.1 (Berkeley) 06/11/93
+ *	@(#)conf.c	8.2 (Berkeley) 11/14/93
  */
 
 #include <sys/param.h>
@@ -366,6 +366,12 @@ iskmemdev(dev)
 	if (major(dev) == 3 && (minor(dev) == 0 || minor(dev) == 1))
 		return (1);
 	return (0);
+}
+
+iszerodev(dev)
+	dev_t dev;
+{
+	return (major(dev) == 3 && minor(dev) == 12);
 }
 
 /*
