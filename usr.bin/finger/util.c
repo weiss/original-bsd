@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.10 (Berkeley) 05/10/90";
+static char sccsid[] = "@(#)util.c	5.11 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -27,7 +27,7 @@ static char sccsid[] = "@(#)util.c	5.10 (Berkeley) 05/10/90";
 #include <sys/file.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <strings.h>
+#include <string.h>
 #include "finger.h"
 #include "pathnames.h"
 
