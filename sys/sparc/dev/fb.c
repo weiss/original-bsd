@@ -13,7 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fb.c	7.2 (Berkeley) 07/21/92
+ *	@(#)fb.c	7.3 (Berkeley) 10/11/92
  *
  * from: $Header: fb.c,v 1.6 92/06/17 05:35:46 torek Exp $
  */
@@ -23,13 +23,13 @@
  * just build cdevsw[] dynamically.
  */
 
-#include "sys/param.h"
-#include "sys/conf.h"
-#include "sys/device.h"
-#include "sys/proc.h"
-#include "sys/fbio.h"
+#include <sys/param.h>
+#include <sys/conf.h>
+#include <sys/device.h>
+#include <sys/proc.h>
+#include <sys/fbio.h>
 
-#include "machine/fbvar.h"
+#include <machine/fbvar.h>
 
 static struct fbdevice *devfb;
 
