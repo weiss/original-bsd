@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 DIR=	smm/06.nfs
 SRCS=	0.t 1.t 2.t ref.t
