@@ -1,6 +1,9 @@
-#	@(#)Makefile	6.5 (Berkeley) 05/11/90
+#	@(#)Makefile	6.6 (Berkeley) 06/02/90
 
-FILES=	tmac.an tmac.an.new tmac.an6n tmac.an6t
+FILES=	tmac.an tmac.r
+
+# old macros not currently installed...
+OFILES=	tmac.an.v6compat tmac.an6n tmac.an6t tmac.a tmac.cp
 
 all clean cleandir depend lint tags:
 
