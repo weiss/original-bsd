@@ -4,24 +4,24 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ns_error.c	7.8 (Berkeley) 06/28/90
+ *	@(#)ns_error.c	7.9 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "systm.h"
-#include "malloc.h"
-#include "mbuf.h"
-#include "protosw.h"
-#include "socket.h"
-#include "time.h"
-#include "kernel.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/malloc.h>
+#include <sys/mbuf.h>
+#include <sys/protosw.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/kernel.h>
 
-#include "../net/route.h"
+#include <net/route.h>
 
-#include "ns.h"
-#include "ns_pcb.h"
-#include "idp.h"
-#include "ns_error.h"
+#include <netns/ns.h>
+#include <netns/ns_pcb.h>
+#include <netns/idp.h>
+#include <netns/ns_error.h>
 
 #ifdef lint
 #define NS_ERRPRINTFS 1
