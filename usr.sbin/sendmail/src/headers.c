@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.62 (Berkeley) 05/15/95";
+static char sccsid[] = "@(#)headers.c	8.63 (Berkeley) 05/15/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -1158,6 +1158,7 @@ vanilla:
 	**  MIME headers.
 	*/
 
+#if MIME8TO7
 	if (bitset(MM_MIME8BIT, MimeMode) &&
 	    bitset(EF_HAS8BIT, e->e_flags) &&
 	    !bitnset(M_8BITS, mci->mci_mailer->m_flags) &&
@@ -1174,6 +1175,7 @@ vanilla:
 		if (hvalue("Content-Transfer-Encoding", e->e_header) == NULL)
 			putline("Content-Transfer-Encoding: 8bit", mci);
 	}
+#endif
 }
 /*
 **  COMMAIZE -- output a header field, making a comma-translated list.
