@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	6.52 (Berkeley) 04/26/93
+ *	@(#)sendmail.h	6.53 (Berkeley) 04/29/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	6.52		04/26/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	6.53		04/29/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -153,6 +153,7 @@ typedef struct mailer	MAILER;
 
 /* bits for m_flags */
 # define M_ESMTP	'a'	/* run Extended SMTP protocol */
+# define M_BLANKEND	'b'	/* ensure blank line at end of message */
 # define M_NOCOMMENT	'c'	/* don't include comment part of address */
 # define M_CANONICAL	'C'	/* make addresses canonical "u@dom" */
 		/*	'D'	/* CF: include Date: */
