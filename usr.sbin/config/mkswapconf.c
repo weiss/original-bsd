@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mkswapconf.c	5.10 (Berkeley) 07/01/91";
+static char sccsid[] = "@(#)mkswapconf.c	5.11 (Berkeley) 04/19/93";
 #endif /* not lint */
 
 /*
@@ -77,7 +77,7 @@ do_swap(fl)
 		    major(dev), minor(dev), swap->f_swapsize, swap->f_fn);
 		swap = swap->f_next;
 	} while (swap && swap->f_type == SWAPSPEC);
-	fprintf(fp, "\t{ 0, 0, 0 }\n");
+	fprintf(fp, "\t{ NODEV, 0, 0 }\n");
 	fprintf(fp, "};\n");
 	fclose(fp);
 	return (swap);
