@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.61		02/26/82";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.62		02/27/82";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -322,6 +322,8 @@ EXTERN bool	ArpaMode;	/* set if running arpanet protocol */
 EXTERN bool	ForkOff;	/* fork after initial verification */
 EXTERN bool	OldStyle;	/* spaces (not commas) delimit addresses */
 EXTERN bool	NoConnect;	/* don't connect to non-local mailers */
+EXTERN bool	RetReceipt;	/* give a return receipt if delivery occurs */
+EXTERN bool	SendReceipt;	/* actually send a receipt back */
 extern time_t	TimeOut;	/* time until timeout */
 EXTERN FILE	*InChannel;	/* input connection */
 EXTERN FILE	*OutChannel;	/* output connection */
