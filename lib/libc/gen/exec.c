@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)exec.c	5.6 (Berkeley) 02/23/91";
+static char sccsid[] = "@(#)exec.c	5.7 (Berkeley) 03/06/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
@@ -32,7 +32,7 @@ buildargv(ap, arg, envpp)
 	char ***envpp;
 {
 	register size_t max, off;
-	register char **argv;
+	register char **argv = NULL;
 
 	for (off = max = 0;; ++off) {
 		if (off >= max) {
