@@ -1,5 +1,5 @@
 /* Copyright (c) 1981 Regents of the University of California */
-static char *sccsid = "@(#)ex3.7preserve.c	7.7	07/03/83";
+static char *sccsid = "@(#)ex3.7preserve.c	7.8	08/14/83";
 #include <stdio.h>
 #include <ctype.h>
 #include <sys/param.h>
@@ -310,7 +310,7 @@ notify(uid, fname, flag)
 
 	if (pp == NULL)
 		return;
-	sprintf(cmd, "mail %s", pp->pw_name);
+	sprintf(cmd, "/bin/mail %s", pp->pw_name);
 	mf = popen(cmd, "w");
 	if (mf == NULL)
 		return;
