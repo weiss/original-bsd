@@ -12,12 +12,8 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.23 (Berkeley) 02/09/91";
+static char sccsid[] = "@(#)savecore.c	5.24 (Berkeley) 02/27/91";
 #endif /* not lint */
-
-/*
- * savecore
- */
 
 #include <sys/param.h>
 #include <sys/mount.h>
@@ -551,7 +547,7 @@ log(level, msg, a1, a2)
 
 Perror(level, msg, s)
 	int level;
-	char *msg;
+	char *msg, *s;
 {
 	int oerrno = errno;
 	
