@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)in.h	7.14 (Berkeley) 04/18/93
+ *	@(#)in.h	7.15 (Berkeley) 06/04/93
  */
 
 /*
@@ -203,6 +203,10 @@ struct ip_mreq {
 
 
 #ifdef KERNEL
-struct	in_addr in_makeaddr();
-u_long	in_netof(), in_lnaof();
+int	 in_broadcast __P((struct in_addr, struct ifnet *));
+int	 in_canforward __P((struct in_addr));
+int	 in_cksum __P((struct mbuf *, int));
+int	 in_localaddr __P((struct in_addr));
+u_long	 in_netof __P((struct in_addr));
+void	 in_socktrim __P((struct sockaddr_in *));
 #endif

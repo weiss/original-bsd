@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_timer.c	7.21 (Berkeley) 02/12/93
+ *	@(#)tcp_timer.c	7.22 (Berkeley) 06/04/93
  */
 
 #ifndef TUBA_INCLUDE
@@ -39,6 +39,7 @@ int	tcp_maxidle;
 /*
  * Fast timeout routine for processing delayed acks
  */
+void
 tcp_fasttimo()
 {
 	register struct inpcb *inp;
@@ -63,6 +64,7 @@ tcp_fasttimo()
  * Updates the timers in all active tcb's and
  * causes finite state machine actions if timers expire.
  */
+void
 tcp_slowtimo()
 {
 	register struct inpcb *ip, *ipnxt;
@@ -112,6 +114,7 @@ tpgone:
 /*
  * Cancel all timers for TCP tp.
  */
+void
 tcp_canceltimers(tp)
 	struct tcpcb *tp;
 {

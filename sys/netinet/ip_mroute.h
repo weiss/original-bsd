@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ip_mroute.h	7.2 (Berkeley) 07/08/92
+ *	@(#)ip_mroute.h	7.3 (Berkeley) 06/04/93
  */
 
 /*
@@ -141,7 +141,7 @@ struct mrtstat {
 
 
 int	ip_mrouter_cmd __P((int, struct socket *, struct mbuf *));
-int	ip_mrouter_done __P(());
+int	ip_mrouter_done __P((void));
 
 #endif /* KERNEL */
 
