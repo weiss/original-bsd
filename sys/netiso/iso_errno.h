@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)iso_errno.h	7.5 (Berkeley) 05/06/91
+ */
+
 /***********************************************************
 		Copyright IBM Corporation 1987
 
@@ -24,7 +33,6 @@ SOFTWARE.
 /*
  * ARGO Project, Computer Sciences Dept., University of Wisconsin - Madison
  */
-/*	@(#)iso_errno.h	7.4 (Berkeley) 05/30/90 */
 
 #ifndef __ISO_ERRNO__
 #define __ISO_ERRNO__

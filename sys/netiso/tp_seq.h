@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)tp_seq.h	7.5 (Berkeley) 05/06/91
+ */
+
 /***********************************************************
 		Copyright IBM Corporation 1987
 
@@ -29,7 +38,6 @@ SOFTWARE.
  *
  * $Header: tp_seq.h,v 5.1 88/10/12 12:20:59 root Exp $
  * $Source: /usr/argo/sys/netiso/RCS/tp_seq.h,v $
- *	@(#)tp_seq.h	7.4 (Berkeley) 01/16/90 *
  *
  * These macros perform sequence number arithmetic modulo (2**7 or 2**31).
  * The relevant fields in the tpcb are:

@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)tp_timer.h	7.4 (Berkeley) 05/06/91
+ */
+
 /***********************************************************
 		Copyright IBM Corporation 1987
 
@@ -29,7 +38,6 @@ SOFTWARE.
  *
  * $Header: tp_timer.h,v 5.1 88/10/12 12:21:41 root Exp $
  * $Source: /usr/argo/sys/netiso/RCS/tp_timer.h,v $
- *	@(#)tp_timer.h	7.3 (Berkeley) 08/29/89 *
  *
  * ARGO TP
  * The callout structures used by the tp timers.

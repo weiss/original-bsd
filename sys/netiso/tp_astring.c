@@ -1,6 +1,12 @@
-/* $Header$ */
-/* $Source$ */
-/*	@(#)tp_astring.c	7.3 (Berkeley) 08/29/89 */
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ *
+ *	@(#)tp_astring.c	7.4 (Berkeley) 05/06/91
+ */
+
 #ifndef _NFILE
 #include <stdio.h>
 #endif _NFILE
