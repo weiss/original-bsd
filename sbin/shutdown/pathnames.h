@@ -14,8 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.3 (Berkeley) 02/15/90
+ *	@(#)pathnames.h	5.4 (Berkeley) 02/20/90
  */
+
+#include <paths.h>
 
 #define	_PATH_FASTBOOT	"/fastboot"
 #define	_PATH_HALT	"/sbin/halt"
