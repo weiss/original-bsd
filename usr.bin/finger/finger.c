@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)finger.c	5.3 (Berkeley) 08/28/85";
+static char sccsid[] = "@(#)finger.c	5.4 (Berkeley) 10/09/85";
 #endif not lint
 
 /*
@@ -1064,5 +1064,6 @@ netfinger(name)
 	}
 	if (lastc != '\n')
 		putchar('\n');
+	(void)fclose(f);
 	return (1);
 }
