@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)funopen.c	5.1 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)funopen.c	5.2 (Berkeley) 02/05/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdio.h>
@@ -18,10 +18,10 @@ static char sccsid[] = "@(#)funopen.c	5.1 (Berkeley) 01/20/91";
 
 FILE *
 funopen(cookie, readfn, writefn, seekfn, closefn)
-	char *cookie;
+	const void *cookie;
 	int (*readfn)(), (*writefn)();
 #if __STDC__
-	fpos_t (*seekfn)(char *cookie, fpos_t off, int whence);
+	fpos_t (*seekfn)(void *cookie, fpos_t off, int whence);
 #else
 	fpos_t (*seekfn)();
 #endif
@@ -46,7 +46,7 @@ funopen(cookie, readfn, writefn, seekfn, closefn)
 		return (NULL);
 	fp->_flags = flags;
 	fp->_file = -1;
-	fp->_cookie = cookie;
+	fp->_cookie = (void *)cookie;
 	fp->_read = readfn;
 	fp->_write = writefn;
 	fp->_seek = seekfn;
