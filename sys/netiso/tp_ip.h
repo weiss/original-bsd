@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_ip.h	7.3 (Berkeley) 05/06/91
+ *	@(#)tp_ip.h	7.4 (Berkeley) 10/11/92
  */
 
 /***********************************************************
@@ -48,15 +48,15 @@ SOFTWARE.
 #define __TP_IP__
 
 #ifndef SOCK_STREAM
-#include "socket.h"
-#endif SOCK_STREAM
+#include <sys/socket.h>
+#endif
 
-#include "../netinet/in.h"
-#include "../netinet/in_systm.h"
-#include "../netinet/ip.h"
-#include "../net/route.h"
-#include "../netinet/in_pcb.h"
-#include "../netinet/ip_var.h"
+#include <netinet/in.h>
+#include <netinet/in_systm.h>
+#include <netinet/ip.h>
+#include <net/route.h>
+#include <netinet/in_pcb.h>
+#include <netinet/ip_var.h>
 
 
 struct inpcb tp_inpcb;	
