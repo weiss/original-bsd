@@ -16,10 +16,10 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rindex.c	5.4 (Berkeley) 06/27/88";
+static char sccsid[] = "@(#)rindex.c	5.5 (Berkeley) 05/16/90";
 #endif /* LIBC_SCCS and not lint */
 
-#include <stdio.h>
+#include <stddef.h>
 
 char *
 rindex(p, ch)
