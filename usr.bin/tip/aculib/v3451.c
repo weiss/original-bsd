@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)v3451.c	5.2 (Berkeley) 09/13/88";
+static char sccsid[] = "@(#)v3451.c	5.3 (Berkeley) 10/03/89";
 #endif /* not lint */
 
 /*
@@ -30,7 +30,8 @@ v3451_dialer(num, acu)
 	register char *num;
 	char *acu;
 {
-	int ok, (*func)();
+	sig_t func;
+	int ok;
 	int slow = number(value(BAUDRATE)) < 1200, rw = 2;
 	char phone[50];
 #ifdef ACULOG
