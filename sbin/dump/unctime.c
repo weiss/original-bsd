@@ -1,3 +1,7 @@
+#ifndef lint
+static char sccsid[] = "@(#)unctime.c	1.5 (Berkeley) 08/13/83";
+#endif
+
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stdio.h>
@@ -106,4 +110,3 @@ dcmp(dp, dp2)
 	DECIDE(tm_sec);
 	return(0);
 }
-static	char *sccsid = "@(#)unctime.c	1.4 (Berkeley) 83/07/03";
