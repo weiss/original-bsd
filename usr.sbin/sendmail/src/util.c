@@ -2,7 +2,7 @@
 # include "useful.h"
 # include <ctype.h>
 
-static char	SccsId[] = "@(#)util.c	3.2	03/07/81";
+static char	SccsId[] = "@(#)util.c	3.3	03/07/81";
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -124,8 +124,9 @@ newstr(s)
 	register char *s;
 {
 	register char *p;
+	extern char *strcpy();
 
-	p = xalloc(strlen(s) + 1);
+	p = xalloc((unsigned) (strlen(s) + 1));
 	strcpy(p, s);
 	return (p);
 }
