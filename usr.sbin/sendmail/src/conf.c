@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.63 (Berkeley) 01/15/94";
+static char sccsid[] = "@(#)conf.c	8.64 (Berkeley) 01/15/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1456,24 +1456,29 @@ usershellok(shell)
 **		Puts the filesystem block size into bsize.
 */
 
-#ifdef HASSTATFS
-# undef HASUSTAT
+/* statfs types */
+#define SFS_NONE	0	/* no statfs implementation */
+#define SFS_USTAT	1	/* use ustat */
+#define SFS_4ARGS	2	/* use four-argument statfs call */
+#define SFS_VFS		3	/* use <sys/vfs.h> implementation */
+#define SFS_MOUNT	4	/* use <sys/mount.h> implementation */
+#define SFS_STATFS	5	/* use <sys/statfs.h> implementation */
+
+#ifndef SFS_TYPE
+# define SFS_TYPE	SFS_NONE
 #endif
 
-#if defined(HASUSTAT)
+#if SFS_TYPE == SFS_USTAT
 # include <ustat.h>
 #endif
-
-#ifdef HASSTATFS
-# if defined(IRIX) || defined(apollo) || defined(_SCO_unix_) || defined(UMAXV) || defined(DGUX) || defined(_AIX3)
-#  include <sys/statfs.h>
-# else
-#  if (defined(sun) && !defined(BSD)) || defined(__hpux) || defined(_CONVEX_SOURCE) || defined(NeXT) || defined(_AUX_SOURCE) || defined(MACH386)
-#   include <sys/vfs.h>
-#  else
-#   include <sys/mount.h>
-#  endif
-# endif
+#if SFS_TYPE == SFS_4ARGS || SFS_TYPE == SFS_STATFS
+# include <sys/statfs.h>
+#endif
+#if SFS_TYPE == SFS_VFS
+# include <sys/vfs.h>
+#endif
+#if SFS_TYPE == SFS_MOUNT
+# include <sys/mount.h>
 #endif
 
 long
@@ -1481,8 +1486,8 @@ freespace(dir, bsize)
 	char *dir;
 	long *bsize;
 {
-#if defined(HASSTATFS) || defined(HASUSTAT)
-# if defined(HASUSTAT)
+#if SFS_TYPE != SFS_NONE
+# if SFS_TYPE == SFS_USTAT
 	struct ustat fs;
 	struct stat statbuf;
 #  define FSBLOCKSIZE	DEV_BSIZE
@@ -1502,10 +1507,10 @@ freespace(dir, bsize)
 # endif
 	extern int errno;
 
-# if defined(HASUSTAT)
+# if SFS_TYPE == SFS_USTAT
 	if (stat(dir, &statbuf) == 0 && ustat(statbuf.st_dev, &fs) == 0)
 # else
-#  if defined(IRIX) || defined(apollo) || defined(UMAXV) || defined(DGUX)
+#  if SFS_TYPE == SFS_4ARGS
 	if (statfs(dir, &fs, sizeof fs, 0) == 0)
 #  else
 #   if defined(ultrix)
