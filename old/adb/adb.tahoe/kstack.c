@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)kstack.c	5.1 (Berkeley) 01/16/89";
+static char sccsid[] = "@(#)kstack.c	5.2 (Berkeley) 01/14/91";
 #endif
 
 /*
@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)kstack.c	5.1 (Berkeley) 01/16/89";
 #include <ctype.h>
 #include <machine/pte.h>
 #include <machine/frame.h>
-#include <machine/rpb.h>
+#include </sys/tahoe/tahoe/rpb.h>
 
 struct	pte *sbr;
 int	slr;
