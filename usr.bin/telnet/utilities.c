@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)utilities.c	1.8 (Berkeley) 11/30/88";
+static char sccsid[] = "@(#)utilities.c	1.9 (Berkeley) 11/30/88";
 #endif /* not lint */
 
 #define	TELOPTS
@@ -229,6 +229,11 @@ SetForExit()
     if (In3270) {
 	Finish3270();
     }
+#else	/* defined(TN3270) */
+    do {
+	telrcv();			/* Process any incoming data */
+	EmptyTerminal();
+    } while (ring_full_count(&netiring));	/* While there is any */
 #endif	/* defined(TN3270) */
     setcommandmode();
     fflush(stdout);
