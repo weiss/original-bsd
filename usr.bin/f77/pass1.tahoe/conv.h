@@ -1,3 +1,12 @@
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)conv.h	5.2 (Berkeley) 04/12/91
+ */
+
 #if TARGET != TAHOE
 	}}}}}	WRONG MACHINE!!!	}}}}}
 #endif
