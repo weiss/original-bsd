@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 06/29/90
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	pc2
 CFLAGS=	-I/sys/${MACHINE}/inline
