@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)dumprmt.c	1.5 (Berkeley) 06/12/83";
+static	char *sccsid = "@(#)dumprmt.c	1.6 (Berkeley) 07/01/83";
 
 #include <sys/param.h>
 #include <sys/mtio.h>
@@ -161,7 +161,7 @@ rmtioctl(cmd, count)
 	if (count < 0)
 		return (-1);
 	sprintf(buf, "I%d\n%d\n", cmd, count);
-	rmtcall("ioctl", buf);
+	return (rmtcall("ioctl", buf));
 }
 
 rmtcall(cmd, buf)
