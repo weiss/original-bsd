@@ -9,22 +9,22 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pk_output.c	7.11 (Berkeley) 07/17/91
+ *	@(#)pk_output.c	7.12 (Berkeley) 10/11/92
  */
 
-#include "param.h"
-#include "systm.h"
-#include "mbuf.h"
-#include "socket.h"
-#include "socketvar.h"
-#include "protosw.h"
-#include "errno.h"
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/mbuf.h>
+#include <sys/socket.h>
+#include <sys/socketvar.h>
+#include <sys/protosw.h>
+#include <sys/errno.h>
 
-#include "../net/if.h"
+#include <net/if.h>
 
-#include "x25.h"
-#include "pk.h"
-#include "pk_var.h"
+#include <netccitt/x25.h>
+#include <netccitt/pk.h>
+#include <netccitt/pk_var.h>
 
 struct mbuf_cache pk_output_cache = {0 }, pk_input_cache;
 struct	mbuf *nextpk ();
