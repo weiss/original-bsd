@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.197 (Berkeley) 06/15/95";
+static char sccsid[] = "@(#)conf.c	8.198 (Berkeley) 06/15/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -2214,6 +2214,7 @@ vsprintf(s, fmt, ap)
 **  USERSHELLOK -- tell if a user's shell is ok for unrestricted use
 **
 **	Parameters:
+**		user -- the name of the user we are checking.
 **		shell -- the user's shell from /etc/passwd
 **
 **	Returns:
@@ -2271,14 +2272,16 @@ char	*DefaultUserShells[] =
 #define WILDCARD_SHELL	"/SENDMAIL/ANY/SHELL/"
 
 bool
-usershellok(shell)
+usershellok(user, shell)
+	char *user;
 	char *shell;
 {
 #if HASGETUSERSHELL
 	register char *p;
 	extern char *getusershell();
 
-	if (shell == NULL || shell[0] == '\0' || ConfigLevel <= 1)
+	if (shell == NULL || shell[0] == '\0' || wordinclass(user, 't') ||
+	    ConfigLevel <= 1)
 		return TRUE;
 
 	setusershell();
@@ -2294,7 +2297,7 @@ usershellok(shell)
 	register FILE *shellf;
 	char buf[MAXLINE];
 
-	if (shell == NULL || shell[0] == '\0')
+	if (shell == NULL || shell[0] == '\0' || wordinclass(user, 't'))
 		return TRUE;
 
 # if USEGETCONFATTR
