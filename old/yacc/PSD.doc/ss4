@@ -1,4 +1,4 @@
-.\"	@(#)ss4	4.1 (Berkeley) 05/08/86
+.\"	@(#)ss4	5.1 (Berkeley) 05/08/86
 .\"
 .SH
 4: How the Parser Works
