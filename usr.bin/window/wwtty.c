@@ -9,10 +9,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)wwtty.c	3.17 (Berkeley) 08/12/90";
+static char sccsid[] = "@(#)wwtty.c	3.18 (Berkeley) 02/02/91";
 #endif /* not lint */
 
 #include "ww.h"
+#include <sys/types.h>
 #include <fcntl.h>
 #if !defined(OLD_TTY) && !defined(TIOCGWINSZ)
 #include <sys/ioctl.h>
