@@ -1,9 +1,10 @@
-/*
- * Copyright (c) 1982, 1986, 1988 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1982, 1986, 1988 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)copy.c	7.5 (Berkeley) 05/24/88
+ * %sccs.include.redist.c%
+ *
+ *	@(#)copy.c	7.6 (Berkeley) 05/03/91
  */
 
 #define	BSIZE	10240
