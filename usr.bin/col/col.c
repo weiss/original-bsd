@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)col.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)col.c	4.2 (Berkeley) 05/15/84";
 # include <stdio.h>
 # define PL 256
 # define ESC '\033'
@@ -24,9 +24,7 @@ main (argc, argv)
 	int i;
 	int greek;
 	register int c;
-	char fbuff[BUFSIZ];
 
-	setbuf (stdout, fbuff);
 	pgmname = argv[0];
 
 	for (i = 1; i < argc; i++) {
