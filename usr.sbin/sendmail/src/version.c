@@ -1,1 +1,1 @@
-char	Version[] = "@(#)Delivermail version 1.8 of 10/21/80";
+char	Version[] = "@(#)Delivermail version 1.9 of 10/27/80";
