@@ -1,10 +1,11 @@
-#	@(#)Makefile	7.12 (Berkeley) 05/24/90
+#	@(#)Makefile	7.13 (Berkeley) 02/26/91
 
 PROG=	newfs
 CFLAGS+=-DMFS
-SRCS=	newfs.c mkfs.c
+SRCS=	dkcksum.c newfs.c mkfs.c
 MAN8=	newfs.0
 LINKS=	${BINDIR}/newfs ${BINDIR}/mount_mfs
 MLINKS=	newfs.8 mfs.8
+.PATH:	${.CURDIR}/../disklabel
 
 .include <bsd.prog.mk>
