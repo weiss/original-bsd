@@ -1,13 +1,16 @@
-#	@(#)Makefile	5.1 (Berkeley) 07/19/92
+#	@(#)Makefile	5.2 (Berkeley) 02/20/93
 
 CFLAGS=	-O -DLIBC_SCCS
-OBJS=	crt0.o
-CLEANFILES+=	gmon.o mon.o moncrt0.o core a.out
+OBJS=	crt0.o gcrt0.o
+CLEANFILES+=	core a.out
 
 all: ${OBJS}
 
 crt0.o: crt0.s
-	${CC} -c -DCRT0 ${.ALLSRC}
+	${CPP} -DCRT0 ${.ALLSRC} | ${AS} -o $@
+
+gcrt0.o: crt0.s
+	${CPP} -DMCRT0 ${.ALLSRC} | ${AS} -o $@
 
 install:
 	install -o ${BINOWN} -g ${BINGRP} -m 444 ${OBJS} \
