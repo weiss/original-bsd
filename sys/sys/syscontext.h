@@ -14,9 +14,9 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)syscontext.h	7.3 (Berkeley) 05/29/90
+ *	@(#)syscontext.h	7.4 (Berkeley) 06/22/90
  */
 
 #include <user.h>
 
-#define RETURN(value)	{ u.u_error = (value); return (u.u_error); }
+#define RETURN(value)	{ return (value); }
