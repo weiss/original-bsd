@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)printjob.c	4.19 (Berkeley) 09/06/84";
+static char sccsid[] = "@(#)printjob.c	4.20 (Berkeley) 10/23/84";
 #endif
 
 /*
@@ -214,6 +214,7 @@ printit(file)
 	 */
 	for (i = 0; i < 4; i++)
 		strcpy(fonts[i], ifonts[i]);
+	strcpy(indent+2, "0");
 
 	/*
 	 *      read the control file for work to do
