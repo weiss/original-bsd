@@ -6,9 +6,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)hist.c	5.7 (Berkeley) 06/07/91";
+static char sccsid[] = "@(#)hist.c	5.8 (Berkeley) 06/08/91";
 #endif /* not lint */
 
+#include <sys/types.h>
+#include <stdlib.h>
 #include "csh.h"
 #include "extern.h"
 
@@ -90,7 +92,7 @@ dohist(vp)
     if (getn(value(STRhistory)) == 0)
 	return;
     if (setintr)
-	(void) sigsetmask(sigblock((sigmask_t) 0) & ~sigmask(SIGINT));
+	(void) sigsetmask(sigblock((sigset_t) 0) & ~sigmask(SIGINT));
     while (*++vp && **vp == '-') {
 	Char   *vp2 = *vp;
 

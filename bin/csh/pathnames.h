@@ -4,9 +4,8 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pathnames.h	5.5 (Berkeley) 05/31/90
+ *	@(#)pathnames.h	5.6 (Berkeley) 06/08/91
  */
-#include <paths.h>
 
 #define	_PATH_BIN		"/bin"
 #define	_PATH_DOTCSHRC		"/etc/csh.cshrc"

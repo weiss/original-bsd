@@ -6,11 +6,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)exp.c	5.9 (Berkeley) 06/07/91";
+static char sccsid[] = "@(#)exp.c	5.10 (Berkeley) 06/08/91";
 #endif /* not lint */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "csh.h"
-#include "dir.h"
 #include "extern.h"
 
 #define IGNORE	1	/* in ignore, it means to ignore value, just parse */

@@ -6,12 +6,15 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)err.c	5.8 (Berkeley) 06/07/91";
+static char sccsid[] = "@(#)err.c	5.9 (Berkeley) 06/08/91";
 #endif /* not lint */
 
-#define _h_tc_err		/* Don't redefine the errors	 */
+#include <sys/types.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "csh.h"
 #include "extern.h"
+
 #if __STDC__
 #include <stdarg.h>
 #else
