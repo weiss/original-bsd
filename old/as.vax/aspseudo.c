@@ -2,7 +2,7 @@
  *	Copyright (c) 1982 Regents of the University of California
  */
 #ifndef lint
-static char sccsid[] = "@(#)aspseudo.c 4.4 02/14/82";
+static char sccsid[] = "@(#)aspseudo.c 4.5 06/30/83";
 #endif not lint
 
 #include <stdio.h>
@@ -21,5 +21,5 @@ static char sccsid[] = "@(#)aspseudo.c 4.4 02/14/82";
 
 readonly struct Instab instab[] = {
 #include "instrs.as"
-0
+PSEUDO("\0\0\0\0\0\0\0\0\0\0", 0, 0)
 };
