@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)pccons.c	5.9 (Berkeley) 05/12/91
+ *	@(#)pccons.c	5.10 (Berkeley) 05/16/91
  */
 
 /*
@@ -169,10 +169,12 @@ pcopen(dev, flag, mode, p)
 	return ((*linesw[tp->t_line].l_open)(dev, tp));
 }
 
-pcclose(dev, flag)
+pcclose(dev, flag, mode, p)
 	dev_t dev;
+	int flag, mode;
+	struct proc *p;
 {
-	(*linesw[pccons.t_line].l_close)(&pccons);
+	(*linesw[pccons.t_line].l_close)(&pccons, flag);
 	ttyclose(&pccons);
 	return(0);
 }
