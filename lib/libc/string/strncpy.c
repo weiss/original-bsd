@@ -1,4 +1,7 @@
-/* @(#)strncpy.c	4.1 (Berkeley) 12/21/80 */
+#ifndef lint
+static char sccsid[] = "@(#)strncpy.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 /*
  * Copy s2 to s1, truncating or null-padding to always copy n bytes
  * return s1
