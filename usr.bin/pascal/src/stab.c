@@ -1,7 +1,7 @@
 /* Copyright (c) 1980 Regents of the University of California */
 
 #ifndef lint
-static	char sccsid[] = "@(#)stab.c 1.10 02/06/84";
+static	char sccsid[] = "@(#)stab.c 1.11 02/07/84";
 #endif
 
     /*
@@ -31,6 +31,7 @@ static	char sccsid[] = "@(#)stab.c 1.10 02/06/84";
      *	absolute value: line numbers are negative if error recovery.
      */
 #define	ABS( x )	( x < 0 ? -x : x )
+long checksum();
 
     /*
      *	global variables
@@ -279,7 +280,7 @@ checksum(filename)
 	}
 	check ^= input;
     }
-    fclose(filep);
+    (void) fclose(filep);
     if ((unsigned) check <= N_FLAGCHECKSUM) {
 	return N_FLAGCHECKSUM + 1;
     } else {
