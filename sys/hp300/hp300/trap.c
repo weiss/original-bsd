@@ -11,13 +11,12 @@
  *
  * from: Utah $Hdr: trap.c 1.32 91/04/06$
  *
- *	@(#)trap.c	7.16 (Berkeley) 08/28/91
+ *	@(#)trap.c	7.17 (Berkeley) 11/20/91
  */
 
 #include "param.h"
 #include "systm.h"
 #include "proc.h"
-#include "seg.h"
 #include "acct.h"
 #include "kernel.h"
 #include "signalvar.h"
