@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)pxref.p	5.2 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)pxref.p	5.3 (Berkeley) 06/05/85";
 #endif not lint
 
 {$t-,p-,b2,w+}
@@ -19,7 +19,6 @@ program xref(input, output);
 label
     99, 100;
 const
-    { sccsid = '@(#)pxref.p	5.2 (Berkeley) 06/05/85'; }
     alfasize = 18;
     linesize = 10;
     namesize = 64;
