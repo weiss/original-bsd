@@ -1,7 +1,7 @@
 /*
 **  USEFUL.H -- Some useful stuff.
 **
-**	@(#)useful.h	3.3	08/17/81
+**	@(#)useful.h	3.4	09/24/81
 */
 
 # ifndef makedev
@@ -31,4 +31,9 @@ extern long	time();
 extern char	*ctime();
 # ifndef V6
 extern char	*getenv();
-# endif
+# else V6
+typedef char	*u_short;
+typedef long	u_long;
+typedef char	u_char;
+typedef int	void;
+# endif V6

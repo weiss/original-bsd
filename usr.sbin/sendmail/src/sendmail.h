@@ -1,7 +1,7 @@
 /*
 **  SENDMAIL.H -- Global definitions for sendmail.
 **
-**	@(#)sendmail.h	3.44.1.1	09/23/81
+**	@(#)sendmail.h	3.45	09/24/81
 */
 
 
@@ -14,7 +14,6 @@
 
 # include <stdio.h>
 # include <ctype.h>
-# include "conf.h"
 # include "useful.h"
 
 /*
@@ -100,6 +99,7 @@ struct mailer
 	char	*m_mailer;	/* pathname of the mailer to use */
 	u_long	m_flags;	/* status flags, see below */
 	short	m_badstat;	/* the status code to use on unknown error */
+	short	m_mno;		/* mailer number internally */
 	char	*m_from;	/* pattern for From: header */
 	char	**m_argv;	/* template argument vector */
 	ADDRESS	*m_sendq;	/* list of addresses to send to */

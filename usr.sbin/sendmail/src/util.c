@@ -2,9 +2,8 @@
 # include <sysexits.h>
 # include "useful.h"
 # include <ctype.h>
-# include "conf.h"
 
-static char	SccsId[] = "@(#)util.c	3.8.1.1	09/23/81";
+static char	SccsId[] = "@(#)util.c	3.9	09/24/81";
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
@@ -364,6 +363,8 @@ buildfname(p, login, buf)
 {
 	register char *bp = buf;
 
+	if (*p == '*')
+		p++;
 	while (*p != '\0' && *p != ',' && *p != ';')
 	{
 		if (*p == '&')
