@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.19 (Berkeley) 10/31/93";
+static char sccsid[] = "@(#)alias.c	8.20 (Berkeley) 11/13/93";
 #endif /* not lint */
 
 
@@ -544,7 +544,7 @@ readaliases(map, af, automatic)
 		}
 		if (parseaddr(line, &al, RF_COPYALL, ':', NULL, CurEnv) == NULL)
 		{
-			syserr("554 %s... illegal alias name", al.q_paddr);
+			syserr("554 %.40s... illegal alias name", line);
 			continue;
 		}
 
