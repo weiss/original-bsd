@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.13 (Berkeley) 10/12/92
+#	@(#)Makefile	5.14 (Berkeley) 02/13/93
 
-# BROKEN: tn3270, lisp
+# BROKEN: tn3270
 SUBDIR=	apply ar at awk banner basename bc bdes biff cal calendar cap_mkdb \
 	checknr chflags chpass cksum col colcrt colrm column comm compress \
 	cpio ctags cut dc deroff diction diff dirname du env error ex \
