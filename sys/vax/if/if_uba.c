@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_uba.c	7.3 (Berkeley) 08/09/86
+ *	@(#)if_uba.c	7.4 (Berkeley) 03/10/87
  */
 
 #include "../machine/pte.h"
@@ -273,27 +273,24 @@ rcv_xmtbuf(ifw)
 	register struct mbuf *m;
 	struct mbuf **mprev;
 	register i;
-	int t;
 	char *cp;
 
 	while (i = ffs((long)ifw->ifw_xswapd)) {
 		cp = ifw->ifw_base + i * CLBYTES;
 		i--;
 		ifw->ifw_xswapd &= ~(1<<i);
-		i *= CLSIZE;
 		mprev = &ifw->ifw_xtofree;
 		for (m = ifw->ifw_xtofree; m && m->m_next; m = m->m_next)
 			mprev = &m->m_next;
 		if (m == NULL)
-			return;
+			break;
 		bcopy(mtod(m, caddr_t), cp, CLBYTES);
 		(void) m_free(m);
 		*mprev = NULL;
-		for (t = 0; t < CLSIZE; t++) {
-			ifw->ifw_mr[i] = ifw->ifw_wmap[i];
-			i++;
-		}
 	}
+	ifw->ifw_xswapd = 0;
+	for (i = 0; i < ifw->ifw_nmr; i++)
+		ifw->ifw_mr[i] = ifw->ifw_wmap[i];
 }
 
 /*
