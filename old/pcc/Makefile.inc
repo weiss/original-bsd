@@ -1,5 +1,4 @@
-#	@(#)Makefile.inc	5.1 (Berkeley) 06/17/90
+#	@(#)Makefile.inc	5.2 (Berkeley) 02/01/91
 
-.if exists(../Makefile.inc)
-.include "../Makefile.inc"
-.endif
+BINDIR?=	/usr/old/libexec
+MANDIR?=	/usr/share/man/old/cat
