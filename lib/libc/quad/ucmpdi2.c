@@ -6,12 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)ucmpdi2.c	5.1 (Berkeley) 05/12/92";
+static char sccsid[] = "@(#)ucmpdi2.c	5.2 (Berkeley) 05/12/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include "longlong.h"
 
-SItype
+long int
 __ucmpdi2 (a, b)
      long long a, b;
 {
