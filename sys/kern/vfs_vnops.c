@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_vnops.c	8.6 (Berkeley) 01/09/95
+ *	@(#)vfs_vnops.c	8.7 (Berkeley) 02/14/95
  */
 
 #include <sys/param.h>
@@ -319,7 +319,7 @@ vn_stat(vp, sb, p)
 	sb->st_rdev = vap->va_rdev;
 	sb->st_size = vap->va_size;
 	sb->st_atimespec = vap->va_atime;
-	sb->st_mtimespec= vap->va_mtime;
+	sb->st_mtimespec = vap->va_mtime;
 	sb->st_ctimespec = vap->va_ctime;
 	sb->st_blksize = vap->va_blocksize;
 	sb->st_flags = vap->va_flags;
