@@ -1,11 +1,9 @@
+/*	pathnames.h	2.6	83/08/11	*/
+
 /*
  * Declarations and constants specific to an installation.
  *
  * Vax/Unix version 7.
- */
- 
-/*
- * Sccs Id = "@(#)pathnames.h	2.5 01/29/83";
  */
 
 #define	GETHOST				/* System has gethostname syscall */

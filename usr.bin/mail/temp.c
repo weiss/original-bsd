@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)temp.c	2.3 (Berkeley) 08/11/83";
+#endif
 
 #include "rcv.h"
 
@@ -7,8 +9,6 @@
  *
  * Give names to all the temporary files that we will need.
  */
-
-static char *SccsId = "@(#)temp.c	2.2 06/24/82";
 
 char	tempMail[14];
 char	tempQuit[14];

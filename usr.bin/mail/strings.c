@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)strings.c	2.2 (Berkeley) 08/11/83";
+#endif
 
 /*
  * Mail -- a mail program
@@ -9,8 +11,6 @@
  */
 
 #include "rcv.h"
-
-static char *SccsId = "@(#)strings.c	2.1 07/01/81";
 
 /*
  * Allocate size more bytes of space and return the address of the

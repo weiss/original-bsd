@@ -1,4 +1,6 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)v7.local.c	2.3 (Berkeley) 08/11/83";
+#endif
 
 /*
  * Mail -- a mail program
@@ -9,8 +11,6 @@
  */
 
 #include "rcv.h"
-
-static char *SccsId = "@(#)v7.local.c	2.2 07/28/82";
 
 /*
  * Locate the user's mailbox file (ie, the place where new, unread
