@@ -1,8 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)table.c	1.1 (Berkeley) 01/11/86";
+static char sccsid[] = "@(#)table.c	1.2 (Berkeley) 02/04/86";
 #endif
 
-# include "mfile2"
+# include "pass2.h"
 /* special shapes (SSOREG,SZERO etc.) shouldn't be or-ed */
 # define AWD SNAME|SOREG|SCON|STARNM|STARREG
 /* tbl */
