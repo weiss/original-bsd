@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.42 (Berkeley) 10/16/94";
+static char sccsid[] = "@(#)readcf.c	8.43 (Berkeley) 10/17/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -84,6 +84,7 @@ readcf(cfname, safe, e)
 	struct stat statb;
 	char exbuf[MAXLINE];
 	char pvpbuf[MAXLINE + MAXATOM];
+	static char *null_list[1] = { NULL };
 	extern char *munchstring();
 	extern void makemapentry();
 
@@ -295,7 +296,10 @@ readcf(cfname, safe, e)
 				}
 			}
 			else
+			{
 				syserr("R line: null LHS");
+				rwp->r_lhs = null_list;
+			}
 
 			/* expand and save the RHS */
 			while (*++p == '\t')
@@ -356,7 +360,10 @@ readcf(cfname, safe, e)
 				}
 			}
 			else
+			{
 				syserr("R line: null RHS");
+				rwp->r_rhs = null_list;
+			}
 			break;
 
 		  case 'S':		/* select rewriting set */
