@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.43		01/03/83);
+SCCSID(@(#)headers.c	3.44		01/04/83);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -62,6 +62,11 @@ chompheader(line, def)
 	/* find canonical name */
 	fname = p;
 	p = index(p, ':');
+	if (p == NULL)
+	{
+		syserr("chompheader: syntax error, line \"%s\"", line);
+		return (0);
+	}
 	fvalue = &p[1];
 	while (isspace(*--p))
 		continue;
