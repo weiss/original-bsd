@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	5.33 (Berkeley) 03/06/92 (with name server)";
+static char sccsid[] = "@(#)domain.c	5.34 (Berkeley) 06/23/92 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	5.33 (Berkeley) 03/06/92 (without name server)";
+static char sccsid[] = "@(#)domain.c	5.34 (Berkeley) 06/23/92 (without name server)";
 #endif
 #endif /* not lint */
 
@@ -130,7 +130,7 @@ punt:		mxhosts[0] = strcpy(hostbuf, host);
 	for (i = 0; i < nmx; i++) {
 		for (j = i + 1; j < nmx; j++) {
 			if (prefer[i] > prefer[j] ||
-			    (prefer[i] == prefer[j] && rand() % 1 == 0)) {
+			    (prefer[i] == prefer[j] && (rand() & 0100) == 0)) {
 				register int temp;
 				register char *temp1;
 
