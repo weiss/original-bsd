@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)cc.c 4.13 09/18/85";
+static	char sccsid[] = "@(#)cc.c 4.14 09/16/87";
 /*
  * cc - front end for C compiler
  */
@@ -214,8 +214,10 @@ main(argc, argv)
 		if (callsys(cpp, av)) {
 			exfail++;
 			eflag++;
+			cflag++;
+			continue;
 		}
-		if (pflag || exfail) {
+		if (pflag) {
 			cflag++;
 			continue;
 		}
