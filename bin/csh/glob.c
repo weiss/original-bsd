@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)glob.c	4.7 (Berkeley) 12/13/84";
+static	char *sccsid = "@(#)glob.c	4.8 (Berkeley) 01/17/85";
 #endif
 
 #include "sh.h"
@@ -489,8 +489,8 @@ trim(t)
 	register char *p;
 
 	while (p = *t++)
-		while (*p++ &= TRIM)
-			;
+		while (*p)
+			*p++ &= TRIM;
 }
 
 tglob(t)
