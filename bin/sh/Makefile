@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/23/92
+#	@(#)Makefile	5.2 (Berkeley) 07/15/92
 
 PROG=	sh
-SRCS=	alias.c builtins.c cd.c dirent.c echo.c error.c eval.c exec.c expand.c \
+SRCS=	alias.c builtins.c cd.c echo.c error.c eval.c exec.c expand.c \
 	histedit.c input.c jobs.c mail.c main.c memalloc.c miscbltin.c \
 	mystring.c nodes.c options.c parser.c printf.c redir.c show.c signames.c \
 	syntax.c trap.c output.c var.c
