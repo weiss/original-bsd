@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)acucntrl.c	5.12	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)acucntrl.c	5.13	(Berkeley) 04/15/88";
 #endif
 
 /*  acucntrl - turn around tty line between dialin and dialout
@@ -747,7 +747,7 @@ char *ttyline; int enable;
 			}
 			cflags = flags;
 			(void)lseek(kmem, (off_t) &(((char *)addr)[unit]), 0);
-			(void)write(kmem, (char *) &flags, sizeof cflags);
+			(void)write(kmem, (char *) &cflags, sizeof cflags);
 			break;
 		default:
 			fprintf(stderr, "Unknown device type\n");
