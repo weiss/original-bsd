@@ -5,7 +5,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)perror.c	5.2 (Berkeley) 03/09/86";
+static char sccsid[] = "@(#)perror.c	5.3 (Berkeley) 09/30/87";
 #endif LIBC_SCCS and not lint
 
 /*
@@ -16,8 +16,8 @@ static char sccsid[] = "@(#)perror.c	5.2 (Berkeley) 03/09/86";
 #include <sys/uio.h>
 
 int	errno;
-int	sys_nerr;
-char	*sys_errlist[];
+extern int	sys_nerr;
+extern char	*sys_errlist[];
 perror(s)
 	char *s;
 {
