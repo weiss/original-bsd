@@ -1,6 +1,6 @@
-/*	va.c	4.2	12/17/80	*/
+/*	va.c	4.3	12/19/80	*/
 
-#include "../conf/va.h"
+#include "va.h"
 #if NVA > 0
 /*
  * Benson-Varian matrix printer/plotter
