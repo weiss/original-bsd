@@ -1,10 +1,10 @@
-/* math.h 1.1 (ELEFUNT) 09/06/85 */
+/*	math.h	4.6	9/11/85; 1.2 (ucb.elefunt) 09/11/85 */
 
 extern double asinh(), acosh(), atanh();
 extern double erf(), erfc();
 extern double exp(), expm1(), log(), log10(), log1p(), pow();
 extern double fabs(), floor(), ceil(), rint();
-extern double lgama();
+extern double lgamma();
 extern double hypot(), cabs();
 extern double copysign(), drem(), logb(), scalb();
 extern int finite();
