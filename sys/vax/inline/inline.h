@@ -1,6 +1,10 @@
-/* Copyright (c) 1984 Regents of the University of California */
-
-/* @(#)inline.h	1.2	(Berkeley)	08/20/84	*/
+/*
+ * Copyright (c) 1984 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)inline.h	1.3 (Berkeley) 06/08/85
+ */
 
 /*
  * COMMENTCHAR is the character delimiting comments in the assembler.
