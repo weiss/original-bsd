@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.12 (Berkeley) 05/11/90
+#	@(#)Makefile	5.13 (Berkeley) 05/17/90
 
 PROG=	compress
-CFLAGS+=-DBSD4_2 -DSACREDMEM=256000 -DUSERMEM=`cat USERMEM`
+MEM!=cat ${.CURDIR}/USERMEM
+CFLAGS+=-DBSD4_2 -DSACREDMEM=256000 -DUSERMEM=${MEM}
 DPADD=	${LIBCOMPAT}
 LDADD=	-lcompat
 LINKS=	${BINDIR}/compress ${BINDIR}/uncompress \
