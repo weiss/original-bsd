@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)monthly	5.8 (Berkeley) 06/24/92
+#	@(#)monthly	5.9 (Berkeley) 07/15/92
 #
 
 host=`hostname`
@@ -24,4 +24,5 @@ for i in ftp.log kerberos.log lpd-errs wtmp; do
 	if [ -f $i ]; then mv -f $i $i.0; fi
 	>$i
 done
+kill -1 `cat /var/run/syslog.pid`
 echo ""
