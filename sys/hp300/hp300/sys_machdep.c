@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sys_machdep.c	7.4 (Berkeley) 06/28/90
+ *	@(#)sys_machdep.c	7.5 (Berkeley) 12/05/90
  */
 
 #include "param.h"
@@ -18,8 +18,6 @@
 #include "mtio.h"
 #include "buf.h"
 #include "trace.h"
-
-#include "pte.h"
 
 #ifdef TRACE
 int	nvualarm;
