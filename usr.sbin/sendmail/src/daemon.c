@@ -14,7 +14,7 @@
 
 # ifndef DAEMON
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.20 (Berkeley) 06/30/86	(w/o daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.21 (Berkeley) 07/21/86	(w/o daemon mode)";
 # endif not lint
 # else
 
@@ -25,7 +25,7 @@ static char	SccsId[] = "@(#)daemon.c	5.20 (Berkeley) 06/30/86	(w/o daemon mode)"
 # include <sys/resource.h>
 
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.20 (Berkeley) 06/30/86 (with daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.21 (Berkeley) 07/21/86 (with daemon mode)";
 # endif not lint
 
 /*
@@ -533,14 +533,19 @@ maphostname(hbuf, hbsize)
 	else
 	{
 		makelower(hbuf);
+#ifdef MXDOMAIN
+		getcanonname(hbuf, hbsize);
+		return;
+#else MXDOMAIN
 		hp = gethostbyname(hbuf);
+#endif
 	}
 	if (hp != NULL)
 	{
 		int i = strlen(hp->h_name);
 
 		if (i >= hbsize)
-			hp->h_name[--i] = '\0';
+			hp->h_name[hbsize - 1] = '\0';
 		(void) strcpy(hbuf, hp->h_name);
 	}
 }
