@@ -1,12 +1,16 @@
 #ifndef lint
-static char sccsid[] = "@(#)res_comp.c	4.3 (Berkeley) 03/27/85";
+static char sccsid[] = "@(#)res_comp.c	4.4 (Berkeley) 04/01/85";
 #endif
+
+/*
+ * Copyright (c) 1985 Regents of the University of California
+ *	All Rights Reserved
+ */
 
 #include <sys/types.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <nameser.h>
-
 
 /*
  * Expand compressed domain name 'comp_dn' to full domain name.
