@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)subr_prf.c	8.3 (Berkeley) 01/21/94
+ *	@(#)subr_prf.c	8.4 (Berkeley) 05/04/95
  */
 
 #include <sys/param.h>
@@ -473,6 +473,11 @@ putchar(c, flags, tp)
 		mbp->msg_bufc[mbp->msg_bufx++] = c;
 		if (mbp->msg_bufx < 0 || mbp->msg_bufx >= MSG_BSIZE)
 			mbp->msg_bufx = 0;
+		/* If the buffer is full, keep the most recent data. */
+		if (mbp->msg_bufr == mbp->msg_bufx) {
+			if (++mbp->msg_bufr >= MSG_BSIZE)
+				mbp->msg_bufr = 0;
+		}
 	}
 	if ((flags & TOCONS) && constty == NULL && c != '\0')
 		(*v_putc)(c);
