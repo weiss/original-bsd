@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tunefs.c	5.4 (Berkeley) 02/23/87";
+static char sccsid[] = "@(#)tunefs.c	5.5 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -45,7 +45,6 @@ main(argc, argv)
 	int Aflag = 0;
 	struct fstab *fs;
 	char *chg[2], device[MAXPATHLEN];
-	extern char *sprintf();
 
 	argc--, argv++; 
 	if (argc < 2)
@@ -59,7 +58,8 @@ again:
 		if (*special != '/') {
 			if (*special == 'r')
 				special++;
-			special = sprintf(device, "/dev/%s", special);
+			(void)sprintf(device, "/dev/%s", special);
+			special = device;
 			goto again;
 		}
 		fprintf(stderr, "tunefs: "); perror(special);
