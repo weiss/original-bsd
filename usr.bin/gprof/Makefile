@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.17 (Berkeley) 05/11/90
+#	@(#)Makefile	5.18 (Berkeley) 03/02/92
 
 PROG=	gprof
 SRCS=	gprof.c arcs.c dfn.c lookup.c ${MACHINE}.c hertz.c \
 	printgprof.c printlist.c
-CFLAGS+=-I${.CURDIR}/../../lib/csu.${MACHINE}
+CFLAGS+=-I${.CURDIR}/../../lib/csu.gmon
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
