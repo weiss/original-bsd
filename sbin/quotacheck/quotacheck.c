@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)quotacheck.c	4.3 (Berkeley, Melbourne) 05/27/83";
+static char sccsid[] = "@(#)quotacheck.c	4.4 (Berkeley, Melbourne) 06/22/83";
 #endif
 
 /*
@@ -186,11 +186,11 @@ chkquota(fsdev, qffile)
 		}
 		dqbuf.dqb_curinodes = fup->fu_usage.du_curinodes;
 		dqbuf.dqb_curblocks = fup->fu_usage.du_curblocks;
-		fup->fu_usage.du_curinodes = 0;
-		fup->fu_usage.du_curblocks = 0;
 		fseek(qf, uid * sizeof(struct dqblk), 0);
 		fwrite(&dqbuf, sizeof(struct dqblk), 1, qf);
 		quota(Q_SETDUSE, uid, quotadev, &fup->fu_usage);
+		fup->fu_usage.du_curinodes = 0;
+		fup->fu_usage.du_curblocks = 0;
 	}
 	return (0);
 }
