@@ -1,4 +1,6 @@
-/* @(#)getgrent.c	4.3 (Berkeley) 08/18/83 */
+#ifndef lint
+static char sccsid[] = "@(#)getgrent.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
 
 #include <stdio.h>
 #include <grp.h>
