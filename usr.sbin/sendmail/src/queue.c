@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.47 (Berkeley) 08/15/94 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.48 (Berkeley) 08/18/94 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.47 (Berkeley) 08/15/94 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.48 (Berkeley) 08/18/94 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1071,13 +1071,32 @@ dowork(id, forkflag, requeueflag, e)
 		}
 
 		e->e_flags |= EF_INQUEUE;
-		eatheader(e, requeueflag);
 
-		if (requeueflag)
-			queueup(e, TRUE, FALSE);
+		/* if this has been tried recently, let it be */
+		if (e->e_ntries > 0 && (curtime() - e->e_dtime) > MinQueueAge)
+		{
+			char *howlong = pintvl(curtime() - e->e_dtime, TRUE);
 
-		/* do the delivery */
-		sendall(e, SM_DELIVER);
+			e->e_flags |= EF_KEEPQUEUE;
+			if (Verbose || tTd(40, 8))
+				printf("%s: too young (%s)\n",
+					e->e_id, howlong);
+#ifdef LOG
+			if (LogLevel > 19)
+				syslog(LOG_DEBUG, "%s: too young (%s)",
+					e->e_id, howlong);
+#endif
+		}
+		else
+		{
+			eatheader(e, requeueflag);
+
+			if (requeueflag)
+				queueup(e, TRUE, FALSE);
+
+			/* do the delivery */
+			sendall(e, SM_DELIVER);
+		}
 
 		/* finish up and exit */
 		if (forkflag)
@@ -1134,9 +1153,7 @@ readqf(e)
 	if (!lockfile(fileno(qfp), qf, NULL, LOCK_EX|LOCK_NB))
 	{
 		/* being processed by another queuer */
-		if (tTd(40, 8))
-			printf("readqf(%s): locked\n", qf);
-		if (Verbose)
+		if (Verbose || tTd(40, 8))
 			printf("%s: locked\n", e->e_id);
 # ifdef LOG
 		if (LogLevel > 19)
