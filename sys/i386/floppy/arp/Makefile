@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.1 (Berkeley) 05/03/91
+#	@(#)Makefile	5.2 (Berkeley) 05/03/91
 
 PROG=	arp
 SRCS=	arp.c
+CFLAGS+=-DLETS_GET_SMALL
 BINGRP=	kmem
 BINMODE=2555
 NOMAN=	noman
