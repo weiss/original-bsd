@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.70 (Berkeley) 04/26/95 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.71 (Berkeley) 04/29/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.70 (Berkeley) 04/26/95 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.71 (Berkeley) 04/29/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -150,10 +150,16 @@ smtp(e)
 	while ((id = p) != NULL && (p = strchr(id, '\n')) != NULL)
 	{
 		*p++ = '\0';
+		if (isascii(*id) && isspace(*id))
+			id++;
 		message("220-%s", id);
 	}
 	if (id != NULL)
+	{
+		if (isascii(*id) && isspace(*id))
+			id++;
 		message("220 %s", id);
+	}
 
 	protocol = NULL;
 	sendinghost = macvalue('s', e);
