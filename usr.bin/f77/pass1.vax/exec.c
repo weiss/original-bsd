@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)exec.c	5.1 (Berkeley) 06/07/85";
+static char sccsid[] = "@(#)exec.c	5.2 (Berkeley) 06/07/85";
 #endif not lint
 
 /*
@@ -43,10 +43,6 @@ static char sccsid[] = "@(#)exec.c	5.1 (Berkeley) 06/07/85";
  * of the loop variable.
  * 
  */
-
-#ifndef lint
-static	char *sccsid = "@(#)exec.c	5.1 (Berkeley) 85/06/07";
-#endif
 
 #include "defs.h"
 #include "optim.h"
