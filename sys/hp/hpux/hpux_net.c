@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: hpux_net.c 1.33 89/08/23$
  *
- *	@(#)hpux_net.c	7.5 (Berkeley) 12/16/90
+ *	@(#)hpux_net.c	7.6 (Berkeley) 12/16/90
  */
 
 /*
@@ -32,7 +32,7 @@
 #include "sys/socketvar.h"
 #include "sys/uio.h"
 #include "sys/ktrace.h"
-#include "sys/hpux.h"
+#include "hpux.h"
 
 #define MINBSDIPCCODE	0x3EE
 #define NUMBSDIPC	32
