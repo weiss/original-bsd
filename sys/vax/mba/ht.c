@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ht.c	6.6 (Berkeley) 10/01/85
+ *	@(#)ht.c	6.7 (Berkeley) 02/20/86
  */
 
 #include "tu.h"
@@ -378,7 +378,7 @@ htndtint(mi)
 	sc->sc_erreg = er;
 	sc->sc_resid = fc;
 	if (bp == &chtbuf[HTUNIT(bp->b_dev)]) {
-		switch (bp->b_command) {
+		switch ((int)bp->b_command) {
 		case HT_REWOFFL:
 			/* offline is on purpose; don't do anything special */
 			ds |= HTDS_MOL;	
