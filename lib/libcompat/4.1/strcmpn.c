@@ -1,4 +1,13 @@
-/* @(#)strcmpn.c	4.1 (Berkeley) 12/21/80 */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)strcmpn.c	4.2 (Berkeley) 05/30/85";
+#endif not lint
+
 /*
  * Compare strings (at most n bytes):  s1>s2: >0  s1==s2: 0  s1<s2: <0
  */
