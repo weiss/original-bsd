@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)inet.c	5.11 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)inet.c	5.12 (Berkeley) 04/07/90";
 #endif /* not lint */
 
 #include <strings.h>
@@ -31,8 +31,8 @@ static char sccsid[] = "@(#)inet.c	5.11 (Berkeley) 06/29/88";
 #include <net/route.h>
 #include <netinet/in.h>
 #include <netinet/in_systm.h>
-#include <netinet/in_pcb.h>
 #include <netinet/ip.h>
+#include <netinet/in_pcb.h>
 #include <netinet/ip_icmp.h>
 #include <netinet/icmp_var.h>
 #include <netinet/ip_var.h>
