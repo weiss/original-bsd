@@ -10,7 +10,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)parseaddr.c	4.16 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)parseaddr.c	4.17 (Berkeley) 06/08/85";
 #endif not lint
 
 # include "sendmail.h"
@@ -276,7 +276,7 @@ prescan(addr, delim, pvpbuf)
 	{
 		printf("prescan: ");
 		xputs(p);
-		putchar('\n');
+		(void) putchar('\n');
 	}
 # endif DEBUG
 
@@ -389,7 +389,7 @@ prescan(addr, delim, pvpbuf)
 			{
 				printf("tok=");
 				xputs(tok);
-				putchar('\n');
+				(void) putchar('\n');
 			}
 # endif DEBUG
 			if (avp >= &av[MAXATOM])
@@ -953,7 +953,7 @@ cataddr(pvp, buf, sz)
 
 	if (pvp == NULL)
 	{
-		strcpy(buf, "");
+		(void) strcpy(buf, "");
 		return;
 	}
 	p = buf;
