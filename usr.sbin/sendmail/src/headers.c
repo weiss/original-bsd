@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.60 (Berkeley) 04/29/95";
+static char sccsid[] = "@(#)headers.c	8.61 (Berkeley) 05/05/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -1064,6 +1064,18 @@ putheader(mci, h, e)
 			xputs(h->h_value);
 		}
 
+		/* suppress Content-Transfer-Encoding: if we are MIMEing */
+		if (bitset(H_CTE, h->h_flags) &&
+		    bitset(MCIF_CVT8TO7|MCIF_INMIME, mci->mci_flags))
+		{
+			if (tTd(34, 11))
+				printf(" (skipped (content-transfer-encoding))\n");
+			continue;
+		}
+
+		if (bitset(MCIF_INMIME, mci->mci_flags))
+			goto vanilla;
+
 		if (bitset(H_CHECK|H_ACHECK, h->h_flags) &&
 		    !bitintersect(h->h_mflags, mci->mci_mailer->m_flags))
 		{
@@ -1086,15 +1098,6 @@ putheader(mci, h, e)
 		{
 			if (tTd(34, 11))
 				printf(" (skipped (receipt))\n");
-			continue;
-		}
-
-		/* suppress Content-Transfer-Encoding: if we are MIMEing */
-		if (bitset(H_CTE, h->h_flags) &&
-		    bitset(MCIF_CVT8TO7, mci->mci_flags))
-		{
-			if (tTd(34, 11))
-				printf(" (skipped (content-transfer-encoding))\n");
 			continue;
 		}
 
@@ -1135,6 +1138,7 @@ putheader(mci, h, e)
 			/* vanilla header line */
 			register char *nlp;
 
+vanilla:
 			(void) sprintf(obuf, "%s: ", h->h_field);
 			while ((nlp = strchr(p, '\n')) != NULL)
 			{
