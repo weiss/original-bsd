@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)curses.h	5.30 (Berkeley) 02/18/93
+ *	@(#)curses.h	5.31 (Berkeley) 02/24/93
  */
 
 #ifndef _CURSES_H_
@@ -150,7 +150,7 @@ extern char	*ttytype;		/* Full name of current terminal. */
 #define	getch()				wgetch(stdscr)
 #define	getstr(s)			wgetstr(stdscr, s)
 #define	inch()				winch(stdscr)
-#define	insch(ch))			winsch(stdscr, ch)
+#define	insch(ch)			winsch(stdscr, ch)
 #define	insertln()			winsertln(stdscr)
 #define	move(y, x)			wmove(stdscr, y, x)
 #define	refresh()			wrefresh(stdscr)
