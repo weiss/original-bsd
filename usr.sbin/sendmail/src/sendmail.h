@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.91		09/26/82";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.92		10/06/82";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -363,6 +363,7 @@ EXTERN char	Mode;		/* operation mode, see below */
 #define MD_QUEUE	'q'		/* collect & queue, don't deliver */
 #define MD_DAEMON	'd'		/* run as a daemon */
 #define MD_VERIFY	'v'		/* verify: don't collect or deliver */
+#define MD_TEST		't'		/* test mode: resolve addrs only */
 
 #define MD_DEFAULT	MD_DELIVER	/* default operation mode */
 /*
