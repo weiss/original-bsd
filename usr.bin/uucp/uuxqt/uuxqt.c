@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuxqt.c	5.10	(Berkeley) 04/05/88";
+static char sccsid[] = "@(#)uuxqt.c	5.11	(Berkeley) 05/04/88";
 #endif
 
 #include "uucp.h"
@@ -87,6 +87,7 @@ char *argv[];
 
 	strcpy(Progname, "uuxqt");
 	uucpname(Myname);
+	strcpy(Rmtname, Myname);
 
 	umask(WFMASK);
 	Ofn = 1;
