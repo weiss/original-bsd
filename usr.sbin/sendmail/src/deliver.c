@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.32 (Berkeley) 10/16/93";
+static char sccsid[] = "@(#)deliver.c	8.33 (Berkeley) 10/17/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -588,6 +588,8 @@ deliver(e, firstto)
 	if (tTd(10, 1))
 		printf("\n--deliver, mailer=%d, host=`%s', first user=`%s'\n",
 			m->m_mno, host, to->q_user);
+	if (tTd(10, 100))
+		printopenfds(FALSE);
 
 	/*
 	**  If this mailer is expensive, and if we don't want to make
