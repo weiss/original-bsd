@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)res_init.c	4.2 (Berkeley) 03/27/85";
+static char sccsid[] = "@(#)res_init.c	4.3 (Berkeley) 03/28/85";
 #endif
 
 #include <sys/types.h>
@@ -49,6 +49,4 @@ res_init()
 	/* Allow user to override the local domain definition */
 	if ((cp = getenv("LOCALDOMAIN")) != NULL)
 		strncpy(_res.defdname, cp, sizeof(_res.defdname));
-
-	return (0);
 }

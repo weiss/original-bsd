@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)res_send.c	4.2 (Berkeley) 03/27/85";
+static char sccsid[] = "@(#)res_send.c	4.3 (Berkeley) 03/28/85";
 #endif
 
 /*
@@ -17,7 +17,7 @@ static char sccsid[] = "@(#)res_send.c	4.2 (Berkeley) 03/27/85";
 
 extern int errno;
 
-sendquery(buf, buflen, answer, anslen)
+res_send(buf, buflen, answer, anslen)
 	char *buf;
 	int buflen;
 	char *answer;
@@ -33,13 +33,11 @@ sendquery(buf, buflen, answer, anslen)
 	HEADER *anhp = (HEADER *) answer;
 
 	if (_res.options & RES_DEBUG) {
-		printf("sendquery()\n");
+		printf("res_send()\n");
 		p_query(buf);
 	}
-	if (!(_res.options & RES_INIT)) {
-		if (!res_init())
-			return (-1);
-	}
+	if (!(_res.options & RES_INIT))
+		res_init();
 	s = -1;
 	v_circuit = (_res.options & RES_USEVC) || buflen > PACKETSZ;
 	id = hp->id;
