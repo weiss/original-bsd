@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)trpt.c	4.8 07/20/83";
+static char sccsid[] = "@(#)trpt.c	4.9 07/20/83";
 #endif
 
 #include <sys/param.h>
@@ -203,6 +203,7 @@ tcp_trace(act, ostate, atp, tp, ti, req)
 
 	case TA_INPUT:
 	case TA_OUTPUT:
+	case TA_DROP:
 		if (aflag) {
 			printf("(src=%s,%d, ", ntoa(ti->ti_src),
 				ntohs(ti->ti_sport));
