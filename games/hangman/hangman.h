@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)hangman.h	5.4 (Berkeley) 06/01/90
+ *	@(#)hangman.h	5.5 (Berkeley) 02/28/91
  */
 
 # include	<curses.h>
@@ -50,6 +50,6 @@ extern FILE	*Dict;
 
 extern off_t	Dict_size;
 
-int	die();
+void	die();
 
 off_t	abs();
