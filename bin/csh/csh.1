@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)csh.1	6.20 (Berkeley) 02/12/92
+.\"     @(#)csh.1	6.22 (Berkeley) 02/18/92
 .\"
 .Dd 
 .Dt CSH 1
@@ -16,10 +16,10 @@
 .Op Fl bcefinstvVxX
 .Op arg ...
 .Nm csh
-.It Fl l
+.Op Fl l
 .Sh DESCRIPTION
 The
-.Nm Csh
+.Nm csh
 is a command language interpreter
 incorporating a history mechanism (see
 .Nm History Substitutions ) ,
@@ -33,11 +33,11 @@ login shell and a shell script command processor.
 .Ss Argument list processing
 If the first argument (argument 0) to the shell is
 .Ql Fl
-then this
-is a login shell. A login shell can be also simulated by invoking the
-shell with the 
+then this is a login shell.
+A login shell can be also specified by invoking the shell with the 
 .Ql Fl l
 flag as the only argument.
+.Pp
 The rest of the flag arguments are interpreted as follows:
 .Bl -tag -width 5n
 .It Fl b
@@ -65,6 +65,10 @@ The shell is interactive and prompts for its top-level input,
 even if it appears to not be a terminal.
 Shells are interactive without this option if their inputs
 and outputs are terminals.
+.It Fl l
+The shell is a login shell (only applicable if
+.Fl l
+is the only flag specified).
 .It Fl n
 Commands are parsed, but not executed.
 This aids in syntactic checking of shell scripts.
