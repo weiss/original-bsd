@@ -1,14 +1,14 @@
 /*-
  * Copyright (c) 1992 Diomidis Spinellis.
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Diomidis Spinellis of Imperial College, University of London.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.7 (Berkeley) 05/18/93
+ *	@(#)extern.h	8.1 (Berkeley) 06/06/93
  */
 
 extern struct s_command *prog;
