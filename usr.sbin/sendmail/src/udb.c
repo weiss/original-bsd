@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	8.10 (Berkeley) 06/17/94 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	8.11 (Berkeley) 09/08/94 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	8.10 (Berkeley) 06/17/94 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	8.11 (Berkeley) 09/08/94 (without USERDB)";
 #endif
 #endif
 
@@ -793,6 +793,14 @@ _udbx_init()
 			up->udb_dbp = dbopen(spec, O_RDONLY, 0644, DB_BTREE, NULL);
 			if (up->udb_dbp == NULL)
 			{
+				if (tTd(28, 1))
+				{
+					int saveerrno = errno;
+
+					printf("dbopen(%s): %s",
+						spec, errstring(errno));
+					errno = saveerrno;
+				}
 				if (errno != ENOENT && errno != EACCES)
 				{
 #ifdef LOG
