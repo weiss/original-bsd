@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	5.62 (Berkeley) 07/13/92";
+static char sccsid[] = "@(#)deliver.c	5.63 (Berkeley) 07/14/92";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1444,7 +1444,7 @@ sendall(e, mode)
 	{
 		errno = 0;
 		syserr("sendall: too many hops %d (%d max): from %s, to %s",
-			e->e_hopcount, MaxHopCount, e->e_from, e->e_to);
+			e->e_hopcount, MaxHopCount, e->e_from.q_paddr, e->e_to);
 		return;
 	}
 
