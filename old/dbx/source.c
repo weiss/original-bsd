@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)source.c 1.4 01/24/83";
+static char sccsid[] = "@(#)source.c 1.5 02/16/83";
 
 /*
  * Source file management.
@@ -225,8 +225,8 @@ public getsrcpos()
 {
     String filename;
 
-    curline = srcline(pc - 1);
-    filename = srcfilename(pc - 1);
+    curline = srcline(pc);
+    filename = srcfilename(pc);
     setsource(filename);
     cursrcline = curline;
 }
