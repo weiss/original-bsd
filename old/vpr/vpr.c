@@ -1,6 +1,8 @@
+static char sccsid[] = "@(#)vpr.c	1.3	(Berkeley)	08/06/82";
+
 #include <signal.h>
-#include <pagsiz.h>
-#define	BUFSIZ	BSIZE
+#include <sys/param.h>
+#define	BUFSIZ	MAXBSIZE
 
 /*
  * 	vpr -- varian and versatec (as printers) spooler
