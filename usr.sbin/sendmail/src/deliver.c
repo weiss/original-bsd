@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.20 (Berkeley) 09/02/93";
+static char sccsid[] = "@(#)deliver.c	8.21 (Berkeley) 09/04/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -894,6 +894,17 @@ deliver(e, firstto)
 	curhost = NULL;
 	SmtpPhase = NULL;
 
+#ifdef XDEBUG
+	{
+		char wbuf[MAXLINE];
+
+		/* make absolutely certain 0, 1, and 2 are in use */
+		sprintf(wbuf, "%s... openmailer(%s)", e->e_to, m->m_name);
+		checkfd012(wbuf);
+	}
+#endif
+
+
 	/* check for Local Person Communication -- not for mortals!!! */
 	if (strcmp(m->m_mailer, "[LPC]") == 0)
 	{
@@ -1005,14 +1016,6 @@ tryhost:
 	}
 	else
 	{
-#ifdef XDEBUG
-		char wbuf[MAXLINE];
-
-		/* make absolutely certain 0, 1, and 2 are in use */
-		sprintf(wbuf, "%s... openmailer(%s)", e->e_to, m->m_name);
-		checkfd012(wbuf);
-#endif
-
 		if (TrafficLogFile != NULL)
 		{
 			char **av;
@@ -1379,6 +1382,16 @@ tryhost:
 	/*
 	**  Restore state and return.
 	*/
+
+#ifdef XDEBUG
+	{
+		char wbuf[MAXLINE];
+
+		/* make absolutely certain 0, 1, and 2 are in use */
+		sprintf(wbuf, "%s... end of deliver(%s)", e->e_to, m->m_name);
+		checkfd012(wbuf);
+	}
+#endif
 
 	errno = 0;
 	define('g', (char *) NULL, e);
