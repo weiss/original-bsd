@@ -15,11 +15,11 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char	SccsId[] = "@(#)mailstats.c	5.1 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)mailstats.c	5.2 (Berkeley) 05/02/86";
 #endif not lint
 # include "sendmail.h"
 
-SCCSID(@(#)mailstats.c	5.1		06/07/85);
+SCCSID(@(#)mailstats.c	5.2		05/02/86);
 
 /*
 **  MAILSTATS -- print mail statistics.
@@ -49,7 +49,7 @@ main(argc, argv)
 	if (read(fd, &stat, sizeof stat) != sizeof stat ||
 	    stat.stat_size != sizeof stat)
 	{
-		(void) sprintf(stderr, "File size change\n");
+		(void) fprintf(stderr, "File size change\n");
 		exit(EX_OSERR);
 	}
 
