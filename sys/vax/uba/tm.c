@@ -1,4 +1,4 @@
-/*	tm.c	4.17	02/25/81	*/
+/*	tm.c	4.18	02/25/81	*/
 
 #include "tm.h"
 #if NTM > 0
@@ -518,7 +518,9 @@ tmintr(tm11)
 		/*
 		 * Couldn't recover error
 		 */
-		deverror(bp, sc->sc_erreg, sc->sc_dsreg);
+		harderr(bp);
+		printf("tm%d er %b\n", dkunit(bp),
+		    sc->sc_erreg, TMEREG_BITS);
 		bp->b_flags |= B_ERROR;
 		goto opdone;
 	}
