@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)start.c 1.5 02/11/82";
+static char sccsid[] = "@(#)start.c 1.6 03/08/82";
 
 /*
  * Begin execution.
@@ -30,15 +30,12 @@ static char sccsid[] = "@(#)start.c 1.5 02/11/82";
 #       include "pxinfo.h"
 #   endif
 
-LOCAL PROCESS pbuf;
-
 start(argv, infile, outfile)
 char **argv;
 char *infile, *outfile;
 {
     char *cmd;
 
-    process = &pbuf;
     setsigtrace();
 #   if (isvaxpx)
 	cmd = "px";
