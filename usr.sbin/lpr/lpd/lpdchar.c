@@ -1,4 +1,7 @@
-/*	lpdchar.c	4.2	83/01/05	*/
+#ifndef lint
+static char sccsid[] = "@(#)lpdchar.c	4.3 (Berkeley) 07/17/83";
+#endif
+
 /*
  *	Character set for line printer daemon
  */
