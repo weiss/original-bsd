@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pigs.c	5.12 (Berkeley) 09/02/92";
+static char sccsid[] = "@(#)pigs.c	5.13 (Berkeley) 11/10/92";
 #endif /* not lint */
 
 /*
@@ -83,8 +83,8 @@ showpigs()
         qsort(pt, nproc + 1, sizeof (struct p_times), compar);
 	y = 1;
 	i = nproc + 1;
-	if (i > wnd->_maxy-1)
-		i = wnd->_maxy-1;
+	if (i > wnd->maxy-1)
+		i = wnd->maxy-1;
 	for (k = 0; i > 0 && pt[k].pt_pctcpu > 0.01; i--, y++, k++) {
 		if (pt[k].pt_kp == NULL) {
 			uname = "";
