@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.72		01/06/83);
+SCCSID(@(#)parseaddr.c	3.73		01/06/83);
 
 /*
 **  PARSEADDR -- Parse an address
@@ -741,7 +741,12 @@ buildaddr(tv, a)
 	tv++;
 	if (sameword(*tv, "error"))
 	{
-		if (**++tv != CANONUSER)
+		if (**++tv == CANONHOST)
+		{
+			setstat(atoi(*++tv));
+			tv++;
+		}
+		if (**tv != CANONUSER)
 			syserr("buildaddr: error: no user");
 		buf[0] = '\0';
 		while (*++tv != NULL)
