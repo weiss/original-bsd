@@ -2,7 +2,7 @@
 # The previous is for the brain-dead console processor on the
 # Tahoe machines.  Make sure it's the first line, just in case.
 
-#	@(#)fstab.example	5.2 (Berkeley) 05/21/91
+#	@(#)fstab.example	8.1 (Berkeley) 06/09/93
 
 /dev/dk0a /			ufs	rw 1 1
 /dev/dk0b none			swap	sw 0 0
