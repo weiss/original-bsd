@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.4 (Berkeley) 07/29/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 DIR=	psd/07.pascal
 SRCS=	puman0.n puman1.n puman2.n puman3.n puman4.n puman5.n pumanA.n
