@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)system.c	5.9 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)system.c	5.10 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -14,13 +14,14 @@ static char sccsid[] = "@(#)system.c	5.9 (Berkeley) 06/01/90";
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <unistd.h>
 #include <paths.h>
 
 system(command)
-	char *command;
+	const char *command;
 {
 	union wait pstat;
-	pid_t pid, waitpid();
+	pid_t pid;
 	int omask;
 	sig_t intsave, quitsave;
 
@@ -41,7 +42,7 @@ system(command)
 	}
 	intsave = signal(SIGINT, SIG_IGN);
 	quitsave = signal(SIGQUIT, SIG_IGN);
-	pid = waitpid(pid, &pstat, 0);
+	pid = waitpid(pid, (int *)&pstat, 0);
 	(void)sigsetmask(omask);
 	(void)signal(SIGINT, intsave);
 	(void)signal(SIGQUIT, quitsave);

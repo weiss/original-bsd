@@ -6,9 +6,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)exit.c	5.3 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)exit.c	5.4 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
+#include <stdlib.h>
+#include <unistd.h>
 #include "atexit.h"
 
 void (*__cleanup)();
@@ -16,6 +18,7 @@ void (*__cleanup)();
 /*
  * Exit, flushing stdio buffers if necessary.
  */
+void
 exit(status)
 	int status;
 {

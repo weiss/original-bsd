@@ -6,11 +6,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getenv.c	5.7 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)getenv.c	5.8 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
 
 /*
  * getenv --
@@ -18,7 +19,7 @@ static char sccsid[] = "@(#)getenv.c	5.7 (Berkeley) 06/01/90";
  */
 char *
 getenv(name)
-	char *name;
+	const char *name;
 {
 	int offset;
 	char *_findenv();

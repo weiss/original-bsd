@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)putenv.c	5.3 (Berkeley) 05/17/90";
+static char sccsid[] = "@(#)putenv.c	5.4 (Berkeley) 02/23/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <stdlib.h>
@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)putenv.c	5.3 (Berkeley) 05/17/90";
 
 int
 putenv(str)
-	char *str;
+	const char *str;
 {
 	register char *p, *equal;
 	int rval;
