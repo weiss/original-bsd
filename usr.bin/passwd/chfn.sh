@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)chfn.sh	4.4 (Berkeley) 06/10/83";
+static char *sccsid = "@(#)chfn.sh	4.5 (Berkeley) 07/02/83";
 #endif lint
 
 /*
@@ -8,8 +8,8 @@ static char *sccsid = "@(#)chfn.sh	4.4 (Berkeley) 06/10/83";
 #include <stdio.h>
 #include <signal.h>
 #include <pwd.h>
-#include <time.h>
-#include <resource.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 #include <sys/file.h>
 #include <ctype.h>
 
