@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.133		11/28/82);
+SCCSID(@(#)deliver.c	3.134		11/28/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -1176,7 +1176,7 @@ sendall(e, mode)
 			exit(EX_OK);
 
 		/* be sure we are immune from the terminal */
-		disconnect(TRUE);
+		disconnect();
 
 		break;
 	}
