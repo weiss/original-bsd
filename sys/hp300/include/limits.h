@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)limits.h	8.3 (Berkeley) 01/04/94
+ *	@(#)limits.h	8.4 (Berkeley) 04/28/95
  */
 
 #define	CHAR_BIT	8		/* number of bits in a char */
@@ -38,9 +38,10 @@
 #define	INT_MAX		2147483647	/* max value for an int */
 #define	INT_MIN		(-2147483647-1)	/* min value for an int */
 
-#define	ULONG_MAX	0xffffffff	/* max value for an unsigned long */
-#define	LONG_MAX	2147483647	/* max value for a long */
-#define	LONG_MIN	(-2147483647-1)	/* min value for a long */
+#define	ULONG_MAX	0xffffffffL	/* max value for an unsigned long */
+#define	LONG_MAX	2147483647L	/* max value for a long */
+					/* min value for a long */
+#define	LONG_MIN	(-2147483647L-1L)
 
 #if !defined(_ANSI_SOURCE)
 #define	SSIZE_MAX	INT_MAX		/* max value for a ssize_t */
