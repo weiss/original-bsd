@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 1988 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Arthur David Olson of the National Cancer Institute.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tzfile.h	5.10 (Berkeley) 04/03/91
+ *	@(#)tzfile.h	8.1 (Berkeley) 06/02/93
  */
 
 #ifndef _TZFILE_H_
