@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	8.5 (Berkeley) 01/22/94 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	8.6 (Berkeley) 03/11/94 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	8.5 (Berkeley) 01/22/94 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	8.6 (Berkeley) 03/11/94 (without USERDB)";
 #endif
 #endif
 
@@ -544,7 +544,7 @@ _udbx_init()
 		  case '*':	/* search remote database (expand MX) */
 			if (*spec == '*')
 			{
-#ifdef NAMED_BIND
+#if NAMED_BIND
 				nmx = getmxrr(spec + 1, mxhosts, FALSE, &rcode);
 #else
 				mxhosts[0] = spec + 1;

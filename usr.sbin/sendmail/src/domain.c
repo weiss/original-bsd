@@ -9,14 +9,14 @@
 #include "sendmail.h"
 
 #ifndef lint
-#ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	8.18 (Berkeley) 03/07/94 (with name server)";
+#if NAMED_BIND
+static char sccsid[] = "@(#)domain.c	8.19 (Berkeley) 03/11/94 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	8.18 (Berkeley) 03/07/94 (without name server)";
+static char sccsid[] = "@(#)domain.c	8.19 (Berkeley) 03/11/94 (without name server)";
 #endif
 #endif /* not lint */
 
-#ifdef NAMED_BIND
+#if NAMED_BIND
 
 #include <errno.h>
 #include <arpa/nameser.h>
