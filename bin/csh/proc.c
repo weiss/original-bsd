@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)proc.c	5.2 (Berkeley) 06/06/85";
+static char *sccsid = "@(#)proc.c	5.3 (Berkeley) 07/31/85";
 #endif
 
 #include "sh.h"
@@ -208,7 +208,7 @@ pjwait(pp)
 		while ((fp = (fp->p_friends)) != pp);
 		if ((jobflags & PRUNNING) == 0)
 			break;
-		sigpause(0);
+		sigpause(sigblock(0) &~ sigmask(SIGCHLD));
 	}
 	(void) sigsetmask(omask);
 	if (tpgrp > 0)			/* get tty back */
