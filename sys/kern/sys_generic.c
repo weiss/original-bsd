@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sys_generic.c	7.37 (Berkeley) 10/11/92
+ *	@(#)sys_generic.c	7.38 (Berkeley) 02/26/93
  */
 
 #include <sys/param.h>
@@ -504,6 +504,11 @@ select(p, uap, retval)
 		s = splclock();
 		timevaladd(&atv, (struct timeval *)&time);
 		timo = hzto(&atv);
+		/*
+		 * Avoid inadvertently sleeping forever.
+		 */
+		if (timo == 0)
+			timo = 1;
 		splx(s);
 	} else
 		timo = 0;
