@@ -8,12 +8,17 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdesc.h	8.1 (Berkeley) 06/10/93
+ *	@(#)fdesc.h	8.2 (Berkeley) 01/04/94
  *
  * $Id: fdesc.h,v 1.8 1993/04/06 15:28:33 jsp Exp $
  */
 
 #ifdef KERNEL
+
+#ifndef VT_FDESC
+#define VT_FDESC VT_UFS
+#endif
+
 struct fdescmount {
 	struct vnode	*f_root;	/* Root node */
 };

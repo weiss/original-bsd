@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lofs_subr.c	8.1 (Berkeley) 06/10/93
+ *	@(#)lofs_subr.c	8.2 (Berkeley) 01/04/94
  *
  * $Id: lofs_subr.c,v 1.11 1992/05/30 10:05:43 jsp Exp jsp $
  */
@@ -207,8 +207,8 @@ lofs_alias(mp, targetvp, newvpp)
 #ifdef LOFS_DIAGNOSTIC
 		printf("lofs_alias: create new alias vnode\n");
 #endif
-		if (error = getnewvnode(VT_UFS, mp, lofs_vnodeop_p, &aliasvp))
-			return (error);	/* XXX: VT_LOFS above */
+		if (error = getnewvnode(VT_LOFS, mp, lofs_vnodeop_p, &aliasvp))
+			return (error);
 
 		/*
 		 * Must be a directory
