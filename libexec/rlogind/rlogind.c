@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)rlogind.c	4.23 (Berkeley) 03/17/85";
+static	char sccsid[] = "@(#)rlogind.c	4.24 (Berkeley) 03/23/85";
 #endif
 
 /*
@@ -174,6 +174,12 @@ protocol(f, p)
 	register pcc = 0, fcc = 0;
 	int cc, stop = TIOCPKT_DOSTOP;
 
+	/*
+	 * This is a hack for the TIOCSWINSZ calls
+	 * (csh pgrp manipulation appears to cause
+	 * trouble).
+	 */
+	(void) signal(SIGTTOU, SIG_IGN);		/* XXX */
 	for (;;) {
 		int ibits = 0, obits = 0;
 
