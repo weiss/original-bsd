@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)disklabel.h	7.18 (Berkeley) 04/28/91
+ *	@(#)disklabel.h	7.19 (Berkeley) 05/07/91
  */
 
 /*
@@ -24,7 +24,6 @@
 #ifdef i386
 #define LABELSECTOR	1			/* sector containing label */
 #define LABELOFFSET	0			/* offset of label in sector */
-#define	MAXPARTITIONS	32
 #endif
 
 #ifndef	LABELSECTOR
