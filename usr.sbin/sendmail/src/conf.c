@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.43 (Berkeley) 03/25/93";
+static char sccsid[] = "@(#)conf.c	6.44 (Berkeley) 03/29/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -176,7 +176,7 @@ setdefaults(e)
 	settimeouts(NULL);			/* option r */
 	TimeOuts.to_q_return = 5 DAYS;		/* option T */
 	TimeOuts.to_q_warning = 0;		/* option T */
-	PrivacyFlags = PRIV_AUTHWARNINGS;	/* option p */
+	PrivacyFlags = 0;			/* option p */
 	setdefuser();
 	setupmaps();
 	setupmailers();
