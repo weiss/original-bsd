@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	5.20 (Berkeley) 07/20/92";
+static char sccsid[] = "@(#)savemail.c	5.21 (Berkeley) 11/14/92";
 #endif /* not lint */
 
 # include <sys/types.h>
@@ -318,7 +318,7 @@ savemail(e)
 # ifdef LOG
 			if (LogLevel >= 1)
 				syslog(LOG_ALERT, "savemail: HELP!!!!");
-# endif LOG
+# endif /* LOG */
 
 			/* leave the locked queue & transcript files around */
 			exit(EX_SOFTWARE);

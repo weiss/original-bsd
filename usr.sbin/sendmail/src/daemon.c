@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.50 (Berkeley) 11/04/92 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.51 (Berkeley) 11/14/92 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.50 (Berkeley) 11/04/92 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.51 (Berkeley) 11/14/92 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -115,7 +115,7 @@ getrequests()
 # ifdef LOG
 		if (LogLevel > 0)
 			syslog(LOG_ALERT, "cannot get connection");
-# endif LOG
+# endif /* LOG */
 		finis();
 	}
 
@@ -252,7 +252,7 @@ getrequests()
 # ifdef LOG
 			if (LogLevel > 11)
 				syslog(LOG_DEBUG, "connected, pid=%d", getpid());
-# endif LOG
+# endif /* LOG */
 			return;
 		}
 
@@ -328,7 +328,7 @@ makeconnection(host, port, mci, usesecureport)
 	if (host[0] == '[')
 	{
 		long hid;
-		register char *p = index(host, ']');
+		register char *p = strchr(host, ']');
 
 		if (p != NULL)
 		{
@@ -576,7 +576,7 @@ maphostname(hbuf, hbsize, avp)
 		else
 			return NULL;
 	}
-	if ((cp = index(strcpy(ptr, hbuf), ']')) == NULL)
+	if ((cp = strchr(strcpy(ptr, hbuf), ']')) == NULL)
 		return (NULL);
 	*cp = '\0';
 	in_addr = inet_addr(&ptr[1]);
@@ -593,7 +593,7 @@ maphostname(hbuf, hbsize, avp)
 	return hbuf;
 }
 
-# else DAEMON
+# else /* DAEMON */
 /* code for systems without sophisticated networking */
 
 /*
@@ -650,4 +650,4 @@ maphostname(hbuf, hbsize, avp)
 	return NULL;
 }
 
-#endif DAEMON
+#endif /* DAEMON */

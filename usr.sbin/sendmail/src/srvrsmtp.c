@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	5.38 (Berkeley) 07/20/92 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.39 (Berkeley) 11/14/92 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	5.38 (Berkeley) 07/20/92 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.39 (Berkeley) 11/14/92 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -570,7 +570,7 @@ help(topic)
 		{
 			register char *p;
 
-			p = index(buf, '\t');
+			p = strchr(buf, '\t');
 			if (p == NULL)
 				p = buf;
 			else
@@ -645,4 +645,4 @@ runinchild(label, e)
 	return (0);
 }
 
-# endif SMTP
+# endif /* SMTP */
