@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 03/22/91
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 MAN8=	MAKEDEV.0
 MANSUBDIR=/i386
