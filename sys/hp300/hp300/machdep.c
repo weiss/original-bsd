@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: machdep.c 1.74 92/12/20$
  *
- *	@(#)machdep.c	8.9 (Berkeley) 04/18/94
+ *	@(#)machdep.c	8.10 (Berkeley) 04/20/94
  */
 
 #include <sys/param.h>
@@ -426,9 +426,8 @@ setregs(p, entry, retval)
 /*
  * Info for CTL_HW
  */
-extern	char machine[];
 char	cpu_model[120];
-extern	char ostype[], osrelease[], version[];
+extern	char version[];
 
 identifycpu()
 {
