@@ -1,8 +1,8 @@
 #ifndef lint
-    static	char *sccsid = "@(#)arcs.c	1.1 (Berkeley) 10/15/81";
+    static	char *sccsid = "@(#)arcs.c	1.2 (Berkeley) 10/20/81";
 #endif lint
 
-#include "dprof.h"
+#include "gprof.h"
 
 topcmp( npp1 , npp2 )
     nltype	**npp1;
@@ -187,7 +187,7 @@ doarcs()
 	    }
 	}
     }
-    printdprof();
+    printgprof();
 }
 
 cyclelink()
