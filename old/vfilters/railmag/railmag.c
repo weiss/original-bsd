@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)railmag.c	4.2 (Berkeley) 07/16/83";
-#endif
+static char sccsid[] = "@(#)railmag.c	5.1 (Berkeley) 05/15/85";
+#endif not lint
 
 /*
  * tell vcat which fonts are loaded on the "typesetter"

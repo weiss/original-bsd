@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)lpf.c	4.13 (Berkeley) 04/05/85";
-#endif
+static char sccsid[] = "@(#)lpf.c	5.1 (Berkeley) 05/15/85";
+#endif not lint
 
 /*
  * 	filter which reads the output of nroff and converts lines
