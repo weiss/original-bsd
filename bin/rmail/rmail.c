@@ -1,3 +1,7 @@
+#ifndef lint
+static char sccsid[] =	"@(#)rmail.c	4.4 (Berkeley) 08/11/83";
+#endif
+
 /*
 **  RMAIL -- UUCP mail server.
 **
@@ -9,8 +13,6 @@
 
 # include <stdio.h>
 # include <sysexits.h>
-
-static char	SccsId[] =	"@(#)rmail.c	4.3	(Berkeley)	02/18/83";
 
 typedef char	bool;
 #define TRUE	1
