@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.25 (Berkeley) 05/16/90
+ *	@(#)tty.c	7.26 (Berkeley) 05/17/90
  */
 
 #include "param.h"
@@ -650,7 +650,7 @@ ttymodem(tp, flag)
 	register struct tty *tp;
 {
 
-	if ((tp->t_state&TS_WOPEN) == 0 && (tp->t_lflag & MDMBUF)) {
+	if ((tp->t_state&TS_WOPEN) == 0 && (tp->t_lflag&MDMBUF)) {
 		/*
 		 * MDMBUF: do flow control according to carrier flag
 		 */
@@ -666,13 +666,11 @@ ttymodem(tp, flag)
 		 * Lost carrier.
 		 */
 		tp->t_state &= ~TS_CARR_ON;
-		if (tp->t_state & TS_ISOPEN) {
-			if ((tp->t_lflag & NOHANG) == 0) {
-				pgsignal(tp->t_pgrp, SIGHUP);
-				pgsignal(tp->t_pgrp, SIGCONT);
-				ttyflush(tp, FREAD|FWRITE);
-				return (0);
-			}
+		if (tp->t_state&TS_ISOPEN && (tp->t_cflag&CLOCAL) == 0) {
+			if (tp->t_session && tp->t_session->s_leader)
+				psignal(tp->t_session->s_leader, SIGHUP);
+			ttyflush(tp, FREAD|FWRITE);
+			return (0);
 		}
 	} else {
 		/*
@@ -697,10 +695,13 @@ nullmodem(tp, flag)
 		tp->t_state |= TS_CARR_ON;
 	else {
 		tp->t_state &= ~TS_CARR_ON;
-		if ((tp->t_lflag & NOHANG) == 0)
-			pgsignal(tp->t_pgrp, SIGHUP);
+		if ((tp->t_cflag&CLOCAL) == 0) {
+			if (tp->t_session && tp->t_session->s_leader)
+				psignal(tp->t_session->s_leader, SIGHUP);
+			return (0);
+		}
 	}
-	return (flag);
+	return (1);
 }
 
 /*
