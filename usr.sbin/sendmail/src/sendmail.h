@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.55 (Berkeley) 08/15/94
+ *	@(#)sendmail.h	8.56 (Berkeley) 08/15/94
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.55		08/15/94";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.56		08/15/94";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -348,6 +348,7 @@ ENVELOPE
 	char		*e_origrcpt;	/* original recipient (one only) */
 	time_t		e_dtime;	/* time of last delivery attempt */
 	int		e_ntries;	/* number of delivery attempts */
+	dev_t		e_dfdev;	/* df file's device, for crash recov */
 	ino_t		e_dfino;	/* df file's ino, for crash recovery */
 	char		*e_macro[128];	/* macro definitions */
 };
