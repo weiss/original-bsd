@@ -1,5 +1,5 @@
 # ifndef lint
-static char	SccsId[] = "@(#)SendMail version 3.152 of 08/07/82";
+static char	SccsId[] = "@(#)SendMail version 3.153 of 08/08/82";
 # endif lint
 
-char	Version[] = "3.152 [08/07/82]";
+char	Version[] = "3.153 [08/08/82]";
