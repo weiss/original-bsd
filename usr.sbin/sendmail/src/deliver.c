@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.135		11/28/82);
+SCCSID(@(#)deliver.c	3.136		12/05/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -524,7 +524,7 @@ sendoff(e, m, pvp, ctladdr)
 	putfromline(mfile, m);
 	(*e->e_puthdr)(mfile, m, e);
 	fprintf(mfile, "\n");
-	(*e->e_putbody)(mfile, m, FALSE);
+	(*e->e_putbody)(mfile, m, FALSE, e);
 	(void) fclose(mfile);
 
 	i = endmailer(pid, pvp[0]);
@@ -688,8 +688,8 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 	**	DOFORK is clever about retrying.
 	*/
 
-	if (Xscript != NULL)
-		(void) fflush(Xscript);			/* for debugging */
+	if (CurEnv->e_xfp != NULL)
+		(void) fflush(CurEnv->e_xfp);		/* for debugging */
 	(void) fflush(stdout);
 	DOFORK(XFORK);
 	/* pid is set by DOFORK */
@@ -728,7 +728,7 @@ openmailer(m, pvp, ctladdr, clever, pmfile, prfile)
 		{
 			/* put mailer output in transcript */
 			(void) close(1);
-			(void) dup(fileno(Xscript));
+			(void) dup(fileno(CurEnv->e_xfp));
 		}
 		(void) close(2);
 		(void) dup(1);
@@ -956,6 +956,7 @@ putfromline(fp, m)
 **		fp -- file to output onto.
 **		m -- a mailer descriptor.
 **		xdot -- if set, use SMTP hidden dot algorithm.
+**		e -- the envelope to put out.
 **
 **	Returns:
 **		none.
@@ -964,10 +965,11 @@ putfromline(fp, m)
 **		The message is written onto fp.
 */
 
-putbody(fp, m, xdot)
+putbody(fp, m, xdot, e)
 	FILE *fp;
 	MAILER *m;
 	bool xdot;
+	register ENVELOPE *e;
 {
 	char buf[MAXLINE + 1];
 	bool fullsmtp = bitset(M_FULLSMTP, m->m_flags);
@@ -976,14 +978,28 @@ putbody(fp, m, xdot)
 	**  Output the body of the message
 	*/
 
-	if (TempFile != NULL)
+	if (e->e_dfp == NULL)
 	{
-		rewind(TempFile);
+		if (e->e_df != NULL)
+		{
+			e->e_dfp = fopen(e->e_df, "r");
+			if (e->e_dfp == NULL)
+				syserr("Cannot open %s", e->e_df);
+		}
+		else
+			putline("<<< No Message Collected >>>", fp, fullsmtp);
+	}
+	if (e->e_dfp != NULL)
+	{
+		rewind(e->e_dfp);
 		buf[0] = '.';
-		while (!ferror(fp) && fgets(&buf[1], sizeof buf - 1, TempFile) != NULL)
+		while (!ferror(fp) &&
+		       fgets(&buf[1], sizeof buf - 1, e->e_dfp) != NULL)
+		{
 			putline((xdot && buf[1] == '.') ? buf : &buf[1], fp, fullsmtp);
+		}
 
-		if (ferror(TempFile))
+		if (ferror(e->e_dfp))
 		{
 			syserr("putbody: read error");
 			ExitStat = EX_IOERR;
@@ -1077,7 +1093,7 @@ mailfile(filename, ctladdr)
 		putfromline(f, ProgMailer);
 		(*CurEnv->e_puthdr)(f, ProgMailer, CurEnv);
 		fputs("\n", f);
-		(*CurEnv->e_putbody)(f, ProgMailer, FALSE);
+		(*CurEnv->e_putbody)(f, ProgMailer, FALSE, CurEnv);
 		fputs("\n", f);
 		(void) fclose(f);
 		(void) fflush(stdout);
@@ -1171,8 +1187,8 @@ sendall(e, mode)
 		return;
 
 	  case SM_FORK:
-		if (Xscript != NULL)
-			(void) fflush(Xscript);
+		if (e->e_xfp != NULL)
+			(void) fflush(e->e_xfp);
 		pid = fork();
 		if (pid < 0)
 		{
