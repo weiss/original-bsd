@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)savemail.c	8.71 (Berkeley) 05/28/95";
+static char sccsid[] = "@(#)savemail.c	8.72 (Berkeley) 05/29/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -120,11 +120,6 @@ savemail(e, sendbody)
 		break;
 
 	  case EM_BERKNET:
-		/* mail back, but return o.k. exit status */
-		ExitStat = EX_OK;
-
-		/* fall through.... */
-
 	  case EM_MAIL:
 		state = ESM_MAIL;
 		break;
