@@ -16,11 +16,11 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)disklabel.c	5.10 (Berkeley) 07/19/88";
+static char sccsid[] = "@(#)disklabel.c	5.11 (Berkeley) 07/30/89";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/param.h>
-#include <sys/fs.h>
+#include <ufs/fs.h>
 #include <sys/file.h>
 #define DKTYPENAMES
 #include <sys/disklabel.h>
