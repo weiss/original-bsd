@@ -1,4 +1,7 @@
-#
+#ifndef lint
+static char sccsid[] = "@(#)cmd1.c	2.12 (Berkeley) 08/11/83";
+#endif
+
 #include "rcv.h"
 #include <sys/stat.h>
 
@@ -7,8 +10,6 @@
  *
  * User commands.
  */
-
-static char *SccsId = "@(#)cmd1.c	2.11 06/12/83";
 
 /*
  * Print the current active headings.
