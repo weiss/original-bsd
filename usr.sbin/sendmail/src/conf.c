@@ -36,7 +36,7 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	3.41	12/05/81";
+SCCSID(@(#)conf.c	3.42		12/06/81);
 
 
 # include <whoami.h>		/* definitions of machine id's at berkeley */

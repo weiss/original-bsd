@@ -5,7 +5,7 @@
 # endif
 # include "useful.h"
 
-static char SccsId[] = "@(#)arpadate.c	3.8	12/05/81";
+SCCSID(@(#)arpadate.c	3.9		12/06/81);
 
 /*
 **  ARPADATE -- Create date in ARPANET format
