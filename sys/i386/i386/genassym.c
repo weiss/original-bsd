@@ -7,28 +7,28 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)genassym.c	5.15 (Berkeley) 07/14/92
+ *	@(#)genassym.c	5.16 (Berkeley) 10/11/92
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)genassym.c	5.15 (Berkeley) 07/14/92";
+static char sccsid[] = "@(#)genassym.c	5.16 (Berkeley) 10/11/92";
 #endif /* not lint */
 
 #define KERNEL
 
-#include "sys/param.h"
-#include "sys/buf.h"
-#include "sys/map.h"
-#include "sys/proc.h"
-#include "sys/mbuf.h"
-#include "sys/msgbuf.h"
-#include "machine/cpu.h"
-#include "machine/trap.h"
-#include "machine/psl.h"
-#include "machine/reg.h"
-#include "sys/syscall.h"
-#include "vm/vm.h"
-#include "sys/user.h"
+#include <sys/param.h>
+#include <sys/buf.h>
+#include <sys/map.h>
+#include <sys/proc.h>
+#include <sys/mbuf.h>
+#include <sys/msgbuf.h>
+#include <machine/cpu.h>
+#include <machine/trap.h>
+#include <machine/psl.h>
+#include <machine/reg.h>
+#include <sys/syscall.h>
+#include <vm/vm.h>
+#include <sys/user.h>
 
 main()
 {

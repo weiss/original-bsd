@@ -7,16 +7,16 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)locore.s	7.9 (Berkeley) 07/14/92
+ *	@(#)locore.s	7.10 (Berkeley) 10/11/92
  */
 
 #include "assym.s"
-#include "machine/psl.h"
-#include "machine/pte.h"
+#include <machine/psl.h>
+#include <machine/pte.h>
 
-#include "errno.h"
+#include <sys/errno.h>
 
-#include "machine/trap.h"
+#include <machine/trap.h>
 
 #include "npx.h"
 
@@ -1581,4 +1581,4 @@ ENTRY(DELAY)
 	ret	
 
 #include "vector.s"
-#include "i386/isa/icu.s"
+#include <i386/isa/icu.s>
