@@ -16,13 +16,13 @@
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#include <sendmail.h>
+#include "sendmail.h"
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	5.20 (Berkeley) 03/05/90 (with name server)";
+static char sccsid[] = "@(#)domain.c	5.21 (Berkeley) 04/18/90 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	5.20 (Berkeley) 03/05/90 (without name server)";
+static char sccsid[] = "@(#)domain.c	5.21 (Berkeley) 04/18/90 (without name server)";
 #endif
 #endif /* not lint */
 
