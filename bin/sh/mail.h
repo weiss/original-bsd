@@ -7,11 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mail.h	8.1 (Berkeley) 05/31/93
+ *	@(#)mail.h	8.2 (Berkeley) 05/04/95
  */
 
-#ifdef __STDC__
-void chkmail(int);
-#else
-void chkmail();
-#endif
+void chkmail __P((int));
