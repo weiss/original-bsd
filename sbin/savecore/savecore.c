@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)savecore.c	5.20 (Berkeley) 12/19/89";
+static char sccsid[] = "@(#)savecore.c	5.21 (Berkeley) 03/22/90";
 #endif /* not lint */
 
 /*
@@ -30,12 +30,12 @@ static char sccsid[] = "@(#)savecore.c	5.20 (Berkeley) 12/19/89";
  */
 
 #include <sys/param.h>
-#include <sys/dir.h>
+#include <sys/mount.h>
 #include <sys/stat.h>
-#include <ufs/fs.h>
 #include <sys/time.h>
 #include <sys/file.h>
 #include <sys/syslog.h>
+#include <dirent.h>
 #include <stdio.h>
 #include <nlist.h>
 #include <paths.h>
@@ -198,7 +198,7 @@ find_dev(dev, type)
 	register int type;
 {
 	register DIR *dfd = opendir(_PATH_DEV);
-	struct direct *dir;
+	struct dirent *dir;
 	struct stat statb;
 	static char devname[MAXPATHLEN + 1];
 	char *dp;
@@ -361,26 +361,20 @@ path(file)
 
 check_space()
 {
-	struct stat dsb;
-	register char *ddev;
-	int dfd, spacefree;
-	struct fs fs;
+	long minfree, spacefree;
+	struct statfs fsbuf;
 
-	if (stat(dirname, &dsb) < 0) {
+	if (statfs(dirname, &fsbuf) < 0) {
 		Perror(LOG_ERR, "%s: %m\n", dirname);
 		exit(1);
 	}
-	ddev = find_dev(dsb.st_dev, S_IFBLK);
-	dfd = Open(ddev, O_RDONLY);
-	Lseek(dfd, SBOFF, L_SET);
-	Read(dfd, (char *)&fs, sizeof (fs));
-	close(dfd);
- 	spacefree = freespace(&fs, fs.fs_minfree) * fs.fs_fsize / 1024;
- 	if (spacefree < read_number("minfree")) {
+ 	spacefree = fsbuf.f_bavail * fsbuf.f_fsize / 1024;
+	minfree = read_number("minfree");
+ 	if (minfree > 0 && spacefree - dumpsize < minfree) {
 		log(LOG_WARNING, "Dump omitted, not enough space on device\n");
 		return (0);
 	}
-	if (freespace(&fs, fs.fs_minfree) < 0)
+	if (spacefree - dumpsize < minfree)
 		log(LOG_WARNING,
 		    "Dump performed, but free space threshold crossed\n");
 	return (1);
