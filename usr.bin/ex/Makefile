@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.35 (Berkeley) 06/18/93
+#	@(#)Makefile	8.1 (Berkeley) 06/18/93
 
 # Things that can be turned off to save space:
 #	LISPCODE (-l flag, showmatch and lisp options)
