@@ -1,6 +1,6 @@
 .\" %sccs.include.proprietary.roff%
 .\"
-.\"	@(#)adb.ms	6.3 (Berkeley) 06/05/93
+.\"	@(#)adb.ms	8.1 (Berkeley) 06/08/93
 .\"
 .EH 'PSD:11-%''A Tutorial Introduction to ADB'
 .OH 'A Tutorial Introduction to ADB''PSD:11-%'
