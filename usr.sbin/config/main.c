@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.1 (Berkeley) 05/08/85";
+static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 01/11/86";
 #endif not lint
 
 #include <stdio.h>
@@ -60,6 +60,7 @@ main(argc, argv)
 		printf("Specify machine type, e.g. ``machine vax''\n");
 		exit(1);
 	}
+	symlink("../h", path("sys"));	/* make genassym.c work */
 	makefile();			/* build Makefile */
 	headers();			/* make a lot of .h files */
 	swapconf();			/* swap config files */
