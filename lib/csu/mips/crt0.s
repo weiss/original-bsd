@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)crt0.s	5.5 (Berkeley) 02/20/93
+ *	@(#)crt0.s	5.6 (Berkeley) 02/21/93
  */
 
 #include <machine/regdef.h>
@@ -78,8 +78,11 @@ END(moncontrol)
 
 LEAF(_mcount)
 	.set	noreorder
-	j	ra
+	.set	noat
 	addu	sp, sp, 8	# undo push
+	j	ra
+	move	ra, AT
+	.set	at
 	.set	reorder
 END(_mcount)
 #endif
