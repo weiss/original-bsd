@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.89.1.1 (Berkeley) 02/28/95";
+static char sccsid[] = "@(#)conf.c	8.135 (Berkeley) 02/28/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -54,44 +54,46 @@ static char sccsid[] = "@(#)conf.c	8.89.1.1 (Berkeley) 02/28/95";
 struct hdrinfo	HdrInfo[] =
 {
 		/* originator fields, most to least significant  */
-	"resent-sender",	H_FROM|H_RESENT,
-	"resent-from",		H_FROM|H_RESENT,
-	"resent-reply-to",	H_FROM|H_RESENT,
-	"sender",		H_FROM,
-	"from",			H_FROM,
-	"reply-to",		H_FROM,
-	"full-name",		H_ACHECK,
-	"return-receipt-to",	H_FROM|H_RECEIPTTO,
-	"errors-to",		H_FROM|H_ERRORSTO,
+	"resent-sender",		H_FROM|H_RESENT,
+	"resent-from",			H_FROM|H_RESENT,
+	"resent-reply-to",		H_FROM|H_RESENT,
+	"sender",			H_FROM,
+	"from",				H_FROM,
+	"reply-to",			H_FROM,
+	"full-name",			H_ACHECK,
+	"return-receipt-to",		H_FROM|H_RECEIPTTO,
+	"errors-to",			H_FROM|H_ERRORSTO,
 
 		/* destination fields */
-	"to",			H_RCPT,
-	"resent-to",		H_RCPT|H_RESENT,
-	"cc",			H_RCPT,
-	"resent-cc",		H_RCPT|H_RESENT,
-	"bcc",			H_RCPT|H_ACHECK,
-	"resent-bcc",		H_RCPT|H_ACHECK|H_RESENT,
-	"apparently-to",	H_RCPT,
+	"to",				H_RCPT,
+	"resent-to",			H_RCPT|H_RESENT,
+	"cc",				H_RCPT,
+	"resent-cc",			H_RCPT|H_RESENT,
+	"bcc",				H_RCPT|H_STRIPVAL,
+	"resent-bcc",			H_RCPT|H_STRIPVAL|H_RESENT,
+	"apparently-to",		H_RCPT,
 
 		/* message identification and control */
-	"message-id",		0,
-	"resent-message-id",	H_RESENT,
-	"message",		H_EOH,
-	"text",			H_EOH,
+	"message-id",			0,
+	"resent-message-id",		H_RESENT,
+	"message",			H_EOH,
+	"text",				H_EOH,
 
 		/* date fields */
-	"date",			0,
-	"resent-date",		H_RESENT,
+	"date",				0,
+	"resent-date",			H_RESENT,
 
 		/* trace fields */
-	"received",		H_TRACE|H_FORCE,
-	"x400-received",	H_TRACE|H_FORCE,
-	"via",			H_TRACE|H_FORCE,
-	"mail-from",		H_TRACE|H_FORCE,
+	"received",			H_TRACE|H_FORCE,
+	"x400-received",		H_TRACE|H_FORCE,
+	"via",				H_TRACE|H_FORCE,
+	"mail-from",			H_TRACE|H_FORCE,
 
 		/* miscellaneous fields */
-	"comments",		H_FORCE,
-	"return-path",		H_FORCE|H_ACHECK,
+	"comments",			H_FORCE,
+	"return-path",			H_FORCE|H_ACHECK,
+	"content-transfer-encoding",	H_CTE,
+	"content-type",			H_CTYPE,
 
 	NULL,			0,
 };
@@ -133,25 +135,6 @@ struct prival PrivacyValues[] =
 */
 
 int	DtableSize =	50;		/* max open files; reset in 4.2bsd */
-
-
-/*
-**  Following should be config parameters (and probably will be in
-**  future releases).  In the meantime, setting these is considered
-**  unsupported, and is intentionally undocumented.
-*/
-
-#ifdef BROKENSMTPPEERS
-bool	BrokenSmtpPeers = TRUE;		/* set if you have broken SMTP peers */
-#else
-bool	BrokenSmtpPeers = FALSE;	/* set if you have broken SMTP peers */
-#endif
-#ifdef NOLOOPBACKCHECK
-bool	CheckLoopBack = FALSE;		/* set to check HELO loopback */
-#else
-bool	CheckLoopBack = TRUE;		/* set to check HELO loopback */
-#endif
-
 /*
 **  SETDEFAULTS -- set default values
 **
@@ -171,9 +154,16 @@ bool	CheckLoopBack = TRUE;		/* set to check HELO loopback */
 
 #define DAYS		* 24 * 60 * 60
 
+void
 setdefaults(e)
 	register ENVELOPE *e;
 {
+	int i;
+	extern void inittimeouts();
+	extern void setdefuser();
+	extern void setupmaps();
+	extern void setupmailers();
+
 	SpaceSub = ' ';				/* option B */
 	QueueLA = 8;				/* option x */
 	RefuseLA = 12;				/* option X */
@@ -189,14 +179,19 @@ setdefaults(e)
 	MaxHopCount = 25;			/* option h */
 	e->e_sendmode = SM_FORK;		/* option d */
 	e->e_errormode = EM_PRINT;		/* option e */
-	SevenBit = FALSE;			/* option 7 */
+	SevenBitInput = FALSE;			/* option 7 */
 	MaxMciCache = 1;			/* option k */
 	MciCacheTimeout = 300;			/* option K */
 	LogLevel = 9;				/* option L */
-	settimeouts(NULL);			/* option r */
-	TimeOuts.to_q_return = 5 DAYS;		/* option T */
-	TimeOuts.to_q_warning = 0;		/* option T */
+	inittimeouts(NULL);			/* option r */
 	PrivacyFlags = 0;			/* option p */
+	MimeMode = MM_CVTMIME|MM_PASS8BIT;	/* option 8 */
+	for (i = 0; i < MAXTOCLASS; i++)
+	{
+		TimeOuts.to_q_return[i] = 5 DAYS;	/* option T */
+		TimeOuts.to_q_warning[i] = 0;		/* option T */
+	}
+	ServiceSwitchFile = "/etc/service.switch";
 	setdefuser();
 	setupmaps();
 	setupmailers();
@@ -207,6 +202,7 @@ setdefaults(e)
 **  SETDEFUSER -- set/reset DefUser using DefUid (for initgroups())
 */
 
+void
 setdefuser()
 {
 	struct passwd *defpwent;
@@ -221,6 +217,8 @@ setdefuser()
 /*
 **  HOST_MAP_INIT -- initialize host class structures
 */
+
+bool	host_map_init __P((MAP *map, char *args));
 
 bool
 host_map_init(map, args)
@@ -254,14 +252,16 @@ host_map_init(map, args)
 **  SETUPMAILERS -- initialize default mailers
 */
 
+void
 setupmailers()
 {
 	char buf[100];
+	extern void makemailer();
 
-	strcpy(buf, "prog, P=/bin/sh, F=lsD, A=sh -c $u");
+	strcpy(buf, "prog, P=/bin/sh, F=lsoD, A=sh -c $u");
 	makemailer(buf);
 
-	strcpy(buf, "*file*, P=/dev/null, F=lsDFMPEu, A=FILE");
+	strcpy(buf, "*file*, P=/dev/null, F=lsDFMPEou, A=FILE");
 	makemailer(buf);
 
 	strcpy(buf, "*include*, P=/dev/null, F=su, A=INCLUDE");
@@ -289,6 +289,7 @@ setupmailers()
 		s->s_mapclass.map_store = store; \
 	}
 
+void
 setupmaps()
 {
 	register STAB *s;
@@ -297,6 +298,7 @@ setupmaps()
 	MAPDEF("hash", ".db", MCF_ALIASOK|MCF_REBUILDABLE,
 		map_parseargs, hash_map_open, db_map_close,
 		db_map_lookup, db_map_store);
+
 	MAPDEF("btree", ".db", MCF_ALIASOK|MCF_REBUILDABLE,
 		map_parseargs, bt_map_open, db_map_close,
 		db_map_lookup, db_map_store);
@@ -310,22 +312,61 @@ setupmaps()
 
 #ifdef NIS
 	MAPDEF("nis", NULL, MCF_ALIASOK,
-		map_parseargs, nis_map_open, nis_map_close,
-		nis_map_lookup, nis_map_store);
+		map_parseargs, nis_map_open, null_map_close,
+		nis_map_lookup, null_map_store);
 #endif
 
+#ifdef NISPLUS
+	MAPDEF("nisplus", NULL, MCF_ALIASOK,
+		map_parseargs, nisplus_map_open, null_map_close,
+		nisplus_map_lookup, null_map_store);
+#endif
+
+#ifdef HESIOD
+	MAPDEF("hesiod", NULL, MCF_ALIASOK|MCF_ALIASONLY,
+		map_parseargs, null_map_open, null_map_close,
+		hes_map_lookup, null_map_store);
+#endif
+
+#ifdef NETINFO
+	MAPDEF("netinfo", NULL, MCF_ALIASOK,
+		map_parseargs, ni_map_open, null_map_close,
+		ni_map_lookup, null_map_store);
+#endif
+
+#if 0
+	MAPDEF("dns", NULL, 0,
+		dns_map_init, null_map_open, null_map_close,
+		dns_map_lookup, null_map_store);
+#endif
+
+#if NAMED_BIND
+	/* best MX DNS lookup */
+	MAPDEF("bestmx", NULL, MCF_OPTFILE,
+		map_parseargs, null_map_open, null_map_close,
+		bestmx_map_lookup, null_map_store);
+#endif
+
+	MAPDEF("host", NULL, 0,
+		host_map_init, null_map_open, null_map_close,
+		host_map_lookup, null_map_store);
+
+	MAPDEF("text", NULL, MCF_ALIASOK,
+		map_parseargs, text_map_open, null_map_close,
+		text_map_lookup, null_map_store);
+
 	MAPDEF("stab", NULL, MCF_ALIASOK|MCF_ALIASONLY,
-		map_parseargs, stab_map_open, stab_map_close,
+		map_parseargs, stab_map_open, null_map_close,
 		stab_map_lookup, stab_map_store);
 
 	MAPDEF("implicit", NULL, MCF_ALIASOK|MCF_ALIASONLY|MCF_REBUILDABLE,
 		map_parseargs, impl_map_open, impl_map_close,
 		impl_map_lookup, impl_map_store);
 
-	/* host DNS lookup */
-	MAPDEF("host", NULL, 0,
-		host_map_init, null_map_open, null_map_close,
-		host_map_lookup, null_map_store);
+	/* access to system passwd file */
+	MAPDEF("user", NULL, MCF_OPTFILE,
+		map_parseargs, user_map_open, null_map_close,
+		user_map_lookup, null_map_store);
 
 	/* dequote map */
 	MAPDEF("dequote", NULL, 0,
@@ -340,9 +381,360 @@ setupmaps()
 		udb_map_lookup, null_map_store);
 # endif
 #endif
+
+	/* sequenced maps */
+	MAPDEF("sequence", NULL, MCF_ALIASOK,
+		seq_map_parse, null_map_open, null_map_close,
+		seq_map_lookup, seq_map_store);
+
+	/* switched interface to sequenced maps */
+	MAPDEF("switch", NULL, MCF_ALIASOK,
+		map_parseargs, switch_map_open, null_map_close,
+		seq_map_lookup, seq_map_store);
 }
 
 #undef MAPDEF
+/*
+**  INITHOSTMAPS -- initial host-dependent maps
+**
+**	This should act as an interface to any local service switch
+**	provided by the host operating system.
+**
+**	Parameters:
+**		none
+**
+**	Returns:
+**		none
+**
+**	Side Effects:
+**		Should define maps "host" and "users" as necessary
+**		for this OS.  If they are not defined, they will get
+**		a default value later.  It should check to make sure
+**		they are not defined first, since it's possible that
+**		the config file has provided an override.
+*/
+
+void
+inithostmaps()
+{
+	register int i;
+	int nmaps;
+	char *maptype[MAXMAPSTACK];
+	short mapreturn[MAXMAPACTIONS];
+	char buf[MAXLINE];
+
+	/*
+	**  Set up default hosts maps.
+	*/
+
+#if 0
+	nmaps = switch_map_find("hosts", maptype, mapreturn);
+	for (i = 0; i < nmaps; i++)
+	{
+		if (strcmp(maptype[i], "files") == 0 &&
+		    stab("hosts.files", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "hosts.files text -k 0 -v 1 /etc/hosts");
+			makemapentry(buf);
+		}
+#if NAMED_BIND
+		else if (strcmp(maptype[i], "dns") == 0 &&
+		    stab("hosts.dns", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "hosts.dns dns A");
+			makemapentry(buf);
+		}
+#endif
+#ifdef NISPLUS
+		else if (strcmp(maptype[i], "nisplus") == 0 &&
+		    stab("hosts.nisplus", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "hosts.nisplus nisplus -k name -v address -d hosts.org_dir");
+			makemapentry(buf);
+		}
+#endif
+#ifdef NIS
+		else if (strcmp(maptype[i], "nis") == 0 &&
+		    stab("hosts.nis", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "hosts.nis nis -d -k 0 -v 1 hosts.byname");
+			makemapentry(buf);
+		}
+#endif
+	}
+#endif
+
+	/*
+	**  Make sure we have a host map.
+	*/
+
+	if (stab("host", ST_MAP, ST_FIND) == NULL)
+	{
+		/* user didn't initialize: set up host map */
+		strcpy(buf, "host host");
+#if NAMED_BIND
+		if (ConfigLevel >= 2)
+			strcat(buf, " -a.");
+#endif
+		makemapentry(buf);
+	}
+
+	/*
+	**  Set up default aliases maps
+	*/
+
+	nmaps = switch_map_find("aliases", maptype, mapreturn);
+	for (i = 0; i < nmaps; i++)
+	{
+		if (strcmp(maptype[i], "files") == 0 &&
+		    stab("aliases.files", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "aliases.files implicit /etc/aliases");
+			makemapentry(buf);
+		}
+#ifdef NISPLUS
+		else if (strcmp(maptype[i], "nisplus") == 0 &&
+		    stab("aliases.nisplus", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "aliases.nisplus nisplus -kalias -vexpansion -d mail_aliases.org_dir");
+			makemapentry(buf);
+		}
+#endif
+#ifdef NIS
+		else if (strcmp(maptype[i], "nis") == 0 &&
+		    stab("aliases.nis", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "aliases.nis nis -d mail.aliases");
+			makemapentry(buf);
+		}
+#endif
+	}
+	if (stab("aliases", ST_MAP, ST_FIND) == NULL)
+	{
+		strcpy(buf, "aliases switch aliases");
+		makemapentry(buf);
+	}
+	strcpy(buf, "switch:aliases");
+	setalias(buf);
+
+#if 0		/* "user" map class is a better choice */
+	/*
+	**  Set up default users maps.
+	*/
+
+	nmaps = switch_map_find("passwd", maptype, mapreturn);
+	for (i = 0; i < nmaps; i++)
+	{
+		if (strcmp(maptype[i], "files") == 0 &&
+		    stab("users.files", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "users.files text -m -z: -k0 -v6 /etc/passwd");
+			makemapentry(buf);
+		}
+#ifdef NISPLUS
+		else if (strcmp(maptype[i], "nisplus") == 0 &&
+		    stab("users.nisplus", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "users.nisplus nisplus -m -kname -vhome -d passwd.org_dir");
+			makemapentry(buf);
+		}
+#endif
+#ifdef NIS
+		else if (strcmp(maptype[i], "nis") == 0 &&
+		    stab("users.nis", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "users.nis nis -m -d passwd.byname");
+			makemapentry(buf);
+		}
+#endif
+#ifdef HESIOD
+		else if (strcmp(maptype[i], "hesiod") == 0) &&
+		    stab("users.hesiod", ST_MAP, ST_FIND) == NULL)
+		{
+			strcpy(buf, "users.hesiod hesiod");
+			makemapentry(buf);
+		}
+#endif
+	}
+	if (stab("users", ST_MAP, ST_FIND) == NULL)
+	{
+		strcpy(buf, "users switch -m passwd");
+		makemapentry(buf);
+	}
+#endif
+}
+/*
+**  SWITCH_MAP_FIND -- find the list of types associated with a map
+**
+**	This is the system-dependent interface to the service switch.
+**
+**	Parameters:
+**		service -- the name of the service of interest.
+**		maptype -- an out-array of strings containing the types
+**			of access to use for this service.  There can
+**			be at most MAXMAPSTACK types for a single service.
+**		mapreturn -- an out-array of return information bitmaps
+**			for the map.
+**
+**	Returns:
+**		The number of map types filled in, or -1 for failure.
+*/
+
+#ifdef SOLARIS
+# include <nsswitch.h>
+#endif
+
+#if defined(ultrix) || defined(__osf__)
+# include <sys/svcinfo.h>
+#endif
+
+int
+switch_map_find(service, maptype, mapreturn)
+	char *service;
+	char *maptype[MAXMAPSTACK];
+	short mapreturn[MAXMAPACTIONS];
+{
+	register FILE *fp;
+	int svcno;
+	static char buf[MAXLINE];
+
+#ifdef SOLARIS
+	struct __nsw_switchconfig *nsw_conf;
+	enum __nsw_parse_err pserr;
+	struct __nsw_lookup *lk;
+	int nsw_rc;
+	static struct __nsw_lookup lkp0 =
+		{ "files", {1, 0, 0, 0}, NULL, NULL };
+	static struct __nsw_switchconfig lkp_default =
+		{ 0, "sendmail", 3, &lkp0 };
+
+	if ((nsw_conf = __nsw_getconfig(service, &pserr)) == NULL)
+		lk = lkp_default.lookups;
+	else
+		lk = nsw_conf->lookups;
+	svcno = 0;
+	while (lk != NULL)
+	{
+		maptype[svcno] = lk->service_name;
+		if (lk->actions[__NSW_NOTFOUND] == __NSW_RETURN)
+			mapreturn[MA_NOTFOUND] |= 1 << svcno;
+		if (lk->actions[__NSW_TRYAGAIN] == __NSW_RETURN)
+			mapreturn[MA_TRYAGAIN] |= 1 << svcno;
+		if (lk->actions[__NSW_UNAVAIL] == __NSW_RETURN)
+			mapreturn[MA_TRYAGAIN] |= 1 << svcno;
+		svcno++;
+		lk = lk->next;
+	}
+	return svcno;
+#endif
+
+#if defined(ultrix) || defined(__osf__)
+	struct svcinfo *svcinfo;
+	int svc;
+
+	svcinfo = getsvc();
+	if (svcinfo == NULL)
+		goto punt;
+	if (strcmp(service, "hosts") == 0)
+		svc = SVC_HOSTS;
+	else if (strcmp(service, "aliases") == 0)
+		svc = SVC_ALIASES;
+	else if (strcmp(service, "passwd") == 0)
+		svc = SVC_PASSWD;
+	else
+		return -1;
+	for (svcno = 0; svcno < SVC_PATHSIZE; svcno++)
+	{
+		switch (svcinfo->svcpath[svc][svcno])
+		{
+		  case SVC_LOCAL:
+			maptype[svcno] = "files";
+			break;
+
+		  case SVC_YP:
+			maptype[svcno] = "nis";
+			break;
+
+		  case SVC_BIND:
+			maptype[svcno] = "dns";
+			break;
+
+#ifdef SVC_HESIOD
+		  case SVC_HESIOD:
+			maptype[svcno] = "hesiod";
+			break;
+#endif
+
+		  case SVC_LAST:
+			return svcno;
+		}
+	}
+	return svcno;
+#endif
+
+#if !defined(SOLARIS) && !defined(ultrix) && !defined(__osf__)
+	/*
+	**  Fall-back mechanism.
+	*/
+
+	svcno = 0;
+	fp = fopen(ServiceSwitchFile, "r");
+	if (fp != NULL)
+	{
+		while (fgets(buf, sizeof buf, fp) != NULL)
+		{
+			register char *p;
+
+			p = strpbrk(buf, "#\n");
+			if (p != NULL)
+				*p = '\0';
+			p = strpbrk(buf, " \t");
+			if (p != NULL)
+				*p++ = '\0';
+			if (strcmp(buf, service) != 0)
+				continue;
+
+			/* got the right service -- extract data */
+			do
+			{
+				while (isspace(*p))
+					p++;
+				if (*p == '\0')
+					break;
+				maptype[svcno++] = p;
+				p = strpbrk(p, " \t");
+				if (p != NULL)
+					*p++ = '\0';
+			} while (p != NULL);
+			break;
+		}
+		fclose(fp);
+		return svcno;
+	}
+#endif
+
+	/* if the service file doesn't work, use an absolute fallback */
+  punt:
+	if (strcmp(service, "aliases") == 0)
+	{
+		maptype[0] = "files";
+		return 1;
+	}
+	if (strcmp(service, "hosts") == 0)
+	{
+# if NAMED_BIND
+		maptype[svcno++] = "dns";
+# else
+#  if defined(sun) && !defined(BSD) && !defined(SOLARIS)
+		/* SunOS */
+		maptype[svcno++] = "nis";
+#  endif
+# endif
+		maptype[svcno++] = "files";
+		return svcno;
+	}
+	return -1;
+}
 /*
 **  USERNAME -- return the user id of the logged in user.
 **
@@ -464,7 +856,7 @@ ttypath()
 **	message should be given using "usrerr" and 0 should
 **	be returned.
 **
-**	'NoReturn' can be set to suppress the return-to-sender
+**	EF_NORETURN can be set in e->e_flags to suppress the return-to-sender
 **	function; this should be done on huge messages.
 **
 **	Parameters:
@@ -477,6 +869,7 @@ ttypath()
 **		none (unless you include the usrerr stuff)
 */
 
+int
 checkcompat(to, e)
 	register ADDRESS *to;
 	register ENVELOPE *e;
@@ -495,11 +888,11 @@ checkcompat(to, e)
 	register STAB *s;
 
 	s = stab("arpa", ST_MAILER, ST_FIND);
-	if (s != NULL && e->e_from.q_mailer != LocalMailer &&
+	if (s != NULL && strcmp(e->e_from.q_mailer->m_name, "local") != 0 &&
 	    to->q_mailer == s->s_mailer)
 	{
 		usrerr("553 No ARPA mail through this machine: see your system administration");
-		/* NoReturn = TRUE; to supress return copy */
+		/* e->e_flags |= EF_NORETURN; to supress return copy */
 		return (EX_UNAVAILABLE);
 	}
 # endif /* EXAMPLE_CODE */
@@ -523,6 +916,9 @@ setsignal(sig, handler)
 
 	bzero(&n, sizeof n);
 	n.sa_handler = handler;
+# ifdef SA_RESTART
+	n.sa_flags = SA_RESTART;
+# endif
 	if (sigaction(sig, &n, &o) < 0)
 		return SIG_ERR;
 	return o.sa_handler;
@@ -541,6 +937,7 @@ setsignal(sig, handler)
 **		Arranges that signals are held.
 */
 
+void
 holdsigs()
 {
 }
@@ -559,6 +956,7 @@ holdsigs()
 **		Arranges that signals are released.
 */
 
+void
 rlsesigs()
 {
 }
@@ -573,12 +971,19 @@ rlsesigs()
 # include	<compat.h>
 #endif
 
+void
 init_md(argc, argv)
 	int argc;
 	char **argv;
 {
 #ifdef _AUX_SOURCE
 	setcompat(getcompat() | COMPAT_BSDPROT);
+#endif
+
+#ifdef VENDOR_DEFAULT
+	VendorCode = VENDOR_DEFAULT;
+#else
+	VendorCode = VENDOR_BERKELEY;
 #endif
 }
 /*
@@ -614,6 +1019,10 @@ init_md(argc, argv)
 
 #include <nlist.h>
 
+#ifdef IRIX64
+# define nlist		nlist64
+#endif
+
 #ifndef LA_AVENRUN
 # ifdef SYSTEM5
 #  define LA_AVENRUN	"avenrun"
@@ -645,6 +1054,10 @@ struct	nlist Nl[] =
 
 # if defined(__alpha) || defined(IRIX)
 #  define FSHIFT	10
+# endif
+
+# if defined(_AIX3)
+#  define FSHIFT	16
 # endif
 #endif
 
@@ -682,7 +1095,11 @@ getla()
 			return (-1);
 		}
 		(void) fcntl(kmem, F_SETFD, 1);
+#ifdef _AIX3
+		if (knlist(Nl, 1, sizeof Nl[0]) < 0)
+#else
 		if (nlist(_PATH_UNIX, Nl) < 0)
+#endif
 		{
 			if (tTd(3, 1))
 				printf("getla: nlist(%s): %s\n", _PATH_UNIX,
@@ -696,13 +1113,13 @@ getla()
 					_PATH_UNIX, LA_AVENRUN);
 			return (-1);
 		}
-#ifdef IRIX
-		Nl[X_AVENRUN].n_value &= 0x7fffffff;
+#ifdef NAMELISTMASK
+		Nl[X_AVENRUN].n_value &= NAMELISTMASK;
 #endif
 	}
 	if (tTd(3, 20))
 		printf("getla: symbol address = %#x\n", Nl[X_AVENRUN].n_value);
-	if (lseek(kmem, (off_t) Nl[X_AVENRUN].n_value, 0) == -1 ||
+	if (lseek(kmem, (off_t) Nl[X_AVENRUN].n_value, SEEK_SET) == -1 ||
 	    read(kmem, (char *) avenrun, sizeof(avenrun)) < sizeof(avenrun))
 	{
 		/* thank you Ian */
@@ -742,18 +1159,44 @@ getla()
 
 #include <sys/dg_sys_info.h>
 
-int getla()
+int
+getla()
 {
 	struct dg_sys_info_load_info load_info;
 
 	dg_sys_info((long *)&load_info,
 		DG_SYS_INFO_LOAD_INFO_TYPE, DG_SYS_INFO_LOAD_VERSION_0);
 
+        if (tTd(3, 1))
+                printf("getla: %d\n", (int) (load_info.one_minute + 0.5));
+
 	return((int) (load_info.one_minute + 0.5));
 }
 
 #else
+# ifdef __hpux
 
+#  include <sys/param.h>
+#  include <sys/pstat.h>
+
+int
+getla()
+{
+	struct pst_dynamic pstd;
+
+	if (pstat_getdynamic(&pstd, sizeof(struct pst_dynamic),
+			     (size_t) 1 ,0) == -1)
+		return 0;
+
+        if (tTd(3, 1))
+                printf("getla: %d\n", (int) (pstd.psd_avg_1_min + 0.5));
+
+	return (int) (pstd.psd_avg_1_min + 0.5);
+}
+
+# else
+
+int
 getla()
 {
 	double avenrun[3];
@@ -769,6 +1212,7 @@ getla()
 	return ((int) (avenrun[0] + 0.5));
 }
 
+# endif /* __hpux */
 #endif /* DGUX */
 #else
 #if LA_TYPE == LA_MACH
@@ -934,11 +1378,26 @@ shouldqueue(pri, ctime)
 	long pri;
 	time_t ctime;
 {
+	bool rval;
+
+	if (tTd(3, 30))
+		printf("shouldqueue: CurrentLA=%d, pri=%d: ", CurrentLA, pri);
 	if (CurrentLA < QueueLA)
+	{
+		if (tTd(3, 30))
+			printf("FALSE (CurrentLA < QueueLA)\n");
 		return (FALSE);
+	}
 	if (CurrentLA >= RefuseLA)
+	{
+		if (tTd(3, 30))
+			printf("TRUE (CurrentLA >= RefuseLA)\n");
 		return (TRUE);
-	return (pri > (QueueFactor / (CurrentLA - QueueLA + 1)));
+	}
+	rval = pri > (QueueFactor / (CurrentLA - QueueLA + 1));
+	if (tTd(3, 30))
+		printf("%s (by calculation)\n", rval ? "TRUE" : "FALSE");
+	return rval;
 }
 /*
 **  REFUSECONNECTIONS -- decide if connections should be refused
@@ -958,13 +1417,15 @@ shouldqueue(pri, ctime)
 bool
 refuseconnections()
 {
+	extern bool enoughspace();
+
 #ifdef XLA
 	if (!xla_smtp_ok())
 		return TRUE;
 #endif
 
 	/* this is probably too simplistic */
-	return (CurrentLA >= RefuseLA);
+	return CurrentLA >= RefuseLA || !enoughspace(MinBlocksFree + 1);
 }
 /*
 **  SETPROCTITLE -- set process title for ps
@@ -981,50 +1442,61 @@ refuseconnections()
 **		display the title.
 */
 
-#ifdef SETPROCTITLE
-# ifdef HASSETPROCTITLE
-   *** ERROR ***  Cannot have both SETPROCTITLE and HASSETPROCTITLE defined
-# endif
-# ifdef __hpux
+#define SPT_NONE	0	/* don't use it at all */
+#define SPT_REUSEARGV	1	/* cover argv with title information */
+#define SPT_BUILTIN	2	/* use libc builtin */
+#define SPT_PSTAT	3	/* use pstat(PSTAT_SETCMD, ...) */
+#define SPT_PSSTRINGS	4	/* use PS_STRINGS->... */
+#define SPT_WRITEUDOT	5	/* write u. area in kmem */
+
+#ifndef SPT_TYPE
+# define SPT_TYPE	SPT_REUSEARGV
+#endif
+
+#if SPT_TYPE != SPT_NONE && SPT_TYPE != SPT_BUILTIN
+
+# if SPT_TYPE == SPT_PSTAT
 #  include <sys/pstat.h>
 # endif
-# ifdef BSD4_4
+# if SPT_TYPE == SPT_PSSTRINGS
 #  include <machine/vmparam.h>
 #  include <sys/exec.h>
-#  ifdef __bsdi__
-#   undef PS_STRINGS	/* BSDI 1.0 doesn't do PS_STRINGS as we expect */
-#   define PROCTITLEPAD	'\0'
-#  endif
-#  ifdef PS_STRINGS
-#   define SETPROC_STATIC static
+#  ifndef PS_STRINGS	/* hmmmm....  apparently not available after all */
+#   undef SPT_TYPE
+#   define SPT_TYPE	SPT_REUSEARGV
 #  endif
 # endif
-# ifndef SETPROC_STATIC
+
+# if SPT_TYPE == SPT_PSSTRINGS
+#  define SETPROC_STATIC	static
+# else
 #  define SETPROC_STATIC
 # endif
-#endif
 
-#ifndef PROCTITLEPAD
-# define PROCTITLEPAD	' '
-#endif
+# ifndef SPT_PADCHAR
+#  define SPT_PADCHAR	' '
+# endif
 
-#ifndef HASSETPROCTITLE
+#endif /* SPT_TYPE != SPT_NONE && SPT_TYPE != SPT_BUILTIN */
+
+#if SPT_TYPE != SPT_BUILTIN
 
 /*VARARGS1*/
-#ifdef __STDC__
+void
+# ifdef __STDC__
 setproctitle(char *fmt, ...)
-#else
+# else
 setproctitle(fmt, va_alist)
 	char *fmt;
 	va_dcl
-#endif
+# endif
 {
-# ifdef SETPROCTITLE
+# if SPT_TYPE != SPT_NONE
 	register char *p;
 	register int i;
 	SETPROC_STATIC char buf[MAXLINE];
 	VA_LOCAL_DECL
-#  ifdef __hpux
+#  if SPT_TYPE == SPT_PSTAT
 	union pstun pst;
 #  endif
 	extern char **Argv;
@@ -1043,11 +1515,11 @@ setproctitle(fmt, va_alist)
 
 	i = strlen(buf);
 
-#  ifdef __hpux
+#  if SPT_TYPE == SPT_PSTAT
 	pst.pst_command = buf;
 	pstat(PSTAT_SETCMD, pst, i, 0, 0);
 #  else
-#   ifdef PS_STRINGS
+#   if SPT_TYPE == SPT_PSSTRINGS
 	PS_STRINGS->ps_nargvstr = 1;
 	PS_STRINGS->ps_argvstr = buf;
 #   else
@@ -1059,18 +1531,19 @@ setproctitle(fmt, va_alist)
 	(void) strcpy(Argv[0], buf);
 	p = &Argv[0][i];
 	while (p < LastArgv)
-		*p++ = PROCTITLEPAD;
-#   endif
-#  endif
-# endif /* SETPROCTITLE */
+		*p++ = SPT_PADCHAR;
+	Argv[1] = NULL;
+#   endif /* SPT_TYPE == SPT_PSSTRINGS */
+#  endif /* SPT_TYPE == SPT_PSTAT */
+# endif /* SPT_TYPE != SPT_NONE */
 }
 
-#endif
+#endif /* SPT_TYPE != SPT_BUILTIN */
 /*
 **  REAPCHILD -- pick up the body of my child, lest it become a zombie
 **
 **	Parameters:
-**		none.
+**		sig -- the signal that got us here (unused).
 **
 **	Returns:
 **		none.
@@ -1080,7 +1553,8 @@ setproctitle(fmt, va_alist)
 */
 
 void
-reapchild()
+reapchild(sig)
+	int sig;
 {
 	int olderrno = errno;
 # ifdef HASWAITPID
@@ -1325,10 +1799,11 @@ fsync(fd)
 **  DGUX_INET_ADDR -- inet_addr for DG/UX
 **
 **	Data General DG/UX version of inet_addr returns a struct in_addr
-**	instead of a long.  This patches things.
+**	instead of a long.  This patches things.  Only needed on versions
+**	prior to 5.4.3.
 */
 
-#ifdef DGUX
+#ifdef DGUX_5_4_2
 
 #undef inet_addr
 
@@ -1490,17 +1965,25 @@ vsprintf(s, fmt, ap)
 
 char	*DefaultUserShells[] =
 {
-	"/bin/sh",
+	"/bin/sh",		/* standard shell */
 	"/usr/bin/sh",
-	"/bin/csh",
+	"/bin/csh",		/* C shell */
 	"/usr/bin/csh",
 #ifdef __hpux
-	"/bin/rsh",
-	"/bin/ksh",
-	"/bin/rksh",
+	"/bin/rsh",		/* restricted Bourne shell */
+	"/bin/ksh",		/* Korn shell */
+	"/bin/rksh",		/* restricted Korn shell */
 	"/bin/pam",
-	"/usr/bin/keysh",
+	"/usr/bin/keysh",	/* key shell (extended Korn shell) */
 	"/bin/posix/sh",
+#endif
+#ifdef _AIX3
+	"/bin/ksh",		/* Korn shell */
+	"/usr/bin/ksh",
+	"/bin/tsh",		/* trusted shell */
+	"/usr/bin/tsh",
+	"/bin/bsh",		/* Bourne shell */
+	"/usr/bin/bsh",
 #endif
 	NULL
 };
@@ -1627,26 +2110,25 @@ freespace(dir, bsize)
 	struct ustat fs;
 	struct stat statbuf;
 #  define FSBLOCKSIZE	DEV_BSIZE
-#  define f_bavail	f_tfree
+#  define FSF_BAVAIL	f_tfree
 # else
 #  if defined(ultrix)
 	struct fs_data fs;
-#   define f_bavail	fd_bfreen
-#   define FSBLOCKSIZE	fs.fd_bsize
+#   define FSF_BAVAIL	fd_bfreen
+#   define FSBLOCKSIZE	1024L
 #  else
 #   if SFS_TYPE == SFS_STATVFS
 	struct statvfs fs;
-#    define FSBLOCKSIZE	fs.f_bsize
+#    define FSBLOCKSIZE	fs.f_frsize
 #   else
 	struct statfs fs;
 #    define FSBLOCKSIZE	fs.f_bsize
-#    if defined(_SCO_unix_) || defined(IRIX) || defined(apollo)
-#     define f_bavail f_bfree
-#    endif
 #   endif
 #  endif
 # endif
-	extern int errno;
+# ifndef FSF_BAVAIL
+#  define FSF_BAVAIL f_bavail
+# endif
 
 # if SFS_TYPE == SFS_USTAT
 	if (stat(dir, &statbuf) == 0 && ustat(statbuf.st_dev, &fs) == 0)
@@ -1654,17 +2136,21 @@ freespace(dir, bsize)
 #  if SFS_TYPE == SFS_4ARGS
 	if (statfs(dir, &fs, sizeof fs, 0) == 0)
 #  else
-#   if defined(ultrix)
-	if (statfs(dir, &fs) > 0)
+#   if SFS_TYPE == SFS_STATVFS
+	if (statvfs(dir, &fs) == 0)
 #   else
+#    if defined(ultrix)
+	if (statfs(dir, &fs) > 0)
+#    else
 	if (statfs(dir, &fs) == 0)
+#    endif
 #   endif
 #  endif
 # endif
 	{
 		if (bsize != NULL)
 			*bsize = FSBLOCKSIZE;
-		return (fs.f_bavail);
+		return (fs.FSF_BAVAIL);
 	}
 #endif
 	return (-1);
@@ -1714,8 +2200,10 @@ enoughspace(msize)
 			if (LogLevel > 0)
 				syslog(LOG_ALERT,
 					"%s: low on space (have %ld, %s needs %ld in %s)",
-					CurEnv->e_id, bfree,
-					CurHostName, msize, QueueDir);
+					CurEnv->e_id == NULL ? "[NOQUEUE]" : CurEnv->e_id,
+					bfree,
+					CurHostName == NULL ? "SMTP-DAEMON" : CurHostName,
+					msize, QueueDir);
 #endif
 			return FALSE;
 		}
@@ -1995,14 +2483,55 @@ chownsafe(fd)
 #  endif
 # else
 #  ifdef _PC_CHOWN_RESTRICTED
-	return fpathconf(fd, _PC_CHOWN_RESTRICTED) > 0;
-#  else
-#   ifdef BSD
-	return TRUE;
-#   else
-	return FALSE;
-#   endif
+	int rval;
+
+	/*
+	**  Some systems (e.g., SunOS) seem to have the call and the
+	**  #define _PC_CHOWN_RESTRICTED, but don't actually implement
+	**  the call.  This heuristic checks for that.
+	*/
+
+	errno = 0;
+	rval = fpathconf(fd, _PC_CHOWN_RESTRICTED);
+	if (errno == 0)
+		return rval > 0;
 #  endif
+#  ifdef BSD
+	return TRUE;
+#  else
+	return FALSE;
+#  endif
+# endif
+#endif
+}
+/*
+**  RESETLIMITS -- reset system controlled resource limits
+**
+**	This is to avoid denial-of-service attacks
+**
+**	Parameters:
+**		none
+**
+**	Returns:
+**		none
+*/
+
+#if HASSETRLIMIT
+# include <sys/resource.h>
+#endif
+
+void
+resetlimits()
+{
+#if HASSETRLIMIT
+	struct rlimit lim;
+
+	lim.rlim_cur = lim.rlim_max = RLIM_INFINITY;
+	(void) setrlimit(RLIMIT_CPU, &lim);
+	(void) setrlimit(RLIMIT_FSIZE, &lim);
+#else
+# if HASULIMIT
+	(void) ulimit(2, 0x3fffff);
 # endif
 #endif
 }
@@ -2022,7 +2551,8 @@ getcfname()
 		extern char *ni_propval();
 		char *cflocation;
 
-		cflocation = ni_propval("/locations/sendmail", "sendmail.cf");
+		cflocation = ni_propval("/locations", NULL, "sendmail",
+					"sendmail.cf", '\0');
 		if (cflocation != NULL)
 			return cflocation;
 	}
@@ -2051,9 +2581,20 @@ setvendor(vendor)
 	char *vendor;
 {
 	if (strcasecmp(vendor, "Berkeley") == 0)
+	{
+		VendorCode = VENDOR_BERKELEY;
 		return TRUE;
+	}
 
 	/* add vendor extensions here */
+
+#ifdef SUN_EXTENSIONS
+	if (strcasecmp(vendor, "Sun") == 0)
+	{
+		VendorCode = VENDOR_SUN;
+		return TRUE;
+	}
+#endif
 
 	return FALSE;
 }
@@ -2165,11 +2706,13 @@ strtol(nptr, endptr, base)
 /*
 **  SOLARIS_GETHOSTBY{NAME,ADDR} -- compatibility routines for gethostbyXXX
 **
-**	Solaris versions prior through 2.3 don't properly deliver a
+**	Solaris versions at least through 2.3 don't properly deliver a
 **	canonical h_name field.  This tries to work around it.
 */
 
 #ifdef SOLARIS
+
+extern int	h_errno;
 
 struct hostent *
 solaris_gethostbyname(name)
@@ -2212,8 +2755,16 @@ solaris_gethostbyaddr(addr, len, type)
 **  NI_PROPVAL -- netinfo property value lookup routine
 **
 **	Parameters:
-**		directory -- the Netinfo directory name.
-**		propname -- the Netinfo property name.
+**		keydir -- the Netinfo directory name in which to search
+**			for the key.
+**		keyprop -- the name of the property in which to find the
+**			property we are interested.  Defaults to "name".
+**		keyval -- the value for which we are really searching.
+**		valprop -- the property name for the value in which we
+**			are interested.
+**		sepchar -- if non-nil, this can be multiple-valued, and
+**			we should return a string separated by this
+**			character.
 **
 **	Returns:
 **		NULL -- if:
@@ -2222,6 +2773,10 @@ solaris_gethostbyaddr(addr, len, type)
 **			3. the property contains multiple values
 **			4. some error occured
 **		else -- the location of the config file.
+**
+**	Example:
+**		To search for an alias value, use:
+**		  ni_propval("/aliases", "name", aliasname, "members", ',')
 **
 **	Notes:
 **      	Caller should free the return value of ni_proval
@@ -2236,17 +2791,44 @@ solaris_gethostbyaddr(addr, len, type)
 # define MAX_NI_LEVELS           256
 
 char *
-ni_propval(directory, propname)
-	char *directory;
-	char *propname;
+ni_propval(keydir, keyprop, keyval, valprop, sepchar)
+	char *keydir;
+	char *keyprop;
+	char *keyval;
+	char *valprop;
+	char sepchar;
 {
 	char *propval = NULL;
 	int i;
+	int j, alen;
 	void *ni = NULL;
 	void *lastni = NULL;
 	ni_status nis;
 	ni_id nid;
 	ni_namelist ninl;
+	register char *p;
+	char keybuf[1024];
+
+	/*
+	**  Create the full key from the two parts.
+	**
+	**	Note that directory can end with, e.g., "name=" to specify
+	**	an alternate search property.
+	*/
+
+	i = strlen(keydir) + strlen(keyval) + 2;
+	if (keyprop != NULL)
+		i += strlen(keyprop) + 1;
+	if (i > sizeof keybuf)
+		return NULL;
+	strcpy(keybuf, keydir);
+	strcat(keybuf, "/");
+	if (keyprop != NULL)
+	{
+		strcat(keybuf, keyprop);
+		strcat(keybuf, "=");
+	}
+	strcat(keybuf, keyval);
 
 	/*
 	**  If the passed directory and property name are found
@@ -2285,27 +2867,46 @@ ni_propval(directory, propname)
 		**  Find the path to the server information.
 		*/
 
-		if (ni_pathsearch(ni, &nid, directory) != 0)
+		if (ni_pathsearch(ni, &nid, keybuf) != 0)
 			continue;
 
 		/*
-		**  Find "host" information.
+		**  Find associated value information.
 		*/
 
-		if (ni_lookupprop(ni, &nid, propname, &ninl) != 0)
+		if (ni_lookupprop(ni, &nid, valprop, &ninl) != 0)
 			continue;
 
 		/*
-		**  If there's only one name in
-		**  the list, assume we've got
-		**  what we want.
+		**  See if we have an acceptable number of values.
 		*/
 
-		if (ninl.ni_namelist_len == 1)
+		if (ninl.ni_namelist_len <= 0)
+			continue;
+
+		if (sepchar == '\0' && ninl.ni_namelist_len > 1)
 		{
-			propval = ni_name_dup(ninl.ni_namelist_val[0]);
-			break;
+			ni_namelist_free(&ninl);
+			continue;
 		}
+
+		/* 
+		**  Calculate number of bytes needed and build result
+		*/
+
+		alen = 1;
+		for (j = 0; j < ninl.ni_namelist_len; j++)
+			alen += strlen(ninl.ni_namelist_val[j]) + 1;
+		propval = p = xalloc(alen);
+		for (j = 0; j < ninl.ni_namelist_len; j++)
+		{
+			strcpy(p, ninl.ni_namelist_val[j]);
+			p += strlen(p);
+			*p++ = sepchar;
+		} 
+		*--p = '\0';
+
+		ni_namelist_free(&ninl);
 	}
 
 	/*
