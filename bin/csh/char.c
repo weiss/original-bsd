@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)char.c	5.7 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)char.c	5.8 (Berkeley) 08/25/91";
 #endif /* not lint */
 
 #include "char.h"
@@ -85,7 +85,7 @@ unsigned short _cmap[256] = {
 	_ESC,		0,		0,		0,
 
 /*	`		a		b		c	*/
-  _Q1|_GLOB|_CMD|_META,	_LET|_LOW|_XD,	_LET|_LOW|_XD,	_LET|_LOW|_XD,
+  _Q1|_GLOB|_META,	_LET|_LOW|_XD,	_LET|_LOW|_XD,	_LET|_LOW|_XD,
 
 /*	d		e		f		g	*/
 	_LET|_LOW|_XD,	_LET|_LOW|_XD,	_LET|_LOW|_XD,	_LET|_LOW,
