@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass2.c	5.15 (Berkeley) 07/27/90";
+static char sccsid[] = "@(#)pass2.c	5.16 (Berkeley) 09/18/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -88,6 +88,7 @@ pass2()
 	bzero((char *)&curino, sizeof(struct inodesc));
 	curino.id_type = DATA;
 	curino.id_func = pass2check;
+	dino.di_mode = IFDIR;
 	dp = &dino;
 	inpend = &inpsort[inplast];
 	for (inpp = inpsort; inpp < inpend; inpp++) {
