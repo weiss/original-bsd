@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwsize.c	3.3 04/24/85";
+static char sccsid[] = "@(#)wwsize.c	3.4 08/05/86";
 #endif
 
 /*
@@ -151,7 +151,7 @@ register struct ww *w;
 		winsize.ws_row = nrow;
 		winsize.ws_col = ncol;
 		winsize.ws_xpixel = winsize.ws_ypixel = 0;
-		(void) ioctl(w->ww_pty, (int)TIOCSWINSZ, (char *)&winsize);
+		(void) ioctl(w->ww_pty, TIOCSWINSZ, (char *)&winsize);
 	}
 	return 0;
 bad:
