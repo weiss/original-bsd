@@ -13,18 +13,18 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)memreg.c	7.2 (Berkeley) 07/21/92
+ *	@(#)memreg.c	7.3 (Berkeley) 10/11/92
  *
  * from: $Header: memreg.c,v 1.4 92/06/17 05:22:17 torek Exp $ (LBL)
  */
 
-#include "sys/param.h"
-#include "sys/device.h"
+#include <sys/param.h>
+#include <sys/device.h>
 
-#include "machine/autoconf.h"
+#include <machine/autoconf.h>
 
-#include "ctlreg.h"
-#include "memreg.h"
+#include <sparc/sparc/ctlreg.h>
+#include <sparc/sparc/memreg.h>
 
 static void memregattach __P((struct device *, struct device *, void *));
 struct cfdriver memregcd =
