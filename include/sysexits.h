@@ -4,11 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sysexits.h	4.8 (Berkeley) 04/03/91
+ *	@(#)sysexits.h	4.9 (Berkeley) 05/03/93
  */
 
 #ifndef	_SYSEXITS_H_
-#define	_SYSEXIST_H_
+#define	_SYSEXITS_H_
 
 /*
  *  SYSEXITS.H -- Exit status codes for system programs.
@@ -89,4 +89,4 @@
 
 #define EX__MAX	78	/* maximum listed value */
 
-#endif /* !_SYSEXIST_H_ */
+#endif /* !_SYSEXITS_H_ */
