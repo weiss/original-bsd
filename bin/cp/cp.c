@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cp.c	5.6 (Berkeley) 08/13/89";
+static char sccsid[] = "@(#)cp.c	5.7 (Berkeley) 08/24/89";
 #endif /* not lint */
 
 /*
@@ -238,11 +238,13 @@ copy()
 		}
 		copy_dir();
 		/*
-		 * If directory didn't exist, set it to be the same as
-		 * the from directory, umodified by the umask; arguably
-		 * wrong, but it's been that way forever.
+		 * If not -p and directory didn't exist, set it to be the
+		 * same as the from directory, umodified by the umask;
+		 * arguably wrong, but it's been that way forever.
 		 */
-		if (dne && !preserve_flag)
+		if (preserve_flag)
+			setfile(&from_stat, 0);
+		else if (dne)
 			(void)chmod(to.p_path, from_stat.st_mode);
 		break;
 	case S_IFCHR:
