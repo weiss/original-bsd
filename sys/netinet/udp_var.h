@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1982, 1986 Regents of the University of California.
+ * Copyright (c) 1982, 1986, 1989 Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)udp_var.h	7.4 (Berkeley) 06/29/88
+ *	@(#)udp_var.h	7.5 (Berkeley) 09/20/89
  */
 
 /*
@@ -40,6 +40,9 @@ struct	udpstat {
 	int	udps_hdrops;
 	int	udps_badsum;
 	int	udps_badlen;
+	int	udps_noport;
+	int	udps_ipackets;
+	int	udps_opackets;
 };
 
 #define	UDP_TTL		30		/* deflt time to live for UDP packets */
