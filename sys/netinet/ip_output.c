@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ip_output.c	6.14 (Berkeley) 04/19/86
+ *	@(#)ip_output.c	6.15 (Berkeley) 05/06/86
  */
 
 #include "param.h"
@@ -193,7 +193,7 @@ ip_output(m, opt, ro, flags)
 			mh->m_len = sizeof (struct ip) + olen;
 		} else
 			mh->m_len = sizeof (struct ip);
-		mhip->ip_off = off >> 3;
+		mhip->ip_off = (off >> 3) + (ip->ip_off & ~IP_MF);
 		if (ip->ip_off & IP_MF)
 			mhip->ip_off |= IP_MF;
 		if (off + len >= ip->ip_len-hlen)
