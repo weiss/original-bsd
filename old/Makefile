@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/17/90
+#	@(#)Makefile	5.5 (Berkeley) 06/25/90
 
-SUBDIR=	compact crypt make more od talk yacc
+SUBDIR=	compact crypt
 
-.if (${MACHINE} == "vax")
+.if   make(clean) || make(cleandir)
 SUBDIR+=talk
-.elif make(clean) || make(cleandir)
+.elif ${MACHINE} == "vax"
 SUBDIR+=talk
 .endif
 
