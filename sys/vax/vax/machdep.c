@@ -3,11 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.c	7.20 (Berkeley) 09/02/89
+ *	@(#)machdep.c	7.17.1.1 (Berkeley) 09/02/89
  */
 
 #include "param.h"
 #include "systm.h"
+#include "dir.h"
 #include "user.h"
 #include "kernel.h"
 #include "malloc.h"
@@ -17,12 +18,7 @@
 #include "buf.h"
 #include "reboot.h"
 #include "conf.h"
-#include "vnode.h"
-#include "../ufs/inode.h"
-#ifdef NFS
-#include "mount.h"
-#include "../nfs/nfsnode.h"
-#endif /* NFS */
+#include "inode.h"
 #include "file.h"
 #include "text.h"
 #include "clist.h"
@@ -30,7 +26,7 @@
 #include "cmap.h"
 #include "mbuf.h"
 #include "msgbuf.h"
-#include "../ufs/quota.h"
+#include "quota.h"
 
 #include "reg.h"
 #include "pte.h"
@@ -130,9 +126,6 @@ startup(firstaddr)
 #define	valloclim(name, type, num, lim) \
 	    (name) = (type *)v; v = (caddr_t)((lim) = ((name)+(num)))
 	valloclim(inode, struct inode, ninode, inodeNINODE);
-#ifdef NFS
-	valloclim(nfsnode, struct nfsnode, nnfsnode, nfsnodeNNFSNODE);
-#endif /* NFS */
 	valloclim(file, struct file, nfile, fileNFILE);
 	valloclim(proc, struct proc, nproc, procNPROC);
 	valloclim(text, struct text, ntext, textNTEXT);
@@ -576,11 +569,11 @@ boot(howto)
 		(void) splnet();
 		printf("syncing disks... ");
 		/*
-		 * Release inodes held by texts before sync.
+		 * Release inodes held by texts before update.
 		 */
 		if (panicstr == 0)
-			xumount(NULL);
-		sync();
+			xumount(NODEV);
+		update();
 
 		for (iter = 0; iter < 20; iter++) {
 			nbusy = 0;
