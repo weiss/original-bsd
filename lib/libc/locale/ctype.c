@@ -1,6 +1,6 @@
-#ifndef lint
-static char sccsid[] = "@(#)ctype.c	5.3 (Berkeley) 09/11/85";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)ctype.c	5.4 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 #include	<ctype.h>
 
