@@ -3,7 +3,7 @@
 # include <syslog.h>
 # endif LOG
 
-static char	SccsId[] = "@(#)err.c	3.14	10/31/81";
+static char	SccsId[] = "@(#)err.c	3.15	11/07/81";
 
 /*
 **  SYSERR -- Print error message.
@@ -36,7 +36,7 @@ syserr(fmt, a, b, c, d, e)
 	extern char Arpa_Syserr[];
 
 	/* format the error message */
-	fmtmsg(errbuf, Arpa_Syserr, NULL, fmt, a, b, c, d, e);
+	fmtmsg(errbuf, NULL, Arpa_Syserr, fmt, a, b, c, d, e);
 
 	/* output error message to transcript */
 	fprintf(Xscript, "%s\n", errbuf);
