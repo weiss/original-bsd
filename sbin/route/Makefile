@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 05/19/93
+#	@(#)Makefile	8.1 (Berkeley) 06/05/93
 
 PROG=	route
 MAN8=	route.0
