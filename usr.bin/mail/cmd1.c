@@ -8,7 +8,7 @@
  * User commands.
  */
 
-static char *SccsId = "@(#)cmd1.c	2.6 03/15/82";
+static char *SccsId = "@(#)cmd1.c	2.7 07/26/82";
 
 /*
  * Print the current active headings.
@@ -410,6 +410,7 @@ folders()
 	}
 	switch ((pid = fork())) {
 	case 0:
+		sigchild();
 		execlp("ls", "ls", dirname, 0);
 		clrbuf(stdout);
 		exit(1);
