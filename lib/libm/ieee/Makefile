@@ -1,5 +1,5 @@
-# @(#)Makefile	1.1 (ELEFUNT) 09/06/85
-SCCSID = "@(#)Makefile	1.1 (ELEFUNT) 09/06/85"
+# @(#)Makefile	1.2 (ucb.elefunt) 09/12/85
+SCCSID = "@(#)Makefile	1.2 (ucb.elefunt) 09/12/85"
 MORE=atan2.o cbrt.o trig.o cabs.o support.o
 
 .c.o:
