@@ -1,11 +1,11 @@
-/* @(#)fputs.c	4.1 (Berkeley) 12/21/80 */
+/* @(#)fputs.c	4.2 (Berkeley) 09/20/84 */
 #include	<stdio.h>
 
 fputs(s, iop)
 register char *s;
 register FILE *iop;
 {
-	register r;
+	register r = 0;
 	register c;
 
 	while (c = *s++)
