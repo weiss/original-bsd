@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.51 (Berkeley) 05/18/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.52 (Berkeley) 05/29/94 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.51 (Berkeley) 05/18/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.52 (Berkeley) 05/29/94 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -644,9 +644,17 @@ makeconnection(host, port, mci, usesecureport)
 				hp = gethostbyname(&host[1]);
 				if (hp == NULL && p[-1] == '.')
 				{
+#ifdef NAMED_BIND
+					int oldopts = _res.options;
+
+					_res.options &= ~(RES_DEFNAMES|RES_DNSRCH);
+#endif
 					p[-1] = '\0';
 					hp = gethostbyname(&host[1]);
 					p[-1] = '.';
+#ifdef NAMED_BIND
+					_res.options = oldopts;
+#endif
 				}
 				*p = ']';
 				goto gothostent;
@@ -670,9 +678,17 @@ makeconnection(host, port, mci, usesecureport)
 		hp = gethostbyname(host);
 		if (hp == NULL && *p == '.')
 		{
+#ifdef NAMED_BIND
+			int oldopts = _res.options;
+
+			_res.options &= ~(RES_DEFNAMES|RES_DNSRCH);
+#endif
 			*p = '\0';
 			hp = gethostbyname(host);
 			*p = '.';
+#ifdef NAMED_BIND
+			_res.options = oldopts;
+#endif
 		}
 gothostent:
 		if (hp == NULL)
