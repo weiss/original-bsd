@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)ato.c 1.1 08/27/80";
+static char sccsid[] = "@(#)ato.c 1.2 03/08/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -22,7 +22,7 @@ a8tol(cp)
 				err++;
 			}
 		c -= '0';
-		if ((l & 0160000000000L) != 0)
+		if ((l & 016000000000L) != 0)
 			if (err == 0) {
 				error("Number too large for this implementation");
 				err++;
