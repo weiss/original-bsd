@@ -1,6 +1,12 @@
-/*	con.h	4.1	83/06/27	*/
+/*-
+ * Copyright (c) 1983 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ *
+ *	@(#)con.h	4.2 (Berkeley) 04/22/91
+ */
 
-#
 #include <sgtty.h>
 /* gsi plotting output routines */
 # define DOUBLE 010
