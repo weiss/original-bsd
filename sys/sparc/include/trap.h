@@ -6,9 +6,14 @@
  * at Lawrence Berkeley Laboratory under DARPA contract BG 91-66 and
  * contributed to Berkeley.
  *
+ * All advertising materials mentioning features or use of this software
+ * must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Lawrence Berkeley Laboratories.
+ *
  * %sccs.include.redist.c%
  *
- *	@(#)trap.h	7.1 (Berkeley) 07/13/92
+ *	@(#)trap.h	7.2 (Berkeley) 07/21/92
  *
  * from: $Header: trap.h,v 1.8 92/07/03 18:49:02 torek Exp $
  */
