@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)tip.c	5.5 (Berkeley) 02/09/87";
+static char sccsid[] = "@(#)tip.c	5.6 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -36,7 +36,6 @@ int	timeout();
 int	cleanup();
 char	*sname();
 char	PNbuf[256];			/* This limits the size of a number */
-extern char *sprintf();
 
 main(argc, argv)
 	char *argv[];
@@ -103,7 +102,8 @@ main(argc, argv)
 	for (p = system; *p; p++)
 		*p = '\0';
 	PN = PNbuf;
-	system = sprintf(sbuf, "tip%d", BR);
+	(void)sprintf(sbuf, "tip%d", BR);
+	system = sbuf;
 
 notnumber:
 	signal(SIGINT, cleanup);
