@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.8 (Berkeley) 08/14/93 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.9 (Berkeley) 09/24/93 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.8 (Berkeley) 08/14/93 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.9 (Berkeley) 09/24/93 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -163,7 +163,7 @@ tryhelo:
 	p = strchr(&SmtpReplyBuffer[4], ' ');
 	if (p != NULL)
 		*p = '\0';
-	if (strcasecmp(&SmtpReplyBuffer[4], MyHostName) == 0)
+	if (CheckLoopBack && strcasecmp(&SmtpReplyBuffer[4], MyHostName) == 0)
 	{
 		syserr("553 %s config error: mail loops back to myself",
 			MyHostName);
