@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.75		02/02/83);
+SCCSID(@(#)parseaddr.c	3.76		02/19/83);
 
 /*
 **  PARSEADDR -- Parse an address
@@ -821,7 +821,7 @@ cataddr(pvp, buf, sz)
 		return;
 	}
 	p = buf;
-	sz--;
+	sz -= 2;
 	while (*pvp != NULL && (i = strlen(*pvp)) < sz)
 	{
 		natomtok = (toktype(**pvp) == ATM);
@@ -830,7 +830,7 @@ cataddr(pvp, buf, sz)
 		(void) strcpy(p, *pvp);
 		oatomtok = natomtok;
 		p += i;
-		sz -= i;
+		sz -= i + 1;
 		pvp++;
 	}
 	*p = '\0';
