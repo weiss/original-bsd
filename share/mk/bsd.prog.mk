@@ -1,4 +1,4 @@
-#	@(#)bsd.prog.mk	5.25 (Berkeley) 05/02/91
+#	@(#)bsd.prog.mk	5.26 (Berkeley) 06/25/91
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
@@ -93,7 +93,7 @@ clean: _PROGSUBDIR
 .if !target(cleandir)
 cleandir: _PROGSUBDIR
 	rm -f a.out [Ee]rrs mklog core ${PROG} ${OBJS} ${CLEANFILES}
-	rm -f .depend ${.CURDIR}/tags ${MANALL}
+	rm -f .depend ${MANALL}
 .endif
 
 # some of the rules involve .h sources, so remove them from mkdep line
