@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/23/92
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	iostat
 CFLAGS+=-I/sys -I${.CURDIR}/../../usr.bin/vmstat
