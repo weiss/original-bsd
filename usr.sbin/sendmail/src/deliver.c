@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	3.110		09/06/82);
+SCCSID(@(#)deliver.c	3.111		09/08/82);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -547,8 +547,13 @@ endmailer(pid, name)
 		return (EX_OK);
 
 	/* wait for the mailer process to die and collect status */
-	while ((i = wait(&st)) > 0 && i != pid)
-		continue;
+	do
+	{
+		errno = 0;
+		i = wait(&st);
+		if (i < 0 && errno == EINTR)
+			continue;
+	} while (i >= 0 && i != pid);
 	if (i < 0)
 	{
 		syserr("wait");
