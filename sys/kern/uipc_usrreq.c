@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_usrreq.c	7.17 (Berkeley) 05/04/90
+ *	@(#)uipc_usrreq.c	7.18 (Berkeley) 05/30/90
  */
 
 #include "param.h"
@@ -370,6 +370,8 @@ unp_bind(unp, nam)
 	vp = ndp->ni_vp;
 	if (vp != NULL) {
 		VOP_ABORTOP(ndp);
+		vput(ndp->ni_dvp);
+		vrele(vp);
 		return (EADDRINUSE);
 	}
 	VATTR_NULL(&vattr);
