@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)ncheck.c	2.1 (Berkeley) 04/08/82";
+static	char *sccsid = "@(#)ncheck.c	2.2 (Berkeley) 09/10/82";
 /*
  * ncheck -- obtain file names from reading filesystem
  */
@@ -17,7 +17,7 @@ static	char *sccsid = "@(#)ncheck.c	2.1 (Berkeley) 04/08/82";
 #include "../h/fs.h"
 #endif
 #include <stdio.h>
-#include <ndir.h>
+#include <dir.h>
 
 struct	fs	sblock;
 struct	dinode	itab[MAXIPG];
