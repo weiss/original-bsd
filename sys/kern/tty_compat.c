@@ -3,15 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty_compat.c	1.2 (Berkeley) 10/18/88
+ *	@(#)tty_compat.c	1.3 (Berkeley) 04/25/89
  */
 
 /* 
  * mapping routines for old line discipline (yuck)
  */
 #ifdef COMPAT_43
-
-#include "../machine/reg.h"
 
 #include "param.h"
 #include "systm.h"
@@ -27,6 +25,8 @@
 #include "uio.h"
 #include "kernel.h"
 #include "syslog.h"
+
+#include "machine/reg.h"
 
 int ttydebug = 0;
 
