@@ -14,8 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pwd.h	5.1 (Berkeley) 03/06/90
+ *	@(#)pwd.h	5.2 (Berkeley) 03/12/90
  */
+
+#include <sys/types.h>
 
 #define	_PATH_PASSWD		"/etc/passwd"
 #define	_PATH_MASTERPASSWD	"/etc/master.passwd"
