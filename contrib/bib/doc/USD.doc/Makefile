@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.5 (Berkeley) 06/07/93
+#	@(#)Makefile	8.1 (Berkeley) 06/08/93
 
 
 DIR=	usd/28.bib
