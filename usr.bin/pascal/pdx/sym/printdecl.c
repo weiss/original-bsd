@@ -5,9 +5,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)printdecl.c	5.1 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)printdecl.c	5.2 (Berkeley) 06/07/85";
 #endif not lint
-*
+
+/*
  * Print out the type of a symbol.
  */
 
