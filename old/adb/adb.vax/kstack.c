@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)kstack.c	5.2 (Berkeley) 04/04/91";
+static char sccsid[] = "@(#)kstack.c	5.3 (Berkeley) 04/11/91";
 #endif /* not lint */
 
 /*
@@ -18,7 +18,7 @@ static char sccsid[] = "@(#)kstack.c	5.2 (Berkeley) 04/04/91";
 #include <ctype.h>
 #include <machine/pte.h>
 #include <machine/frame.h>
-#include <machine/rpb.h>
+#include <vax/vax/rpb.h>
 
 struct	pte *sbr;
 int	slr;
