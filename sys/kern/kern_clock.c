@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kern_clock.c	6.15 (Berkeley) 02/20/86
+ *	@(#)kern_clock.c	6.16 (Berkeley) 05/27/86
  */
 
 #include "../machine/reg.h"
@@ -78,7 +78,7 @@ hardclock(pc, ps)
 	register struct proc *p;
 	register int s;
 	int needsoft = 0;
-	extern int adjtimedelta, tickadj;
+	extern int timedelta, tickdelta;
 
 	/*
 	 * Update real-time timeout queue.
@@ -199,17 +199,17 @@ hardclock(pc, ps)
 	 * so we don't keep the relatively high clock interrupt
 	 * priority any longer than necessary.
 	 */
-	if (adjtimedelta == 0)
+	if (timedelta == 0)
 		BUMPTIME(&time, tick)
 	else {
 		register delta;
 
-		if (adjtimedelta < 0) {
-			delta = tick - tickadj;
-			adjtimedelta += tickadj;
+		if (timedelta < 0) {
+			delta = tick - tickdelta;
+			timedelta += tickdelta;
 		} else {
-			delta = tick + tickadj;
-			adjtimedelta -= tickadj;
+			delta = tick + tickdelta;
+			timedelta -= tickdelta;
 		}
 		BUMPTIME(&time, delta);
 	}
