@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.30.1.1 (Berkeley) 02/26/92
+ *	@(#)sendmail.h	5.31 (Berkeley) 05/25/92
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.30.1.1		02/26/92";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.31		05/25/92";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -326,6 +326,10 @@ EXTERN struct rewrite	*RewriteRules[MAXRWSETS];
 # define HOSTBEGIN	'\035'	/* hostname lookup begin */
 # define HOSTEND	'\036'	/* hostname lookup end */
 
+/* bracket characters for generalized lookup */
+# define LOOKUPBEGIN	'\005'	/* generalized lookup begin */
+# define LOOKUPEND	'\006'	/* generalized lookup end */
+
 /* \001 is also reserved as the macro expansion character */
 
 /* external <==> internal mapping table */
@@ -335,26 +339,65 @@ struct metamac
 	char	metaval;	/* internal code (as above) */
 };
 /*
-**  Information about currently open connections to mailers, or to
-**  hosts that we have looked up recently.
+**  Information about hosts that we have looked up recently.
+**
+**	This stuff is 4.2/3bsd specific.
 */
 
-# define MCONINFO	struct mailer_con_info
+# ifdef DAEMON
 
-MCONINFO
+# define HOSTINFO	struct hostinfo
+
+HOSTINFO
 {
-	short		mci_flags;	/* flag bits, see below */
-	short		mci_errno;	/* error number on last connection */
-	short		mci_exitstat;	/* exit status from last connection */
-	FILE		*mci_in;	/* input side of connection */
-	FILE		*mci_out;	/* output side of connection */
-	int		mci_pid;	/* process id of subordinate proc */
-	short		mci_state;	/* SMTP state */
+	char		*ho_name;	/* name of this host */
+	struct in_addr	ho_inaddr;	/* internet address */
+	short		ho_flags;	/* flag bits, see below */
+	short		ho_errno;	/* error number on last connection */
+	short		ho_exitstat;	/* exit status from last connection */
 };
 
 
 /* flag bits */
-#define MCIF_VALID	00001		/* this entry is valid */
+#define HOF_VALID	00001		/* this entry is valid */
+
+# endif DAEMON
+/*
+**  Mapping functions
+**
+**	These allow arbitrary mappings in the config file.  The idea
+**	(albeit not the implementation) comes from IDA sendmail.
+*/
+
+
+/*
+**  The class of a map -- essentially the functions to call
+*/
+
+# define MAPCLASS	struct _mapclass
+
+MAPCLASS
+{
+	bool	(*map_init)();		/* initialization function */
+	char	*(*map_lookup)();	/* lookup function */
+};
+
+
+/*
+**  An actual map.
+*/
+
+# define MAP		struct _map
+
+MAP
+{
+	MAPCLASS	*map_class;	/* the class of this map */
+	int		map_flags;	/* flags, see below */
+	char		*map_file;	/* the (nominal) filename */
+};
+
+/* bit values for map_flags */
+# define MF_VALID	00001		/* this entry is valid */
 /*
 **  Symbol table definitions
 */
@@ -370,7 +413,11 @@ struct symtab
 		ADDRESS		*sv_addr;	/* pointer to address header */
 		MAILER		*sv_mailer;	/* pointer to mailer */
 		char		*sv_alias;	/* alias */
-		MCONINFO	sv_mci;		/* mailer connection info */
+		MAPCLASS	sv_mapclass;	/* mapping function class */
+		MAP		sv_map;		/* mapping function */
+# ifdef HOSTINFO
+		HOSTINFO	sv_host;	/* host information */
+# endif HOSTINFO
 	}	s_value;
 };
 
@@ -382,13 +429,18 @@ typedef struct symtab	STAB;
 # define ST_ADDRESS	2	/* an address in parsed format */
 # define ST_MAILER	3	/* a mailer header */
 # define ST_ALIAS	4	/* an alias */
-# define ST_MCONINFO	5	/* mailer connection info (offset) */
+# define ST_HOST	5	/* host information */
+# define ST_MAPCLASS	6	/* mapping function class */
+# define ST_MAP		7	/* mapping function */
 
 # define s_class	s_value.sv_class
 # define s_address	s_value.sv_addr
 # define s_mailer	s_value.sv_mailer
 # define s_alias	s_value.sv_alias
-# define s_mci		s_value.sv_mci
+# undef s_host
+# define s_host		s_value.sv_host
+# define s_mapclass	s_value.sv_mapclass
+# define s_map		s_value.sv_map
 
 extern STAB	*stab();
 
