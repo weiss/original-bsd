@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	4.4 (Berkeley) 10/25/88
+#	@(#)Makefile	4.5 (Berkeley) 05/11/89
 #
 CFLAGS=	-O -w
 LIBC=	/lib/libc.a
@@ -37,7 +37,7 @@ depend: ${SRCS}
 	mkdep ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o bin -g bin -m 755 sed ${DESTDIR}/bin/sed
+	install -s -o bin -g bin -m 755 sed ${DESTDIR}/usr/bin
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat1
 
 lint: ${SRCS}
