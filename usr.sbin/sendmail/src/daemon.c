@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	8.64 (Berkeley) 12/15/94 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.65 (Berkeley) 01/07/95 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	8.64 (Berkeley) 12/15/94 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	8.65 (Berkeley) 01/07/95 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -245,6 +245,7 @@ getrequests()
 		{
 			char *p;
 			extern char *hostnamebyanyaddr();
+			extern void intsig();
 
 			/*
 			**  CHILD -- return to caller.
@@ -253,6 +254,7 @@ getrequests()
 			*/
 
 			(void) setsignal(SIGCHLD, SIG_DFL);
+			(void) setsignal(SIGHUP, intsig);
 			(void) close(DaemonSocket);
 			DisConnected = FALSE;
 
