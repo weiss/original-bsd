@@ -1,4 +1,6 @@
-/*	implogd.c	4.2	82/10/10	*/
+#ifndef lint
+static char sccsid[] = "@(#)implogd.c	4.4 (Berkeley) 11/14/82";
+#endif
 
 #include <time.h>
 #include <sgtty.h>
