@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.22 (Berkeley) 01/31/94";
+static char sccsid[] = "@(#)alias.c	8.23 (Berkeley) 02/27/94";
 #endif /* not lint */
 
 
@@ -88,7 +88,9 @@ alias(a, sendq, e)
 	message("aliased to %s", p);
 #ifdef LOG
 	if (LogLevel > 9)
-		syslog(LOG_INFO, "%s: alias %s => %s", e->e_id, a->q_paddr, p);
+		syslog(LOG_INFO, "%s: alias %s => %s",
+			e->e_id == NULL ? "NOQUEUE" : e->e_id,
+			a->q_paddr, p);
 #endif
 	a->q_flags &= ~QSELFREF;
 	AliasLevel++;
