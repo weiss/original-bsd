@@ -6,14 +6,29 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)dumprmt.c	5.11 (Berkeley) 03/07/91";
+static char sccsid[] = "@(#)dumprmt.c	5.12 (Berkeley) 07/23/91";
 #endif /* not lint */
 
+#ifdef sunos
+#include <stdio.h>
+#include <ctype.h>
+#include <sys/param.h>
+#include <sys/mtio.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/dir.h>
+#include <sys/vnode.h>
+#include <ufs/inode.h>
+#else
 #include <sys/param.h>
 #include <sys/mtio.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <ufs/dinode.h>
+#include <stdio.h>
+#endif
 #include <signal.h>
 
 #include <netinet/in.h>
@@ -21,7 +36,6 @@ static char sccsid[] = "@(#)dumprmt.c	5.11 (Berkeley) 03/07/91";
 #include <netdb.h>
 #include <protocols/dumprestore.h>
 #include <pwd.h>
-#include <stdio.h>
 #ifdef __STDC__
 #include <unistd.h>
 #include <stdlib.h>
