@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ar.c	5.9 (Berkeley) 03/11/91";
+static char sccsid[] = "@(#)ar.c	5.10 (Berkeley) 03/12/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -45,7 +45,7 @@ main(argc, argv)
 	char **argv;
 {
 	extern int optind;
-	int c, rval;
+	int c;
 	char *p;
 	int (*fcall)(), append(), contents(), delete(), extract(),
 	    move(), print(), replace();
@@ -184,8 +184,7 @@ main(argc, argv)
 		usage();
 	}
 
-	rval = (*fcall)(argv);
-	exit(rval);
+	exit((*fcall)(argv));
 }
 
 static void
