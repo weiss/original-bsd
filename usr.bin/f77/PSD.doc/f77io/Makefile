@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/30/90
+#	@(#)Makefile	5.3 (Berkeley) 06/05/93
 
-DIR=	ps1/03.f77io
+DIR=	psd/09.f77io
 SRCS=	f77IO.ms
 MACROS=	-msU
 
-paper.${PRINTER}: ${SRCS}
+paper.ps: ${SRCS}
 	${ROFF} ${SRCS} > ${.TARGET}
 
 .include <bsd.doc.mk>

@@ -3,10 +3,10 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"	@(#)f77IO.ms	5.5 (Berkeley) 04/17/91
+.\"	@(#)f77IO.ms	5.6 (Berkeley) 06/05/93
 .\"
-.EH 'PS1:3-%''Introduction to the f77 I/O Library'
-.OH 'Introduction to the f77 I/O Library''PS1:3-%'
+.EH 'PSD:9-%''Introduction to the f77 I/O Library'
+.OH 'Introduction to the f77 I/O Library''PSD:9-%'
 .de Fo
 Fortran\\$1
 ..
