@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.4 (Berkeley) 07/16/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.5 (Berkeley) 07/17/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.4 (Berkeley) 07/16/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.5 (Berkeley) 07/17/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -324,7 +324,7 @@ printctladdr(a, tfp)
 	static uid_t lastuid;
 
 	/* initialization */
-	if (a == NULL || tfp == NULL)
+	if (a == NULL || a->q_alias == NULL || tfp == NULL)
 	{
 		if (lastctladdr != NULL && tfp != NULL)
 			fprintf(tfp, "C\n");
@@ -339,10 +339,7 @@ printctladdr(a, tfp)
 		uid = 0;
 	else
 		uid = q->q_uid;
-
-	/* if a is an alias, use that for printing */
-	if (a->q_alias != NULL)
-		a = a->q_alias;
+	a = a->q_alias;
 
 	/* check to see if this is the same as last time */
 	if (lastctladdr != NULL && uid == lastuid &&
@@ -813,7 +810,7 @@ dowork(id, forkflag, requeueflag, e)
 		e->e_header = NULL;
 
 		/* read the queue control file -- return if locked */
-		if (!readqf(e))
+		if (!readqf(e, !requeueflag))
 		{
 			if (tTd(40, 4))
 				printf("readqf(%s) failed\n", e->e_id);
@@ -853,6 +850,8 @@ dowork(id, forkflag, requeueflag, e)
 **
 **	Parameters:
 **		e -- the envelope of the job to run.
+**		announcefile -- if set, announce the name of the queue
+**			file in error messages.
 **
 **	Returns:
 **		TRUE if it successfully read the queue file.
@@ -863,8 +862,9 @@ dowork(id, forkflag, requeueflag, e)
 */
 
 bool
-readqf(e)
+readqf(e, announcefile)
 	register ENVELOPE *e;
+	bool announcefile;
 {
 	register FILE *qfp;
 	ADDRESS *ctladdr;
@@ -950,8 +950,11 @@ readqf(e)
 	/* do basic system initialization */
 	initsys(e);
 
-	FileName = qf;
+	if (announcefile)
+		FileName = qf;
 	LineNumber = 0;
+	e->e_flags |= EF_GLOBALERRS;
+	OpMode = MD_DELIVER;
 	if (Verbose)
 		printf("\nRunning %s\n", e->e_id);
 	ctladdr = NULL;
@@ -1421,8 +1424,8 @@ setctluser(user)
 	**  See if this clears our concept of controlling user.
 	*/
 
-	if (user == NULL)
-		user = "";
+	if (user == NULL || *user == '\0')
+		return NULL;
 
 	/*
 	**  Set up addr fields for controlling user.
