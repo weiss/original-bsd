@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.20 (Berkeley) 01/06/94";
+static char sccsid[] = "@(#)headers.c	8.21 (Berkeley) 01/12/94";
 #endif /* not lint */
 
 # include <errno.h>
@@ -524,12 +524,21 @@ logsender(e, msgid)
 		e->e_msgpriority, e->e_nrcpts);
 	if (msgid != NULL)
 		syslog(LOG_INFO, "%s: msgid=%s", e->e_id, msgid);
+	sbp = sbuf;
+	sprintf(sbp, "%s:", e->e_id);
+	sbp += strlen(sbp);
 	if (e->e_bodytype != NULL)
-		syslog(LOG_INFO, "%s: bodytype=%s", e->e_id, e->e_bodytype);
+	{
+		sprintf(sbp, " bodytype=%s,", e->e_bodytype);
+		sbp += strlen(sbp);
+	}
 	p = macvalue('r', e);
 	if (p != NULL)
-		syslog(LOG_INFO, "%s: proto=%s", e->e_id, p);
-	syslog(LOG_INFO, "%s: relay=%s", e->e_id, name);
+	{
+		sprintf(sbp, " proto=%s,", e->e_id, p);
+		sbp += strlen(sbp);
+	}
+	syslog(LOG_INFO, "%s relay=%s", sbuf, name);
 #  endif
 }
 /*
