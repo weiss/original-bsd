@@ -1,8 +1,8 @@
 PUSHDIVERT(-1)
 #
 # Copyright (c) 1983 Eric P. Allman
-# Copyright (c) 1988 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
@@ -15,7 +15,7 @@ POPDIVERT
 ###   Local and Program Mailer specification   ###
 ##################################################
 
-VERSIONID(`@(#)local.m4	6.10 (Berkeley) 06/03/93')
+VERSIONID(`@(#)local.m4	8.1 (Berkeley) 06/07/93')
 
 Mlocal,		P=LOCAL_MAILER_PATH, F=CONCAT(`lsDFMm', LOCAL_MAILER_FLAGS), S=10, R=20,
 		A=mail -d $u
