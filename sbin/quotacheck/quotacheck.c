@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)quotacheck.c	5.7 (Berkeley) 02/23/87";
+static char sccsid[] = "@(#)quotacheck.c	5.8 (Berkeley) 10/22/87";
 #endif not lint
 
 /*
@@ -185,7 +185,7 @@ preen(argc, argv)
 				break;
 
 			case 0:
-				sprintf(quotafile, "%s/%s",
+				(void) sprintf(quotafile, "%s/%s",
 					fs->fs_file, qfname);
 				exit(chkquota(fs->fs_spec,
 					fs->fs_file, quotafile));
