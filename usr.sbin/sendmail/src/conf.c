@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	6.2 (Berkeley) 12/30/92";
+static char sccsid[] = "@(#)conf.c	6.3 (Berkeley) 01/01/93";
 #endif /* not lint */
 
 # include <sys/ioctl.h>
@@ -159,13 +159,13 @@ setdefaults()
 setdefuser()
 {
 	struct passwd *defpwent;
+	static char defuserbuf[40];
 
-	if (DefUser != NULL)
-		free(DefUser);
+	DefUser = defuserbuf;
 	if ((defpwent = getpwuid(DefUid)) != NULL)
-		DefUser = newstr(defpwent->pw_name);
+		strcpy(defuserbuf, defpwent->pw_name);
 	else
-		DefUser = newstr("nobody");
+		strcpy(defuserbuf, "nobody");
 }
 /*
 **  SETUPMAPS -- set up map classes
