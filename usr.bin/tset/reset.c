@@ -1,6 +1,6 @@
-static	char *sccsid = "@(#)reset.c	4.2 (Berkeley) 10/10/80";
+static	char *sccsid = "@(#)reset.c	4.3 (Berkeley) 12/03/80";
 /*
- * reset 
+ * reset - restore tty to sensible state after crapping out in raw mode.
  */
 #include <sgtty.h>
 
@@ -34,6 +34,8 @@ main()
 	ioctl(2, TIOCSETN, &buf);
 	ioctl(2, TIOCSETC, &tbuf);
 	ioctl(2, TIOCSLTC, &ltbuf);
+	execlp("tset", "tset", "-Q", "-I", 0);	/* fix term dependent stuff */
+	exit(1);
 }
 
 reset(cp, def)
