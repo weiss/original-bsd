@@ -1,6 +1,6 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Keith Muller of the University of California, San Diego and Lance
@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conv_tab.c	5.3 (Berkeley) 07/29/91";
+static char sccsid[] = "@(#)conv_tab.c	8.1 (Berkeley) 05/31/93";
 #endif /* not lint */
 
 #include <sys/types.h>
