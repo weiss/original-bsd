@@ -3,7 +3,7 @@
 # include "sendmail.h"
 # include <sys/stat.h>
 
-SCCSID(@(#)deliver.c	4.3		10/01/83);
+SCCSID(@(#)deliver.c	4.4		11/13/83);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -383,7 +383,7 @@ deliver(e, firstto)
 			}
 
 			/* now close the connection */
-			smtpquit(pv[0], m);
+			smtpquit(m);
 		}
 	}
 	else
