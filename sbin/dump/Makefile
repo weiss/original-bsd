@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 05/11/90
+#	@(#)Makefile	5.11 (Berkeley) 07/01/90
 
 #	dump.h			header file
 #	dumpitime.c		reads /etc/dumpdates
@@ -18,6 +18,7 @@ ROBJS=	dumpitime.o dumprmain.o dumpoptr.o dumprmt.o dumprtape.o \
 	dumptraverse.o unctime.o
 BINGRP=	tty
 MAN8=	dump.0 rdump.0
+CLEANFILES=dumprmain.o dumprtape.o dumprmt.o rdump
 
 all: rdump
 
