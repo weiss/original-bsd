@@ -1,4 +1,4 @@
-#       @(#)Makefile	8.11 (Berkeley) 04/27/95
+#       @(#)Makefile	8.12 (Berkeley) 05/29/95
 
 VER=	XX
 SUBDIR= src mailstats makemap praliases cf/cf
@@ -10,6 +10,7 @@ FILES=	Files.base Files.cf Files.misc Files.xdoc
 tar: sccs-check compile-world run-pax
 
 sccs-check:
+	sccs check
 	(cd src; sccs check)
 	(cd doc/op; sccs check)
 	(cd doc/intro; sccs check)
