@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)f_errno.h	5.1 (Berkeley) 06/07/85
+ *	@(#)f_errno.h	5.2 (Berkeley) 07/30/85
  */
 
 /*
@@ -42,5 +42,6 @@ extern int f_nerr;
 #define F_ERNREP	122	/* negative repeat count */
 #define F_ERILLOP	123	/* illegal operation for channel or device */
 #define F_ERRFCHR	124	/* invalid data for d,e,f, or g format term */
+#define F_ERNMLIST	125	/* illegal input for namelist */
 
 #define F_MAXERR	(f_nerr + F_ER)
