@@ -1,4 +1,4 @@
-/*	@(#)if_sl.c	5.4 (Berkeley) 03/17/86 */
+/*	@(#)if_sl.c	5.5 (Berkeley) 05/03/86 */
 
 /*
  * Serial Line interface
@@ -304,6 +304,8 @@ slstart(tp)
 					 */
 					if (b_to_q((char *)cp, n, &tp->t_outq))
 						break;
+					len -= n;
+					cp += n;
 				}
 				/*
 				 * If there are characters left in the mbuf,
