@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)query.c	4.1 05/22/82";
+static char sccsid[] = "@(#)query.c	4.2 05/24/82";
 #endif
 
 #include <sys/param.h>
@@ -65,7 +65,7 @@ query(host)
 
 	bzero((char *)&router, sizeof (router));
 	router.sin_addr.s_addr = rhost(&host);
-	if (router.sin_addr.s_addr == 0) {
+	if (router.sin_addr.s_addr == -1) {
 		printf("%s: unknown\n", host);
 		exit(1);
 	}
