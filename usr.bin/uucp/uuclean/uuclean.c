@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuclean.c	5.7	02/24/88";
+static char sccsid[] = "@(#)uuclean.c	5.8	03/02/91";
 #endif
 
 #include <signal.h>
@@ -210,7 +210,6 @@ sdmail(file, uid)
 char *file;
 {
 	static struct passwd *pwd;
-	struct passwd *getpwuid();
 	char mstr[40];
 
 	sprintf(mstr, "uuclean deleted file %s\n", file);
