@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)dcheck.c	2.1 (Berkeley) 04/08/82";
+static char sccsid[] = "@(#)dcheck.c 2.2 05/10/82";
 /*
  * dcheck - check directory consistency
  */
@@ -14,7 +14,7 @@ static	char *sccsid = "@(#)dcheck.c	2.1 (Berkeley) 04/08/82";
 #include "../h/inode.h"
 #include "../h/fs.h"
 #endif
-#include <ndir.h>
+#include <dir.h>
 #include <stdio.h>
 
 union {
