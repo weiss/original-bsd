@@ -88,7 +88,7 @@
 
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)pas.y 1.8 08/30/82"; */
+/* static	char sccsid[] = "@(#)pas.y 1.9 08/30/82"; */
 
 /*
  * The following line marks the end of the yacc
@@ -98,7 +98,7 @@
 ##
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pas.y 1.8 08/30/82";
+static	char sccsid[] = "@(#)pas.y 1.9 08/30/82";
 
 #include "whoami.h"
 #include "0.h"
@@ -282,6 +282,8 @@ proc_decl:
 		|
 	pheadres decls block ';'
 		= funcend($1, $3, lineof($4));
+		|
+	phead error
 		;
 pheadres:
 	phead
