@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.101 (Berkeley) 03/11/95
+ *	@(#)sendmail.h	8.102 (Berkeley) 03/12/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.101		03/11/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.102		03/12/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -196,6 +196,7 @@ typedef struct mailer	MAILER;
 # define M_PREHEAD	'H'	/* MAIL11V3: preview headers */
 # define M_UDBENVELOPE	'i'	/* do udbsender rewriting on envelope */
 # define M_INTERNAL	'I'	/* SMTP to another sendmail site */
+# define M_UDBRECIPIENT	'j'	/* do udbsender rewriting on recipient lines */
 # define M_NOLOOPCHECK	'k'	/* don't check for loops in HELO command */
 # define M_LOCALMAILER	'l'	/* delivery is to this host */
 # define M_LIMITS	'L'	/* must enforce SMTP line limits */
