@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/29/90
+#	@(#)Makefile	5.5 (Berkeley) 02/06/91
 
 PROG=	pc0
 SRCDIR=	${.CURDIR}/../src
@@ -25,7 +25,7 @@ CLEANFILES+=opc y.tab.h y.tab.c y.tab.out ${WHOAMI}*strings config.c \
 	    opcode.h picture opc pic *.list ${ERRORSTRINGS} config.o
 
 .c.o:
-	rm -f ${.IMSRC:T}
+	rm -f ${.IMPSRC:T}
 	ln -s ${.IMPSRC} .
 	mkstr - ${ERRORSTRINGS} x ${.IMPSRC:T}
 	${CC} ${CFLAGS} -c x${.IMPSRC:T} -o ${.TARGET}
