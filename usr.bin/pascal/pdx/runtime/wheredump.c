@@ -1,6 +1,12 @@
-/* Copyright (c) 1982 Regents of the University of California */
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
 
-static char sccsid[] = "@(#)wheredump.c 1.2 02/11/82";
+#ifndef lint
+static char sccsid[] = "@(#)wheredump.c	5.1 (Berkeley) 06/06/85";
+#endif not lint
 
 /*
  * Print a list of currently active blocks starting with most recent.
