@@ -1,4 +1,4 @@
-/* @(#)popen.c	4.1 (Berkeley) 12/21/80 */
+/* @(#)popen.c	4.2 (Berkeley) 11/14/82 */
 #include <stdio.h>
 #include <signal.h>
 #define	tst(a,b)	(*mode == 'r'? (b) : (a))
@@ -18,7 +18,7 @@ char	*mode;
 		return NULL;
 	myside = tst(p[WTR], p[RDR]);
 	hisside = tst(p[RDR], p[WTR]);
-	if((pid = vfork()) == 0) {
+	if((pid = fork()) == 0) {
 		/* myside and hisside reverse roles in child */
 		close(myside);
 		dup2(hisside, tst(0, 1));
