@@ -1,3 +1,5 @@
+#	@(#)Makefile	5.9 (Berkeley) 09/03/91
+
 # -DEXTENDED 
 # 	if you want the paste & spaste macros.
 
