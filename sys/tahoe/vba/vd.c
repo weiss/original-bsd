@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vd.c	7.9 (Berkeley) 09/24/88
+ *	@(#)vd.c	7.10 (Berkeley) 05/29/89
  */
 
 #include "dk.h"
@@ -289,8 +289,8 @@ vdattach(vi)
 	 * (60 / rpm) / (sectors per track * (bytes per sector / 2))
 	 */
 	if (vi->ui_dk >= 0)
-		dk_mspw[vi->ui_dk] = 120.0 /
-		    (lp->d_rpm * lp->d_nsectors * lp->d_secsize);
+		dk_wpms[vi->ui_dk] =
+		    (lp->d_rpm * lp->d_nsectors * lp->d_secsize) / 120;
 #ifdef notyet
 	addswap(makedev(VDMAJOR, vdminor(unit, 0)), lp);
 #endif
