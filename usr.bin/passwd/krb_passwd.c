@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)krb_passwd.c	5.2 (Berkeley) 02/03/91";
+static char sccsid[] = "@(#)krb_passwd.c	5.3 (Berkeley) 02/12/91";
 #endif /* not lint */
 
 #ifdef KERBEROS
@@ -39,7 +39,7 @@ long authopts;
 char realm[REALM_SZ], krbhst[MAX_HSTNM];
 int sock;
 
-do_krb_passwd()
+krb_passwd()
 {
 	struct servent *se;
 	struct hostent *host;
