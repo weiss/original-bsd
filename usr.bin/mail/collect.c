@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	5.18 (Berkeley) 05/11/89";
+static char sccsid[] = "@(#)collect.c	5.19 (Berkeley) 09/15/89";
 #endif /* not lint */
 
 /*
@@ -504,7 +504,7 @@ forward(ms, fp, f)
 	}
 	if (f == 'f' || f == 'F')
 		tabst = NOSTR;
-	else if ((tabst = value("tabstr")) == NOSTR)
+	else if ((tabst = value("indentprefix")) == NOSTR)
 		tabst = "\t";
 	ig = isupper(f) ? NULL : ignore;
 	printf("Interpolating:");
