@@ -1,3 +1,20 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.redist.c%
+ */
+
+#ifndef lint
+char copyright[] =
+"@(#) Copyright (c) 1991 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@(#)xneko.c	5.2 (Berkeley) 05/22/91";
+#endif /* not lint */
+
 /*--------------------------------------------------------------
  *
  *	xneko  -  X11 G-
@@ -9,11 +26,11 @@
  *
  *!!Introduction:
  *
- *!!!!K\@(#)xneko.c	5.1m%0%i%`$O Macintosh $N05/22/919%/%"%/%;%5%j!< "neko" $N
+ *!!!!K\@(#)xneko.c	5.2m%0%i%`$O Macintosh $N05/22/919%/%"%/%;%5%j!< "neko" $N
  *!!F0:n$r X11 $G%^%M$?$b$N$G$9!#
  *
  *!!!!Macintosh "neko" $N=(0o$J05/22/916%$%s$K7I0U$rI=$7$D$D!"$3$N
- *!!@(#)xneko.c	5.1m%0%i%`$r3'$5$s$KJ{$2$^$9!#
+ *!!@(#)xneko.c	5.2m%0%i%`$r3'$5$s$KJ{$2$^$9!#
  *
  *--------------------------------------------------------------
  *
@@ -21,10 +38,10 @@
  *
  *	toshi-w	!D!!Macintosh neko $N>R2p<T
  *	shio-m	!D!!!VX11 $N neko $,M_$7$$!*!W$H%?%@$r$3$M$??M
- *	disco	!D!!X11 s.xneko.c/%K%+%k!&%"5.1P%$%6!<
+ *	disco	!D!!X11 s.xneko.c/%K%+%k!&%"5.2P%$%6!<
  *
  *	HOMY	!D!!/usr/home/csrg/sccs/games/xneko/SCCS/s.xneko.c0;XE&<T
- *	BNS	!D!!J#?t@(#)xneko.c	5.1l!<%sBP1~C%ADs6!<T
+ *	BNS	!D!!J#?t@(#)xneko.c	5.2l!<%sBP1~C%ADs6!<T
  *
  *		"xneko"  Presented by Masayuki Koba (masa-k).
  *
@@ -32,10 +49,10 @@
  *
  *!!Manifest:
  *
- *!!!!K\@(#)xneko.c	5.1m%0%i%`$O Public Domain Software $G$9!#E>:\!&2~NI$O
+ *!!!!K\@(#)xneko.c	5.2m%0%i%`$O Public Domain Software $G$9!#E>:\!&2~NI$O
  *!!<+M3$K9T$C$F2<$5$$!#
  *
- *!!!!$J$*!"86:n<T$O!"K\@(#)xneko.c	5.1m%0%i%`$r;HMQ$9$k$3$H$K$h$C$F@8$8$?
+ *!!!!$J$*!"86:n<T$O!"K\@(#)xneko.c	5.2m%0%i%`$r;HMQ$9$k$3$H$K$h$C$F@8$8$?
  *!!>c32$dITMx1W$K$D$$$F$$$C$5$$@UG$$r;}$A$^$;$s!#
  *
  *--------------------------------------------------------------
@@ -48,21 +65,21 @@
  *!!!!!!!!$r%]!<%j%s%0$7$F$$$^$9!#=>$C$F!"%^%&%9$,A4$/F0:n$7$F
  *!!!!!!!!$$$J$$;~$OL5BL$J%^%&%9:BI8FI$_<h$j$r9T$C$F$7$^$$$^$9!#
  *
- *!!!!!J#3!K%&%#%s5.1&$,%"%$%3%s2=$5$l$F$b!"$7$i$s$W$j$GIA2h$7
- *!!!!!!!!$D$E$1$^$9!#$3$NItJ,$O!"8=:_$N%&%#%s5.1&$N>uBV$r@(#) xneko.c 5.1@(#)'
- *!!!!!!!!53/$7$F!"%"%$%3%s2=$5$l$F$$$k;~$O40A4$K%$s%HBT$A
+ *!!!!!J#3!K%&%#%s5.2&$,%"%$%3%s2=$5$l$F$b!"$7$i$s$W$j$GIA2h$7
+ *!!!!!!!!$D$E$1$^$9!#$3$NItJ,$O!"8=:_$N%&%#%s5.2&$N>uBV$r@(#) xneko.c 5.2@(#)'
+ *!!!!!!!!70/$7$F!"%"%$%3%s2=$5$l$F$$$k;~$O40A4$K%$s%HBT$A
  *!!!!!!!!$K$J$k$h$&$K=q$-JQ$($J$1$l$P$J$j$^$;$s!# ($=$s$J$3$H!"
  *!!!!!!!!$G$-$k$N$+$J$!!#X10 $G$O$G$-$^$7$?$,!#)
  *
- *!!!!!J#4!K%j%5%$%:8e$N%&%#%s5.1&$,6KC<$K>.$5$/$J$C$?;~$NF0:n
+ *!!!!!J#4!K%j%5%$%:8e$N%&%#%s5.2&$,6KC<$K>.$5$/$J$C$?;~$NF0:n
  *!!!!!!!!$OJ]>Z$G$-$^$;$s!#
  *
- *!!!!!J#5!KK\Mh$J$i$P3NJ]$7$?%&%#%s5.1&$d Pixmap $O@(#)xneko.c	5.1m%0%i%`
- *!!!!!!!!=*N;;~$K2rJ|$9$kI,MW$,$"$j$^$9$,!"K\@(#)xneko.c	5.1m%0%i%`$O$=$N
+ *!!!!!J#5!KK\Mh$J$i$P3NJ]$7$?%&%#%s5.2&$d Pixmap $O@(#)xneko.c	5.2m%0%i%`
+ *!!!!!!!!=*N;;~$K2rJ|$9$kI,MW$,$"$j$^$9$,!"K\@(#)xneko.c	5.2m%0%i%`$O$=$N
  *!!!!!!!!$X$s$r%5%\$C$F$*$j!"Hs>o$K$*9T57$,0-$/$J$C$F$$$^$9!#
  *!!!!!!!!IaDL$O exit() ;~$K%7%9s.xneko.c`$,M>J,$J%j%=!<%9$r2rJ|$7$F
  *!!!!!!!!$/$l$^$9$,!"#O#S$K/usr/home/csrg/sccs/games/xneko/SCCS/s.xneko.c0$,$"$k>l9g$O xneko $r2?EY$b5/
- *!!!!!!!!F0$9$k$H!"$=$N$&$A%9%o65WNN0h$,ITB-$7$F$7$^$&$3$H$K
+ *!!!!!!!!F0$9$k$H!"$=$N$&$A%9%o82WNN0h$,ITB-$7$F$7$^$&$3$H$K
  *!!!!!!!!$J$k$+$b$7$l$^$;$s!#
  *
  *!!!!!J#6!K;~4V$KF14|$7$FI,$:IA2h=hM}$r<B9T$9$k$?$a!"0BDj>uBV
@@ -73,7 +90,7 @@
  *
  *!!System (Machine):
  *
- *!!!!K\@(#)xneko.c	5.1m%0%i%`$NF0:n$r3NG'$7$?%7%9s.xneko.c`9=@.$O0J2<$NDL$j!#
+ *!!!!K\@(#)xneko.c	5.2m%0%i%`$NF0:n$r3NG'$7$?%7%9s.xneko.c`9=@.$O0J2<$NDL$j!#
  *
  *	!&NWS-1750!"NWS-1720 (NEWS)!"NWP-512D
  *	!!NEWS-OS 3.2a (UNIX 4.3BSD)!"X11 Release 2
@@ -109,7 +126,7 @@ static char	WriterMessage[] = "xneko: Programmed by Masayuki Koba, 1990";
 
 
 /*
- *	X11 G- 0C10/14/12^112W12:21:40!%$%k0lMw!'
+ *	X11 G- 0C10/14/12^129W13:03:18!%$%k0lMw!'
  *
  *		"icon.xbm"		!D!!%"%$%3%s
  *		"cursor.xbm"		!D!!%+!<%=%k
@@ -153,7 +170,7 @@ static char	WriterMessage[] = "xneko: Programmed by Masayuki Koba, 1990";
  *		"rtogi1.xbm"		!D!!1&Ka$.#1
  *		"rtogi2.xbm"		!D!!1&Ka$.#2
  *
- *	!!$3$l$i$N12:21:40!%$%k$O bitmap %3%^%s%I$GJT=82DG=$G$9!#
+ *	!!$3$l$i$N13:03:18!%$%k$O bitmap %3%^%s%I$GJT=82DG=$G$9!#
  *
  *		(bitmap size "* 32x32 ... Macintosh ICON resource size.)
  *
@@ -210,13 +227,13 @@ static char	WriterMessage[] = "xneko: Programmed by Masayuki Koba, 1990";
 #define	BITMAP_WIDTH		32	/* #1%-%c%i%/%?$NI} (16:56:31/%;%k) */
 #define	BITMAP_HEIGHT		32	/* #1%-%c%i%/%?$N9b$5 (16:56:31/%;%k) */
 
-#define	WINDOW_WIDTH		320	/* %&%#%s5.1&$NI} (16:56:31/%;%k) */
-#define	WINDOW_HEIGHT		256	/* %&%#%s5.1&$N9b$5 (16:56:31/%;%k) */
+#define	WINDOW_WIDTH		320	/* %&%#%s5.2&$NI} (16:56:31/%;%k) */
+#define	WINDOW_HEIGHT		256	/* %&%#%s5.2&$N9b$5 (16:56:31/%;%k) */
 
 #define	DEFAULT_BORDER		2	/* %\!<%@!<%5%$%: */
 
-#define	DEFAULT_WIN_X		1	/* %&%#%s5.1&@8@.#X:BI8 */
-#define	DEFAULT_WIN_Y		1	/* %&%#%s5.1&@8@.#Y:BI8 */
+#define	DEFAULT_WIN_X		1	/* %&%#%s5.2&@8@.#X:BI8 */
+#define	DEFAULT_WIN_Y		1	/* %&%#%s5.2&@8@.#Y:BI8 */
 
 #define	AVAIL_KEYBUF		255
 
@@ -484,7 +501,7 @@ Animation	AnimationPattern[] =
 
 /*--------------------------------------------------------------
  *
- *	0C10/14/12^487W%G!<%?!&GC =i4|2=
+ *	0C10/14/12^504W%G!<%?!&GC =i4|2=
  *
  *--------------------------------------------------------------*/
 
@@ -708,7 +725,7 @@ Interval()
 
 /*--------------------------------------------------------------
  *
- *	s.xneko.c#711/%+%&%s%H=hM}
+ *	s.xneko.c#728/%+%&%s%H=hM}
  *
  *--------------------------------------------------------------*/
 
@@ -1130,7 +1147,7 @@ NekoThinkDraw()
 
 /*--------------------------------------------------------------
  *
- *	%-%c%i%/%?!<0lMwI=<(!J05/22/91P11330MQ!K
+ *	%-%c%i%/%?!<0lMwI=<(!J05/22/91P11500MQ!K
  *
  *--------------------------------------------------------------*/
 
@@ -1426,7 +1443,7 @@ ProcessNeko()
 
 /*--------------------------------------------------------------
  *
- *	G-0lMw!J05/22/91P14290MQ!K
+ *	G-0lMw!J05/22/91P14460MQ!K
  *
  *--------------------------------------------------------------*/
 
@@ -1447,7 +1464,7 @@ NekoList()
 
 /*--------------------------------------------------------------
  *
- *	G-0\F0s.xneko.c9%H!J05/22/91P14500MQ!K
+ *	G-0\F0s.xneko.c9%H!J05/22/91P14670MQ!K
  *
  *--------------------------------------------------------------*/
 
@@ -1497,7 +1514,7 @@ NekoMoveTest()
 
 /*--------------------------------------------------------------
  *
- *	%a%K%e!<=hM}!J05/22/91P15000MQ!K
+ *	%a%K%e!<=hM}!J05/22/91P15170MQ!K
  *
  *--------------------------------------------------------------*/
 
@@ -1508,7 +1525,7 @@ ProcessDebugMenu()
     char	UserAnswer[ BUFSIZ ];
 
     fprintf( stderr, "\n" );
-    fprintf( stderr, "!Zxneko 05/22/91P15110%a%K%e!<![\n" );
+    fprintf( stderr, "!Zxneko 05/22/91P15280%a%K%e!<![\n" );
 
     while ( !( UserSelectNo >= 1 && UserSelectNo <= 2 ) ) {
 	fprintf( stderr, "\n" );
