@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	5.46 (Berkeley) 12/05/91";
+static char sccsid[] = "@(#)deliver.c	5.47 (Berkeley) 12/13/91";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -20,6 +20,9 @@ static char sccsid[] = "@(#)deliver.c	5.46 (Berkeley) 12/05/91";
 #include <sys/param.h>
 #include <arpa/nameser.h>
 #include <resolv.h>
+#endif
+#ifdef LOCKF
+#include <unistd.h>
 #endif
 
 /*
@@ -1436,6 +1439,29 @@ sendall(e, mode)
 
 		/* be sure we are immune from the terminal */
 		disconnect(FALSE);
+
+# ifdef LOCKF
+		/*
+		**  When our parent closed lockfp, we lost the lock.
+		**  Try to get it back now.
+		*/
+
+		if (lockfp != NULL)
+		{
+			if (fseek(lockfp, 0, SEEK_SET) != 0 ||
+			    lockf(fileno(lockfp), F_TLOCK, 0) < 0)
+			{
+				/* oops....  lost it */
+# ifdef LOG
+				if (LogLevel > 5)
+					syslog(LOG_NOTICE, "%s: lost lock",
+						CurEnv->e_id);
+# endif /* LOG */
+				fclose(lockfp);
+				exit(EX_OK);
+			}
+		}
+# endif /* LOCKF */
 
 		break;
 	}
