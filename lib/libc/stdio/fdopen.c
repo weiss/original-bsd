@@ -1,4 +1,4 @@
-/* @(#)fdopen.c	4.2 (Berkeley) 03/09/81 */
+/* @(#)fdopen.c	4.3 (Berkeley) 06/30/83 */
 /*
  * Unix routine to do an "fopen" on file descriptor
  * The mode has to be repeated because you can't query its
@@ -16,6 +16,8 @@ register char *mode;
 	register FILE *iop;
 	extern FILE *_lastbuf;
 
+	if ((unsigned)fd >= getdtablesize())
+		return (NULL);
 	for (iop = _iob; iop->_flag&(_IOREAD|_IOWRT|_IORW); iop++)
 		if (iop >= _lastbuf)
 			return(NULL);
