@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.3 (Berkeley) 01/19/92
+#	@(#)Makefile	5.4 (Berkeley) 06/18/93
 
 PROG=	newlfs
 CFLAGS+=-I/sys/ufs/lfs
 SRCS=	dkcksum.c lfs.c lfs_cksum.c misc.c newfs.c
-NOMAN=	noman
+MAN8=	newlfs.0
 .PATH:	/sys/ufs/lfs ${.CURDIR}/../disklabel
 
 .include <bsd.prog.mk>
