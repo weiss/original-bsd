@@ -1,14 +1,13 @@
 /*
- * Copyright (c) 1982, 1986, 1989 Regents of the University of California.
+ * Copyright (c) 1982, 1986, 1989, 1991 Regents of the University of California.
  * All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	7.23 (Berkeley) 03/17/91
+ *	@(#)uipc_usrreq.c	7.24 (Berkeley) 03/24/91
  */
 
 #include "param.h"
-#include "user.h"
 #include "proc.h"
 #include "filedesc.h"
 #include "domain.h"
@@ -574,7 +573,7 @@ unp_externalize(rights)
 		if (fdalloc(p, 0, &f))
 			panic("unp_externalize");
 		fp = *rp;
-		OFILE(p->p_fd, f) = fp;
+		p->p_fd->fd_ofiles[f] = fp;
 		fp->f_msgcount--;
 		unp_rights--;
 		*(int *)rp++ = f;
@@ -599,12 +598,13 @@ unp_internalize(control)
 	rp = (struct file **)(cm + 1);
 	for (i = 0; i < oldfds; i++) {
 		fd = *(int *)rp++;
-		if ((unsigned)fd >= fdp->fd_nfiles || OFILE(fdp, fd) == NULL)
+		if ((unsigned)fd >= fdp->fd_nfiles ||
+		    fdp->fd_ofiles[fd] == NULL)
 			return (EBADF);
 	}
 	rp = (struct file **)(cm + 1);
 	for (i = 0; i < oldfds; i++) {
-		fp = OFILE(fdp, *(int *)rp);
+		fp = fdp->fd_ofiles[*(int *)rp];
 		*rp++ = fp;
 		fp->f_count++;
 		fp->f_msgcount++;
