@@ -16,13 +16,13 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)getttyent.c	5.6 (Berkeley) 02/22/90";
+static char sccsid[] = "@(#)getttyent.c	5.7 (Berkeley) 05/15/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <ttyent.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <strings.h>
+#include <string.h>
 
 static char zapchar;
 static FILE *tf;
