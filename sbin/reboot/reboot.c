@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)reboot.c	4.5 (Berkeley) 04/21/81";
+static	char *sccsid = "@(#)reboot.c	4.6 (Berkeley) 02/09/83";
 /*
  * Reboot
  */
@@ -36,6 +36,7 @@ main(argc, argv)
 		argc--, argv++;
 	}
 
+	signal(SIGHUP, SIG_IGN);	/* for remote connections */
 	if (kill(1, SIGTSTP) == -1) {
 		fprintf(stderr, "reboot: can't idle init\n");
 		exit(1);
