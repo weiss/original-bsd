@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)tcp_timer.c	7.11.1.2 (Berkeley) 03/16/88
+ *	@(#)tcp_timer.c	7.13 (Berkeley) 05/14/88
  */
 
 #include "param.h"
@@ -35,7 +35,6 @@
 #include "tcp_var.h"
 #include "tcpip.h"
 
-int	tcpnodelack = 0;
 int	tcp_keepidle = TCPTV_KEEP_IDLE;
 int	tcp_keepintvl = TCPTV_KEEPINTVL;
 int	tcp_maxidle;
@@ -177,9 +176,7 @@ tcp_timers(tp, timer)
 		 * retransmit times until then.
 		 */
 		if (tp->t_rxtshift > TCP_MAXRXTSHIFT / 4) {
-#if BSD>=43
 			in_losing(tp->t_inpcb);
-#endif
 			tp->t_rttvar += (tp->t_srtt >> 2);
 			tp->t_srtt = 0;
 		}

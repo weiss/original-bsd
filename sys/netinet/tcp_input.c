@@ -9,7 +9,7 @@
  * software without specific prior written permission. This software
  * is provided ``as is'' without express or implied warranty.
  *
- *	@(#)tcp_input.c	7.15.1.2 (Berkeley) 03/16/88
+ *	@(#)tcp_input.c	7.18 (Berkeley) 05/14/88
  */
 
 #include "param.h"
@@ -40,7 +40,6 @@ int	tcpprintfs = 0;
 int	tcpcksum = 1;
 int	tcprexmtthresh = 3;
 struct	tcpiphdr tcp_saveti;
-extern	tcpnodelack;
 
 struct	tcpcb *tcp_newtcpcb();
 
@@ -51,19 +50,24 @@ struct	tcpcb *tcp_newtcpcb();
  * (segment is the next to be received on an established connection,
  * and the queue is empty), avoiding linkage into and removal
  * from the queue and repetition of various conversions.
+ * Set DELACK for segments received in order, but ack immediately
+ * when segments are out of order (so fast retransmit can work).
  */
 #define	TCP_REASS(tp, ti, m, so, flags) { \
 	if ((ti)->ti_seq == (tp)->rcv_nxt && \
 	    (tp)->seg_next == (struct tcpiphdr *)(tp) && \
 	    (tp)->t_state == TCPS_ESTABLISHED) { \
+		tp->t_flags |= TF_DELACK; \
 		(tp)->rcv_nxt += (ti)->ti_len; \
 		flags = (ti)->ti_flags & TH_FIN; \
 		tcpstat.tcps_rcvpack++;\
 		tcpstat.tcps_rcvbyte += (ti)->ti_len;\
 		sbappend(&(so)->so_rcv, (m)); \
 		sorwakeup(so); \
-	} else \
+	} else { \
 		(flags) = tcp_reass((tp), (ti)); \
+		tp->t_flags |= TF_ACKNOW; \
+	} \
 }
 
 tcp_reass(tp, ti)
@@ -319,9 +323,7 @@ findpcb:
 		inp = (struct inpcb *)so->so_pcb;
 		inp->inp_laddr = ti->ti_dst;
 		inp->inp_lport = ti->ti_dport;
-#if BSD>=43
 		inp->inp_options = ip_srcroute();
-#endif
 		tp = intotcpcb(inp);
 		tp->t_state = TCPS_LISTEN;
 	}
@@ -489,17 +491,7 @@ trimthenstep6:
 		ti->ti_seq++;
 		if (ti->ti_len > tp->rcv_wnd) {
 			todrop = ti->ti_len - tp->rcv_wnd;
-#if BSD>=43
 			m_adj(m, -todrop);
-#else
-			/* XXX work around 4.2 m_adj bug */
-			if (m->m_len) {
-				m_adj(m, -todrop);
-			} else {
-				/* skip tcp/ip header in first mbuf */
-				m_adj(m->m_next, -todrop);
-			}
-#endif
 			ti->ti_len = tp->rcv_wnd;
 			tiflags &= ~TH_FIN;
 			tcpstat.tcps_rcvpackafterwin++;
@@ -613,17 +605,7 @@ trimthenstep6:
 				goto dropafterack;
 		} else
 			tcpstat.tcps_rcvbyteafterwin += todrop;
-#if BSD>=43
 		m_adj(m, -todrop);
-#else
-		/* XXX work around m_adj bug */
-		if (m->m_len) {
-			m_adj(m, -todrop);
-		} else {
-			/* skip tcp/ip header in first mbuf */
-			m_adj(m->m_next, -todrop);
-		}
-#endif
 		ti->ti_len -= todrop;
 		tiflags &= ~(TH_PUSH|TH_FIN);
 	}
@@ -1006,11 +988,8 @@ step6:
 		 * but if two URG's are pending at once, some out-of-band
 		 * data may creep in... ick.
 		 */
-		if (ti->ti_urp <= ti->ti_len
-#ifdef SO_OOBINLINE
-		     && (so->so_options & SO_OOBINLINE) == 0
-#endif
-							   )
+		if (ti->ti_urp <= ti->ti_len &&
+		    (so->so_options & SO_OOBINLINE) == 0)
 			tcp_pulloutofband(so, ti);
 	} else
 		/*
@@ -1033,10 +1012,6 @@ dodata:							/* XXX */
 	if ((ti->ti_len || (tiflags&TH_FIN)) &&
 	    TCPS_HAVERCVDFIN(tp->t_state) == 0) {
 		TCP_REASS(tp, ti, m, so, tiflags);
-		if (tcpnodelack == 0)
-			tp->t_flags |= TF_DELACK;
-		else
-			tp->t_flags |= TF_ACKNOW;
 		/*
 		 * Note the amount of data that peer has sent into
 		 * our window, in order to estimate the sender's
@@ -1288,34 +1263,3 @@ tcp_mss(tp)
 	tp->snd_cwnd = mss;
 	return (mss);
 }
-
-#if BSD<43
-/* XXX this belongs in netinet/in.c */
-in_localaddr(in)
-	struct in_addr in;
-{
-	register u_long i = ntohl(in.s_addr);
-	register struct ifnet *ifp;
-	register struct sockaddr_in *sin;
-	register u_long mask;
-
-	if (IN_CLASSA(i))
-		mask = IN_CLASSA_NET;
-	else if (IN_CLASSB(i))
-		mask = IN_CLASSB_NET;
-	else if (IN_CLASSC(i))
-		mask = IN_CLASSC_NET;
-	else
-		return (0);
-
-	i &= mask;
-	for (ifp = ifnet; ifp; ifp = ifp->if_next) {
-		if (ifp->if_addr.sa_family != AF_INET)
-			continue;
-		sin = (struct sockaddr_in *)&ifp->if_addr;
-		if ((sin->sin_addr.s_addr & mask) == i)
-			return (1);
-	}
-	return (0);
-}
-#endif
