@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)cy.c	7.3 (Berkeley) 05/04/89
+ *	@(#)cy.c	7.4 (Berkeley) 05/05/89
  */
 
 #include "yc.h"
@@ -38,11 +38,9 @@ int	cydebug = 0;
 #include "vm.h"
 #include "buf.h"
 #include "file.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
 #include "signal.h"
-#include "uio.h"
 #include "ioctl.h"
 #include "mtio.h"
 #include "errno.h"
