@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)order.c	1.19 (Berkeley) 05/20/88";
+static char *sccsid ="@(#)order.c	1.20 (Berkeley) 05/31/88";
 #endif lint
 
 # include "pass2.h"
@@ -454,11 +454,10 @@ getlab(){
 	return( crslab-- );
 	}
 
-#ifndef deflab
 deflab( l ){
+	if (nerrors) return;
 	printf( "L%d:\n", l );
 	}
-#endif
 
 genargs( p ) register NODE *p; {
 	register NODE *pasg;
