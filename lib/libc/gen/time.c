@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)time.c	5.1 (Berkeley) 05/30/85";
+static char sccsid[] = "@(#)time.c	5.2 (Berkeley) 10/30/85";
 #endif not lint
 
 /*
@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)time.c	5.1 (Berkeley) 05/30/85";
 #include <sys/types.h>
 #include <sys/time.h>
 
-time_t
+long
 time(t)
 	time_t *t;
 {
