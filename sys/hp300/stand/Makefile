@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.20 (Berkeley) 05/24/93
+#	@(#)Makefile	8.1 (Berkeley) 06/10/93
 
 DESTDIR=
 INCPATH=-I. -I../..
