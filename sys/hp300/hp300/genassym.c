@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)genassym.c	7.7 (Berkeley) 05/04/91
+ *	@(#)genassym.c	7.8 (Berkeley) 05/07/91
  */
 
 #define KERNEL
@@ -108,8 +108,9 @@ main()
 	printf("#define\tFC_USERD %d\n", FC_USERD);
 	printf("#define\tFC_PURGE %d\n", FC_PURGE);
 	printf("#define\tMAXADDR %d\n", MAXADDR);
-	printf("#define\tIOMAPSIZE %d\n", IOMAPSIZE);
-	printf("#define\tIOBASE %d\n", IOBASE);
+	printf("#define\tIIOMAPSIZE %d\n", IIOMAPSIZE);
+	printf("#define\tEIOMAPSIZE %d\n", EIOMAPSIZE);
+	printf("#define\tINTIOBASE %d\n", INTIOBASE);
 	printf("#define\tMMUBASE %d\n", MMUBASE);
 	printf("#define\tMMUSTAT %d\n", MMUSTAT);
 	printf("#define\tMMUCMD %d\n", MMUCMD);
