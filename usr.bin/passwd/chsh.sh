@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)chsh.sh	4.5 (Berkeley) 06/10/83";
+static char *sccsid = "@(#)chsh.sh	4.6 (Berkeley) 07/02/83";
 #endif
 
 /*
@@ -9,8 +9,8 @@ static char *sccsid = "@(#)chsh.sh	4.5 (Berkeley) 06/10/83";
 #include <signal.h>
 #include <pwd.h>
 #include <sys/file.h>
-#include <time.h>
-#include <resource.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 char	passwd[] = "/etc/passwd";
 char	temp[]	 = "/etc/ptmp";
