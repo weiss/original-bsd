@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)clnp_options.c	7.9 (Berkeley) 10/11/92
+ *	@(#)clnp_options.c	7.10 (Berkeley) 06/04/93
  */
 
 /***********************************************************
@@ -503,4 +503,4 @@ struct clnp_optidx	*oidx;	/* RETURN: filled in with option idx info */
 		ENDDEBUG
 	return(0);
 }
-#endif	ISO
+#endif	/* ISO */
