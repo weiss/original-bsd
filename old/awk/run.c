@@ -1,7 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)run.c	4.7 10/22/87";
+static char sccsid[] = "@(#)run.c	4.8 03/29/88";
 #endif
 
+#include "sys/param.h"
 #include "awk.def"
 #include "math.h"
 #include "awk.h"
@@ -9,7 +10,7 @@ static char sccsid[] = "@(#)run.c	4.7 10/22/87";
 #include "fcntl.h"
 #define RECSIZE BUFSIZ
 
-#define FILENUM	10
+#define FILENUM	NOFILE
 struct
 {
 	FILE *fp;
