@@ -11,19 +11,13 @@
  *
  * from: Utah $Hdr: machparam.h 1.11 89/08/14$
  *
- *	@(#)param.h	7.2 (Berkeley) 12/05/90
+ *	@(#)param.h	7.3 (Berkeley) 12/16/90
  */
 
 /*
  * Machine dependent constants for HP9000 series 300.
  */
 #define	MACHINE "hp300"
-
-#ifndef BYTE_ORDER
-#include <machine/endian.h>
-#endif
-
-#include <machine/machlimits.h>
 
 #define	NBPG		4096		/* bytes/page */
 #define	PGOFSET		(NBPG-1)	/* byte offset into page */

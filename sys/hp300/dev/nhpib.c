@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nhpib.c	7.2 (Berkeley) 11/04/90
+ *	@(#)nhpib.c	7.3 (Berkeley) 12/16/90
  */
 
 /*
@@ -13,9 +13,10 @@
 #include "hpib.h"
 #if NHPIB > 0
 
-#include "param.h"
-#include "systm.h"
-#include "buf.h"
+#include "sys/param.h"
+#include "sys/systm.h"
+#include "sys/buf.h"
+
 #include "device.h"
 #include "nhpibreg.h"
 #include "hpibvar.h"

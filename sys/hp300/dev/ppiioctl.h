@@ -4,15 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ppiioctl.h	7.1 (Berkeley) 11/03/90
+ *	@(#)ppiioctl.h	7.2 (Berkeley) 12/16/90
  */
 
 #ifndef _IOCTL_
-#ifdef KERNEL
-#include "ioctl.h"
-#else
 #include <sys/ioctl.h>
-#endif
 #endif
 
 struct ppiparam {

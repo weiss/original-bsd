@@ -4,13 +4,13 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dkbad.c	7.1 (Berkeley) 05/08/90
+ *	@(#)dkbad.c	7.2 (Berkeley) 12/16/90
  */
 
 #ifndef NOBADSECT
-#include "param.h"
-#include "buf.h"
-#include "dkbad.h"
+#include "sys/param.h"
+#include "sys/buf.h"
+#include "sys/dkbad.h"
 
 /*
  * Search the bad sector table looking for

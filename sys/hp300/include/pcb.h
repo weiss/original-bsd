@@ -11,14 +11,10 @@
  *
  * from: Utah $Hdr: pcb.h 1.13 89/04/23$
  *
- *	@(#)pcb.h	7.2 (Berkeley) 12/05/90
+ *	@(#)pcb.h	7.3 (Berkeley) 12/16/90
  */
 
-#ifdef KERNEL
-#include "frame.h"
-#else
-#include <hp300/frame.h>
-#endif
+#include <hp300/include/frame.h>
 
 /*
  * HP300 process control block

@@ -4,18 +4,18 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)swapgeneric.c	7.2 (Berkeley) 12/05/90
+ *	@(#)swapgeneric.c	7.3 (Berkeley) 12/16/90
  */
 
-#include "pte.h"
+#include "../include/pte.h"
 
-#include "param.h"
-#include "conf.h"
-#include "buf.h"
-#include "systm.h"
-#include "reboot.h"
+#include "sys/param.h"
+#include "sys/conf.h"
+#include "sys/buf.h"
+#include "sys/systm.h"
+#include "sys/reboot.h"
 
-#include "../hpdev/device.h"
+#include "../dev/device.h"
 
 /*
  * Generic configuration;  all in one

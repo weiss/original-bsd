@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: hpux.h 1.1 90/07/09$
  *
- *	@(#)hpux.h	7.2 (Berkeley) 12/05/90
+ *	@(#)hpux.h	7.3 (Berkeley) 12/16/90
  */
 
 #include "hpux_exec.h"
