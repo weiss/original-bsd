@@ -1,4 +1,4 @@
-/*	dkstat.h	4.1	11/09/80	*/
+/*	dkstat.h	4.2	81/02/19	*/
 
 /*
  * Instrumentation

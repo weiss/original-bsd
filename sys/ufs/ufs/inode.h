@@ -1,4 +1,4 @@
-/*	inode.h	4.2	01/27/81	*/
+/*	inode.h	4.3	81/02/19	*/
 
 /*
  * The I node is the focus of all
