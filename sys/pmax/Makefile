@@ -1,4 +1,4 @@
-#	@(#)Makefile	7.4 (Berkeley) 06/11/93
+#	@(#)Makefile	7.5 (Berkeley) 06/16/93
 
 # Makefile for pmax links, tags file
 
@@ -19,7 +19,7 @@ APMAX=	/sys/pmax/pmax/*.s
 
 tags::
 	-ctags -wdt ${COMM} ${PMAX}
-	egrep "^ENTRY(.*)|^ALTENTRY(.*)" ${APMAX} | \
+	egrep "^LEAF(.*)|^[AN]LEAF(.*)|^NON_LEAF(.*)" ${APMAX} | \
 	    sed "s;\([^:]*\):\([^(]*\)(\([^, )]*\)\(.*\);\3 \1 /^\2(\3\4$$/;" \
 		>> tags
 	sort -o tags tags
