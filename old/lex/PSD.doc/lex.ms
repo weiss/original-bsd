@@ -1,4 +1,4 @@
-.\"	@(#)lex.ms	4.1 (Berkeley) 04/28/86
+.\"	@(#)lex.ms	5.1 (Berkeley) 04/28/86
 .\"
 .hc ~
 .bd I 2
