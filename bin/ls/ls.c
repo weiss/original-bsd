@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.62 (Berkeley) 03/13/92";
+static char sccsid[] = "@(#)ls.c	5.63 (Berkeley) 03/13/92";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -488,16 +488,18 @@ flags_from_fid(flags)
 	} else
 		comma = 0;
 	if (flags & NODUMP) {
-		if (comma)
+		if (comma++)
 			*p++ = ',';
 		(void)strcpy(p, "nodump");
 		p += sizeof("nodump") - 1;
 	}
 	if (flags & IMMUTABLE) {
-		if (comma)
+		if (comma++)
 			*p++ = ',';
 		(void)strcpy(p, "nochg");
 		p += sizeof("nochg") - 1;
 	}
+	if (!comma)
+		(void)strcpy(p, "-");
 	return (buf);
 }
