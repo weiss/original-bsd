@@ -1,7 +1,8 @@
-/*	conf.c	1.1	06/28/80	*/
+/*	conf.c	1.2	07/29/80	*/
 
 #include "../h/param.h"
 #include "../h/inode.h"
+#include "../h/pte.h"
 #include "../h/mba.h"
 #include "saio.h"
 
