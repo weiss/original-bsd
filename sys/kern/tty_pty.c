@@ -1,5 +1,6 @@
 #
-/*	@(#)tty_pty.c	1.2	1.2	01/26/81	*/
+/*	tty_pty.c	1.3	01/26/81	*/
+
 /*
  * Pseudo-teletype Driver
  * (Actually two drivers, requiring two entries in 'cdevsw')
