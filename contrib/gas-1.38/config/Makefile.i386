@@ -1,0 +1,4 @@
+#	@(#)Makefile.i386	6.1 (Berkeley) 03/03/91
+
+CFLAGS+=	-DNON_BROKEN_WORDS
+SRCS+=		i386.c atof-ieee.c
