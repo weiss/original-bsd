@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)spp_debug.c	7.5 (Berkeley) 06/29/88
+ *	@(#)spp_debug.c	7.6 (Berkeley) 06/13/90
  */
 
 #include "param.h"
@@ -53,6 +53,7 @@ spp_trace(act, ostate, sp, si, req)
 	int req;
 {
 #ifdef INET
+#ifdef TCPDEBUG
 	u_short seq, ack, len, alo;
 	unsigned long iptime();
 	int flags;
@@ -147,6 +148,7 @@ spp_trace(act, ostate, sp, si, req)
 #ifndef lint
 #define p3(f)  { printf("%s = %x, ", "f", sp->s_/**/f); }
 	printf("\t"); p3(rack);p3(ralo);p3(smax);p3(flags); printf("\n");
+#endif
 #endif
 #endif
 }
