@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)correct.c	1.3 (Berkeley) 09/18/85";
+static char sccsid[] = "@(#)correct.c	1.4 (Berkeley) 11/16/85";
 #endif not lint
 
 #include "globals.h"
@@ -77,7 +77,6 @@ long avdelta;
 	}
 #ifdef MEASURE
 	fprintf(fp, "\n");
-	(void)fflush(fp);
 #endif
 }
 
