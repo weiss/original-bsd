@@ -1,6 +1,8 @@
 #ifndef lint
-static char sccsid[] = "@(#)hash.c	1.1	(Berkeley)	03/29/83";
+static char sccsid[] = "@(#)hash.c	1.2	(Berkeley)	09/28/87";
 #endif lint
+
+#include "config.h"
 
 /*
  * Hash function.  Used for pass 2 symbol table and string table,
