@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.22 (Berkeley) 01/17/91
+#	@(#)Makefile	5.23 (Berkeley) 01/21/91
 
 PROG=	dbx
 CFLAGS+=-I. -I${.CURDIR}
@@ -22,12 +22,15 @@ CLEANFILES+=mkdate makedefs makedefs.o date.c y.tab.h \
 all: ${HDRS}
 
 machine.h: ${MACHINE}.h
+	rm -f machine.h
 	ln -s ${MACHINE}.h machine.h
 
 runtime.h: runtime.${MACHINE}.h
+	rm -f runtime.h
 	ln -s runtime.${MACHINE}.h runtime.h
 
 ops.h: ops.${MACHINE}.h
+	rm -f ops.h
 	ln -s ops.${MACHINE}.h ops.h
 
 date.c: mkdate
