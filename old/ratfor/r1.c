@@ -1,4 +1,7 @@
-/* @(#)r1.c	1.2 (Berkeley) 12/15/82 */
+#ifndef lint
+static char sccsid[] = "@(#)r1.c	1.3 (Berkeley) 08/11/83";
+#endif
+
 #include "r.h"
 
 #define	wasbreak	brkused[brkptr]==1 || brkused[brkptr]==3
