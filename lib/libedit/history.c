@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)history.c	5.1 (Berkeley) 06/22/92";
+static char sccsid[] = "@(#)history.c	5.2 (Berkeley) 06/22/92";
 #endif /* not lint */
 
 /*
@@ -25,7 +25,7 @@ static char sccsid[] = "@(#)history.c	5.1 (Berkeley) 06/22/92";
 #include <varargs.h>
 #endif
 
-#include "history.h"
+#include "histedit.h"
 
 typedef const HistEvent *	(*history_gfun_t) __P((ptr_t));
 typedef const HistEvent *	(*history_efun_t) __P((ptr_t, const char *));
