@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogin.c	5.34 (Berkeley) 03/20/92";
+static char sccsid[] = "@(#)rlogin.c	5.35 (Berkeley) 06/20/92";
 #endif /* not lint */
 
 /*
@@ -66,7 +66,6 @@ extern char *krb_realmofhost();
 #define	SIGUSR1	30
 #endif
 
-extern int errno;
 int eight, litout, rem;
 
 int noescape;
@@ -390,8 +389,7 @@ catch_child()
 	int pid;
 
 	for (;;) {
-		pid = wait3((int *)&status,
-		    WNOHANG|WUNTRACED, (struct rusage *)0);
+		pid = wait3((int *)&status, WNOHANG|WUNTRACED, NULL);
 		if (pid == 0)
 			return;
 		/* if the child (reader) dies, just quit */
@@ -788,9 +786,9 @@ usage()
 	    "usage: rlogin [ -%s]%s[-e char] [ -l username ] host\n",
 #ifdef KERBEROS
 #ifdef CRYPT
-	    "8ELx", " [-k realm] ");
+	    "8EKLx", " [-k realm] ");
 #else
-	    "8EL", " [-k realm] ");
+	    "8EKL", " [-k realm] ");
 #endif
 #else
 	    "8EL", " ");
