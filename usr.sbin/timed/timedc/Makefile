@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 05/11/93
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	timedc
 SRCS=	cmds.c cmdtab.c timedc.c byteorder.c measure.c cksum.c
