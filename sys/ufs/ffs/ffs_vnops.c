@@ -1,4 +1,4 @@
-/*	ffs_vnops.c	6.4	84/01/03	*/
+/*	ffs_vnops.c	6.5	84/02/10	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -146,7 +146,7 @@ copen(mode, arg)
 		if (mode&FREAD)
 			if (access(ip, IREAD))
 				goto bad;
-		if (mode&FWRITE) {
+		if (mode&(FWRITE|FTRUNC)) {
 			if (access(ip, IWRITE))
 				goto bad;
 			if ((ip->i_mode&IFMT) == IFDIR) {
