@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)q.c	5.5 (Berkeley) 03/18/93";
+static char sccsid[] = "@(#)q.c	5.6 (Berkeley) 04/28/93";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -90,5 +90,5 @@ q(inputt, errnum)
 #ifndef MEMORY
 	unlink(template);
 #endif
-	exit(0);
+	exit(exit_code);
 }
