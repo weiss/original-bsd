@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.22 (Berkeley) 02/28/91";
+static char sccsid[] = "@(#)main.c	5.23 (Berkeley) 07/01/91";
 #endif /* not lint */
 
 /*
@@ -311,7 +311,7 @@ getsocket(domain, type, sin)
 		close(sock);
 		return (-1);
 	}
-	if (fcntl(sock, F_SETFL, FNDELAY) == -1)
-		syslog(LOG_ERR, "fcntl FNDELAY: %m\n");
+	if (fcntl(sock, F_SETFL, O_NONBLOCK) == -1)
+		syslog(LOG_ERR, "fcntl O_NONBLOCK: %m\n");
 	return (sock);
 }
