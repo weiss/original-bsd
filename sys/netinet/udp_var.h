@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)udp_var.h	7.8 (Berkeley) 01/08/93
+ *	@(#)udp_var.h	7.9 (Berkeley) 04/18/93
  */
 
 /*
@@ -39,8 +39,6 @@ struct	udpstat {
 				/* output statistics: */
 	u_long	udps_opackets;		/* total output packets */
 };
-
-#define	UDP_TTL		30	/* default time to live for UDP packets */
 
 #ifdef KERNEL
 struct	inpcb udb;
