@@ -3,15 +3,12 @@
 # include <sys/dir.h>
 # include <signal.h>
 # include <errno.h>
-# ifdef FLOCK
-# include <sys/file.h>
-# endif FLOCK
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	4.3		12/05/84	(no queueing));
+SCCSID(@(#)queue.c	4.4		12/06/84	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	4.3		12/05/84);
+SCCSID(@(#)queue.c	4.4		12/06/84);
 
 /*
 **  Work queue.
@@ -57,23 +54,17 @@ queueup(e, queueall, announce)
 	MAILER nullmailer;
 
 	/*
-	**  Create control file if necessary.
+	**  Create control file.
 	*/
 
-	tfp = e->e_qfp;
+	tf = newstr(queuename(e, 't'));
+	tfp = fopen(tf, "w");
 	if (tfp == NULL)
 	{
-		tf = newstr(queuename(e, 't'));
-		tfp = fopen(tf, "w");
-		if (tfp == NULL)
-		{
-			syserr("queueup: cannot create temp file %s", tf);
-			return;
-		}
-		(void) chmod(tf, FileMode);
+		syserr("queueup: cannot create temp file %s", tf);
+		return;
 	}
-	else
-		tf = NULL;
+	(void) chmod(tf, FileMode);
 
 # ifdef DEBUG
 	if (tTd(40, 1))
@@ -210,14 +201,10 @@ queueup(e, queueall, announce)
 	**  Clean up.
 	*/
 
+	(void) fclose(tfp);
 	qf = queuename(e, 'q');
 	if (tf != NULL)
 	{
-# ifdef FLOCK
-		(void) flock(fileno(tfp), LOCK_EX|LOCK_NB);
-		if (rename(tf, qf) < 0)
-			syserr("cannot rename(%s, %s), df=%s", tf, qf, e->e_df);
-# else FLOCK
 		holdsigs();
 		(void) unlink(qf);
 		if (link(tf, qf) < 0)
@@ -225,10 +212,7 @@ queueup(e, queueall, announce)
 		else
 			(void) unlink(tf);
 		rlsesigs();
-# endif FLOCK
 	}
-	(void) fclose(tfp);
-	e->e_qfp = NULL;
 
 # ifdef LOG
 	/* save log info */
@@ -498,8 +482,6 @@ dowork(w)
 
 	if (i == 0)
 	{
-		FILE *qfp;
-
 		/*
 		**  CHILD
 		**	Lock the control file to avoid duplicate deliveries.
@@ -524,17 +506,8 @@ dowork(w)
 		/* don't use the headers from sendmail.cf... */
 		CurEnv->e_header = NULL;
 
-		FileName = queuename(CurEnv, 'q');
-		qfp = fopen(FileName, "r");
-		if (qfp == NULL)
-			exit(EX_OK);
-
 		/* lock the control file during processing */
-# ifdef FLOCK
-		if (flock(fileno(qfp), LOCK_EX|LOCK_NB) < 0)
-# else FLOCK
 		if (link(w->w_name, queuename(CurEnv, 'l')) < 0)
-# endif FLOCK
 		{
 			/* being processed by another queuer */
 # ifdef LOG
@@ -548,8 +521,7 @@ dowork(w)
 		initsys();
 
 		/* read the queue control file */
-		readqf(qfp, CurEnv, TRUE);
-		(void) fclose(qfp);
+		readqf(CurEnv, TRUE);
 		CurEnv->e_flags |= EF_INQUEUE;
 		eatheader(CurEnv);
 
@@ -572,7 +544,6 @@ dowork(w)
 **  READQF -- read queue file and set up environment.
 **
 **	Parameters:
-**		qfp -- the file pointer for the qf file.
 **		e -- the envelope of the job to run.
 **		full -- if set, read in all information.  Otherwise just
 **			read in info needed for a queue print.
@@ -585,11 +556,12 @@ dowork(w)
 **		we had been invoked by argument.
 */
 
-readqf(qfp, e, full)
-	register FILE *qfp;
+readqf(e, full)
 	register ENVELOPE *e;
 	bool full;
 {
+	char *qf;
+	register FILE *qfp;
 	char buf[MAXFIELD];
 	extern char *fgetfolded();
 
@@ -597,6 +569,14 @@ readqf(qfp, e, full)
 	**  Read and process the file.
 	*/
 
+	qf = queuename(e, 'q');
+	qfp = fopen(qf, "r");
+	if (qfp == NULL)
+	{
+		syserr("readqf: no control file %s", qf);
+		return;
+	}
+	FileName = qf;
 	LineNumber = 0;
 	if (Verbose && full)
 		printf("\nRunning %s\n", e->e_id);
@@ -696,9 +676,7 @@ printqueue()
 		auto time_t submittime = 0;
 		long dfsize = -1;
 		int fd;
-# ifndef FLOCK
 		char lf[20];
-# endif FLOCK
 		char message[MAXLINE];
 
 		f = fopen(w->w_name, "r");
@@ -708,26 +686,12 @@ printqueue()
 			continue;
 		}
 		printf("%7s", w->w_name + 2);
-# ifdef FLOCK
-		fd = fileno(f);
-
-		if (flock(fd, LOCK_EX|LOCK_NB) < 0)
-		{
-			printf("*");
-		}
-		else
-		{
-			flock(fd, LOCK_UN);
-			printf(" ");
-		}
-# else FLOCK
 		strcpy(lf, w->w_name);
 		lf[0] = 'l';
 		if (stat(lf, &st) >= 0)
 			printf("*");
 		else
 			printf(" ");
-# endif FLOCK
 		errno = 0;
 
 		message[0] = '\0';
@@ -807,9 +771,7 @@ queuename(e, type)
 	{
 		char qf[20];
 		char nf[20];
-# ifndef FLOCK
 		char lf[20];
-# endif FLOCK
 
 		/* find a unique id */
 		if (pid != getpid())
@@ -820,10 +782,8 @@ queuename(e, type)
 			c2 = 'A' - 1;
 		}
 		(void) sprintf(qf, "qfAA%05d", pid);
-# ifndef FLOCK
 		strcpy(lf, qf);
 		lf[0] = 'l';
-# endif FLOCK
 		strcpy(nf, qf);
 		nf[0] = 'n';
 
@@ -836,33 +796,13 @@ queuename(e, type)
 				c1++;
 				c2 = 'A' - 1;
 			}
-			nf[2] = qf[2] = c1;
-			nf[3] = qf[3] = ++c2;
-# ifndef FLOCK
-			lf[2] = c1;
-			lf[3] = c2;
-# endif FLOCK
+			lf[2] = nf[2] = qf[2] = c1;
+			lf[3] = nf[3] = qf[3] = ++c2;
 # ifdef DEBUG
 			if (tTd(7, 20))
 				printf("queuename: trying \"%s\"\n", nf);
 # endif DEBUG
 
-# ifdef FLOCK
-			i = open(nf, O_WRONLY|O_CREAT|O_EXCL, FileMode);
-			if (i >= 0)
-			{
-				(void) flock(i, LOCK_EX|LOCK_NB);
-				if (link(nf, qf) < 0)
-				{
-					(void) close(i);
-					(void) unlink(nf);
-					continue;
-				}
-				e->e_qfp = fdopen(i, "w");
-				(void) unlink(nf);
-				break;
-			}
-# else FLOCK
 # ifdef QUEUE
 			if (access(lf, 0) >= 0 || access(qf, 0) >= 0)
 				continue;
@@ -885,7 +825,6 @@ queuename(e, type)
 			if (close(creat(qf, FileMode)) < 0)
 				continue;
 # endif QUEUE
-# endif FLOCK
 		}
 		if (c1 >= '~' && c2 >= 'Z')
 		{
@@ -941,9 +880,7 @@ unlockqueue(e)
 		xunlink(queuename(e, 'x'));
 
 # ifdef QUEUE
-# ifndef FLOCK
 	/* last but not least, remove the lock */
 	xunlink(queuename(e, 'l'));
-# endif FLOCK
 # endif QUEUE
 }
