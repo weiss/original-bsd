@@ -6,7 +6,7 @@
  * Use and redistribution is subject to the Berkeley Software License
  * Agreement and your Software Agreement with AT&T (Western Electric).
  *
- *	@(#)vfs_bio.c	7.43 (Berkeley) 11/01/91
+ *	@(#)vfs_bio.c	7.44 (Berkeley) 12/31/91
  */
 
 #include <sys/param.h>
@@ -500,6 +500,9 @@ getnewbuf()
 	register struct ucred *cred;
 	int s;
 
+#ifdef LFS
+	lfs_flush();
+#endif
 loop:
 	s = splbio();
 	for (dp = &bfreelist[BQ_AGE]; dp > bfreelist; dp--)
