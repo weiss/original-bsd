@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.54 (Berkeley) 04/11/95";
+static char sccsid[] = "@(#)map.c	8.55 (Berkeley) 04/13/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -2257,6 +2257,7 @@ seq_map_close(map)
 		if (mm == NULL || !bitset(MF_OPEN, mm->map_mflags))
 			continue;
 		mm->map_class->map_close(mm);
+		mm->map_mflags &= ~(MF_OPEN|MF_WRITABLE);
 	}
 }
 
