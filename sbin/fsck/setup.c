@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setup.c	5.26 (Berkeley) 02/07/90";
+static char sccsid[] = "@(#)setup.c	5.27 (Berkeley) 03/07/90";
 #endif /* not lint */
 
 #define DKTYPENAMES
@@ -273,6 +273,7 @@ setup(dev)
 		goto badsb;
 	}
 	numdirs = sblock.fs_cstotal.cs_ndir;
+	inplast = 0;
 	listmax = numdirs + 10;
 	inpsort = (struct inoinfo **)calloc((unsigned)listmax,
 	    sizeof(struct inoinfo *));
