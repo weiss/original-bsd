@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sioreg.h	7.2 (Berkeley) 11/17/92
+ *	@(#)sioreg.h	7.3 (Berkeley) 05/02/93
  */
 
 /* 
@@ -129,3 +129,7 @@ struct siodevice {
 
 
 #define SIO_HARDADDR	0x51000000			/* build-in serial-interface address */
+
+#define	NPORT		2
+#define	SIO_PORT	0
+#define	BMC_PORT	1
