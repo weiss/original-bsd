@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)at.c	5.5 (Berkeley) 01/18/87";
+static char sccsid[] = "@(#)at.c	5.6 (Berkeley) 01/23/89";
 #endif not lint
 
 /*
@@ -844,9 +844,6 @@ struct times *attime;
 
 		case '\0':
 		case ' ':
-			/* 24 hour time */
-			if (val == FULLDAY)
-				val -= FULLDAY;
 			break;
 
 		default:
