@@ -1,4 +1,4 @@
-/*	lpdchar.c	4.1	81/05/09	*/
+/*	lpdchar.c	4.2	83/01/05	*/
 /*
  *	Character set for line printer daemon
  */
