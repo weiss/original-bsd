@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)udp_var.h	7.9 (Berkeley) 04/18/93
+ *	@(#)udp_var.h	7.10 (Berkeley) 04/26/93
  */
 
 /*
@@ -39,6 +39,17 @@ struct	udpstat {
 				/* output statistics: */
 	u_long	udps_opackets;		/* total output packets */
 };
+
+/*
+ * Names for UDP sysctl objects
+ */
+#define	UDPCTL_CHECKSUM		1	/* allow replies to netmask requests */
+#define UDPCTL_MAXID		2
+
+#define UDPCTL_NAMES { \
+	{ 0, 0 }, \
+	{ "checksum", CTLTYPE_INT }, \
+}
 
 #ifdef KERNEL
 struct	inpcb udb;
