@@ -7,6 +7,8 @@
  */
 
 /*
+ * 4.3 COMPATIBILITY FILE
+ *
  * User visible structures and constants
  * related to terminal handling.
  */
@@ -29,11 +31,7 @@ struct ttychars {
 	char	tc_werasc;	/* word erase */
 	char	tc_lnextc;	/* literal next character */
 };
-
-#ifdef KERNEL
-#include "ttydefaults.h"
-#else
-#include <sys/ttydefaults.h>
+#ifdef USE_OLD_TTY
+#include <sys/ttydefaults.h>	/* to pick up character defaults */
 #endif
-
-#endif
+#endif /* _TTYCHARS */
