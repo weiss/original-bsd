@@ -2,6 +2,8 @@
 
 static char sccsid[] = "@(#)ops.c 1.3 12/18/82";
 
+static char rcsid[] = "$Header: ops.c,v 1.3 84/03/27 10:22:43 linton Exp $";
+
 /*
  * Machine operators.
  */
