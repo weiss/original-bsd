@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)telnet.1	8.2 (Berkeley) 12/30/93
+.\"	@(#)telnet.1	8.3 (Berkeley) 01/05/94
 .\"
 .Dd 
 .Dt TELNET 1
@@ -92,6 +92,10 @@ If
 .Ar escape char
 is ommitted, then
 there will be no escape character.
+.It Fl E
+The
+.Fl E
+option stops any character from being recognized as an escape character.
 .It Ar host
 Indicates the official name, an alias, or the Internet address
 of a remote host.
