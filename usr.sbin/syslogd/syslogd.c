@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)syslogd.c	4.11 (Berkeley) 02/20/85";
+static char sccsid[] = "@(#)syslogd.c	4.12 (Berkeley) 03/12/85";
 #endif
 
 /*
@@ -30,7 +30,7 @@ static char sccsid[] = "@(#)syslogd.c	4.11 (Berkeley) 02/20/85";
 #define	NSUSERS		10		/* max number of special users */
 #define	MAXLINE		1024		/* maximum line length */
 #define DEFUPRI		LOG_NOTICE
-#define DEFSPRI		LOG_EMERG
+#define DEFSPRI		KERN_ERR
 
 #include <syslog.h>
 #include <errno.h>
