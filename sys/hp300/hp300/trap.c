@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: trap.c 1.32 91/04/06$
  *
- *	@(#)trap.c	7.18 (Berkeley) 02/05/92
+ *	@(#)trap.c	7.19 (Berkeley) 03/20/92
  */
 
 #include "param.h"
@@ -424,7 +424,7 @@ out:
  * Proces a system call.
  */
 syscall(code, frame)
-	volatile int code;
+	volatile unsigned code;
 	struct frame frame;
 {
 	register caddr_t params;
