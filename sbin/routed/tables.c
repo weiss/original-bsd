@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)tables.c	4.9 (Berkeley) 05/03/84";
+static char sccsid[] = "@(#)tables.c	4.10 (Berkeley) 12/20/84";
 #endif
 
 /*
@@ -8,6 +8,7 @@ static char sccsid[] = "@(#)tables.c	4.9 (Berkeley) 05/03/84";
 #include "defs.h"
 #include <sys/ioctl.h>
 #include <errno.h>
+#include <syslog.h>
 
 #ifndef DEBUG
 #define	DEBUG	0
@@ -162,7 +163,12 @@ rtchange(rt, gate, metric)
 			rt->rt_router = *gate;
 		}
 		rt->rt_metric = metric;
-		rt->rt_state &= ~RTS_INTERFACE;
+		if ((rt->rt_state & RTS_INTERFACE) && metric) {
+			rt->rt_state &= ~RTS_INTERFACE;
+			syslog(LOG_ERR,
+				"deleting route to interface %s (timed out)",
+				rt->rt_ifp->int_name);
+		}
 		if (metric)
 			rt->rt_state |= RTF_GATEWAY;
 		rt->rt_state |= RTS_CHANGED;
@@ -180,6 +186,9 @@ rtdelete(rt)
 	struct rt_entry *rt;
 {
 
+	if (rt->rt_state & RTS_INTERFACE)
+		syslog(LOG_ERR, "deleting route to interface %s (timed out)",
+			rt->rt_ifp->int_name);
 	TRACE_ACTION(DELETE, rt);
 	if (install && ioctl(s, SIOCDELRT, (char *)&rt->rt_rt))
 		perror("SIOCDELRT");
