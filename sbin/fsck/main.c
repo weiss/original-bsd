@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)main.c	1.6 (Berkeley) 10/05/81";
+static	char *sccsid = "@(#)main.c	1.7 (Berkeley) 10/07/81";
 
 #include <stdio.h>
 #include <ctype.h>
@@ -1546,7 +1546,7 @@ makecg()
  * of some frags
  */
 fragacct(fragmap, fraglist, cnt)
-	char fragmap;
+	int fragmap;
 	short fraglist[];
 	int cnt;
 {
