@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-static char	SccsId[] =	"@(#)mailstats.c	3.2	09/12/81";
+static char	SccsId[] =	"@(#)mailstats.c	3.3	11/07/81";
 
 /*
 **  MAILSTATS -- print mail statistics.
@@ -17,7 +17,7 @@ main(argc, argv)
 {
 	register int fd;
 	struct statistics stat;
-	char *sfile = "/usr/eric/mailstats";
+	char *sfile = "/usr/lib/sendmail.st";
 	register int i;
 	extern char *ctime();
 
