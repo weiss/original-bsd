@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmds.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)cmds.c	8.2 (Berkeley) 03/26/95";
 #endif /* not lint */
 
 #ifdef sgi
@@ -87,7 +87,7 @@ daydiff(hostname)
 			i = select(sock+1, &ready, (fd_set *)0,
 				   (fd_set *)0, &tout);
 			if (i < 0) {
-				if (errno = EINTR)
+				if (errno == EINTR)
 					continue;
 				perror("select(date read)");
 				return 0;
