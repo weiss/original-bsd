@@ -1,9 +1,9 @@
 #ifndef lint
-static char sccsid[] = "@(#)vmacs.c	4.4 (Berkeley) 02/24/88";
+static char sccsid[] = "@(#)vmacs.c	4.5 (Berkeley) 02/24/88";
 #endif
 
 #include "../condevs.h"
-#ifdef	VMACS
+
 /*
  *
  * A typical 300 baud L-devices entry is
