@@ -3,7 +3,7 @@
 #include "sendmail.h"
 #include <sys/stat.h>
 
-SCCSID(@(#)envelope.c	4.1		07/25/83);
+SCCSID(@(#)envelope.c	4.2		08/21/83);
 
 /*
 **  NEWENVELOPE -- allocate a new envelope
@@ -546,7 +546,7 @@ setsender(from)
 
 # ifdef DEBUG
 	if (tTd(45, 1))
-		printf("setsender(%s)\n", from);
+		printf("setsender(%s)\n", from == NULL ? "" : from);
 # endif DEBUG
 
 	/*
