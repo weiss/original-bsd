@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Ed James.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tunable.h	5.3 (Berkeley) 04/30/90
+ *	@(#)tunable.h	8.1 (Berkeley) 05/31/93
  */
 
 /*
