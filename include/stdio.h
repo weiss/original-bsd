@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)stdio.h	5.3 (Berkeley) 03/15/86
+ *	@(#)stdio.h	5.4 (Berkeley) 10/22/87
  */
 
 # ifndef FILE
@@ -59,7 +59,5 @@ FILE	*popen();
 long	ftell();
 char	*fgets();
 char	*gets();
-#ifdef vax
-char	*sprintf();		/* too painful to do right */
-#endif
+int	sprintf();	/* here until everyone does it right */
 # endif
