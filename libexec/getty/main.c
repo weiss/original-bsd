@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.1 (Berkeley) 04/29/85";
+static char sccsid[] = "@(#)main.c	5.2 (Berkeley) 09/17/85";
 #endif not lint
 
 /*
@@ -118,7 +118,7 @@ main(argc, argv)
 /*
 	signal(SIGQUIT, SIG_DFL);
 */
-	openlog("getty", LOG_ODELAY|LOG_CONS, 0);
+	openlog("getty", LOG_ODELAY|LOG_CONS, LOG_AUTH);
 	gethostname(hostname, sizeof(hostname));
 	if (hostname[0] == '\0')
 		strcpy(hostname, "Amnesiac");
