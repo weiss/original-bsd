@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.34 (Berkeley) 12/11/93
+ *	@(#)sendmail.h	8.35 (Berkeley) 12/14/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.34		12/11/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.35		12/14/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -707,6 +707,7 @@ struct prival
 #define SFF_ANYFILE		0	/* no special restrictions */
 #define SFF_MUSTOWN		0x0001	/* user must own this file */
 #define SFF_NOSLINK		0x0002	/* file cannot be a symbolic link */
+#define SFF_ROOTOK		0x0004	/* ok for root to own this file */
 
 
 /*
