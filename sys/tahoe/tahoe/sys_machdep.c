@@ -3,17 +3,15 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)sys_machdep.c	7.1 (Berkeley) 05/21/88
+ *	@(#)sys_machdep.c	7.2 (Berkeley) 05/05/89
  */
 
 #include "param.h"
 #include "systm.h"
-#include "dir.h"
 #include "user.h"
 #include "ioctl.h"
 #include "file.h"
 #include "proc.h"
-#include "uio.h"
 #include "kernel.h"
 #include "mtio.h"
 #include "buf.h"

@@ -3,15 +3,13 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)kdb_machdep.c	7.6 (Berkeley) 05/21/88
+ *	@(#)kdb_machdep.c	7.7 (Berkeley) 05/05/89
  */
 
 #include "param.h"
 #include "conf.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
-#include "uio.h"
 #include "systm.h"
 #include "reboot.h"
 #include "vmmac.h"

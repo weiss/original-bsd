@@ -22,14 +22,13 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)genassym.c	7.3 (Berkeley) 09/24/88";
+static char sccsid[] = "@(#)genassym.c	7.4 (Berkeley) 05/05/89";
 #endif /* not lint */
 
 #include "param.h"
 #include "vmmeter.h"
 #include "vmparam.h"
 #include "buf.h"
-#include "dir.h"
 #include "user.h"
 #include "cmap.h"
 #include "map.h"
