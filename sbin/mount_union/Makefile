@@ -1,8 +1,13 @@
-#	@(#)Makefile	8.2 (Berkeley) 02/17/94
+#	@(#)Makefile	8.3 (Berkeley) 03/27/94
 
-CFLAGS+=-I/sys
 PROG=	mount_union
+SRCS=	mount_union.c getmntopts.c
 MAN8=	mount_union.0
+
+MOUNT=	${.CURDIR}/../mount
+CFLAGS+= -I/sys -I${MOUNT}
+.PATH:	${MOUNT}
+
 BINOWN= root
 BINMODE=4555
 
