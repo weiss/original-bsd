@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sys_term.c	5.9 (Berkeley) 06/28/90";
+static char sccsid[] = "@(#)sys_term.c	5.10 (Berkeley) 06/30/90";
 #endif /* not lint */
 
 #include "telnetd.h"
@@ -71,7 +71,7 @@ struct termbuf {
 #   define TCSETA TCSETS
 #   define TCGETA TCGETS
 #  else
-#   define TCSETA TIOCSETA
+#   define TCSETA TIOCSETAW
 #   define TCGETA TIOCGETA
 #  endif
 # endif /* 4.4BSD */
