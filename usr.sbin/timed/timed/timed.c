@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)timed.c	2.11 (Berkeley) 03/04/87";
+static char sccsid[] = "@(#)timed.c	2.12 (Berkeley) 04/06/87";
 #endif not lint
 
 #include "globals.h"
@@ -542,7 +542,7 @@ setstatus()
 				fprintf(fd, "IGNORE\n");
 				break;
 			  default:
-				fprintf(fd, "invalid state %d\n");
+				fprintf(fd, "invalid state %d\n",(int)ntp->status);
 				break;
 			}
 		}
