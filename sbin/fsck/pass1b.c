@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pass1b.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)pass1b.c	5.2 (Berkeley) 05/07/88";
 #endif not lint
 
 #include <sys/param.h>
@@ -41,8 +41,7 @@ pass1b()
 				goto out1b;
 		}
 	}
-out1b:
-	flush(&dfile, &inoblk);
+out1b:;
 }
 
 pass1bcheck(idesc)
