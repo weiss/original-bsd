@@ -1,9 +1,9 @@
-/* Copyright (c) 1982 Regents of the University of California */
-
-static char sccsid[] = "@(#)opendir.c 4.4 11/12/82";
+#ifndef lint
+static char sccsid[] = "@(#)opendir.c	4.5 (Berkeley) 07/01/83";
+#endif
 
 #include <sys/param.h>
-#include <dir.h>
+#include <sys/dir.h>
 
 /*
  * open a directory.
