@@ -1,4 +1,6 @@
-.\"	@(#)lint.ms	6.1 (Berkeley) 05/07/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)lint.ms	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'PS1:9-%''Lint, a C Program Checker'
 .OH 'Lint, a C Program Checker''PS1:9-%'
