@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)eval.c 1.5 03/08/82";
+static char sccsid[] = "@(#)eval.c 1.6 03/08/82";
 
 /*
  * Parse tree evaluation.
@@ -273,13 +273,19 @@ register NODE *p;
 
 	case O_LIST: {
 	    SYM *b;
+	    ADDRESS addr;
 
 	    if (p->left->op == O_NAME) {
 		b = p->left->nameval;
 		if (!isblock(b)) {
 		    error("\"%s\" is not a procedure or function", name(b));
 		}
-		r0 = srcline(firstline(b));
+		addr = firstline(b);
+		if (addr == -1) {
+		    error("\"%s\" is empty", name(b));
+		}
+		skimsource(srcfilename(addr));
+		r0 = srcline(addr);
 		r1 = r0 + 5;
 		if (r1 > lastlinenum) {
 		    r1 = lastlinenum;
