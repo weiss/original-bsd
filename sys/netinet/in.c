@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)in.c	7.11 (Berkeley) 04/26/89
+ *	@(#)in.c	7.12 (Berkeley) 05/05/89
  */
 
 #include "param.h"
@@ -23,8 +23,6 @@
 #include "protosw.h"
 #include "socket.h"
 #include "socketvar.h"
-#include "uio.h"
-#include "dir.h"
 #include "user.h"
 #include "in_systm.h"
 #include "../net/if.h"
