@@ -1,4 +1,7 @@
-/*	printjob.c	4.10	83/06/29	*/
+#ifndef lint
+static char sccsid[] = "@(#)printjob.c	4.11 (Berkeley) 07/17/83";
+#endif
+
 /*
  * printjob -- print jobs in the queue.
  *
