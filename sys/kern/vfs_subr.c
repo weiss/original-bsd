@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)vfs_subr.c	7.92 (Berkeley) 02/02/93
+ *	@(#)vfs_subr.c	7.93 (Berkeley) 02/03/93
  */
 
 /*
@@ -305,6 +305,7 @@ vwakeup(bp)
 {
 	register struct vnode *vp;
 
+	bp->b_flags &= ~B_WRITEINPROG;
 	if (vp = bp->b_vp) {
 		vp->v_numoutput--;
 		if (vp->v_numoutput < 0)
