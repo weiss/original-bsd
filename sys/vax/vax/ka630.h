@@ -1,5 +1,5 @@
 /*
- *	@(#)ka630.h	6.1 (Berkeley) 04/22/86
+ *	@(#)ka630.h	7.1 (Berkeley) 06/05/86
  *
  * Definitions specific to the ka630 uvax2 cpu card. Includes the tod
  * clock chip and the cpu registers.
