@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)dh.c	7.11 (Berkeley) 04/03/90
+ *	@(#)dh.c	7.12 (Berkeley) 04/12/90
  */
 
 #include "dh.h"
@@ -13,7 +13,6 @@
  */
 #include "machine/pte.h"
 
-#include "bk.h"
 #include "uba.h"
 #include "param.h"
 #include "conf.h"
