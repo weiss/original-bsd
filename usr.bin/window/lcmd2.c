@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lcmd2.c	3.18 (Berkeley) 08/02/89";
+static char sccsid[] = "@(#)lcmd2.c	3.19 (Berkeley) 08/24/89";
 #endif /* not lint */
 
 #include "defs.h"
@@ -40,9 +40,9 @@ struct value *v, *a;
 	wwprintf(w, "ttflush\twrite\terror\tzero\tchar\n");
 	wwprintf(w, "%d\t%d\t%d\t%d\t%d\n",
 		wwnflush, wwnwr, wwnwre, wwnwrz, wwnwrc);
-	wwprintf(w, "token\tuse\tsaving\ttotal\tbaud\n");
-	wwprintf(w, "%d\t%d\t%d\t%d\t%d/%d\n",
-		wwntokdef, wwntokuse, wwntoksave, wwntokc,
+	wwprintf(w, "token\tuse\tbad\tsaving\ttotal\tbaud\n");
+	wwprintf(w, "%d\t%d\t%d\t%d\t%d\t%d/%d\n",
+		wwntokdef, wwntokuse, wwntokbad, wwntoksave, wwntokc,
 		wwntokc - wwntoksave ?
 			(int) ((float) wwbaud * wwntokc /
 					(wwntokc - wwntoksave)) :
