@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fstab.c	5.8 (Berkeley) 08/21/89";
+static char sccsid[] = "@(#)fstab.c	5.9 (Berkeley) 03/22/90";
 #endif /* LIBC_SCCS and not lint */
 
 #include <fstab.h>
@@ -30,7 +30,7 @@ static
 fstabscan()
 {
 	register char *cp;
-#define	MAXLINELENGTH	100
+#define	MAXLINELENGTH	1024
 	static char line[MAXLINELENGTH];
 	char subline[MAXLINELENGTH];
 	char *fgets(), *strtok();
