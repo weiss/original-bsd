@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1988, 1989, 1990 The Regents of the University of California.
- * Copyright (c) 1988, 1989 by Adam de Boor
+ * Copyright (c) 1988, 1989, 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  * Copyright (c) 1989 by Berkeley Softworks
  * All rights reserved.
  *
@@ -9,7 +9,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)config.h	5.10 (Berkeley) 05/24/93
+ *	@(#)config.h	8.1 (Berkeley) 06/06/93
  */
 
 #define	DEFSHELL	1			/* Bourne shell */
