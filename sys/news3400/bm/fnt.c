@@ -9,7 +9,7 @@
  *
  * from: $Hdr: fnt.c,v 4.300 91/06/09 06:14:43 root Rel41 $ SONY
  *
- *	@(#)fnt.c	7.1 (Berkeley) 06/04/92
+ *	@(#)fnt.c	7.2 (Berkeley) 12/16/92
  */
 
 #include "machine/fix_machine_type.h"
@@ -19,7 +19,7 @@
 #else /* CPU_SINGLE */
 # include "param.h"
 # ifdef IPC_MRX
-#  include "newsipc/newsipc.h"
+#  include "../ipc/newsipc.h"
 #  ifdef mips
 #   define ipc_phys(x)	K0_TT0(x)
 #  else /* mips */
