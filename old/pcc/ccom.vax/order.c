@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid ="@(#)order.c	1.11 (Berkeley) 12/11/87";
+static char *sccsid ="@(#)order.c	1.12 (Berkeley) 12/11/87";
 #endif lint
 
 # include "pass2.h"
@@ -166,8 +166,7 @@ sucomp( p ) register NODE *p; {
 			    p->in.right->in.op == ICON &&
 			    p->in.right->tn.name[0] == '\0' &&
 			    (unsigned) p->in.right->tn.lval < 0x80000000 ) {
-				sul += 2;
-				p->in.su = max(sul, szr+sur);
+				p->in.su = sul + 2;
 				return;
 				}
 			break;
