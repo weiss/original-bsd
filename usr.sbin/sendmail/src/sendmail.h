@@ -7,7 +7,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	3.105		12/24/82";
+static char SmailSccsId[] =	"@(#)sendmail.h	3.106		01/03/83";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -174,6 +174,7 @@ struct envelope
 	FILE		*e_dfp;		/* temporary file */
 	char		*e_id;		/* code for this entry in queue */
 	FILE		*e_xfp;		/* transcript file */
+	char		*e_message;	/* error message */
 	char		*e_macro[128];	/* macro definitions */
 };
 
