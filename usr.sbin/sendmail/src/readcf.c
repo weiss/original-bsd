@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	8.94 (Berkeley) 05/27/95";
+static char sccsid[] = "@(#)readcf.c	8.95 (Berkeley) 05/28/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -63,6 +63,7 @@ static char sccsid[] = "@(#)readcf.c	8.94 (Berkeley) 05/27/95";
 **		Builds several internal tables.
 */
 
+void
 readcf(cfname, safe, e)
 	char *cfname;
 	bool safe;
@@ -86,8 +87,9 @@ readcf(cfname, safe, e)
 	char exbuf[MAXLINE];
 	char pvpbuf[MAXLINE + MAXATOM];
 	static char *null_list[1] = { NULL };
-	extern char *munchstring();
-	extern void makemapentry();
+	extern char *munchstring __P((char *, char **));
+	extern void fileclass __P((int, char *, char *, bool, bool));
+	extern void toomany __P((int, int));
 
 	FileName = cfname;
 	LineNumber = 0;
@@ -645,8 +647,9 @@ readcf(cfname, safe, e)
 **		gives a syserr.
 */
 
+void
 toomany(id, maxcnt)
-	char id;
+	int id;
 	int maxcnt;
 {
 	syserr("too many %c lines, %d max", id, maxcnt);
@@ -671,6 +674,7 @@ toomany(id, maxcnt)
 **			the named class.
 */
 
+void
 fileclass(class, filename, fmt, safe, optional)
 	int class;
 	char *filename;
@@ -724,7 +728,6 @@ fileclass(class, filename, fmt, safe, optional)
 
 	while (fgets(buf, sizeof buf, f) != NULL)
 	{
-		register STAB *s;
 		register char *p;
 # ifdef SCANF
 		char wordbuf[MAXNAME+1];
@@ -794,6 +797,7 @@ fileclass(class, filename, fmt, safe, optional)
 **		enters the mailer into the mailer table.
 */
 
+void
 makemailer(line)
 	char *line;
 {
@@ -1171,6 +1175,7 @@ makeargv(p)
 **		prints rewrite rules.
 */
 
+void
 printrules()
 {
 	register struct rewrite *rwp;
@@ -1201,6 +1206,7 @@ printrules()
 **		none.
 */
 
+void
 printmailer(m)
 	register MAILER *m;
 {
@@ -1257,6 +1263,7 @@ printmailer(m)
 */
 
 static BITMAP	StickyOpt;		/* set if option is stuck */
+extern void	settimeout __P((char *, char *));
 
 
 #if NAMED_BIND
@@ -1373,8 +1380,9 @@ struct optioninfo
 
 
 
+void
 setoption(opt, val, safe, sticky, e)
-	u_char opt;
+	int opt;
 	char *val;
 	bool safe;
 	bool sticky;
@@ -2008,15 +2016,15 @@ setoption(opt, val, safe, sticky, e)
 		break;
 
 	  case O_MAXMSGSIZE:	/* maximum message size */
-		MaxMessageSize = atol(p);
+		MaxMessageSize = atol(val);
 		break;
 
 	  case O_COLONOKINADDR:	/* old style handling of colon addresses */
-		ColonOkInAddr = atobool(p);
+		ColonOkInAddr = atobool(val);
 		break;
 
 	  case O_MAXQUEUERUN:	/* max # of jobs in a single queue run */
-		MaxQueueRun = atol(p);
+		MaxQueueRun = atol(val);
 		break;
 
 	  default:
@@ -2031,7 +2039,6 @@ setoption(opt, val, safe, sticky, e)
 	}
 	if (sticky)
 		setbitn(opt, StickyOpt);
-	return;
 }
 /*
 **  SETCLASS -- set a string into a class
@@ -2047,6 +2054,7 @@ setoption(opt, val, safe, sticky, e)
 **		puts the word into the symbol table.
 */
 
+void
 setclass(class, str)
 	int class;
 	char *str;
@@ -2156,6 +2164,7 @@ makemapentry(line)
 #define MINUTES	* 60
 #define HOUR	* 3600
 
+void
 inittimeouts(val)
 	register char *val;
 {
@@ -2231,6 +2240,7 @@ inittimeouts(val)
 **		none.
 */
 
+void
 settimeout(name, val)
 	char *name;
 	char *val;

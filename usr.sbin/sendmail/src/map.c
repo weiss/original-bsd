@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)map.c	8.68 (Berkeley) 05/26/95";
+static char sccsid[] = "@(#)map.c	8.69 (Berkeley) 05/28/95";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -350,6 +350,7 @@ map_rewrite(map, s, slen, av)
 **		if ~NDBM: reads the aliases into the symbol table.
 */
 
+void
 initmaps(rebuild, e)
 	bool rebuild;
 	register ENVELOPE *e;
@@ -1046,7 +1047,6 @@ nis_map_open(map, mode)
 	register char *p;
 	auto char *vp;
 	auto int vsize;
-	char *master;
 
 	if (tTd(38, 2))
 		printf("nis_map_open(%s, %s)\n",
@@ -1186,7 +1186,7 @@ nis_getcanonname(name, hbsize, statp)
 	static bool try0null = TRUE;
 	static bool try1null = TRUE;
 	static char *yp_domain = NULL;
-	char *domain, *p;
+	char *domain;
 	char host_record[MAXLINE];
 	char buf[MAXNAME];
 	char *cname;
@@ -1984,11 +1984,9 @@ text_getcanonname(name, hbsize, statp)
 	int hbsize;
 	int *statp;
 {
-	int buflen;
 	int key_idx;
 	char *cname;
 	bool found;
-	char *domain;
 	FILE *f;
 	char linebuf[MAXLINE];
 	char cbuf[MAXNAME + 1];
@@ -2648,6 +2646,7 @@ switch_map_open(map, mode)
 **  SEQ_MAP_CLOSE -- close all underlying maps
 */
 
+void
 seq_map_close(map)
 	MAP *map;
 {

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.69 (Berkeley) 05/26/95";
+static char sccsid[] = "@(#)parseaddr.c	8.70 (Berkeley) 05/28/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -65,6 +65,7 @@ parseaddr(addr, a, flags, delim, delimptr, e)
 	char pvpbuf[PSBUFSIZE];
 	extern ADDRESS *buildaddr();
 	extern bool invalidaddr();
+	extern void allocaddr __P((ADDRESS *, int, char *));
 
 	/*
 	**  Initialize and prescan address.
@@ -235,6 +236,7 @@ invalidaddr(addr, delimptr)
 **		Copies portions of a into local buffers as requested.
 */
 
+void
 allocaddr(a, flags, paddr)
 	register ADDRESS *a;
 	int flags;
@@ -322,7 +324,7 @@ static short StateTab[NSTATES][NSTATES] =
 };
 
 /* token type table -- it gets modified with $o characters */
-static char TokTypeTab[256] =
+static u_char	TokTypeTab[256] =
 {
     /*	nul soh stx etx eot enq ack bel  bs  ht  nl  vt  np  cr  so  si   */
 	ATM,ATM,ATM,ATM,ATM,ATM,ATM,ATM, ATM,SPC,SPC,SPC,SPC,SPC,ATM,ATM,
@@ -360,7 +362,7 @@ static char TokTypeTab[256] =
 };
 
 /* token type table for MIME parsing */
-char MimeTokenTab[256] =
+u_char	MimeTokenTab[256] =
 {
     /*	nul soh stx etx eot enq ack bel  bs  ht  nl  vt  np  cr  so  si   */
 	ILL,ILL,ILL,ILL,ILL,ILL,ILL,ILL, ILL,SPC,SPC,SPC,SPC,SPC,ILL,ILL,
@@ -406,7 +408,7 @@ prescan(addr, delim, pvpbuf, pvpbsize, delimptr, toktab)
 	int delim;
 	char pvpbuf[];
 	char **delimptr;
-	char *toktab;
+	u_char *toktab;
 {
 	register char *p;
 	register char *q;
@@ -1326,7 +1328,6 @@ buildaddr(tv, a, flags, e)
 	struct mailer **mp;
 	register struct mailer *m;
 	register char *p;
-	char *bp;
 	char *mname;
 	char **hostp;
 	char hbuf[MAXNAME + 1];
@@ -1537,12 +1538,13 @@ badaddr:
 **		Destroys buf.
 */
 
+void
 cataddr(pvp, evp, buf, sz, spacesub)
 	char **pvp;
 	char **evp;
 	char *buf;
 	register int sz;
-	char spacesub;
+	int spacesub;
 {
 	bool oatomtok = FALSE;
 	bool natomtok = FALSE;
@@ -1921,6 +1923,7 @@ remotename(name, m, flags, pstat, e)
 **		none.
 */
 
+void
 maplocaluser(a, sendq, aliaslevel, e)
 	register ADDRESS *a;
 	ADDRESS **sendq;

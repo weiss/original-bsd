@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)headers.c	8.66 (Berkeley) 05/27/95";
+static char sccsid[] = "@(#)headers.c	8.67 (Berkeley) 05/28/95";
 #endif /* not lint */
 
 # include <errno.h>
@@ -32,6 +32,7 @@ static char sccsid[] = "@(#)headers.c	8.66 (Berkeley) 05/27/95";
 **		Contents of 'line' are destroyed.
 */
 
+int
 chompheader(line, def, hdrp, e)
 	char *line;
 	bool def;
@@ -247,6 +248,7 @@ chompheader(line, def, hdrp, e)
 **		adds the field on the list of headers for this envelope.
 */
 
+void
 addheader(field, value, hdrlist)
 	char *field;
 	char *value;
@@ -375,6 +377,7 @@ isheader(h)
 **		Aborts the message if the hop count is exceeded.
 */
 
+void
 eatheader(e, full)
 	register ENVELOPE *e;
 	bool full;
@@ -565,6 +568,7 @@ eatheader(e, full)
 **		none
 */
 
+void
 logsender(e, msgid)
 	register ENVELOPE *e;
 	char *msgid;
@@ -675,6 +679,7 @@ logsender(e, msgid)
 **		none.
 */
 
+int
 priencode(p)
 	char *p;
 {
@@ -906,8 +911,6 @@ crackaddr(addr)
 
 		if (c == ';' && copylev <= 0 && !ColonOkInAddr)
 		{
-			register char *q = p;
-
 			if (bp < buflim)
 				*bp++ = c;
 		}
@@ -1050,6 +1053,7 @@ crackaddr(addr)
 # define MAX(a,b) (((a)>(b))?(a):(b))
 #endif
 
+void
 putheader(mci, h, e)
 	register MCI *mci;
 	register HDR *h;

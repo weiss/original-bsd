@@ -10,7 +10,7 @@
 # include <string.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)mime.c	8.23 (Berkeley) 05/22/95";
+static char sccsid[] = "@(#)mime.c	8.24 (Berkeley) 05/28/95";
 #endif /* not lint */
 
 /*
@@ -103,7 +103,7 @@ mime8to7(mci, header, e, boundaries, flags)
 	char bbuf[128];
 	char buf[MAXLINE];
 	char pvpbuf[MAXLINE];
-	extern char MimeTokenTab[256];
+	extern u_char MimeTokenTab[256];
 
 	if (tTd(43, 1))
 	{
@@ -317,7 +317,6 @@ mime8to7(mci, header, e, boundaries, flags)
 		}
 		else
 		{
-			register char *q;
 			auto HDR *hdr = NULL;
 
 			putline("", mci);

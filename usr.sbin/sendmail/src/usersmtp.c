@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)usersmtp.c	8.53 (Berkeley) 05/24/95 (with SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.54 (Berkeley) 05/28/95 (with SMTP)";
 #else
-static char sccsid[] = "@(#)usersmtp.c	8.53 (Berkeley) 05/24/95 (without SMTP)";
+static char sccsid[] = "@(#)usersmtp.c	8.54 (Berkeley) 05/28/95 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -37,9 +37,7 @@ char	SmtpError[MAXLINE] = "";	/* save failure error messages */
 int	SmtpPid;			/* pid of mailer */
 bool	SmtpNeedIntro;			/* need "while talking" in transcript */
 
-#ifdef __STDC__
-extern	smtpmessage(char *f, MAILER *m, MCI *mci, ...);
-#endif
+extern void	smtpmessage __P((char *f, MAILER *m, MCI *mci, ...));
 /*
 **  SMTPINIT -- initialize SMTP.
 **
@@ -57,6 +55,7 @@ extern	smtpmessage(char *f, MAILER *m, MCI *mci, ...);
 **		creates connection and sends initial protocol.
 */
 
+void
 smtpinit(m, mci, e)
 	struct mailer *m;
 	register MCI *mci;
@@ -300,6 +299,7 @@ helo_options(line, firstline, m, mci, e)
 **		e -- the envelope (including the sender to specify).
 */
 
+int
 smtpmailfrom(m, mci, e)
 	struct mailer *m;
 	MCI *mci;
@@ -473,6 +473,7 @@ smtpmailfrom(m, mci, e)
 **		Sends the mail via SMTP.
 */
 
+int
 smtprcpt(to, m, mci, e)
 	ADDRESS *to;
 	register MAILER *m;
@@ -567,6 +568,7 @@ smtprcpt(to, m, mci, e)
 static jmp_buf	CtxDataTimeout;
 static void	datatimeout();
 
+int
 smtpdata(m, mci, e)
 	struct mailer *m;
 	register MCI *mci;
@@ -710,6 +712,7 @@ datatimeout()
 **		sends the final protocol and closes the connection.
 */
 
+void
 smtpquit(m, mci, e)
 	register MAILER *m;
 	register MCI *mci;
@@ -749,6 +752,7 @@ smtpquit(m, mci, e)
 **  SMTPRSET -- send a RSET (reset) command
 */
 
+void
 smtprset(m, mci, e)
 	register MAILER *m;
 	register MCI *mci;
@@ -772,6 +776,7 @@ smtprset(m, mci, e)
 **  SMTPPROBE -- check the connection state
 */
 
+int
 smtpprobe(mci)
 	register MCI *mci;
 {
@@ -805,6 +810,7 @@ smtpprobe(mci)
 **		flushes the mail file.
 */
 
+int
 reply(m, mci, e, timeout, pfunc)
 	MAILER *m;
 	MCI *mci;
@@ -850,7 +856,6 @@ reply(m, mci, e, timeout, pfunc)
 		if (p == NULL)
 		{
 			bool oldholderrs;
-			extern char MsgBuf[];		/* err.c */
 
 			/* if the remote end closed early, fake an error */
 			if (errno == 0)
@@ -972,6 +977,7 @@ reply(m, mci, e, timeout, pfunc)
 */
 
 /*VARARGS1*/
+void
 #ifdef __STDC__
 smtpmessage(char *f, MAILER *m, MCI *mci, ...)
 #else
