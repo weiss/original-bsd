@@ -29,15 +29,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.12 (Berkeley) 02/19/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.12 (Berkeley) 02/19/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.12 (Berkeley) 02/19/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.11 (Berkeley) 02/18/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.12 (Berkeley) 02/19/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
@@ -746,6 +746,9 @@ readaliases(aliasfile, init, e)
 # ifdef IF_MAKEDBMFILES
 		IF_MAKEDBMFILES
 		{
+#ifdef YPCOMPAT
+			nis_magic(dbmp);
+#endif
 			if (dbm_store(dbmp, key.dbm, key.dbm, DBM_REPLACE) != 0 ||
 			    dbm_error(dbmp))
 				syserr("readaliases: dbm close failure");
@@ -770,6 +773,52 @@ readaliases(aliasfile, init, e)
 			naliases, longest, bytes);
 # endif /* LOG */
 }
+/*
+**  NIS_MAGIC -- Add NIS magic dbm data
+**
+**	This adds the magic entries needed by SunOS to make this a valid
+**	NIS map.
+**
+**	Parameters:
+**		dbmp -- a pointer to the DBM structure.
+**
+**	Returns:
+**		none.
+*/
+
+# ifdef YPCOMPAT
+
+static void
+nis_magic(dbmp)
+	DBM *dbmp;
+{
+	int i;
+	static datum key[2] =
+	{
+		{ "YP_LAST_MODIFIED",	sizeof "YP_LAST_MODIFIED" - 1 },
+		{ "YP_MASTER_NAME",	sizeof "YP_MASTER_NAME" - 1 },
+	};
+	datum contents[2];
+	char tbuf[12];
+	char hbuf[MAXHOSTNAMELEN];
+
+	(void) sprintf(tbuf, "%010ld", curtime());
+	contents[0].dptr = tbuf;
+	contents[0].dsize = strlen(tbuf);
+
+	(void) myhostname(hbuf, sizeof hbuf);
+	contents[1].dptr = hbuf;
+	contents[1].dptr = strlen(hbuf);
+
+	for (i = 0; i < sizeof key / sizeof *key; i++)
+	{
+		if (dbm_store(dbmp, key[i], contents[i], DBM_REPLACE) != 0 ||
+		    dbm_error(dbmp))
+			syserr("nis_magic: dbm_store failure");
+	}
+}
+
+# endif
 /*
 **  FORWARD -- Try to forward mail
 **
@@ -805,7 +854,10 @@ forward(user, sendq, e)
 	if (user->q_mailer != LocalMailer || bitset(QBADADDR, user->q_flags))
 		return;
 	if (user->q_home == NULL)
+	{
 		syserr("forward: no home");
+		user->q_home = "/nosuchdirectory";
+	}
 
 	/* good address -- look for .forward file in home */
 	define('z', user->q_home, e);
