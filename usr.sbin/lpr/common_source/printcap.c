@@ -6,10 +6,12 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)printcap.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)printcap.c	5.6 (Berkeley) 02/06/91";
 #endif /* not lint */
 
+#ifndef BUFSIZ
 #define	BUFSIZ	1024
+#endif
 #define MAXHOP	32	/* max number of tc= indirections */
 
 #include <ctype.h>
