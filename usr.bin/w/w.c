@@ -1,5 +1,5 @@
 #ifndef lint
-static char *sccsid = "@(#)w.c	4.14 (Berkeley) 01/23/85";
+static char *sccsid = "@(#)w.c	4.15 (Berkeley) 05/11/85";
 #endif
 /*
  * w - print system status (who and what)
@@ -219,7 +219,7 @@ main(argc, argv)
 				nusers++;
 		}
 		rewind(ut);
-		printf("  %d users", nusers);
+		printf("  %d user%s", nusers, nusers>1?"s":"");
 
 		/*
 		 * Print 1, 5, and 15 minute load averages.
