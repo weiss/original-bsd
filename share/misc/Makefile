@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.6 (Berkeley) 05/15/90
+#	@(#)Makefile	5.7 (Berkeley) 06/01/90
 
 FILES=	airport ascii birthday eqnchar greek inter.phone man.template \
-	na.phone noredist.c operator redist.c redist.man redist.sh redist.gas
+	na.phone operator
 
 all: ${FILES}
 
