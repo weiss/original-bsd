@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lcmd.c	3.31 (Berkeley) 08/05/88";
+static char sccsid[] = "@(#)lcmd.c	3.32 (Berkeley) 08/05/88";
 #endif /* not lint */
 
 #include "defs.h"
@@ -67,7 +67,7 @@ extern struct lcmd_arg arg_unalias[];
 extern struct lcmd_arg arg_unset[];
 extern struct lcmd_arg arg_window[];
 extern struct lcmd_arg arg_write[];
-struct lcmd_arg arg_null[] = { { 0 } };
+struct lcmd_arg arg_null[1] = { { 0 } };
 
 struct lcmd_tab lcmd_tab[] = {
 	"alias",		1,	l_alias,	arg_alias,
