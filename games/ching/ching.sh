@@ -1,11 +1,11 @@
 #!/bin/sh -
 #
-# Copyright (c) 1983, 1988 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1983, 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.proprietary.sh%
 #
-#	@(#)ching.sh	4.5 (Berkeley) 04/08/91
+#	@(#)ching.sh	8.1 (Berkeley) 05/31/93
 #
 
 cd /usr/games
