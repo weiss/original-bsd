@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.7 (Berkeley) 09/20/88
+#	@(#)Makefile	5.8 (Berkeley) 05/11/89
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -41,7 +41,7 @@ depend: ${SRCS} y.tab.h
 	mkdep ${CFLAGS} ${SRCS}
 
 install: ${MAN}
-	install -s -o bin -g bin -m 755 htable ${DESTDIR}/etc/htable
+	install -s -o bin -g bin -m 755 htable ${DESTDIR}/usr/sbin
 	install -c -o bin -g bin -m 444 htable.0 ${DESTDIR}/usr/man/cat8
 
 lint: ${SRCS}
