@@ -88,7 +88,7 @@
 
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)pas.y 1.6 08/27/82"; */
+/* static	char sccsid[] = "@(#)pas.y 1.7 08/29/82"; */
 
 /*
  * The following line marks the end of the yacc
@@ -98,7 +98,7 @@
 ##
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pas.y 1.6 08/27/82";
+static	char sccsid[] = "@(#)pas.y 1.7 08/29/82";
 
 #include "whoami.h"
 #include "0.h"
@@ -130,6 +130,9 @@ goal:
 prog_hedr:
 	YPROG YID '(' id_list ')' ';' 
 		= $$ = funcbody(funchdr(tree5(T_PROG, lineof($1), $2, fixlist($4), NIL)));
+		|
+	YPROG YID ';'
+		= $$ = funcbody(funchdr(tree5(T_PROG, lineof($1), $2, NIL, NIL)));
 		|
 	YPROG error
 		= {
