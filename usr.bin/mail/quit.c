@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)quit.c	5.2 (Berkeley) 06/21/85";
+static char *sccsid = "@(#)quit.c	5.3 (Berkeley) 03/06/86";
 #endif not lint
 
 #include "rcv.h"
@@ -192,12 +192,14 @@ quit()
 			return;
 		}
 	}
-	if (value("append") != NOSTR)
+	if (value("append") != NOSTR) {
 		if ((obuf = fopen(mbox, "a")) == NULL) {
 			perror(mbox);
 			fclose(fbuf);
 			return;
 		}
+		fchmod(fileno(obuf), 0600);
+	}
 	for (mp = &message[0]; mp < &message[msgCount]; mp++)
 		if (mp->m_flag & MBOX)
 			if (send(mp, obuf, 0) < 0) {
