@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)malloc.c	5.7 (Berkeley) 08/04/88";
+static char sccsid[] = "@(#)malloc.c	5.8 (Berkeley) 01/02/90";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -110,8 +110,8 @@ malloc(nbytes)
 	unsigned nbytes;
 {
   	register union overhead *op;
-  	register int bucket;
-	register unsigned amt, n;
+  	register int bucket, n;
+	register unsigned amt;
 
 	/*
 	 * First time malloc is called, setup page size and
@@ -277,7 +277,8 @@ realloc(cp, nbytes)
 	char *cp; 
 	unsigned nbytes;
 {   
-  	register u_int onb, i;
+  	register u_int onb;
+	register int i;
 	union overhead *op;
   	char *res;
 	int was_alloced = 0;
