@@ -22,11 +22,11 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ctags.c	5.5 (Berkeley) 12/31/88";
+static char sccsid[] = "@(#)ctags.c	5.6 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <ctags.h>
-#include <strings.h>
+#include <string.h>
 
 /*
  * ctags: create a tags file
