@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)autoconf.c	7.3 (Berkeley) 01/28/88
+ *	@(#)autoconf.c	7.4 (Berkeley) 02/06/88
  */
 
 #include "../machine/pte.h"
@@ -97,6 +97,8 @@ struct	uba_regs *ubaddr630[] =
 caddr_t	uioaddr630[] = { (caddr_t)QIOPAGE630 };
 #endif
 
+int cpuspeed = 1;
+
 configure()
 {
 	union cpusid cpusid;
@@ -113,6 +115,7 @@ configure()
 		mbaddr = mbaddr780;
 		ubaddr = ubaddr780;
 		uioaddr = uioaddr780;
+		cpuspeed = 6;
 		break;
 #endif
 
@@ -123,6 +126,7 @@ configure()
 		mbaddr = mbaddr780;
 		ubaddr = ubaddr780;
 		uioaddr = uioaddr780;
+		cpuspeed = 2;
 		break;
 #endif
 
