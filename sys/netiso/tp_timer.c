@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_timer.c	7.14 (Berkeley) 05/27/92
+ *	@(#)tp_timer.c	7.15 (Berkeley) 09/21/92
  */
 
 /***********************************************************
@@ -315,7 +315,7 @@ tp_ctimeout_MIN(tpcb, which, ticks)
 	ENDTRACE
 	IncStat(ts_Cset);
 	if (tpcb->tp_timer[which])  {
-		tpcb->tp_timer[which] = MIN(ticks, tpcb->tp_timer[which]);
+		tpcb->tp_timer[which] = min(ticks, tpcb->tp_timer[which]);
 		IncStat(ts_Ccan_act);
 	} else
 		tpcb->tp_timer[which] = ticks;
