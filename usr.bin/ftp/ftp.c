@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ftp.c	5.10 (Berkeley) 03/11/86";
+static char sccsid[] = "@(#)ftp.c	5.11 (Berkeley) 04/02/86";
 #endif not lint
 
 #include "ftp_var.h"
@@ -879,7 +879,7 @@ initconn()
 {
 	register char *p, *a;
 	int result, len, tmpno = 0;
-	char on = 1;
+	int on = 1;
 
 noport:
 	data_addr = myctladdr;
