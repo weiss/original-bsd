@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/05/93
+#	@(#)Makefile	8.1 (Berkeley) 06/07/93
 
 SRCS=	usenix.me
 MACROS=	-me
