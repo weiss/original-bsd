@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	8.6 (Berkeley) 10/27/93";
+static char sccsid[] = "@(#)collect.c	8.7 (Berkeley) 11/17/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -134,7 +134,10 @@ collect(smtpmode, requeueflag, e)
 			if (sfgets(freebuf, MAXLINE, InChannel,
 					TimeOuts.to_datablock,
 					"message header read") == NULL)
-				goto readerr;
+			{
+				freebuf[0] = '\0';
+				break;
+			}
 
 			/* is this a continuation line? */
 			if (*freebuf != ' ' && *freebuf != '\t')
@@ -252,6 +255,8 @@ collect(smtpmode, requeueflag, e)
 	if (feof(InChannel) || ferror(InChannel))
 	{
 readerr:
+		if (tTd(30, 1))
+			printf("collect: read error\n");
 		inputerr = TRUE;
 	}
 
