@@ -1,6 +1,6 @@
-#	@(#)Makefile	6.4 (Berkeley) 06/05/93
+#	@(#)Makefile	6.5 (Berkeley) 06/10/93
 
-DIR=	smm/13.net
+DIR=	smm/18.net
 SRCS=	0.t 1.t 2.t 3.t 4.t 5.t 6.t 7.t 8.t 9.t a.t b.t c.t d.t e.t f.t
 MACROS=	-ms
 
