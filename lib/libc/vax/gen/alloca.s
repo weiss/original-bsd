@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)alloca.s	5.1 (Berkeley) 05/30/85";
+	.asciz	"@(#)alloca.s	5.2 (Berkeley) 06/05/85"
 #endif not lint
 
 /* like alloc, but automatic free in return */
