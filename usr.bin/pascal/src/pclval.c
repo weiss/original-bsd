@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static	char sccsid[] = "@(#)pclval.c 1.2 03/26/81";
+static	char sccsid[] = "@(#)pclval.c 1.3 04/21/81";
 
 #include "whoami.h"
 #include "0.h"
@@ -115,7 +115,7 @@ pclvalue( r , modflag , required )
 	 */
 	if ( c == NIL &&
 	    ( modflag & ASGN ) &&
-	    ( p -> value[ NL_FORV ] & FORBOUND ) ) {
+	    ( p -> value[ NL_FORV ] & FORVAR ) ) {
 		error("Can't modify the for variable %s in the range of the loop", p -> symbol);
 		return (NIL);
 	}
