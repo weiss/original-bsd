@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vnops.c	7.87 (Berkeley) 07/12/92
+ *	@(#)nfs_vnops.c	7.88 (Berkeley) 07/12/92
  */
 
 /*
@@ -25,12 +25,13 @@
 #include <sys/conf.h>
 #include <sys/namei.h>
 #include <sys/vnode.h>
-#include <sys/specdev.h>
-#include <sys/fifo.h>
 #include <sys/map.h>
 #include <sys/dirent.h>
 
 #include <vm/vm.h>
+
+#include <miscfs/specfs/specdev.h>
+#include <miscfs/fifofs/fifo.h>
 
 #include <nfs/rpcv2.h>
 #include <nfs/nfsv2.h>
