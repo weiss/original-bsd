@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.18 (Berkeley) 09/02/93
+ *	@(#)sendmail.h	8.19 (Berkeley) 09/18/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.18		09/02/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.19		09/18/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -794,6 +794,7 @@ EXTERN long	MaxMessageSize;	/* advertised max size we will accept */
 EXTERN char	*PostMasterCopy;	/* address to get errs cc's */
 EXTERN int	CheckpointInterval;	/* queue file checkpoint interval */
 EXTERN bool	DontPruneRoutes;	/* don't prune source routes */
+EXTERN bool	BrokenSmtpPeers;	/* peers can't handle 2-line greeting */
 EXTERN int	MaxMciCache;		/* maximum entries in MCI cache */
 EXTERN time_t	MciCacheTimeout;	/* maximum idle time on connections */
 EXTERN char	*QueueLimitRecipient;	/* limit queue runs to this recipient */
