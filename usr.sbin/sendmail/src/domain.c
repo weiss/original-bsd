@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	6.11 (Berkeley) 03/06/93 (with name server)";
+static char sccsid[] = "@(#)domain.c	6.12 (Berkeley) 03/13/93 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	6.11 (Berkeley) 03/06/93 (without name server)";
+static char sccsid[] = "@(#)domain.c	6.12 (Berkeley) 03/13/93 (without name server)";
 #endif
 #endif /* not lint */
 
@@ -162,7 +162,14 @@ getmxrr(host, mxhosts, localhost, rcode)
 	}
 	if (nmx == 0)
 	{
-punt:		mxhosts[0] = strcpy(hostbuf, host);
+punt:
+		mxhosts[0] = strcpy(hostbuf, host);
+		bp = &hostbuf[strlen(hostbuf)];
+		if (bp[-1] != '.')
+		{
+			*bp++ = '.';
+			*bp = '\0';
+		}
 		return (1);
 	}
 
