@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)lex.c	5.15 (Berkeley) 07/07/88";
+static char sccsid[] = "@(#)lex.c	5.16 (Berkeley) 07/08/88";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -249,7 +249,7 @@ execute(linebuf, contxt)
 		return(0);
 	}
 	cp2 = word;
-	while (*cp && !any(*cp, " \t0123456789$^.:/-+*'\""))
+	while (*cp && index(" \t0123456789$^.:/-+*'\"", *cp) == NOSTR)
 		*cp2++ = *cp++;
 	*cp2 = '\0';
 

@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)popen.c	5.12 (Berkeley) 07/08/88";
+static char sccsid[] = "@(#)popen.c	5.13 (Berkeley) 07/08/88";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -141,7 +141,6 @@ prepare_child(mask, infd, outfd)
 wait_command(pid)
 	int pid;
 {
-	int r;
 
 	if (wait_child(pid) < 0) {
 		printf("Fatal error in process.\n");
