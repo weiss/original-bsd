@@ -17,7 +17,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)last.c	5.9 (Berkeley) 11/30/87";
+static char sccsid[] = "@(#)last.c	5.10 (Berkeley) 01/03/88";
 #endif /* not lint */
 
 /*
@@ -339,7 +339,7 @@ ttyconv(arg)
 			fputs("last: malloc failure.\n", stderr);
 			exit(1);
 		}
-		if (!strcmp(optarg, "co"))
+		if (!strcmp(arg, "co"))
 			(void)strcpy(mval, "console");
 		else {
 			(void)strcpy(mval, "tty");
