@@ -1,7 +1,7 @@
-#	@(#)Makefile	8.2 (Berkeley) 01/12/94
+#	@(#)Makefile	8.3 (Berkeley) 01/25/94
 
 PROG=	mountd
-CFLAGS+=-DNFS -DMFS -DISOFS
+CFLAGS+=-DNFS -DMFS -DCD9660
 MAN5=	exports.0 netgroup.0
 MAN8=	mountd.0
 DPADD=	${LIBRPC}
