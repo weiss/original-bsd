@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)who.c	5.7 (Berkeley) 03/05/89";
+static char sccsid[] = "@(#)who.c	5.8 (Berkeley) 05/11/89";
 #endif not lint
 
 /*
@@ -23,7 +23,6 @@ static char sccsid[] = "@(#)who.c	5.7 (Berkeley) 03/05/89";
 #include <pwd.h>
 #include <stdio.h>
 #include <ctype.h>
-#include "pathnames.h"
 
 #define NMAX sizeof(utmp.ut_name)
 #define LMAX sizeof(utmp.ut_line)
