@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_ether.c	7.24 (Berkeley) 07/06/92
+ *	@(#)if_ether.c	7.25 (Berkeley) 07/11/92
  */
 
 /*
@@ -379,7 +379,6 @@ in_arpinput(m)
 	register struct llinfo_arp *la = 0;
 	register struct rtentry *rt;
 	struct in_ifaddr *ia, *maybe_ia = 0;
-	struct mbuf *mcopy = 0;
 	struct sockaddr_dl *sdl;
 	struct sockaddr sa;
 	struct in_addr isaddr, itaddr, myaddr;
