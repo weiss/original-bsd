@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tm.c	7.7 (Berkeley) 12/16/90
+ *	@(#)tm.c	7.8 (Berkeley) 05/04/91
  */
 
 /*
@@ -63,9 +63,9 @@ retry:
 	tmaddr->tmbc = -io->i_cc;
 	tmaddr->tmba = info;
 	com = (io->i_unit<<8) | TM_GO;
-	if (func == READ)
+	if (func == F_READ)
 		tmaddr->tmcs = com | TM_RCOM;
-	else if (func == WRITE)
+	else if (func == F_WRITE)
 		tmaddr->tmcs = com | TM_WCOM;
 	else if (func == TM_SREV) {
 		tmaddr->tmbc = -1;
