@@ -1,6 +1,6 @@
 # include "useful.h"
 
-SCCSID(@(#)macro.c	3.8		12/06/81);
+SCCSID(@(#)macro.c	3.9		02/20/82);
 
 char	*Macro[128];
 extern int	Debug;
@@ -59,7 +59,7 @@ expand(s, buf, buflim)
 				skipping = Macro[c] == NULL;
 				break;
 
-			  case ':':	/* else */
+			  case '|':	/* else */
 				skipping = !skipping;
 				break;
 
