@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	8.8 (Berkeley) 11/29/94";
+static char sccsid[] = "@(#)mail.local.c	8.9 (Berkeley) 11/29/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -369,7 +369,7 @@ lockmbox(path)
 		struct stat st;
 		time_t now;
 
-		fd = creat(locktmp, 0);
+		fd = open(locktmp, O_WRONLY|O_EXCL|O_CREAT, 0);
 		if (fd < 0)
 			continue;
 		close(fd);
