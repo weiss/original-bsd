@@ -1,8 +1,9 @@
-#	@(#)Makefile	4.6 (Berkeley) 05/11/90
+#	@(#)Makefile	4.7 (Berkeley) 06/17/90
 
 PROG=	lex
 SRCS=	lmain.c parser.c sub1.c sub2.c header.c
 CFLAGS+=-I${.CURDIR}
+CLEANFILES+=parser.c y.tab.h
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${MANMODE} ${.CURDIR}/nrform \
