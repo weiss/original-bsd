@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
- * Donn Seeley at UUNET Technologies, Inc.
+ * Donn Seeley at Berkeley Software Design, Inc.
  *
  * %sccs.include.redist.c%
  */
@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)init.c	6.17 (Berkeley) 05/24/93";
+static char sccsid[] = "@(#)init.c	6.18 (Berkeley) 05/26/93";
 #endif /* not lint */
 
 #include <sys/param.h>
