@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)xsend.c	4.6 05/11/89";
+static char sccsid[] = "@(#)xsend.c	4.7 03/02/91";
 #endif
 
 #include <sys/param.h>
@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)xsend.c	4.6 05/11/89";
 extern int errno;
 struct stat stbuf;
 int uid, destuid;
-char *myname, *dest, *keyfile[128], line[128];
+char *myname, *dest, keyfile[128], line[128];
 struct direct *dbuf;
 char *maildir = _PATH_SECRETMAIL;
 FILE *kf, *mf;
