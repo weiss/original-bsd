@@ -1,4 +1,6 @@
-.\"	@(#)ms	6.1 (Berkeley) 05/22/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)ms	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'USD:20-%''Using the \-ms Macros with Troff and Nroff'
 .OH 'Using the \-ms Macros with Troff and Nroff''USD:20-%'
