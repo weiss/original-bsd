@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.39 (Berkeley) 04/09/90";
+static char sccsid[] = "@(#)ls.c	5.40 (Berkeley) 05/10/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -412,11 +412,14 @@ tabdir(lp, s_stats, s_names)
 				nomem();
 		}
 		if (f_needstat && lstat(dp->d_name, &stats[cnt].lstat)) {
+			/*
+			 * don't exit -- this could be an NFS mount that has
+			 * gone away.  Flush stdout so the messages line up.
+			 */
+			(void)fflush(stdout);
 			(void)fprintf(stderr, "ls: %s: %s\n",
 			    dp->d_name, strerror(errno));
-			if (errno == ENOENT)
-				continue;
-			exit(1);
+			continue;
 		}
 		stats[cnt].name = names;
 
