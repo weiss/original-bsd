@@ -19,26 +19,23 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.2 (Berkeley) 06/24/89";
+static char sccsid[] = "@(#)util.c	5.3 (Berkeley) 06/25/89";
 #endif /* not lint */
 
 #include <sys/types.h>
 #include <stdio.h>
 #include <ctype.h>
 
-/**
- * prablelen --
- *	act like strlen, but also translate non-printing chars to '?'
- */
-prablelen(cp)
-	register char *cp;
-{
+prcopy(src, dest, len)
+	register char *src, *dest;
 	register int len;
+{
+	register int ch;
 
-	for (len = 0; *cp; ++len, ++cp)
-		if (!isprint(*cp))
-			*cp = '?';
-	return(len);
+	while(len--) {
+		ch = *src++;
+		*dest++ = isprint(ch) ? ch : '?';
+	}
 }
 
 char
