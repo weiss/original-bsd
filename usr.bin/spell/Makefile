@@ -1,4 +1,4 @@
-#	@(#)Makefile	4.6	03/16/87
+#	@(#)Makefile	4.7	05/31/87
 
 # The word lists may be extended by adding special words.
 # The set of files containing words to be added are defined
@@ -51,3 +51,5 @@ hlistb: british $(SPECIAL) $(LOCAL) hlist spellin
 	(cat british $(SPECIAL) $(LOCAL))|spellin hlist >hlistb
 hstop: stop spellin
 	spellin <stop >hstop
+
+depend:
