@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 07/19/93
+#	@(#)Makefile	8.1 (Berkeley) 07/19/93
 
 PROG=	init
 MAN8=	init.0
