@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)netcmds.c	5.2 (Berkeley) 12/11/85";
+static char sccsid[] = "@(#)netcmds.c	5.3 (Berkeley) 09/15/87";
 #endif not lint
 
 /*
@@ -91,7 +91,7 @@ changeitems(args, onoff)
 		sp = getservbyname(args,
 		    protos == TCP ? "tcp" : protos == UDP ? "udp" : 0);
 		if (sp) {
-			selectport(sp->s_name, onoff);
+			selectport(sp->s_port, onoff);
 			continue;
 		}
 		hp = gethostbyname(args);
