@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mount_aix.c	5.3 (Berkeley) 05/12/91
+ *	@(#)mount_aix.c	5.4 (Berkeley) 02/09/92
  *
- * $Id: mount_aix.c,v 5.2.1.2 91/05/07 22:19:30 jsp Alpha $
+ * $Id: mount_aix.c,v 5.2.2.1 1992/02/09 15:10:08 jsp beta $
  *
  */
 

@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)os-u3_0.h	5.3 (Berkeley) 05/12/91
+ *	@(#)os-u3_0.h	5.4 (Berkeley) 02/09/92
  *
- * $Id: os-u3_0.h,v 5.2.1.3 91/05/07 22:20:03 jsp Alpha $
+ * $Id: os-u3_0.h,v 5.2.2.1 1992/02/09 15:10:52 jsp beta $
  *
  * Ultrix 3.0 definitions for Amd (automounter)
  */
