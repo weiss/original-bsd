@@ -3,11 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 05/11/87
+#	@(#)Makefile	5.2 (Berkeley) 05/24/87
 #
 DESTDIR	      =
-
-MACHINE	      = unknown
 
 SUBDIR	      = f77.${MACHINE} fpr fsplit
 
