@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)swapgeneric.c	7.6 (Berkeley) 08/31/88
+ *	@(#)swapgeneric.c	7.7 (Berkeley) 12/12/88
  */
 
 #include "mba.h"
@@ -82,7 +82,7 @@ retry:
 		gets(name);
 		for (gc = genericconf; gc->gc_driver; gc++)
 		    for (cp = name, gp = gc->gc_name; *cp == *gp; cp++, gp++)
-			if (*++gp == 0)
+			if (*gp == 0)
 				goto gotit;
 		printf(
 		  "use hp%%d, up%%d, ra%%d, rb%%d, rl%%d, hk%%d or kra%%d\n");
