@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: st.c 1.11 92/01/21$
  *
- *      @(#)st.c	8.2 (Berkeley) 11/15/93
+ *      @(#)st.c	8.3 (Berkeley) 01/12/94
  */
 
 /*
@@ -382,10 +382,6 @@ stopen(dev, flag, type, p)
 	static struct scsi_fmt_cdb modsel = {
 		6,
 		CMD_MODE_SELECT, 0, 0, 0, sizeof(msd), 0
-	};
-	static struct scsi_fmt_cdb unitready = {
-		6,
-		CMD_TEST_UNIT_READY, 0, 0, 0, 0, 0
 	};
 	static struct scsi_fmt_cdb modsense = {
 		6,
