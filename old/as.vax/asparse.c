@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)asparse.c	5.2 (Berkeley) 06/19/85";
+static char sccsid[] = "@(#)asparse.c	5.3 (Berkeley) 11/17/86";
 #endif not lint
 
 #include <stdio.h>
@@ -540,6 +540,9 @@ restlab:
 		if (exprisname){
 			stpt->s_type = locxp->e_xtype;
 			switch(stpt->s_ptype){
+				case N_LCSYM:
+					stpt->s_dest = (struct symtab *)exprisname;
+					stpt->s_type |= STABFLAG;
 				case N_GSYM:
 				case N_FNAME:
 				case N_RSYM:
