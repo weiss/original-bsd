@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)envelope.c	5.5 (Berkeley) 09/19/85";
+static char	SccsId[] = "@(#)envelope.c	5.6 (Berkeley) 09/19/85";
 #endif not lint
 
 #include <pwd.h>
@@ -193,7 +193,7 @@ clearenvelope(e)
 		(void) fclose(e->e_dfp);
 
 	/* now clear out the data */
-	bzero((char *) e, sizeof *e);
+	STRUCTCOPY(BlankEnvelope, *e);
 }
 /*
 **  INITSYS -- initialize instantiation of system
