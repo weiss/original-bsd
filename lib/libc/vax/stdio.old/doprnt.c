@@ -1,4 +1,4 @@
-/* @(#)doprnt.c	4.5 (Berkeley) 11/08/84 */
+/* @(#)doprnt.c	4.6 (Berkeley) 03/13/85 */
 	# C library -- conversions
 
 .globl	__doprnt
@@ -215,7 +215,7 @@ L5:
 	.word unsigned-L5		# U
 	.word fmtbad-L5			# V
 	.word fmtbad-L5			# W
-	.word hex-L5			# X
+	.word capital-L5		# X
 	.word fmtbad-L5			# Y
 	.word fmtbad-L5			# Z
 	.word fmtbad-L5			# [
