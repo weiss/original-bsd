@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vfsops.c	8.7 (Berkeley) 05/01/95
+ *	@(#)nfs_vfsops.c	8.8 (Berkeley) 05/09/95
  */
 
 #include <sys/param.h>
@@ -360,7 +360,7 @@ nfs_mountroot()
 
 	if (vfs_lock(mp))
 		panic("nfs_mountroot: vfs_lock");
-	TAILQ_INSERT_TAIL(&mountlist, mp, mnt_list);
+	CIRCLEQ_INSERT_TAIL(&mountlist, mp, mnt_list);
 	mp->mnt_flag |= MNT_ROOTFS;
 	mp->mnt_vnodecovered = NULLVP;
 	vfs_unlock(mp);
