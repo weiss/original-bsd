@@ -1,13 +1,14 @@
-/*
- * Copyright (c) 1983 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1983, 1985
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * %sccs.include.redist.c%
  */
 
 /* from "@(#)look_up.c	5.1 (Berkeley) 6/6/85"; */
 
 #ifndef lint
-static char sccsid[] = "@(#)look_up.c	6.3 (Berkeley) 10/17/92";
+static char sccsid[] = "@(#)look_up.c	6.4 (Berkeley) 04/02/94";
 #endif not lint
 
 #include "talk_ctl.h"
