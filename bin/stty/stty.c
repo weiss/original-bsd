@@ -1,4 +1,4 @@
-static char *sccsid ="@(#)stty.c	4.4 (Berkeley) 05/18/81";
+static char *sccsid ="@(#)stty.c	4.5 (Berkeley) 07/08/81";
 /*
  * set teletype modes
  */
@@ -241,7 +241,7 @@ char	**iargv;
 				if (**++argv == 'u')
 					*sp->cp = 0377;
 				else if (**argv == '^')
-					*sp->cp = (*(argv[1]) == '?') ?
+					*sp->cp = (*argv)[1] == '?') ?
 					    0177 : (*argv)[1] & 037;
 				else
 					*sp->cp = **argv;
