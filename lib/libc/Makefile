@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	4.26 (Berkeley) 06/06/87
+#	@(#)Makefile	4.27 (Berkeley) 09/23/87
 #
 #
 # The system has two monitoring schemes, utilizing either ``prof''
@@ -87,8 +87,7 @@ tags:
 clean:
 	for i in ${MACHINE}/csu ${ALL} net/hosttable net/named; \
 		do (cd $$i; make ${MFLAGS} clean); done
-	rm -f t1 tmp/*.o
-	-rmdir tmp
+	rm -rf tmp t1
 
 depend:
 	for i in ${ALL} net/hosttable net/named; \
