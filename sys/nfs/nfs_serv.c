@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_serv.c	8.6 (Berkeley) 03/30/95
+ *	@(#)nfs_serv.c	8.7 (Berkeley) 05/14/95
  */
 
 /*
@@ -2469,7 +2469,7 @@ nfsrv_readdir(nfsd, slp, procp, mrq)
 		nfsm_srvpostop_attr(getret, &at);
 		return (0);
 	}
-	VOP_UNLOCK(vp);
+	VOP_UNLOCK(vp, 0, procp);
 	MALLOC(rbuf, caddr_t, siz, M_TEMP, M_WAITOK);
 again:
 	iv.iov_base = rbuf;
@@ -2713,7 +2713,7 @@ nfsrv_readdirplus(nfsd, slp, procp, mrq)
 		nfsm_srvpostop_attr(getret, &at);
 		return (0);
 	}
-	VOP_UNLOCK(vp);
+	VOP_UNLOCK(vp, 0, procp);
 	MALLOC(rbuf, caddr_t, siz, M_TEMP, M_WAITOK);
 again:
 	iv.iov_base = rbuf;
