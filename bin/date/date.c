@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)date.c	4.23 (Berkeley) 09/20/88";
+static char sccsid[] = "@(#)date.c	4.24 (Berkeley) 03/06/89";
 #endif /* not lint */
 
 /*
@@ -200,13 +200,8 @@ gtime(ap)
 	}
 
 	if (*ap || month < 1 || month > 12 || day < 1 || day > 31 ||
-	     mins < 0 || mins > 59 || secs < 0 || secs > 59)
-		return(1);
-	if (hour == 24) {
-		++day;
-		hour = 0;
-	}
-	else if (hour < 0 || hour > 23)
+	     hour < 0 || hour > 23 || mins < 0 || mins > 59 ||
+	     secs < 0 || secs > 59)
 		return(1);
 
 	tv.tv_sec = 0;
