@@ -3,15 +3,10 @@
  * All rights reserved.
  *
  * %sccs.include.redist.c%
- *
- * All recipients should regard themselves as participants in an ongoing
- * research project and hence should feel obligated to report their
- * experiences (good or bad) with these elementary function codes, using
- * the sendbug(8) program, to the authors.
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)log10.c	5.5 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)log10.c	5.6 (Berkeley) 10/09/90";
 #endif /* not lint */
 
 /* LOG10(X)
