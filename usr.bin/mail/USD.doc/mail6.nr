@@ -3,9 +3,8 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)mail6.nr	8.1 (Berkeley) 06/08/93
+.\"	@(#)mail6.nr	8.2 (Berkeley) 05/16/94
 .\"
-.bp
 .sh 1 "Command line options"
 .pp
 This section describes command line options for

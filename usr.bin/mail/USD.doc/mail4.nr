@@ -3,9 +3,8 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)mail4.nr	8.1 (Berkeley) 06/08/93
+.\"	@(#)mail4.nr	8.2 (Berkeley) 05/16/94
 .\"
-.bp
 .sh 1 "More about sending mail"
 .sh 2 "Tilde escapes"
 .pp
