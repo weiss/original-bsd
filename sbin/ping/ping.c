@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ping.c	8.2 (Berkeley) 04/28/95";
+static char sccsid[] = "@(#)ping.c	8.3 (Berkeley) 04/28/95";
 #endif /* not lint */
 
 /*
@@ -567,7 +567,7 @@ pr_pack(buf, cc, from)
 				continue;
 			if (i == old_rrlen
 			    && cp == (u_char *)buf + sizeof(struct ip) + 2
-			    && !bcmp((char *)cp, old_rr, i)
+			    && !memcmp(cp, old_rr, i)
 			    && !(options & F_FLOOD)) {
 				(void)printf("\t(same route)");
 				i = ((i + 3) / 4) * 4;
