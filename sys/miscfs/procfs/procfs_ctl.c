@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)procfs_ctl.c	8.1 (Berkeley) 01/05/94
+ *	@(#)procfs_ctl.c	8.2 (Berkeley) 01/17/94
  *
  * From:
  *	$Id: procfs_ctl.c,v 3.2 1993/12/15 09:40:17 jsp Exp $
@@ -231,12 +231,9 @@ procfs_doctl(curp, p, pfs, uio)
 	struct uio *uio;
 	struct proc *p;
 {
-	int len = uio->uio_resid;
 	int xlen;
 	int error;
-	struct sigmap *sm;
 	char msg[PROCFS_CTLLEN+1];
-	char *cp = msg;
 	vfs_namemap_t *nm;
 
 	if (uio->uio_rw != UIO_WRITE)
