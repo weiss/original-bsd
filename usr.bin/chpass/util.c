@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.7 (Berkeley) 03/15/89";
+static char sccsid[] = "@(#)util.c	5.8 (Berkeley) 03/16/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -112,7 +112,7 @@ print(fp, pw)
 	register char *p;
 	char *getusershell(), *ttoa();
 
-	fprintf(fp, "Changing user database information for %s.\n",
+	fprintf(fp, "#Changing user database information for %s.\n",
 	    pw->pw_name);
 	if (!uid) {
 		fprintf(fp, "Login: %s\n", pw->pw_name);
