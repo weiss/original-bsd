@@ -1,5 +1,5 @@
 #
-#	@(#)Makefile	1.15	(Berkeley)	11/15/86
+#	@(#)Makefile	1.16	(Berkeley)	04/22/87
 #
 M=/usr/src/lib/mip
 #ifdef vax
@@ -92,7 +92,7 @@ llib-lc.ln: llib-lc lpass1
 	-(/lib/cpp -C -Dlint llib-lc | ./lpass1 -v > llib-lc.ln )
 
 llib-lcurses.ln: llib-lcurses lpass1
-	-(/lib/cpp -C -Dlint llib-lcurses | ./lpass1 -v > llib-lcurses.ln )
+	-(/lib/cpp -C -Dlint -D__void__=__curses__ llib-lcurses | ./lpass1 -v > llib-lcurses.ln )
 
 lpass2: lpass2.o hash.o
 	${CC} ${CFLAGS} lpass2.o hash.o -o lpass2
