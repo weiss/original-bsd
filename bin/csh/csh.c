@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)csh.c	5.8 (Berkeley) 02/15/89";
+static char *sccsid = "@(#)csh.c	5.9 (Berkeley) 03/05/89";
 #endif
 
 #include "sh.h"
@@ -24,7 +24,7 @@ static char *sccsid = "@(#)csh.c	5.8 (Berkeley) 02/15/89";
  * April 1980
  */
 
-char	*pathlist[] =	{ ".", "/usr/ucb", "/bin", "/usr/bin", 0 };
+char	*pathlist[] =	{ ".", _PATH_UCB, _PATH_BIN, _PATH_USRBIN, 0 };
 char	*dumphist[] =	{ "history", "-h", 0, 0 };
 char	*loadhist[] =	{ "source", "-h", "~/.history", 0 };
 char	HIST = '!';
