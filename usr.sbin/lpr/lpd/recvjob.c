@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recvjob.c	5.2 (Berkeley) 11/17/85";
+static char sccsid[] = "@(#)recvjob.c	5.3 (Berkeley) 04/15/86";
 #endif not lint
 
 /*
@@ -140,6 +140,13 @@ readjob()
 				size = size * 10 + (*cp++ - '0');
 			if (*cp++ != ' ')
 				break;
+			/*
+			 * host name has been authenticated, we use our
+			 * view of the host name since we may be passed
+			 * something different than what gethostbyaddr()
+			 * returns
+			 */
+			strcpy(cp + 6, from);
 			strcpy(tfname, cp);
 			tfname[0] = 't';
 			if (!chksize(size)) {
