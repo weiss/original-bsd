@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uipc_socket2.c	6.13 (Berkeley) 01/21/86
+ *	@(#)uipc_socket2.c	6.14 (Berkeley) 02/07/86
  */
 
 #include "param.h"
@@ -553,7 +553,7 @@ sbflush(sb)
 
 	if (sb->sb_flags & SB_LOCK)
 		panic("sbflush");
-	if (sb->sb_cc)
+	while (sb->sb_mbcnt)
 		sbdrop(sb, sb->sb_cc);
 	if (sb->sb_cc || sb->sb_mbcnt || sb->sb_mb)
 		panic("sbflush 2");
