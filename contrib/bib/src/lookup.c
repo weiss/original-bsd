@@ -1,3 +1,7 @@
+#ifndef lint
+static char sccsid[] = "@(#)lookup.c	1.2	06/14/83";
+#endif not lint
+
 # include "stdio.h"
 # include "streams.h"
 # include "bib.h"
