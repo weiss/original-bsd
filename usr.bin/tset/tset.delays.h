@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tset.delays.h	1.3 (Berkeley) 03/24/86
+ *	@(#)tset.delays.h	5.1 (Berkeley) 06/06/86
  */
 
 /*
