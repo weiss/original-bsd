@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)tput.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)tput.c	4.2 (Berkeley) 01/08/85";
 /* load me with -ltermlib */
 /* #include <retrofit.h> on version 6 */
 /*
@@ -39,5 +39,5 @@ main()
 	clear = tgetstr("cl", &clbp);
 	if (clear)
 		tputs(clear, tgetnum("li"), putchar);
-	exit (clear != (char *) 0);
+	exit (clear == (char *) 0);
 }
