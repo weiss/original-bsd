@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)parseaddr.c	3.77		02/24/83);
+SCCSID(@(#)parseaddr.c	3.78		03/05/83);
 
 /*
 **  PARSEADDR -- Parse an address
@@ -316,7 +316,7 @@ prescan(addr, delim)
 				continue;
 
 			/* see if this is end of input */
-			if (c == delim && anglecnt <= 0)
+			if (c == delim && anglecnt <= 0 && state != QST)
 				break;
 
 			newstate = StateTab[state][toktype(c)];
