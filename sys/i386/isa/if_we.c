@@ -7,7 +7,7 @@
  *
  * %sccs.include.noredist.c%
  *
- *	@(#)if_we.c	5.3 (Berkeley) 11/08/90
+ *	@(#)if_we.c	5.4 (Berkeley) 11/18/90
  */
 
 /*
@@ -51,7 +51,7 @@
 #endif
 
 #include "machine/isa/if_wereg.h"
-#include "machine/isa/device.h"
+#include "machine/isa/isa_device.h"
  
 /*
  * This constant should really be 60 because the we adds 4 bytes of crc.
