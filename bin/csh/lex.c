@@ -1,5 +1,5 @@
 #ifndef lint
-static	char *sccsid = "@(#)lex.c 4.5 09/02/84";
+static	char *sccsid = "@(#)lex.c 4.6 11/21/84";
 #endif
 
 #include "sh.h"
@@ -178,11 +178,10 @@ loop:
 				c = getC(0);
 				if (c == HIST)
 					c |= QUOTE;
-				else {
-					if (c == '\n' && c1 != '`')
-						c |= QUOTE;
+				else if (c == '\n')
+					c = ' ';
+				else
 					ungetC(c), c = '\\';
-				}
 			}
 			if (--i <= 0)
 				goto toochars;
