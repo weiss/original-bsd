@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)termout.c	4.3 (Berkeley) 04/26/91";
+static char sccsid[] = "@(#)termout.c	4.4 (Berkeley) 05/11/93";
 #endif /* not lint */
 
 #if defined(unix)
@@ -39,7 +39,7 @@ static char sccsid[] = "@(#)termout.c	4.3 (Berkeley) 04/26/91";
 
 #include "../general/globals.h"
 
-#include "../telextrn.h"
+#include "telextrn.h"
 
 #define CorrectTerminalCursor() ((TransparentClock == OutputClock)? \
 		CursorAddress:UnLocked? CursorAddress: HighestScreen())
