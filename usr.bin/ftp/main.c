@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.6 (Berkeley) 03/07/86";
+static char sccsid[] = "@(#)main.c	5.7 (Berkeley) 12/22/87";
 #endif not lint
 
 /*
@@ -234,7 +234,7 @@ cmdscanner(top)
 		}
 		(*c->c_handler)(margc, margv);
 		if (bell && c->c_bell)
-			(void) putchar(CTRL(g));
+			(void) putchar(CTRL('g'));
 		if (c->c_handler != help)
 			break;
 	}
