@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)lfs_alloc.c	6.15 (Berkeley) 09/11/85
+ *	@(#)lfs_alloc.c	6.16 (Berkeley) 09/17/85
  */
 
 #include "param.h"
@@ -981,5 +981,5 @@ fserr(fs, cp)
 	char *cp;
 {
 
-	log(KERN_FAIL, "%s: %s\n", fs->fs_fsmnt, cp);
+	log(LOG_ERR, "%s: %s\n", fs->fs_fsmnt, cp);
 }
