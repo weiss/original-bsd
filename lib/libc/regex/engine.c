@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)engine.c	5.1 (Berkeley) 08/06/92
+ *	@(#)engine.c	5.2 (Berkeley) 08/10/92
  */
 
 /*
@@ -107,6 +107,16 @@ int eflags;
 	} else {
 		start = string;
 		stop = start + strlen((char *)start);
+	}
+
+	/* prescreening; this does wonders for this rather slow code */
+	if (g->must != NULL) {
+		for (dp = start; dp < stop; dp++)
+			if (*dp == (uchar)g->must[0] && stop - dp >= g->mlen &&
+			strncmp((char *)dp, g->must, (size_t)g->mlen) == 0)
+				break;
+		if (dp == stop)		/* we didn't find g->must */
+			return(REG_NOMATCH);
 	}
 
 	/* match struct setup */
