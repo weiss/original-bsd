@@ -8,12 +8,9 @@ divert(-1)
 #
 
 include(`../m4/cf.m4')
-VERSIONID(`@(#)vangogh.cs.mc	2.6 (Berkeley) 11/14/92')
+VERSIONID(`@(#)vangogh.cs.mc	2.7 (Berkeley) 12/20/92')
 DOMAIN(cs.exposed)dnl
 OSTYPE(bsd4.4)dnl
 MAILER(local)dnl
 MAILER(smtp)dnl
-LOCAL_CONFIG
-
-# set up the number of simultaneous connections
-Ok4
+define(`MCI_CACHE_SIZE', 4)
