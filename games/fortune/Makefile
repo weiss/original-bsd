@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.2	(Berkeley)	06/06/87
+#	@(#)Makefile	1.3	(Berkeley)	08/30/87
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -27,10 +27,7 @@ fortunes.dat: fortunes strfile
 	./strfile ${SFLAGS} fortunes
 
 fortunes: scene obscene
-	cp scene fortunes
-	chmod 666 fortunes
-	echo "%-" >> fortunes
-	cat obscene >> fortunes
+	(cat scene; echo "%-"; cat obscene) > fortunes
 
 clean: FRC
 	rm -f fortune fortunes fortunes.dat strfile unstr core *.o
