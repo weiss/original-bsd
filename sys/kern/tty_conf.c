@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty_conf.c	7.1 (Berkeley) 06/05/86
+ *	@(#)tty_conf.c	7.2 (Berkeley) 05/26/88
  */
 
 #include "param.h"
@@ -56,7 +56,7 @@ struct	linesw linesw[] =
 #endif
 #if NSL > 0
 	slopen, slclose, nodev, nodev, sltioctl,
-	slinput, nodev, nulldev, slstart, nulldev,	/* 4- SLIPDISC */
+	slinput, nodev, nulldev, slstart, nullmodem,	/* 4- SLIPDISC */
 #else
 	nodev, nodev, nodev, nodev, nodev,
 	nodev, nodev, nodev, nodev, nodev,
