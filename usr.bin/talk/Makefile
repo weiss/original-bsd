@@ -14,7 +14,7 @@
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 # WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #
-#	@(#)Makefile	5.7 (Berkeley) 06/29/88
+#	@(#)Makefile	5.8 (Berkeley) 07/06/88
 #
 CFLAGS=	-O
 LIBC=	/lib/libc.a
@@ -35,7 +35,7 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	install -s -o bin -g tty -m 2755 talk ${DESTDIR}/usr/ucb/talk
+	install -s -o bin -g bin -m 755 talk ${DESTDIR}/usr/ucb/talk
 
 lint: FRC
 	lint ${CFLAGS} ${SRCS}
