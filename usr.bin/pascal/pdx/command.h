@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)command.h 1.1 01/18/82";
+/* static char sccsid[] = "@(#)command.h 1.2 01/18/82"; */
 
 /*
  * Definitions for the command module.

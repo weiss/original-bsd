@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)symtab.h 1.1 01/18/82";
+/* static char sccsid[] = "@(#)symtab.h 1.2 01/18/82"; */
 
 /*
  * Public definitions for symbol table.
