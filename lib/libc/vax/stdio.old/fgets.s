@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-_sccsid:.asciz	"@(#)fgets.s	5.2 (Berkeley) 10/30/85"
-#endif not lint
+#ifdef LIBC_SCCS
+_sccsid:.asciz	"@(#)fgets.s	5.3 (Berkeley) 03/09/86"
+#endif LIBC_SCCS
 
 /*
  * char *fgets(s, n, iptr);
