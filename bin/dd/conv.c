@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conv.c	5.2 (Berkeley) 07/27/91";
+static char sccsid[] = "@(#)conv.c	5.3 (Berkeley) 07/29/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -135,7 +135,7 @@ block()
 		if (cnt < cbsz)
 			(void)memset(outp, ctab ? ctab[' '] : ' ', cbsz - cnt);
 		else {
-			++in.t_stats;
+			++st.trunc;
 			/* Toss characters to a newline. */
 			for (; in.dbcnt && *inp++ != '\n'; --in.dbcnt);
 			if (!in.dbcnt)
@@ -165,7 +165,7 @@ block_close()
 	 * just wasn't big enough.
 	 */
 	if (in.dbcnt) {
-		++in.t_stats;
+		++st.trunc;
 		bcopy(in.dbp - in.dbcnt, out.dbp, in.dbcnt);
 		(void)memset(out.dbp + in.dbcnt,
 		    ctab ? ctab[' '] : ' ', cbsz - in.dbcnt);
