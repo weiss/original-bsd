@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)param.h	7.14 (Berkeley) 02/23/90
+ *	@(#)param.h	7.15 (Berkeley) 04/03/90
  */
 
 /*
@@ -16,6 +16,13 @@
 #endif
 
 #include <machine/machlimits.h>
+
+/*
+ * Round p (pointer or byte index) up to a correctly-aligned value
+ * for all data types (int, long, ...).   The result is u_int and
+ * must be cast to any desired pointer type.
+ */
+#define	ALIGN(p)	(((u_int)(p) + (sizeof(int) - 1)) &~ (sizeof(int) - 1))
 
 #define	NBPG		512		/* bytes/page */
 #define	PGOFSET		(NBPG-1)	/* byte offset into page */
