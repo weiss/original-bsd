@@ -1,4 +1,6 @@
-/*	if_acereg.h	1.1	85/07/21	*/
+/*
+ *	@(#)if_acereg.h	7.1 (Berkeley) 05/21/88
+ */
 
 /*
  * VERSAbus ACC ethernet controller definitions
