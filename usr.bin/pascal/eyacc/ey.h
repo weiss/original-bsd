@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ey.h	5.1 (Berkeley) 04/29/85
+ *	@(#)ey.h	5.2 (Berkeley) 09/22/88
  */
 
 #include <stdio.h>
@@ -131,11 +131,5 @@ extern int numbval;  /* the value of an input number */
 extern int rflag;  /* ratfor flag */
 extern int oflag;  /* optimization flag */
 extern int ndefout;  /* number of defined symbols output */
-
-extern int machine;
-
-# define UNIX 1
-# define GCOS 2
-# define IBM 3
 
 struct looksets *flset();
