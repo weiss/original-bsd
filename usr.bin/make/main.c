@@ -17,7 +17,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.26 (Berkeley) 07/20/91";
+static char sccsid[] = "@(#)main.c	5.27 (Berkeley) 07/27/91";
 #endif /* not lint */
 
 /*-
@@ -328,7 +328,8 @@ main(argc, argv)
 	 */
 	if (!(path = getenv("MAKEOBJDIR")))
 		path = _PATH_OBJDIR;
-	if (!lstat(path, &sb)) {
+	if (stat(path, &sb) == 0 && S_ISDIR(sb.st_mode) &&
+	    lstat(path, &sb) == 0) {
 		if (S_ISDIR(sb.st_mode))
 			curdir = "..";
 		else {
