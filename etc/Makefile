@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.11 (Berkeley) 05/21/91
+#	@(#)Makefile	5.12 (Berkeley) 04/08/92
 
 NOOBJ=	oobj
 
@@ -13,7 +13,7 @@ BIN1=	aliases csh.cshrc csh.login csh.logout crontab daily dm.conf \
 # -rw-rw-rw-
 BIN2=	motd
 
-MTREE=	BSD.root.dist BSD.usr.dist BSD.var.dist
+MTREE=	BSD.root.dist BSD.usr.dist BSD.var.dist special
 KRB=	README krb.conf krb.realms
 NAMEDB=	localhost.rev named.boot root.cache
 PCS=	pcs750.bin
