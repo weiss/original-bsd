@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)quotacheck.c	5.14 (Berkeley) 06/01/90";
+static char sccsid[] = "@(#)quotacheck.c	5.15 (Berkeley) 09/27/90";
 #endif /* not lint */
 
 /*
@@ -30,6 +30,10 @@ static char sccsid[] = "@(#)quotacheck.c	5.14 (Berkeley) 06/01/90";
 #include <grp.h>
 #include <stdio.h>
 #include <errno.h>
+
+char *qfname = QUOTAFILENAME;
+char *qfextension[] = INITQFNAMES;
+char *quotagroup = QUOTAGROUP;
 
 union {
 	struct	fs	sblk;
