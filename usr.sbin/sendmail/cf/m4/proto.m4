@@ -1,14 +1,14 @@
 divert(-1)
 #
 # Copyright (c) 1983 Eric P. Allman
-# Copyright (c) 1988 The Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	6.48 (Berkeley) 06/24/93')
+VERSIONID(`@(#)proto.m4	8.1 (Berkeley) 06/27/93')
 
 MAILER(local)dnl
 
