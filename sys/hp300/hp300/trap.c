@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: trap.c 1.37 92/12/20$
  *
- *	@(#)trap.c	8.1 (Berkeley) 06/16/93
+ *	@(#)trap.c	8.2 (Berkeley) 09/03/93
  */
 
 #include <sys/param.h>
@@ -175,7 +175,7 @@ again:
 		}
 	}
 #endif
-	curpri = p->p_pri;
+	curpriority = p->p_pri;
 }
 
 /*
