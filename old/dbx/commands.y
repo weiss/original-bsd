@@ -2,7 +2,7 @@
 
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)commands.y 1.7 05/18/83";
+static char sccsid[] = "@(#)commands.y 1.8 07/07/83";
 
 /*
  * Yacc grammar for debugger commands.
@@ -869,5 +869,5 @@ keyword:
     NEXT | NEXTI | NIL | NOT | OR | PRINT | PSYM | QUIT | RUN |
     SH | SKIP | SOURCE | STATUS | STEP | STEPI |
     STOP | STOPI | TRACE | TRACEI |
-    USE | WHATIS | WHEN | WHERE | WHICH
+    USE | WHATIS | WHEN | WHERE | WHEREIS | WHICH
 ;
