@@ -1,7 +1,7 @@
 #
-#	@(#)Makefile	4.3	05/30/85
+#	@(#)Makefile	4.4	06/04/85
 #
-SCCSID = "@(#)Makefile 4.3 05/30/85"
+SCCSID = "@(#)Makefile 4.4 06/04/85"
 #
 # This high quality math library is intended to run on either a VAX in
 # D_floating format or a machine that conforms to the IEEE standard 754
@@ -61,8 +61,10 @@ libm.a libm_p.a : ${FILES}
 
 install: libm.a libm_p.a
 	${INSTALL} libm.a ${DESTDIR}/usr/lib
+	ln ${DESTDIR}/usr/lib/libm.a ${DESTDIR}/usr/lib/libnm.a
 	ranlib ${DESTDIR}/usr/lib/libm.a
 	${INSTALL} libm_p.a ${DESTDIR}/usr/lib
+	ln ${DESTDIR}/usr/lib/libm_p.a ${DESTDIR}/usr/lib/libnm_p.a
 	ranlib ${DESTDIR}/usr/lib/libm_p.a
 
 tags:
