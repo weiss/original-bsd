@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/25/90
+#	@(#)Makefile	8.1 (Berkeley) 06/01/93
 
 FILES=	des.h kadm.h kadm_err.h kparse.h krb.h krb_db.h krb_err.h \
 	mit-copyright.h
