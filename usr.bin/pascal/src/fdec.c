@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)fdec.c 1.21 08/11/82";
+static char sccsid[] = "@(#)fdec.c 1.22 08/12/82";
 
 #include "whoami.h"
 #include "0.h"
@@ -168,6 +168,10 @@ funcbody(fp)
 	char *cp;
 
 #ifdef PC
+	if ( monflg ) {
+	    error("Only the module containing the \"program\" statement");
+	    cerror("can be profiled with ``pxp''.\n");
+	}
 	if (opt('s')) {
 		standard();
 		error("Separately compiled routine segments are not standard.");
