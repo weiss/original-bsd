@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)char.h	5.8 (Berkeley) 05/22/93
+ *	@(#)char.h	5.9 (Berkeley) 05/27/93
  */
 
 #include <ctype.h>
@@ -16,8 +16,8 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 
 #endif
 
-#define	_Q	0x0001		/* '" */
-#define	_Q1	0x0002		/* ` */
+#define	_QF	0x0001		/* '" (Forward quotes) */
+#define	_QB	0x0002		/* ` (Backquote) */
 #define	_SP	0x0004		/* space and tab */
 #define	_NL	0x0008		/* \n */
 #define	_META	0x0010		/* lex meta characters, sp #'`";&<>()|\t\n */
