@@ -1,4 +1,4 @@
-/*	trap.c	4.5	03/03/81	*/
+/*	trap.c	4.6	03/05/81	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -47,6 +47,7 @@ unsigned code;
 	case PRIVINFLT + USER:	/* privileged instruction fault */
 	case RESADFLT + USER:	/* reserved addressing fault */
 	case RESOPFLT + USER:	/* resereved operand fault */
+		u.u_code = type &~ USER;
 		i = SIGILL;
 		break;
 
