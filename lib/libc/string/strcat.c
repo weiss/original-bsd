@@ -1,4 +1,7 @@
-/* @(#)strcat.c	4.1 (Berkeley) 12/21/80 */
+#ifndef lint
+static char sccsid[] = "@(#)strcat.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 /*
  * Concatenate s2 on the end of s1.  S1's space must be large enough.
  * Return s1.
