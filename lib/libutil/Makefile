@@ -1,7 +1,7 @@
-#	@(#)Makefile	5.7 (Berkeley) 04/01/91
+#	@(#)Makefile	5.8 (Berkeley) 04/27/91
 
 LIB=	util
-CFLAGS+=-DLIBC_SCCS
+CFLAGS+=-DLIBC_SCCS -I/sys
 SRCS=	daemon.c getloadavg.c login.c login_tty.c logout.c logwtmp.c kvm.c \
 	pty.c pwcache.c
 MAN3=	getloadavg.0 pwcache.0
