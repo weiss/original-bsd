@@ -1,11 +1,7 @@
-#	@(#)Makefile	5.1 (Berkeley) 11/12/92
+#	@(#)Makefile	5.2 (Berkeley) 06/08/93
 
 DIR=	papers/jus
 SRCS=	paper.ms
 MACROS=	-ms
-PRINTER=lz
-
-paper.${PRINTER}: ${SRCS}
-	${ROFF} ${SRCS} > ${.TARGET}
 
 .include <bsd.doc.mk>
