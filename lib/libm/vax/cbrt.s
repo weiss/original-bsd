@@ -1,14 +1,14 @@
-# Copyright (c) 1985 Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1985, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)cbrt.s	5.4 (Berkeley) 10/09/90
+#	@(#)cbrt.s	8.1 (Berkeley) 06/04/93
 #
 	.data
 	.align	2
 _sccsid:
-.asciz	"@(#)cbrt.s	1.1 (Berkeley) 5/23/85; 5.4 (ucb.elefunt) 10/09/90"
+.asciz	"@(#)cbrt.s	1.1 (Berkeley) 5/23/85; 8.1 (ucb.elefunt) 06/04/93"
 
 # double cbrt(double arg)
 # W. Kahan, 10/13/80. revised 1/13/84 for keeping sign symmetry

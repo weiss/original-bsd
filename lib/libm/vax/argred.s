@@ -1,14 +1,14 @@
-# Copyright (c) 1985 Regents of the University of California.
-# All rights reserved.
+# Copyright (c) 1985, 1993
+#	The Regents of the University of California.  All rights reserved.
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)argred.s	5.4 (Berkeley) 10/09/90
+#	@(#)argred.s	8.1 (Berkeley) 06/04/93
 #
 	.data
 	.align	2
 _sccsid:
-.asciz	"@(#)argred.s	1.1 (Berkeley) 8/21/85; 5.4 (ucb.elefunt) 10/09/90"
+.asciz	"@(#)argred.s	1.1 (Berkeley) 8/21/85; 8.1 (ucb.elefunt) 06/04/93"
 
 #  libm$argred implements Bob Corbett's argument reduction and
 #  libm$sincos implements Peter Tang's double precision sin/cos.
