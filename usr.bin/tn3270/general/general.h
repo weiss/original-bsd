@@ -1,5 +1,7 @@
 /*
  * Some general definitions.
+ *
+ * @(#)general.h	1.9 (Berkeley) 07/17/87
  */
 
 
