@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recipient.c	8.65 (Berkeley) 02/20/95";
+static char sccsid[] = "@(#)recipient.c	8.66 (Berkeley) 02/21/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -86,7 +86,6 @@ sendtolist(list, ctladdr, sendq, aliaslevel, e)
 	al = NULL;
 	naddrs = 0;
 
-	if (bufp == NULL)
 	/* make sure we have enough space to copy the string */
 	i = strlen(list) + 1;
 	if (i <= sizeof buf)
