@@ -1,5 +1,5 @@
 /*
- *	@(#)raw_hy.c	6.2	09/16/85
+ *	@(#)raw_hy.c	6.3	10/24/85
  *
  * 4.3 BSD Unix kernel - NSC HYPERchannel support
  *
@@ -11,6 +11,8 @@
  *
  */
 
+#include "hy.h"
+#if NHY > 0
 
 #include "param.h"
 #include "mbuf.h"
@@ -71,3 +73,4 @@ bad:
 	m_freem(m);
 	return (error);
 }
+#endif
