@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.82 (Berkeley) 03/06/94";
+static char sccsid[] = "@(#)conf.c	8.83 (Berkeley) 04/12/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1282,7 +1282,7 @@ setsid __P ((void))
 #ifdef TIOCNOTTY
 	int fd;
 
-	fd = open("/dev/tty", 2);
+	fd = open("/dev/tty", O_RDWR, 0);
 	if (fd >= 0)
 	{
 		(void) ioctl(fd, (int) TIOCNOTTY, (char *) 0);
