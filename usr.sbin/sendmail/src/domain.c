@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef NAMED_BIND
-static char sccsid[] = "@(#)domain.c	8.11 (Berkeley) 01/15/94 (with name server)";
+static char sccsid[] = "@(#)domain.c	8.12 (Berkeley) 01/31/94 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	8.11 (Berkeley) 01/15/94 (without name server)";
+static char sccsid[] = "@(#)domain.c	8.12 (Berkeley) 01/31/94 (without name server)";
 #endif
 #endif /* not lint */
 
@@ -343,7 +343,7 @@ mxrand(host)
 
 		if (isascii(c) && isupper(c))
 			c = tolower(c);
-		hfunc = ((hfunc << 1) + c) % 2003;
+		hfunc = ((hfunc << 1) ^ c) % 2003;
 	}
 
 	hfunc &= 0xff;
