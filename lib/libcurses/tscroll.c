@@ -6,10 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tscroll.c	8.2 (Berkeley) 04/15/94";
+static char sccsid[] = "@(#)tscroll.c	8.3 (Berkeley) 05/04/94";
 #endif /* not lint */
 
-#include <curses.h>
+#include "curses.h"
 
 #define	MAXRETURNSIZE	64
 

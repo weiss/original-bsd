@@ -1,20 +1,20 @@
 /*
- * Copyright (c) 1981, 1993
+ * Copyright (c) 1981, 1993, 1994
  *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setterm.c	8.3 (Berkeley) 01/02/94";
+static char sccsid[] = "@(#)setterm.c	8.4 (Berkeley) 05/04/94";
 #endif /* not lint */
 
-#include <sys/ioctl.h>
-
-#include <curses.h>
 #include <stdlib.h>
 #include <string.h>
+#include <termios.h>
 #include <unistd.h>
+
+#include "curses.h"
 
 static void zap __P((void));
 
