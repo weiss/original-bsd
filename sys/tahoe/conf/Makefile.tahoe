@@ -1,4 +1,4 @@
-#	@(#)Makefile.tahoe	1.11 (Berkeley) 06/05/87
+#	@(#)Makefile.tahoe	1.12 (Berkeley) 07/28/87
 #
 # Makefile for 4.3 BSD
 #
@@ -108,7 +108,7 @@ links:
 	sh makelinks && rm -f dontlink
 
 tags:
-	/usr/ucb/ctags ${CFILES}
+	@echo "see ../sys/Makefile for tags"
 
 print:
 	@pr -f Makefile ../sys/TODO linterrs
