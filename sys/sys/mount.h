@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mount.h	7.24 (Berkeley) 10/10/91
+ *	@(#)mount.h	7.25 (Berkeley) 11/01/91
  */
 
 typedef quad fsid_t;			/* file system id type */
@@ -128,7 +128,7 @@ struct vfsops {
 				    struct proc *p));
 	int	(*vfs_root)	__P((struct mount *mp, struct vnode **vpp));
 			/* int uid,		should be uid_t */
-	int	(*vfs_quotactl)	__P((struct mount *mp, int cmds, int uid,
+	int	(*vfs_quotactl)	__P((struct mount *mp, int cmds, u_int uid,
 				    caddr_t arg, struct proc *p));
 	int	(*vfs_statfs)	__P((struct mount *mp, struct statfs *sbp,
 				    struct proc *p));
