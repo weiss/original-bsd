@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)macro.c	5.2 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)macro.c	5.3 (Berkeley) 09/19/85";
 #endif not lint
 
 # include "sendmail.h"
@@ -46,7 +46,7 @@ expand(s, buf, buflim, e)
 	extern char *macvalue();
 
 # ifdef DEBUG
-	if (tTd(35, 4))
+	if (tTd(35, 24))
 	{
 		printf("expand(");
 		xputs(s);
@@ -113,7 +113,7 @@ expand(s, buf, buflim, e)
 	*xp = '\0';
 
 # ifdef DEBUG
-	if (tTd(35, 4))
+	if (tTd(35, 24))
 	{
 		printf("expand ==> ");
 		xputs(xbuf);
@@ -201,7 +201,7 @@ define(n, v, e)
 	register ENVELOPE *e;
 {
 # ifdef DEBUG
-	if (tTd(35, 3))
+	if (tTd(35, 9))
 	{
 		printf("define(%c as ", n);
 		xputs(v);
