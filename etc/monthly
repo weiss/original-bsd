@@ -1,6 +1,6 @@
 #!/bin/sh -
 #
-#	@(#)monthly	5.9 (Berkeley) 07/15/92
+#	@(#)monthly	8.1 (Berkeley) 06/09/93
 #
 
 host=`hostname`
