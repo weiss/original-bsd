@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)df.c	5.11 (Berkeley) 08/22/89";
+static char sccsid[] = "@(#)df.c	5.12 (Berkeley) 08/22/89";
 #endif /* not lint */
 
 /*
@@ -35,7 +35,6 @@ static char sccsid[] = "@(#)df.c	5.11 (Berkeley) 08/22/89";
 #include <stdio.h>
 #include <strings.h>
 #include <unistd.h>
-#include "pathnames.h"
 
 char	*getmntpt();
 int	iflag, kflag;
