@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)res_debug.c	5.6 (Berkeley) 09/14/85";
+static char sccsid[] = "@(#)res_debug.c	5.7 (Berkeley) 11/01/85";
 #endif not lint
 
 #if defined(lint) && !defined(DEBUG)
@@ -390,8 +390,6 @@ p_class(class)
 	switch (class) {
 	case C_IN:		/* internet class */
 		return("IN");
-	case C_CS:		/* csnet class */
-		return("CS");
 	case C_ANY:		/* matches any class */
 		return("ANY");
 	default:
