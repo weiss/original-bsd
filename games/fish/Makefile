@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.7 (Berkeley) 09/02/92
+#	@(#)Makefile	8.1 (Berkeley) 05/31/93
 
 PROG=	fish
 MAN6=	fish.0
