@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mfsnode.h	7.7 (Berkeley) 02/03/92
+ *	@(#)mfsnode.h	7.8 (Berkeley) 04/21/92
  */
 
 /*
@@ -162,7 +162,7 @@ struct mfsnode {
 		int mode))) mfs_badop)
 #define mfs_truncate ((int (*) __P(( \
 		struct vnode *vp, \
-		u_long length, \
+		off_t length, \
 		int flags))) mfs_badop)
 #define mfs_update ((int (*) __P(( \
 		struct vnode *vp, \
