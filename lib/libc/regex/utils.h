@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)utils.h	5.1 (Berkeley) 08/06/92
+ *	@(#)utils.h	5.2 (Berkeley) 09/30/92
  */
 
 /* utility definitions */
@@ -17,6 +17,9 @@
 #define	NUC		(UCHAR_MAX+1)
 typedef unsigned char uchar;
 
-#ifndef STATIC
-#define	STATIC	static		/* override if cc no like "static int f();" */
+#ifndef REDEBUG
+#ifndef NDEBUG
+#define	NDEBUG	/* no assertions please */
 #endif
+#endif
+#include <assert.h>
