@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)namei.h	7.20 (Berkeley) 07/20/92
+ *	@(#)namei.h	7.21 (Berkeley) 07/25/92
  */
 
 #ifndef _NAMEI_H_
@@ -19,13 +19,13 @@ struct nameidata {
 	 */
 	caddr_t	ni_dirp;		/* pathname pointer */
 	enum	uio_seg ni_segflg;	/* location of pathname */
-     /* u_long	ni_nameiop;		/* namei operation */
-     /* u_long	ni_flags;		/* flags to namei */
-     /* struct	proc *ni_proc;		/* process requesting lookup */
+     /* u_long	ni_nameiop;		   namei operation */
+     /* u_long	ni_flags;		   flags to namei */
+     /* struct	proc *ni_proc;		   process requesting lookup */
 	/*
 	 * Arguments to lookup.
 	 */
-     /* struct	ucred *ni_cred;		/* credentials */
+     /* struct	ucred *ni_cred;		   credentials */
 	struct	vnode *ni_startdir;	/* starting directory */
 	struct	vnode *ni_rootdir;	/* logical root directory */
 	/*
