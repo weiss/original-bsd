@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.2 (Berkeley) 08/26/85
+#	@(#)Makefile	5.3 (Berkeley) 10/11/85
 #
 DESTDIR=
 CFLAGS=	-O
@@ -33,8 +33,10 @@ NSTD=	canfield primes rain worm worms
 
 all:	${SUBDIR} ${STD} ${NSTD}
 
-${SUBDIR}: /tmp
+${SUBDIR}: FRC
 	cd $@; make ${MFLAGS}
+
+FRC:
 
 ${STD}:
 	cc ${CFLAGS} -o $@ $@.c
