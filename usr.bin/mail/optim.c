@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)optim.c	2.9 (Berkeley) 08/11/83";
+static char sccsid[] = "@(#)optim.c	2.10 (Berkeley) 07/26/84";
 #endif
 
 /*
@@ -92,14 +92,15 @@ netlook(machine, attnet)
 {
 	register struct netmach *np;
 	register char *cp, *cp2;
-	char nbuf[20];
+	char nbuf[100];
 
 	/*
 	 * Make into lower case.
 	 */
 
 	for (cp = machine, cp2 = nbuf; *cp; *cp2++ = little(*cp++))
-		;
+		if (cp2 >= &nbuf[sizeof(nbuf)-1])
+			break;
 	*cp2 = 0;
 
 	/*
