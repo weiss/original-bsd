@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mk-amd-map.c	5.4 (Berkeley) 05/12/91
+ *	@(#)mk-amd-map.c	5.5 (Berkeley) 02/09/92
  *
- * $Id: mk-amd-map.c,v 5.2.1.4 91/05/07 22:18:47 jsp Alpha $
+ * $Id: mk-amd-map.c,v 5.2.2.1 1992/02/09 15:09:18 jsp beta $
  */
 
 /*
@@ -27,8 +27,8 @@ char copyright[] = "\
 #endif /* not lint */
 
 #ifndef lint
-static char rcsid[] = "$Id: mk-amd-map.c,v 5.2.1.4 91/05/07 22:18:47 jsp Alpha $";
-static char sccsid[] = "@(#)mk-amd-map.c	5.4 (Berkeley) 05/12/91";
+static char rcsid[] = "$Id: mk-amd-map.c,v 5.2.2.1 1992/02/09 15:09:18 jsp beta $";
+static char sccsid[] = "@(#)mk-amd-map.c	5.5 (Berkeley) 02/09/92";
 #endif /* not lint */
 
 #include "am.h"
