@@ -12,7 +12,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)atan2.c	1.1 (Berkeley) 05/23/85";
+static char sccsid[] = "@(#)atan2.c	1.2 (Berkeley) 06/03/85";
 #endif not lint
 
 /* ATAN2(Y,X)
@@ -155,14 +155,14 @@ double  y,x;
 	if(x==zero) return(copysign(PIo2,signy));
 	    
     /* when x is INF */
-	if(!finite(x) && x==x)
-	    if(!finite(y) && y==y) 
+	if(!finite(x))
+	    if(!finite(y)) 
 		return(copysign((signx==one)?PIo4:3*PIo4,signy));
 	    else
 		return(copysign((signx==one)?zero:PI,signy));
 
     /* when y is INF */
-	if(!finite(y) && y==y) return(copysign(PIo2,signy));
+	if(!finite(y)) return(copysign(PIo2,signy));
 
 
     /* compute y/x */
