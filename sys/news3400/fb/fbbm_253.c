@@ -7,9 +7,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: $Hdr: fbbm_253.c,v 4.300 91/06/09 06:33:12 root Rel41 $ SONY; */
+ * from: $Hdr: fbbm_253.c,v 4.300 91/06/09 06:33:12 root Rel41 $ SONY;
  *
- *	@(#)fbbm_253.c	7.2 (Berkeley) 12/17/92
+ *	@(#)fbbm_253.c	7.3 (Berkeley) 01/20/93
  */
 
 /*
