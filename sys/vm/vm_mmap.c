@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: vm_mmap.c 1.6 91/10/21$
  *
- *	@(#)vm_mmap.c	7.25 (Berkeley) 03/30/93
+ *	@(#)vm_mmap.c	7.26 (Berkeley) 04/04/93
  */
 
 /*
@@ -86,7 +86,7 @@ struct getpagesize_args {
 };
 /* ARGSUSED */
 int
-getpagesize(p, uap, retval)
+ogetpagesize(p, uap, retval)
 	struct proc *p;
 	struct getpagesize_args *uap;
 	int *retval;
