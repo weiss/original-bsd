@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sd.c	8.8 (Berkeley) 05/10/95
+ *	@(#)sd.c	8.9 (Berkeley) 05/14/95
  */
 
 /*
@@ -38,10 +38,7 @@ static char rcsid[] = "$Header: /sys.lite/hp300/dev/RCS/sd.c,v 1.2 1994/01/10 18
 #include <hp300/hp300/led.h>
 #endif
 
-#include <vm/vm_param.h>
-#include <sys/lock.h>
-#include <vm/vm_prot.h>
-#include <vm/pmap.h>
+#include <vm/vm.h>
 
 extern int scsi_test_unit_rdy();
 extern int scsi_request_sense();
