@@ -1,10 +1,10 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/08/93
+#	@(#)Makefile	8.2 (Berkeley) 05/16/94
 
 DIR=	usd/25.tbl
 SRCS=	tbl
-MACROS=	-msU
+MACROS=	-ms
 
 paper.ps: ${SRCS}
-	${TBL} ${SRCS} | ${ROFF} > ${.TARGET}
+	${TBL} ${SRCS} | ${EQN} | ${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
