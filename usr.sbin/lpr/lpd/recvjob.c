@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)recvjob.c	5.15 (Berkeley) 05/04/91";
+static char sccsid[] = "@(#)recvjob.c	5.16 (Berkeley) 01/27/92";
 #endif /* not lint */
 
 /*
@@ -225,7 +225,7 @@ chksize(size)
 		syslog(LOG_ERR, "%s: %m", "statfs(\".\")");
 		return (1);
 	}
-	spacefree = sfb.f_bavail * (sfb.f_fsize / 512);
+	spacefree = sfb.f_bavail * (sfb.f_bsize / 512);
 	size = (size + 511) / 512;
 	if (minfree + size > spacefree)
 		return(0);
