@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)error.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)error.c	5.2 (Berkeley) 12/04/87";
 #endif not lint
 
 #include "whoami.h"
@@ -135,7 +135,7 @@ yysetfile(name)
 
 	if (lastname == name)
 		return;
-	printed =| 1;
+	printed |= 1;
 	gettime( name );
 	printf("%s  %s:\n" , myctime( &tvec ) , name );
 	lastname = name;
