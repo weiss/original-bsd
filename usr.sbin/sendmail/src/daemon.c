@@ -14,7 +14,7 @@
 
 # ifndef DAEMON
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.16 (Berkeley) 12/26/85	(w/o daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.17 (Berkeley) 01/05/86	(w/o daemon mode)";
 # endif not lint
 # else
 
@@ -25,7 +25,7 @@ static char	SccsId[] = "@(#)daemon.c	5.16 (Berkeley) 12/26/85	(w/o daemon mode)"
 # include <sys/resource.h>
 
 # ifndef lint
-static char	SccsId[] = "@(#)daemon.c	5.16 (Berkeley) 12/26/85 (with daemon mode)";
+static char	SccsId[] = "@(#)daemon.c	5.17 (Berkeley) 01/05/86 (with daemon mode)";
 # endif not lint
 
 /*
@@ -54,8 +54,9 @@ static char	SccsId[] = "@(#)daemon.c	5.16 (Berkeley) 12/26/85 (with daemon mode)
 **		appropriate for communication.  Returns zero on
 **		success, else an exit status describing the
 **		error.
-**
-**	The semantics of both of these should be clean.
+**	maphostname(hbuf, hbufsize)
+**		Convert the entry in hbuf into a canonical form.  It
+**		may not be larger than hbufsize.
 */
 /*
 **  GETREQUESTS -- open mail IPC port and get requests.
@@ -253,26 +254,6 @@ getrequests()
 		(void) close(t);
 	}
 	/*NOTREACHED*/
-}
-/*
-**  REAPCHILD -- pick up the body of my child, lest it become a zombie
-**
-**	Parameters:
-**		none.
-**
-**	Returns:
-**		none.
-**
-**	Side Effects:
-**		Picks up zombies.
-*/
-
-reapchild()
-{
-	union wait status;
-
-	while (wait3(&status, WNOHANG, (struct rusage *) NULL) > 0)
-		continue;
 }
 /*
 **  CLRDAEMON -- reset the daemon connection
@@ -605,6 +586,5 @@ maphostname(hbuf, hbsize)
 {
 	return;
 }
-
 
 #endif DAEMON
