@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/08/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 DIR=	psd/18.gprof
 SRCS=	header.me abstract.me intro.me profiling.me gathering.me \
