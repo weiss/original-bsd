@@ -1,4 +1,4 @@
-/*	vcmd.h	3.2	10/14/12	*/
+/*	vcmd.h	3.3	06/07/80	*/
 
 #define	VPRINT		0100
 #define	VPLOT		0200
