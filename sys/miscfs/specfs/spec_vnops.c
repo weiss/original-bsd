@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)spec_vnops.c	7.36 (Berkeley) 05/06/91
+ *	@(#)spec_vnops.c	7.37 (Berkeley) 05/30/91
  */
 
 #include "param.h"
@@ -106,7 +106,10 @@ spec_open(vp, mode, cred, p)
 	case VCHR:
 		if ((u_int)maj >= nchrdev)
 			return (ENXIO);
-		return ((*cdevsw[maj].d_open)(dev, mode, S_IFCHR, p));
+		VOP_UNLOCK(vp);
+		error = (*cdevsw[maj].d_open)(dev, mode, S_IFCHR, p);
+		VOP_LOCK(vp);
+		return (error);
 
 	case VBLK:
 		if ((u_int)maj >= nblkdev)
