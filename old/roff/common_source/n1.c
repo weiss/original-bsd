@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)n1.c	4.7 04/02/87";
+static char sccsid[] = "@(#)n1.c	4.8 07/21/87";
 #endif lint
 
 #include "tdef.h"
@@ -727,7 +727,7 @@ again:
 		else i = rbf();
 	}else{
 		if(donef)done(0);
-		if(nx || ((ibufp >= eibuf) && (ibufp != (char *) MAXPTR))){
+		if(nx || ((ibufp >= eibuf) && (eibuf != (char *) MAXPTR))){
 			if(nfo)goto g1;
 		g0:
 			if(nextfile()){
