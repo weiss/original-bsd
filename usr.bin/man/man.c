@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)man.c	5.8 (Berkeley) 10/29/87";
+static char sccsid[] = "@(#)man.c	5.9 (Berkeley) 11/14/87";
 #endif not lint
 
 #include <sys/param.h>
@@ -117,6 +117,7 @@ main(argc, argv)
 			break;
 		case '?':
 		default:
+			fprintf(stderr, "man: illegal option -- %c\n", (*argv)[1]);
 			usage();
 		}
 	if (!argc)
