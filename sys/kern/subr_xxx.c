@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_xxx.c	6.7 (Berkeley) 02/23/86
+ *	@(#)subr_xxx.c	6.8 (Berkeley) 03/09/86
  */
 
 #include "../machine/pte.h"
@@ -105,7 +105,7 @@ calloc(size)
 	return (res);
 }
 
-#ifdef notdef
+#ifdef GPROF
 /*
  * Stub routine in case it is ever possible to free space.
  */
