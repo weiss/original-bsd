@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.10 (Berkeley) 05/11/90
+#	@(#)Makefile	5.1 (Berkeley) 05/11/90
 
-PROG=	at
+PROG=	atrm
 
 .include "../../Makefile.inc"
 .include <bsd.prog.mk>
