@@ -14,10 +14,10 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.1 (Berkeley) 10/18/88
+# @(#)Makefile	5.2 (Berkeley) 02/07/89
 #
 
-CFLAGS=	-O
+CFLAGS=	-O -DKERBEROS
 LIBC=	/lib/libc.a
 SRCS=	login.c
 OBJS=
@@ -26,7 +26,7 @@ MAN=	login.0
 all: login
 
 login: ${LIBC}
-	${CC} -o $@ ${CFLAGS} $@.c -lutil
+	${CC} -o $@ ${CFLAGS} $@.c -lutil -lkrb -ldes
 
 clean:
 	rm -f ${OBJS} core login
