@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)expand.c	4.1 (Berkeley) 10/01/80";
+static char *sccsid = "@(#)expand.c	4.2 (Berkeley) 02/07/81";
 #include <stdio.h>
 /*
  * expand - expand tabs to equivalent spaces
@@ -101,7 +101,7 @@ bad:
 			fprintf(stderr, "Bad tab stop spec\n");
 			exit(1);
 		}
-		if (nstops > 0 && i <= tabstops[nstops])
+		if (nstops > 0 && i <= tabstops[nstops-1])
 			goto bad;
 		tabstops[nstops++] = i;
 		if (*cp == 0)
