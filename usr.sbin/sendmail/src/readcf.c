@@ -1,6 +1,6 @@
 # include "sendmail.h"
 
-SCCSID(@(#)readcf.c	4.12		05/24/85);
+SCCSID(@(#)readcf.c	4.13		06/02/85);
 
 /*
 **  READCF -- read control file.
@@ -198,7 +198,7 @@ readcf(cfname)
 			break;
 
 		  case 'O':		/* set option */
-			setoption(buf[1], &buf[2], FALSE);
+			setoption(buf[1], &buf[2], TRUE, FALSE);
 			break;
 
 		  case 'P':		/* set precedence */
@@ -585,6 +585,9 @@ printrules()
 **	Parameters:
 **		opt -- option name.
 **		val -- option value (as a text string).
+**		safe -- set if this came from a configuration file.
+**			Some options (if set from the command line) will
+**			reset the user id to avoid security problems.
 **		sticky -- if set, don't let other setoptions override
 **			this value.
 **
@@ -599,9 +602,10 @@ static BITMAP	StickyOpt;		/* set if option is stuck */
 extern char	*WizWord;		/* the stored wizard password */
 extern char	*NetName;		/* name of home (local) network */
 
-setoption(opt, val, sticky)
+setoption(opt, val, safe, sticky)
 	char opt;
 	char *val;
+	bool safe;
 	bool sticky;
 {
 	extern bool atobool();
@@ -629,8 +633,27 @@ setoption(opt, val, sticky)
 		return;
 	}
 
+	/*
+	**  Check to see if this option can be specified by this user.
+	*/
+
+	if (!safe && getruid())
+		safe = TRUE;
+	if (!safe && index("deiLmorsv", opt) == NULL)
+	{
+# ifdef DEBUG
+		if (tTd(37, 1))
+			printf(" (unsafe)");
+# endif DEBUG
+		if (getruid() != geteuid())
+		{
+			printf("(Resetting uid)\n");
+			setgid(getgid());
+			setuid(getuid());
+		}
+	}
 #ifdef DEBUG
-	if (tTd(37, 1))
+	else if (tTd(37, 1))
 		printf("\n");
 #endif DEBUG
 
