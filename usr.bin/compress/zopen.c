@@ -10,7 +10,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)zopen.c	5.2 (Berkeley) 12/17/92";
+static char sccsid[] = "@(#)zopen.c	5.3 (Berkeley) 06/27/93";
 #endif /* LIBC_SCCS and not lint */
 
 /*-
@@ -301,23 +301,25 @@ zclose(cookie)
 	void *cookie;
 {
 	struct s_zstate *zs;
+	int rval;
 
 	zs = cookie;
 	if (zmode == 'w') {		/* Put out the final code. */
 		if (output(zs, (code_int) ent) == -1) {
-			free(zs);
 			(void)fclose(fp);
+			free(zs);
 			return (-1);
 		}
 		out_count++;
 		if (output(zs, (code_int) - 1) == -1) {
-			free(zs);
 			(void)fclose(fp);
+			free(zs);
 			return (-1);
 		}
 	}
+	rval = fclose(fp) == EOF ? -1 : 0;
 	free(zs);
-	return (fclose(fp) == EOF ? -1 : 0);
+	return (rval);
 }
 
 /*-
