@@ -1,5 +1,5 @@
 
-#	@(#)Makefile	5.1 (Berkeley) 12/15/82
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 
 CFLAGS = -O
 
@@ -21,3 +21,4 @@ install: ratfor
 clean:
 	rm -f y.tab.c *.o ratfor y.tab.h
 
+depend:
