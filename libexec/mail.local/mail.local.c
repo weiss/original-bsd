@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)mail.local.c	8.2 (Berkeley) 11/30/93";
+static char sccsid[] = "@(#)mail.local.c	8.3 (Berkeley) 01/07/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -308,7 +308,7 @@ usage()
 }
 
 #if __STDC__
-__dead void
+void
 err(const char *fmt, ...)
 #else
 void
