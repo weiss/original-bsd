@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)version.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)version.c	5.2 (Berkeley) 06/28/90";
 #endif not lint
 
     /*
@@ -25,4 +25,5 @@ extern long time();
 main()
 {
 	printf( "long	createtime = %D;\n" , time(0) );
+	exit(0);
 }
