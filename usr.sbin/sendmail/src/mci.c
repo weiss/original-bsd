@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)mci.c	6.6 (Berkeley) 03/16/93";
+static char sccsid[] = "@(#)mci.c	6.7 (Berkeley) 03/30/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -233,7 +233,7 @@ mci_get(host, m)
 	if (mci->mci_state == MCIS_OPEN)
 	{
 		/* poke the connection to see if it's still alive */
-		smtpnoop(mci);
+		smtpprobe(mci);
 
 		/* reset the stored state in the event of a timeout */
 		if (mci->mci_state != MCIS_OPEN)
