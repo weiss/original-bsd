@@ -1,12 +1,12 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/19/90
+#	@(#)Makefile	5.3 (Berkeley) 06/19/90
 
-MAN=	roffbib.0
+MAN1=	roffbib.0
 
 all OTHERS: ${MAN}
 
 clean cleandir depend lint tags:
 
-install:
+beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
 	    ${.CURDIR}/indxbib.sh ${DESTDIR}${BINDIR}/indxbib
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
