@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ufsmount.h	7.1 (Berkeley) 06/04/86
+ *	@(#)ufsmount.h	7.2 (Berkeley) 06/21/87
  */
 
 /*
@@ -14,7 +14,7 @@
 struct	mount
 {
 	dev_t	m_dev;		/* device mounted */
-	struct	buf *m_bufp;	/* pointer to superblock */
+	struct	fs *m_fs;	/* pointer to superblock */
 	struct	inode *m_inodp;	/* pointer to mounted on inode */
 	struct	inode *m_qinod;	/* QUOTA: pointer to quota file */
 };
