@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.c	6.26 (Berkeley) 02/23/86
+ *	@(#)machdep.c	6.27 (Berkeley) 03/04/86
  */
 
 #include "reg.h"
@@ -68,7 +68,6 @@ startup(firstaddr)
 	int mapaddr, j;
 	register caddr_t v;
 	int maxbufs, base, residual;
-	extern char etext;
 
 	/*
 	 * Initialize error message buffer (at end of core).
