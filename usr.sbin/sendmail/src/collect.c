@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)collect.c	6.14 (Berkeley) 04/27/93";
+static char sccsid[] = "@(#)collect.c	6.15 (Berkeley) 04/30/93";
 #endif /* not lint */
 
 # include <errno.h>
@@ -296,7 +296,7 @@ readerr:
 				continue;
 			if (tTd(30, 3))
 				printf("Adding Apparently-To: %s\n", q->q_paddr);
-			addheader("apparently-to", q->q_paddr, e);
+			addheader("Apparently-To", q->q_paddr, e);
 		}
 	}
 
