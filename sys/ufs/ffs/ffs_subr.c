@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ffs_subr.c	6.10 (Berkeley) 02/21/86
+ *	@(#)ffs_subr.c	6.11 (Berkeley) 04/28/86
  */
 
 #ifdef KERNEL
@@ -373,7 +373,7 @@ bufstats()
 }
 #endif
 
-#if !defined(vax)
+#if !defined(vax) || defined(VAX630)
 /*
  * C definitions of special vax instructions.
  */
@@ -388,6 +388,9 @@ scanc(size, cp, table, mask)
 		cp++;
 	return (end - cp);
 }
+
+#endif
+#if !defined(vax)
 
 skpc(mask, size, cp)
 	register u_char mask;
