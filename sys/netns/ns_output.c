@@ -14,10 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ns_output.c	7.3 (Berkeley) 06/29/88
+ *	@(#)ns_output.c	7.4 (Berkeley) 10/12/88
  */
 
 #include "param.h"
+#include "malloc.h"
 #include "mbuf.h"
 #include "errno.h"
 #include "socket.h"
