@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.3 (Berkeley) 11/21/91
+#	@(#)Makefile	5.4 (Berkeley) 07/19/92
 
 # If TYPE is real, the real obscene fortunes get installed.  If TYPE is
 # fake, they don't.  See how easy that was?
@@ -23,6 +23,6 @@ fortunes-o.dat: fortunes-o
 	${.CURDIR}/../strfile/obj/strfile -rsx fortunes-o ${.TARGET}
 
 fortunes-o: fortunes-o.${TYPE}
-	caesar 13 < ${.CURDIR}/${.ALLSRC} > ${.TARGET}
+	/usr/games/caesar 13 < ${.CURDIR}/${.ALLSRC} > ${.TARGET}
 
 .include <bsd.prog.mk>
