@@ -1,7 +1,7 @@
 #!/bin/sh
 # compatibility with old installboot program
 #
-#	@(#)installboot.sh	7.1 (Berkeley) 03/14/93
+#	@(#)installboot.sh	8.1 (Berkeley) 06/10/93
 #
 if [ $# != 2 ]
 then
