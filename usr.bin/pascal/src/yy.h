@@ -3,10 +3,11 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)yy.h	5.1 (Berkeley) 06/05/85
+ *	@(#)yy.h	5.2 (Berkeley) 06/21/85
  */
 
 #include "y.tab.h"
+#undef CBSIZE	/* from paramsys/param.h */
 /*
  * INPUT/OUTPUT 
  */
