@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)iorec.h 1.2 09/19/83"; */
+/* static	char sccsid[] = "@(#)iorec.h 2.1 02/08/84"; */
 
 #include <stdio.h>
 #define NAMSIZ 76
