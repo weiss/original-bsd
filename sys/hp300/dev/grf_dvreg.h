@@ -11,14 +11,10 @@
  *
  * from: Utah $Hdr: grf_dvreg.h 1.5 92/01/21$
  *
- *	@(#)grf_dvreg.h	7.3 (Berkeley) 06/05/92
+ *	@(#)grf_dvreg.h	7.4 (Berkeley) 10/11/92
  */
 
-#ifdef KERNEL
-#include "hp/dev/iotypes.h"	/* XXX */
-#else
 #include <hp/dev/iotypes.h>	/* XXX */
-#endif
 
 /*
  * Map of the DaVinci frame buffer controller chip in memory ...

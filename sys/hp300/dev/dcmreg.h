@@ -11,14 +11,10 @@
  *
  * from: Utah $Hdr: dcmreg.h 1.7 92/01/21$
  *
- *	@(#)dcmreg.h	7.5 (Berkeley) 06/05/92
+ *	@(#)dcmreg.h	7.6 (Berkeley) 10/11/92
  */
 
-#ifdef KERNEL
-#include "hp/dev/iotypes.h"	/* XXX */
-#else
-#include <hp/dev/iotypes.h>	/* XXX */
-#endif
+#include <hp/dev/iotypes.h>		/* XXX */
 
 struct dcmdevice {	   /* host address, only odd bytes addressed */
 	u_char	dcm_pad0;

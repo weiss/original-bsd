@@ -4,14 +4,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fhpibreg.h	7.2 (Berkeley) 06/05/92
+ *	@(#)fhpibreg.h	7.3 (Berkeley) 10/11/92
  */
 
-#ifdef KERNEL
-#include "hp/dev/iotypes.h"	/* XXX */
-#else
 #include <hp/dev/iotypes.h>	/* XXX */
-#endif
 
 struct	fhpibdevice {
 	u_char	hpib_pad0;
