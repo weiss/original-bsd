@@ -1,10 +1,11 @@
 #ifndef lint
-static char sccsid[] = "@(#)disks.c	1.1 (Lucasfilm) 08/09/84";
+static char sccsid[] = "@(#)disks.c	1.2 (Lucasfilm) 08/09/84";
 #endif
 
 #include "systat.h"
-
+#include <sys/param.h>
 #include <sys/buf.h>
+#include <sys/file.h>
 #ifdef vax
 #include <vaxuba/ubavar.h>
 #include <vaxmba/mbavar.h>
@@ -12,6 +13,7 @@ static char sccsid[] = "@(#)disks.c	1.1 (Lucasfilm) 08/09/84";
 #ifdef sun
 #include <sundev/mbvar.h>
 #endif
+#include <ctype.h>
 
 char dr_name[DK_NDRIVE][10];
 
