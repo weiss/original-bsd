@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)func.c	5.32 (Berkeley) 11/06/91";
+static char sccsid[] = "@(#)func.c	5.33 (Berkeley) 11/12/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -591,7 +591,7 @@ static Char Stype;
 static Char *Sgoal;
 
 /*VARARGS2*/
-void
+static void
 search(type, level, goal)
     int     type;
     register int level;
