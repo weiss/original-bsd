@@ -1,6 +1,18 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static	char *sccsid = "@(#)tunefs.c	4.4 (Berkeley) 07/01/83";
-#endif lint
+char copyright[] =
+"@(#) Copyright (c) 1983 Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif not lint
+
+#ifndef lint
+static char sccsid[] = "@(#)tunefs.c	5.1 (Berkeley) 05/28/85";
+#endif not lint
 
 /*
  * tunefs: change layout parameters to an existing file system.
