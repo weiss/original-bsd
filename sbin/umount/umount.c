@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)umount.c	4.6 (Berkeley) 01/02/83";
+static char *sccsid = "@(#)umount.c	4.7 (Berkeley) 05/10/83";
 
 #include <stdio.h>
 #include <fstab.h>
@@ -86,7 +86,7 @@ umountfs(name)
 	register struct	mtab *mp;
 	int mf;
 
-	if (unmount(name) < 0) {
+	if (umount(name) < 0) {
 		perror(name);
 		return (0);
 	}
