@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)varpush.c	5.1 (Berkeley) 11/26/86";
+static char sccsid[] = "@(#)varpush.c	5.2 (Berkeley) 04/09/87";
 #endif not lint
 
 # include	"mille.h"
@@ -52,7 +52,7 @@ over:
 				goto over;
 			}
 			if (strcmp(buf, "/dev/null") != 0)
-				setbuf(outf, NULL);
+				setbuf(outf, (char *)NULL);
 		}
 	}
 	else {
