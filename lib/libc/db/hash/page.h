@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)page.h	5.2 (Berkeley) 09/04/91
+ *	@(#)page.h	5.3 (Berkeley) 06/06/93
  */
 
 /*
@@ -54,7 +54,7 @@
 #define FREESPACE(P)	((P)[(P)[0]+1])
 #define	OFFSET(P)	((P)[(P)[0]+2])
 #define PAIRFITS(P,K,D) \
-	(((P)[1] >= REAL_KEY) && \
+	(((P)[2] >= REAL_KEY) && \
 	    (PAIRSIZE((K),(D)) + OVFLSIZE) <= FREESPACE((P)))
 #define PAGE_META(N)	(((N)+3) * sizeof(u_short))
 
