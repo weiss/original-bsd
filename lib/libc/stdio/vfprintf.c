@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)vfprintf.c	5.36 (Berkeley) 10/23/88";
+static char sccsid[] = "@(#)vfprintf.c	5.37 (Berkeley) 03/26/89";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -375,8 +375,8 @@ pforw:
 				PUTC('0');
 
 			/* the string or number proper */
-			if (fp->_cnt - (n = size) >= 0 &&
-			    (fp->_flag & _IOLBF) == 0) {
+			n = size;
+			if (fp->_cnt - n >= 0 && (fp->_flag & _IOLBF) == 0) {
 				fp->_cnt -= n;
 				bcopy(t, (char *)fp->_ptr, n);
 				fp->_ptr += n;
