@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.h	7.16 (Berkeley) 02/18/92
+ *	@(#)if.h	7.17 (Berkeley) 02/19/92
  */
 
 /*
@@ -43,7 +43,8 @@
 /*
  * Forward structure declarations for function prototypes [sic].
  */
-struct rtentry;	
+struct	rtentry;	
+struct	mbuf;
 #endif
 /*
  * Structure describing information about an interface
