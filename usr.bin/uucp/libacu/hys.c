@@ -1,11 +1,10 @@
 #ifndef lint
-static char sccsid[] = "@(#)hys.c	4.5 (Berkeley) 01/13/86";
+static char sccsid[] = "@(#)hys.c	4.6 (Berkeley) 02/12/86";
 #endif
 
 #include "../condevs.h"
 
 #ifdef HAYES
-#define USR2400	/* U.S. Robotics Courier 2400 */
 #ifdef USR2400
 #define DROPDTR
 /*
