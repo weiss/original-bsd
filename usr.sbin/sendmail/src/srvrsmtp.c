@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	5.35 (Berkeley) 07/12/92 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.36 (Berkeley) 07/13/92 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	5.35 (Berkeley) 07/12/92 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	5.36 (Berkeley) 07/13/92 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -370,6 +370,10 @@ smtp(e)
 			if (runinchild("SMTP-VRFY", e) > 0)
 				break;
 			setproctitle("%s: %s", CurHostName, inp);
+#ifdef LOG
+			if (LogLevel >= 9)
+				syslog(LOG_INFO, "%s: %s", CurHostName, inp);
+#endif
 			vrfyqueue = NULL;
 			QuickAbort = TRUE;
 			sendtolist(p, (ADDRESS *) NULL, &vrfyqueue, e);

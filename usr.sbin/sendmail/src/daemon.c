@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.47 (Berkeley) 07/12/92 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.48 (Berkeley) 07/13/92 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.47 (Berkeley) 07/12/92 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.48 (Berkeley) 07/13/92 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -230,6 +230,15 @@ getrequests()
 				(void) sprintf(buf, "[%s]",
 					inet_ntoa(RealHostAddr.sin_addr));
 			}
+
+#ifdef LOG
+			if (LogLevel > 9)
+			{
+				/* log connection information */
+				syslog(LOG_INFO, "connect from %s (%s)",
+					buf, inet_ntoa(RealHostAddr.sin_addr));
+			}
+#endif
 
 			/* should we check for illegal connection here? XXX */
 
