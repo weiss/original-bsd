@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.64 (Berkeley) 12/17/93
+ *	@(#)conf.h	8.65 (Berkeley) 12/17/93
  */
 
 /*
@@ -160,6 +160,7 @@
 # define HASSETREUID	1	/* has setreuid(2) call */
 # define HASINITGROUPS	1	/* has initgroups(3) call */
 # define HASUNAME	1	/* use System V uname(2) system call */
+# define GIDSET_T	gid_t
 
 # ifdef SOLARIS_2_3
 #  define SOLARIS
