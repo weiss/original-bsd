@@ -12,14 +12,13 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)dbtest.c	5.11 (Berkeley) 02/28/93";
+static char sccsid[] = "@(#)dbtest.c	5.12 (Berkeley) 04/29/93";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <sys/stat.h>
 
 #include <ctype.h>
-#include <db.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -27,6 +26,8 @@ static char sccsid[] = "@(#)dbtest.c	5.11 (Berkeley) 02/28/93";
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#include <db.h>
 
 enum S { COMMAND, COMPARE, GET, PUT, REMOVE, SEQ, SEQFLAG, KEY, DATA };
 
