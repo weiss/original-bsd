@@ -1,6 +1,6 @@
-SCCSID = "@(#)pimakefile 1.12 10/19/80"
+SCCSID = "@(#)pimakefile 1.13 10/20/80"
 WHOAMI = pi
-INSTALLNAME = /usr/ucb/pi
+INSTALLNAME = ${DESTDIR}/usr/ucb/pi
 VERSION = 2.0
 
 MKSTR = /usr/ucb/mkstr
@@ -11,7 +11,7 @@ GET = sccs get
 CFLAGS = -O -w
 LDFLAGS = -z
 
-LIBDIR = /usr/lib
+LIBDIR = ${DESTDIR}/usr/lib
 TMPDIR = tmp
 
 ERRORSTRINGS = ${WHOAMI}${VERSION}strings
@@ -88,7 +88,6 @@ clean:
 	${RM} version Version.c
 	${RM} a.out core *.list *.bak
 	${RM} opc.c opc pic tags
-	sccs clean
 
 print:	sources
 	@pr makefile READ_ME
@@ -103,7 +102,6 @@ print:	sources
 	@pr yy.h yy*.c
 
 install: a.out
-	sccs check
 	cp ${ERRORSTRINGS} ${LIBDIR}/${ERRORSTRINGS}
 	cp ${INSTALLNAME} ${INSTALLNAME}.bak
 	cp a.out ${INSTALLNAME}
