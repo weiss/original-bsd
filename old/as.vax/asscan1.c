@@ -1,8 +1,11 @@
 /*
- *	Copyright (c) 1982 Regents of the University of California
+ * Copyright (c) 1982 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
  */
+
 #ifndef lint
-static char sccsid[] = "@(#)asscan1.c 4.6 07/06/83";
+static char sccsid[] = "@(#)asscan1.c	5.1 (Berkeley) 04/30/85";
 #endif not lint
 
 #include "asscanl.h"
