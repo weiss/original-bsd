@@ -22,13 +22,13 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)apropos.c	5.9 (Berkeley) 03/11/90";
+static char sccsid[] = "@(#)apropos.c	5.10 (Berkeley) 05/15/90";
 #endif /* not lint */
 
 #include <sys/param.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <strings.h>
+#include <string.h>
 #include "../man/pathnames.h"
 
 #define	MAXLINELEN	256			/* max line handled */
