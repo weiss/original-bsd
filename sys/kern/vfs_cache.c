@@ -14,14 +14,13 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_cache.c	7.1 (Berkeley) 04/24/89
+ *	@(#)vfs_cache.c	7.2 (Berkeley) 05/05/89
  */
 
 #include "param.h"
 #include "systm.h"
 #include "time.h"
 #include "vnode.h"
-#include "dir.h"
 #include "namei.h"
 
 /*

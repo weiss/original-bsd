@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_prf.c	7.13 (Berkeley) 04/25/89
+ *	@(#)subr_prf.c	7.14 (Berkeley) 05/05/89
  */
 
 #include "param.h"
@@ -14,7 +14,6 @@
 #include "reboot.h"
 #include "vm.h"
 #include "msgbuf.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
 #include "ioctl.h"

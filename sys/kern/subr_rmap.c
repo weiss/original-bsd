@@ -3,13 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)subr_rmap.c	7.2 (Berkeley) 02/27/88
+ *	@(#)subr_rmap.c	7.3 (Berkeley) 05/05/89
  */
 
 #include "param.h"
 #include "systm.h"
 #include "map.h"
-#include "dir.h"
 #include "user.h"
 #include "proc.h"
 #include "text.h"

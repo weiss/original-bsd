@@ -14,11 +14,10 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_time.c	7.9 (Berkeley) 05/01/89
+ *	@(#)kern_time.c	7.10 (Berkeley) 05/05/89
  */
 
 #include "param.h"
-#include "dir.h"		/* XXX */
 #include "user.h"
 #include "kernel.h"
 #include "proc.h"
