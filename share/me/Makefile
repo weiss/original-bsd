@@ -1,6 +1,7 @@
-#	@(#)Makefile	6.14 (Berkeley) 07/21/92
+#	@(#)Makefile	6.15 (Berkeley) 07/23/92
 
 MELIB=	${BINDIR}/me
+TMLIB=	${BINDIR}/tmac
 MESRCS=	acm.me chars.me deltext.me eqn.me float.me footnote.me \
 	index.me letterhead.me local.me null.me refer.me sh.me \
 	tbl.me thesis.me
