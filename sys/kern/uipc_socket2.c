@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_socket2.c	7.12 (Berkeley) 05/20/90
+ *	@(#)uipc_socket2.c	7.13 (Berkeley) 06/25/90
  */
 
 #include "param.h"
@@ -255,8 +255,10 @@ sbselqueue(sb)
 
 	if ((p = sb->sb_sel) && p->p_wchan == (caddr_t)&selwait)
 		sb->sb_flags |= SB_COLL;
-	else
+	else {
 		sb->sb_sel = u.u_procp;
+		sb->sb_flags |= SB_SEL;
+	}
 }
 
 /*
@@ -306,7 +308,7 @@ sowakeup(so, sb)
 	if (sb->sb_sel) {
 		selwakeup(sb->sb_sel, sb->sb_flags & SB_COLL);
 		sb->sb_sel = 0;
-		sb->sb_flags &= ~SB_COLL;
+		sb->sb_flags &= ~(SB_SEL|SB_COLL);
 	}
 	if (sb->sb_flags & SB_WAIT) {
 		sb->sb_flags &= ~SB_WAIT;
