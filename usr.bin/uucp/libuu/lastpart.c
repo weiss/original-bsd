@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lastpart.c	5.1 (Berkeley) 07/02/83";
+static char sccsid[] = "@(#)lastpart.c	5.2 (Berkeley) 01/22/85";
 #endif
 
 /*******
@@ -15,10 +15,11 @@ lastpart(file)
 register char *file;
 {
 	register char *c;
+	char *rindex();
 
-	c = file + strlen(file);
-	while (c >= file)
-		if (*(--c) == '/')
-			break;
-	return(++c);
+	c = rindex(file, '/');
+	if (c)
+		return c;
+	else
+		return file;
 }
