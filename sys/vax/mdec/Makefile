@@ -1,9 +1,9 @@
 #
-# Copyright (c) 1980 Regents of the University of California.
+# Copyright (c) 1980, 1986 Regents of the University of California.
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	6.3 (Berkeley) 06/08/85
+#	@(#)Makefile	7.1 (Berkeley) 06/05/86
 #
 ALL=	hkboot hpboot htboot mtboot noboot raboot rlboot \
 	upboot utboot tmboot tsboot tuboot \
