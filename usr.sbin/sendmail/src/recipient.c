@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)recipient.c	5.3 (Berkeley) 06/08/85";
+static char	SccsId[] = "@(#)recipient.c	5.4 (Berkeley) 09/19/85";
 #endif not lint
 
 # include <pwd.h>
@@ -234,6 +234,7 @@ recipient(a, sendq)
 	/* add address on list */
 	*pq = a;
 	a->q_next = NULL;
+	CurEnv->e_nrcpts++;
 
 	/*
 	**  Alias the name and handle :include: specs.
