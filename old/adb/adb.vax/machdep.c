@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)machdep.c	5.3 (Berkeley) 09/26/89";
-#endif
+static char sccsid[] = "@(#)machdep.c	5.4 (Berkeley) 04/04/91";
+#endif /* not lint */
 
 /*
  * adb - miscellaneous machine dependent routines.
