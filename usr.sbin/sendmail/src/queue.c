@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.3 (Berkeley) 07/13/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.4 (Berkeley) 07/16/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.3 (Berkeley) 07/13/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.4 (Berkeley) 07/16/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -801,6 +801,8 @@ dowork(id, forkflag, requeueflag, e)
 		e->e_flags |= EF_QUEUERUN;
 		e->e_errormode = EM_MAIL;
 		e->e_id = id;
+		if (forkflag)
+			disconnect(0, e);
 # ifdef LOG
 		if (LogLevel > 76)
 			syslog(LOG_DEBUG, "%s: dowork, pid=%d", e->e_id,
