@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_ethersubr.c	7.14 (Berkeley) 06/25/91
+ *	@(#)if_ethersubr.c	7.15 (Berkeley) 01/30/92
  */
 
 #include "param.h"
@@ -17,14 +17,13 @@
 #include "ioctl.h"
 #include "errno.h"
 #include "syslog.h"
+#include "machine/cpu.h"
 
 #include "if.h"
 #include "netisr.h"
 #include "route.h"
 #include "if_llc.h"
 #include "if_dl.h"
-
-#include "machine/mtpr.h"
 
 #ifdef INET
 #include "../netinet/in.h"
