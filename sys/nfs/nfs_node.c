@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Rick Macklem at The University of Guelph.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_node.c	7.48 (Berkeley) 05/03/93
+ *	@(#)nfs_node.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <sys/param.h>
