@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)dirent.h	5.11 (Berkeley) 06/23/90
+ *	@(#)dirent.h	5.12 (Berkeley) 06/23/90
  */
 
 #ifndef _DIRENT_
@@ -60,7 +60,7 @@ typedef struct _dirdesc {
 #if __STDC__ || c_plusplus
 extern DIR *opendir(const char *);
 extern struct dirent *readdir(DIR *);
-extern void rewindir(DIR *);
+extern void rewinddir(DIR *);
 extern int closedir(DIR *);
 #ifndef _POSIX_SOURCE
 extern long telldir(const DIR *);
