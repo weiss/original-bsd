@@ -8,7 +8,7 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.25 (Berkeley) 12/10/93')
+VERSIONID(`@(#)proto.m4	8.26 (Berkeley) 12/15/93')
 
 MAILER(local)dnl
 
@@ -572,6 +572,9 @@ ifdef(`BITNET_RELAY',
 	`dnl')
 ifdef(`CSNET_RELAY',
 `R$*<@$+.CSNET.>$*	$: $>_SET_95_ < $C > $1 <@$2.CSNET.> $3	user@host.CSNET',
+	`dnl')
+ifdef(`_MAILER_pop_',
+`R$+ < @ POP. >		$#pop $: $1			user@POP',
 	`dnl')
 ifdef(`_MAILER_fax_',
 `R$+ < @ $+ .FAX. >	$#fax $@ $2 $: $1		user@host.FAX',
