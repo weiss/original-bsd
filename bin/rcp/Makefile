@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.3 (Berkeley) 05/11/90
+#	@(#)Makefile	5.4 (Berkeley) 10/21/90
 
 PROG=	rcp
 SRCS=	rcp.c krcmd.c kcmd.c
-CFLAGS+=-DKERBEROS
+CFLAGS+=-DKERBEROS -DCRYPT
 DPADD=	${LIBKRB} ${LIBDES}
 LDADD=	-lkrb -ldes
 BINOWN=	root
