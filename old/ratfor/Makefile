@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.8 (Berkeley) 01/19/91
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	ratfor
 SRCS=	r.c r0.c r1.c r2.c rio.c rlook.c rlex.c
