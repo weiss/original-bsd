@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)symbols.c 1.9 05/20/83";
+static char sccsid[] = "@(#)symbols.c 1.10 08/10/83";
 
 /*
  * Symbol management.
@@ -67,7 +67,8 @@ struct Symbol {
 	} rangev;
 	struct {
 	    int offset : 16;	/* offset for of function value */
-	    Boolean src : 16;	/* true if there is source line info */
+	    Boolean src : 8;	/* true if there is source line info */
+	    Boolean inline : 8;	/* true if no separate act. rec. */
 	    Address beginaddr;	/* address of function code */
 	} funcv;
 	struct {		/* variant record info */
@@ -101,6 +102,7 @@ Symbol curfunc;
 )
 
 #define nosource(f) (not (f)->symvalue.funcv.src)
+#define isinline(f) ((f)->symvalue.funcv.inline)
 
 #include "tree.h"
 
