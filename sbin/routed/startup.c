@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)startup.c	5.15 (Berkeley) 02/18/89";
+static char sccsid[] = "@(#)startup.c	5.16 (Berkeley) 04/02/89";
 #endif /* not lint */
 
 /*
@@ -26,6 +26,7 @@ static char sccsid[] = "@(#)startup.c	5.15 (Berkeley) 02/18/89";
 #include <sys/ioctl.h>
 #include <net/if.h>
 #include <syslog.h>
+#include "pathnames.h"
 
 struct	interface *ifnet;
 struct	interface **ifnext = &ifnet;
@@ -324,7 +325,7 @@ gwkludge()
 	int metric, n;
 	struct rt_entry route;
 
-	fp = fopen("/etc/gateways", "r");
+	fp = fopen(_PATH_GATEWAYS, "r");
 	if (fp == NULL)
 		return;
 	qual = buf;
