@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)keyword.c	5.8 (Berkeley) 06/03/91";
+static char sccsid[] = "@(#)keyword.c	5.9 (Berkeley) 06/03/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -260,13 +260,14 @@ showkey()
 parsefmt(p)
 	char *p;
 {
+	static struct varent *vtail;
 	register VAR *v;
 	register char *cp;
 	register struct varent *vent;
 	static VAR *findvar();
 
 #define	FMTSEP	" \t,\n"
-	while (p) {
+	while (p && *p) {
 		while ((cp = strsep(&p, FMTSEP)) != NULL && *cp == '\0')
 			/* void */;
 		if (!(v = findvar(cp)))
