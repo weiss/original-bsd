@@ -12,7 +12,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)man.c	8.13 (Berkeley) 01/02/94";
+static char sccsid[] = "@(#)man.c	8.14 (Berkeley) 02/08/94";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -681,6 +681,6 @@ static void
 usage()
 {
 	(void)fprintf(stderr,
-    "usage: man [-ac] [-C file] [-M path] [-m path] [section] title ...\n");
+    "usage: man [-achw] [-C file] [-M path] [-m path] [section] title ...\n");
 	exit(1);
 }
