@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)pr.c	4.5 (Berkeley) 12/12/84";
+static char *sccsid = "@(#)pr.c	4.6 (Berkeley) 12/09/86";
 
 /*
  *   print file with headings
@@ -228,7 +228,7 @@ char **argp;
 		if (mflg==0) {
 			colp[ncol]--;
 			if (colp[ncol] < buffer)
-				colp[ncol] = &buffer[BUFS];
+				colp[ncol] = &buffer[BUFS - 1];
 		}
 		line = 0;
 		if (ntflg==0) {
