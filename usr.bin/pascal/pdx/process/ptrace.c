@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)ptrace.c	5.3 (Berkeley) 05/11/87";
+static char sccsid[] = "@(#)ptrace.c	5.4 (Berkeley) 10/30/90";
 #endif not lint
 
 /*
@@ -196,9 +196,7 @@ PROCESS *p;
  * turn off attention to signals not being caught
  */
 
-typedef int INTFUNC();
-
-LOCAL INTFUNC *onintr, *onquit;
+LOCAL void *onintr, *onquit;
 
 LOCAL sigs_off()
 {
