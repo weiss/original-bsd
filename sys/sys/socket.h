@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)socket.h	6.7 (Berkeley) 06/25/85
+ *	@(#)socket.h	6.8 (Berkeley) 09/16/85
  */
 
 /*
@@ -40,6 +40,7 @@
 #define SO_RCVLOWAT	0x1004		/* receive low-water mark */
 #define SO_SNDTIMEO	0x1005		/* send timeout */
 #define SO_RCVTIMEO	0x1006		/* receive timeout */
+#define	SO_ERROR	0x1007		/* get error status and clear */
 
 /*
  * Structure used for manipulating linger option.
