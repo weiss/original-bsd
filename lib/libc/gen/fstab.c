@@ -6,7 +6,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fstab.c	5.16 (Berkeley) 10/04/92";
+static char sccsid[] = "@(#)fstab.c	5.17 (Berkeley) 12/14/92";
 #endif /* LIBC_SCCS and not lint */
 
 #include <errno.h>
@@ -169,6 +169,7 @@ error(err)
 
 	(void)write(STDERR_FILENO, "fstab: ", 7);
 	(void)write(STDERR_FILENO, _PATH_FSTAB, sizeof(_PATH_FSTAB) - 1);
+	(void)write(STDERR_FILENO, ": ", 1);
 	p = strerror(err);
 	(void)write(STDERR_FILENO, p, strlen(p));
 	(void)write(STDERR_FILENO, "\n", 1);
