@@ -36,13 +36,8 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	3.31	09/20/81";
-
-
-# include <whoami.h>		/* definitions of machine id's at berkeley */
-
-
-/*
+static char SccsId[] = "@(#)conf.c	3.31.1.1	09/23/81";
+/*
 **  Header info table
 **	Final (null) entry contains the flags used for any other field.
 **
