@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_vfsops.c	7.9 (Berkeley) 11/10/89
+ *	@(#)nfs_vfsops.c	7.10 (Berkeley) 11/30/89
  */
 
 #include "param.h"
@@ -252,8 +252,8 @@ nfs_unmount(mp, flags)
 	/*
 	 * Clear out the buffer cache
 	 */
-	bflush(mp);
-	if (binval(mp))
+	mntflushbuf(mp, 0);
+	if (mntinvalbuf(mp))
 		return (EBUSY);
 	/*
 	 * Goes something like this..
@@ -325,7 +325,7 @@ nfs_sync(mp, waitfor)
 	/*
 	 * Force stale buffer cache information to be flushed.
 	 */
-	bflush(mp);
+	mntflushbuf(mp);
 	return (0);
 }
 
