@@ -1,7 +1,11 @@
-/* Copyright (c) 1984 Regents of the University of California */
+/*
+ * Copyright (c) 1984 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
 
 #ifndef lint
-static char sccsid[] = "@(#)libcpats.c	1.2	(Berkeley)	08/18/84";
+static char sccsid[] = "@(#)libcpats.c	1.3 (Berkeley) 06/08/85";
 #endif not lint
 
 #include "inline.h"
