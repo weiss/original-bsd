@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.9 (Berkeley) 08/24/93";
+static char sccsid[] = "@(#)parseaddr.c	8.10 (Berkeley) 09/04/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1223,7 +1223,7 @@ badaddr:
 			syserr("554 buildaddr: error: no user");
 		cataddr(++tv, NULL, buf, sizeof buf, ' ');
 		stripquotes(buf);
-		usrerr(buf);
+		usrerr("%s", buf);
 		goto badaddr;
 	}
 
