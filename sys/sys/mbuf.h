@@ -1,11 +1,10 @@
 /*
- * Copyright (c)
- *	1982, 1986, 1988, 1993  Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1982, 1986, 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)mbuf.h	8.2 (Berkeley) 01/11/94
+ *	@(#)mbuf.h	8.3 (Berkeley) 01/21/94
  */
 
 #ifndef M_WAITOK
