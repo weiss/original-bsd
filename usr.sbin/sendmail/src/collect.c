@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)collect.c	3.45		08/08/82);
+SCCSID(@(#)collect.c	3.46		08/15/82);
 
 /*
 **  COLLECT -- read & parse message header & make temp file.
@@ -342,7 +342,7 @@ collect(sayok)
 	if (LogLevel > 1)
 		syslog(LOG_INFO, "%s: from=%s, size=%ld, class=%d\n", MsgId,
 		       CurEnv->e_from.q_paddr, CurEnv->e_msgsize,
-		       CurEnv->e_msgpriority);
+		       CurEnv->e_class);
 # endif LOG
 	return;
 }
