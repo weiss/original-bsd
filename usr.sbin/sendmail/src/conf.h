@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.h	8.120 (Berkeley) 09/09/94
+ *	@(#)conf.h	8.121 (Berkeley) 10/15/94
  */
 
 /*
@@ -519,7 +519,7 @@ extern int		errno;
 # define FORK		fork
 # define MAXPATHLEN	PATHSIZE
 # define LA_TYPE	LA_SHORT
-# define SFS_TYPE	SFS_STATFS	/* use <sys/statfs.h> statfs() impl */
+# define SFS_TYPE	SFS_4ARGS	/* use <sys/statfs.h> 4-arg impl */
 # define TZ_TYPE	TZ_TM_NAME	/* use tm->tm_name */
 # undef NETUNIX			/* no unix domain socket support */
 #endif
