@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)byteorder.c	2.1 (Berkeley) 12/10/85";
+static char sccsid[] = "@(#)byteorder.c	2.2 (Berkeley) 05/15/86";
 #endif not lint
 
 #include "globals.h"
@@ -20,14 +20,18 @@ bytenetorder(ptr)
 struct tsp *ptr;
 {
 	ptr->tsp_seq = htons((u_short)ptr->tsp_seq);
-	ptr->tsp_time.tv_sec = htonl((u_long)ptr->tsp_time.tv_sec);
-	ptr->tsp_time.tv_usec = htonl((u_long)ptr->tsp_time.tv_usec);
+	if (ptr->tsp_type != TSP_LOOP) {
+		ptr->tsp_time.tv_sec = htonl((u_long)ptr->tsp_time.tv_sec);
+		ptr->tsp_time.tv_usec = htonl((u_long)ptr->tsp_time.tv_usec);
+	}
 }
 
 bytehostorder(ptr)
 struct tsp *ptr;
 {
 	ptr->tsp_seq = ntohs((u_short)ptr->tsp_seq);
-	ptr->tsp_time.tv_sec = ntohl((u_long)ptr->tsp_time.tv_sec);
-	ptr->tsp_time.tv_usec = ntohl((u_long)ptr->tsp_time.tv_usec);
+	if (ptr->tsp_type != TSP_LOOP) {
+		ptr->tsp_time.tv_sec = ntohl((u_long)ptr->tsp_time.tv_sec);
+		ptr->tsp_time.tv_usec = ntohl((u_long)ptr->tsp_time.tv_usec);
+	}
 }
