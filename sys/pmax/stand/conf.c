@@ -7,11 +7,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)conf.c	7.2 (Berkeley) 03/07/92
+ *	@(#)conf.c	7.3 (Berkeley) 10/11/92
  */
 
-#include "saio.h"
-#include "../include/machMon.h"
+#include <pmax/stand/saio.h>
+#include <machine/machMon.h>
 
 devread(io)
 	register struct iob *io;

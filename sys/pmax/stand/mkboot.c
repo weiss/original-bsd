@@ -15,15 +15,15 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)mkboot.c	7.3 (Berkeley) 04/19/92";
+static char sccsid[] = "@(#)mkboot.c	7.4 (Berkeley) 10/11/92";
 #endif not lint
 
+#include <sys/param.h>
+#include <sys/exec.h>
+#include <sys/disklabel.h>
 #include <stdio.h>
-#include "param.h"
-#include "exec.h"
-#include "disklabel.h"
 
-#include "dec_boot.h"
+#include <pmax/stand/dec_boot.h>
 
 /* this is the size of the standard ULTRIX boot */
 #define MAXBOOTSIZE (15 * DEV_BSIZE)
