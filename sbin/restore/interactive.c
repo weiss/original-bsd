@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)interactive.c	5.19 (Berkeley) 02/10/93";
+static char sccsid[] = "@(#)interactive.c	5.20 (Berkeley) 02/11/93";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -55,7 +55,6 @@ struct arglist {
 
 static char	*copynext __P((char *, char *));
 static int	 fcmp __P((const void *, const void *));
-static char	*fmtentry __P((struct afile *));
 static void	 formatf __P((struct afile *, int));
 static void	 getcmd __P((char *, char *, char *, struct arglist *));
 struct dirent	*glob_readdir __P((RST_DIR *dirp));
