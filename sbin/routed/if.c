@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)if.c	5.2 (Berkeley) 02/23/86";
+static char sccsid[] = "@(#)if.c	5.3 (Berkeley) 04/20/86";
 #endif not lint
 
 /*
@@ -108,6 +108,9 @@ if_iflookup(addr)
 			break;
 		if ((ifp->int_flags & IFF_BROADCAST) &&
 		    same(&ifp->int_broadaddr, addr))
+			break;
+		if ((ifp->int_flags & IFF_POINTOPOINT) &&
+		    same(&ifp->int_dstaddr, addr))
 			break;
 		if (maybe == 0 && (*netmatch)(addr, &ifp->int_addr))
 			maybe = ifp;
