@@ -7,10 +7,10 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)prf.c	7.4 (Berkeley) 05/04/91
+ *	@(#)prf.c	7.5 (Berkeley) 10/11/92
  */
 
-#include "types.h"
+#include <sys/types.h>
 
 putchar(c)
 char c;
