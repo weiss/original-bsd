@@ -1,4 +1,4 @@
-#	@(#)sys.mk	8.1 (Berkeley) 07/09/93
+#	@(#)sys.mk	8.2 (Berkeley) 03/21/94
 
 unix		?=	We run UNIX.
 
@@ -48,6 +48,9 @@ SHELL		?=	sh
 
 YACC		?=	yacc
 YFLAGS		?=	-d
+
+.c:
+	${CC} ${CFLAGS} ${.IMPSRC} -o ${.TARGET}
 
 .c.o:
 	${CC} ${CFLAGS} -c ${.IMPSRC}
