@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)df.c	5.16 (Berkeley) 03/06/90";
+static char sccsid[] = "@(#)df.c	5.17 (Berkeley) 03/13/90";
 #endif /* not lint */
 
 /*
@@ -107,7 +107,7 @@ main(argc, argv)
 				continue;
 			}
 		} else if ((stbuf.st_mode & S_IFMT) == S_IFBLK) {
-			if ((mntpt = getmntpt(*argv)) == 0)
+			if ((mntpt = getmntpt(*argv)) == 0) {
 				mntpt = mktemp("/tmp/df.XXXXXX");
 				mdev.fspec = *argv;
 				if (!mkdir(mntpt) &&
@@ -121,6 +121,7 @@ main(argc, argv)
 				(void)unmount(mntpt, MNT_NOFORCE);
 				(void)rmdir(mntpt);
 				continue;
+			}
 		} else
 			mntpt = *argv;
 		/*
