@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ufs_extern.h	7.18 (Berkeley) 11/14/92
+ *	@(#)ufs_extern.h	7.19 (Berkeley) 12/09/92
  */
 
 struct buf;
@@ -56,6 +56,8 @@ struct vnode *
 	 ufs_ihashget __P((dev_t, ino_t));
 void	 ufs_ihashinit __P((void));
 void	 ufs_ihashins __P((struct inode *));
+struct vnode *
+	 ufs_ihashlookup __P((dev_t, ino_t));
 void	 ufs_ihashrem __P((struct inode *));
 int	 ufs_inactive __P((struct vop_inactive_args *));
 int	 ufs_init __P((void));
