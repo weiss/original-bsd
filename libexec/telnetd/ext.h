@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ext.h	5.8 (Berkeley) 12/18/92
+ *	@(#)ext.h	5.9 (Berkeley) 04/05/93
  */
 
 /*
@@ -93,6 +93,7 @@ extern void
 	init_termbuf P((void)),
 	interrupt P((void)),
 	localstat P((void)),
+	flowstat P((void)),
 	netclear P((void)),
 	netflush P((void)),
 #ifdef DIAGNOSTICS
