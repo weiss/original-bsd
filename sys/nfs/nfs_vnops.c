@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_vnops.c	7.61 (Berkeley) 09/06/91
+ *	@(#)nfs_vnops.c	7.62 (Berkeley) 11/01/91
  */
 
 /*
@@ -29,9 +29,9 @@
 #include "fifo.h"
 #include "map.h"
 
-#include "../ufs/quota.h"
-#include "../ufs/inode.h"
-#include "../ufs/dir.h"
+#include "ufs/ufs/quota.h"
+#include "ufs/ufs/inode.h"
+#include "ufs/ufs/dir.h"
 
 #include "nfsv2.h"
 #include "nfs.h"
