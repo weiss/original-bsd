@@ -3,10 +3,10 @@
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.50		05/20/83	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	4.1		07/25/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.50		05/20/83);
+SCCSID(@(#)srvrsmtp.c	4.1		07/25/83);
 
 /*
 **  SMTP -- run the SMTP protocol.
