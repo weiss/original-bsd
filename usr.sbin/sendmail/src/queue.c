@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.36 (Berkeley) 01/09/94 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.37 (Berkeley) 01/22/94 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.36 (Berkeley) 01/09/94 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.37 (Berkeley) 01/22/94 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1513,7 +1513,10 @@ setctluser(user)
 		*p++ = '\0';
 	if (*user != '\0' && (pw = getpwnam(user)) != NULL)
 	{
-		a->q_home = newstr(pw->pw_dir);
+		if (strcmp(pw->pw_dir, "/") == 0)
+			a->q_home = "";
+		else
+			a->q_home = newstr(pw->pw_dir);
 		a->q_uid = pw->pw_uid;
 		a->q_gid = pw->pw_gid;
 		a->q_user = newstr(user);
