@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)param.h	7.15 (Berkeley) 04/03/90
+ *	@(#)param.h	7.16 (Berkeley) 05/10/90
  */
 
 /*
@@ -68,6 +68,13 @@
 #define	NMBCLUSTERS	512		/* map size, max cluster allocation */
 #else
 #define	NMBCLUSTERS	256		/* map size, max cluster allocation */
+#endif
+
+/*
+ * Size of kernel malloc arena in CLBYTES-sized logical pages
+ */ 
+#ifndef NKMEMCLUSTERS
+#define	NKMEMCLUSTERS	(512*1024/CLBYTES)
 #endif
 
 /*
