@@ -1,5 +1,5 @@
 #
-#	"@(#)bibinc.shortnames	2.9	05/27/93";
+#	"@(#)bibinc.shortnames	2.10	06/18/94";
 # short journal names, and other names
 #
 # journals
@@ -133,7 +133,7 @@ D WJCC PROC Western Joint Computer CONF
 #
 #  publishers
 #
-I BMACLIB/bibinc.publishers
+I BMACLIB/bibmacs/bibinc.publishers
 #
 # months
 #
