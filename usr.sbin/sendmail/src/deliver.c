@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	6.21 (Berkeley) 02/21/93";
+static char sccsid[] = "@(#)deliver.c	6.22 (Berkeley) 02/22/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1394,7 +1394,9 @@ mailfile(filename, ctladdr, e)
 		f = dfopen(filename, "a");
 		if (f == NULL)
 		{
-			message("cannot open");
+			extern char Arpa_PSyserr[];
+
+			message(Arpa_PSyserr, "cannot open");
 			exit(EX_CANTCREAT);
 		}
 
@@ -1405,7 +1407,9 @@ mailfile(filename, ctladdr, e)
 		putline("\n", f, ProgMailer);
 		if (ferror(f))
 		{
-			message("I/O error");
+			extern char Arpa_TSyserr[];
+
+			message(Arpa_TSyserr, "I/O error");
 			setstat(EX_IOERR);
 		}
 		(void) fclose(f);
@@ -1463,10 +1467,10 @@ sendall(e, mode)
 	{
 		extern bool shouldqueue();
 
-		if (shouldqueue(e->e_msgpriority, e->e_ctime))
+		mode = SendMode;
+		if (mode != SM_VERIFY &&
+		    shouldqueue(e->e_msgpriority, e->e_ctime))
 			mode = SM_QUEUE;
-		else
-			mode = SendMode;
 	}
 
 	if (tTd(13, 1))
