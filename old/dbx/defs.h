@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)defs.h	5.1 (Berkeley) 05/31/85
+ *	@(#)defs.h	5.2 (Berkeley) 01/12/88
  */
 
 /*
@@ -11,6 +11,13 @@
  */
 
 #include <stdio.h>
+
+#ifdef sgi
+#   define double long float
+#   define atof _latof
+#   define IRIS
+#   define mc68000
+#endif
 
 #define new(type)           ((type) malloc(sizeof(struct type)))
 #define newarr(type, n)     ((type *) malloc((unsigned) (n) * sizeof(type)))
