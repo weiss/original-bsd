@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)res_debug.c	5.3 (Berkeley) 08/01/85";
+static char sccsid[] = "@(#)res_debug.c	5.4 (Berkeley) 08/02/85";
 #endif not lint
 
 #include <sys/types.h>
@@ -188,7 +188,7 @@ p_rr(cp, msg, file)
 	cp += sizeof(u_short);
 	fprintf(file,", class = %s", p_class(class = getshort(cp)));
 	cp += sizeof(u_short);
-	fprintf(file,", ttl = %ld", getlong(cp));
+	fprintf(file,", ttl = %u", getlong(cp));
 	cp += sizeof(u_long);
 	fprintf(file,", dlen = %d\n", dlen = getshort(cp));
 	cp += sizeof(u_short);
