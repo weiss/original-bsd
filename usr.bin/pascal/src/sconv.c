@@ -1,6 +1,8 @@
 /* Copyright (c) 1983 Regents of the University of California */
 
-static	char sccsid[] = "@(#)sconv.c 1.2 02/01/83";
+#ifndef lint
+static	char sccsid[] = "@(#)sconv.c 1.3 08/19/83";
+#endif
 
     /*
      *	functions to help pi put out
