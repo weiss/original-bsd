@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)printf.c	5.7 (Berkeley) 07/20/89";
+static char sccsid[] = "@(#)printf.c	5.8 (Berkeley) 04/18/90";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -263,7 +263,7 @@ getlong()
 	if (!*gargv)
 		return((long)0);
 	if (index(number, **gargv))
-		return(atol(*gargv++));
+		return(strtol(*gargv++, (char **)NULL, 0));
 	return((long)asciicode());
 }
 
