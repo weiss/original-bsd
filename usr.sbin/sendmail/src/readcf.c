@@ -17,7 +17,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)readcf.c	5.15 (Berkeley) 11/18/88";
+static char sccsid[] = "@(#)readcf.c	5.16 (Berkeley) 12/28/88";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -648,11 +648,6 @@ printrules()
 
 static BITMAP	StickyOpt;		/* set if option is stuck */
 extern char	*NetName;		/* name of home (local) network */
-# ifdef SMTP
-# ifdef WIZ
-extern char	*WizWord;		/* the stored wizard password */
-# endif WIZ
-# endif SMTP
 
 setoption(opt, val, safe, sticky)
 	char opt;
@@ -884,14 +879,6 @@ setoption(opt, val, safe, sticky)
 	  case 'v':		/* run in verbose mode */
 		Verbose = atobool(val);
 		break;
-
-# ifdef SMTP
-# ifdef WIZ
-	  case 'W':		/* set the wizards password */
-		WizWord = newstr(val);
-		break;
-# endif WIZ
-# endif SMTP
 
 	  case 'x':		/* load avg at which to auto-queue msgs */
 		QueueLA = atoi(val);
