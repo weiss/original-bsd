@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rlogind.c	5.43 (Berkeley) 05/21/90";
+static char sccsid[] = "@(#)rlogind.c	5.44 (Berkeley) 06/07/90";
 #endif /* not lint */
 
 #ifdef KERBEROS
@@ -415,6 +415,7 @@ protocol(f, p)
 	for (;;) {
 		fd_set ibits, obits, ebits, *omask;
 
+		FD_ZERO(&ebits);
 		FD_ZERO(&ibits);
 		FD_ZERO(&obits);
 		omask = (fd_set *)NULL;
