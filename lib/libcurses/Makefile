@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.13 (Berkeley) 10/26/92
+#	@(#)Makefile	5.14 (Berkeley) 01/11/93
 
-CFLAGS+=-g #-DTFILE=\"/dev/ttyp0\"
+CFLAGS+=#-DTFILE=\"/dev/ttyp0\"
 CFLAGS+=-D_CURSES_PRIVATE -I${.CURDIR}
 LIB=	curses
 SRCS=	addbytes.c addch.c addstr.c box.c clear.c clrtobot.c clrtoeol.c \
