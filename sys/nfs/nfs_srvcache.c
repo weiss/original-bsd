@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nfs_srvcache.c	7.10 (Berkeley) 03/19/91
+ *	@(#)nfs_srvcache.c	7.11 (Berkeley) 04/16/91
  */
 
 /*
@@ -17,6 +17,7 @@
  */
 
 #include "param.h"
+#include "namei.h"
 #include "vnode.h"
 #include "mount.h"
 #include "kernel.h"
