@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)vfs_syscalls.c	7.21 (Berkeley) 10/31/89
+ *	@(#)vfs_syscalls.c	7.22 (Berkeley) 11/03/89
  */
 
 #include "param.h"
@@ -248,8 +248,9 @@ dounmount(mp, flags)
  * Sync system call.
  * Sync each mounted filesystem.
  */
+/* ARGSUSED */
 sync(scp)
-	register struct syscontext *scp;
+	struct syscontext *scp;
 {
 	register struct mount *mp;
 
