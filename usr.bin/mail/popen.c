@@ -5,11 +5,14 @@
 #define	RDR	0
 #define	WTR	1
 static	int	popen_pid[20];
-static	char	*sccsid = "@(#)popen.c	1.4 07/26/82";
+static	char	*sccsid = "@(#)popen.c	1.5 10/21/82";
 
 # ifndef VMUNIX
 # define vfork	fork
 # endif VMUNIX
+#ifndef	SIGRETRO
+#define	sigchild()
+#endif
 
 FILE *
 popen(cmd,mode)
