@@ -8,12 +8,13 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)updatedb.csh	8.2 (Berkeley) 01/02/94
+#	@(#)updatedb.csh	8.3 (Berkeley) 03/19/94
 #
 
 set SRCHPATHS = "/"			# directories to be put in the database
 set LIBDIR = /usr/libexec		# for subprograms
-if (! $?TMPDIR) set TMPDIR = /var/tmp	# for temp files
+					# for temp files
+if (! $?TMPDIR) setenv TMPDIR = /var/tmp
 set FCODES = /var/db/locate.database	# the database
 
 set path = ( /bin /usr/bin )
