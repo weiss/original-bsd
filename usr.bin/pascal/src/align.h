@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-/* static	char sccsid[] = "@(#)align.h 1.2 02/01/83"; */
+/* static	char sccsid[] = "@(#)align.h 1.3 09/19/83"; */
 
     /*
      *	alignment of various types in bytes.
