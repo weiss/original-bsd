@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)sort.c	4.16 (Berkeley) 08/30/89";
+static	char *sccsid = "@(#)sort.c	4.17 (Berkeley) 03/01/91";
 
 #include <sys/param.h>
 #include <sys/file.h>
@@ -34,7 +34,7 @@ char	*tspace;
 int	cmp(), cmpa();
 int	(*compare)() = cmpa;
 char	*eol();
-int	term();
+void	term();
 int 	mflg;
 int	cflg;
 int	uflg;
@@ -564,6 +564,7 @@ char *s, *t;
 	fputs("\n",stderr);
 }
 
+void
 term()
 {
 	register i;
