@@ -1,4 +1,7 @@
-/* @(#)exec.c	4.2 (Berkeley) 10/16/84 */
+#ifndef lint
+static char sccsid[] = "@(#)exec.c	5.1 (Berkeley) 06/05/85";
+#endif not lint
+
 /*
  *	execlp(name, arg,...,0)	(like execl, but does path search)
  *	execvp(name, argv)	(like execv, but does path search)
