@@ -14,8 +14,8 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pathnames.h	5.1 (Berkeley) 03/05/89
+ *	@(#)pathnames.h	5.2 (Berkeley) 05/03/90
  */
 
-#define	_PATH_RAWSCORES	"/usr/games/lib/snakerawscores"
-#define	_PATH_LOGFILE	"/usr/games/lib/snake.log"
+#define	_PATH_RAWSCORES	"/var/games/snakerawscores"
+#define	_PATH_LOGFILE	"/var/games/snake.log"
