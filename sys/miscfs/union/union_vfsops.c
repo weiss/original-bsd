@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)union_vfsops.c	8.14 (Berkeley) 12/30/94
+ *	@(#)union_vfsops.c	8.15 (Berkeley) 02/23/95
  */
 
 /*
@@ -309,7 +309,7 @@ union_unmount(mp, mntflags, p)
 	/*
 	 * And blow it away for future re-use
 	 */
-	vgone(um_rootvp);
+	VOP_REVOKE(um_rootvp, 0);
 	/*
 	 * Finally, throw away the union_mount structure
 	 */
