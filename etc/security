@@ -1,12 +1,10 @@
 #!/bin/sh -
 #
-#	@(#)security	5.10 (Berkeley) 02/19/92
+#	@(#)security	5.11 (Berkeley) 02/20/92
 #
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 host=`hostname`
-echo "Subject: $host security check output"
-
 umask 22
 
 DONE=/tmp/_secure1.$$
