@@ -1,6 +1,6 @@
 /* Copyright (c) 1982 Regents of the University of California */
 
-static char sccsid[] = "@(#)canfield.c 4.6 05/10/83";
+static char sccsid[] = "@(#)canfield.c 4.7 05/12/83";
 
 /*
  * The canfield program
@@ -989,12 +989,6 @@ updatebettinginfo()
 	time_t now;
 	register long dollars;
 
-	thiscosts = this.hand + this.inspection + this.game +
-		this.runs + this.information + this.thinktime;
-	totalcosts = total.hand + total.inspection + total.game +
-		total.runs + total.information + total.thinktime;
-	this.worth = this.wins - thiscosts;
-	total.worth = total.wins - totalcosts;
 	time(&now);
 	dollars = (now - acctstart) / secondsperdollar;
 	if (dollars > 0) {
@@ -1002,6 +996,12 @@ updatebettinginfo()
 		total.thinktime += dollars;
 		acctstart += dollars * secondsperdollar;
 	}
+	thiscosts = this.hand + this.inspection + this.game +
+		this.runs + this.information + this.thinktime;
+	totalcosts = total.hand + total.inspection + total.game +
+		total.runs + total.information + total.thinktime;
+	this.worth = this.wins - thiscosts;
+	total.worth = total.wins - totalcosts;
 	if (status != BETTINGBOX)
 		return;
 	move(tboxrow + 3, boxcol + 13);
@@ -1562,6 +1562,8 @@ cleanup()
 {
 
 	total.thinktime += 1;
+	status = NOBOX;
+	updatebettinginfo();
 	if (dbfd != -1) {
 		write(dbfd, (char *)&total, sizeof(total));
 		close(dbfd);
