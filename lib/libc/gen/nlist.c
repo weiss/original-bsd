@@ -1,4 +1,4 @@
-/* @(#)nlist.c	4.1 (Berkeley) 12/21/80 */
+/* @(#)nlist.c	4.2 (Berkeley) 01/02/83 */
 #include <sys/types.h>
 #include <pagsiz.h>
 #include <a.out.h>
@@ -56,7 +56,7 @@ nlist(name, list)
 				continue;
 			fseek(f, ss+q->n_un.n_strx, 0);
 			fread(nambuf, maxlen+1, 1, f);
-			for (p = list; p->n_un.n_name[0]; p++) {
+			for (p = list; p->n_un.n_name && p->n_un.n_name[0]; p++) {
 				i = 0;
 				while (p->n_un.n_name[i]) {
 					if (p->n_un.n_name[i] != nambuf[i])
