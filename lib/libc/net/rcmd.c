@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)rcmd.c	5.3 (Berkeley) 09/06/85";
+static char sccsid[] = "@(#)rcmd.c	5.4 (Berkeley) 09/09/85";
 #endif not lint
 
 #include <stdio.h>
@@ -230,7 +230,8 @@ int len;
 			return(0);
 		}
 		ldomain[MAXHOSTNAMELEN] = NULL;
-		domainp = index(ldomain, '.') + 1;
+		if ((domainp = index(ldomain, '.') + 1) == (char *)1)
+			return(0);
 		cp = domainp;
 		while (*cp)
 			*cp++ = isupper(*cp) ? tolower(*cp) : *cp;
