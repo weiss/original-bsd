@@ -1,20 +1,20 @@
-#	@(#)Makefile	5.11 (Berkeley) 09/09/92
+#	@(#)Makefile	5.12 (Berkeley) 06/09/93
 
 PROG=	vfontedpr
 SRCS=	regexp.c vfontedpr.c
 MAN1=	vgrind.0
 MAN5=	vgrindefs.0
 BINDIR=	/usr/libexec
-CLEANFILES+= vgrindefs.src.db
+CLEANFILES+=vgrindefs.src.db
 
 beforeinstall:
-	cap_mkdb ${.CURDIR}/vgrindefs.src
+	cap_mkdb -f vgrindefs.src ${.CURDIR}/vgrindefs.src
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
 	    ${.CURDIR}/vgrind.sh ${DESTDIR}/usr/bin/vgrind
 	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${.CURDIR}/vgrindefs.src \
 	    ${DESTDIR}/usr/share/misc/vgrindefs
 	install -c -o ${BINOWN} -g ${BINGRP} -m 444 \
-	    ${.CURDIR}/vgrindefs.src.db ${DESTDIR}/usr/share/misc/vgrindefs.db
+	    vgrindefs.src.db ${DESTDIR}/usr/share/misc/vgrindefs.db
 	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${.CURDIR}/tmac.vgrind \
 	    ${DESTDIR}/usr/share/tmac
 
