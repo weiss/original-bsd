@@ -1,6 +1,6 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)yyid.c 1.3 03/08/81";
+static char sccsid[] = "@(#)yyid.c 1.4 08/26/82";
 
 #include "whoami.h"
 #include "0.h"
@@ -160,9 +160,9 @@ yyidok1(p, kind)
 	}
 }
 
-yyisvar(p, class)
+yyisvar(p, varclass)
 	register struct nl *p;
-	int class;
+	int varclass;
 {
 
 	switch (p->class) {
@@ -176,10 +176,10 @@ yyisvar(p, class)
 		 */
 		case FUNC:
 		case FFUNC:
-			return (class == NIL || (p->type != NIL && p->type->class == class));
+			return (varclass == NIL || (p->type != NIL && p->type->class == varclass));
 		case PROC:
 		case FPROC:
-			return ( class == NIL );
+			return ( varclass == NIL );
 	}
 	return (0);
 }
