@@ -9,10 +9,11 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)function.c	5.18 (Berkeley) 07/19/91";
+static char sccsid[] = "@(#)function.c	5.19 (Berkeley) 12/05/91";
 #endif /* not lint */
 
 #include <sys/param.h>
+#include <sys/ucred.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/mount.h>
