@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)if_uba.c	7.1 (Berkeley) 06/05/86
+ *	@(#)if_uba.c	7.2 (Berkeley) 08/07/86
  */
 
 #include "../machine/pte.h"
@@ -285,7 +285,7 @@ rcv_xmtbuf(ifw)
 		for (m = ifw->ifw_xtofree; m && m->m_next; m = m->m_next)
 			mprev = &m->m_next;
 		if (m == NULL)
-			panic("rcv_xmtbuf");
+			return;
 		bcopy(mtod(m, caddr_t), cp, CLBYTES);
 		(void) m_free(m);
 		*mprev = NULL;
