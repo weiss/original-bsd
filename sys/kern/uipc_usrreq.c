@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)uipc_usrreq.c	8.2 (Berkeley) 09/04/93
+ *	@(#)uipc_usrreq.c	8.3 (Berkeley) 01/04/94
  */
 
 #include <sys/param.h>
@@ -639,7 +639,6 @@ unp_gc()
 	if (unp_gcing)
 		return;
 	unp_gcing = 1;
-restart:
 	unp_defer = 0;
 	for (fp = filehead; fp; fp = fp->f_filef)
 		fp->f_flag &= ~(FMARK|FDEFER);
