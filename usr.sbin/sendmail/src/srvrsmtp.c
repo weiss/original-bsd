@@ -2,10 +2,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	3.41		12/05/82	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	3.42		12/13/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	3.41		12/05/82);
+SCCSID(@(#)srvrsmtp.c	3.42		12/13/82);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -193,7 +193,7 @@ smtp()
 			p = skipword(p, "to");
 			if (p == NULL)
 				break;
-			sendto(p, (ADDRESS *) NULL, &CurEnv->e_sendqueue);
+			sendtolist(p, (ADDRESS *) NULL, &CurEnv->e_sendqueue);
 			CurEnv->e_flags &= ~EF_FATALERRS;
 			if (Errors == 0)
 			{
@@ -266,7 +266,7 @@ smtp()
 				break;
 			vrfyqueue = NULL;
 			QuickAbort = TRUE;
-			sendto(p, (ADDRESS *) NULL, &vrfyqueue);
+			sendtolist(p, (ADDRESS *) NULL, &vrfyqueue);
 			if (Errors != 0)
 			{
 				if (InChild)
