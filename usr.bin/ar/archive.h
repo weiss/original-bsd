@@ -1,11 +1,13 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
+ * Copyright (c) 1991 The Regents of the University of California.
  * All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Hugh Smith at The University of Guelph.
  *
- *	@(#)archive.h	5.7 (Berkeley) 03/21/91
+ * %sccs.include.redist.c%
+ *
+ *	@(#)archive.h	5.8 (Berkeley) 04/12/91
  */
 
 /* Ar(1) options. */
