@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1992 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1992, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Sony Corp. and Kazumasa Utashiro of Software Research Associates, Inc.
@@ -9,7 +9,7 @@
  *
  * from: $Hdr: keytbl.c,v 4.300 91/06/09 06:14:54 root Rel41 $ SONY
  *
- *	@(#)keytbl.c	7.3 (Berkeley) 03/09/93
+ *	@(#)keytbl.c	8.1 (Berkeley) 06/10/93
  */
 
 #include <news3400/iop/keyboard.h>
