@@ -1,5 +1,5 @@
 /*
- *	@(#)kdb.c	7.3 (Berkeley) 05/26/88
+ *	@(#)kdb.c	7.4 (Berkeley) 05/31/88
  *
  * KDB50/MSCP device driver
  */
@@ -227,7 +227,7 @@ struct uba_driver kdbdriver =	/* XXX */
  { kdbprobe, kdbslave, kdbattach, 0, kdbstd, DRIVENAMES, kdbdinfo, "kdb" };
 
 struct	mscp_driver kdbmscpdriver =
- { MAXUNIT, NKRA, UNITSHIFT, kdbutab, kdbdinfo,
+ { MAXUNIT, NKRA, UNITSHIFT, kdbutab, (struct disklabel *)0, kdbdinfo,
    kdbdgram, kdbctlrdone, kdbunconf, kdbiodone,
    kdbonline, kdbgotstatus, NULL, kdbioerror, NULL,
    "kdb", DRIVENAMES };
