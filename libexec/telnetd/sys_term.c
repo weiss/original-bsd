@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)sys_term.c	5.20 (Berkeley) 04/05/93";
+static char sccsid[] = "@(#)sys_term.c	5.21 (Berkeley) 04/12/93";
 #endif /* not lint */
 
 #include "telnetd.h"
@@ -444,7 +444,7 @@ getpty()
 #ifndef CRAY
 	register char *cp, *p1, *p2;
 	register int i;
-#if defined(sun) && defined(TIOCGPGRP)
+#if defined(sun) && defined(TIOCGPGRP) && BSD < 199207
 	int dummy;
 #endif
 
@@ -471,14 +471,14 @@ getpty()
 				line[5] = 't';
 				chown(line, 0, 0);
 				chmod(line, 0600);
-#if defined(sun) && defined(TIOCGPGRP)
+#if defined(sun) && defined(TIOCGPGRP) && BSD < 199207
 				if (ioctl(p, TIOCGPGRP, &dummy) == 0
 				    || errno != EIO) {
 					chmod(line, 0666);
 					close(p);
 					line[5] = 'p';
 				} else
-#endif /* defined(sun) && defined(TIOCGPGRP) */
+#endif /* defined(sun) && defined(TIOCGPGRP) && BSD < 199207 */
 					return(p);
 			}
 		}
