@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.82 (Berkeley) 04/18/94";
+static char sccsid[] = "@(#)deliver.c	8.83 (Berkeley) 04/29/94";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -1700,7 +1700,7 @@ giveresponse(stat, m, mci, ctladdr, e)
 	else if (stat == EX_NOHOST && h_errno != 0)
 	{
 		statmsg = errstring(h_errno + E_DNSBASE);
-		(void) sprintf(buf, "%s (%s)", SysExMsg[i], statmsg);
+		(void) sprintf(buf, "%s (%s)", SysExMsg[i] + 1, statmsg);
 		statmsg = buf;
 	}
 #endif
@@ -1728,8 +1728,11 @@ giveresponse(stat, m, mci, ctladdr, e)
 	}
 	else
 	{
+		char mbuf[8];
+
 		Errors++;
-		usrerr(statmsg, errstring(errno));
+		sprintf(mbuf, "%.3s %%s", statmsg);
+		usrerr(mbuf, &statmsg[4]);
 	}
 
 	/*
