@@ -11,9 +11,8 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)ifconfig.c	4.12 (Berkeley) 06/06/85";
+static char sccsid[] = "@(#)ifconfig.c	4.13 (Berkeley) 08/10/85";
 #endif not lint
-
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -117,8 +116,7 @@ main(argc, argv)
 		exit(1);
 	}
 	argc--, argv++;
-	strncpy(name, *argv, sizeof(name - 1));
-	name[sizeof name - 1] = 0;
+	strncpy(name, *argv, sizeof(name));
 	strncpy(ifr.ifr_name, name, sizeof(ifr.ifr_name));
 	argc--, argv++;
 	if (argc > 0) {
@@ -346,11 +344,13 @@ xns_status()
 	close(s);
 	s = socket(AF_NS, SOCK_DGRAM, 0);
 	if (s < 0) {
+		if (errno == EAFNOSUPPORT)
+			return;
 		perror("ifconfig: socket");
 		exit(1);
 	}
 	if (ioctl(s, SIOCGIFADDR, (caddr_t)&ifr) < 0) {
-		if (errno == EAFNOSUPPORT)
+		if (errno == EADDRNOTAVAIL || errno==EAFNOSUPPORT)
 			return;
 		Perror("ioctl (SIOCGIFADDR)");
 	}
