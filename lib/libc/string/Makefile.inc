@@ -1,9 +1,9 @@
-#	@(#)Makefile.inc	5.5 (Berkeley) 02/24/91
+#	@(#)Makefile.inc	5.6 (Berkeley) 03/05/91
 
 # string sources
 .PATH: ${.CURDIR}/${MACHINE}/string ${.CURDIR}/string
 
-SRCS+=	memccpy.c strcasecmp.c strcoll.c strdup.c strerror.c \
+SRCS+=	memccpy.c strcasecmp.c strcoll.c strdup.c \
 	strftime.c strmode.c strtok.c strxfrm.c swab.c
 
 .if   (${MACHINE} == "hp300")
