@@ -3,9 +3,9 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.7	(Berkeley)	06/16/87
+#	@(#)Makefile	5.8	(Berkeley)	06/18/87
 #
-CFLAGS=	-O -DBSD4_2 -DSACREDMEM=256000
+CFLAGS=	-O -DBSD4_2 -DSACREDMEM=256000 -DUSERMEM=`cat USERMEM` 
 LIBC=	/lib/libc.a
 SRCS=	compress.c
 OBJS=	compress.o
@@ -13,7 +13,7 @@ OBJS=	compress.o
 all: compress
 
 compress: USERMEM ${OBJS} ${LIBC}
-	${CC} ${CFLAGS} -DUSERMEM=`cat USERMEM` -o $@ ${OBJS}
+	${CC} ${CFLAGS} -o $@ ${OBJS}
 
 # USERMEM may have to be set by hand.  It should contain the amount of
 # available user memory in bytes.  Set it to zero, for physical memory
