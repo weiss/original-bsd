@@ -1,4 +1,4 @@
-/*	@(#)if_qe.c	6.3 (Berkeley) 06/02/86 */
+/*	@(#)if_qe.c	7.1 (Berkeley) 06/05/86 */
 
 /* from  @(#)if_qe.c	1.15	(ULTRIX)	4/16/86 */
  
