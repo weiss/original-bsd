@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.16 (Berkeley) 01/12/93
+#	@(#)Makefile	8.1 (Berkeley) 06/04/93
 
 LIB=compat
 CFLAGS+=-DLIBC_SCCS -DSYSLIBC_SCCS
