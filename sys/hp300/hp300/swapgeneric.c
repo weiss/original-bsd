@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)swapgeneric.c	7.4 (Berkeley) 04/20/91
+ *	@(#)swapgeneric.c	7.5 (Berkeley) 05/07/91
  */
 
 #include "sys/param.h"
@@ -26,7 +26,6 @@ struct	swdevt swdevt[] = {
 	{ -1,	1,	0 },
 	{ 0,	0,	0 },
 };
-long	dumplo;
 int	dmmin, dmmax, dmtext;
 
 extern	struct driver rddriver;
