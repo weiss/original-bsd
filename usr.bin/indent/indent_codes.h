@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)indent_codes.h	5.1 (Berkeley) 06/04/85
+ *	@(#)indent_codes.h	5.2 (Berkeley) 08/28/85
  */
 
 /*
