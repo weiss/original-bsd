@@ -1,9 +1,11 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/07/90
+#	@(#)Makefile	5.5 (Berkeley) 11/29/90
 
 PROG=	route
 MAN8=	route.0
 CFLAGS+=-I.
 CLEANFILES+=keywords.h
+BINOWN=	root
+BINMODE=4555
 
 all route depend lint tags: keywords.h
 
