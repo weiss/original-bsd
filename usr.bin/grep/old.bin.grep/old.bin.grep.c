@@ -1,6 +1,19 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)old.bin.grep.c	4.8 (Berkeley) 01/21/88";
-#endif
+char copyright[] =
+"@(#) Copyright (c) 1991 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@(#)old.bin.grep.c	4.9 (Berkeley) 04/17/91";
+#endif /* not lint */
 
 /*
  * grep -- print lines matching (or not matching) a pattern
