@@ -8,23 +8,30 @@ divert(-1)
 #
 divert(0)
 
-VERSIONID(`@(#)proto.m4	8.8 (Berkeley) 07/22/93')
+VERSIONID(`@(#)proto.m4	8.9 (Berkeley) 07/23/93')
 
 MAILER(local)dnl
 
 ifdef(`_OLD_SENDMAIL_',
-`define(`_SET_96_', 6)dnl
+`define(`_SET_95_', 5)dnl
+define(`_SET_96_', 6)dnl
 define(`_SET_97_', 7)dnl
 define(`_SET_98_', 8)dnl',
 `# level 4 config file format
 V4
+define(`_SET_95_', 95)dnl
 define(`_SET_96_', 96)dnl
 define(`_SET_97_', 97)dnl
 define(`_SET_98_', 98)dnl')
-ifdef(`confSMTP_MAILER',, `define(`confSMTP_MAILER', `esmtp')')dnl
+ifdef(`confSMTP_MAILER',, `define(`confSMTP_MAILER', `smtp')')dnl
 ifdef(`confLOCAL_MAILER',, `define(`confLOCAL_MAILER', `local')')dnl
+ifdef(`confRELAY_MAILER',,
+	`define(`confRELAY_MAILER',
+		`ifdef(`_MAILER_smtp_', `relay',
+			`ifdef(`_MAILER_uucp', `suucp', `unknown')')')')dnl
 define(`_SMTP_', `confSMTP_MAILER')dnl		for readability only
 define(`_LOCAL_', `confLOCAL_MAILER')dnl	for readability only
+define(`_RELAY_', `confRELAY_MAILER')dnl	for readability only
 
 ##################
 #   local info   #
@@ -532,52 +539,31 @@ undivert(4)dnl
 ifdef(`_NO_UUCP_', `dnl',
 `# resolve remotely connected UUCP links (if any)
 ifdef(`_CLASS_V_',
-`R$* < @ $=V . UUCP > $*		$: < $V > <@ $V> : $1 @ $2.UUCP $3
-R< $- : $+ > $*			$# $1 $@ $2 $: $3	$=V UUCP routing
-R< $+ > $*			$#_SMTP_ $@ $1 $: $2
-R<> $*				$: $1			else strip off gunk',
+`R$* < @ $=V . UUCP > $*		$: $>_SET_95_ < $V > <@ $V> : $1 @ $2.UUCP $3',
 	`dnl')
 ifdef(`_CLASS_W_',
-`R$* < @ $=W . UUCP > $*		$: < $W > <@ $W> : $1 @ $2.UUCP $3
-R< $- : $+ > $*			$# $1 $@ $2 $: $3	$=W UUCP routing
-R< $+ > $*			$#_SMTP_ $@ $1 $: $2
-R<> $*				$: $1			else strip off gunk',
+`R$* < @ $=W . UUCP > $*		$: $>_SET_95_ < $W > <@ $W> : $1 @ $2.UUCP $3',
 	`dnl')
 ifdef(`_CLASS_X_',
-`R$* < @ $=X . UUCP > $*		$: < $X > <@ $X> : $1 @ $2.UUCP $3
-R< $- : $+ > $*			$# $1 $@ $2 $: $3	$=X UUCP routing
-R< $+ > $*			$#_SMTP_ $@ $1 $: $2
-R<> $*				$: $1			else strip off gunk',
+`R$* < @ $=X . UUCP > $*		$: $>_SET_95_ < $X > <@ $X> : $1 @ $2.UUCP $3',
 	`dnl')')
 
 # resolve fake top level domains by forwarding to other hosts
 ifdef(`BITNET_RELAY',
-`R$*<@$+.BITNET>$*	$: < $B > $1 <@$2.BITNET> $3	user@host.BITNET
-R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#_SMTP_ $@ $1 $: $2
-R<> $*			$: $1				else strip off gunk',
+`R$*<@$+.BITNET>$*	$: $>_SET_95_ < $B > $1 <@$2.BITNET> $3	user@host.BITNET',
 	`dnl')
 ifdef(`CSNET_RELAY',
-`R$*<@$+.CSNET>$*	$: < $C > $1 <@$2.CSNET> $3	user@host.CSNET
-R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#_SMTP_ $@ $1 $: $2
-R<> $*			$: $1				else strip off gunk',
+`R$*<@$+.CSNET>$*	$: $>_SET_95_ < $C > $1 <@$2.CSNET> $3	user@host.CSNET',
 	`dnl')
 ifdef(`_MAILER_fax_',
 `R$+ < @ $+ .FAX >	$#fax $@ $2 $: $1		user@host.FAX',
 `ifdef(`FAX_RELAY',
-`R$*<@$+.FAX>$*		$: < $F > $1 <@$2.FAX> $3	user@host.FAX
-R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#_SMTP_ $@ $1 $: $2
-R<> $*			$: $1				else strip off gunk',
+`R$*<@$+.FAX>$*		$: $>_SET_95_ < $F > $1 <@$2.FAX> $3	user@host.FAX',
 	`dnl')')
 
 ifdef(`UUCP_RELAY',
 `# forward non-local UUCP traffic to our UUCP relay
-R$*<@$*.UUCP>$*		$: < $Y > <@ $Y> : $1 @ $2.UUCP $3	uucp mail
-R< $- : $+ > $*		$# $1 $@ $2 $: $3
-R< $+ > $*		$#_SMTP_ $@ $1 $: $2
-R<> $*			$: $1				else strip off gunk',
+R$*<@$*.UUCP>$*		$: $>_SET_95_ < $Y > <@ $Y> : $1 @ $2.UUCP $3	uucp mail',
 `ifdef(`_MAILER_uucp_',
 `# forward other UUCP traffic straight to UUCP
 R< @ $+ .UUCP > : $+	$#uucp $@ $1 $: $2		@host.UUCP:...
@@ -594,7 +580,7 @@ undivert(1)', `dnl')
 
 ifdef(`SMART_HOST',
 `# pass names that still have a host to a smarthost
-R$* < @ $* > $*		$: < $S > $1 < @ $2 > $3	glue on smarthost name
+R$* < @ $* > $*		$: $>_SET_95_ < $S > $1 < @ $2 > $3	glue on smarthost name
 R< $- : $+ > $*		$# $1 $@ $2 $: $3		if non-null, use it
 R< $+ > $*		$#suucp $@ $1 $: $2		if non-null, use it
 R<> $*			$: $1				else strip off gunk',
@@ -607,12 +593,9 @@ ifdef(`_MAILER_smtp_',
 ifdef(`_OLD_SENDMAIL_',
 `# forward remaining names to local relay, if any
 R$=L			$#_LOCAL_ $: $1			special local names
-R$+			$: $1 < @ $R >			append relay
-R$+ < @ >		$: $1 < @ $H >			no relay, try hub
-R$+ < @ >		$#_LOCAL_ $: $1			no relay or hub: local
-R$+ < @ $=w  >		$#_LOCAL_ $: $1			we are relay/hub: local
-R$+ < @ $-:$+ >		$# $2 $@ $3 $: $1		deliver to relay/hub
-R$+ < @ $+ >		$#relay $@ $2 $: $1		deliver to relay/hub',
+R$+			$: $>_SET_95_ < $R > $1			try relay
+R$+			$: $>_SET_95_ < $H > $1			try hub
+R$+			$#_LOCAL_ $: $1			no relay or hub: local',
 
 `# if this is quoted, strip the quotes and try again
 R$+			$: $(dequote $1 $)		strip quotes
@@ -630,12 +613,8 @@ R$+			$#_LOCAL_ $: $1			regular local names
 S5
 
 # see if we have a relay or a hub
-R$+			$: $1 < @ $R >
-R$+ < @ >		$: $1 < @ $H >			no relay, try hub
-R$+ < @ $=w >		$@ $1				we are relay/hub: local
-R$+ < @ $-:$+ >		$# $2 $@ $3 $: $1		send to relay or hub
-ifdef(`_MAILER_smtp_',
-`R$+ < @ $+ >		$#relay $@ $2 $: $1		send to relay or hub')')
+R$+			$: $>_SET_95_ < $R > $1			try relay
+R$+			$: $>_SET_95_ < $H > $1			try hub')
 ifdef(`MAILER_TABLE',
 `
 
@@ -645,11 +624,21 @@ ifdef(`MAILER_TABLE',
 ###################################################################
 
 S90
-R<$- . $+ > $*		$: < $(mailertable .$2 $) > $3	lookup
+R<$- . $+ > $*		$: < $(mailertable .$2 $@ $1 $) > $3	lookup
 R<$- : $+ > $*		$# $1 $@ $2 $: $3		check -- resolved?
 R< . $+ > $*		$@ $>90 <$1> $2			no -- strip & try again
 R<$*> $*		$@ $2				no match',
 `dnl')
+
+###################################################################
+###  Ruleset _SET_95_ -- canonify mailer:host syntax to triple	###
+###################################################################
+
+S`'_SET_95_
+R< > $*			$@ $1				strip off null relay
+R< $- : $+ > $*		$# $1 $@ $2 $: $3		try qualified mailer
+R< $=w > $*		$@ $2				delete local host
+R< $+ > $*		$#_RELAY_ $@ $1 $: $2		use unqualified mailer
 
 ###################################################################
 ###  Ruleset _SET_98_ -- local part of ruleset zero (can be null)	###
