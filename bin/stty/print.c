@@ -6,12 +6,10 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)print.c	5.1 (Berkeley) 05/02/91";
+static char sccsid[] = "@(#)print.c	5.2 (Berkeley) 06/04/91";
 #endif /* not lint */
 
 #include <sys/types.h>
-#include <sys/ioctl.h>
-#include <termios.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
@@ -29,7 +27,6 @@ print(tp, wp, ldisc, fmt)
 	int ldisc;
 	enum FMT fmt;
 {
-	extern struct cchar cchars1[];
 	register struct cchar *p;
 	register long tmp;
 	register int cnt;
