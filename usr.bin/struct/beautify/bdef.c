@@ -3,7 +3,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)bdef.c	5.1 (Berkeley) 04/16/91";
+static char sccsid[] = "@(#)bdef.c	8.1 (Berkeley) 06/06/93";
 #endif /* not lint */
 
 #define xxtop	100		/* max size of xxstack */
