@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1990, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ps.h	5.5 (Berkeley) 06/05/92
+ *	@(#)ps.h	8.1 (Berkeley) 05/31/93
  */
 
 #define	UNLIMITED	0	/* unlimited terminal width */
