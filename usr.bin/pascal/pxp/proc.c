@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)proc.c	1.1 (Berkeley) 03/02/81";
+static	char *sccsid = "@(#)proc.c	2.1 (Berkeley) 02/08/84";
 /* Copyright (c) 1979 Regents of the University of California */
 #
 /*
