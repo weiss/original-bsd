@@ -1,4 +1,4 @@
-#	@(#)Makefile	6.8 (Berkeley) 07/29/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 DIR=	psd/19.curses
 SRCS=	Master
