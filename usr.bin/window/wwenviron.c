@@ -1,6 +1,12 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwenviron.c	3.12 06/02/84";
+static char sccsid[] = "@(#)wwenviron.c	3.13 04/24/85";
 #endif
+
+/*
+ * Copyright (c) 1983 Regents of the University of California,
+ * All rights reserved.  Redistribution permitted subject to
+ * the terms of the Berkeley Software License Agreement.
+ */
 
 #include "ww.h"
 #include <sys/signal.h>
