@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)echo.c	8.1 (Berkeley) 05/31/93
+ *	@(#)echo.c	8.2 (Berkeley) 05/04/95
  */
 
 /*
@@ -20,7 +20,11 @@
 
 /* #define eflag 1 */
 
-main(argc, argv)  char **argv; {
+int
+main(argc, argv)
+	int argc;
+	char **argv;
+{
 	register char **ap;
 	register char *p;
 	register char c;
