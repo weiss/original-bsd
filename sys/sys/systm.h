@@ -1,4 +1,4 @@
-/*	systm.h	4.1	11/09/80	*/
+/*	systm.h	4.2	01/15/81	*/
 
 /*
  * Random set of variables
@@ -44,7 +44,6 @@ int	physmem;		/* physical memory on this CPU */
 int	nswap;			/* size of swap space */
 int	updlock;		/* lock for sync */
 daddr_t	rablock;		/* block to be read ahead */
-char	msgbuf[MSGBUFS];	/* saved "printf" characters */
 int	intstack[512];		/* stack for interrupts */
 dev_t	rootdev;		/* device of the root */
 dev_t	swapdev;		/* swapping device */
