@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)ffs_alloc.c	7.14 (Berkeley) 12/21/89
+ *	@(#)ffs_alloc.c	7.15 (Berkeley) 12/30/89
  */
 
 #include "param.h"
@@ -1052,6 +1052,22 @@ mapsearch(fs, cgp, bpref, allocsiz)
 	printf("bno = %d, fs = %s\n", bno, fs->fs_fsmnt);
 	panic("alloccg: block not in map");
 	return (-1);
+}
+
+/*
+ * Check that a specified block number is in range.
+ */
+badblock(fs, bn)
+	register struct fs *fs;
+	daddr_t bn;
+{
+
+	if ((unsigned)bn >= fs->fs_size) {
+		printf("bad block %d, ", bn);
+		fserr(fs, "bad block");
+		return (1);
+	}
+	return (0);
 }
 
 /*
