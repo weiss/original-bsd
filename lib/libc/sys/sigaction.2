@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"	@(#)sigaction.2	6.4 (Berkeley) 04/23/92
+.\"	@(#)sigaction.2	6.5 (Berkeley) 04/23/92
 .\"
 .Dd 
 .Dt SIGACTION 2
@@ -145,7 +145,7 @@ bit is set in
 the system will deliver the signal to the process on a
 .Em "signal stack" ,
 specified with
-.Xr sigstack 2 .
+.Xr sigaltstack 2 .
 .Pp
 If a signal is caught during the system calls listed below,
 the call may be forced to terminate
