@@ -3,7 +3,7 @@
 .\"
 .\" %sccs.include.redist.man%
 .\"
-.\"     @(#)route.4	8.3 (Berkeley) 03/27/94
+.\"     @(#)route.4	8.4 (Berkeley) 04/19/94
 .\"
 .Dd 
 .Dt ROUTE 4
@@ -173,7 +173,7 @@ A message header consists of:
 .Bd -literal
 struct rt_msghdr {
     u_short rmt_msglen;  /* to skip over non-understood messages */
-    u_char  rtm_version; /* future binary compatability */
+    u_char  rtm_version; /* future binary compatibility */
     u_char  rtm_type;    /* message type */
     u_short rmt_index;   /* index for associated ifp */
     pid_t   rmt_pid;     /* identify sender */
