@@ -1,4 +1,4 @@
-/*	vfs_syscalls.c	4.1	11/09/80	*/
+/*	vfs_syscalls.c	4.2	01/20/81	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -252,10 +252,8 @@ getmdev()
 	dev_t dev;
 	register struct inode *ip;
 
-#ifdef UCB
 	if (!suser())
 		return(NODEV);
-#endif
 	ip = namei(uchar, 0);
 	if(ip == NULL)
 		return(NODEV);
