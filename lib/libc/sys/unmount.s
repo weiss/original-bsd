@@ -16,10 +16,10 @@
  */
 
 #if defined(SYSLIBC_SCCS) && !defined(lint)
-	.asciz "@(#)unmount.s	5.5 (Berkeley) 06/27/88"
+	.asciz "@(#)unmount.s	5.6 (Berkeley) 06/06/89"
 #endif /* SYSLIBC_SCCS and not lint */
 
 #include "SYS.h"
 
-SYSCALL(umount)
+SYSCALL(unmount)
 	ret
