@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.76 (Berkeley) 03/31/95 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.77 (Berkeley) 04/03/95 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.76 (Berkeley) 03/31/95 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.77 (Berkeley) 04/03/95 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -1339,7 +1339,7 @@ readqf(e)
 			break;
 
 		  case 'H':		/* header */
-			(void) chompheader(&bp[1], FALSE, e);
+			(void) chompheader(&bp[1], FALSE, NULL, e);
 			break;
 
 		  case 'M':		/* message */
