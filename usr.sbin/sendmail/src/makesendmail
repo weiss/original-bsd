@@ -6,7 +6,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#       @(#)makesendmail	8.11 (Berkeley) 12/14/94
+#       @(#)makesendmail	8.12 (Berkeley) 12/28/94
 #
 
 #
@@ -15,7 +15,7 @@
 #
 
 # determine machine architecture
-arch=`uname -m`
+arch=`uname -m | sed -e 's/ //g'`
 case $arch
 in
   sun4*)	arch=sun4;;

@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)clock.c	8.8 (Berkeley) 01/12/94";
+static char sccsid[] = "@(#)clock.c	8.9 (Berkeley) 12/28/94";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -190,10 +190,10 @@ tick(arg)
 		sigaddset(&ss, SIGALRM);
 		sigprocmask(SIG_UNBLOCK, &ss, NULL);
 #else
-#ifdef SIGVTALRM
+#if HASSIGSETMASK
 		/* reset 4.2bsd signal mask to allow future alarms */
 		(void) sigsetmask(sigblock(0) & ~sigmask(SIGALRM));
-#endif /* SIGVTALRM */
+#endif /* HASSIGSETMASK */
 #endif /* SIG_UNBLOCK */
 
 		/* call ev_func */
