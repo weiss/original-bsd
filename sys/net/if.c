@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if.c	8.3 (Berkeley) 01/04/94
+ *	@(#)if.c	8.4 (Berkeley) 07/01/94
  */
 
 #include <sys/param.h>
@@ -172,7 +172,8 @@ ifa_ifwithdstaddr(addr)
 	for (ifp = ifnet; ifp; ifp = ifp->if_next) 
 	    if (ifp->if_flags & IFF_POINTOPOINT)
 		for (ifa = ifp->if_addrlist; ifa; ifa = ifa->ifa_next) {
-			if (ifa->ifa_addr->sa_family != addr->sa_family)
+			if (ifa->ifa_addr->sa_family != addr->sa_family ||
+			    ifa->ifa_dstaddr == NULL)
 				continue;
 			if (equal(addr, ifa->ifa_dstaddr))
 				return (ifa);
