@@ -5,13 +5,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)print.c	5.2 (Berkeley) 03/13/86";
+static char sccsid[] = "@(#)print.c	5.3 (Berkeley) 09/04/87";
 #endif not lint
 
 /* debug print routines */
 
 #include <stdio.h>
 #include <syslog.h>
+#include <sys/param.h>
 
 #include <protocols/talkd.h>
 
