@@ -6,11 +6,10 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)rand.c	5.3 (Berkeley) 05/15/90";
+static char sccsid[] = "@(#)rand.c	5.4 (Berkeley) 01/26/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
-#include <sys/stdc.h>
 #include <stdlib.h>
 
 static u_long next = 1;
