@@ -4,11 +4,12 @@
 #
 # %sccs.include.redist.sh
 #
-#	@(#)Makefile	5.1 (Berkeley) 06/25/90
+#	@(#)Makefile	5.2 (Berkeley) 06/26/90
 #
 PROG=	registerd
 SRCS=	registerd.c des_rw.c
 CFLAGS+=-DKERBEROS -I${.CURDIR}/../register
+.PATH:	${.CURDIR}/../../usr.bin/rlogin
 DPADD=	${LIBKDB} ${LIBKRB} ${LIBDES}
 LDADD=	-lkdb -lkrb -ldes
 MAN8=	registerd.0
