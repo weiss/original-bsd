@@ -1,13 +1,13 @@
 /*-
- * Copyright (c) 1991 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Ken Arnold.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)strfile.h	5.8 (Berkeley) 04/08/91
+ *	@(#)strfile.h	8.1 (Berkeley) 05/31/93
  */
 
 #define	STR_ENDSTRING(line,tbl) \
