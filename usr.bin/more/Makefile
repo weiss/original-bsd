@@ -1,12 +1,12 @@
-#	@(#)Makefile	5.5 (Berkeley) 05/11/90
+#	@(#)Makefile	5.6 (Berkeley) 03/12/91
 
 PROG=	more
 CFLAGS+=-I${.CURDIR}
 SRCS=	ch.c command.c decode.c help.c input.c line.c linenum.c main.c \
 	option.c os.c output.c position.c prim.c screen.c signal.c tags.c \
 	ttyin.c
-DPADD=	${LIBTERM}
-LDADD=	-ltermcap
+DPADD=	${LIBTERM} ${LIBCOMPAT}
+LDADD=	-ltermcap -lcompat
 
 beforeinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${.CURDIR}/more.help \
