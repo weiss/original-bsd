@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)timed.c	2.1 (Berkeley) 12/10/85";
+static char sccsid[] = "@(#)timed.c	2.2 (Berkeley) 02/05/86";
 #endif not lint
 
 #include "globals.h"
@@ -405,7 +405,7 @@ char **argv;
 		case 1: 
 			/* from slave */
 			for (ntp = nettab; ntp != NULL; ntp = ntp->next) {
-				if (ntp->status = SLAVE)
+				if (ntp->status == SLAVE)
 					break;
 			}
 			ntp->status = election(ntp);
