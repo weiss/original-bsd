@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)lfs_vfsops.c	7.60 (Berkeley) 10/03/91
+ *	@(#)lfs_vfsops.c	7.61 (Berkeley) 10/09/91
  */
 
 #ifdef LOGFS
@@ -465,7 +465,6 @@ extern int	syncprt;					/* LFS */
  *
  * Note: we are always called with the filesystem marked `MPBUSY'.
  */
-int STOPNOW;
 lfs_sync(mp, waitfor)
 	struct mount *mp;
 	int waitfor;
@@ -490,7 +489,6 @@ printf("lfs_sync\n");
 		bufstats();
 
 	/* All syncs must be checkpoints until roll-forward is implemented. */
-STOPNOW = 1;
 	error = lfs_segwrite(mp, 1);		
 #ifdef QUOTA
 	qsync(mp);
