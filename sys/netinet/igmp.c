@@ -8,12 +8,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)igmp.c	7.2 (Berkeley) 10/11/92
+ *	@(#)igmp.c	7.3 (Berkeley) 01/08/93
  */
 
 /* Internet Group Management Protocol (IGMP) routines. */
 
-#ifdef MULTICAST
 
 #include <sys/param.h>
 #include <sys/mbuf.h>
@@ -279,4 +278,3 @@ igmp_sendreport(inm)
 
 	++igmpstat.igps_snd_reports;
 }
-#endif

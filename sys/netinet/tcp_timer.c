@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tcp_timer.c	7.19 (Berkeley) 10/11/92
+ *	@(#)tcp_timer.c	7.20 (Berkeley) 01/08/93
  */
 
 #include <sys/param.h>
@@ -102,6 +102,7 @@ tpgone:
 	if ((int)tcp_iss < 0)
 		tcp_iss = 0;				/* XXX */
 #endif
+	tcp_now++;					/* for timestamps */
 	splx(s);
 }
 
