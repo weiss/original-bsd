@@ -11,14 +11,10 @@
  *
  * from: Utah $Hdr: hilreg.h 1.10 92/01/21$
  *
- *	@(#)hilreg.h	7.4 (Berkeley) 06/05/92
+ *	@(#)hilreg.h	7.5 (Berkeley) 10/11/92
  */
 
-#ifdef KERNEL
-#include "hp/dev/iotypes.h"	/* XXX */
-#else
-#include <hp/dev/iotypes.h>	/* XXX */
-#endif
+#include <hp/dev/iotypes.h>		/* XXX */
 
 #ifdef hp300
 struct	hil_dev {
