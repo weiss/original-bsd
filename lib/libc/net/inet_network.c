@@ -1,4 +1,12 @@
-/*	@(#)inet_network.c	4.2	10/07/82	*/
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#ifndef lint
+static char sccsid[] = "@(#)inet_network.c	5.1 (Berkeley) 05/30/85";
+#endif not lint
 
 #include <sys/types.h>
 #include <ctype.h>
