@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)eval.c	8.2 (Berkeley) 04/27/95";
+static char sccsid[] = "@(#)eval.c	8.3 (Berkeley) 04/27/95";
 #endif /* not lint */
 
 /*
@@ -841,7 +841,7 @@ prehash(n)
 
 bltincmd(argc, argv)  char **argv; {
 	listsetvar(cmdenviron);
-	return exitstatus;
+	return 0;
 }
 
 
