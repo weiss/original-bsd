@@ -1,4 +1,10 @@
-/*	kern_sig.c	6.16	85/05/22	*/
+/*
+ * Copyright (c) 1982 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ *
+ *	@(#)kern_sig.c	6.17 (Berkeley) 06/08/85
+ */
 
 #include "../machine/reg.h"
 #include "../machine/pte.h"
