@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/30/90
+#	@(#)Makefile	5.5 (Berkeley) 06/05/93
 
 DIR=	smm/14.fastfs
 SRCS=	0.t 1.t 2.t 3.t 4.t 5.t 6.t
 MACROS=	-ms
 
-paper.${PRINTER}: ${SRCS}
-	${TBL} ${SRCS} | ${EQN} | ${TROFF} > ${.TARGET}
+paper.ps: ${SRCS}
+	${TBL} ${SRCS} | ${EQN} | ${ROFF} > ${.TARGET}
 
 .include <bsd.doc.mk>
