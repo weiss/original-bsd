@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)iso_chksum.c	7.8 (Berkeley) 10/11/92
+ *	@(#)iso_chksum.c	7.9 (Berkeley) 05/25/93
  */
 
 /***********************************************************
@@ -61,11 +61,11 @@ SOFTWARE.
 #include <sys/param.h>
 #include <sys/systm.h>
 #include <sys/mbuf.h>
-#endif ISO
+#endif /* ISO */
 
 #ifndef MNULL
 #define MNULL (struct mbuf *)0
-#endif MNULL
+#endif /* MNULL */
 
 /*
  * FUNCTION:	iso_check_csum

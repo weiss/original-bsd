@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tp_trace.c	7.5 (Berkeley) 10/11/92
+ *	@(#)tp_trace.c	7.6 (Berkeley) 05/25/93
  */
 
 /***********************************************************
@@ -146,4 +146,4 @@ tpTrace(tpcb, event, arg, src, len, arg4, arg5)
 		break;
 	}
 }
-#endif TPPT
+#endif /* TPPT */
