@@ -1,7 +1,7 @@
 # include <errno.h>
 # include "sendmail.h"
 
-SCCSID(@(#)headers.c	3.48		01/15/83);
+SCCSID(@(#)headers.c	3.49		02/02/83);
 
 /*
 **  CHOMPHEADER -- process and save a header line.
@@ -31,8 +31,7 @@ chompheader(line, def)
 	char *fvalue;
 	struct hdrinfo *hi;
 	bool cond = FALSE;
-	u_long mopts;
-	extern u_long mfencode();
+	BITMAP mopts;
 	extern char *crackaddr();
 
 # ifdef DEBUG
@@ -41,7 +40,7 @@ chompheader(line, def)
 # endif DEBUG
 
 	/* strip off options */
-	mopts = 0;
+	clrbitmap(mopts);
 	p = line;
 	if (*p == '?')
 	{
@@ -51,7 +50,8 @@ chompheader(line, def)
 		if (q != NULL)
 		{
 			*q++ = '\0';
-			mopts = mfencode(p + 1);
+			while (*++p != '\0')
+				setbitn(*p, mopts);
 			p = q;
 		}
 		else
@@ -104,7 +104,7 @@ chompheader(line, def)
 		h->h_field = newstr(fname);
 		h->h_value = NULL;
 		h->h_link = *hp;
-		h->h_mflags = mopts;
+		bcopy(mopts, h->h_mflags, sizeof mopts);
 		*hp = h;
 	}
 	h->h_flags = hi->hi_flags;
@@ -176,7 +176,7 @@ addheader(field, value, e)
 	h->h_value = newstr(value);
 	h->h_link = *hp;
 	h->h_flags = hi->hi_flags | H_DEFAULT;
-	h->h_mflags = 0;
+	clrbitmap(h->h_mflags);
 	*hp = h;
 }
 /*
@@ -564,9 +564,10 @@ putheader(fp, m, e)
 	for (h = e->e_header; h != NULL; h = h->h_link)
 	{
 		register char *p;
+		extern bool bitintersect();
 
 		if (bitset(H_CHECK|H_ACHECK, h->h_flags) &&
-		    !bitset(h->h_mflags, m->m_flags))
+		    !bitintersect(h->h_mflags, m->m_flags))
 			continue;
 
 		p = h->h_value;
