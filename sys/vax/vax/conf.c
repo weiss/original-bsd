@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)conf.c	6.13 (Berkeley) 02/17/86
+ *	@(#)conf.c	6.14 (Berkeley) 02/19/86
  */
 
 #include "param.h"
@@ -219,11 +219,11 @@ int	rlreset(),rldump(),rlsize();
 
 #include "np.h"
 #if NNP > 0
-int	npopen(),npstrategy(),npread(),npwrite();
+int	npopen(),npclose(),npread(),npwrite();
 int	npreset(),npioctl();
 #else
 #define	npopen		nodev
-#define	npstrategy	nodev
+#define	npclose		nodev
 #define	npread		nodev
 #define	npwrite		nodev
 #define	npreset		nulldev
