@@ -1,4 +1,4 @@
-static	char sccsid[] = "@(#)pc.c 3.8 01/13/81";
+static	char sccsid[] = "@(#)pc.c 3.9 01/13/81";
 #include <stdio.h>
 #include <signal.h>
 #include <wait.h>
@@ -332,7 +332,7 @@ duplicate:
 	ldargs[ldargx++] = lpc;
 	if (gflag)
 		ldargs[ldargx++] = "-lg";
-	ldargs[ldargx++] = "-lm";
+	ldargs[ldargx++] = "-lnm";
 	ldargs[ldargx++] = "-lc";
 	ldargs[ldargx] = 0;
 	if (dosys(ld, ldargs, 0, 0)==0 && np == 1 && nxo == 0)
