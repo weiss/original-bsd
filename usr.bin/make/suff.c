@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)suff.c	8.1 (Berkeley) 06/06/93";
+static char sccsid[] = "@(#)suff.c	8.2 (Berkeley) 01/02/94";
 #endif /* not lint */
 
 /*-
@@ -2079,6 +2079,7 @@ Suff_Init ()
     suffNull->name =   	    strdup ("");
     suffNull->nameLen =     0;
     suffNull->searchPath =  Lst_Init (FALSE);
+    Dir_Concat(suffNull->searchPath, dirSearchPath);
     suffNull->children =    Lst_Init (FALSE);
     suffNull->parents =	    Lst_Init (FALSE);
     suffNull->sNum =   	    sNum++;
