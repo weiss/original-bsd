@@ -1,4 +1,4 @@
-/*	@(#)stdio.h	1.4 (Berkeley) 06/30/83	*/
+/*	stdio.h	1.5	83/08/11	*/
 #define	BUFSIZ	1024
 #define	_NFILE	20
 # ifndef FILE
