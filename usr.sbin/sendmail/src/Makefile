@@ -1,10 +1,7 @@
-#	@(#)Makefile	5.20 (Berkeley) 03/03/91
+#	@(#)Makefile	5.21 (Berkeley) 03/09/91
 
 PROG=	sendmail
 
-.if ${MACHINE} == "hp300"
-CFLAGS+=-fwritable-strings
-.endif
 CFLAGS+=-I${.CURDIR} -DVMUNIX
 
 SRCS=	alias.c arpadate.c clock.c collect.c conf.c convtime.c daemon.c \
