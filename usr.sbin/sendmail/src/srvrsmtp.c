@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.42 (Berkeley) 07/03/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.43 (Berkeley) 07/23/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.42 (Berkeley) 07/03/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.43 (Berkeley) 07/23/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -463,11 +463,11 @@ smtp(e)
 					e->e_bodytype = newstr(vp);
 					if (strcasecmp(vp, "8bitmime") == 0)
 					{
-						SevenBit = FALSE;
+						SevenBitInput = FALSE;
 					}
 					else if (strcasecmp(vp, "7bit") == 0)
 					{
-						SevenBit = TRUE;
+						SevenBitInput = TRUE;
 					}
 					else
 					{
@@ -578,7 +578,7 @@ smtp(e)
 
 			/* collect the text of the message */
 			SmtpPhase = "collect";
-			collect(TRUE, doublequeue, e);
+			collect(InChannel, TRUE, doublequeue, NULL, e);
 			if (Errors != 0)
 				goto abortmessage;
 
