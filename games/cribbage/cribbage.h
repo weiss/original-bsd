@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1980, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)cribbage.h	5.6 (Berkeley) 04/26/93
+ *	@(#)cribbage.h	8.1 (Berkeley) 05/31/93
  */
 
 extern  CARD		deck[ CARDS ];		/* a deck */

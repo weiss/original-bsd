@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1980, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)cribcur.h	5.4 (Berkeley) 06/01/90
+ *	@(#)cribcur.h	8.1 (Berkeley) 05/31/93
  */
 
 # define	PLAY_Y		15	/* size of player's hand window */
