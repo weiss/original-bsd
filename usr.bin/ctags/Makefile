@@ -3,7 +3,7 @@
 # All rights reserved.  The Berkeley software License Agreement
 # specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	5.1 (Berkeley) 03/16/87
+#	@(#)Makefile	5.2 (Berkeley) 05/31/87
 #
 DESTDIR=
 CFLAGS=-O -I.
@@ -24,5 +24,7 @@ lint:
 
 tags:
 	ctags -dt ${SRCS}
+
+depend:
 
 ${OBJS}: ctags.h
