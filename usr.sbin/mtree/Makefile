@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.6 (Berkeley) 02/19/92
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	mtree
 #CFLAGS+=-DDEBUG
