@@ -36,7 +36,7 @@
 
 
 
-SCCSID(@(#)conf.c	3.51		08/08/82);
+SCCSID(@(#)conf.c	3.52		08/15/82);
 
 
 
@@ -53,7 +53,7 @@ SCCSID(@(#)conf.c	3.51		08/08/82);
 struct hdrinfo	HdrInfo[] =
 {
 	"date",			H_CHECK,		M_NEEDDATE,
-	"from",			H_ADDR|H_CHECK,		M_NEEDFROM,
+	"from",			H_ADDR|H_FROM|H_CHECK,	M_NEEDFROM,
 	"original-from",	0,			0,
 	"sender",		H_ADDR,			0,
 	"full-name",		H_ACHECK,		M_FULLNAME,
