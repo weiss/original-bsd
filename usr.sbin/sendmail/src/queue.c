@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.52 (Berkeley) 04/27/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.53 (Berkeley) 05/01/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.52 (Berkeley) 04/27/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.53 (Berkeley) 05/01/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -600,7 +600,7 @@ orderq(doall)
 				printf("orderq: bogus qf name %s\n", d->d_name);
 #ifdef LOG
 			if (LogLevel > 3)
-				syslog(LOG_NOTICE, "orderq: bogus qf name %s",
+				syslog(LOG_CRIT, "orderq: bogus qf name %s",
 					d->d_name);
 #endif
 			if (strlen(d->d_name) >= MAXNAME)
