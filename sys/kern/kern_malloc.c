@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)kern_malloc.c	7.10 (Berkeley) 06/29/88
+ *	@(#)kern_malloc.c	7.11 (Berkeley) 04/22/89
  */
 
 #include "param.h"
@@ -48,6 +48,10 @@ malloc(size, type, flags)
 	caddr_t va, cp;
 #ifdef KMEMSTATS
 	register struct kmemstats *ksp = &kmemstats[type];
+#if defined(ISO) || defined(TPIP)
+	if (((unsigned int)type) > M_LAST)
+		panic("malloc - bogus type");
+#endif
 #endif
 
 	indx = BUCKETINDX(size);

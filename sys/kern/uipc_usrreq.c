@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_usrreq.c	7.8 (Berkeley) 08/22/88
+ *	@(#)uipc_usrreq.c	7.9 (Berkeley) 04/22/89
  */
 
 #include "param.h"
@@ -39,7 +39,7 @@
  *	rethink name space problems
  *	need a proper out-of-band
  */
-struct	sockaddr sun_noname = { AF_UNIX };
+struct	sockaddr sun_noname = { sizeof(sun_noname), AF_UNIX };
 ino_t	unp_ino;			/* prototype for fake inode numbers */
 
 /*ARGSUSED*/
@@ -439,7 +439,8 @@ unp_connect(so, nam)
 		unp2 = sotounpcb(so2);
 		unp3 = sotounpcb(so3);
 		if (unp2->unp_addr)
-			unp3->unp_addr = m_copy(unp2->unp_addr, 0, M_COPYALL);
+			unp3->unp_addr =
+				  m_copy(unp2->unp_addr, 0, (int)M_COPYALL);
 		so2 = so3;
 	}
 	error = unp_connect2(so, so2);
