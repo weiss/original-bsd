@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)fsck.h	5.5 (Berkeley) 04/07/87
+ *	@(#)fsck.h	5.6 (Berkeley) 05/01/88
  */
 
 #define	MAXDUP		10	/* limit on dup blks (per inode) */
@@ -138,6 +138,7 @@ char	nflag;			/* assume a no response */
 char	yflag;			/* assume a yes response */
 int	bflag;			/* location of alternate super block */
 int	debug;			/* output debugging info */
+int	cvtflag;		/* convert to old file system format */
 char	preen;			/* just fix normal inconsistencies */
 char	hotroot;		/* checking root device */
 char	havesb;			/* superblock has been read */
