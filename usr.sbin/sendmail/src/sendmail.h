@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.80 (Berkeley) 01/24/95
+ *	@(#)sendmail.h	8.81 (Berkeley) 01/25/95
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.80		01/24/95";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.81		01/25/95";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -865,6 +865,7 @@ EXTERN bool	AutoRebuild;	/* auto-rebuild the alias database as needed */
 EXTERN bool	CheckAliases;	/* parse addresses during newaliases */
 EXTERN bool	NoAlias;	/* suppress aliasing */
 EXTERN bool	UseNameServer;	/* using DNS -- interpret h_errno & MX RRs */
+EXTERN bool	UseHesiod;	/* using Hesiod -- interpret Hesiod errors */
 EXTERN bool	SevenBitInput;	/* force 7-bit data on input */
 EXTERN bool	HasEightBits;	/* has at least one eight bit input byte */
 EXTERN time_t	SafeAlias;	/* interval to wait until @:@ in alias file */
