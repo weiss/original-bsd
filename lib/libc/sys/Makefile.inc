@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.36 (Berkeley) 06/16/93
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/17/93
 
 # sys sources
 .PATH: ${.CURDIR}/${MACHINE}/sys ${.CURDIR}/sys
