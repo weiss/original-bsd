@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)df.c	4.6 (Berkeley) 07/08/81";
+static	char *sccsid = "@(#)df.c	4.7 (Berkeley) 07/10/81";
 #include <stdio.h>
 #include <fstab.h>
 #include <sys/param.h>
@@ -47,7 +47,7 @@ char **argv;
 			break;
 
 		default:
-			fprintf(stderr, "usage: df [ -il ] [ filsys... ]\n");
+			fprintf(stderr, "usage: df [ -i ] [ -l ] [ filsys... ]\n");
 			exit(0);
 		}
 		argc--, argv++;
