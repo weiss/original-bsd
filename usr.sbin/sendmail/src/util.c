@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)util.c	5.4 (Berkeley) 06/08/85";
+static char	SccsId[] = "@(#)util.c	5.5 (Berkeley) 06/08/85";
 #endif not lint
 
 # include <stdio.h>
@@ -143,8 +143,9 @@ xalloc(sz)
 	register int sz;
 {
 	register char *p;
+	extern char *malloc();
 
-	p = malloc(sz);
+	p = malloc((unsigned) sz);
 	if (p == NULL)
 	{
 		syserr("Out of memory!!");
