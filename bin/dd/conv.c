@@ -10,7 +10,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conv.c	5.3 (Berkeley) 07/29/91";
+static char sccsid[] = "@(#)conv.c	5.4 (Berkeley) 08/14/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -22,14 +22,7 @@ static char sccsid[] = "@(#)conv.c	5.3 (Berkeley) 07/29/91";
  * def --
  * Copy input to output.  Input is buffered until reaches obs, and then
  * output until less than obs remains.  Only a single buffer is used.
- * Worst case buffer calculations are as follows:
- *
- * if (ibs > obs)			# read ibs, output just over half
- *	max = ibs - 1 - ibs / 2 + ibs;
- * else if (ibs < obs)			# obs - 1 a multiple of ibs
- *	max = obs + ibs - 1;
- * else					# input == output
- *	max = ibs;
+ * Worst case buffer calculation is (ibs + obs - 1).
  */
 void
 def()
@@ -74,7 +67,6 @@ def_close()
  * max in buffer:  MAX(ibs, cbsz)
  * max out buffer: obs + cbsz
  */
-
 void
 block()
 {
