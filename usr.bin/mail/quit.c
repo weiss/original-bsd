@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)quit.c	5.11 (Berkeley) 01/16/89";
+static char sccsid[] = "@(#)quit.c	5.12 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -399,7 +399,8 @@ edstop()
 		goto done;
 	ibuf = NULL;
 	if (stat(mailname, &statb) >= 0 && statb.st_size > mailsize) {
-		strcpy(tempname, "/tmp/mboxXXXXXX");
+		strcpy(tempname, _PATH_TMP);
+		strcat(tempname, "/mboxXXXXXX");
 		mktemp(tempname);
 		if ((obuf = fopen(tempname, "w")) == NULL) {
 			perror(tempname);

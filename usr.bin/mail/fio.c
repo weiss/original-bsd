@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)fio.c	5.20 (Berkeley) 01/16/89";
+static char sccsid[] = "@(#)fio.c	5.21 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include "rcv.h"
@@ -343,7 +343,7 @@ expand(name)
 	}
 	sprintf(cmdbuf, "echo %s", name);
 	if ((shell = value("SHELL")) == NOSTR)
-		shell = SHELL;
+		shell = _PATH_CSHELL;
 	pid = start_command(shell, 0, -1, pivec[1], "-c", cmdbuf, NOSTR);
 	if (pid < 0) {
 		close(pivec[0]);
