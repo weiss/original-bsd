@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_exit.c	8.1 (Berkeley) 06/14/93
+ *	@(#)kern_exit.c	8.2 (Berkeley) 09/21/93
  */
 
 #include <sys/param.h>
@@ -294,11 +294,7 @@ wait4(p, uap, retval)
 #define	wait1	wait4
 #endif
 
-/*
- * Wait: check child processes to see if any have exited,
- * stopped under trace, or (optionally) stopped by a signal.
- * Pass back status and deallocate exited child's proc structure.
- */
+int
 wait1(q, uap, retval)
 	register struct proc *q;
 	register struct wait_args *uap;
