@@ -13,7 +13,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)subr_autoconf.c	8.2 (Berkeley) 05/12/94
+ *	@(#)subr_autoconf.c	8.3 (Berkeley) 05/17/94
  *
  * from: $Header: subr_autoconf.c,v 1.12 93/02/01 19:31:48 torek Exp $ (LBL)
  */
@@ -21,6 +21,7 @@
 #include <sys/param.h>
 #include <sys/device.h>
 #include <sys/malloc.h>
+#include <libkern/libkern.h>
 
 /*
  * Autoconfiguration subroutines.
