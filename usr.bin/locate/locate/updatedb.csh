@@ -8,7 +8,7 @@
 #
 # %sccs.include.redist.sh%
 #
-#	@(#)updatedb.csh	5.1 (Berkeley) 04/02/91
+#	@(#)updatedb.csh	5.2 (Berkeley) 05/27/92
 #
 
 set SRCHPATHS = "/"			# directories to be put in the database
