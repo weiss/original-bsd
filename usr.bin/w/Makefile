@@ -1,7 +1,8 @@
-#	@(#)Makefile	5.5 (Berkeley) 04/01/91
+#	@(#)Makefile	5.6 (Berkeley) 04/23/91
 
 PROG=	w
 SRCS=	attime.c w.c proc_compare.c
+CFLAGS+=-I/sys
 MAN1=	w.0 uptime.0
 DPADD=	${LIBUTIL}
 LDADD=	-lutil
