@@ -1,11 +1,11 @@
 #ifdef LIBC_SCCS
-	.asciz	"@(#)htonl.s	1.1 (Berkeley/CCI) 07/02/86"
+	.asciz	"@(#)htonl.s	1.2 (Berkeley/CCI) 08/01/86"
 #endif LIBC_SCCS
 
 /* netorder = htonl(hostorder) */
 
 #include "DEFS.h"
 
-ENTRY(htonl)
+ENTRY(htonl, 0)
 	movl	4(fp),r0
 	ret
