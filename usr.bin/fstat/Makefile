@@ -14,19 +14,20 @@
 # WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND
 # FITNESS FOR A PARTICULAR PURPOSE.
 #
-# @(#)Makefile	5.2 (Berkeley) 05/11/89
+# @(#)Makefile	5.3 (Berkeley) 04/02/90
 #
 
 CFLAGS=	-O
+VPATH= ../../bin/ps
 LIBC=	/lib/libc.a
-SRCS=	fstat.c
-OBJS=
+SRCS=	fstat.c devname.c
+OBJS=	fstat.o devname.o
 MAN=	fstat.0
 
 all: fstat
 
-fstat: ${LIBC}
-	${CC} -o $@ ${CFLAGS} $@.c
+fstat: ${LIBC} ${OBJS}
+	${CC} -o $@ ${CFLAGS} $@.c -lutil
 
 clean:
 	rm -f ${OBJS} core fstat
