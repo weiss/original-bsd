@@ -9,9 +9,9 @@
  *
  * %sccs.include.redist.c%
  *
- * from: Utah $Hdr: hpux_net.c 1.6 92/12/26$
+ * from: Utah $Hdr: hpux_net.c 1.8 93/08/02$
  *
- *	@(#)hpux_net.c	8.1 (Berkeley) 06/10/93
+ *	@(#)hpux_net.c	8.2 (Berkeley) 09/09/93
  */
 
 /*
@@ -95,14 +95,14 @@ hpuxnetioctl(p, uap, retval)
 #ifdef KTRACE
                 if (KTRPOINT(p, KTR_SYSCALL))
                         ktrsyscall(p->p_tracep, code + MINBSDIPCCODE,
-				   hpuxtobsdipc[code].nargs);
+				   hpuxtobsdipc[code].nargs, (int *)uap);
 #endif
 		return (error);
 	}
 #ifdef KTRACE
         if (KTRPOINT(p, KTR_SYSCALL))
                 ktrsyscall(p->p_tracep, code + MINBSDIPCCODE,
-			   hpuxtobsdipc[code].nargs);
+			   hpuxtobsdipc[code].nargs, (int *)uap);
 #endif
 	return ((*hpuxtobsdipc[code].rout)(p, uap, retval));
 }
