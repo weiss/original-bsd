@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-	.asciz "@(#)ntohl.s	5.1 (Berkeley) 04/23/90"
+	.asciz "@(#)ntohl.s	5.2 (Berkeley) 12/17/90"
 #endif /* LIBC_SCCS and not lint */
 
 /* hostorder = ntohl(netorder) */
@@ -17,8 +17,8 @@
 #include "DEFS.h"
 
 ENTRY(ntohl)
-	mov	%eax,4(sp)
-	xchg	%al,%ah
-	rol	$16,%eax
-	xchg	%al,%ah
+	movl	4(%esp),%eax
+	xchgb	%al,%ah
+	roll	$16,%eax
+	xchgb	%al,%ah
 	ret
