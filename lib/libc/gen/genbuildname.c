@@ -16,12 +16,12 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)genbuildname.c	5.1 (Berkeley) 03/13/90";
+static char sccsid[] = "@(#)genbuildname.c	5.2 (Berkeley) 05/15/90";
 #endif LIBC_SCCS and not lint
 
-#include <strings.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <string.h>
 
 char *objdir = "obj";
 
