@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)uda.c	7.15 (Berkeley) 05/24/88
+ *	@(#)uda.c	7.16 (Berkeley) 05/27/88
  *
  */
 
@@ -196,7 +196,7 @@ int	udaonline(), udagotstatus(), udaioerror(), udareplace(), udabb();
 struct	buf udautab[NRA];	/* per drive transfer queue */
 
 struct	mscp_driver udamscpdriver =
- { MAXUNIT, NRA, UNITSHIFT, udautab, udadinfo,
+ { MAXUNIT, NRA, UNITSHIFT, udautab, udalabel, udadinfo,
    udadgram, udactlrdone, udaunconf, udaiodone,
    udaonline, udagotstatus, udareplace, udaioerror, udabb,
    "uda", "ra" };
