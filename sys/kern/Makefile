@@ -1,4 +1,4 @@
-#	@(#)Makefile	8.1 (Berkeley) 06/11/93
+#	@(#)Makefile	8.2 (Berkeley) 03/21/94
 
 # Makefile for kernel tags files, init_sysent, etc.
 
@@ -31,7 +31,8 @@ DGEN=	conf \
 	hp hp/dev hp/hpux \
 	kern libkern \
 	miscfs miscfs/deadfs miscfs/fdesc miscfs/fifofs miscfs/kernfs \
-	miscfs/lofs miscfs/nullfs miscfs/portal miscfs/specfs miscfs/umapfs \
+	miscfs/lofs miscfs/nullfs miscfs/portal miscfs/procfs \
+	miscfs/specfs miscfs/umapfs miscfs/union \
 	net netccitt netinet netiso netns nfs scripts sys \
 	ufs ufs/ffs ufs/lfs ufs/mfs ufs/ufs \
 	vm
