@@ -1,4 +1,4 @@
-#	@(#)Makefile.inc	5.2 (Berkeley) 10/16/92
+#	@(#)Makefile.inc	8.1 (Berkeley) 06/04/93
 
 SRCS+=	bcmp.s bcopy.s bzero.s ffs.s index.s memchr.s memcmp.s memset.s \
 	rindex.s strcat.s strcmp.s strcpy.s strcspn.s strlen.s strncat.s \
