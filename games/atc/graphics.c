@@ -18,7 +18,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)graphics.c	5.2 (Berkeley) 04/30/90";
+static char sccsid[] = "@(#)graphics.c	5.3 (Berkeley) 10/30/90";
 #endif /* not lint */
 
 #include "include.h"
@@ -303,7 +303,7 @@ planewin()
 #ifdef SYSV
 	wclrtobot(planes);
 #endif
-	wprintw(planes, "Time: %-4d Safe: %d", clock, safe_planes);
+	wprintw(planes, "Time: %-4d Safe: %d", clck, safe_planes);
 	wmove(planes, 2, 0);
 
 	waddstr(planes, "pl dt  comm");

@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)extern.h	5.3 (Berkeley) 04/30/90
+ *	@(#)extern.h	5.4 (Berkeley) 10/30/90
  */
 
 /*
@@ -21,7 +21,7 @@
 
 extern char		GAMES[], *file;
 
-extern int		clock, safe_planes, start_time, test_mode;
+extern int		clck, safe_planes, start_time, test_mode;
 
 extern FILE		*filein, *fileout;
 

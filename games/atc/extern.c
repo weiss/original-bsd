@@ -18,14 +18,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)extern.c	5.3 (Berkeley) 04/30/90";
+static char sccsid[] = "@(#)extern.c	5.4 (Berkeley) 10/30/90";
 #endif /* not lint */
 
 #include "include.h"
 
 char		GAMES[] =	"Game_List";
 
-int		clock, safe_planes, start_time, test_mode;
+int		clck, safe_planes, start_time, test_mode;
 
 char		*file;
 
