@@ -1,4 +1,4 @@
-/*	ufs_disksubr.c	3.1	10/14/12	*/
+/*	ufs_disksubr.c	3.2	06/07/80	*/
 
 /*
  * generalized seek sort for disk
