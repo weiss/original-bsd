@@ -7,13 +7,14 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)rune.h	5.2 (Berkeley) 06/27/93
+ *	@(#)rune.h	5.3 (Berkeley) 06/27/93
  */
 
 #ifndef	_RUNE_H_
 #define	_RUNE_H_
 
 #include <runetype.h>
+#include <stdio.h>
 
 #define	_PATH_LOCALE	"/usr/share/locale"
 
