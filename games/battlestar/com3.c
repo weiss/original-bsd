@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 1983 Regents of the University of California,
+ * All rights reserved.  Redistribution permitted subject to
+ * the terms of the Berkeley Software License Agreement.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)com3.c	1.1 11/18/84";
+static char sccsid[] = "@(#)com3.c	1.2 04/24/85";
 #endif
 
 #include "externs.h"
