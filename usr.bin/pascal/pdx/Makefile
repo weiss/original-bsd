@@ -1,6 +1,8 @@
-# Copyright (c) 1982 Regents of the University of California
+# Copyright (c) 1982 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
 #
-#	@(#)Makefile	1.13	(Berkeley)	02/08/83
+#	@(#)Makefile	1.14 (Berkeley) 06/07/85
 #
 # make file for pdx
 #
