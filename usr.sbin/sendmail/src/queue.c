@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	6.60 (Berkeley) 05/30/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	6.61 (Berkeley) 06/03/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	6.60 (Berkeley) 05/30/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	6.61 (Berkeley) 06/03/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -739,6 +739,8 @@ workcmpf(a, b)
 **		forkflag -- if set, run this in background.
 **		requeueflag -- if set, reinstantiate the queue quickly.
 **			This is used when expanding aliases in the queue.
+**			If forkflag is also set, it doesn't wait for the
+**			child.
 **		e - the envelope in which to run it.
 **
 **	Returns:
@@ -829,7 +831,7 @@ dowork(id, forkflag, requeueflag, e)
 		else
 			dropenvelope(e);
 	}
-	else
+	else if (!requeueflag)
 	{
 		/*
 		**  Parent -- pick up results.
