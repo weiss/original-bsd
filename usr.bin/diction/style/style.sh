@@ -1,7 +1,10 @@
-#! /bin/sh
+#!/bin/sh -
 #
-#	@(#)style.sh	4.7	(Berkeley)	89/08/31
+# %sccs.include.proprietary.sh%
 #
+#	@(#)style.sh	4.8 (Berkeley) 04/17/91
+#
+
 L=/usr/libexec
 B=/usr/ucb
 echo " " $*
