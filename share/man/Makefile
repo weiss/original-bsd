@@ -1,6 +1,6 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/08/90
+#	@(#)Makefile	5.8 (Berkeley) 05/07/91
 
-SUBDIR=	man3 man3f man4 man5 man7 man8
+SUBDIR=	man1 man3 man3f man4 man5 man7 man8
 
 afterinstall:
 	install -c -o ${BINOWN} -g ${BINGRP} -m 444 makewhatis.sed \
