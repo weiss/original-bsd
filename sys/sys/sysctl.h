@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sysctl.h	7.8 (Berkeley) 02/24/91
+ *	@(#)sysctl.h	7.9 (Berkeley) 06/26/91
  */
 
 /*
@@ -37,6 +37,11 @@
  * vnodes
  */
 #define	KINFO_VNODE		(2<<8)
+
+/*
+ * file structures
+ */
+#define KINFO_FILE		(3<<8)
 
 /*
  * Locking and stats
