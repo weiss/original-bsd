@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #ifndef lint
-static char nhash_sccsid[] = "@(#)nhash.c	4.3	(Berkeley)	91/02/02";
-#endif not lint
+static char sccsid[] = "@(#)nhash.c	4.4 (Berkeley) 04/17/91";
+#endif /* not lint */
 
 struct dict {
 	char *entry;
