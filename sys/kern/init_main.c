@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)init_main.c	7.14 (Berkeley) 06/27/89
+ *	@(#)init_main.c	7.15 (Berkeley) 08/26/89
  */
 
 #include "param.h"
@@ -270,6 +270,10 @@ binit()
 		bp = &buf[i];
 		bp->b_dev = NODEV;
 		bp->b_bcount = 0;
+		bp->b_rcred = NOCRED;
+		bp->b_wcred = NOCRED;
+		bp->b_dirtyoff = 0;
+		bp->b_dirtyend = 0;
 		bp->b_un.b_addr = buffers + i * MAXBSIZE;
 		if (i < residual)
 			bp->b_bufsize = (base + 1) * CLBYTES;
