@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)setpgrp.s	5.1 (Berkeley) 06/03/85";
+_sccsid:.asciz	"@(#)setpgrp.s	5.2 (Berkeley) 06/05/85"
 #endif not lint
 
 #include "SYS.h"
