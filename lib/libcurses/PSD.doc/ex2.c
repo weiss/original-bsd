@@ -1,9 +1,9 @@
-.\" Copyright (c) 1992 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 1992, 1993
+.\"	 The Regents of the University of California.  All rights reserved.
 .\"
 .\" %sccs.include.redist.roff%
 .\"
-.\"     @(#)ex2.c	1.1 (Berkeley) 12/30/92
+.\"     @(#)ex2.c	1.2 (Berkeley) 06/08/93
 .\"
 #include <curses.h>
 #include <stdio.h>
