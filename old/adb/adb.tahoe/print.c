@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)print.c	1.1 (Berkeley) 02/25/86";
+static	char sccsid[] = "@(#)print.c	1.2 (Berkeley) 07/25/86";
 #endif
 /*
  *
@@ -392,7 +392,7 @@ getreg(regnam)
 		FI
 	OD
 	lp=olp;
-	return(0);
+	return(-1);
 }
 
 printpc()

@@ -1,5 +1,5 @@
 #ifndef lint
-static	char sccsid[] = "@(#)expr.c	1.1 (Berkeley) 02/25/86";
+static	char sccsid[] = "@(#)expr.c	1.2 (Berkeley) 07/25/86";
 #endif
 /*
  *
@@ -178,7 +178,7 @@ item(a)
 
 	ELIF lastc=='<'
 	THEN	savc=rdc();
-		IF regptr=getreg(savc)
+		IF (regptr=getreg(savc)) != -1
 		THEN	IF kcore THEN expv = *(int *)regptr;
 			ELSE expv= *(ADDR *)(((ADDR)(&u))+regptr); FI
 		ELIF (base=varchk(savc)) != -1
