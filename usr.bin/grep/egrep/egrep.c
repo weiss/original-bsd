@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)egrep.c	5.9 (Berkeley) 10/22/87";
+static char sccsid[] = "@(#)egrep.c	5.10 (Berkeley) 06/30/88";
 #endif not lint
 
 /*
@@ -224,11 +224,12 @@ oops("usage: fgrep [-bchilnosvx] {-f patfile | [-e] strings} [file ...]");
 				 * others */
 oops("usage: egrep [-bchilnosv] {-f patfile | [-e] pattern} [file ...]");
 	}
-	patind = optind;
 	if (fflag)
-		pattern = pfile(patfile), patind = 0;
-	else if (!eflag)
+		pattern = pfile(patfile);
+	else if (!eflag) {
+		patind = optind;
 		pattern = argv[optind++];
+	}
 
 	if (!oflag && (argc - optind) <= 1)	/* Filename invisible given < 2 files */
 		hflag++;
