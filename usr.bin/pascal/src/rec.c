@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)rec.c	5.1 (Berkeley) 06/05/85";
+static char sccsid[] = "@(#)rec.c	5.2 (Berkeley) 04/06/87";
 #endif not lint
 
 #include "whoami.h"
@@ -393,7 +393,7 @@ rec_offsets(recp, offset)
 	if ( fieldnlp->symbol != NIL ) {
 	    origin = roundup((int) origin,(long) align(fieldnlp->type));
 	    fieldnlp->value[NL_OFFS] = origin;
-	    DEBUG_RECORDS(fprintf(stderr,"[rec_offsets] tag %s origin\n",
+	    DEBUG_RECORDS(fprintf(stderr,"[rec_offsets] tag %s origin %d\n",
 				    fieldnlp->symbol, origin));
 	    origin += lwidth(fieldnlp->type);
 	}
