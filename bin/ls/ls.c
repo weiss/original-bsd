@@ -15,7 +15,7 @@ static char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	8.3 (Berkeley) 04/01/94";
+static char sccsid[] = "@(#)ls.c	8.4 (Berkeley) 04/01/94";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -295,7 +295,8 @@ traverse(argc, argv, options)
 				(void)fts_set(ftsp, p, FTS_SKIP);
 			break;
 		}
-	(void)fts_close(ftsp);
+	if (errno)
+		err(1, "fts_read");
 }
 
 /*
