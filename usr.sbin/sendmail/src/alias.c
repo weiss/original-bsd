@@ -4,9 +4,9 @@
 # include "sendmail.h"
 
 # ifdef DBM
-static char SccsId[] = "@(#)alias.c	3.21	09/07/81	(with DBM)";
+static char SccsId[] = "@(#)alias.c	3.22	09/16/81	(with DBM)";
 # else DBM
-static char SccsId[] = "@(#)alias.c	3.21	09/07/81	(without DBM)";
+static char SccsId[] = "@(#)alias.c	3.22	09/16/81	(without DBM)";
 # endif DBM
 
 /*
@@ -113,7 +113,7 @@ alias(a)
 		message(Arpa_Info, "aliased to %s", p);
 	a->q_flags |= QDONTSEND;
 	AliasLevel++;
-	sendto(p, 1);
+	sendto(p, 1, a);
 	AliasLevel--;
 }
 /*
@@ -452,5 +452,5 @@ forward(user)
 
 	/* we do have an address to forward to -- do it */
 	user->q_flags |= QDONTSEND;
-	include(buf, "forwarding");
+	include(buf, "forwarding", user);
 }
