@@ -36,7 +36,7 @@
 
 
 
-static char SccsId[] = "@(#)conf.c	3.39	11/07/81";
+static char SccsId[] = "@(#)conf.c	3.40	12/05/81";
 
 
 # include <whoami.h>		/* definitions of machine id's at berkeley */
@@ -95,7 +95,11 @@ char	*AliasFile =	"/usr/lib/aliases";	/* alias file */
 char	*ConfFile =	"/usr/lib/sendmail.cf";	/* runtime configuration */
 char	*StatFile =	"/usr/lib/sendmail.st";	/* statistics summary */
 char	*HelpFile =	"/usr/lib/sendmail.hf";	/* help file */
+# ifdef QUEUE
 char	*QueueDir =	"/usr/spool/mqueue";	/* queue of saved mail */
+# else QUEUE
+char	*QueueDir =	"/tmp";			/* location of temp files */
+# endif QUEUE
 char	*XcriptFile =	"/tmp/mailxXXXXXX";	/* template for transcript */
 
 
