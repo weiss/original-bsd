@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)eval.c	5.1 (Berkeley) 08/28/89";
+static char sccsid[] = "@(#)eval.c	5.2 (Berkeley) 08/28/89";
 #endif /* not lint */
 
 /*
@@ -147,8 +147,6 @@ register int  td;
 			pbnum(atoi(argv[2]) - 1);
 		break;
 
-#if unix || vms
-
 	case SYSCTYPE:
 		/*
 		 * dosys - execute system command
@@ -165,7 +163,6 @@ register int  td;
 		 */
 		pbnum(sysval);
 		break;
-#endif
 
 	case INCLTYPE:
 		if (argc > 2)
