@@ -10,7 +10,7 @@
 # include <pwd.h>
 
 #ifndef lint
-static char sccsid[] = "@(#)alias.c	8.21 (Berkeley) 12/11/93";
+static char sccsid[] = "@(#)alias.c	8.22 (Berkeley) 01/31/94";
 #endif /* not lint */
 
 
@@ -391,7 +391,7 @@ rebuildaliases(map, automatic)
 	/* try to lock the source file */
 	if ((af = fopen(map->map_file, "r+")) == NULL)
 	{
-		if (errno != EACCES || automatic ||
+		if ((errno != EACCES && errno != EROFS) || automatic ||
 		    (af = fopen(map->map_file, "r")) == NULL)
 		{
 			int saveerr = errno;
