@@ -12,9 +12,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	6.35 (Berkeley) 04/12/93 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.36 (Berkeley) 04/14/93 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	6.35 (Berkeley) 04/12/93 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	6.36 (Berkeley) 04/14/93 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -748,8 +748,6 @@ myhostname(hostbuf, size)
 **	Side Effects:
 **		Sets RealHostName to the name of the host at the other end.
 */
-
-#define IDENTPROTO	1
 
 #ifdef IDENTPROTO
 
