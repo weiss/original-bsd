@@ -25,7 +25,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ls.c	5.23 (Berkeley) 06/26/89";
+static char sccsid[] = "@(#)ls.c	5.24 (Berkeley) 06/26/89";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -71,7 +71,6 @@ main(argc, argv)
 	char **argv;
 {
 	extern int optind, stat();
-	struct sgttyb sgbuf;
 	struct winsize win;
 	int ch;
 	char *p, *getenv();
@@ -85,7 +84,6 @@ main(argc, argv)
 	 */
 	if (isatty(1)) {
 		f_nonprint = 1;
-		(void)ioctl(1, TIOCGETP, &sgbuf);
 		if (ioctl(1, TIOCGWINSZ, &win) == -1 || !win.ws_col) {
 			if (p = getenv("COLUMNS"))
 				termwidth = atoi(p);
