@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)stty.c	5.29 (Berkeley) 09/10/91";
+static char sccsid[] = "@(#)stty.c	5.30 (Berkeley) 11/08/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -26,7 +26,7 @@ static char sccsid[] = "@(#)stty.c	5.29 (Berkeley) 09/10/91";
 #include "stty.h"
 #include "extern.h"
 
-char *usage = "usage: stty: [-eg] [-f file] [options]";
+char *usage = "usage: stty: [-aefg] [-f file] [options]";
 
 main(argc, argv) 
 	int argc;
