@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.34		01/05/83	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.35		01/05/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.34		01/05/83);
+SCCSID(@(#)usersmtp.c	3.35		01/05/83);
 
 
 
@@ -242,6 +242,8 @@ smtpquit(name)
 	{
 		smtpmessage("QUIT");
 		(void) reply();
+		if (SmtpClosing)
+			return;
 	}
 
 	/* now actually close the connection */
