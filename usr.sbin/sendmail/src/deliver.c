@@ -9,15 +9,13 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)deliver.c	5.1 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)deliver.c	5.2 (Berkeley) 06/07/85";
 #endif not lint
 
 # include <signal.h>
 # include <errno.h>
 # include "sendmail.h"
 # include <sys/stat.h>
-
-SCCSID(@(#)deliver.c	5.1		06/07/85);
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
