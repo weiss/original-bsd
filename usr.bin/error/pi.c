@@ -1,4 +1,4 @@
-static	char *sccsid = "@(#)pi.c	1.2 (Berkeley) 01/22/82";
+static	char *sccsid = "@(#)pi.c	1.3 (Berkeley) 07/02/83";
 #include <stdio.h>
 #include <ctype.h>
 #include "error.h"
@@ -169,6 +169,8 @@ Errorclass pi()
 {
 	char	**nwordv;
 
+	if (wordc < 2)
+		return (C_UNKNOWN);
 	if (   ( strlen(wordv[1]) == 1)
 	    && ( (wordv[1][0] == 'e') || (wordv[1][0] == 'E') )
 	    && ( piptr(wordv[2]) )
