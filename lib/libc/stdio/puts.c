@@ -9,10 +9,10 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)puts.c	5.3 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)puts.c	5.4 (Berkeley) 02/01/91";
 #endif /* LIBC_SCCS and not lint */
 
-#include <sys/stdc.h>
+#include <sys/cdefs.h>
 #include <stdio.h>
 #include <string.h>
 #include "fvwrite.h"
