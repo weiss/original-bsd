@@ -1,9 +1,15 @@
 /*
  * Copyright (c) 1982, 1986 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+ * All rights reserved.
  *
- *	@(#)uipc_mbuf.c	7.4.1.1 (Berkeley) 11/24/87
+ * Redistribution and use in source and binary forms are permitted
+ * provided that this notice is preserved and that due credit is given
+ * to the University of California at Berkeley. The name of the University
+ * may not be used to endorse or promote products derived from this
+ * software without specific prior written permission. This software
+ * is provided ``as is'' without express or implied warranty.
+ *
+ *	@(#)uipc_mbuf.c	7.5 (Berkeley) 12/30/87
  */
 
 #include "../machine/pte.h"
@@ -93,10 +99,6 @@ m_clalloc(ncl, how, canwait)
 			(void) m_free(m);
 			m++;
 		}
-		break;
-
-	case MPG_SPACE:
-		mbstat.m_space++;
 		break;
 	}
 	return ((caddr_t)m);
