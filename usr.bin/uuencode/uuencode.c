@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)uuencode.c	5.2 (Berkeley) 12/19/83";
+static char sccsid[] = "@(#)uuencode.c	5.3 (Berkeley) 01/22/85";
 #endif
 
 /*
@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)uuencode.c	5.2 (Berkeley) 12/19/83";
 #include <sys/stat.h>
 
 /* ENC is the basic 1 character encoding function to make a char printing */
-#define ENC(c) (((c) & 077) + ' ')
+#define ENC(c) ((c) ? ((c) & 077) + ' ': '`')
 
 main(argc, argv)
 char **argv;
@@ -39,8 +39,6 @@ char **argv;
 	/* figure out the input file mode */
 	fstat(fileno(in), &sbuf);
 	mode = sbuf.st_mode & 0777;
-	if (in == stdin && mode == 0)
-		mode = 0600;	/* use a reasonable mode in case of pipes */
 	printf("begin %o %s\n", mode, argv[1]);
 
 	encode(in, stdout);
