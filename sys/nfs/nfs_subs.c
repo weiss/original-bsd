@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_subs.c	7.17 (Berkeley) 02/17/90
+ *	@(#)nfs_subs.c	7.18 (Berkeley) 02/17/90
  */
 
 /*
@@ -35,7 +35,6 @@
 #include "vnode.h"
 #include "mbuf.h"
 #include "errno.h"
-#include "strings.h"
 #include "map.h"
 #include "rpcv2.h"
 #include "nfsv2.h"

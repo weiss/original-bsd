@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_vnops.c	7.28 (Berkeley) 02/17/90
+ *	@(#)nfs_vnops.c	7.29 (Berkeley) 02/17/90
  */
 
 /*
@@ -26,7 +26,6 @@
 
 #include "machine/pte.h"
 #include "machine/mtpr.h"
-#include "strings.h"
 #include "param.h"
 #include "user.h"
 #include "proc.h"
