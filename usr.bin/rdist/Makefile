@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.10 (Berkeley) 06/24/90
+#	@(#)Makefile	5.11 (Berkeley) 03/12/91
 
 PROG=	rdist
 CFLAGS+=-I${.CURDIR}
@@ -6,6 +6,8 @@ SRCS=	docmd.c expand.c lookup.c main.c server.c
 OBJS+=	gram.o
 BINOWN=	root
 BINMODE=4555
+DPADD=	${LIBCOMPAT}
+LDADD=	-lcompat
 CLEANFILES=y.tab.h
 
 .include <bsd.prog.mk>
