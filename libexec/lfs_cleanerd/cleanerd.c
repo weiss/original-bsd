@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cleanerd.c	5.6 (Berkeley) 10/06/92";
+static char sccsid[] = "@(#)cleanerd.c	5.7 (Berkeley) 11/01/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -170,8 +170,8 @@ clean_loop(fsp)
 	if (fsp->fi_cip->clean < max_free_segs &&
 	    (fsp->fi_cip->clean <= MIN_SEGS(&fsp->fi_lfs) ||
 	    fsp->fi_cip->clean < max_free_segs * BUSY_LIM)) {
-		printf("Cleaner Running  at %s (need space)\n",
-		    ctime(&now));
+		printf("Cleaner Running  at %s (%d of %d segments available)\n",
+		    ctime(&now), fsp->fi_cip->clean, max_free_segs);
 		clean_fs(fsp, cost_benefit);
 		return (1);
 	} else {
