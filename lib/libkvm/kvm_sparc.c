@@ -3,14 +3,14 @@
  * All rights reserved.
  *
  * This code is derived from software developed by the Computer Systems
- * Engineering group at Lawrence Berkeley Laboratory under DARPA
- * contract BG 91-66 and contributed to Berkeley.
+ * Engineering group at Lawrence Berkeley Laboratory under DARPA contract
+ * BG 91-66 and contributed to Berkeley.
  *
  * %sccs.include.redist.c%
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)kvm_sparc.c	5.1 (Berkeley) 04/01/92";
+static char sccsid[] = "@(#)kvm_sparc.c	5.2 (Berkeley) 04/29/92";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -29,7 +29,7 @@ static char sccsid[] = "@(#)kvm_sparc.c	5.1 (Berkeley) 04/01/92";
 #include <vm/vm_param.h>
 
 #include <limits.h>
-#include <ndbm.h>
+#include <db.h>
 
 #include "kvm_private.h"
 
