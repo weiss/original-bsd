@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)main.c	4.12 (Berkeley) 84/10/31";
+static char sccsid[] = "@(#)main.c	4.13 (Berkeley) 84/11/20";
 #endif
 
 #include <sys/param.h>
@@ -94,7 +94,9 @@ int	sflag;
 int	tflag;
 int	uflag;
 int	interval;
-char	usage[] = "[ -Aaihmnrstu ] [ interval ] [ system ] [ core ]";
+char	*interface;
+int	unit;
+char	usage[] = "[ -Aaihmnrstu ] [-I interface] [ interval ] [ system ] [ core ]";
 
 main(argc, argv)
 	int argc;
@@ -148,6 +150,20 @@ main(argc, argv)
 
 		case 'u':
 			uflag++;
+			break;
+
+		case 'I':
+			iflag++;
+			if (*(interface = cp + 1) == 0) {
+				if ((interface = argv[1]) == 0)
+					break;
+				argv++;
+				argc--;
+			}
+			for (cp = interface; isalpha(*cp); cp++)
+				;
+			unit = atoi(cp);
+			*cp-- = 0;
 			break;
 
 		default:
