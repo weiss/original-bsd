@@ -1,4 +1,6 @@
-.\"	@(#)e0	6.1 (Berkeley) 05/22/86
+.\" %sccs.include.proprietary.roff%
+.\"
+.\"	@(#)e0	6.2 (Berkeley) 04/17/91
 .\"
 .EH 'USD:26-%''A System for Typesetting Mathematics'
 .OH 'A System for Typesetting Mathematics''USD:26-%'
