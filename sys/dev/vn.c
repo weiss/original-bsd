@@ -11,7 +11,7 @@
  *
  * from: Utah $Hdr: fd.c 1.3 89/12/03$
  *
- *	@(#)vn.c	7.13 (Berkeley) 10/07/92
+ *	@(#)vn.c	7.14 (Berkeley) 10/11/92
  */
 
 /*
@@ -49,7 +49,7 @@
 
 #include <miscfs/specfs/specdev.h>
 
-#include "vnioctl.h"
+#include <dev/vnioctl.h>
 
 #ifdef DEBUG
 int vndebug = 0x00;
