@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.57 (Berkeley) 12/26/93";
+static char sccsid[] = "@(#)conf.c	8.58 (Berkeley) 12/27/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -1342,7 +1342,7 @@ vsprintf(s, fmt, ap)
 
 #endif
 /*
-**  usershellok -- tell if a user's shell is ok for unrestricted use
+**  USERSHELLOK -- tell if a user's shell is ok for unrestricted use
 **
 **	Parameters:
 **		shell -- the user's shell from /etc/passwd
