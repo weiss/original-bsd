@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)wwenviron.c	3.15 08/05/86";
+static char sccsid[] = "@(#)wwenviron.c	3.16 05/26/87";
 #endif
 
 /*
@@ -34,7 +34,9 @@ register struct ww *wp;
 		(void) close(i);
 	(void) ioctl(0, TIOCSPGRP, (char *)&pgrp);
 	(void) setpgrp(pgrp, pgrp);
+	/* SIGPIPE is the only one we ignore */
 	(void) signal(SIGPIPE, SIG_DFL);
+	(void) sigsetmask(0);
 	(void) sprintf(wwwintermcap, "TERMCAP=%sco#%d:li#%d:%s%s%s%s%s%s%s",
 		WWT_TERMCAP, wp->ww_w.nc, wp->ww_w.nr,
 		wwavailmodes & WWM_REV ? WWT_REV : "",
