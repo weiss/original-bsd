@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)pl_7.c	5.9 (Berkeley) 01/22/93";
+static char sccsid[] = "@(#)pl_7.c	5.10 (Berkeley) 01/22/93";
 #endif /* not lint */
 
 #include <sys/ttydefaults.h>
@@ -35,12 +35,6 @@ initscreen()
 	(void) leaveok(slot_w, 1);
 	(void) leaveok(stat_w, 1);
 	(void) leaveok(turn_w, 1);
-#ifdef SIGTSTP
-	{
-		void susp();
-		(void) signal(SIGTSTP, susp);
-	}
-#endif
 	noecho();
 	crmode();
 }
