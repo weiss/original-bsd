@@ -1,4 +1,4 @@
-/* @(#)tmscpreg.h	5.2 (Berkeley) 04/28/86 */
+/* @(#)tmscpreg.h	7.1 (Berkeley) 06/05/86 */
 
 /*	@(#)tmscpreg.h	1.1	11/2/84	84/09/25	*/
 
