@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.5 (Berkeley) 06/08/93
+#	@(#)Makefile	8.1 (Berkeley) 08/14/93
 
 # The following modules do not build/install:
 # 08.mh
