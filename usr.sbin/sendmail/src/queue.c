@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.28 (Berkeley) 11/13/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.29 (Berkeley) 11/20/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.28 (Berkeley) 11/13/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.29 (Berkeley) 11/20/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -120,7 +120,10 @@ queueup(e, queueall, announce)
 				sleep(i % 32);
 		}
 		if (fd < 0 || (tfp = fdopen(fd, "w")) == NULL)
+		{
+			printopenfds(TRUE);
 			syserr("!queueup: cannot create queue temp file %s", tf);
+		}
 	}
 
 	if (tTd(40, 1))
