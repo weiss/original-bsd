@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	5.30.1.2 (Berkeley) 05/29/92
+ *	@(#)sendmail.h	5.33 (Berkeley) 05/31/92
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	5.30.1.2		05/29/92";
+static char SmailSccsId[] =	"@(#)sendmail.h	5.33		05/31/92";
 # endif lint
 # else  _DEFINE
 # define EXTERN extern
@@ -326,6 +326,10 @@ EXTERN struct rewrite	*RewriteRules[MAXRWSETS];
 # define HOSTBEGIN	'\035'	/* hostname lookup begin */
 # define HOSTEND	'\036'	/* hostname lookup end */
 
+/* bracket characters for generalized lookup */
+# define LOOKUPBEGIN	'\005'	/* generalized lookup begin */
+# define LOOKUPEND	'\006'	/* generalized lookup end */
+
 /* \001 is also reserved as the macro expansion character */
 
 /* external <==> internal mapping table */
@@ -350,6 +354,9 @@ MCONINFO
 	FILE		*mci_out;	/* output side of connection */
 	int		mci_pid;	/* process id of subordinate proc */
 	short		mci_state;	/* SMTP state */
+	char		*mci_phase;	/* SMTP phase string */
+	struct mailer	*mci_mailer;	/* ptr to the mailer for this conn */
+	time_t		mci_lastuse;	/* last usage time */
 };
 
 
@@ -359,8 +366,48 @@ MCONINFO
 
 /* states */
 #define MCIS_CLOSED	0		/* no traffic on this connection */
-#define MCIS_OPEN	1		/* open, no protocol sent */
-#define MCIS_SSD	2		/* service shutting down */
+#define MCIS_OPENING	1		/* sending initial protocol */
+#define MCIS_OPEN	2		/* open, initial protocol sent */
+#define MCIS_ACTIVE	3		/* message being sent */
+#define MCIS_SSD	4		/* service shutting down */
+#define MCIS_ERROR	5		/* error state */
+#define MCIS_TEMPFAIL	6		/* temporary failure */
+/*
+**  Mapping functions
+**
+**	These allow arbitrary mappings in the config file.  The idea
+**	(albeit not the implementation) comes from IDA sendmail.
+*/
+
+
+/*
+**  The class of a map -- essentially the functions to call
+*/
+
+# define MAPCLASS	struct _mapclass
+
+MAPCLASS
+{
+	bool	(*map_init)();		/* initialization function */
+	char	*(*map_lookup)();	/* lookup function */
+};
+
+
+/*
+**  An actual map.
+*/
+
+# define MAP		struct _map
+
+MAP
+{
+	MAPCLASS	*map_class;	/* the class of this map */
+	int		map_flags;	/* flags, see below */
+	char		*map_file;	/* the (nominal) filename */
+};
+
+/* bit values for map_flags */
+# define MF_VALID	00001		/* this entry is valid */
 /*
 **  Symbol table definitions
 */
@@ -376,6 +423,8 @@ struct symtab
 		ADDRESS		*sv_addr;	/* pointer to address header */
 		MAILER		*sv_mailer;	/* pointer to mailer */
 		char		*sv_alias;	/* alias */
+		MAPCLASS	sv_mapclass;	/* mapping function class */
+		MAP		sv_map;		/* mapping function */
 		MCONINFO	sv_mci;		/* mailer connection info */
 	}	s_value;
 };
@@ -388,13 +437,17 @@ typedef struct symtab	STAB;
 # define ST_ADDRESS	2	/* an address in parsed format */
 # define ST_MAILER	3	/* a mailer header */
 # define ST_ALIAS	4	/* an alias */
-# define ST_MCONINFO	5	/* mailer connection info (offset) */
+# define ST_MAPCLASS	5	/* mapping function class */
+# define ST_MAP		6	/* mapping function */
+# define ST_MCONINFO	16	/* mailer connection info (offset) */
 
 # define s_class	s_value.sv_class
 # define s_address	s_value.sv_addr
 # define s_mailer	s_value.sv_mailer
 # define s_alias	s_value.sv_alias
 # define s_mci		s_value.sv_mci
+# define s_mapclass	s_value.sv_mapclass
+# define s_map		s_value.sv_map
 
 extern STAB	*stab();
 
@@ -552,6 +605,7 @@ EXTERN char	*UdbSpec;	/* user database source spec [udbexpand.c] */
 EXTERN int	MaxHopCount;	/* number of hops until we give an error */
 EXTERN int	ConfigLevel;	/* config file level -- what does .cf expect? */
 EXTERN char	*TimeZoneSpec;	/* override time zone specification */
+EXTERN bool	MatchGecos;	/* look for user names in gecos field */
 /*
 **  Trace information
 */
