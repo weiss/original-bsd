@@ -16,7 +16,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)termout.c	3.3 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)termout.c	3.4 (Berkeley) 08/28/88";
 #endif /* not lint */
 
 #include <stdio.h>
@@ -29,10 +29,9 @@ static char sccsid[] = "@(#)termout.c	3.3 (Berkeley) 06/29/88";
 #include "../ascii/map3270.ext"
 
 #include "../ctlr/hostctlr.h"
-#include "../ctlr/inbound.ext"
+#include "../ctlr/externs.h"
+#include "../ctlr/declare.h"
 #include "../ctlr/oia.h"
-#include "../ctlr/options.ext"
-#include "../ctlr/outbound.ext"
 #include "../ctlr/screen.h"
 
 #include "../general/globals.h"
