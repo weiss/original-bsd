@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)swapgeneric.c	1.7 (Berkeley) 05/22/88
+ *	@(#)swapgeneric.c	7.1 (Berkeley) 05/22/88
  */
 
 #include "param.h"
