@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)ns_input.c	6.4 (Berkeley) 06/16/85
+ *	@(#)ns_input.c	6.5 (Berkeley) 06/21/85
  */
 
 #include "param.h"
@@ -362,10 +362,10 @@ idp_forward(idp)
 			type = NS_ERR_UNSPEC_T;
 			break;
 		}
+		mcopy = NULL;
+	senderror:
+		ns_error(dtom(idp), type, code);
 	}
-senderror:
-	ns_error(dtom(idp), type, code);
-	mcopy = NULL;
 cleanup:
 	if (ok_there)
 		idp_undo_route(&idp_droute);
