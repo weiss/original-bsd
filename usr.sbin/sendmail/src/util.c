@@ -9,7 +9,7 @@
 */
 
 #ifndef lint
-static char	SccsId[] = "@(#)util.c	5.2 (Berkeley) 06/07/85";
+static char	SccsId[] = "@(#)util.c	5.3 (Berkeley) 06/07/85";
 #endif not lint
 
 # include <stdio.h>
@@ -19,8 +19,6 @@ static char	SccsId[] = "@(#)util.c	5.2 (Berkeley) 06/07/85";
 # include <errno.h>
 # include <ctype.h>
 # include "sendmail.h"
-
-SCCSID(@(#)util.c	5.2		06/07/85);
 
 /*
 **  STRIPQUOTES -- Strip quotes & quote bits from a string.
