@@ -1,8 +1,7 @@
 /* Copyright (c) 1979 Regents of the University of California */
 
-static char sccsid[] = "@(#)RANG4.c 1.2 03/07/81";
+static char sccsid[] = "@(#)RANG4.c 1.3 06/10/81";
 
-#include "h01errs.h"
 
 long
 RANG4(value, lower, upper)
@@ -12,7 +11,7 @@ RANG4(value, lower, upper)
 	long	upper;
 {
 	if (value < lower || value > upper) {
-		ERROR(ERANGE, value);
+		ERROR("Value of %D is out of range\n", value);
 		return;
 	}
 	return	value;
