@@ -1,4 +1,4 @@
-/* static	char sccsid[] = "@(#)OPnames.h 1.2 10/2/80"; */
+/* static	char sccsid[] = "@(#)OPnames.h 1.4 02/08/82"; */
 
 char	*otext[] = {
 	0,
@@ -158,9 +158,9 @@ char	*otext[] = {
 	"*CONC",
 	"*CONC4",
 	"*ABORT",
+	"*BPT",
 	" PXPBUF",
 	" COUNT",
-	0,
 	" CASE1OP",
 	" CASE2OP",
 	" CASE4OP",
