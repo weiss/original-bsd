@@ -4,9 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-static char sccsid[] = "@(#)time.c	5.2 (Berkeley) 10/30/85";
-#endif not lint
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)time.c	5.3 (Berkeley) 03/09/86";
+#endif LIBC_SCCS and not lint
 
 /*
  * Backwards compatible time call.
