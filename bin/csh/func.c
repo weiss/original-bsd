@@ -5,7 +5,7 @@
  */
 
 #ifndef lint
-static char *sccsid = "@(#)func.c	5.7 (Berkeley) 03/05/89";
+static char *sccsid = "@(#)func.c	5.8 (Berkeley) 08/14/89";
 #endif
 
 #include "sh.h"
@@ -1085,12 +1085,6 @@ retry:
 		}
 		(void) ioctl(FSHTTY, TIOCSPGRP, (char *)&shpgrp);
 		(void) setpgrp(0, shpgrp);
-	}
-	(void) ioctl(FSHTTY, TIOCGETD, (char *)&oldisc);
-	if (oldisc != NTTYDISC) {
-		printf("Switching to new tty driver...\n");
-		ldisc = NTTYDISC;
-		(void) ioctl(FSHTTY, TIOCSETD, (char *)&ldisc);
 	}
 }
 
