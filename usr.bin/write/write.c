@@ -1,4 +1,4 @@
-static char *sccsid = "@(#)write.c	4.7 03/01/83";
+static char *sccsid = "@(#)write.c	4.8 07/01/83";
 /*
  * write to another user
  */
@@ -8,7 +8,7 @@ static char *sccsid = "@(#)write.c	4.7 03/01/83";
 #include <sys/stat.h>
 #include <signal.h>
 #include <utmp.h>
-#include <time.h>
+#include <sys/time.h>
 
 #define	NMAX	sizeof(ubuf.ut_name)
 #define	LMAX	sizeof(ubuf.ut_line)
