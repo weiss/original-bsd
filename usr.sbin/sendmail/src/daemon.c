@@ -11,9 +11,9 @@
 
 #ifndef lint
 #ifdef DAEMON
-static char sccsid[] = "@(#)daemon.c	5.37 (Berkeley) 03/02/91 (with daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.38 (Berkeley) 09/03/91 (with daemon mode)";
 #else
-static char sccsid[] = "@(#)daemon.c	5.37 (Berkeley) 03/02/91 (without daemon mode)";
+static char sccsid[] = "@(#)daemon.c	5.38 (Berkeley) 09/03/91 (without daemon mode)";
 #endif
 #endif /* not lint */
 
@@ -370,7 +370,7 @@ makeconnection(host, port, outfile, infile)
 again:
 	if (tTd(16, 1))
 		printf("makeconnection (%s [%s])\n", host,
-		    inet_ntoa(SendmailAddress.sin_addr.s_addr));
+		    inet_ntoa(SendmailAddress.sin_addr));
 
 	s = socket(AF_INET, SOCK_STREAM, 0);
 	if (s < 0)
