@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)str.c	5.8 (Berkeley) 03/02/93";
+static char sccsid[] = "@(#)str.c	5.9 (Berkeley) 03/04/93";
 #endif /* not lint */
 
 #include <sys/cdefs.h>
@@ -290,6 +290,8 @@ backslash(s)
 	}
 	if (cnt)
 		return (val);
+	if (ch != '\0')
+		++s->str;
 	switch (ch) {
 		case 'a':			/* escape characters */
 			return ('\7');
