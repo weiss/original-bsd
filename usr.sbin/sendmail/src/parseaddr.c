@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.54 (Berkeley) 02/23/95";
+static char sccsid[] = "@(#)parseaddr.c	8.55 (Berkeley) 02/24/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -213,7 +213,7 @@ invalidaddr(addr, delimptr)
 	setstat(EX_USAGE);
 	usrerr("553 Address contained invalid control characters");
   addrfailure:
-	if (savedelim != '\0' && delimptr != NULL)
+	if (delimptr != NULL && savedelim != '\0')
 		*delimptr = savedelim;
 	return TRUE;
 }
