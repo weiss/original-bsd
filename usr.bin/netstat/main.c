@@ -11,7 +11,7 @@ char copyright[] =
 #endif not lint
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	5.6 (Berkeley) 05/08/86";
+static char sccsid[] = "@(#)main.c	5.7 (Berkeley) 05/22/86";
 #endif not lint
 
 #include <sys/param.h>
@@ -301,26 +301,30 @@ use:
 				break;
 		if (tp->pr_name == 0 || tp->pr_wanted == 0)
 			continue;
-		if (sflag && tp->pr_stats) {
-			(*tp->pr_stats)(nl[tp->pr_sindex].n_value, p->p_name);
-			continue;
-		}
-		if (tp->pr_cblocks)
-			(*tp->pr_cblocks)(nl[tp->pr_index].n_value, p->p_name);
+		if (sflag) {
+			if (tp->pr_stats)
+				(*tp->pr_stats)(nl[tp->pr_sindex].n_value,
+					p->p_name);
+		} else
+			if (tp->pr_cblocks)
+				(*tp->pr_cblocks)(nl[tp->pr_index].n_value,
+					p->p_name);
 	}
 	endprotoent();
     }
     if (af == AF_NS || af == AF_UNSPEC) {
 	for (tp = nsprotox; tp->pr_name; tp++) {
-		if (sflag && tp->pr_stats) {
-			(*tp->pr_stats)(nl[tp->pr_sindex].n_value, tp->pr_name);
-			continue;
-		}
-		if (tp->pr_cblocks)
-			(*tp->pr_cblocks)(nl[tp->pr_index].n_value, tp->pr_name);
+		if (sflag) {
+			if (tp->pr_stats)
+				(*tp->pr_stats)(nl[tp->pr_sindex].n_value,
+					tp->pr_name);
+		} else
+			if (tp->pr_cblocks)
+				(*tp->pr_cblocks)(nl[tp->pr_index].n_value,
+					tp->pr_name);
 	}
     }
-    if (af == AF_UNIX || af == AF_UNSPEC)
+    if ((af == AF_UNIX || af == AF_UNSPEC) && !sflag)
 	    unixpr(nl[N_NFILE].n_value, nl[N_FILE].n_value,
 		nl[N_UNIXSW].n_value);
     exit(0);
