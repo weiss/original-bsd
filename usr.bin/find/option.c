@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)option.c	5.8 (Berkeley) 06/04/91";
+static char sccsid[] = "@(#)option.c	5.9 (Berkeley) 07/19/91";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -55,6 +55,7 @@ OPTION options[] = {
 	"-o",		N_OR,		c_or,		O_ZERO,
 	"-ok",		N_OK,		c_exec,		O_ARGVP,
 	"-or",		N_OR,		c_or,		O_ZERO,
+	"-path", 	N_PATH,		c_path,		O_ARGV,
 	"-perm",	N_PERM,		c_perm,		O_ARGV,
 	"-print",	N_PRINT,	c_print,	O_ZERO,
 	"-prune",	N_PRUNE,	c_prune,	O_ZERO,
