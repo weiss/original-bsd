@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)freopen.c	5.4 (Berkeley) 02/01/91";
+static char sccsid[] = "@(#)freopen.c	5.5 (Berkeley) 02/05/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -27,7 +27,7 @@ static char sccsid[] = "@(#)freopen.c	5.4 (Berkeley) 02/01/91";
  */
 FILE *
 freopen(file, mode, fp)
-	char *file, *mode;
+	const char *file, *mode;
 	register FILE *fp;
 {
 	register int f;

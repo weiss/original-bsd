@@ -9,7 +9,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)fopen.c	5.3 (Berkeley) 01/20/91";
+static char sccsid[] = "@(#)fopen.c	5.4 (Berkeley) 02/05/91";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
@@ -20,8 +20,8 @@ static char sccsid[] = "@(#)fopen.c	5.3 (Berkeley) 01/20/91";
 
 FILE *
 fopen(file, mode)
-	char *file;
-	char *mode;
+	const char *file;
+	const char *mode;
 {
 	register FILE *fp;
 	register int f;
