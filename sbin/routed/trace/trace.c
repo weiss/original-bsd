@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)trace.c	5.5 (Berkeley) 06/18/88";
+static char sccsid[] = "@(#)trace.c	5.6 (Berkeley) 10/10/88";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -93,8 +93,9 @@ usage:
 		router.sin_addr.s_addr = inet_addr(*argv);
 		if (router.sin_addr.s_addr == -1) {
 			hp = gethostbyname(*argv);
-			if (hp == 0) {
-				printf("%s: unknown\n", *argv);
+			if (hp == NULL) {
+				fprintf(stderr, "trace: %s: ", *argv);
+				herror((char *)NULL);
 				exit(1);
 			}
 			bcopy(hp->h_addr, &router.sin_addr, hp->h_length);
