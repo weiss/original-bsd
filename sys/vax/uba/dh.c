@@ -1,4 +1,4 @@
-/*	dh.c	4.2	11/09/80	*/
+/*	dh.c	4.3	11/13/80	*/
 
 #include "../conf/dh.h"
 #if NDH11 > 0
@@ -503,3 +503,4 @@ dhreset()
 	}
 	dhtimer();
 }
+#endif
