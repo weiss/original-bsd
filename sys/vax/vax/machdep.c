@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)machdep.c	7.9 (Berkeley) 10/23/87
+ *	@(#)machdep.c	7.9.1.1 (Berkeley) 11/30/87
  */
 
 #include "reg.h"
@@ -30,7 +30,6 @@
 #include "mbuf.h"
 #include "msgbuf.h"
 #include "quota.h"
-#include "malloc.h"
 
 #include "frame.h"
 #include "clock.h"
@@ -95,14 +94,6 @@ startup(firstaddr)
 	 */
 	if (!qvcons_init())
 		printf("qvss not initialized\n");
-#endif 
-#include "qd.h"
-#if NQD > 0
-	/*
-	 * redirect console to qdss if it exists
-	 */
-	if (!qdcons_init())
-		printf("qdss not initialized\n");
 #endif
 #endif
 
@@ -141,8 +132,6 @@ startup(firstaddr)
 	valloc(kernelmap, struct map, nproc);
 	valloc(mbmap, struct map, nmbclusters/4);
 	valloc(namecache, struct namecache, nchsize);
-	valloc(kmemmap, struct map, ekmempt - kmempt);
-	valloc(kmemusage, struct kmemusage, ekmempt - kmempt);
 #ifdef QUOTA
 	valloclim(quota, struct quota, nquota, quotaNQUOTA);
 	valloclim(dquot, struct dquot, ndquot, dquotNDQUOT);
@@ -268,7 +257,6 @@ startup(firstaddr)
 	    "usrpt", nproc);
 	rminit(mbmap, (long)(nmbclusters * CLSIZE), (long)CLSIZE,
 	    "mbclusters", nmbclusters/4);
-	kmeminit();	/* now safe to do malloc/free */
 
 	/*
 	 * Set up CPU-specific registers, cache, etc.
