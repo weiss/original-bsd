@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)if_ethersubr.c	7.2 (Berkeley) 04/22/89
+ *	@(#)if_ethersubr.c	7.3 (Berkeley) 04/25/89
  */
 
 #include "param.h"
@@ -32,7 +32,7 @@
 #include "route.h"
 #include "if_llc.h"
 
-#include "../machine/mtpr.h"
+#include "machine/mtpr.h"
 
 #ifdef INET
 #include "../netinet/in.h"

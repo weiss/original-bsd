@@ -14,9 +14,9 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)route.c	7.9 (Berkeley) 04/22/89
+ *	@(#)route.c	7.10 (Berkeley) 04/25/89
  */
-#include "../machine/reg.h"
+#include "machine/reg.h"
  
 #include "param.h"
 #include "systm.h"
@@ -40,7 +40,7 @@
 #include "../netinet/in_var.h"
 
 #include "../netns/ns.h"
-#include "../machine/mtpr.h"
+#include "machine/mtpr.h"
 #include "netisr.h"
 
 #include "rtsock.c"
