@@ -7,7 +7,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)machdep.c	8.1 (Berkeley) 06/11/93
+ *	@(#)machdep.c	8.2 (Berkeley) 01/12/94
  */
 
 #include <sys/param.h>
@@ -183,7 +183,7 @@ again:
 	 */
 	size = MAXBSIZE * nbuf;
 	buffer_map = kmem_suballoc(kernel_map, (vm_offset_t)&buffers,
-				   &maxaddr, size, FALSE);
+				   &maxaddr, size, TRUE);
 	minaddr = (vm_offset_t)buffers;
 	if (vm_map_find(buffer_map, vm_object_allocate(size), (vm_offset_t)0,
 			&minaddr, size, FALSE) != KERN_SUCCESS)
