@@ -1,8 +1,8 @@
-#	@(#)Makefile	5.1 (Berkeley) 06/25/90
+#	@(#)Makefile	5.2 (Berkeley) 02/14/91
 
 PROG=	kdb_edit
 CFLAGS+=-DKERBEROS -DDEBUG -I. -I${.CURDIR}/../include
-SRCS=	kdb_edit.o maketime.o
+SRCS=	kdb_edit.c maketime.c
 .PATH:	${.CURDIR}/../kdb_edit
 DPADD=	${LIBKDB} ${LIBKRB} ${LIBDES}
 LDADD=	-lkdb -lkrb -ldes
