@@ -1,4 +1,4 @@
-/*	conf.c	4.3	11/11/80	*/
+/*	conf.c	4.4	11/12/80	*/
 
 #include "../h/param.h"
 #include "../h/systm.h"
@@ -28,7 +28,7 @@ struct	buf	hptab;
 #define	hpread		nodev
 #define	hpwrite		nodev
 #define	hpintr		nodev
-#define	HTTAB		0
+#define	HPTAB		0
 #endif
  
 #include "../conf/ht.h"
