@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)subr_xxx.c	7.10 (Berkeley) 04/20/91
+ *	@(#)subr_xxx.c	7.11 (Berkeley) 02/05/92
  */
 
 /*
@@ -177,7 +177,7 @@ strlen(s1)
 	register int len;
 
 	for (len = 0; *s1++ != '\0'; len++)
-		;
+		continue;
 	return (len);
 }
 #endif /* NEED_STRLEN */
