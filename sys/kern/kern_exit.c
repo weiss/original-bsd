@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_exit.c	7.26 (Berkeley) 06/28/90
+ *	@(#)kern_exit.c	7.27 (Berkeley) 08/29/90
  */
 
 #include "param.h"
@@ -40,7 +40,8 @@ rexit(p, uap, retval)
 	int *retval;
 {
 
-	return (exit(p, W_EXITCODE(uap->rval, 0)));
+	exit(p, W_EXITCODE(uap->rval, 0));
+	/* NOTREACHED */
 }
 
 /*
