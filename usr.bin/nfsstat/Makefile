@@ -1,4 +1,4 @@
-#	@(#)Makefile	5.4 (Berkeley) 06/18/92
+#	@(#)Makefile	8.1 (Berkeley) 06/06/93
 
 PROG=	nfsstat
 CFLAGS+=-DNFS
