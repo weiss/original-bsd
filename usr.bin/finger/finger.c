@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)finger.c	5.24 (Berkeley) 07/27/91";
+static char sccsid[] = "@(#)finger.c	5.25 (Berkeley) 03/06/92";
 #endif /* not lint */
 
 /*
@@ -189,8 +189,7 @@ userlist(argc, argv)
 	else {
 		while (pw = getpwent())
 			for (p = argv, ip = used; *p; ++p, ++ip)
-				if (!*ip && (!strcasecmp(pw->pw_name, *p) ||
-				    match(pw, *p))) {
+				if (match(pw, *p)) {
 					enter_person(pw);
 					*ip = 1;
 				}

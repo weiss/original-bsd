@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.18 (Berkeley) 10/27/91";
+static char sccsid[] = "@(#)util.c	5.19 (Berkeley) 03/06/92";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -39,14 +39,21 @@ match(pw, user)
 	register char *p, *t;
 	char name[1024];
 
-	/* why do we skip asterisks!?!? */
+	if (!strcasecmp(pw->pw_name, user))
+		return(1);
+
+	/*
+	 * XXX
+	 * Why do we skip asterisks!?!?
+	 */
 	(void)strcpy(p = tbuf, pw->pw_gecos);
 	if (*p == '*')
 		++p;
 
-	/* ampersands get replaced by the login name */
-	if (!(p = strtok(p, ",")))
+	/* Ampersands get replaced by the login name. */
+	if ((p = strtok(p, ",")) == NULL)
 		return(0);
+
 	for (t = name; *t = *p; ++p)
 		if (*t == '&') {
 			(void)strcpy(t, pw->pw_name);
@@ -54,7 +61,7 @@ match(pw, user)
 		}
 		else
 			++t;
-	for (t = name; p = strtok(t, "\t "); t = (char *)NULL)
+	for (t = name; p = strtok(t, "\t "); t = NULL)
 		if (!strcasecmp(p, user))
 			return(1);
 	return(0);
