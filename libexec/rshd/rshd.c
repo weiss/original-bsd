@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)rshd.c	5.28 (Berkeley) 03/28/90";
+static char sccsid[] = "@(#)rshd.c	5.29 (Berkeley) 04/03/90";
 #endif /* not lint */
 
 /* From:
@@ -66,7 +66,7 @@ int	error();
 int	sent_null;
 
 #ifdef	KERBEROS
-#include <krb.h>
+#include <kerberosIV/krb.h>
 #define	VERSION_SIZE	9
 #define SECURE_MESSAGE  "This rsh session is using DES encryption for all transmissions.\r\n"
 #define	OPTIONS		"alnkvx"
