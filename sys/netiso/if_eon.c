@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)if_eon.c	7.17 (Berkeley) 12/19/91
+ *	@(#)if_eon.c	7.18 (Berkeley) 02/14/92
  */
 
 /***********************************************************
@@ -272,7 +272,7 @@ register struct sockaddr *gate;
 	if (gate || (gate = rt->rt_gateway)) switch (gate->sa_family) {
 		case AF_LINK:
 #define SDL(x) ((struct sockaddr_dl *)x)
-			if (SDL(gate)->sdl_alen = 1)
+			if (SDL(gate)->sdl_alen == 1)
 				el->el_snpaoffset = *(u_char *)LLADDR(SDL(gate));
 			else
 				ipaddrloc = LLADDR(SDL(gate));
