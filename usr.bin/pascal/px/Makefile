@@ -1,11 +1,11 @@
-SCCSID = "@(#)Makefile 1.14 09/09/82"
+SCCSID = "@(#)Makefile 1.15 10/13/82"
 
 CFLAGS = -O
 DESTDIR =
 SRCDIR = /usr/ucb
 LIBDIR = /usr/lib
-PASCALDIR = /usr/src/cmd/pascal
-LIBPCDIR = /usr/src/lib/libpc
+PASCALDIR = /usr/src/ucb/pascal
+LIBPCDIR = /usr/src/usr.lib/libpc
 CC = cc
 OPT = /lib/c2
 AS = as
