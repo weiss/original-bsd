@@ -10,9 +10,9 @@
 
 #ifndef lint
 #if NAMED_BIND
-static char sccsid[] = "@(#)domain.c	8.19 (Berkeley) 03/11/94 (with name server)";
+static char sccsid[] = "@(#)domain.c	8.20 (Berkeley) 06/17/94 (with name server)";
 #else
-static char sccsid[] = "@(#)domain.c	8.19 (Berkeley) 03/11/94 (without name server)";
+static char sccsid[] = "@(#)domain.c	8.20 (Berkeley) 06/17/94 (without name server)";
 #endif
 #endif /* not lint */
 
@@ -44,7 +44,7 @@ static char	MXHostBuf[MAXMXHOSTS*PACKETSZ];
 #endif
 
 #ifndef HEADERSZ
-# define HEADERSZ	sizeof(HEADER)
+# define HEADERSZ	12	/* sizeof(HEADER) */
 #endif
 
 /* don't use sizeof because sizeof(long) is different on 64-bit machines */

@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef USERDB
-static char sccsid [] = "@(#)udb.c	8.8 (Berkeley) 04/14/94 (with USERDB)";
+static char sccsid [] = "@(#)udb.c	8.9 (Berkeley) 06/17/94 (with USERDB)";
 #else
-static char sccsid [] = "@(#)udb.c	8.8 (Berkeley) 04/14/94 (without USERDB)";
+static char sccsid [] = "@(#)udb.c	8.9 (Berkeley) 06/17/94 (without USERDB)";
 #endif
 #endif
 
@@ -757,7 +757,7 @@ _udbx_init()
 				up->udb_addr.sin_family = h->h_addrtype;
 				bcopy(h->h_addr_list[0],
 				      (char *) &up->udb_addr.sin_addr,
-				      sizeof up->udb_addr.sin_addr);
+				      IPADDRSIZE);
 				up->udb_addr.sin_port = UdbPort;
 				up->udb_timeout = UdbTimeout;
 				up++;
