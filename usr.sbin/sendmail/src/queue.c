@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.23 (Berkeley) 10/23/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.24 (Berkeley) 10/23/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.23 (Berkeley) 10/23/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.24 (Berkeley) 10/23/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -246,7 +246,7 @@ queueup(e, queueall, announce)
 
 	bzero((char *) &nullmailer, sizeof nullmailer);
 	nullmailer.m_re_rwset = nullmailer.m_rh_rwset =
-			nullmailer.m_se_rwset = nullmailer.m_sh_rwset = -1;
+			nullmailer.m_se_rwset = nullmailer.m_sh_rwset = 0;
 	nullmailer.m_eol = "\n";
 
 	define('g', "\201f", e);
