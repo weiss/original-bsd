@@ -7,7 +7,6 @@
  */
 
 # include "sendmail.h"
-# include <sys/stat.h>
 # include <signal.h>
 # include <pwd.h>
 
@@ -26,15 +25,15 @@ ERROR: DBM is no longer supported -- use NDBM instead.
 #ifndef lint
 #ifdef NEWDB
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.32 (Berkeley) 04/18/93 (with NEWDB and NDBM)";
+static char sccsid[] = "@(#)alias.c	6.33 (Berkeley) 04/27/93 (with NEWDB and NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.32 (Berkeley) 04/18/93 (with NEWDB)";
+static char sccsid[] = "@(#)alias.c	6.33 (Berkeley) 04/27/93 (with NEWDB)";
 #endif
 #else
 #ifdef NDBM
-static char sccsid[] = "@(#)alias.c	6.32 (Berkeley) 04/18/93 (with NDBM)";
+static char sccsid[] = "@(#)alias.c	6.33 (Berkeley) 04/27/93 (with NDBM)";
 #else
-static char sccsid[] = "@(#)alias.c	6.32 (Berkeley) 04/18/93 (without NEWDB or NDBM)";
+static char sccsid[] = "@(#)alias.c	6.33 (Berkeley) 04/27/93 (without NEWDB or NDBM)";
 #endif
 #endif
 #endif /* not lint */
