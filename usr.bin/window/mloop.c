@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)mloop.c	3.8 04/24/85";
+static char sccsid[] = "@(#)mloop.c	3.9 05/18/87";
 #endif
 
 /*
@@ -17,6 +17,8 @@ mloop()
 		if (incmd) {
 			docmd();
 		} else if (wwcurwin->ww_state != WWS_HASPROC) {
+			if (!wwcurwin->ww_keepopen)
+				closewin(wwcurwin);
 			setcmd(1);
 			if (wwpeekc() == escapec)
 				(void) wwgetc();

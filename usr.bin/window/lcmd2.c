@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)lcmd2.c	3.11 04/24/85";
+static char sccsid[] = "@(#)lcmd2.c	3.12 05/18/87";
 #endif
 
 /*
@@ -149,7 +149,7 @@ struct value *v, *a;
 		if ((wp = window[i]) == 0)
 			continue;
 		wwprintf(w, "%c %c %-13s %-.*s\n",
-			wp == selwin ? '*' : ' ',
+			wp == selwin ? '+' : (wp == lastselwin ? '-' : ' '),
 			i + '1',
 			wp->ww_state == WWS_HASPROC ? "" : "(No process)",
 			wwncol - 20,
