@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)table.c	1.17 (Berkeley) 01/15/88";
+static char sccsid[] = "@(#)table.c	1.18 (Berkeley) 01/19/88";
 #endif
 
 # include "pass2.h"
@@ -322,13 +322,13 @@ OPSHFT,	INAREG|INTAREG|FORCC,
 		"	ZB	AR,A1\n	ZH	A1,AL,A1\n",
 
 INCR,	FOREFF,
-	SAREG|AWD,	TWORD,
+	SAREG|AWD,	TANY,
 	SCON|SNAME,	TANY,
 		0,	RLEFT,
 		"	ZE\n",
 
 DECR,	FOREFF,
-	SAREG|AWD,	TWORD,
+	SAREG|AWD,	TANY,
 	SCON|SNAME,	TANY,
 		0,	RLEFT,
 		"	ZE\n",
