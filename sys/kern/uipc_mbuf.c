@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)uipc_mbuf.c	7.13 (Berkeley) 04/05/90
+ *	@(#)uipc_mbuf.c	7.14 (Berkeley) 05/15/90
  */
 
 #include "param.h"
@@ -37,7 +37,7 @@ mbinit()
 	int s;
 
 #if MCLBYTES < 4096
-#define NCL_INIT	(4096/MCLBYTES)
+#define NCL_INIT	(4096/CLBYTES)
 #else
 #define NCL_INIT	1
 #endif
@@ -230,7 +230,6 @@ m_prepend(m, len, how)
 	return (m);
 }
 
-/*
 /*
  * Make a copy of an mbuf chain starting "off0" bytes from the beginning,
  * continuing for "len" bytes.  If len is M_COPYALL, copy to end of mbuf.
