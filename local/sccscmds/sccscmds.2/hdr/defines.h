@@ -5,7 +5,7 @@
 
 /*
  *	defines.h 2.3 of 5/18/78
- *	defines.h 4.3 of 07/02/83
+ *	defines.h 4.4 of 07/03/83
  */
 
 # define CTLSTR		"%c%c\n"
@@ -47,6 +47,9 @@
 # define END		'E'
 
 # define FILESIZE	510
+#ifdef MAX
+#undef MAX
+#endif
 # define MAX		9999
 # define DELIVER	'*'
 
