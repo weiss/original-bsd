@@ -14,13 +14,14 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)disklabel.h	7.10 (Berkeley) 06/27/88
+ *	@(#)disklabel.h	7.11 (Berkeley) 03/06/90
  */
 
 /*
  * Disk description table, see disktab(5)
  */
-#define	DISKTAB		"/etc/disktab"
+#define	_PATH_DISKTAB	"/etc/disktab"
+#define	DISKTAB		"/etc/disktab"		/* deprecated */
 
 /*
  * Each disk has a label which includes information about the hardware
@@ -269,5 +270,9 @@ struct partinfo {
 #endif LOCORE
 
 #if !defined(KERNEL) && !defined(LOCORE)
-struct	disklabel *getdiskbyname();
+#ifdef __STDC__
+extern struct disklabel *getdiskbyname(const char *);
+#else
+extern struct disklabel *getdiskbyname();
+#endif
 #endif
