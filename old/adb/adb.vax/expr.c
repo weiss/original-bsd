@@ -6,7 +6,7 @@
  */
 
 #include "defs.h"
-static	char sccsid[] = "@(#)expr.c 4.4 05/07/82";
+static	char sccsid[] = "@(#)expr.c 4.5 06/27/82";
 
 MSG		BADSYM;
 MSG		BADVAR;
@@ -193,8 +193,7 @@ item(a)
 	THEN	d=4; expv=0;
 		WHILE quotchar()
 		DO  IF d--
-		    THEN IF d==1 THEN expv <<=16; FI
-			 expv |= ((d&1)?lastc:lastc<<8);
+		    THEN expv = (expv << 8) | lastc;
 		    ELSE error(BADSYN);
 		    FI
 		OD
