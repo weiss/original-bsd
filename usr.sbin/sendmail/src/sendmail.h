@@ -5,7 +5,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)sendmail.h	8.26 (Berkeley) 10/31/93
+ *	@(#)sendmail.h	8.27 (Berkeley) 11/07/93
  */
 
 /*
@@ -15,7 +15,7 @@
 # ifdef _DEFINE
 # define EXTERN
 # ifndef lint
-static char SmailSccsId[] =	"@(#)sendmail.h	8.26		10/31/93";
+static char SmailSccsId[] =	"@(#)sendmail.h	8.27		11/07/93";
 # endif
 # else /*  _DEFINE */
 # define EXTERN extern
@@ -31,7 +31,6 @@ static char SmailSccsId[] =	"@(#)sendmail.h	8.26		10/31/93";
 # include <string.h>
 # include <time.h>
 # include <errno.h>
-# include <sys/un.h>
 
 # include "conf.h"
 # include "useful.h"
@@ -42,6 +41,9 @@ static char SmailSccsId[] =	"@(#)sendmail.h	8.26		10/31/93";
 
 # ifdef DAEMON
 # include <sys/socket.h>
+# endif
+# ifdef NETUNIX
+# include <sys/un.h>
 # endif
 # ifdef NETINET
 # include <netinet/in.h>
@@ -704,7 +706,9 @@ struct prival
 union bigsockaddr
 {
 	struct sockaddr		sa;	/* general version */
+#ifdef NETUNIX
 	struct sockaddr_un	sunix;	/* UNIX family */
+#endif
 #ifdef NETINET
 	struct sockaddr_in	sin;	/* INET family */
 #endif
@@ -778,7 +782,7 @@ EXTERN bool	SendMIMEErrors;	/* send error messages in MIME format */
 EXTERN bool	MatchGecos;	/* look for user names in gecos field */
 EXTERN bool	UseErrorsTo;	/* use Errors-To: header (back compat) */
 EXTERN bool	TryNullMXList;	/* if we are the best MX, try host directly */
-EXTERN bool	CheckLoopBack;	/* check for loopback on HELO packet */
+extern bool	CheckLoopBack;	/* check for loopback on HELO packet */
 EXTERN bool	InChild;	/* true if running in an SMTP subprocess */
 EXTERN char	SpaceSub;	/* substitution for <lwsp> */
 EXTERN int	PrivacyFlags;	/* privacy flags */
@@ -799,13 +803,14 @@ EXTERN long	MaxMessageSize;	/* advertised max size we will accept */
 EXTERN char	*PostMasterCopy;	/* address to get errs cc's */
 EXTERN int	CheckpointInterval;	/* queue file checkpoint interval */
 EXTERN bool	DontPruneRoutes;	/* don't prune source routes */
-EXTERN bool	BrokenSmtpPeers;	/* peers can't handle 2-line greeting */
+extern bool	BrokenSmtpPeers;	/* peers can't handle 2-line greeting */
 EXTERN int	MaxMciCache;		/* maximum entries in MCI cache */
 EXTERN time_t	MciCacheTimeout;	/* maximum idle time on connections */
 EXTERN char	*QueueLimitRecipient;	/* limit queue runs to this recipient */
 EXTERN char	*QueueLimitSender;	/* limit queue runs to this sender */
 EXTERN char	*QueueLimitId;		/* limit queue runs to this id */
 EXTERN FILE	*TrafficLogFile;	/* file in which to log all traffic */
+extern int	errno;
 
 
 /*
