@@ -6,7 +6,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)termstat.c	5.7 (Berkeley) 09/14/90";
+static char sccsid[] = "@(#)termstat.c	5.8 (Berkeley) 02/02/91";
 #endif /* not lint */
 
 #include "telnetd.h"
@@ -354,7 +354,7 @@ register int code, parm1, parm2;
 				useeditmode = 0;
 				if (tty_isediting())
 					useeditmode |= MODE_EDIT;
-				if (tty_istrapsig)
+				if (tty_istrapsig())
 					useeditmode |= MODE_TRAPSIG;
 				if (tty_issofttab())
 					useeditmode |= MODE_SOFT_TAB;
