@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)tty.c	7.12 (Berkeley) 05/26/88
+ *	@(#)tty.c	7.13 (Berkeley) 10/18/88
  */
 
 #include "../machine/reg.h"
@@ -14,105 +14,78 @@
 #include "user.h"
 #include "ioctl.h"
 #include "tty.h"
+#define TTYDEFCHARS
+#include "ttydefaults.h"
+#undef TTYDEFCHARS
+#include "termios.h"
 #include "proc.h"
 #include "file.h"
 #include "conf.h"
 #include "dkstat.h"
 #include "uio.h"
 #include "kernel.h"
+#include "syslog.h"
 
 /*
  * Table giving parity for characters and indicating
- * character classes to tty driver.  In particular,
- * if the low 6 bits are 0, then the character needs
- * no special processing on output.
+ * character classes to tty driver. The 8th bit
+ * indicates parity, the 7th bit indicates the character
+ * is an alphameric or underscore (for ALTWERASE), and the 
+ * low 6 bits indicate delay type.  If the low 6 bits are 0
+ * then the character needs no special processing on output.
  */
 
 char partab[] = {
-	0001,0201,0201,0001,0201,0001,0001,0201,
-	0202,0004,0003,0201,0005,0206,0201,0001,
-	0201,0001,0001,0201,0001,0201,0201,0001,
-	0001,0201,0201,0001,0201,0001,0001,0201,
-	0200,0000,0000,0200,0000,0200,0200,0000,
-	0000,0200,0200,0000,0200,0000,0000,0200,
-	0000,0200,0200,0000,0200,0000,0000,0200,
-	0200,0000,0000,0200,0000,0200,0200,0000,
-	0200,0000,0000,0200,0000,0200,0200,0000,
-	0000,0200,0200,0000,0200,0000,0000,0200,
-	0000,0200,0200,0000,0200,0000,0000,0200,
-	0200,0000,0000,0200,0000,0200,0200,0000,
-	0000,0200,0200,0000,0200,0000,0000,0200,
-	0200,0000,0000,0200,0000,0200,0200,0000,
-	0200,0000,0000,0200,0000,0200,0200,0000,
-	0000,0200,0200,0000,0200,0000,0000,0201,
-
+	0001,0201,0201,0001,0201,0001,0001,0201,	/* nul - bel */
+	0202,0004,0003,0201,0005,0206,0201,0001,	/* bs - si */
+	0201,0001,0001,0201,0001,0201,0201,0001,	/* dle - etb */
+	0001,0201,0201,0001,0201,0001,0001,0201,	/* can - us */
+	0200,0000,0000,0200,0000,0200,0200,0000,	/* sp - ' */
+	0000,0200,0200,0000,0200,0000,0000,0200,	/* ( - / */
+	0100,0300,0300,0100,0300,0100,0100,0300,	/* 0 - 7 */
+	0300,0100,0000,0200,0000,0200,0200,0000,	/* 8 - ? */
+	0200,0100,0100,0300,0100,0300,0300,0100,	/* @ - G */
+	0100,0300,0300,0100,0300,0100,0100,0300,	/* H - O */
+	0100,0300,0300,0100,0300,0100,0100,0300,	/* P - W */
+	0300,0100,0100,0200,0000,0200,0200,0300,	/* X - _ */
+	0000,0300,0300,0100,0300,0100,0100,0300,	/* ` - g */
+	0300,0100,0100,0300,0100,0300,0300,0100,	/* h - o */
+	0300,0100,0100,0300,0100,0300,0300,0100,	/* p - w */
+	0100,0300,0300,0000,0200,0000,0000,0201,	/* x - del */
 	/*
-	 * 7 bit ascii ends with the last character above,
-	 * but we contine through all 256 codes for the sake
-	 * of the tty output routines which use special vax
-	 * instructions which need a 256 character trt table.
+	 * meta chars
 	 */
-
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007,
-	0007,0007,0007,0007,0007,0007,0007,0007
-};
-
-/*
- * Input mapping table-- if an entry is non-zero, when the
- * corresponding character is typed preceded by "\" the escape
- * sequence is replaced by the table value.  Mostly used for
- * upper-case only terminals.
- */
-char	maptab[] ={
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,'|',000,000,000,000,000,'`',
-	'{','}',000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,000,000,
-	000,000,000,000,000,000,'~',000,
-	000,'A','B','C','D','E','F','G',
-	'H','I','J','K','L','M','N','O',
-	'P','Q','R','S','T','U','V','W',
-	'X','Y','Z',000,000,000,000,000,
-};
-
-short	tthiwat[16] =
-   { 100,100,100,100,100,100,100,200,200,400,400,400,650,650,1300,2000 };
-short	ttlowat[16] =
-   {  30, 30, 30, 30, 30, 30, 30, 50, 50,120,120,120,125,125,125,125 };
-
-struct	ttychars ttydefaults = {
-	CERASE,	CKILL,	CINTR,	CQUIT,	CSTART,	CSTOP,	CEOF,
-	CBRK,	CSUSP,	CDSUSP, CRPRNT, CFLUSH, CWERASE,CLNEXT
+	0001,0201,0201,0001,0201,0001,0001,0201,	/* nul - bel */
+	0202,0004,0003,0201,0005,0206,0201,0001,	/* bs - si */
+	0201,0001,0001,0201,0001,0201,0201,0001,	/* dle - etb */
+	0001,0201,0201,0001,0201,0001,0001,0201,	/* can - us */
+	0200,0000,0000,0200,0000,0200,0200,0000,	/* sp - ' */
+	0000,0200,0200,0000,0200,0000,0000,0200,	/* ( - / */
+	0100,0300,0300,0100,0300,0100,0100,0300,	/* 0 - 7 */
+	0300,0100,0000,0200,0000,0200,0200,0000,	/* 8 - ? */
+	0200,0100,0100,0300,0100,0300,0300,0100,	/* @ - G */
+	0100,0300,0300,0100,0300,0100,0100,0300,	/* H - O */
+	0100,0300,0300,0100,0300,0100,0100,0300,	/* P - W */
+	0300,0100,0100,0200,0000,0200,0200,0300,	/* X - _ */
+	0000,0300,0300,0100,0300,0100,0100,0300,	/* ` - g */
+	0300,0100,0100,0300,0100,0300,0300,0100,	/* h - o */
+	0300,0100,0100,0300,0100,0300,0300,0100,	/* p - w */
+	0100,0300,0300,0000,0200,0000,0000,0201,	/* x - del */
 };
 
 extern struct tty *constty;		/* temporary virtual console */
+extern char partab[], maptab[];
+
+/*
+ * Is 'c' a line delimiter ("break" character)?
+ */
+#define ttbreakc(c) (c == '\n' || CCEQ(cc[VEOF], c) || \
+		CCEQ(cc[VEOL], c) || CCEQ(cc[VEOL2], c))
 
 ttychars(tp)
 	struct tty *tp;
 {
-
-	tp->t_chars = ttydefaults;
+	bcopy(ttydefchars, tp->t_cc, sizeof(ttydefchars));
 }
 
 /*
@@ -126,6 +99,9 @@ ttywflush(tp)
 	ttyflush(tp, FREAD);
 }
 
+/*
+ * Wait for output to drain.
+ */
 ttywait(tp)
 	register struct tty *tp;
 {
@@ -189,8 +165,9 @@ ttyblock(tp)
 	 * Current input > threshold AND input is available to user program
 	 */
 	if (x >= TTYHOG/2 && 
-	    ((tp->t_flags & (RAW|CBREAK)) || (tp->t_canq.c_cc > 0))) {
-		if (putc(tp->t_stopc, &tp->t_outq)==0) {
+	    (!(tp->t_lflag&ICANON)) || (tp->t_canq.c_cc > 0) &&
+	    tp->t_cc[VSTOP] != _POSIX_VDISABLE) {
+		if (putc(tp->t_cc[VSTOP], &tp->t_outq)==0) {
 			tp->t_state |= TS_TBLOCK;
 			ttstart(tp);
 		}
@@ -235,10 +212,9 @@ ttioctl(tp, com, data, flag)
 	register struct tty *tp;
 	caddr_t data;
 {
-	int dev = tp->t_dev;
 	extern int nldisp;
+	int softset = 0;
 	int s;
-	register int newflags;
 
 
 	/*
@@ -247,24 +223,24 @@ ttioctl(tp, com, data, flag)
 	 */
 	switch (com) {
 
-	case TIOCSETD:
-	case TIOCSETP:
-	case TIOCSETN:
+	case TIOCSETD: 
 	case TIOCFLUSH:
-	case TIOCSETC:
-	case TIOCSLTC:
-	case TIOCSPGRP:
-	case TIOCLBIS:
-	case TIOCLBIC:
-	case TIOCLSET:
+	/*case TIOCSPGRP:*/
 	case TIOCSTI:
 	case TIOCSWINSZ:
-		while (tp->t_line == NTTYDISC &&
-		   u.u_procp->p_pgrp != tp->t_pgrp && tp == u.u_ttyp &&
+	case TIOCSETA:
+	case TIOCSETAW:
+	case TIOCSETAF:
+	case TIOCSETAS:
+	case TIOCSETAWS:
+	case TIOCSETAFS:
+		while (u.u_procp->p_pgid != tp->t_pgid &&
+		   tp == u.u_ttyp &&
+		   u.u_procp->p_pgrp->pg_jobc &&
 		   (u.u_procp->p_flag&SVFORK) == 0 &&
 		   !(u.u_procp->p_sigignore & sigmask(SIGTTOU)) &&
 		   !(u.u_procp->p_sigmask & sigmask(SIGTTOU))) {
-			gsignal(u.u_procp->p_pgrp, SIGTTOU);
+			pgsignal(u.u_procp->p_pgrp, SIGTTOU);
 			sleep((caddr_t)&lbolt, TTOPRI);
 		}
 		break;
@@ -283,16 +259,17 @@ ttioctl(tp, com, data, flag)
 	/* set line discipline */
 	case TIOCSETD: {
 		register int t = *(int *)data;
+		dev_t dev = tp->t_dev;
 		int error = 0;
 
-		if ((unsigned) t >= nldisp)
+		if ((unsigned)t >= nldisp)
 			return (ENXIO);
 		if (t != tp->t_line) {
 			s = spltty();
 			(*linesw[tp->t_line].l_close)(tp);
 			error = (*linesw[t].l_open)(dev, tp);
 			if (error) {
-				(void) (*linesw[tp->t_line].l_open)(dev, tp);
+				(void)(*linesw[tp->t_line].l_open)(dev, tp);
 				splx(s);
 				return (error);
 			}
@@ -311,9 +288,8 @@ ttioctl(tp, com, data, flag)
 		tp->t_state &= ~TS_XCLUDE;
 		break;
 
-	/* hang up line on last close */
 	case TIOCHPCL:
-		tp->t_state |= TS_HUPCLS;
+		tp->t_cflag |= HUPCL;
 		break;
 
 	case TIOCFLUSH: {
@@ -347,9 +323,9 @@ ttioctl(tp, com, data, flag)
 
 	case TIOCSTART:
 		s = spltty();
-		if ((tp->t_state&TS_TTSTOP) || (tp->t_flags&FLUSHO)) {
+		if ((tp->t_state&TS_TTSTOP) || (tp->t_lflag&FLUSHO)) {
 			tp->t_state &= ~TS_TTSTOP;
-			tp->t_flags &= ~FLUSHO;
+			tp->t_lflag &= ~FLUSHO;
 			ttstart(tp);
 		}
 		splx(s);
@@ -366,51 +342,63 @@ ttioctl(tp, com, data, flag)
 		(*linesw[tp->t_line].l_rint)(*(char *)data, tp);
 		break;
 
-	case TIOCSETP:
-	case TIOCSETN: {
-		register struct sgttyb *sg = (struct sgttyb *)data;
+	case TIOCGETA: {
+		struct termios *t = (struct termios *)data;
 
-		tp->t_erase = sg->sg_erase;
-		tp->t_kill = sg->sg_kill;
-		tp->t_ispeed = sg->sg_ispeed;
-		tp->t_ospeed = sg->sg_ospeed;
-		newflags = (tp->t_flags&0xffff0000) | (sg->sg_flags&0xffff);
-		s = spltty();
-		if (tp->t_flags&RAW || newflags&RAW || com == TIOCSETP) {
-			ttywait(tp);
-			ttyflush(tp, FREAD);
-		} else if ((tp->t_flags&CBREAK) != (newflags&CBREAK)) {
-			if (newflags&CBREAK) {
-				struct clist tq;
-
-				catq(&tp->t_rawq, &tp->t_canq);
-				tq = tp->t_rawq;
-				tp->t_rawq = tp->t_canq;
-				tp->t_canq = tq;
-			} else {
-				tp->t_flags |= PENDIN;
-				newflags |= PENDIN;
-				ttwakeup(tp);
-			}
-		}
-		tp->t_flags = newflags;
-		if (tp->t_flags&RAW) {
-			tp->t_state &= ~TS_TTSTOP;
-			ttstart(tp);
-		}
-		splx(s);
+		bcopy(&tp->t_termios, t, sizeof(struct termios));
 		break;
 	}
 
-	/* send current parameters to user */
-	case TIOCGETP: {
-		register struct sgttyb *sg = (struct sgttyb *)data;
+	case TIOCSETAS:
+	case TIOCSETAWS:
+	case TIOCSETAFS:
+		softset = 1;
+		/*FALLTHROUGH*/
+	case TIOCSETA:
+	case TIOCSETAW:
+	case TIOCSETAF:
+		{
+		register struct termios *t = (struct termios *)data;
+		int error;
 
-		sg->sg_ispeed = tp->t_ispeed;
-		sg->sg_ospeed = tp->t_ospeed;
-		sg->sg_erase = tp->t_erase;
-		sg->sg_kill = tp->t_kill;
-		sg->sg_flags = tp->t_flags;
+		s = spltty();
+		if (!softset) {
+			/*
+			 * set device hardware
+			 */
+			if (tp->t_param && (error = (*tp->t_param)(tp, t)))
+				return (error);
+			else {
+				tp->t_cflag = t->c_cflag;
+				tp->t_ispeed = t->c_ispeed;
+				tp->t_ospeed = t->c_ospeed;
+			}
+			ttsetwater(tp);
+		}
+		if (com == TIOCSETAF || com == TIOCSETAFS) 
+			ttywflush(tp);
+		else {
+			if (com == TIOCSETAW || com == TIOCSETAWS)
+				ttywait(tp);
+			if ((t->c_lflag&ICANON) != (tp->t_lflag&ICANON))
+				if (t->c_lflag&ICANON) {	
+					tp->t_lflag |= PENDIN;
+					ttwakeup(tp);
+				}
+				else {
+					struct clist tq;
+
+					catq(&tp->t_rawq, &tp->t_canq);
+					tq = tp->t_rawq;
+					tp->t_rawq = tp->t_canq;
+					tp->t_canq = tq;
+				}
+		}
+		tp->t_iflag = t->c_iflag;
+		tp->t_oflag = t->c_oflag;
+		tp->t_lflag = t->c_lflag;
+		bcopy(t->c_cc, tp->t_cc, sizeof(t->c_cc));
+		splx(s);
 		break;
 	}
 
@@ -428,72 +416,55 @@ ttioctl(tp, com, data, flag)
 			tp->t_state &= ~TS_ASYNC;
 		break;
 
-	case TIOCGETC:
-		bcopy((caddr_t)&tp->t_intrc, data, sizeof (struct tchars));
-		break;
-
-	case TIOCSETC:
-		bcopy(data, (caddr_t)&tp->t_intrc, sizeof (struct tchars));
-		break;
-
-	/* set/get local special characters */
-	case TIOCSLTC:
-		bcopy(data, (caddr_t)&tp->t_suspc, sizeof (struct ltchars));
-		break;
-
-	case TIOCGLTC:
-		bcopy((caddr_t)&tp->t_suspc, data, sizeof (struct ltchars));
-		break;
-
 	/*
-	 * Modify local mode word.
+	 * Acquire controlling terminal.
 	 */
-	case TIOCLBIS:
-		tp->t_flags |= *(int *)data << 16;
-		break;
+	case TIOCSCTTY: {
+		register struct proc *p = u.u_procp;
 
-	case TIOCLBIC:
-		tp->t_flags &= ~(*(int *)data << 16);
+		/* RETHINK - whether non-session leader
+		 * can allocate a new ctty for a session.
+		 */
+		if (u.u_ttyp || 
+		    (tp->t_session && tp->t_session != p->p_session) ||
+		    (!tp->t_session && !SESS_LEADER(p)))
+			return(EPERM);
+		u.u_ttyp = tp;
+		u.u_ttyd = tp->t_dev;
+		if (tp->t_pgid == 0)
+			tp->t_pgid = p->p_pgrp->pg_id;
+		tp->t_session = p->p_session;
 		break;
-
-	case TIOCLSET:
-		tp->t_flags &= 0xffff;
-		tp->t_flags |= *(int *)data << 16;
-		break;
-
-	case TIOCLGET:
-		*(int *)data = ((unsigned)tp->t_flags) >> 16;
-		break;
+	}
 
 	/*
-	 * Allow SPGRP only if tty is open for reading.
-	 * Quick check: if we can find a process in the new pgrp,
-	 * this user must own that process.
-	 * SHOULD VERIFY THAT PGRP IS IN USE AND IS THIS USER'S.
+	 * Set terminal process group.
 	 */
 	case TIOCSPGRP: {
-		struct proc *p;
-		int pgrp = *(int *)data;
+		register struct proc *p = u.u_procp;
+		register struct pgrp *pgrp = pgfind(*(int *)data);
 
-		if (u.u_uid && (flag & FREAD) == 0)
-			return (EPERM);
-		p = pfind(pgrp);
-		if (p && p->p_pgrp == pgrp &&
-		    p->p_uid != u.u_uid && u.u_uid && !inferior(p))
-			return (EPERM);
-		tp->t_pgrp = pgrp;
+		if (u.u_uid && 
+		    (tp != u.u_ttyp ||
+		    (pgrp && pgrp->pg_session != p->p_session))) {
+			if (u.u_ttyp == NULL)
+				return (ENOTTY);
+			else
+				return (EPERM);
+		}
+		tp->t_pgid = *(int *)data;
 		break;
 	}
 
 	case TIOCGPGRP:
-		*(int *)data = tp->t_pgrp;
+		*(int *)data = tp->t_pgid;
 		break;
 
 	case TIOCSWINSZ:
 		if (bcmp((caddr_t)&tp->t_winsize, data,
 		    sizeof (struct winsize))) {
 			tp->t_winsize = *(struct winsize *)data;
-			gsignal(tp->t_pgrp, SIGWINCH);
+			gsignal(tp->t_pgid, SIGWINCH);
 		}
 		break;
 
@@ -514,6 +485,23 @@ ttioctl(tp, com, data, flag)
 			constty = NULL;
 		break;
 
+#ifdef COMPAT_43
+	case TIOCGETP:
+	case TIOCSETP:
+	case TIOCSETN:
+	case TIOCGETC:
+	case TIOCSETC:
+	case TIOCSLTC:
+	case TIOCGLTC:
+	case TIOCLBIS:
+	case TIOCLBIC:
+	case TIOCLSET:
+	case TIOCLGET:
+	case TIOCGETDCOMPAT:
+	case TIOCSETDCOMPAT:
+		return(ttcompat(tp, com, data, flag));
+#endif
+
 	default:
 		return (-1);
 	}
@@ -525,10 +513,10 @@ ttnread(tp)
 {
 	int nread = 0;
 
-	if (tp->t_flags & PENDIN)
+	if (tp->t_lflag & PENDIN)
 		ttypend(tp);
 	nread = tp->t_canq.c_cc;
-	if (tp->t_flags & (RAW|CBREAK))
+	if ((tp->t_lflag & ICANON) == 0)
 		nread += tp->t_rawq.c_cc;
 	return (nread);
 }
@@ -554,7 +542,7 @@ ttselect(dev, rw)
 		break;
 
 	case FWRITE:
-		if (tp->t_outq.c_cc <= TTLOWAT(tp))
+		if (tp->t_outq.c_cc <= tp->t_lowat)
 			goto win;
 		if (tp->t_wsel && tp->t_wsel->p_wchan == (caddr_t)&selwait)
 			tp->t_state |= TS_WCOLL;
@@ -571,8 +559,6 @@ win:
 
 /*
  * Initial open of tty, or (re)entry to line discipline.
- * Establish a process group for distribution of
- * quits and interrupts from the tty.
  */
 ttyopen(dev, tp)
 	dev_t dev;
@@ -580,21 +566,12 @@ ttyopen(dev, tp)
 {
 	register struct proc *pp;
 
-	pp = u.u_procp;
 	tp->t_dev = dev;
-	if (pp->p_pgrp == 0) {
-		u.u_ttyp = tp;
-		u.u_ttyd = dev;
-		if (tp->t_pgrp == 0)
-			tp->t_pgrp = pp->p_pid;
-		pp->p_pgrp = tp->t_pgrp;
-	}
+
 	tp->t_state &= ~TS_WOPEN;
 	if ((tp->t_state & TS_ISOPEN) == 0) {
 		tp->t_state |= TS_ISOPEN;
 		bzero((caddr_t)&tp->t_winsize, sizeof(tp->t_winsize));
-		if (tp->t_line != NTTYDISC)
-			ttywflush(tp);
 	}
 	return (0);
 }
@@ -607,7 +584,6 @@ ttylclose(tp)
 {
 
 	ttywflush(tp);
-	tp->t_line = 0;
 }
 
 /*
@@ -616,11 +592,10 @@ ttylclose(tp)
 ttyclose(tp)
 	register struct tty *tp;
 {
-
 	if (constty == tp)
 		constty = NULL;
 	ttyflush(tp, FREAD|FWRITE);
-	tp->t_pgrp = 0;
+	tp->t_pgid = 0;
 	tp->t_state = 0;
 }
 
@@ -633,7 +608,7 @@ ttymodem(tp, flag)
 	register struct tty *tp;
 {
 
-	if ((tp->t_state&TS_WOPEN) == 0 && (tp->t_flags & MDMBUF)) {
+	if ((tp->t_state&TS_WOPEN) == 0 && (tp->t_lflag & MDMBUF)) {
 		/*
 		 * MDMBUF: do flow control according to carrier flag
 		 */
@@ -650,9 +625,9 @@ ttymodem(tp, flag)
 		 */
 		tp->t_state &= ~TS_CARR_ON;
 		if (tp->t_state & TS_ISOPEN) {
-			if ((tp->t_flags & NOHANG) == 0) {
-				gsignal(tp->t_pgrp, SIGHUP);
-				gsignal(tp->t_pgrp, SIGCONT);
+			if ((tp->t_lflag & NOHANG) == 0) {
+				gsignal(tp->t_pgid, SIGHUP);
+				gsignal(tp->t_pgid, SIGCONT);
 				ttyflush(tp, FREAD|FWRITE);
 				return (0);
 			}
@@ -693,7 +668,7 @@ ttypend(tp)
 	struct clist tq;
 	register c;
 
-	tp->t_flags &= ~PENDIN;
+	tp->t_lflag &= ~PENDIN;
 	tp->t_state |= TS_TYPEN;
 	tq = tp->t_rawq;
 	tp->t_rawq.c_cc = 0;
@@ -704,6 +679,7 @@ ttypend(tp)
 }
 
 /*
+ *
  * Place a character on raw TTY input queue,
  * putting in delimiters and waking up top
  * half as needed.  Also echo if required.
@@ -714,52 +690,70 @@ ttyinput(c, tp)
 	register c;
 	register struct tty *tp;
 {
-	register int t_flags = tp->t_flags;
-	int i;
+	register int iflag = tp->t_iflag;
+	register int lflag = tp->t_lflag;
+	register u_char *cc = tp->t_cc;
+	int i, err;
 
 	/*
 	 * If input is pending take it first.
 	 */
-	if (t_flags&PENDIN)
+	if (lflag&PENDIN)
 		ttypend(tp);
+	/*
+	 * Gather stats.
+	 */
 	tk_nin++;
-	c &= 0377;
-
+	if (lflag&ICANON) {
+		tk_cancc++;
+		tp->t_cancc++;
+	} else {
+		tk_rawcc++;
+		tp->t_rawcc++;
+	}
+	/*
+	 * Handle exceptional conditions (break, parity, framing).
+	 */
+	if (err = (c&TTY_ERRORMASK)) {
+		c &= ~TTY_ERRORMASK;
+		if (err&TTY_FE && !c) {		/* break */
+			if (iflag&IGNBRK)
+				goto endcase;
+			else if (iflag&BRKINT && lflag&ISIG && 
+				(cc[VINTR] != _POSIX_VDISABLE))
+				c = cc[VINTR];
+			else {
+				c = 0;
+				if (iflag&PARMRK)
+					goto parmrk;
+			}
+		} else if ((err&TTY_PE && iflag&INPCK) || err&TTY_FE) {
+			if (iflag&IGNPAR)
+				goto endcase;
+			else if (iflag&PARMRK) {
+parmrk:
+				putc(0377|TTY_QUOTE, &tp->t_rawq);
+				putc(0|TTY_QUOTE, &tp->t_rawq);
+				putc(c|TTY_QUOTE, &tp->t_rawq);
+				goto endcase;
+			} else
+				c = 0;
+		}
+	}
 	/*
 	 * In tandem mode, check high water mark.
 	 */
-	if (t_flags&TANDEM)
+	if (iflag&IXOFF)
 		ttyblock(tp);
-
-	if (t_flags&RAW) {
-		/*
-		 * Raw mode, just put character
-		 * in input q w/o interpretation.
-		 */
-		if (tp->t_rawq.c_cc > TTYHOG) 
-			ttyflush(tp, FREAD|FWRITE);
-		else {
-			if (putc(c, &tp->t_rawq) >= 0)
-				ttwakeup(tp);
-			ttyecho(c, tp);
-		}
-		goto endcase;
-	}
-
-	/*
-	 * Ignore any high bit added during
-	 * previous ttyinput processing.
-	 */
-	if ((tp->t_state&TS_TYPEN) == 0 && (t_flags&PASS8) == 0)
+	if ((tp->t_state&TS_TYPEN) == 0 && (iflag&ISTRIP))
 		c &= 0177;
 	/*
 	 * Check for literal nexting very first
 	 */
 	if (tp->t_state&TS_LNCH) {
-		c |= 0200;
+		c |= TTY_QUOTE;
 		tp->t_state &= ~TS_LNCH;
 	}
-
 	/*
 	 * Scan for special characters.  This code
 	 * is really just a big case statement with
@@ -767,112 +761,129 @@ ttyinput(c, tp)
 	 * case statement is labeled ``endcase'', so goto
 	 * it after a case match, or similar.
 	 */
-	if (tp->t_line == NTTYDISC) {
-		if (c == tp->t_lnextc) {
-			if (t_flags&ECHO)
-				ttyout("^\b", tp);
+	/*
+	 * Control chars which aren't controlled
+	 * by ICANON, ISIG, or IXON.
+	 */
+	if (iflag&IEXTEN) {
+		if (CCEQ(cc[VLNEXT],c)) {
+			if (lflag&ECHO) {
+				if (lflag&ECHOE)
+					ttyout("^\b", tp);
+				else
+					ttyecho(c, tp);
+			}
 			tp->t_state |= TS_LNCH;
 			goto endcase;
 		}
-		if (c == tp->t_flushc) {
-			if (t_flags&FLUSHO)
-				tp->t_flags &= ~FLUSHO;
+		if (CCEQ(cc[VFLUSHO],c)) {
+			if (lflag&FLUSHO)
+				tp->t_lflag &= ~FLUSHO;
 			else {
 				ttyflush(tp, FWRITE);
 				ttyecho(c, tp);
 				if (tp->t_rawq.c_cc + tp->t_canq.c_cc)
 					ttyretype(tp);
-				tp->t_flags |= FLUSHO;
+				tp->t_lflag |= FLUSHO;
 			}
 			goto startoutput;
 		}
-		if (c == tp->t_suspc) {
-			if ((t_flags&NOFLSH) == 0)
+	}
+	/*
+	 * Signals.
+	 */
+	if (lflag&ISIG) {
+		if (CCEQ(cc[VINTR], c) || CCEQ(cc[VQUIT], c)) {
+			if ((lflag&NOFLSH) == 0)
+				ttyflush(tp, FREAD|FWRITE);
+			ttyecho(c, tp);
+			gsignal(tp->t_pgid, CCEQ(cc[VINTR],c) ? 
+				SIGINT : SIGQUIT);
+			goto endcase;
+		}
+		if (CCEQ(cc[VSUSP],c)) {
+			if ((lflag&NOFLSH) == 0)
 				ttyflush(tp, FREAD);
 			ttyecho(c, tp);
-			gsignal(tp->t_pgrp, SIGTSTP);
+			gsignal(tp->t_pgid, SIGTSTP);
 			goto endcase;
 		}
 	}
-
 	/*
 	 * Handle start/stop characters.
 	 */
-	if (c == tp->t_stopc) {
-		if ((tp->t_state&TS_TTSTOP) == 0) {
-			tp->t_state |= TS_TTSTOP;
-			(*cdevsw[major(tp->t_dev)].d_stop)(tp, 0);
-			return;
+	if (iflag&IXON) {
+		if (CCEQ(cc[VSTOP],c)) {
+			if ((tp->t_state&TS_TTSTOP) == 0) {
+				tp->t_state |= TS_TTSTOP;
+				(*cdevsw[major(tp->t_dev)].d_stop)(tp, 0);
+				return;
+			}
+			if (!CCEQ(cc[VSTART], c))
+				return;
+			/* 
+			 * if VSTART == VSTOP then toggle 
+			 */
+			goto endcase;
 		}
-		if (c != tp->t_startc)
-			return;
-		goto endcase;
+		if (CCEQ(cc[VSTART], c))
+			goto restartoutput;
 	}
-	if (c == tp->t_startc)
-		goto restartoutput;
-
 	/*
-	 * Look for interrupt/quit chars.
+	 * IGNCR, ICRNL, & INLCR
 	 */
-	if (c == tp->t_intrc || c == tp->t_quitc) {
-		if ((t_flags&NOFLSH) == 0)
-			ttyflush(tp, FREAD|FWRITE);
-		ttyecho(c, tp);
-		gsignal(tp->t_pgrp, c == tp->t_intrc ? SIGINT : SIGQUIT);
-		goto endcase;
+	if (c == '\r') {
+		if (iflag&IGNCR)
+			goto endcase;
+		else if (iflag&ICRNL)
+			c = '\n';
 	}
-
-	if (tp->t_flags & LCASE && c <= 0177) {
-		if (tp->t_state&TS_BKSL) {
-			ttyrub(unputc(&tp->t_rawq), tp);
-			if (maptab[c])
-				c = maptab[c];
-			c |= 0200;
-			tp->t_state &= ~(TS_BKSL|TS_QUOT);
-		} else if (c >= 'A' && c <= 'Z')
-			c += 'a' - 'A';
-		else if (c == '\\')
-			tp->t_state |= TS_BKSL;
-	}
-
+	else if (c == '\n' && iflag&INLCR)
+		c = '\r';
 	/*
-	 * Cbreak mode, don't process line editing
+	 * Non canonical mode; don't process line editing
 	 * characters; check high water mark for wakeup.
+	 * 
 	 */
-	if (t_flags&CBREAK) {
+	if (!(lflag&ICANON)) {
 		if (tp->t_rawq.c_cc > TTYHOG) {
-			if (tp->t_outq.c_cc < TTHIWAT(tp) &&
-			    tp->t_line == NTTYDISC)
-				(void) ttyoutput(CTRL('g'), tp);
-		} else if (putc(c, &tp->t_rawq) >= 0) {
-			ttwakeup(tp);
-			ttyecho(c, tp);
+			if (iflag&IMAXBEL) {
+				if (tp->t_outq.c_cc < tp->t_hiwat)
+					(void) ttyoutput(CTRL('g'), tp);
+			} else
+				ttyflush(tp, FREAD | FWRITE);
+		} else {
+			if (putc(c, &tp->t_rawq) >= 0) {
+				ttwakeup(tp);
+				ttyecho(c, tp);
+			}
 		}
 		goto endcase;
 	}
-
 	/*
-	 * From here on down cooked mode character
+	 * From here on down canonical mode character
 	 * processing takes place.
 	 */
-	if ((tp->t_state&TS_QUOT) &&
-	    (c == tp->t_erase || c == tp->t_kill)) {
-		ttyrub(unputc(&tp->t_rawq), tp);
-		c |= 0200;
-	}
-	if (c == tp->t_erase) {
+	/*
+	 * erase (^H / ^?)
+	 */
+	if (CCEQ(cc[VERASE], c) || CCEQ(cc[VERASE2], c)) {
 		if (tp->t_rawq.c_cc)
 			ttyrub(unputc(&tp->t_rawq), tp);
 		goto endcase;
 	}
-	if (c == tp->t_kill) {
-		if (t_flags&CRTKIL &&
+	/*
+	 * kill (^U)
+	 */
+	if (CCEQ(cc[VKILL], c)) {
+		if (lflag&ECHOKE &&
 		    tp->t_rawq.c_cc == tp->t_rocount) {
 			while (tp->t_rawq.c_cc)
 				ttyrub(unputc(&tp->t_rawq), tp);
 		} else {
 			ttyecho(c, tp);
-			ttyecho('\n', tp);
+			if (lflag&ECHOK || lflag&ECHOKE)
+				ttyecho('\n', tp);
 			while (getc(&tp->t_rawq) > 0)
 				;
 			tp->t_rocount = 0;
@@ -880,68 +891,86 @@ ttyinput(c, tp)
 		tp->t_state &= ~TS_LOCAL;
 		goto endcase;
 	}
-
 	/*
-	 * New line discipline,
-	 * check word erase/reprint line.
+	 * word erase (^W)
 	 */
-	if (tp->t_line == NTTYDISC) {
-		if (c == tp->t_werasc) {
-			if (tp->t_rawq.c_cc == 0)
-				goto endcase;
-			do {
-				c = unputc(&tp->t_rawq);
-				if (c != ' ' && c != '\t')
-					goto erasenb;
-				ttyrub(c, tp);
-			} while (tp->t_rawq.c_cc);
-			goto endcase;
-	erasenb:
-			do {
-				ttyrub(c, tp);
-				if (tp->t_rawq.c_cc == 0)
-					goto endcase;
-				c = unputc(&tp->t_rawq);
-			} while (c != ' ' && c != '\t');
-			(void) putc(c, &tp->t_rawq);
-			goto endcase;
-		}
-		if (c == tp->t_rprntc) {
-			ttyretype(tp);
-			goto endcase;
-		}
-	}
+	if (CCEQ(cc[VWERASE], c)) {	
+		int ctype;
 
+#define CTYPE(c) ((lflag&ALTWERASE) ? (partab[(c)&TTY_CHARMASK]&0100) : 0)
+		/* 
+		 * erase whitespace 
+		 */
+		while ((c = unputc(&tp->t_rawq)) == ' ' || c == '\t')
+			ttyrub(c, tp);
+		if (c == -1)
+			goto endcase;
+		/*
+		 * special case last char of token
+		 */
+		ttyrub(c, tp);
+		c = unputc(&tp->t_rawq);
+		if (c == -1 || c == ' ' || c == '\t') {
+			if (c != -1)
+				(void) putc(c, &tp->t_rawq);
+			goto endcase;
+		}
+		/*
+		 * erase rest of token
+		 */
+		ctype = CTYPE(c);
+		do {
+			ttyrub(c, tp);
+			c = unputc(&tp->t_rawq);
+			if (c == -1)
+				goto endcase;
+		} while (c != ' ' && c != '\t' && CTYPE(c) == ctype);
+		(void) putc(c, &tp->t_rawq);
+		goto endcase;
+#undef CTYPE
+	}
+	/*
+	 * reprint line (^R)
+	 */
+	if (CCEQ(cc[VREPRINT], c)) {
+		ttyretype(tp);
+		goto endcase;
+	}
 	/*
 	 * Check for input buffer overflow
 	 */
 	if (tp->t_rawq.c_cc+tp->t_canq.c_cc >= TTYHOG) {
-		if (tp->t_line == NTTYDISC)
-			(void) ttyoutput(CTRL('g'), tp);
+		if (iflag&IMAXBEL) {
+			if (tp->t_outq.c_cc < tp->t_hiwat)
+				(void) ttyoutput(CTRL('g'), tp);
+		} else
+			ttyflush(tp, FREAD | FWRITE);
 		goto endcase;
 	}
-
 	/*
 	 * Put data char in q for user and
 	 * wakeup on seeing a line delimiter.
 	 */
 	if (putc(c, &tp->t_rawq) >= 0) {
-		if (ttbreakc(c, tp)) {
+		if (ttbreakc(c)) {
 			tp->t_rocount = 0;
 			catq(&tp->t_rawq, &tp->t_canq);
 			ttwakeup(tp);
 		} else if (tp->t_rocount++ == 0)
 			tp->t_rocol = tp->t_col;
-		tp->t_state &= ~TS_QUOT;
-		if (c == '\\')
-			tp->t_state |= TS_QUOT;
 		if (tp->t_state&TS_ERASE) {
+			/*
+			 * end of prterase \.../
+			 */
 			tp->t_state &= ~TS_ERASE;
 			(void) ttyoutput('/', tp);
 		}
 		i = tp->t_col;
 		ttyecho(c, tp);
-		if (c == tp->t_eofc && t_flags&ECHO) {
+		if (CCEQ(cc[VEOF], c) && lflag&ECHO) {
+			/*
+			 * Place the cursor over the '^' of the ^D.
+			 */
 			i = MIN(2, tp->t_col - i);
 			while (i > 0) {
 				(void) ttyoutput('\b', tp);
@@ -951,15 +980,14 @@ ttyinput(c, tp)
 	}
 endcase:
 	/*
-	 * If DEC-style start/stop is enabled don't restart
-	 * output until seeing the start character.
+	 * IXANY means allow any character to restart output.
 	 */
-	if (t_flags&DECCTQ && tp->t_state&TS_TTSTOP &&
-	    tp->t_startc != tp->t_stopc)
+	if ((tp->t_state&TS_TTSTOP) && !(iflag&IXANY) 
+	    && cc[VSTART] != cc[VSTOP])
 		return;
 restartoutput:
 	tp->t_state &= ~TS_TTSTOP;
-	tp->t_flags &= ~FLUSHO;
+	tp->t_lflag &= ~FLUSHO;
 startoutput:
 	ttstart(tp);
 }
@@ -979,79 +1007,54 @@ ttyoutput(c, tp)
 {
 	register char *colp;
 	register ctype;
-
-	if (tp->t_flags & (RAW|LITOUT)) {
-		if (tp->t_flags&FLUSHO)
+	register long oflag = tp->t_oflag;
+	
+	if (!(oflag&OPOST)) {
+		if (tp->t_lflag&FLUSHO) 
 			return (-1);
 		if (putc(c, &tp->t_outq))
 			return (c);
 		tk_nout++;
+		tp->t_outcc++;
 		return (-1);
 	}
-
-	/*
-	 * Ignore EOT in normal mode to avoid
-	 * hanging up certain terminals.
-	 */
-	c &= 0177;
-	if (c == CEOT && (tp->t_flags&CBREAK) == 0)
-		return (-1);
+	c &= TTY_CHARMASK;
 	/*
 	 * Turn tabs to spaces as required
 	 */
-	if (c == '\t' && (tp->t_flags&TBDELAY) == XTABS) {
+	if (c == '\t' && oflag&OXTABS ) {
 		register int s;
 
 		c = 8 - (tp->t_col&7);
-		if ((tp->t_flags&FLUSHO) == 0) {
+		if ((tp->t_lflag&FLUSHO) == 0) {
 			s = spltty();		/* don't interrupt tabs */
 			c -= b_to_q("        ", c, &tp->t_outq);
 			tk_nout += c;
+			tp->t_outcc += c;
 			splx(s);
 		}
 		tp->t_col += c;
 		return (c ? -1 : '\t');
 	}
+	if (c == CEOT && oflag&ONOEOT)
+		return(-1);
 	tk_nout++;
-	/*
-	 * for upper-case-only terminals,
-	 * generate escapes.
-	 */
-	if (tp->t_flags&LCASE) {
-		colp = "({)}!|^~'`";
-		while (*colp++)
-			if (c == *colp++) {
-				if (ttyoutput('\\', tp) >= 0)
-					return (c);
-				c = colp[-2];
-				break;
-			}
-		if ('A' <= c && c <= 'Z') {
-			if (ttyoutput('\\', tp) >= 0)
-				return (c);
-		} else if ('a' <= c && c <= 'z')
-			c += 'A' - 'a';
-	}
-
+	tp->t_outcc++;
 	/*
 	 * turn <nl> to <cr><lf> if desired.
 	 */
-	if (c == '\n' && tp->t_flags&CRMOD)
-		if (ttyoutput('\r', tp) >= 0)
-			return (c);
-	if (c == '~' && tp->t_flags&TILDE)
-		c = '`';
-	if ((tp->t_flags&FLUSHO) == 0 && putc(c, &tp->t_outq))
+	if (c == '\n' && (tp->t_oflag&ONLCR) && ttyoutput('\r', tp) >= 0)
+		return (c);
+	if ((tp->t_lflag&FLUSHO) == 0 && putc(c, &tp->t_outq))
 		return (c);
 	/*
 	 * Calculate delays.
 	 * The numbers here represent clock ticks
 	 * and are not necessarily optimal for all terminals.
-	 * The delays are indicated by characters above 0200.
-	 * In raw mode there are no delays and the
-	 * transmission path is 8 bits wide.
 	 *
 	 * SHOULD JUST ALLOW USER TO SPECIFY DELAYS
+	 *
+	 * (actually, should THROW AWAY terminals which need delays)
 	 */
 	colp = &tp->t_col;
 	ctype = partab[c];
@@ -1119,8 +1122,8 @@ ttyoutput(c, tp)
 		}
 		*colp = 0;
 	}
-	if (c && (tp->t_flags&FLUSHO) == 0)
-		(void) putc(c|0200, &tp->t_outq);
+	if (c && (tp->t_lflag&FLUSHO) == 0)
+		(void) putc(c|TTY_QUOTE, &tp->t_outq);
 	return (-1);
 }
 #undef mstohz
@@ -1134,7 +1137,10 @@ ttread(tp, uio)
 	struct uio *uio;
 {
 	register struct clist *qp;
-	register c, t_flags;
+	register int c;
+	register long lflag = tp->t_lflag;
+	register long iflag = tp->t_iflag;
+	register u_char *cc = tp->t_cc;
 	int s, first, error = 0;
 
 loop:
@@ -1142,56 +1148,28 @@ loop:
 	 * Take any pending input first.
 	 */
 	s = spltty();
-	if (tp->t_flags&PENDIN)
+	if (lflag&PENDIN)
 		ttypend(tp);
 	splx(s);
-
 	if ((tp->t_state&TS_CARR_ON)==0)
 		return (EIO);
-
 	/*
 	 * Hang process if it's in the background.
 	 */
-	if (tp == u.u_ttyp && u.u_procp->p_pgrp != tp->t_pgrp) {
+	if (u.u_ttyp == tp && u.u_procp->p_pgid != tp->t_pgid) {
 		if ((u.u_procp->p_sigignore & sigmask(SIGTTIN)) ||
 		   (u.u_procp->p_sigmask & sigmask(SIGTTIN)) ||
-		    u.u_procp->p_flag&SVFORK)
+		    u.u_procp->p_flag&SVFORK || u.u_procp->p_pgrp->pg_jobc == 0)
 			return (EIO);
-		gsignal(u.u_procp->p_pgrp, SIGTTIN);
+		pgsignal(u.u_procp->p_pgrp, SIGTTIN);
 		sleep((caddr_t)&lbolt, TTIPRI);
 		goto loop;
 	}
-	t_flags = tp->t_flags;
-
 	/*
-	 * In raw mode take characters directly from the
-	 * raw queue w/o processing.  Interlock against
-	 * device interrupts when interrogating rawq.
+	 * If canonical, use the canonical queue,
+	 * else use the raw queue.
 	 */
-	if (t_flags&RAW) {
-		s = spltty();
-		if (tp->t_rawq.c_cc <= 0) {
-			if ((tp->t_state&TS_CARR_ON) == 0 ||
-			    (tp->t_state&TS_NBIO)) {
-				splx(s);
-				return (EWOULDBLOCK);
-			}
-			sleep((caddr_t)&tp->t_rawq, TTIPRI);
-			splx(s);
-			goto loop;
-		}
-		splx(s);
- 		while (!error && tp->t_rawq.c_cc && uio->uio_resid)
- 			error = ureadc(getc(&tp->t_rawq), uio);
-		goto checktandem;
-	}
-
-	/*
-	 * In cbreak mode use the rawq, otherwise
-	 * take characters from the canonicalized q.
-	 */
-	qp = t_flags&CBREAK ? &tp->t_rawq : &tp->t_canq;
-
+	qp = lflag&ICANON ? &tp->t_canq : &tp->t_rawq;
 	/*
 	 * No input, sleep on rawq awaiting hardware
 	 * receipt and notification.
@@ -1208,20 +1186,16 @@ loop:
 		goto loop;
 	}
 	splx(s);
-
 	/*
-	 * Input present, perform input mapping
-	 * and processing (we're not in raw mode).
+	 * Input present, check for input mapping and processing.
 	 */
 	first = 1;
 	while ((c = getc(qp)) >= 0) {
-		if (t_flags&CRMOD && c == '\r')
-			c = '\n';
 		/*
-		 * Check for delayed suspend character.
+		 * delayed suspend (^Y)
 		 */
-		if (tp->t_line == NTTYDISC && c == tp->t_dsuspc) {
-			gsignal(tp->t_pgrp, SIGTSTP);
+		if (CCEQ(cc[VDSUSP], c) && lflag&ISIG) {
+			gsignal(tp->t_pgid, SIGTSTP);
 			if (first) {
 				sleep((caddr_t)&lbolt, TTIPRI);
 				goto loop;
@@ -1229,37 +1203,39 @@ loop:
 			break;
 		}
 		/*
-		 * Interpret EOF only in cooked mode.
+		 * Interpret EOF only in canonical mode.
 		 */
-		if (c == tp->t_eofc && (t_flags&CBREAK) == 0)
+		if (CCEQ(cc[VEOF], c) && lflag&ICANON)
 			break;
 		/*
 		 * Give user character.
 		 */
- 		error = ureadc(t_flags&PASS8 ? c : c & 0177, uio);
+ 		error = ureadc(c , uio);
 		if (error)
 			break;
  		if (uio->uio_resid == 0)
 			break;
 		/*
-		 * In cooked mode check for a "break character"
+		 * In canonical mode check for a "break character"
 		 * marking the end of a "line of input".
 		 */
-		if ((t_flags&CBREAK) == 0 && ttbreakc(c, tp))
+		if (lflag&ICANON && ttbreakc(c)) {
 			break;
+		}
 		first = 0;
 	}
-
 checktandem:
 	/*
 	 * Look to unblock output now that (presumably)
 	 * the input queue has gone down.
 	 */
-	if (tp->t_state&TS_TBLOCK && tp->t_rawq.c_cc < TTYHOG/5)
-		if (putc(tp->t_startc, &tp->t_outq) == 0) {
+	if (tp->t_state&TS_TBLOCK && tp->t_rawq.c_cc < TTYHOG/5) {
+		if (cc[VSTART] != _POSIX_VDISABLE 
+		   && putc(cc[VSTART], &tp->t_outq) == 0) {
 			tp->t_state &= ~TS_TBLOCK;
 			ttstart(tp);
 		}
+	}
 	return (error);
 }
 
@@ -1277,7 +1253,7 @@ ttycheckoutq(tp, wait)
 {
 	int hiwat, s, oldsig;
 
-	hiwat = TTHIWAT(tp);
+	hiwat = tp->t_hiwat;
 	s = spltty();
 	oldsig = u.u_procp->p_sig;
 	if (tp->t_outq.c_cc > hiwat + 200)
@@ -1308,7 +1284,7 @@ ttwrite(tp, uio)
 	int i, hiwat, cnt, error, s;
 	char obuf[OBUFSIZ];
 
-	hiwat = TTHIWAT(tp);
+	hiwat = tp->t_hiwat;
 	cnt = uio->uio_resid;
 	error = 0;
 loop:
@@ -1317,15 +1293,16 @@ loop:
 	/*
 	 * Hang the process if it's in the background.
 	 */
-	if (u.u_procp->p_pgrp != tp->t_pgrp && tp == u.u_ttyp &&
-	    (tp->t_flags&TOSTOP) && (u.u_procp->p_flag&SVFORK)==0 &&
+	if (u.u_ttyp == tp &&
+	    u.u_procp->p_pgid != tp->t_pgid && 
+	    (tp->t_lflag&TOSTOP) && (u.u_procp->p_flag&SVFORK)==0 &&
 	    !(u.u_procp->p_sigignore & sigmask(SIGTTOU)) &&
-	    !(u.u_procp->p_sigmask & sigmask(SIGTTOU))) {
-		gsignal(u.u_procp->p_pgrp, SIGTTOU);
+	    !(u.u_procp->p_sigmask & sigmask(SIGTTOU)) &&
+	     u.u_procp->p_pgrp->pg_jobc) {
+		pgsignal(u.u_procp->p_pgrp, SIGTTOU);
 		sleep((caddr_t)&lbolt, TTIPRI);
 		goto loop;
 	}
-
 	/*
 	 * Process the user's data in at most OBUFSIZ
 	 * chunks.  Perform lower case simulation and
@@ -1355,36 +1332,8 @@ loop:
 		error = uiomove(cp, cc, UIO_WRITE, uio);
 		if (error)
 			break;
-		if (tp->t_flags&FLUSHO)
+		if (tp->t_lflag&FLUSHO)
 			continue;
-		/*
-		 * If we're mapping lower case or kludging tildes,
-		 * then we've got to look at each character, so
-		 * just feed the stuff to ttyoutput...
-		 */
-		if (tp->t_flags & (LCASE|TILDE)) {
-			while (cc > 0) {
-				c = *cp++;
-				tp->t_rocount = 0;
-				while ((c = ttyoutput(c, tp)) >= 0) {
-					/* out of clists, wait a bit */
-					ttstart(tp);
-					sleep((caddr_t)&lbolt, TTOPRI);
-					tp->t_rocount = 0;
-					if (cc != 0) {
-						uio->uio_iov->iov_base -= cc;
-						uio->uio_iov->iov_len += cc;
-						uio->uio_resid += cc;
-						uio->uio_offset -= cc;
-					}
-					goto loop;
-				}
-				--cc;
-				if (tp->t_outq.c_cc > hiwat)
-					goto ovhiwat;
-			}
-			continue;
-		}
 		/*
 		 * If nothing fancy need be done, grab those characters we
 		 * can handle without any of ttyoutput's processing and
@@ -1395,7 +1344,7 @@ loop:
 		 * immediately.
 		 */
 		while (cc > 0) {
-			if (tp->t_flags & (RAW|LITOUT))
+			if (!(tp->t_oflag&OPOST))
 				ce = cc;
 			else {
 				ce = cc - scanc((unsigned)cc, (u_char *)cp,
@@ -1419,7 +1368,7 @@ loop:
 					    goto loop;
 					}
 					cp++, cc--;
-					if (tp->t_flags&FLUSHO ||
+					if ((tp->t_lflag&FLUSHO) ||
 					    tp->t_outq.c_cc > hiwat)
 						goto ovhiwat;
 					continue;
@@ -1438,6 +1387,7 @@ loop:
 			ce -= i;
 			tp->t_col += ce;
 			cp += ce, cc -= ce, tk_nout += ce;
+			tp->t_outcc += ce;
 			if (i > 0) {
 				/* out of c-lists, wait a bit */
 				ttstart(tp);
@@ -1448,13 +1398,12 @@ loop:
 				uio->uio_offset -= cc;
 				goto loop;
 			}
-			if (tp->t_flags&FLUSHO || tp->t_outq.c_cc > hiwat)
+			if (tp->t_lflag&FLUSHO || tp->t_outq.c_cc > hiwat)
 				goto ovhiwat;
 		}
+		ttstart(tp);
 	}
-	ttstart(tp);
 	return (error);
-
 ovhiwat:
 	if (cc != 0) {
 		uio->uio_iov->iov_base -= cc;
@@ -1465,7 +1414,7 @@ ovhiwat:
 	ttstart(tp);
 	s = spltty();
 	/*
-	 * This can only occur if FLUSHO is set in t_flags,
+	 * This can only occur if FLUSHO is set in t_lflag,
 	 * or if ttstart/oproc is synchronous (or very fast).
 	 */
 	if (tp->t_outq.c_cc <= hiwat) {
@@ -1497,11 +1446,10 @@ ttyrub(c, tp)
 	int s;
 	char *nextc();
 
-	if ((tp->t_flags&ECHO) == 0)
+	if ((tp->t_lflag&ECHO) == 0)
 		return;
-	tp->t_flags &= ~FLUSHO;
-	c &= 0377;
-	if (tp->t_flags&CRTBS) {
+	tp->t_lflag &= ~FLUSHO;	
+	if (tp->t_lflag&ECHOE) {
 		if (tp->t_rocount == 0) {
 			/*
 			 * Screwed by ttwrite; retype
@@ -1509,26 +1457,25 @@ ttyrub(c, tp)
 			ttyretype(tp);
 			return;
 		}
-		if (c == ('\t'|0200) || c == ('\n'|0200))
+		if (c == ('\t'|TTY_QUOTE) || c == ('\n'|TTY_QUOTE))
 			ttyrubo(tp, 2);
-		else switch (partab[c&=0177]&0177) {
+		else switch (partab[c&=0377]&077) {
 
 		case ORDINARY:
-			if (tp->t_flags&LCASE && c >= 'A' && c <= 'Z')
-				ttyrubo(tp, 2);
-			else
-				ttyrubo(tp, 1);
+			ttyrubo(tp, 1);
 			break;
 
 		case VTAB:
 		case BACKSPACE:
 		case CONTROL:
 		case RETURN:
-			if (tp->t_flags&CTLECH)
+			if (tp->t_lflag&ECHOCTL)
 				ttyrubo(tp, 2);
 			break;
 
-		case TAB:
+		case TAB: {
+			int c;
+
 			if (tp->t_rocount < tp->t_rawq.c_cc) {
 				ttyretype(tp);
 				return;
@@ -1536,12 +1483,13 @@ ttyrub(c, tp)
 			s = spltty();
 			savecol = tp->t_col;
 			tp->t_state |= TS_CNTTB;
-			tp->t_flags |= FLUSHO;
+			tp->t_lflag |= FLUSHO;
 			tp->t_col = tp->t_rocol;
 			cp = tp->t_rawq.c_cf;
-			for (; cp; cp = nextc(&tp->t_rawq, cp))
-				ttyecho(*cp, tp);
-			tp->t_flags &= ~FLUSHO;
+			c = *cp;	/* XXX FIX NEXTC */
+			for (; cp; cp = nextc(&tp->t_rawq, cp, &c))
+				ttyecho(c, tp);
+			tp->t_lflag &= ~FLUSHO;
 			tp->t_state &= ~TS_CNTTB;
 			splx(s);
 			/*
@@ -1554,18 +1502,21 @@ ttyrub(c, tp)
 			while (--savecol >= 0)
 				(void) ttyoutput('\b', tp);
 			break;
+		}
 
 		default:
-			panic("ttyrub");
+			printf("ttyrub: would panic c = %d, val = %d\n",
+				c, partab[c&=0377]&077);
+			/*panic("ttyrub");*/
 		}
-	} else if (tp->t_flags&PRTERA) {
+	} else if (tp->t_lflag&ECHOPRT) {
 		if ((tp->t_state&TS_ERASE) == 0) {
 			(void) ttyoutput('\\', tp);
 			tp->t_state |= TS_ERASE;
 		}
 		ttyecho(c, tp);
 	} else
-		ttyecho(tp->t_erase, tp);
+		ttyecho(tp->t_cc[VERASE], tp);
 	tp->t_rocount--;
 }
 
@@ -1577,10 +1528,9 @@ ttyrubo(tp, cnt)
 	register struct tty *tp;
 	int cnt;
 {
-	register char *rubostring = tp->t_flags&CRTERA ? "\b \b" : "\b";
 
 	while (--cnt >= 0)
-		ttyout(rubostring, tp);
+		ttyout("\b \b", tp);
 }
 
 /*
@@ -1592,16 +1542,20 @@ ttyretype(tp)
 {
 	register char *cp;
 	char *nextc();
-	int s;
+	int s, c;
 
-	if (tp->t_rprntc != 0377)
-		ttyecho(tp->t_rprntc, tp);
+	if (tp->t_cc[VREPRINT] != _POSIX_VDISABLE)
+		ttyecho(tp->t_cc[VREPRINT], tp);
 	(void) ttyoutput('\n', tp);
 	s = spltty();
-	for (cp = tp->t_canq.c_cf; cp; cp = nextc(&tp->t_canq, cp))
-		ttyecho(*cp, tp);
-	for (cp = tp->t_rawq.c_cf; cp; cp = nextc(&tp->t_rawq, cp))
-		ttyecho(*cp, tp);
+	/*** XXX *** FIX *** NEXTC IS BROKEN - DOESN'T CHECK QUOTE
+	  BIT OF FIRST CHAR ****/
+	for (cp = tp->t_canq.c_cf, c=(cp?*cp:0); cp; cp = nextc(&tp->t_canq, cp, &c)) {
+		ttyecho(c, tp);
+	}
+	for (cp = tp->t_rawq.c_cf, c=(cp?*cp:0); cp; cp = nextc(&tp->t_rawq, cp, &c)) {
+		ttyecho(c, tp);
+	}
 	tp->t_state &= ~TS_ERASE;
 	splx(s);
 	tp->t_rocount = tp->t_rawq.c_cc;
@@ -1609,48 +1563,27 @@ ttyretype(tp)
 }
 
 /*
- * Echo a typed character to the terminal
+ * Echo a typed character to the terminal.
  */
 ttyecho(c, tp)
 	register c;
 	register struct tty *tp;
 {
-
 	if ((tp->t_state&TS_CNTTB) == 0)
-		tp->t_flags &= ~FLUSHO;
-	if ((tp->t_flags&ECHO) == 0)
+		tp->t_lflag &= ~FLUSHO;
+	if ((tp->t_lflag&ECHO) == 0 && !(tp->t_lflag&ECHONL && c == '\n'))
 		return;
-	c &= 0377;
-	if (tp->t_flags&RAW) {
-		(void) ttyoutput(c, tp);
-		return;
-	}
-	if (c == '\r' && tp->t_flags&CRMOD)
-		c = '\n';
-	if (tp->t_flags&CTLECH) {
-		if ((c&0177) <= 037 && c!='\t' && c!='\n' || (c&0177)==0177) {
+	if (tp->t_lflag&ECHOCTL) {
+		if ((c&TTY_CHARMASK)<=037 && c!='\t' && c!='\n' || c==0177) {
 			(void) ttyoutput('^', tp);
-			c &= 0177;
+			c &= TTY_CHARMASK;
 			if (c == 0177)
 				c = '?';
-			else if (tp->t_flags&LCASE)
-				c += 'a' - 1;
 			else
 				c += 'A' - 1;
 		}
 	}
-	(void) ttyoutput(c&0177, tp);
-}
-
-/*
- * Is c a break char for tp?
- */
-ttbreakc(c, tp)
-	register c;
-	register struct tty *tp;
-{
-	return (c == '\n' || c == tp->t_eofc || c == tp->t_brkc ||
-		c == '\r' && (tp->t_flags&CRMOD));
+	(void) ttyoutput(c, tp);
 }
 
 /*
@@ -1676,6 +1609,38 @@ ttwakeup(tp)
 		tp->t_rsel = 0;
 	}
 	if (tp->t_state & TS_ASYNC)
-		gsignal(tp->t_pgrp, SIGIO); 
+		gsignal(tp->t_pgid, SIGIO); 
 	wakeup((caddr_t)&tp->t_rawq);
+}
+
+/*
+ * set tty hi and low water marks
+ *
+ * Try to arrange the dynamics so there's about one second
+ * from hi to low water.
+ * 
+ */
+ttsetwater(tp)
+	struct tty *tp;
+{
+	register cps = tp->t_ospeed / 10;
+	register x;
+
+#define clamp(x, h, l) ((x)>h ? h : ((x)<l) ? l : (x))
+	tp->t_lowat = x = clamp(cps/2, TTMAXLOWAT, TTMINLOWAT);
+	x += cps;
+	x = clamp(x, TTMAXHIWAT, TTMINHIWAT);
+	tp->t_hiwat = roundup(x, CBSIZE);
+#undef clamp
+}
+
+ttspeedtab(speed, table)
+	struct speedtab table[];
+{
+	register int i;
+
+	for (i = 0; table[i].sp_speed != -1; i++)
+		if (table[i].sp_speed == speed)
+			return(table[i].sp_code);
+	return(-1);
 }
