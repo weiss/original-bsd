@@ -1,10 +1,10 @@
 /*-
- * Copyright (c) 1985 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1985, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * %sccs.include.proprietary.c%
  *
- *	@(#)condevs.h	4.10 (Berkeley) 05/16/93
+ *	@(#)condevs.h	8.1 (Berkeley) 06/06/93
  */
 
 #include "uucp.h"
