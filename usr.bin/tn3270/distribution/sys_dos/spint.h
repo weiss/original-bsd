@@ -4,7 +4,7 @@
  * Note that spint_asm.asm contains an Assembly language version of
  * the following, so keep changes in synch!
  *
- * @(#)spint.h	1.3 (Berkeley) 07/17/87
+ * @(#)spint.h	3.1 (Berkeley) 08/11/87
  */
 
 typedef struct {
