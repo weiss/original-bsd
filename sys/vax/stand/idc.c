@@ -1,4 +1,4 @@
-/*	idc.c	4.6	82/12/30	*/
+/*	idc.c	4.7	83/04/30	*/
 
 /*
  * IDC (RB730)
@@ -115,7 +115,7 @@ retry:
 	if (errcnt)
 		printf("idc: recovered by retry\n");
 	if (ccleft) {
-		bn += thiscc/(idc_type[dn]?512:256);
+		bn += thiscc/NBPG;
 		ubinfo += thiscc;
 		goto retry;
 	}
