@@ -2,7 +2,7 @@
 # include "sendmail.h"
 # include <ctype.h>
 
-static char SccsId[] = "@(#)readcf.c	3.7	08/09/81";
+static char SccsId[] = "@(#)readcf.c	3.8	08/10/81";
 
 /*
 **  READCF -- read control file.
@@ -126,7 +126,7 @@ readcf(cfname)
 				*p = '\0';
 				if (wd[0] != '\0')
 				{
-					s = stab(wd, ST_ENTER);
+					s = stab(wd, ST_CLASS, ST_ENTER);
 					s->s_class |= 1 << class;
 				}
 				*p = delim;
