@@ -8,7 +8,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)fdesc_vfsops.c	7.1 (Berkeley) 07/12/92
+ *	@(#)fdesc_vfsops.c	7.2 (Berkeley) 12/01/92
  *
  * $Id: fdesc_vfsops.c,v 1.6 1992/05/30 10:25:59 jsp Exp jsp $
  */
@@ -214,7 +214,7 @@ fdesc_statfs(mp, sbp, p)
 	 * limit is ever reduced below the current number
 	 * of open files... ]
 	 */
-	lim = p->p_rlimit[RLIMIT_OFILE].rlim_cur;
+	lim = p->p_rlimit[RLIMIT_NOFILE].rlim_cur;
 	fdp = p->p_fd;
 	last = min(fdp->fd_nfiles, lim);
 	freefd = 0;
