@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)deliver.c	8.28 (Berkeley) 10/02/93";
+static char sccsid[] = "@(#)deliver.c	8.29 (Berkeley) 10/03/93";
 #endif /* not lint */
 
 #include "sendmail.h"
@@ -408,6 +408,13 @@ sendenvelope(e, mode)
 
 	e->e_nsent = 0;
 	e->e_flags |= EF_GLOBALERRS;
+
+	/* be sure to use any new error message */
+	if (e->e_message != NULL)
+		free(e->e_message);
+	e->e_message = NULL;
+
+	/* now run through the queue */
 	for (q = e->e_sendqueue; q != NULL; q = q->q_next)
 	{
 #ifdef XDEBUG
