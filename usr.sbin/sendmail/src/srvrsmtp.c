@@ -3,10 +3,10 @@
 # include <signal.h>
 
 # ifndef SMTP
-SCCSID(@(#)srvrsmtp.c	4.3		08/28/83	(no SMTP));
+SCCSID(@(#)srvrsmtp.c	4.4		10/16/83	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)srvrsmtp.c	4.3		08/28/83);
+SCCSID(@(#)srvrsmtp.c	4.4		10/16/83);
 
 /*
 **  SMTP -- run the SMTP protocol.
@@ -629,6 +629,10 @@ runinchild(label)
 		/* child */
 		InChild = TRUE;
 		clearenvelope(CurEnv);
+
+		/* open alias database */
+		initaliases(AliasFile, FALSE);
+
 		return (0);
 	}
 }
