@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)parseaddr.c	8.10 (Berkeley) 09/04/93";
+static char sccsid[] = "@(#)parseaddr.c	8.11 (Berkeley) 09/04/93";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -944,6 +944,7 @@ rewrite(pvp, ruleset, e)
 			char *pvpb1[MAXATOM + 1];
 			char *argvect[10];
 			char pvpbuf[PSBUFSIZE];
+			char *nullpvp[1];
 
 			if ((**rvp & 0377) != HOSTBEGIN &&
 			    (**rvp & 0377) != LOOKUPBEGIN)
@@ -1060,6 +1061,12 @@ rewrite(pvp, ruleset, e)
 			if (replac == NULL)
 			{
 				xpvp = key_rvp;
+			}
+			else if (*replac == '\0')
+			{
+				/* null replacement */
+				nullpvp[0] = NULL;
+				xpvp = nullpvp;
 			}
 			else
 			{
