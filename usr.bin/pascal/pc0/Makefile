@@ -1,6 +1,6 @@
-SCCSID = "@(#)Makefile 1.11 10/19/80"
+SCCSID = "@(#)Makefile 1.12 10/19/80"
 WHOAMI = pc
-INSTALLNAME = pc0
+INSTALLNAME = /usr/lib/pc0
 VERSION = 2.0
 
 MKSTR = /usr/ucb/mkstr
@@ -11,7 +11,6 @@ GET = sccs get
 CFLAGS = -O -w
 LDFLAGS = -z
 
-INSTALLDIR = /usr/lib
 LIBDIR = /usr/lib
 TMPDIR = tmp
 
@@ -106,8 +105,8 @@ print:	sources
 install: a.out
 	sccs check
 	cp ${ERRORSTRINGS} ${LIBDIR}/${ERRORSTRINGS}
-	cp ${INSTALLDIR}/${INSTALLNAME} ${INSTALLDIR}/${INSTALLNAME}.bak
-	cp a.out ${INSTALLDIR}/${INSTALLNAME}
+	cp ${INSTALLNAME} ${INSTALLNAME}.bak
+	cp a.out ${INSTALLNAME}
 
 depend:	sources
 	/bin/grep '^#[ 	]*include' *.h \
