@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.30 (Berkeley) 02/28/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.31 (Berkeley) 03/04/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.30 (Berkeley) 02/28/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.31 (Berkeley) 03/04/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -355,7 +355,7 @@ smtp(e)
 			for (; p != NULL && *p != '\0'; p++)
 			{
 				char *kp;
-				char *vp;
+				char *vp = NULL;
 
 				/* locate the beginning of the keyword */
 				while (isascii(*p) && isspace(*p))
