@@ -4,12 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)kern_subr.c	7.5 (Berkeley) 03/17/91
+ *	@(#)kern_subr.c	7.6 (Berkeley) 04/12/91
  */
 
 #include "param.h"
 #include "systm.h"
-#include "user.h"
 
 uiomove(cp, n, uio)
 	register caddr_t cp;
