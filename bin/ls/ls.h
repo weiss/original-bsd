@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Michael Fischbein.
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ls.h	5.18 (Berkeley) 06/28/92
+ *	@(#)ls.h	8.1 (Berkeley) 05/31/93
  */
 
 #define NO_PRINT	1

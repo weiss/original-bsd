@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 1989 The Regents of the University of California.
- * All rights reserved.
+ * Copyright (c) 1989, 1993
+ *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software contributed to Berkeley by
  * Michael Fischbein.
@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)cmp.c	5.8 (Berkeley) 04/29/93";
+static char sccsid[] = "@(#)cmp.c	8.1 (Berkeley) 05/31/93";
 #endif /* not lint */
 
 #include <sys/types.h>
