@@ -1,9 +1,9 @@
-#	@(#)Makefile	5.7 (Berkeley) 06/19/90
+#	@(#)Makefile	5.8 (Berkeley) 09/28/90
 
 PROG=	passwd
 SRCS=	passwd.c des_rw.c
 DPADD=	${LIBKRB} ${LIBDES}
-CFLAGS+=-I${.CURDIR} -DKERBEROS
+CFLAGS+=-I${.CURDIR} -DKERBEROS -DCRYPT
 LDADD=	-lkrb -ldes
 BINOWN=	root
 BINMODE=4555
