@@ -3,10 +3,10 @@
 # include "sendmail.h"
 
 # ifndef SMTP
-SCCSID(@(#)usersmtp.c	3.9.1.1		05/29/82	(no SMTP));
+SCCSID(@(#)usersmtp.c	3.10		05/31/82	(no SMTP));
 # else SMTP
 
-SCCSID(@(#)usersmtp.c	3.9.1.1		05/29/82);
+SCCSID(@(#)usersmtp.c	3.10		05/31/82);
 
 /*
 **  SMTPINIT -- initialize SMTP.
