@@ -7,7 +7,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)conf.c	8.147 (Berkeley) 03/31/95";
+static char sccsid[] = "@(#)conf.c	8.148 (Berkeley) 03/31/95";
 #endif /* not lint */
 
 # include "sendmail.h"
@@ -2742,7 +2742,7 @@ strtol(nptr, endptr, base)
 
 struct hostent *
 sm_gethostbyname(name)
-	const char *name;
+	char *name;
 {
 #if defined(SOLARIS) && SOLARIS < 204
 	extern int h_errno;
@@ -2765,7 +2765,7 @@ sm_gethostbyname(name)
 
 struct hostent *
 sm_gethostbyaddr(addr, len, type)
-	const char *addr;
+	char *addr;
 	int len;
 	int type;
 {
