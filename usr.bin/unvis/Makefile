@@ -1,5 +1,5 @@
-#	@(#)Makefile	1.1 (Berkeley) 05/23/90
+#	@(#)Makefile	5.1 (Berkeley) 06/01/90
 
-PROG=	vis
+PROG=	unvis
 
 .include <bsd.prog.mk>
