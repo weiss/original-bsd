@@ -2,10 +2,10 @@
 .\" All rights reserved.  The Berkeley software License Agreement
 .\" specifies the terms and conditions for redistribution.
 .\"
-.\"	@(#)0.t	6.2 (Berkeley) 04/28/86
+.\"	@(#)0.t	6.3 (Berkeley) 04/29/86
 .\"
-.EH 'SMM:5-%''4.3BSD Line Printer Spooler Manual'
-.OH '4.3BSD Line Printer Spooler Manual''SMM:5-%'
+.EH 'SMM:6-%''4.3BSD Line Printer Spooler Manual'
+.OH '4.3BSD Line Printer Spooler Manual''SMM:6-%'
 .if n .ND
 .TL
 4.3BSD Line Printer Spooler Manual
