@@ -4,7 +4,7 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)ffs_inode.c	7.64 (Berkeley) 11/13/92
+ *	@(#)ffs_inode.c	7.65 (Berkeley) 12/01/92
  */
 
 #include <sys/param.h>
@@ -62,11 +62,11 @@ ffs_update(ap)
 	register struct fs *fs;
 	int error;
 
+	ip = VTOI(ap->a_vp);
 	if (ap->a_vp->v_mount->mnt_flag & MNT_RDONLY) {
 		ip->i_flag &= ~(IUPD|IACC|ICHG|IMOD);
 		return (0);
 	}
-	ip = VTOI(ap->a_vp);
 	if ((ip->i_flag & (IUPD|IACC|ICHG|IMOD)) == 0)
 		return (0);
 	if (ip->i_flag&IACC)
