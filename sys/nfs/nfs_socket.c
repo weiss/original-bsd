@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)nfs_socket.c	7.13 (Berkeley) 05/18/90
+ *	@(#)nfs_socket.c	7.14 (Berkeley) 06/05/90
  */
 
 /*
@@ -39,8 +39,8 @@
 #include "protosw.h"
 #include "socket.h"
 #include "socketvar.h"
-#include "netinet/in.h"
-#include "netinet/tcp.h"
+#include "../netinet/in.h"
+#include "../netinet/tcp.h"
 #include "rpcv2.h"
 #include "nfsv2.h"
 #include "nfs.h"
