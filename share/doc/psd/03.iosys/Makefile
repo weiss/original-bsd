@@ -1,10 +1,10 @@
-#	@(#)Makefile	5.2 (Berkeley) 06/30/90
+#	@(#)Makefile	5.3 (Berkeley) 06/05/93
 
-DIR=	ps2/05.iosys
+DIR=	psd/03.iosys
 SRCS=	iosys
 MACROS=	-ms
 
-paper.${PRINTER}: ${SRCS}
+paper.ps: ${SRCS}
 	${ROFF} ${SRCS} > ${.TARGET}
 
 .include <bsd.doc.mk>
