@@ -4,15 +4,9 @@
  * specifies the terms and conditions for redistribution.
  */
 
-#ifndef lint
-char copyright[] =
-"@(#) Copyright (c) 1987 Regents of the University of California.\n\
- All rights reserved.\n";
-#endif /* !lint */
-
-#ifndef lint
-static char sccsid[] = "@(#)herror.c	1.1 (Berkeley) 11/17/87";
-#endif /* !lint */
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)herror.c	6.1 (Berkeley) 12/04/87";
+#endif LIBC_SCCS and not lint
 
 #include <sys/types.h>
 #include <sys/uio.h>
