@@ -14,7 +14,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)init_main.c	7.5.1.1 (Berkeley) 05/01/89
+ *	@(#)init_main.c	7.10 (Berkeley) 05/01/89
  */
 
 #include "param.h"
@@ -32,6 +32,7 @@
 #include "cmap.h"
 #include "text.h"
 #include "clist.h"
+#include "malloc.h"
 #include "protosw.h"
 #include "reboot.h"
 #include "../ufs/quota.h"
@@ -61,6 +62,7 @@ main(firstaddr)
 {
 	register int i;
 	register struct proc *p;
+	register struct pgrp *pg;
 	struct fs *fs;
 	int s;
 
@@ -80,6 +82,26 @@ main(firstaddr)
 	p->p_nice = NZERO;
 	setredzone(p->p_addr, (caddr_t)&u);
 	u.u_procp = p;
+	MALLOC(pgrphash[0], struct pgrp *, sizeof (struct pgrp), 
+		M_PGRP, M_NOWAIT);
+	if ((pg = pgrphash[0]) == NULL)
+		panic("no space to craft zero'th process group");
+	pg->pg_id = 0;
+	pg->pg_hforw = 0;
+	pg->pg_mem = p;
+	pg->pg_jobc = 0;
+	p->p_pgrp = pg;
+	p->p_pgrpnxt = 0;
+	MALLOC(pg->pg_session, struct session *, sizeof (struct session),
+		M_SESSION, M_NOWAIT);
+	if (pg->pg_session == NULL)
+		panic("no space to craft zero'th session");
+	pg->pg_session->s_count = 1;
+	pg->pg_session->s_leader = 0;
+#ifdef KTRACE
+	p->p_tracep = NULL;
+	p->p_traceflag = 0;
+#endif
 	/*
 	 * These assume that the u. area is always mapped 
 	 * to the same virtual address. Otherwise must be
@@ -273,6 +295,7 @@ swapinit()
 	register int i;
 	register struct buf *sp = swbuf;
 	struct swdevt *swp;
+	int error;
 
 	/*
 	 * Count swap devices, and adjust total swap space available.
@@ -299,7 +322,10 @@ swapinit()
 		maxpgio = (maxpgio * (2 * nswdev - 1)) / 2;
 	if (bdevvp(swdevt[0].sw_dev, &swdevt[0].sw_vp))
 		panic("swapvp");
-	swfree(0);
+	if (error = swfree(0)) {
+		printf("swfree errno %d\n", error);	/* XXX */
+		panic("swapinit swfree 0");
+	}
 
 	/*
 	 * Now set up swap buffer headers.
