@@ -13,7 +13,7 @@
 
 #ifndef lint
 static char sccsid[] =
-"@(#)cosh.c	1.2 (Berkeley) 8/21/85; 1.6 (ucb.elefunt) 07/13/87";
+"@(#)cosh.c	1.2 (Berkeley) 8/21/85; 5.1 (ucb.elefunt) 11/30/87";
 #endif	/* not lint */
 
 /* COSH(X)

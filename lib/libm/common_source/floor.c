@@ -1,4 +1,4 @@
-/*	@(#)floor.c	4.2	9/11/85; 1.6 (ucb.elefunt) 07/13/87 */
+/*	@(#)floor.c	4.2	9/11/85; 5.1 (ucb.elefunt) 11/30/87 */
 
 /*
  * floor and ceil-- greatest integer <= arg

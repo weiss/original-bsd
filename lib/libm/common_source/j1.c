@@ -1,6 +1,6 @@
 #ifndef lint
 static char sccsid[] =
-"@(#)j1.c	4.2 (Berkeley) 8/21/85; 1.4 (ucb.elefunt) 07/13/87";
+"@(#)j1.c	4.2 (Berkeley) 8/21/85; 5.1 (ucb.elefunt) 11/30/87";
 #endif	/* not lint */
 
 /*

@@ -1,4 +1,4 @@
-/*	@(#)erf.c	4.2 (Berkeley) 8/21/85; 1.2 (ucb.elefunt) 09/11/85 */
+/*	@(#)erf.c	4.2 (Berkeley) 8/21/85; 5.1 (ucb.elefunt) 11/30/87 */
 
 /*
 	C program for floating point error function
