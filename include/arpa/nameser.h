@@ -4,8 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)nameser.h	5.24 (Berkeley) 06/01/90
+ *	@(#)nameser.h	5.25 (Berkeley) 04/03/91
  */
+
+#ifndef _NAMESER_H_
+#define	_NAMESER_H_
 
 /*
  * Define constants based on rfc883
@@ -219,3 +222,5 @@ extern	u_long	_getlong();
 	(cp)[0] = l >> 8; \
 	(cp) += sizeof(u_long); \
 }
+
+#endif /* !_NAMESER_H_ */

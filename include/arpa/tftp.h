@@ -4,8 +4,11 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)tftp.h	5.3 (Berkeley) 06/01/90
+ *	@(#)tftp.h	5.4 (Berkeley) 04/03/91
  */
+
+#ifndef _TFTP_H_
+#define	_TFTP_H_
 
 /*
  * Trivial File Transfer Protocol (IEN-133)
@@ -47,3 +50,5 @@ struct	tftphdr {
 #define	EBADID		5		/* unknown transfer ID */
 #define	EEXISTS		6		/* file already exists */
 #define	ENOUSER		7		/* no such user */
+
+#endif /* !_TFTP_H_ */
