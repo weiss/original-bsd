@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)rk.c	7.4 (Berkeley) 02/23/88
+ *	@(#)rk.c	7.5 (Berkeley) 02/24/88
  */
 
 /*
@@ -39,10 +39,8 @@ rkopen(io)
 	if ((u_int)io->i_ctlr >= MAXCTLR)
 		return (ECTLR);
 	rkaddr = (struct rkdevice *)ubamem(io->i_adapt, rkstd[io->i_ctlr]);
-	if (badaddr((char *)rkaddr, sizeof(short))) {
-		printf("rk: nonexistent device\n");
+	if (badaddr((char *)rkaddr, sizeof(short)))
 		return (ENXIO);
-	}
 	rkaddr->rkcs2 = RKCS2_SCLR;
 	rkwait(rkaddr);
 	/*
