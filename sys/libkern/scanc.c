@@ -4,17 +4,19 @@
  *
  * %sccs.include.redist.c%
  *
- *	@(#)scanc.c	7.1 (Berkeley) 06/20/92
+ *	@(#)scanc.c	7.2 (Berkeley) 06/21/92
  */
 
 int
-scanc(size, cp, table, mask)
+scanc(size, cp, table, mask0)
 	unsigned int size;
 	register unsigned char *cp, table[];
-	register unsigned char mask;
+	int mask0;
 {
 	register unsigned char *end;
+	register unsigned char mask;
 
+	mask = mask0;
 	for (end = &cp[size]; cp < end && (table[*cp] & mask) == 0; ++cp);
 	return (end - cp);
 }
