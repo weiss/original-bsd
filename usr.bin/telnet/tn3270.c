@@ -11,7 +11,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)tn3270.c	1.9 (Berkeley) 05/15/88";
+static char sccsid[] = "@(#)tn3270.c	1.10 (Berkeley) 05/15/88";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -104,7 +104,7 @@ int		done;		/* is this the last of a logical block */
 	}
 	loop = c;
 	while (loop) {
-	    if (*buffer == IAC) {
+	    if (((unsigned char)*buffer) == IAC) {
 		break;
 	    }
 	    buffer++;
