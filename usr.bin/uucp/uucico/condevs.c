@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)condevs.c	5.15 (Berkeley) 02/12/86";
+static char sccsid[] = "@(#)condevs.c	5.16 (Berkeley) 02/24/88";
 #endif
 
 extern int errno;
@@ -315,10 +315,9 @@ register char *flds[];
 			}
 		}
 
-		if (mlock(dev.D_line) == FAIL) {
-			acustatus++;
+		if (mlock(dev.D_line) == FAIL)
 			continue;
-		}
+
 		if (acustatus < 1)
 			acustatus = 1;	/* has been found */
 #ifdef DIALINOUT
@@ -557,7 +556,7 @@ char *type, *dev;
 			p = buf + strlen(buf) - 1;
 			if (*p == '\n')
 				*p = '\0';
-			logent(buf,"ACUCNTRL:");
+			DEBUG(4, "ACUCNTRL: %s\n", buf);
 		}
 	}
 	while(wait(&status) != pid)
