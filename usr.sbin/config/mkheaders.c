@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 1980 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
 #ifndef lint
-static char sccsid[] = "@(#)mkheaders.c	1.14 (Berkeley) 08/11/83";
-#endif
+static char sccsid[] = "@(#)mkheaders.c	5.1 (Berkeley) 05/08/85";
+#endif not lint
 
 /*
  * Make all the .h files for the optional entries
