@@ -1,9 +1,10 @@
-/*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+/*-
+ * Copyright (c) 1980 The Regents of the University of California.
+ * All rights reserved.
  *
- *	@(#)breakpoint.h	5.2 (Berkeley) 01/03/88
+ * %sccs.include.redist.c%
+ *
+ *	@(#)breakpoint.h	5.3 (Berkeley) 04/16/91
  */
 
 /*
