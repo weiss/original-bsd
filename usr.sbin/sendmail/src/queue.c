@@ -5,10 +5,10 @@
 # include <errno.h>
 
 # ifndef QUEUE
-SCCSID(@(#)queue.c	3.49		11/04/82	(no queueing));
+SCCSID(@(#)queue.c	3.50		11/13/82	(no queueing));
 # else QUEUE
 
-SCCSID(@(#)queue.c	3.49		11/04/82);
+SCCSID(@(#)queue.c	3.50		11/13/82);
 
 /*
 **  QUEUEUP -- queue a message up for future transmission.
@@ -254,15 +254,6 @@ runqueue(forkflag)
 
 # define WLSIZE		120	/* max size of worklist per sort */
 
-# ifndef DIR
-# define DIR		FILE
-# define direct		dir
-# define opendir(d)	fopen(d, "r")
-# define readdir(f)	((fread(&dbuf, sizeof dbuf, 1, f) > 0) ? &dbuf : 0)
-static struct dir	dbuf;
-# define closedir(f)	fclose(f)
-# endif DIR
-
 orderq()
 {
 	register struct direct *d;
@@ -303,12 +294,6 @@ orderq()
 		FILE *cf;
 
 		/* is this an interesting entry? */
-		if (d->d_ino == 0)
-			continue;
-# ifdef DEBUG
-		if (tTd(40, 10))
-			printf("orderq: %12s\n", d->d_name);
-# endif DEBUG
 		if (d->d_name[0] != 'q' || d->d_name[1] != 'f')
 			continue;
 
