@@ -22,7 +22,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)printf.c	5.6 (Berkeley) 07/20/89";
+static char sccsid[] = "@(#)printf.c	5.7 (Berkeley) 07/20/89";
 #endif /* not lint */
 
 #include <sys/types.h>
@@ -245,7 +245,7 @@ getstr()
 	return(*gargv++);
 }
 
-static char *number = "+-0123456789";
+static char *number = "+-.0123456789";
 getint()
 {
 	if (!*gargv)
