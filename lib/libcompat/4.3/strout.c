@@ -1,6 +1,10 @@
+/*-
+ * %sccs.include.proprietary.c%
+ */
+
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)strout.c	5.2 (Berkeley) 03/09/86";
-#endif LIBC_SCCS and not lint
+static char sccsid[] = "@(#)strout.c	5.3 (Berkeley) 04/20/91";
+#endif /* LIBC_SCCS and not lint */
 
 #include	<stdio.h>
 

@@ -1,6 +1,13 @@
+/*-
+ * Copyright (c) 1991 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * %sccs.include.proprietary.c%
+ */
+
 #if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)gcvt.c	5.2 (Berkeley) 03/09/86";
-#endif LIBC_SCCS and not lint
+static char sccsid[] = "@(#)gcvt.c	5.3 (Berkeley) 04/20/91";
+#endif /* LIBC_SCCS and not lint */
 
 /*
  * gcvt  - Floating output conversion to
