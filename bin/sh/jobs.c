@@ -9,7 +9,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)jobs.c	5.1 (Berkeley) 03/07/91";
+static char sccsid[] = "@(#)jobs.c	5.2 (Berkeley) 06/23/92";
 #endif /* not lint */
 
 #include "shell.h"
@@ -108,6 +108,7 @@ setjobctl(on) {
 		}
 		setsignal(SIGTSTP);
 		setsignal(SIGTTOU);
+		setsignal(SIGTTIN);
 		setpgrp(0, rootpid);
 		ioctl(2, TIOCSPGRP, (char *)&rootpid);
 	} else { /* turning job control off */
@@ -115,6 +116,7 @@ setjobctl(on) {
 		ioctl(2, TIOCSPGRP, (char *)&initialpgrp);
 		setsignal(SIGTSTP);
 		setsignal(SIGTTOU);
+		setsignal(SIGTTIN);
 	}
 	jobctl = on;
 }
