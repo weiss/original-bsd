@@ -17,7 +17,7 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)dr.c	7.2 (Berkeley) 09/16/88
+ *	@(#)dr.c	7.3 (Berkeley) 04/25/89
  */
 
 #include "dr.h"
@@ -27,8 +27,8 @@
  *
  * UNTESTED WITH 4.3
  */
-#include "../machine/mtpr.h"
-#include "../machine/pte.h"
+#include "machine/mtpr.h"
+#include "machine/pte.h"
 
 #include "param.h"
 #include "conf.h"
