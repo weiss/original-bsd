@@ -12,7 +12,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)ktrace.c	5.1 (Berkeley) 01/17/91";
+static char sccsid[] = "@(#)ktrace.c	5.2 (Berkeley) 03/05/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -46,6 +46,7 @@ main(argc, argv)
 			break;
 		case 'C':
 			clear = CLEARALL;
+			pidset = 1;
 			break;
 		case 'c':
 			clear = CLEAR;
