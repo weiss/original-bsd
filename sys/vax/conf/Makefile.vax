@@ -1,4 +1,4 @@
-#	@(#)Makefile.vax	7.19 (Berkeley) 11/18/91
+#	@(#)Makefile.vax	7.20 (Berkeley) 03/30/92
 
 # Makefile for 4.4 BSD
 #
@@ -72,7 +72,7 @@ SYSTEM_OBJ=	locore.o ${OBJS} param.o ioconf.o vers.o
 SYSTEM_DEP=	Makefile ${SYSTEM_OBJ}
 SYSTEM_LD_HEAD=	rm -f $@
 SYSTEM_LD=	@echo loading vmunix;\
-		${LD} -x -n -o $@ -e start ${SYSTEM_OBJ}
+		${LD} -x -n -o $@ -e start -T 80000000 ${SYSTEM_OBJ}
 SYSTEM_LD_TAIL= 
 #SYSTEM_LD_TAIL= @echo rearranging symbols; symorder symbols.sort $@
 
