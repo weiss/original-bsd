@@ -16,13 +16,14 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)redist.c	5.8 (Berkeley) 06/29/88";
+static char sccsid[] = "@(#)redist.c	5.9 (Berkeley) 05/11/89";
 #endif /* not lint */
 
 #include <sys/file.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <bug.h>
+#include "pathnames.h"
 
 /*
  * redist --

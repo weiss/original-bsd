@@ -14,12 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)bug.h	5.7 (Berkeley) 06/29/88
+ *	@(#)bug.h	5.8 (Berkeley) 05/11/89
  */
 
 #define BUGS_HOME	"owner-bugs@ucbvax.Berkeley.EDU"
 #define BUGS_ID		"bugs"
-#define MAIL_CMD	"/usr/lib/sendmail -i -t -F \"Bugs Bunny\" -f owner-bugs"
 
 /*
  * the METOO definition has the bugfiler exit with an error (-1) status
