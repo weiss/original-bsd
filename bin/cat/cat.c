@@ -15,7 +15,7 @@ char copyright[] =
 #endif /* not lint */
 
 #ifndef lint
-static char sccsid[] = "@(#)cat.c	5.14 (Berkeley) 05/06/91";
+static char sccsid[] = "@(#)cat.c	5.15 (Berkeley) 05/23/91";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -88,7 +88,7 @@ cook_args(argv)
 	register FILE *fp;
 
 	fp = stdin;
-	filename = "-";
+	filename = "stdin";
 	do {
 		if (*argv) {
 			if (!strcmp(*argv, "-"))
@@ -176,7 +176,7 @@ raw_args(argv)
 	register int fd;
 
 	fd = fileno(stdin);
-	filename = "-";
+	filename = "stdin";
 	do {
 		if (*argv) {
 			if (!strcmp(*argv, "-"))
