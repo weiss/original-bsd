@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef SMTP
-static char sccsid[] = "@(#)srvrsmtp.c	8.49 (Berkeley) 11/22/94 (with SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.50 (Berkeley) 11/25/94 (with SMTP)";
 #else
-static char sccsid[] = "@(#)srvrsmtp.c	8.49 (Berkeley) 11/22/94 (without SMTP)";
+static char sccsid[] = "@(#)srvrsmtp.c	8.50 (Berkeley) 11/25/94 (without SMTP)";
 #endif
 #endif /* not lint */
 
@@ -759,7 +759,7 @@ smtp(e)
 			}
 			else
 			{
-				(void) sendtolist(p, NULLADDR, &vrfyqueue, e);
+				(void) sendtolist(p, NULLADDR, &vrfyqueue, 0, e);
 			}
 			if (Errors != 0)
 			{
