@@ -19,7 +19,7 @@
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)util.c	5.9 (Berkeley) 05/10/90";
+static char sccsid[] = "@(#)util.c	5.10 (Berkeley) 05/10/90";
 #endif /* not lint */
 
 #include <sys/param.h>
@@ -56,7 +56,7 @@ userinfo(pn, pw)
 	register struct passwd *pw;
 {
 	register char *p, *t;
-	char *bp, name[256];
+	char *bp, name[1024];
 
 	pn->realname = pn->office = pn->officephone = pn->homephone = NULL;
 
@@ -96,7 +96,7 @@ match(pw, user)
 	char *user;
 {
 	register char *p, *t;
-	char name[256];
+	char name[1024];
 
 	/* why do we skip asterisks!?!? */
 	(void)strcpy(p = tbuf, pw->pw_gecos);
