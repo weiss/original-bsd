@@ -6,7 +6,7 @@
 # include <syslog.h>
 # endif LOG
 
-static char SccsId[] = "@(#)deliver.c	3.53	11/11/81";
+static char SccsId[] = "@(#)deliver.c	3.54	11/21/81";
 
 /*
 **  DELIVER -- Deliver a message to a list of addresses.
@@ -262,7 +262,7 @@ deliver(firstto, editfcn)
 
 		if (clever)
 		{
-			i = smtpmrcp(to);
+			i = smtprcpt(to);
 			if (i == EX_TEMPFAIL)
 			{
 				QueueUp = TRUE;
