@@ -1,10 +1,10 @@
 /* Copyright (c) 1984 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)libcpats.c	1.1	(Berkeley)	08/18/84";
+static char sccsid[] = "@(#)libcpats.c	1.2	(Berkeley)	08/18/84";
 #endif not lint
 
-#include "pc2.h"
+#include "inline.h"
 
 /*
  * Pattern table for the C library.

@@ -1,12 +1,12 @@
 /* Copyright (c) 1984 Regents of the University of California */
 
 #ifndef lint
-static char sccsid[] = "@(#)main.c	1.1	(Berkeley)	08/18/84";
+static char sccsid[] = "@(#)main.c	1.2	(Berkeley)	08/18/84";
 #endif not lint
 
 #include <stdio.h>
 #include <ctype.h>
-#include "pc2.h"
+#include "inline.h"
 
 main(argc, argv)
 	int argc;
