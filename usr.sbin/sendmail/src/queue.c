@@ -10,9 +10,9 @@
 
 #ifndef lint
 #ifdef QUEUE
-static char sccsid[] = "@(#)queue.c	8.16 (Berkeley) 08/25/93 (with queueing)";
+static char sccsid[] = "@(#)queue.c	8.17 (Berkeley) 09/18/93 (with queueing)";
 #else
-static char sccsid[] = "@(#)queue.c	8.16 (Berkeley) 08/25/93 (without queueing)";
+static char sccsid[] = "@(#)queue.c	8.17 (Berkeley) 09/18/93 (without queueing)";
 #endif
 #endif /* not lint */
 
@@ -599,6 +599,7 @@ orderq(doall)
 	while ((d = readdir(f)) != NULL)
 	{
 		FILE *cf;
+		register char *p;
 		char lbuf[MAXNAME];
 		extern bool strcontainedin();
 
@@ -615,8 +616,16 @@ orderq(doall)
 		**  both old and new type ids.
 		*/
 
-		i = strlen(d->d_name);
-		if (i != 9 && i != 10)
+		p = d->d_name + 2;
+		if (isupper(p[0]) && isupper(p[2]))
+			p += 3;
+		else if (isupper(p[1]))
+			p += 2;
+		else
+			p = d->d_name;
+		for (i = 0; isdigit(*p); p++)
+			i++;
+		if (i < 5 || *p != '\0')
 		{
 			if (Verbose)
 				printf("orderq: bogus qf name %s\n", d->d_name);
