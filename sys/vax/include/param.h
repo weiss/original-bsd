@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)param.h	7.13 (Berkeley) 12/30/89
+ *	@(#)param.h	7.14 (Berkeley) 02/23/90
  */
 
 /*
@@ -23,6 +23,7 @@
 #define	NPTEPG		(NBPG/(sizeof (struct pte)))
 
 #define	KERNBASE	0x80000000	/* start of kernel virtual */
+#define	KERNTEXTOFF	KERNBASE	/* start of kernel text */
 #define	BTOPKERNBASE	((u_long)KERNBASE >> PGSHIFT)
 
 #define	DEV_BSIZE	512
